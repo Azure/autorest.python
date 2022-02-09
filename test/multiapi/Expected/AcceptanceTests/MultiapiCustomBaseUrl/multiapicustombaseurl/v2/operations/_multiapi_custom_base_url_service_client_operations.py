@@ -37,22 +37,22 @@ def build_test_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/test')
+    _url = kwargs.pop("template_url", "/test")
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['id'] = _SERIALIZER.query("id", id, 'int')
-    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['id'] = _SERIALIZER.query("id", id, 'int')
+    _query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -111,5 +111,5 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    test.metadata = {'url': '/test'}  # type: ignore
+    test.metadata = {'url': "/test"}  # type: ignore
 

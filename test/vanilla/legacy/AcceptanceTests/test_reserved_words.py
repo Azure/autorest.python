@@ -45,3 +45,6 @@ def test_operation_with_data_param(client):
 
 def test_operation_with_files_param(client):
     client.operation_with_files_param(file_name="my.txt", files=b"bytes")
+
+def test_operation_with_url(client):
+    client.operation_with_url("foo", header_parameters="x-ms-header", query_parameters=["one", "two"])

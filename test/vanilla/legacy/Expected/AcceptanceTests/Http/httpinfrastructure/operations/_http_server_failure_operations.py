@@ -41,16 +41,16 @@ def build_head501_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/server/501')
+    _url = kwargs.pop("template_url", "/http/failure/server/501")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="HEAD",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -61,16 +61,16 @@ def build_get501_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/server/501')
+    _url = kwargs.pop("template_url", "/http/failure/server/501")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -83,18 +83,18 @@ def build_post505_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/server/505')
+    _url = kwargs.pop("template_url", "/http/failure/server/505")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -107,18 +107,18 @@ def build_delete505_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/failure/server/505')
+    _url = kwargs.pop("template_url", "/http/failure/server/505")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="DELETE",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 

@@ -55,16 +55,16 @@ def build_get_pages_partial_url_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/customurl/partialnextlink'
+    _url = "/paging/customurl/partialnextlink"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -102,16 +102,16 @@ def build_get_pages_partial_url_operation_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/customurl/partialnextlinkop'
+    _url = "/paging/customurl/partialnextlinkop"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -152,20 +152,20 @@ def build_get_pages_partial_url_operation_next_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/customurl/{nextLink}'
+    _url = "/paging/customurl/{nextLink}"
     path_format_arguments = {
         "nextLink": _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )

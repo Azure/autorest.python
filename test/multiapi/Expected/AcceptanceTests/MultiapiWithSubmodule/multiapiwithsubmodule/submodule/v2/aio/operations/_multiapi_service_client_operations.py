@@ -78,7 +78,7 @@ class MultiapiServiceClientOperationsMixin:
 
         return deserialized
 
-    test_one.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore
+    test_one.metadata = {'url': "/multiapi/testOneEndpoint"}  # type: ignore
 
 
     @distributed_trace_async
@@ -132,5 +132,5 @@ class MultiapiServiceClientOperationsMixin:
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_different_calls.metadata = {'url': '/multiapi/testDifferentCalls'}  # type: ignore
+    test_different_calls.metadata = {'url': "/multiapi/testDifferentCalls"}  # type: ignore
 

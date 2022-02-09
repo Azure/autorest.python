@@ -37,21 +37,21 @@ def build_get_method_global_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview'
+    _url = "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -75,21 +75,21 @@ def build_get_method_global_not_provided_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview'
+    _url = "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -113,21 +113,21 @@ def build_get_path_global_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview'
+    _url = "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -151,20 +151,20 @@ def build_get_swagger_global_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview'
+    _url = "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )

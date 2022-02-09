@@ -41,11 +41,7 @@ class AutoRestRFC1123DateTimeTestService:
         self._serialize.client_side_validation = False
         self.datetimerfc1123 = Datetimerfc1123Operations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs: Any
-    ) -> HttpResponse:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

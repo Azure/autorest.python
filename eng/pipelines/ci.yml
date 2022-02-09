@@ -10,7 +10,7 @@ pr:
 
 variables:
   NodeVersion: "12.x"
-  PythonVersion: "3.6"
+  PythonVersion: "3.7"
   TestFolder: "$(Build.SourcesDirectory)/test/"
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/coverage/"
 
@@ -31,10 +31,10 @@ jobs:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"
           PythonVersion: "2.7"
-        Linux_Python36:
+        Linux_Python37:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"
-          PythonVersion: "3.6"
+          PythonVersion: "3.7"
           CoverageArg: ""
         Linux_Python310:
           OSName: "Linux"
@@ -52,9 +52,9 @@ jobs:
           versionSpec: "$(NodeVersion)"
 
       - task: UsePythonVersion@0
-        displayName: "Use Python 3.6"
+        displayName: "Use Python 3.7"
         inputs:
-          versionSpec: 3.6
+          versionSpec: 3.7
 
       - script: |
           cd $(Build.SourcesDirectory)
@@ -127,7 +127,7 @@ jobs:
           cd $(TestFolder)/azure/version-tolerant
           tox -e lint
         displayName: 'Lint version-tolerant "azure" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.6'))
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
 
       - script: |
           cd $(TestFolder)/vanilla/legacy
@@ -168,7 +168,7 @@ jobs:
           cd $(TestFolder)/vanilla/version-tolerant
           tox -e lint
         displayName: 'Lint version-tolerant "vanilla" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.6'))
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
 
       - script: |
           cd $(TestFolder)/llc/low-level
@@ -184,7 +184,7 @@ jobs:
           cd $(TestFolder)/llc/version-tolerant
           tox -e lint
         displayName: 'Lint version-tolerant "llc" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.6'))
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
       - script: |
           cd $(TestFolder)/multiapi
           tox -e ci

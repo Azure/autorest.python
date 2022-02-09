@@ -41,16 +41,16 @@ def build_head408_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/408')
+    _url = kwargs.pop("template_url", "/http/retry/408")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="HEAD",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -63,18 +63,18 @@ def build_put500_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/500')
+    _url = kwargs.pop("template_url", "/http/retry/500")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -87,18 +87,18 @@ def build_patch500_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/500')
+    _url = kwargs.pop("template_url", "/http/retry/500")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PATCH",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -109,16 +109,16 @@ def build_get502_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/502')
+    _url = kwargs.pop("template_url", "/http/retry/502")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -129,16 +129,16 @@ def build_options502_request(
     # type: (...) -> HttpRequest
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/502')
+    _url = kwargs.pop("template_url", "/http/retry/502")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="OPTIONS",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -151,18 +151,18 @@ def build_post503_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/503')
+    _url = kwargs.pop("template_url", "/http/retry/503")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -175,18 +175,18 @@ def build_delete503_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/503')
+    _url = kwargs.pop("template_url", "/http/retry/503")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="DELETE",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -199,18 +199,18 @@ def build_put504_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/504')
+    _url = kwargs.pop("template_url", "/http/retry/504")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -223,18 +223,18 @@ def build_patch504_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/http/retry/504')
+    _url = kwargs.pop("template_url", "/http/retry/504")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PATCH",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 

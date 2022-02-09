@@ -32,35 +32,35 @@ _SERIALIZER.client_side_validation = False
 def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/report"
+    _url = "/report"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if qualifier is not None:
-        query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
+        _query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_get_optional_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/report/optional"
+    _url = "/report/optional"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if qualifier is not None:
-        query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
+        _query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 class AutoRestReportServiceOperationsMixin(object):

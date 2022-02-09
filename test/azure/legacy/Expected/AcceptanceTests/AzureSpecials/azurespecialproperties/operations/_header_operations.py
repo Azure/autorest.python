@@ -43,17 +43,17 @@ def build_custom_named_request_id_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/customNamedRequestId')
+    _url = kwargs.pop("template_url", "/azurespecials/customNamedRequestId")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['foo-client-request-id'] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['foo-client-request-id'] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -66,17 +66,17 @@ def build_custom_named_request_id_param_grouping_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/customNamedRequestIdParamGrouping')
+    _url = kwargs.pop("template_url", "/azurespecials/customNamedRequestIdParamGrouping")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['foo-client-request-id'] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['foo-client-request-id'] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -89,17 +89,17 @@ def build_custom_named_request_id_head_request(
 
     accept = "application/json"
     # Construct URL
-    url = kwargs.pop("template_url", '/azurespecials/customNamedRequestIdHead')
+    _url = kwargs.pop("template_url", "/azurespecials/customNamedRequestIdHead")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['foo-client-request-id'] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['foo-client-request-id'] = _SERIALIZER.header("foo_client_request_id", foo_client_request_id, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="HEAD",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 

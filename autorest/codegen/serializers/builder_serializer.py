@@ -33,6 +33,9 @@ from . import utils
 T = TypeVar("T")
 OrderedSet = Dict[T, None]
 
+def _escape_str(input_str: str) -> str:
+    replace = input_str.replace("'", "\\'")
+    return f'"{replace}"'
 
 def _improve_json_string(template_representation: str) -> Any:
     origin = template_representation.split('\n')
@@ -110,7 +113,7 @@ def _pop_parameters_kwarg(
     function_name: str,
     kwarg_name: str,
 ) -> str:
-    return f'{function_name}_parameters = kwargs.pop("{kwarg_name}", {{}})  # type: Dict[str, Any]'
+    return f'_{function_name}_parameters = kwargs.pop("{kwarg_name}", {{}})  # type: Dict[str, Any]'
 
 def _serialize_grouped_body(builder) -> List[str]:
     retval: List[str] = []
@@ -399,7 +402,7 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
     def _serialize_parameter(
         self, param: Parameter, function_name: str
     ) -> List[str]:
-        set_parameter = "{}_parameters['{}'] = {}".format(
+        set_parameter = "_{}_parameters['{}'] = {}".format(
             function_name,
             param.rest_api_name,
             utils.build_serialize_data_call(param, function_name, self.serializer_name)
@@ -496,11 +499,11 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
     def create_http_request(self, builder) -> List[str]:
         retval = ["return HttpRequest("]
         retval.append(f'    method="{builder.method}",')
-        retval.append("    url=url,")
+        retval.append("    url=_url,")
         if builder.parameters.query:
-            retval.append("    params=query_parameters,")
+            retval.append("    params=_query_parameters,")
         if builder.parameters.headers:
-            retval.append("    headers=header_parameters,")
+            retval.append("    headers=_header_parameters,")
         if builder.parameters.has_body:
             retval.extend([
                 f"    {body_kwarg}={body_kwarg},"
@@ -529,6 +532,13 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
                 function_name="query",
             ))
         return retval
+
+    def construct_url(self, builder) -> str:
+        if any(o for o in ["low_level_client", "version_tolerant"] if self.code_model.options.get(o)):
+            url_value = _escape_str(builder.url)
+        else:
+            url_value = f'kwargs.pop("template_url", {_escape_str(builder.url)})'
+        return f"_url = {url_value}{'  # pylint: disable=line-too-long' if len(url_value) > 114 else ''}"
 
 class RequestBuilderGenericSerializer(_RequestBuilderBaseSerializer):
     @property
@@ -983,8 +993,8 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
 
     @staticmethod
     def get_metadata_url(builder) -> str:
-        url = builder.request_builder.url.replace("'", "\\'")
-        return f"{builder.python_name}.metadata = {{'url': '{ url }'}}  # type: ignore"
+        url = _escape_str(builder.request_builder.url)
+        return f"{builder.python_name}.metadata = {{'url': { url }}}  # type: ignore"
 
 class _SyncOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=abstract-method
     @property

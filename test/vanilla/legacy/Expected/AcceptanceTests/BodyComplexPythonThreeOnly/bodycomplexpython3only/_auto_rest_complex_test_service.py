@@ -78,11 +78,7 @@ class AutoRestComplexTestService:  # pylint: disable=too-many-instance-attribute
         )
         self.flattencomplex = FlattencomplexOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs: Any
-    ) -> HttpResponse:
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
