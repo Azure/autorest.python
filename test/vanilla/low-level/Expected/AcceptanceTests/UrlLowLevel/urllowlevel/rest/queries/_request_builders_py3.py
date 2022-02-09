@@ -8,8 +8,9 @@
 import datetime
 from typing import Any, Dict, List, Optional
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 _SERIALIZER = Serializer()
 

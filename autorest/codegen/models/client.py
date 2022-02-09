@@ -33,8 +33,8 @@ class Client:
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
 
-        file_import.add_submodule_import("msrest", "Serializer", ImportType.AZURECORE)
-        file_import.add_submodule_import("msrest", "Deserializer", ImportType.AZURECORE)
+        file_import.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY)
+        file_import.add_submodule_import("msrest", "Deserializer", ImportType.THIRDPARTY)
         file_import.add_submodule_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         any_optional_gp = any(not gp.required for gp in self.parameters)

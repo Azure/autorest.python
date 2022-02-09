@@ -9,8 +9,9 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
+
+from azure.core import PipelineClient
 
 from ._configuration import MergePatchJsonClientConfiguration
 from .operations import MergePatchJsonClientOperationsMixin

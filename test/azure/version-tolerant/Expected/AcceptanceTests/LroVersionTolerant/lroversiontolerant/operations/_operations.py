@@ -8,6 +8,8 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, List, Optional, TypeVar, Union
 
+from msrest import Serializer
+
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,7 +24,6 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
-from msrest import Serializer
 
 T = TypeVar("T")
 JSONType = Any
