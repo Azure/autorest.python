@@ -1,6 +1,6 @@
 # Change Log
 
-### 2022-xx-xx - 5.12.6
+### 2022-02-09 - 5.12.6
 
 | Library | Min Version
 | --------------- | -------
@@ -13,6 +13,8 @@
 **Bug Fixes**
 
 - Remove unused `metadata` value for paging and long running operations with `version-tolerant` generations #1131
+- Remove name conflicts with parameters called `url`, `header_parameters`, and `query_parameters` #1143
+- Make `--version-tolerant` generated code pylint compatible in the `azure-sdk-for-python` repo when generated with the `--black` flag #1147, #1144, #1130
 
 ### 2022-01-26 - 5.12.5
 
