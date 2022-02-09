@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 _SERIALIZER = Serializer()
 

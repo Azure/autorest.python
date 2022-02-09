@@ -8,6 +8,8 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
+from msrest import Serializer
+
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -21,7 +23,6 @@ from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.core.polling.base_polling import LROBasePolling
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
-from msrest import Serializer
 
 from .. import models as _models
 from .._vendor import _convert_request, _format_url_section

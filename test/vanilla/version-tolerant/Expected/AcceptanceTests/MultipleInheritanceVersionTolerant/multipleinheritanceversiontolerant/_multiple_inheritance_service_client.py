@@ -9,9 +9,10 @@
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
+from msrest import Deserializer, Serializer
+
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
-from msrest import Deserializer, Serializer
 
 from ._configuration import MultipleInheritanceServiceClientConfiguration
 from ._operations import MultipleInheritanceServiceClientOperationsMixin

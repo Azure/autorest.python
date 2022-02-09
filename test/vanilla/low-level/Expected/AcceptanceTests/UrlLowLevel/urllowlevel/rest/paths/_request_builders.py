@@ -8,8 +8,9 @@
 import datetime
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 from ..._vendor import _format_url_section
 
