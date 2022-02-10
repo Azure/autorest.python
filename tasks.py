@@ -483,6 +483,22 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
     _run_autorest(cmds, debug)
 
 @task
+def regenerate_package_mode(c, debug=False):
+    cwd = os.getcwd()
+    readme_prefix = f'{cwd}/test/azure/version-tolerant/specification/packagemode'
+    out_prefix = f'{cwd}/test/azure/version-tolerant/Expected/AcceptanceTests/PackageMode'
+
+    package_mode = {
+        'MgmtPlane': 'mgmtplane',
+        'DataPlane': 'dataplane',
+        'Customize': f'{readme_prefix}/template',
+    }
+    cmds = [
+        f'autorest {readme_prefix}/README.md --use. --output-folder={out_prefix}{k} --package-mode={v}' for k,v in package_mode
+    ]
+    _run_autorest(cmds, debug=debug)
+
+@task
 def regenerate_custom_poller_pager_legacy(c, debug=False):
     cwd = os.getcwd()
     cmd = (
