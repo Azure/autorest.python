@@ -3,9 +3,12 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Optional
+import code
+from typing import List, Optional, Any
 from pathlib import Path
-from jinja2 import PackageLoader, Environment
+from unicodedata import name
+from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
+import time
 from autorest.codegen.models.operation_group import OperationGroup
 
 from ...jsonrpc import AutorestAPI
@@ -70,7 +73,37 @@ class JinjaSerializer:
 
         if code_model.options["models_mode"] and (code_model.schemas or code_model.enums):
             self._serialize_and_write_models_folder(code_model=code_model, env=env, namespace_path=namespace_path)
+        
+        if code_model.options["package_mode"]:
+            self._serialize_and_write_package_files(code_model=code_model, out_path=namespace_path)
 
+
+    def _serialize_and_write_package_files(self, code_model: CodeModel, out_path: Path) -> None:
+        def _serialize_and_write_package_files_proc(**kwargs: Any):
+            for template_name in env.list_templates():
+                template = env.get_template(template_name)
+                result = template.render(**kwargs)
+                output_name = template_name.replace(".jinja2", "")
+                self._autorestapi.write_file(out_path / output_name, result)
+
+        count = code_model.options["package_name"].count("-") + 1
+        for i in range(count):
+            out_path = out_path / Path("..")
+
+        if code_model.options["package_mode"] in ("dataplane", "mgmtplane"):
+            env = Environment(
+                loader=PackageLoader("autorest.codegen", "templates/templates_package"),
+                undefined=StrictUndefined)
+            release_time = time.strftime('%Y-%m-%d', time.localtime())
+            _serialize_and_write_package_files_proc(code_model=code_model, release_time=release_time)
+        elif Path(code_model.options["package_mode"]).exists():
+            env = Environment(
+                loader=FileSystemLoader(str(Path(code_model.options["package_mode"]))),
+                keep_trailing_newline=True,
+                undefined=StrictUndefined
+            )
+            params = code_model.options["package_configuration"] or {}
+            _serialize_and_write_package_files_proc(**params)
 
 
     def _keep_patch_file(self, path_file: Path, env: Environment):

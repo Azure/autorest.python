@@ -7,6 +7,7 @@ import logging
 import sys
 from typing import Dict, Any, Set, Union, List, Type
 import yaml
+from pathlib import Path
 
 from .. import Plugin
 from .models.code_model import CodeModel
@@ -75,6 +76,12 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             "Can not combine operation files if you are not showing operations. "
             "If you want operation files, pass in flag --show-operations"
         )
+
+    if options["package_mode"] not in ("mgmtplane", "dataplane", None) and not Path(options["package_mode"]).exists():
+        raise ValueError(
+            "--package-mode can only be 'mgmtplane' or 'dataplane' or directory which contains template files"
+        )
+
 
 _LOGGER = logging.getLogger(__name__)
 class CodeGenerator(Plugin):
@@ -289,6 +296,9 @@ class CodeGenerator(Plugin):
             "low_level_client": low_level_client,
             "combine_operation_files": self._autorestapi.get_boolean_value("combine-operation-files", version_tolerant),
             "python3_only": python3_only,
+            "package_mode": self._autorestapi.get_value("package-mode"),
+            "package_pprint_name": self._autorestapi.get_value("package-pprint-name"),
+            "package_configuration": self._autorestapi.get_value("package-configuration")
         }
 
         if options["builders_visibility"] is None:

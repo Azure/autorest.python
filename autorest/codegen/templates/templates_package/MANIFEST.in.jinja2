@@ -1,0 +1,11 @@
+include *.md
+include LICENSE
+recursive-include tests *.py
+recursive-include samples *.py *.md
+{% set folder_first = code_model.options["package_name"].split('-')[0] -%}
+{% set folder_second = code_model.options["package_name"].split('-')[1] -%}
+include {{ folder_first }}/__init__.py
+include {{ folder_first }}/{{ folder_second }}/__init__.py
+{%- if code_model.options["package_mode"] == "mgmtplane" %}
+include _meta.json
+{%- endif %}
