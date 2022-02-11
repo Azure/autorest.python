@@ -9,7 +9,11 @@
 from ._operations import StringOperations
 from ._operations import EnumOperations
 
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
+
 __all__ = [
     "StringOperations",
     "EnumOperations",
 ]
+__all__.extend(_patch_all)

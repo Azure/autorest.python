@@ -8,6 +8,10 @@
 
 from ._operations import AutoRestValidationTestOperationsMixin
 
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
+
 __all__ = [
     "AutoRestValidationTestOperationsMixin",
 ]
+__all__.extend(_patch_all)

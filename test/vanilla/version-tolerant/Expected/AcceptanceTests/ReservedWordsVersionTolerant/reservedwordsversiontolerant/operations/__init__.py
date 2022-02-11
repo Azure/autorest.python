@@ -9,7 +9,11 @@
 from ._operations import ImportOperations
 from ._operations import ReservedWordsClientOperationsMixin
 
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
+
 __all__ = [
     "ImportOperations",
     "ReservedWordsClientOperationsMixin",
 ]
+__all__.extend(_patch_all)

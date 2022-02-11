@@ -8,6 +8,10 @@
 
 from ._operations import AvailabilitySetsOperations
 
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
+
 __all__ = [
     "AvailabilitySetsOperations",
 ]
+__all__.extend(_patch_all)

@@ -11,9 +11,13 @@ from ._operations import LRORetrysOperations
 from ._operations import LROSADsOperations
 from ._operations import LROsCustomHeaderOperations
 
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
+
 __all__ = [
     "LROsOperations",
     "LRORetrysOperations",
     "LROSADsOperations",
     "LROsCustomHeaderOperations",
 ]
+__all__.extend(_patch_all)

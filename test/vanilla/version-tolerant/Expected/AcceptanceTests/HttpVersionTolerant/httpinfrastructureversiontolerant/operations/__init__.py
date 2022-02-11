@@ -14,6 +14,9 @@ from ._operations import HttpServerFailureOperations
 from ._operations import HttpRetryOperations
 from ._operations import MultipleResponsesOperations
 
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
+
 __all__ = [
     "HttpFailureOperations",
     "HttpSuccessOperations",
@@ -23,3 +26,4 @@ __all__ = [
     "HttpRetryOperations",
     "MultipleResponsesOperations",
 ]
+__all__.extend(_patch_all)

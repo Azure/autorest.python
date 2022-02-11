@@ -8,6 +8,10 @@
 
 from ._operations import MultipleInheritanceServiceClientOperationsMixin
 
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
+
 __all__ = [
     "MultipleInheritanceServiceClientOperationsMixin",
 ]
+__all__.extend(_patch_all)

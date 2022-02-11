@@ -8,10 +8,12 @@
 
 from ._auto_rest_swagger_ba_tdictionary_service import AutoRestSwaggerBATDictionaryService
 
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
+
 __all__ = ["AutoRestSwaggerBATDictionaryService"]
+__all__.extend(_patch_all)
 
 # `._patch.py` is used for handwritten extensions to the generated code
 # Example: https://github.com/Azure/azure-sdk-for-python/blob/main/doc/dev/customize_code/how-to-patch-sdk-code.md
-from ._patch import patch_sdk
-
 patch_sdk()
