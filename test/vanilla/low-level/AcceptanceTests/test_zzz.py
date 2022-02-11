@@ -43,17 +43,18 @@ class TestAcceptance(object):
         optional_report = client.send_request(request).json()
 
         # Add tests that wont be supported due to the nature of Python here
-        not_supported = {}
+        not_supported = {
+            "verifyIncorrectErrorParsing": 1,  # we don't deserialize errors in llc
+            "ResponsesScenarioF400DefaultModel": 1,  # don't test this
+            "ResponsesScenarioF400DefaultNone": 1,  # don't test this
+            "ResponsesScenarioG200DefaultNoModel": 1,  # don't test this
+        }
 
         # Please add missing features or failing tests here
         missing_features_or_bugs = {
             'ConstantsInBody': 1,  # https://github.com/Azure/autorest.modelerfour/issues/83
-            "verifyIncorrectErrorParsing": 1,  # we don't deserialize errors in llc
             "ImplicitOptionalBinaryBody": 1,  # these are properties on the client, don't know enough info in LLC
             "ExplicitRequiredBinaryBody": 1,  # these are properties on the client, don't know enough info in LLC
-            "ResponsesScenarioF400DefaultModel": 1,  # don't test this
-            "ResponsesScenarioF400DefaultNone": 1,  # don't test this
-            "ResponsesScenarioG200DefaultNoModel": 1,  # don't test this
             "CustomBaseUri": 1, # don't have enough info on LLC
             "CustomBaseUriMoreOptions": 1,
             "expectedNoErrors": 1,

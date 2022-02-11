@@ -37,14 +37,13 @@ class TestAcceptance(object):
         optional_report = client.get_optional_report(qualifier=platform.python_version())
 
         # Add tests that wont be supported due to the nature of Python here
-        not_supported = {}
+        not_supported = {
+            "verifyIncorrectErrorParsing": 1,  # not deserializing errors yet in version tolerant
+        }
 
         # Please add missing features or failing tests here
         missing_features_or_bugs = {
             'ConstantsInBody': 1,  # https://github.com/Azure/autorest.modelerfour/issues/83
-            "verifyIncorrectErrorParsing": 1,  # not deserializing errors yet in version tolerant
-            "ResponsesScenarioF400DefaultModel": 1,
-            "ResponsesScenarioF400DefaultNone": 1,
         }
 
         print("Coverage:")
