@@ -171,19 +171,19 @@ jobs:
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
 
       - script: |
-          cd $(TestFolder)/llc/low-level
+          cd $(TestFolder)/dpg/low-level
           tox -e ci
-        displayName: 'Execute low level update "llc" Tests - Python $(PythonVersion)'
+        displayName: 'Execute low level update "dpg" Tests - Python $(PythonVersion)'
         condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
       - script: |
-          cd $(TestFolder)/llc/version-tolerant
+          cd $(TestFolder)/dpg/version-tolerant
           tox -e ci
-        displayName: 'Execute version-tolerant update "llc" Tests - Python $(PythonVersion)'
+        displayName: 'Execute version-tolerant update "dpg" Tests - Python $(PythonVersion)'
         condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
       - script: |
-          cd $(TestFolder)/llc/version-tolerant
+          cd $(TestFolder)/dpg/version-tolerant
           tox -e lint
-        displayName: 'Lint version-tolerant "llc" Tests - Python $(PythonVersion)'
+        displayName: 'Lint version-tolerant "dpg" Tests - Python $(PythonVersion)'
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
       - script: |
           cd $(TestFolder)/multiapi
