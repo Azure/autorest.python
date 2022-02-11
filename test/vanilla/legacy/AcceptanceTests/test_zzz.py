@@ -47,8 +47,8 @@ class TestAcceptance(object):
             'ConstantsInBody': 1,  # https://github.com/Azure/autorest.modelerfour/issues/83
         }
         for name in report:
-            if name[:3].lower() == 'llc':
-                missing_features_or_bugs[name] = 1  # no LLC tests for legacy
+            if name[:3].lower() == 'dpg':
+                missing_features_or_bugs[name] = 1  # no DPG tests for legacy
 
         print("Coverage:")
         self._print_report(report, not_supported, missing_features_or_bugs)
@@ -66,8 +66,8 @@ class TestAcceptance(object):
             if "Multiapi" in name:
                 # multiapi is in a separate test folder
                 missing_features_or_bugs[name] = 1
-            if "LLC" in name:
-                # llc is in a separate test folder
+            if "DPG" in name:
+                # dpg is in a separate test folder
                 missing_features_or_bugs[name] = 1
         print("Optional coverage:")
         self._print_report(optional_report, not_supported, missing_features_or_bugs)

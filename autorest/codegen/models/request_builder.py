@@ -88,7 +88,7 @@ class RequestBuilder(BaseBuilder):
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
-        file_import.add_submodule_import("msrest", "Serializer", ImportType.AZURECORE)
+        file_import.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY)
         if self.parameters.has_body and (
             self.code_model.options["builders_visibility"] != "embedded" or
             self.code_model.options["add_python3_operation_files"]

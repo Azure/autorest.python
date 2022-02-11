@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional, TypeVar
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 T = TypeVar("T")
 JSONType = Any
