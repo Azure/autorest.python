@@ -1,4 +1,5 @@
-﻿# --------------------------------------------------------------------------
+
+# --------------------------------------------------------------------------
 #
 # Copyright (c) Microsoft Corporation. All rights reserved.
 #
@@ -23,44 +24,41 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-import isodate
-from datetime import timedelta
-
-from bodydurationlowlevel import AutoRestDurationTestService
-from bodydurationlowlevel.rest import duration
-
 import pytest
 
+from dpgservicedriveninitiallowlevel import DPGClient as DPGClientInitial
+from dpgservicedrivenupdateonelowlevel import DPGClient as DPGClientUpdateOne
+
+from dpgservicedriveninitiallowlevel.rest import params as params_initial
+from dpgservicedrivenupdateonelowlevel.rest import params as params_update_one
+
+
 @pytest.fixture
-def client():
-    with AutoRestDurationTestService() as client:
+def initial_client():
+    with DPGClientInitial() as client:
         yield client
 
 @pytest.fixture
-def send_request(client, base_send_request):
+def update_one_client():
+    with DPGClientUpdateOne() as client:
+        yield client
+
+@pytest.fixture
+def initial_send_request(initial_client, base_send_request):
     def _send_request(request):
-        return base_send_request(client, request)
+        return base_send_request(initial_client, request)
     return _send_request
 
 @pytest.fixture
-def send_request_json_response(client, base_send_request_json_response):
+def update_one_send_request(update_one_client, base_send_request):
     def _send_request(request):
-        return base_send_request_json_response(client, request)
+        return base_send_request(update_one_client, request)
     return _send_request
 
-def test_get_null_and_invalid(send_request, send_request_json_response):
-    request = duration.build_get_null_request()
-    assert send_request(request).text() == ''
 
-    # in dpg, we don't raise deserialization error
-    request = duration.build_get_invalid_request()
-    with pytest.raises(isodate.ISO8601Error):
-        isodate.parse_duration(send_request_json_response(request))
+def test_required_to_optional(initial_send_request, update_one_send_request):
+    request = params_initial.build_get_required_request(parameter="foo")
+    initial_send_request(request)
 
-def test_positive_duration(send_request, send_request_json_response):
-    request = duration.build_get_positive_duration_request()
-    response = isodate.parse_duration(send_request_json_response(request))
-    assert response == isodate.Duration(4, 45005, 0, years=3, months=6)
-    delta = timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)
-    request = duration.build_put_positive_duration_request(json=isodate.duration_isoformat(delta))
-    send_request(request)
+    request = params_update_one.build_get_required_request(parameter="foo", new_parameter="bar")
+    update_one_send_request(request)
