@@ -50,7 +50,7 @@ if __name__ == "__main__":
         "-t",
         "--test-folder",
         dest="test_folder",
-        help="The test folder we're in. Can be 'azure', 'llc', 'multiapi', or 'vanilla'",
+        help="The test folder we're in. Can be 'azure', 'dpg', 'multiapi', or 'vanilla'",
         required=True,
     )
     parser.add_argument(

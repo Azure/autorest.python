@@ -27,7 +27,7 @@
         "@azure-tools/extension": "~3.2.1"
     },
     "devDependencies": {
-        "@microsoft.azure/autorest.testserver": "^3.1.13"
+        "@microsoft.azure/autorest.testserver": "^3.2.0"
     },
     "files": [
         "autorest/**/*.py",
