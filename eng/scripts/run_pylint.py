@@ -30,7 +30,7 @@ def _single_dir_pylint(mod):
                 "-m",
                 "pylint",
                 "--rcfile={}".format(rfc_file_location),
-                "--load-plugins=pylint_guidelines_checker"
+                "--load-plugins=pylint_guidelines_checker",
                 "--output-format=parseable",
                 str(inner_class.absolute()),
             ]
@@ -50,7 +50,7 @@ if __name__ == "__main__":
         "-t",
         "--test-folder",
         dest="test_folder",
-        help="The test folder we're in. Can be 'azure', 'llc', 'multiapi', or 'vanilla'",
+        help="The test folder we're in. Can be 'azure', 'dpg', 'multiapi', or 'vanilla'",
         required=True,
     )
     parser.add_argument(
@@ -77,10 +77,11 @@ if __name__ == "__main__":
     if len(dirs) > 1:
         with Pool() as pool:
             result = pool.map(_single_dir_pylint, dirs)
-        if not all(result):
-            logging.error(
-                "Linting fails"
-            )
-            exit(1)
+        response = all(result)
     else:
-        _single_dir_pylint(dirs[0])
+        response = _single_dir_pylint(dirs[0])
+    if not response:
+        logging.error(
+            "Linting fails"
+        )
+        exit(1)

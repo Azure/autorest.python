@@ -373,7 +373,7 @@ class NameConverter:
             # check to see if name is reserved for the type of name we are converting
             pad_string = cast(PadType, pad_string)
             # there are some private variables, such as grouped parameters
-            # that are private. We still want to escape them for LLC
+            # that are private. We still want to escape them for DPG
             name_prefix = ""
             if name[0] == "_":
                 # i am private
