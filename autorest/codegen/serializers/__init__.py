@@ -82,15 +82,16 @@ class JinjaSerializer:
         if not code_model.options["models_mode"]:
             # keep models file if users ended up just writing a models file
             if self._autorestapi.read_file(namespace_path / Path("models.py")):
-                self._autorestapi.write_file(namespace_path / Path("models.py"), self._autorestapi.read_file(namespace_path / Path("models.py")))
+                self._autorestapi.write_file(
+                    namespace_path / Path("models.py"), self._autorestapi.read_file(namespace_path / Path("models.py"))
+                )
 
 
     def _keep_patch_file(self, path_file: Path, env: Environment):
-        self._autorestapi.write_file(path_file, PatchSerializer(env=env).serialize())
-        # if self._autorestapi.read_file(path_file):
-        #     self._autorestapi.write_file(path_file, self._autorestapi.read_file(path_file))
-        # else:
-        #     self._autorestapi.write_file(path_file, PatchSerializer(env=env).serialize())
+        if self._autorestapi.read_file(path_file):
+            self._autorestapi.write_file(path_file, self._autorestapi.read_file(path_file))
+        else:
+            self._autorestapi.write_file(path_file, PatchSerializer(env=env).serialize())
 
 
     def _serialize_and_write_models_folder(self, code_model: CodeModel, env: Environment, namespace_path: Path) -> None:
