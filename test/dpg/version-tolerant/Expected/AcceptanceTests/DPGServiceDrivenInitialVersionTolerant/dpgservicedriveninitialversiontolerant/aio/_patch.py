@@ -29,3 +29,5 @@
 # https://github.com/Azure/azure-sdk-for-python/blob/main/doc/dev/customize_code/how-to-patch-sdk-code.md
 def patch_sdk():
     pass
+
+__all__ = ["patch_sdk"]

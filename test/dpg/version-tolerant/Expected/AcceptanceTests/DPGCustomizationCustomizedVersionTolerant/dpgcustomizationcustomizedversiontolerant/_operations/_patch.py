@@ -24,9 +24,23 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+from typing import Any, overload, Union, Literal
+from ..models import *
+from ._operations import DPGClientOperationsMixin as DPGClientOperationsMixinGenerated, JSONType
 
-# This file is used for handwritten customizations to the generated code.
-# Follow our quickstart here for examples: https://github.com/Azure/autorest.python/blob/autorestv3/docs/customizations.md
+class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
+
+    @overload
+    def get_model(self, mode: Literal["raw"], **kwargs: Any) -> JSONType:
+        """Pass in mode='raw' to get raw JSON out"""
+
+    @overload
+    def get_model(self, mode: Literal["model"], **kwargs: Any) -> Product:
+        """Pass in mode='model' to get a handwritten model out"""
+
+    def get_model(self, *args, **kwargs: Any) -> Union[JSONType, Product]:
+        a = "b"
+        response = super().get_model(*args, **kwargs)
 
 
 def patch_sdk():
@@ -34,4 +48,4 @@ def patch_sdk():
     pass
 
 
-__all__ = ["patch_sdk"]  # do not remove "patch_sdk" from __all__
+__all__ = ["patch_sdk", "DPGClientOperationsMixin"]  # do not remove "patch_sdk" from __all__
