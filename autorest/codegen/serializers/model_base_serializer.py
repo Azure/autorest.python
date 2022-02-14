@@ -67,7 +67,7 @@ class ModelBaseSerializer:
     def declare_model(model: ObjectSchema) -> str:
         basename = "msrest.serialization.Model"
         if model.base_models:
-            basename = ", ".join([m.name for m in model.base_models])
+            basename = ", ".join([cast(ObjectSchema, m).name for m in model.base_models])
         return f"class {model.name}({basename}):"
 
     @staticmethod
