@@ -192,6 +192,8 @@ def _build_command_line(
         # package name, so we override package names
         override_flags = override_flags or {}
         override_flags.update({"package-name": package_name.lower()})
+        if package_name == "DPGCustomizationCustomized":
+            override_flags.update({"models-mode": "msrest"})
     flags = _build_flags(package_name, swagger_name, debug, swagger_group, override_flags, **kwargs)
     flag_strings = [
         f"--{flag}={value}" for flag, value in flags.items()
