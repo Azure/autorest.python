@@ -79,7 +79,10 @@ class JinjaSerializer:
 
         if code_model.options["models_mode"] and (code_model.schemas or code_model.enums):
             self._serialize_and_write_models_folder(code_model=code_model, env=env, namespace_path=namespace_path)
-
+        if not code_model.options["models_mode"]:
+            # keep models file if users ended up just writing a models file
+            if self._autorestapi.read_file(namespace_path / Path("models.py")):
+                self._autorestapi.write_file(namespace_path / Path("models.py"), self._autorestapi.read_file(namespace_path / Path("models.py")))
 
 
     def _keep_patch_file(self, path_file: Path, env: Environment):
