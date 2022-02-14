@@ -14,8 +14,11 @@ try:
 except (SyntaxError, ImportError):
     from ._models import PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema  # type: ignore
     from ._models import PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema  # type: ignore
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
 
 __all__ = [
     "PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema",
     "PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema",
 ]
+__all__.extend(_patch_all)

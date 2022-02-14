@@ -8,6 +8,10 @@
 
 from ._incorrect_returned_error_model_operations import IncorrectReturnedErrorModelOperationsMixin
 
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
+
 __all__ = [
     "IncorrectReturnedErrorModelOperationsMixin",
 ]
+__all__.extend(_patch_all)

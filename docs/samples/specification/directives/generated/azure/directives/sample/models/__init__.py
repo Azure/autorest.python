@@ -16,10 +16,12 @@ except (SyntaxError, ImportError):
     from ._models import Product  # type: ignore
     from ._models import ProductProperties  # type: ignore
     from ._models import ProductResult  # type: ignore
-
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
 __all__ = [
     'Error',
     'Product',
     'ProductProperties',
     'ProductResult',
 ]
+__all__.extend(_patch_all)

@@ -21,6 +21,8 @@ from ._body_forms_data_url_encoded_enums import (
     PetFood,
     PetType,
 )
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
 
 __all__ = [
     "Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema",
@@ -28,3 +30,4 @@ __all__ = [
     "PetFood",
     "PetType",
 ]
+__all__.extend(_patch_all)

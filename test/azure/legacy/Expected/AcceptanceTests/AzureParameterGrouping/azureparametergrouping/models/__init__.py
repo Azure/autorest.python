@@ -20,6 +20,8 @@ except (SyntaxError, ImportError):
     from ._models import ParameterGroupingPostOptionalParameters  # type: ignore
     from ._models import ParameterGroupingPostRequiredParameters  # type: ignore
     from ._models import ParameterGroupingPostReservedWordsParameters  # type: ignore
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
 
 __all__ = [
     "Error",
@@ -29,3 +31,4 @@ __all__ = [
     "ParameterGroupingPostRequiredParameters",
     "ParameterGroupingPostReservedWordsParameters",
 ]
+__all__.extend(_patch_all)

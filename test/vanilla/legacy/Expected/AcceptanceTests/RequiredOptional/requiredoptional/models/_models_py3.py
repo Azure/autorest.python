@@ -6,10 +6,15 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional
+from typing import List, Optional, TYPE_CHECKING
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from . import Product
+    import __init__ as _models
 
 
 class ArrayOptionalWrapper(msrest.serialization.Model):
@@ -69,7 +74,7 @@ class ClassOptionalWrapper(msrest.serialization.Model):
         "value": {"key": "value", "type": "Product"},
     }
 
-    def __init__(self, *, value: Optional["Product"] = None, **kwargs):
+    def __init__(self, *, value: Optional["_models.Product"] = None, **kwargs):
         """
         :keyword value:
         :paramtype value: ~requiredoptional.models.Product
@@ -95,7 +100,7 @@ class ClassWrapper(msrest.serialization.Model):
         "value": {"key": "value", "type": "Product"},
     }
 
-    def __init__(self, *, value: "Product", **kwargs):
+    def __init__(self, *, value: "_models.Product", **kwargs):
         """
         :keyword value: Required.
         :paramtype value: ~requiredoptional.models.Product

@@ -11,8 +11,11 @@ from ._non_string_enums_client_enums import (
     FloatEnum,
     IntEnum,
 )
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
 
 __all__ = [
     "FloatEnum",
     "IntEnum",
 ]
+__all__.extend(_patch_all)

@@ -14,9 +14,12 @@ except (SyntaxError, ImportError):
     from ._models import Error  # type: ignore
     from ._models import Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema  # type: ignore
     from ._models import Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema  # type: ignore
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
 
 __all__ = [
     "Error",
     "Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema",
     "Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema",
 ]
+__all__.extend(_patch_all)

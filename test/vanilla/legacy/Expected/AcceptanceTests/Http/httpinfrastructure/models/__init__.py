@@ -18,6 +18,8 @@ except (SyntaxError, ImportError):
     from ._models import D  # type: ignore
     from ._models import Error  # type: ignore
     from ._models import MyException  # type: ignore
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
 
 __all__ = [
     "B",
@@ -26,3 +28,4 @@ __all__ = [
     "Error",
     "MyException",
 ]
+__all__.extend(_patch_all)

@@ -25,7 +25,11 @@
 #
 # --------------------------------------------------------------------------
 
-# This file is used for handwritten extensions to the generated code. Example:
-# https://github.com/Azure/azure-sdk-for-python/blob/main/doc/dev/customize_code/how-to-patch-sdk-code.md
+# This file is used for handwritten customizations to the generated code.
+# Follow our quickstart here for examples: https://github.com/Azure/autorest.python/blob/autorestv3/docs/customizations.md
+
 def patch_sdk():
+    """Do not remove from this file"""
     pass
+
+__all__ = ["patch_sdk"]  # do not remove "patch_sdk" from __all__

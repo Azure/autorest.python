@@ -6,10 +6,15 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional
+from typing import List, Optional, TYPE_CHECKING
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from . import Product
+    import __init__ as _models
 
 
 class Error(msrest.serialization.Model):
@@ -61,7 +66,7 @@ class PagingResult(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        values: Optional[List["Product"]] = None,
+        values: Optional[List["_models.Product"]] = None,
         next_link: Optional[str] = None,
         **kwargs
     ):

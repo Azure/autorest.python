@@ -16,9 +16,12 @@ except (SyntaxError, ImportError):
 from ._auto_rest_swagger_bat_service_enums import (
     Colors,
 )
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
 
 __all__ = [
     "Error",
     "RefColorConstant",
     "Colors",
 ]
+__all__.extend(_patch_all)

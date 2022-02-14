@@ -16,6 +16,9 @@ from ._polymorphicrecursive_operations import PolymorphicrecursiveOperations
 from ._readonlyproperty_operations import ReadonlypropertyOperations
 from ._flattencomplex_operations import FlattencomplexOperations
 
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
+
 __all__ = [
     "BasicOperations",
     "PrimitiveOperations",
@@ -27,3 +30,4 @@ __all__ = [
     "ReadonlypropertyOperations",
     "FlattencomplexOperations",
 ]
+__all__.extend(_patch_all)

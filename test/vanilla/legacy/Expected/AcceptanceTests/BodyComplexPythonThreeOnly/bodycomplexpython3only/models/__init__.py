@@ -45,6 +45,8 @@ from ._auto_rest_complex_test_service_enums import (
     GoblinSharkColor,
     MyKind,
 )
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
 
 __all__ = [
     "ArrayWrapper",
@@ -83,3 +85,4 @@ __all__ = [
     "GoblinSharkColor",
     "MyKind",
 ]
+__all__.extend(_patch_all)

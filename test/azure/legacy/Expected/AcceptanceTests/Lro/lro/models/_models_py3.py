@@ -6,11 +6,16 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Dict, Optional, Union
+from typing import Dict, Optional, TYPE_CHECKING, Union
 
 import msrest.serialization
 
 from ._auto_rest_long_running_operation_test_service_enums import *
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from . import OperationResultError
+    import __init__ as _models
 
 
 class OperationResult(msrest.serialization.Model):
@@ -32,8 +37,8 @@ class OperationResult(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        status: Optional[Union[str, "OperationResultStatus"]] = None,
-        error: Optional["OperationResultError"] = None,
+        status: Optional[Union[str, "_models.OperationResultStatus"]] = None,
+        error: Optional["_models.OperationResultError"] = None,
         **kwargs
     ):
         """

@@ -17,6 +17,7 @@ from ._auto_rest_complex_test_service_enums import *
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from . import Dog, DotFish, DotSalmon, Fish
+    import __init__ as _models
 
 
 class ArrayWrapper(msrest.serialization.Model):
@@ -62,7 +63,7 @@ class Basic(msrest.serialization.Model):
         *,
         id: Optional[int] = None,
         name: Optional[str] = None,
-        color: Optional[Union[str, "CMYKColors"]] = None,
+        color: Optional[Union[str, "_models.CMYKColors"]] = None,
         **kwargs
     ):
         """
@@ -178,7 +179,7 @@ class Cat(Pet):
         id: Optional[int] = None,
         name: Optional[str] = None,
         color: Optional[str] = None,
-        hates: Optional[List["Dog"]] = None,
+        hates: Optional[List["_models.Dog"]] = None,
         **kwargs
     ):
         """
@@ -229,7 +230,7 @@ class Fish(msrest.serialization.Model):
     _subtype_map = {"fishtype": {"salmon": "Salmon", "shark": "Shark"}}
 
     def __init__(
-        self, *, length: float, species: Optional[str] = None, siblings: Optional[List["Fish"]] = None, **kwargs
+        self, *, length: float, species: Optional[str] = None, siblings: Optional[List["_models.Fish"]] = None, **kwargs
     ):
         """
         :keyword species:
@@ -293,7 +294,7 @@ class Shark(Fish):
         length: float,
         birthday: datetime.datetime,
         species: Optional[str] = None,
-        siblings: Optional[List["Fish"]] = None,
+        siblings: Optional[List["_models.Fish"]] = None,
         age: Optional[int] = None,
         **kwargs
     ):
@@ -355,7 +356,7 @@ class Cookiecuttershark(Shark):
         length: float,
         birthday: datetime.datetime,
         species: Optional[str] = None,
-        siblings: Optional[List["Fish"]] = None,
+        siblings: Optional[List["_models.Fish"]] = None,
         age: Optional[int] = None,
         **kwargs
     ):
@@ -563,10 +564,10 @@ class DotFishMarket(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        sample_salmon: Optional["DotSalmon"] = None,
-        salmons: Optional[List["DotSalmon"]] = None,
-        sample_fish: Optional["DotFish"] = None,
-        fishes: Optional[List["DotFish"]] = None,
+        sample_salmon: Optional["_models.DotSalmon"] = None,
+        salmons: Optional[List["_models.DotSalmon"]] = None,
+        sample_fish: Optional["_models.DotFish"] = None,
+        fishes: Optional[List["_models.DotFish"]] = None,
         **kwargs
     ):
         """
@@ -793,10 +794,10 @@ class Goblinshark(Shark):
         length: float,
         birthday: datetime.datetime,
         species: Optional[str] = None,
-        siblings: Optional[List["Fish"]] = None,
+        siblings: Optional[List["_models.Fish"]] = None,
         age: Optional[int] = None,
         jawsize: Optional[int] = None,
-        color: Optional[Union[str, "GoblinSharkColor"]] = "gray",
+        color: Optional[Union[str, "_models.GoblinSharkColor"]] = "gray",
         **kwargs
     ):
         """
@@ -1032,7 +1033,7 @@ class Salmon(Fish):
         *,
         length: float,
         species: Optional[str] = None,
-        siblings: Optional[List["Fish"]] = None,
+        siblings: Optional[List["_models.Fish"]] = None,
         location: Optional[str] = None,
         iswild: Optional[bool] = None,
         **kwargs
@@ -1098,7 +1099,7 @@ class Sawshark(Shark):
         length: float,
         birthday: datetime.datetime,
         species: Optional[str] = None,
-        siblings: Optional[List["Fish"]] = None,
+        siblings: Optional[List["_models.Fish"]] = None,
         age: Optional[int] = None,
         picture: Optional[bytearray] = None,
         **kwargs
@@ -1153,7 +1154,7 @@ class Siamese(Cat):
         id: Optional[int] = None,
         name: Optional[str] = None,
         color: Optional[str] = None,
-        hates: Optional[List["Dog"]] = None,
+        hates: Optional[List["_models.Dog"]] = None,
         breed: Optional[str] = None,
         **kwargs
     ):
@@ -1218,7 +1219,7 @@ class SmartSalmon(Salmon):
         *,
         length: float,
         species: Optional[str] = None,
-        siblings: Optional[List["Fish"]] = None,
+        siblings: Optional[List["_models.Fish"]] = None,
         location: Optional[str] = None,
         iswild: Optional[bool] = None,
         additional_properties: Optional[Dict[str, Any]] = None,

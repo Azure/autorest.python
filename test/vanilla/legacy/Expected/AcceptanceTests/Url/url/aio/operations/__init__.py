@@ -10,8 +10,12 @@ from ._paths_operations import PathsOperations
 from ._queries_operations import QueriesOperations
 from ._path_items_operations import PathItemsOperations
 
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
+
 __all__ = [
     "PathsOperations",
     "QueriesOperations",
     "PathItemsOperations",
 ]
+__all__.extend(_patch_all)

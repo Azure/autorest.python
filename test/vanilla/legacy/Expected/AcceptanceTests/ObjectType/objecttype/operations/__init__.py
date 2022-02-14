@@ -8,6 +8,10 @@
 
 from ._object_type_client_operations import ObjectTypeClientOperationsMixin
 
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
+
 __all__ = [
     "ObjectTypeClientOperationsMixin",
 ]
+__all__.extend(_patch_all)

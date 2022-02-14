@@ -6,11 +6,16 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional, Union
+from typing import List, Optional, TYPE_CHECKING, Union
 
 import msrest.serialization
 
 from ._auto_rest_paging_test_service_enums import *
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from . import Product, ProductProperties
+    import __init__ as _models
 
 
 class CustomParameterGroup(msrest.serialization.Model):
@@ -69,7 +74,7 @@ class OdataProductResult(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        values: Optional[List["Product"]] = None,
+        values: Optional[List["_models.Product"]] = None,
         odata_next_link: Optional[str] = None,
         **kwargs
     ):
@@ -100,7 +105,7 @@ class OperationResult(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        status: Optional[Union[str, "OperationResultStatus"]] = None,
+        status: Optional[Union[str, "_models.OperationResultStatus"]] = None,
         **kwargs
     ):
         """
@@ -276,7 +281,7 @@ class Product(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        properties: Optional["ProductProperties"] = None,
+        properties: Optional["_models.ProductProperties"] = None,
         **kwargs
     ):
         """
@@ -336,7 +341,7 @@ class ProductResult(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        values: Optional[List["Product"]] = None,
+        values: Optional[List["_models.Product"]] = None,
         next_link: Optional[str] = None,
         **kwargs
     ):
@@ -368,7 +373,7 @@ class ProductResultValue(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        value: Optional[List["Product"]] = None,
+        value: Optional[List["_models.Product"]] = None,
         next_link: Optional[str] = None,
         **kwargs
     ):
@@ -400,7 +405,7 @@ class ProductResultValueWithXMSClientName(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        indexes: Optional[List["Product"]] = None,
+        indexes: Optional[List["_models.Product"]] = None,
         next_link: Optional[str] = None,
         **kwargs
     ):

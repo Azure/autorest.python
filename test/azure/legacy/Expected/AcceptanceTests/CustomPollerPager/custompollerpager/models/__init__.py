@@ -36,7 +36,8 @@ except (SyntaxError, ImportError):
 from ._auto_rest_paging_test_service_enums import (
     OperationResultStatus,
 )
-
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
 __all__ = [
     'CustomParameterGroup',
     'OdataProductResult',
@@ -52,3 +53,4 @@ __all__ = [
     'ProductResultValueWithXMSClientName',
     'OperationResultStatus',
 ]
+__all__.extend(_patch_all)

@@ -8,6 +8,10 @@
 
 from ._media_types_client_operations import MediaTypesClientOperationsMixin
 
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
+
 __all__ = [
     "MediaTypesClientOperationsMixin",
 ]
+__all__.extend(_patch_all)

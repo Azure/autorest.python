@@ -8,6 +8,10 @@
 
 from ._lro_with_paramaterized_endpoints_operations import LROWithParamaterizedEndpointsOperationsMixin
 
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
+
 __all__ = [
     "LROWithParamaterizedEndpointsOperationsMixin",
 ]
+__all__.extend(_patch_all)

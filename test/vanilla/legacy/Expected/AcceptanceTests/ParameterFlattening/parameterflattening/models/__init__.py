@@ -10,7 +10,10 @@ try:
     from ._models_py3 import AvailabilitySetUpdateParameters
 except (SyntaxError, ImportError):
     from ._models import AvailabilitySetUpdateParameters  # type: ignore
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
 
 __all__ = [
     "AvailabilitySetUpdateParameters",
 ]
+__all__.extend(_patch_all)

@@ -34,6 +34,8 @@ except (SyntaxError, ImportError):
 from ._auto_rest_resource_flattening_test_service_enums import (
     FlattenedProductPropertiesProvisioningStateValues,
 )
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
 
 __all__ = [
     "BaseProduct",
@@ -49,3 +51,4 @@ __all__ = [
     "WrappedProduct",
     "FlattenedProductPropertiesProvisioningStateValues",
 ]
+__all__.extend(_patch_all)

@@ -51,6 +51,8 @@ from ._storage_management_client_enums import (
     Reason,
     UsageUnit,
 )
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
 
 __all__ = [
     "Bar",
@@ -77,3 +79,4 @@ __all__ = [
     "Reason",
     "UsageUnit",
 ]
+__all__.extend(_patch_all)

@@ -10,8 +10,11 @@ from ._multiapi_service_client_operations import MultiapiServiceClientOperations
 from ._operation_group_one_operations import OperationGroupOneOperations
 from ._operation_group_two_operations import OperationGroupTwoOperations
 
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
 __all__ = [
     'MultiapiServiceClientOperationsMixin',
     'OperationGroupOneOperations',
     'OperationGroupTwoOperations',
 ]
+__all__.extend(_patch_all)

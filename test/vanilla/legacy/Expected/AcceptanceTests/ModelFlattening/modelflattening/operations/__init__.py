@@ -8,6 +8,10 @@
 
 from ._auto_rest_resource_flattening_test_service_operations import AutoRestResourceFlatteningTestServiceOperationsMixin
 
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
+
 __all__ = [
     "AutoRestResourceFlatteningTestServiceOperationsMixin",
 ]
+__all__.extend(_patch_all)

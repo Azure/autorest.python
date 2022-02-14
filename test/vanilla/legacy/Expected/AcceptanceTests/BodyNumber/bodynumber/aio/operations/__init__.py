@@ -8,6 +8,10 @@
 
 from ._number_operations import NumberOperations
 
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
+
 __all__ = [
     "NumberOperations",
 ]
+__all__.extend(_patch_all)

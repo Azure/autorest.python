@@ -18,6 +18,8 @@ from ._auto_rest_swagger_bat_array_service_enums import (
     Enum1,
     FooEnum,
 )
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
 
 __all__ = [
     "Error",
@@ -26,3 +28,4 @@ __all__ = [
     "Enum1",
     "FooEnum",
 ]
+__all__.extend(_patch_all)

@@ -20,7 +20,8 @@ except (SyntaxError, ImportError):
 from ._multiapi_service_client_enums import (
     ContentType,
 )
-
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
 __all__ = [
     'Error',
     'ModelThree',
@@ -28,3 +29,4 @@ __all__ = [
     'SourcePath',
     'ContentType',
 ]
+__all__.extend(_patch_all)

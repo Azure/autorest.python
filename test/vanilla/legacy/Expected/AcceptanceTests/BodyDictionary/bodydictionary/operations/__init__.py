@@ -8,6 +8,10 @@
 
 from ._dictionary_operations import DictionaryOperations
 
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
+
 __all__ = [
     "DictionaryOperations",
 ]
+__all__.extend(_patch_all)

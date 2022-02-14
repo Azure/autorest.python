@@ -28,6 +28,8 @@ except (SyntaxError, ImportError):
     from ._models import PetActionError  # type: ignore
     from ._models import PetHungryOrThirstyError  # type: ignore
     from ._models import PetSadError  # type: ignore
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
 
 __all__ = [
     "Animal",
@@ -41,3 +43,4 @@ __all__ = [
     "PetHungryOrThirstyError",
     "PetSadError",
 ]
+__all__.extend(_patch_all)

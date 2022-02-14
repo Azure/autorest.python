@@ -10,9 +10,12 @@ from ._polling_paging_example import PollingPagingExample
 from ._version import VERSION
 
 __version__ = VERSION
+
+from ._patch import __all__ as _patch_all
+from ._patch import *  # pylint: disable=unused-wildcard-import
 __all__ = ['PollingPagingExample']
+__all__.extend(_patch_all)
 
 # `._patch.py` is used for handwritten extensions to the generated code
 # Example: https://github.com/Azure/azure-sdk-for-python/blob/main/doc/dev/customize_code/how-to-patch-sdk-code.md
-from ._patch import patch_sdk
 patch_sdk()
