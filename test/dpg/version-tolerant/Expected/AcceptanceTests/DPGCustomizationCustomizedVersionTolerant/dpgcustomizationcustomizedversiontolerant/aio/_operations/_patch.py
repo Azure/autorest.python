@@ -24,9 +24,63 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+from typing import Any, Literal, Union, overload
+from ._operations import DPGClientOperationsMixin as DPGClientOperationsMixinGenerated, JSONType
+from ...models import *
+from ..._operations._patch import mode_checks
+from azure.core.async_paging import AsyncItemPaged
 
-# This file is used for handwritten customizations to the generated code.
-# Follow our quickstart here for examples: https://github.com/Azure/autorest.python/blob/autorestv3/docs/customizations.md
+class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
+
+    @overload
+    async def get_model(self, mode: Literal["raw"], **kwargs: Any) -> JSONType:
+        """Pass in mode='raw' to get raw JSON out"""
+
+    @overload
+    async def get_model(self, mode: Literal["model"], **kwargs: Any) -> Product:
+        """Pass in mode='model' to get a handwritten model out"""
+
+    async def get_model(self, *args, **kwargs: Any) -> Union[JSONType, Product]:
+        model_mode = mode_checks(*args, **kwargs)
+        response = await super().get_model(*args, **kwargs)
+        if model_mode:
+            return Product.deserialize(response)
+        return response
+
+    @overload
+    async def post_model(self, mode: Literal["raw"], input: JSONType, **kwargs: Any) -> JSONType:
+        """Pass in mode='raw' to pass in raw json"""
+
+    @overload
+    async def post_model(self, mode: Literal["model"], input: Input, **kwargs: Any) -> Product:
+        """Pass in mode='model' to pass in model"""
+
+    async def post_model(self, *args, **kwargs: Any) -> JSONType:
+        model_mode = mode_checks(*args, **kwargs)
+        if model_mode:
+            if len(args) > 1:
+                args = list(args)
+                args[1] = Input.serialize(args[1])
+            else:
+                kwargs["input"] == Input.serialize(kwargs["input"])
+        response = await super().post_model(*args, **kwargs)
+        if model_mode:
+            return Product.deserialize(response)
+        return response
+
+    @overload
+    def get_pages(self, mode: Literal["raw"], **kwargs) -> AsyncItemPaged[JSONType]:
+        """Pass in mode='raw' to pass for raw json"""
+
+    @overload
+    def get_pages(self, mode: Literal["model"], **kwargs) -> AsyncItemPaged[Product]:
+        """Pass in mode='model' to pass for raw json"""
+
+    def get_pages(self, *args, **kwargs):
+        model_mode = mode_checks(*args, **kwargs)
+        if model_mode:
+            kwargs['cls'] = lambda objs: [Product.deserialize(x) for x in objs]
+        return super().get_pages(*args, **kwargs)
 
 
 def patch_sdk():
@@ -34,4 +88,4 @@ def patch_sdk():
     pass
 
 
-__all__ = ["patch_sdk"]  # do not remove "patch_sdk" from __all__
+__all__ = ["patch_sdk", "DPGClientOperationsMixin"]  # do not remove "patch_sdk" from __all__

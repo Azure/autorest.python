@@ -1,0 +1,16 @@
+{
+  "GetRawModel": 8,
+  "GetHandwrittenModel": 4,
+  "PostRawModel": 8,
+  "PostHandwrittenModel": 4,
+  "GetRawPages": 8,
+  "GetHandwrittenModelPages": 3,
+  "RawLRO": 0,
+  "HandwrittenModelLRO": 0,
+  "DPGAddOptionalInput": 0,
+  "DPGNewBodyType.JSON": 0,
+  "DPGNewBodyType.JPEG": 0,
+  "DPGNewBodyType": 0,
+  "DPGAddNewOperation": 0,
+  "DPGAddNewPath": 0
+}

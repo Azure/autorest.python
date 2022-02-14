@@ -25,40 +25,46 @@
 #
 # --------------------------------------------------------------------------
 import pytest
-from dpgcustomizationinitialversiontolerant import DPGClient as DPGClientInitial
-from dpgcustomizationcustomizedversiontolerant import DPGClient as DPGClientCustomized
+from dpgcustomizationinitialversiontolerant.aio import DPGClient as DPGClientInitial
+from dpgcustomizationcustomizedversiontolerant.aio import DPGClient as DPGClientCustomized
 from dpgcustomizationcustomizedversiontolerant.models import *
 
 @pytest.fixture
-def client(client_cls):
-    with client_cls() as client:
+async def client(client_cls):
+    async with client_cls() as client:
         yield client
 
 
 CLIENTS = [DPGClientInitial, DPGClientCustomized]
 
+@pytest.mark.asyncio
 @pytest.mark.parametrize("client_cls", CLIENTS)
-def test_get_raw_model(client):
-    assert client.get_model(mode="raw") == {"received": "raw"}
+async def test_get_raw_model(client):
+    assert await client.get_model(mode="raw") == {"received": "raw"}
 
+@pytest.mark.asyncio
 @pytest.mark.parametrize("client_cls", [DPGClientCustomized])
-def test_get_customized_model(client):
-    assert client.get_model("model").received == "model"
+async def test_get_customized_model(client):
+    assert (await client.get_model("model")).received == "model"
 
+@pytest.mark.asyncio
 @pytest.mark.parametrize("client_cls", CLIENTS)
-def test_post_raw_model(client):
-    assert client.post_model("raw", {"hello": "world!"})["received"] == "raw"
+async def test_post_raw_model(client):
+    assert (await client.post_model("raw", {"hello": "world!"}))["received"] == "raw"
 
+@pytest.mark.asyncio
 @pytest.mark.parametrize("client_cls", [DPGClientCustomized])
-def test_post_customized_model(client):
-    assert client.post_model("model", Input(hello="world!")).received == "model"
+async def test_post_customized_model(client):
+    assert (await client.post_model("model", Input(hello="world!"))).received == "model"
 
+@pytest.mark.asyncio
 @pytest.mark.parametrize("client_cls", CLIENTS)
-def test_get_raw_pages(client):
-    assert list(client.get_pages("raw")) == [{'received': 'raw'}, {'received': 'raw'}]
+async def test_get_raw_pages(client):
+    assert [p async for p in client.get_pages("raw")] == [{'received': 'raw'}, {'received': 'raw'}]
 
+@pytest.mark.asyncio
 @pytest.mark.parametrize("client_cls", [DPGClientCustomized])
-def test_get_customized_pages(client):
-    pages = list(client.get_pages("model"))
+async def test_get_customized_pages(client):
+    pages = [p async for p in client.get_pages("model")]
     assert all(p for p in pages if isinstance(p, Product))
     assert all(p for p in pages if p.received == "model")
