@@ -30,6 +30,7 @@ from azure.core.polling import LROPoller
 from ..models import *
 from ._operations import DPGClientOperationsMixin as DPGClientOperationsMixinGenerated, JSONType
 
+
 def mode_checks(*args, **kwargs: Any) -> bool:
     """Return whether model_mode is True"""
     if args:
@@ -38,8 +39,8 @@ def mode_checks(*args, **kwargs: Any) -> bool:
         return kwargs["mode"] == "model"
     raise ValueError("You need to specify 'mode' equal to 'raw' or 'model'.")
 
-class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
 
+class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
     @overload
     def get_model(self, mode: Literal["raw"], **kwargs: Any) -> JSONType:
         """Pass in mode='raw' to get raw JSON out"""
@@ -87,7 +88,7 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
     def get_pages(self, *args, **kwargs):
         model_mode = mode_checks(*args, **kwargs)
         if model_mode:
-            kwargs['cls'] = lambda objs: [Product.deserialize(x) for x in objs]
+            kwargs["cls"] = lambda objs: [Product.deserialize(x) for x in objs]
         return super().get_pages(*args, **kwargs)
 
     @overload
@@ -101,12 +102,13 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
     def begin_lro(self, *args, **kwargs: Any):
         model_mode = mode_checks(*args, **kwargs)
         if model_mode:
-            kwargs['cls'] = lambda pipeline_response, deserialized, headers: LROProduct.deserialize(pipeline_response)
+            kwargs["cls"] = lambda pipeline_response, deserialized, headers: LROProduct.deserialize(pipeline_response)
         return super().begin_lro(*args, **kwargs)
+
 
 def patch_sdk():
     """Do not remove from this file"""
     pass
 
 
-__all__ = ["patch_sdk", "DPGClientOperationsMixin"]  # do not remove "patch_sdk" from __all__
+__all__ = ["DPGClientOperationsMixin"]  # do not remove "patch_sdk" from __all__
