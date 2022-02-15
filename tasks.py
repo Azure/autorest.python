@@ -18,7 +18,7 @@ class _SwaggerGroup(Enum):
     VANILLA = auto()
     AZURE = auto()
     AZURE_ARM = auto()
-    LLC = auto()
+    DPG = auto()
 
 _VANILLA_SWAGGER_MAPPINGS = {
     'AdditionalProperties': 'additionalProperties.json',
@@ -66,9 +66,9 @@ _VANILLA_SWAGGER_MAPPINGS = {
     "ReservedWords": "reserved-words.json",
 }
 
-_LLC_SWAGGER_MAPPINGS = {
-    'LLCServiceDrivenInitial': 'llc_initial.json',
-    'LLCServiceDrivenUpdateOne': 'llc_update1.json'
+_DPG_SWAGGER_MAPPINGS = {
+    'DPGServiceDrivenInitial': 'dpg_initial.json',
+    'DPGServiceDrivenUpdateOne': 'dpg_update1.json'
 }
 
 _AZURE_SWAGGER_MAPPINGS = {
@@ -108,8 +108,8 @@ _OVERWRITE_DEFAULT_NAMESPACE = {
 }
 
 _OVERRIDE_PACKAGE_NAME = {
-    "LLCServiceDrivenInitial": "llcservicedriveninitial",
-    "LLCServiceDrivenUpdateOne": "llcservicedrivenupdateone",
+    "DPGServiceDrivenInitial": "dpgservicedriveninitial",
+    "DPGServiceDrivenUpdateOne": "dpgservicedrivenupdateone",
 }
 
 _PACKAGES_WITH_CLIENT_SIDE_VALIDATION = [
@@ -135,8 +135,8 @@ def _build_flags(
 
     if swagger_group == _SwaggerGroup.VANILLA:
         generation_section = "vanilla"
-    elif swagger_group == _SwaggerGroup.LLC:
-        generation_section = "llc"
+    elif swagger_group == _SwaggerGroup.DPG:
+        generation_section = "dpg"
     else:
         generation_section = "azure"
     namespace = kwargs.pop("namespace", _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower()))
@@ -249,11 +249,11 @@ def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, **kwargs)
 
 @task
-def regenerate_llc_low_level_client(c, swagger_name=None, debug=False, **kwargs):
+def regenerate_dpg_low_level_client(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(
         c,
-        _LLC_SWAGGER_MAPPINGS,
-        _SwaggerGroup.LLC,
+        _DPG_SWAGGER_MAPPINGS,
+        _SwaggerGroup.DPG,
         swagger_name,
         debug,
         low_level_client=True,
@@ -273,11 +273,11 @@ def regenerate_vanilla_low_level_client(c, swagger_name=None, debug=False, **kwa
     )
 
 @task
-def regenerate_llc_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
+def regenerate_dpg_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(
         c,
-        _LLC_SWAGGER_MAPPINGS,
-        _SwaggerGroup.LLC,
+        _DPG_SWAGGER_MAPPINGS,
+        _SwaggerGroup.DPG,
         swagger_name,
         debug,
         version_tolerant=True,
@@ -374,10 +374,10 @@ def regenerate(
     vanilla=False,
     azure=False,
     azure_arm=False,
-    llc=False
+    dpg=False
 ):
-    if legacy and llc:
-        raise ValueError("Can not specify legacy flag and llc flag at the same time.")
+    if legacy and dpg:
+        raise ValueError("Can not specify legacy flag and dpg flag at the same time.")
     generators = [
         "version_tolerant" if version_tolerant else "",
         "low_level_client" if low_level_client else "",
@@ -388,7 +388,7 @@ def regenerate(
         "vanilla" if vanilla else "",
         "azure" if azure else "",
         "azure_arm" if azure_arm else "",
-        "llc" if llc else "",
+        "dpg" if dpg else "",
     ]
     folder_flags = [f for f in folders if f]
     if not folder_flags:
@@ -406,11 +406,11 @@ def regenerate(
             ("version_tolerant", "vanilla"): regenerate_vanilla_version_tolerant,
             ("version_tolerant", "azure"): regenerate_azure_version_tolerant,
             ("version_tolerant", "azure_arm"): regenerate_azure_arm_version_tolerant,
-            ("version_tolerant", "llc"): regenerate_llc_version_tolerant,
+            ("version_tolerant", "dpg"): regenerate_dpg_version_tolerant,
             ("low_level_client", "vanilla"): regenerate_vanilla_low_level_client,
             ("low_level_client", "azure"): regenerate_azure_low_level_client,
             ("low_level_client", "azure_arm"): regenerate_azure_arm_low_level_client,
-            ("low_level_client", "llc"): regenerate_llc_low_level_client,
+            ("low_level_client", "dpg"): regenerate_dpg_low_level_client,
         }
         funcs = [
             v for k, v in mapping.items() if k in itertools.product(generators, folder_flags)
@@ -420,14 +420,14 @@ def regenerate(
 
 @task
 def regenerate_low_level_client(c, swagger_name=None, debug=False):
-    regenerate_llc_low_level_client(c, swagger_name, debug)
+    regenerate_dpg_low_level_client(c, swagger_name, debug)
     regenerate_vanilla_low_level_client(c, swagger_name, debug)
     regenerate_azure_low_level_client(c, swagger_name, debug)
     regenerate_azure_arm_low_level_client(c, swagger_name, debug)
 
 @task
 def regenerate_version_tolerant(c, swagger_name=None, debug=False):
-    regenerate_llc_version_tolerant(c, swagger_name, debug)
+    regenerate_dpg_version_tolerant(c, swagger_name, debug)
     regenerate_vanilla_version_tolerant(c, swagger_name, debug)
     regenerate_azure_version_tolerant(c, swagger_name, debug)
     regenerate_azure_arm_version_tolerant(c, swagger_name, debug)
