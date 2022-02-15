@@ -26,6 +26,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, overload, Union, Literal
 from azure.core.paging import ItemPaged
+from azure.core.polling import LROPoller
 from ..models import *
 from ._operations import DPGClientOperationsMixin as DPGClientOperationsMixinGenerated, JSONType
 
@@ -88,6 +89,20 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
         if model_mode:
             kwargs['cls'] = lambda objs: [Product.deserialize(x) for x in objs]
         return super().get_pages(*args, **kwargs)
+
+    @overload
+    def begin_lro(self, mode: Literal["raw"], **kwargs) -> LROPoller[JSONType]:
+        """Pass in mode='raw' to pass for raw json"""
+
+    @overload
+    def begin_lro(self, mode: Literal["model"], **kwargs) -> LROPoller[LROProduct]:
+        """Pass in mode='model' to pass for raw json"""
+
+    def begin_lro(self, *args, **kwargs: Any):
+        model_mode = mode_checks(*args, **kwargs)
+        if model_mode:
+            kwargs['cls'] = lambda pipeline_response, deserialized, headers: LROProduct.deserialize(pipeline_response)
+        return super().begin_lro(*args, **kwargs)
 
 def patch_sdk():
     """Do not remove from this file"""

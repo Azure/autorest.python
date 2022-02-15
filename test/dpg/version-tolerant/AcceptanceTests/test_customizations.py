@@ -62,3 +62,14 @@ def test_get_customized_pages(client):
     pages = list(client.get_pages("model"))
     assert all(p for p in pages if isinstance(p, Product))
     assert all(p for p in pages if p.received == "model")
+
+@pytest.mark.parametrize("client_cls", CLIENTS)
+def test_raw_lro(client):
+    assert client.begin_lro(mode="raw").result() == {'provisioningState': 'Succeeded', 'received': 'raw'}
+
+@pytest.mark.parametrize("client_cls", [DPGClientCustomized])
+def test_customized_lro(client):
+    product = client.begin_lro(mode="model").result()
+    assert isinstance(product, LROProduct)
+    assert product.received == "model"
+    assert product.provisioning_state == "Succeeded"

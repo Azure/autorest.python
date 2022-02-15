@@ -68,3 +68,18 @@ async def test_get_customized_pages(client):
     pages = [p async for p in client.get_pages("model")]
     assert all(p for p in pages if isinstance(p, Product))
     assert all(p for p in pages if p.received == "model")
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("client_cls", CLIENTS)
+async def test_raw_lro(client):
+    poller = await client.begin_lro(mode="raw")
+    assert await poller.result() == {'provisioningState': 'Succeeded', 'received': 'raw'}
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("client_cls", [DPGClientCustomized])
+async def test_customized_lro(client):
+    poller = await client.begin_lro(mode="model")
+    product = await poller.result()
+    assert isinstance(product, LROProduct)
+    assert product.received == "model"
+    assert product.provisioning_state == "Succeeded"

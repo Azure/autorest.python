@@ -25,6 +25,7 @@
 #
 # --------------------------------------------------------------------------
 from typing import Any, Literal, Union, overload
+from azure.core.polling import AsyncLROPoller
 from ._operations import DPGClientOperationsMixin as DPGClientOperationsMixinGenerated, JSONType
 from ...models import *
 from ..._operations._patch import mode_checks
@@ -81,6 +82,21 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
         if model_mode:
             kwargs['cls'] = lambda objs: [Product.deserialize(x) for x in objs]
         return super().get_pages(*args, **kwargs)
+
+    @overload
+    async def begin_lro(self, mode: Literal["raw"], **kwargs) -> AsyncLROPoller[JSONType]:
+        """Pass in mode='raw' to pass for raw json"""
+
+    @overload
+    async def begin_lro(self, mode: Literal["model"], **kwargs) -> AsyncLROPoller[LROProduct]:
+        """Pass in mode='model' to pass for raw json"""
+
+    async def begin_lro(self, *args, **kwargs: Any):
+        model_mode = mode_checks(*args, **kwargs)
+        if model_mode:
+            kwargs['cls'] = lambda pipeline_response, deserialized, headers: LROProduct.deserialize(pipeline_response)
+        return await super().begin_lro(*args, **kwargs)
+
 
 
 def patch_sdk():
