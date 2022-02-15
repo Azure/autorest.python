@@ -3,13 +3,10 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import code
+import time
 from typing import Dict, List, Optional, Any
 from pathlib import Path
-from unicodedata import name
-from unittest import result
 from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
-import time
 from autorest.codegen.models.operation_group import OperationGroup
 
 from ...jsonrpc import AutorestAPI
@@ -74,7 +71,7 @@ class JinjaSerializer:
 
         if code_model.options["models_mode"] and (code_model.schemas or code_model.enums):
             self._serialize_and_write_models_folder(code_model=code_model, env=env, namespace_path=namespace_path)
-        
+
         if code_model.options["package_mode"]:
             self._serialize_and_write_package_files(code_model=code_model, out_path=namespace_path)
 
@@ -83,10 +80,10 @@ class JinjaSerializer:
         def _serialize_and_write_package_files_proc(**kwargs: Any):
             for template_name in env.list_templates():
                 template = env.get_template(template_name)
-                result = template.render(**kwargs)
+                render_result = template.render(**kwargs)
                 output_name = template_name.replace(".jinja2", "")
-                self._autorestapi.write_file(out_path / output_name, result)
-        
+                self._autorestapi.write_file(out_path / output_name, render_result)
+
         def _prepare_params() -> Dict[Any, Any]:
             package_parts = code_model.options["package_name"].split("-")[:-1]
             params = {
@@ -98,7 +95,7 @@ class JinjaSerializer:
             return params
 
         count = code_model.options["package_name"].count("-") + 1
-        for i in range(count):
+        for _ in range(count):
             out_path = out_path / Path("..")
 
         if code_model.options["package_mode"] in ("dataplane", "mgmtplane"):

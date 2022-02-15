@@ -6,8 +6,8 @@
 import logging
 import sys
 from typing import Dict, Any, Set, Union, List, Type
-import yaml
 from pathlib import Path
+import yaml
 
 from .. import Plugin
 from .models.code_model import CodeModel
