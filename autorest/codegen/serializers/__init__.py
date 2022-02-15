@@ -4,9 +4,10 @@
 # license information.
 # --------------------------------------------------------------------------
 import code
-from typing import List, Optional, Any
+from typing import Dict, List, Optional, Any
 from pathlib import Path
 from unicodedata import name
+from unittest import result
 from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
 import time
 from autorest.codegen.models.operation_group import OperationGroup
@@ -85,6 +86,16 @@ class JinjaSerializer:
                 result = template.render(**kwargs)
                 output_name = template_name.replace(".jinja2", "")
                 self._autorestapi.write_file(out_path / output_name, result)
+        
+        def _prepare_params() -> Dict[Any, Any]:
+            package_parts = code_model.options["package_name"].split("-")[:-1]
+            params = {
+                "release_time": time.strftime('%Y-%m-%d', time.localtime()),
+                "nspkg_names": [".".join(package_parts[: i + 1]) for i in range(len(package_parts))],
+                "init_names": ["/".join(package_parts[: i + 1]) + "/__init__.py" for i in range(len(package_parts))]
+            }
+            params.update(code_model.options)
+            return params
 
         count = code_model.options["package_name"].count("-") + 1
         for i in range(count):
@@ -94,8 +105,7 @@ class JinjaSerializer:
             env = Environment(
                 loader=PackageLoader("autorest.codegen", "templates/templates_package"),
                 undefined=StrictUndefined)
-            release_time = time.strftime('%Y-%m-%d', time.localtime())
-            _serialize_and_write_package_files_proc(code_model=code_model, release_time=release_time)
+            _serialize_and_write_package_files_proc(**_prepare_params())
         elif Path(code_model.options["package_mode"]).exists():
             env = Environment(
                 loader=FileSystemLoader(str(Path(code_model.options["package_mode"]))),

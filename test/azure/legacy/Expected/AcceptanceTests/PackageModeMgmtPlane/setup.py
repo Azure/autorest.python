@@ -10,17 +10,15 @@ import re
 from setuptools import setup, find_packages
 
 # Change the PACKAGE_NAME only to change folder and different name
-PACKAGE_NAME = "{{ package_name }}"
-PACKAGE_PPRINT_NAME = "{{ package_pprint_name }}"
+PACKAGE_NAME = "azure-package-mode"
+PACKAGE_PPRINT_NAME = "None"
 
 # a-b-c => a/b/c
 package_folder_path = PACKAGE_NAME.replace("-", "/")
 
 # Version extraction inspired from 'requests'
 with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
-    version = re.search(
-        r'^VERSION\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE
-    ).group(1)
+    version = re.search(r'^VERSION\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE).group(1)
 
 if not version:
     raise RuntimeError("Cannot find version information")
@@ -28,7 +26,7 @@ if not version:
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="Microsoft {{ package_pprint_name }} Client Library for Python",
+    description="Microsoft None Client Library for Python",
     long_description=open("README.md", "r").read(),
     long_description_content_type="text/markdown",
     license="MIT License",
@@ -53,21 +51,14 @@ setup(
             "tests",
             "samples",
             # Exclude packages that will be covered by PEP420 or nspkg
-            {%- for nspkg_name in nspkg_names %}
-            '{{ nspkg_name }}',
-            {%- endfor %}
+            "azure",
+            "azure.package",
         ]
     ),
     install_requires=[
         "msrest>=0.6.21",
-        {%- if package_mode == "mgmtplane" %}
         "azure-common~=1.1",
         "azure-mgmt-core>=1.3.0,<2.0.0",
-        {%- endif %}
-        {%- if package_mode == "dataplane" %}
-        "six>=1.11.0",
-        "azure-core<2.0.0,>=1.20.1",
-        {%- endif %}
     ],
     python_requires=">=3.6",
 )

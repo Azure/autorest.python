@@ -361,6 +361,7 @@ def regenerate_legacy(c, swagger_name=None, debug=False):
         regenerate_samples(c, debug)
         regenerate_with_python3_operation_files(c, debug)
         regenerate_python3_only(c, debug)
+        regenerate_package_mode(c, debug)
 
 @task
 def regenerate(
@@ -485,17 +486,15 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
 @task
 def regenerate_package_mode(c, debug=False):
     cwd = os.getcwd()
-    readme_prefix = f'{cwd}/test/azure/version-tolerant/specification/packagemode'
-    out_prefix = f'{cwd}/test/azure/version-tolerant/Expected/AcceptanceTests/PackageMode'
-
     package_mode = {
-        'MgmtPlane': 'mgmtplane',
-        'DataPlane': 'dataplane',
-        'Customize': f'{readme_prefix}/template',
+        'mgmtplane': 'test/azure/legacy/specification/packagemodemgmtplane/README.md',
+        'dataplane': 'test/azure/legacy/specification/packagemodedataplane/README.md',
+        'test/azure/legacy/specification/packagemodecustomize/template': 'test/azure/legacy/specification/packagemodecustomize/README.md',
     }
     cmds = [
-        f'autorest {readme_prefix}/README.md --use. --output-folder={out_prefix}{k} --package-mode={v}' for k,v in package_mode
+        f'autorest {v} --use=. --python-sdks-folder={cwd}/test/ --package-mode={k}' for k,v in package_mode.items()
     ]
+
     _run_autorest(cmds, debug=debug)
 
 @task
