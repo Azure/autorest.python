@@ -45,7 +45,9 @@ class JinjaSerializer:
         )
 
         namespace_path = (
-            Path(".") if self.code_model.options["no_namespace_folders"] else Path(*(self.code_model.namespace.split(".")))
+            Path(".")
+            if self.code_model.options["no_namespace_folders"]
+            else Path(*(self.code_model.namespace.split(".")))
         )
 
         # if there was a patch file before, we keep it
@@ -87,10 +89,12 @@ class JinjaSerializer:
         if self.code_model.schemas:
             if not self.code_model.options['python3_only']:
                 self._autorestapi.write_file(
-                    models_path / Path("_models.py"), ModelGenericSerializer(code_model=self.code_model, env=env).serialize()
+                    models_path / Path("_models.py"),
+                    ModelGenericSerializer(code_model=self.code_model, env=env).serialize()
                 )
             self._autorestapi.write_file(
-                models_path / Path("_models_py3.py"), ModelPython3Serializer(code_model=self.code_model, env=env).serialize()
+                models_path / Path("_models_py3.py"),
+                ModelPython3Serializer(code_model=self.code_model, env=env).serialize()
             )
         if self.code_model.enums:
             self._autorestapi.write_file(
@@ -215,7 +219,9 @@ class JinjaSerializer:
 
         # write async operations init file
         if not self.code_model.options["no_async"]:
-            operations_async_init_serializer = OperationsInitSerializer(code_model=self.code_model, env=env, async_mode=True)
+            operations_async_init_serializer = OperationsInitSerializer(
+                code_model=self.code_model, env=env, async_mode=True
+            )
             self._autorestapi.write_file(
                 namespace_path / Path("aio") / Path(self.code_model.operations_folder_name) / Path("__init__.py"),
                 operations_async_init_serializer.serialize(),
