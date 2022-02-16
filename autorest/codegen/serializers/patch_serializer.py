@@ -4,14 +4,11 @@
 # license information.
 # --------------------------------------------------------------------------
 from jinja2 import Environment
-from ..models import CodeModel
-
 
 class PatchSerializer:
-    def __init__(self, code_model: CodeModel, env: Environment) -> None:
-        self.code_model = code_model
+    def __init__(self, env: Environment) -> None:
         self.env = env
 
     def serialize(self) -> str:
         template = self.env.get_template("patch.py.jinja2")
-        return template.render(code_model=self.code_model)
+        return template.render()

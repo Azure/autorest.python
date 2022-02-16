@@ -94,7 +94,7 @@ class JinjaSerializer:
         if self._autorestapi.read_file(path_file):
             self._autorestapi.write_file(path_file, self._autorestapi.read_file(path_file))
         else:
-            self._autorestapi.write_file(path_file, PatchSerializer(code_model=self.code_model, env=env).serialize())
+            self._autorestapi.write_file(path_file, PatchSerializer(env=env).serialize())
 
 
     def _serialize_and_write_models_folder(self, env: Environment, namespace_path: Path) -> None:
