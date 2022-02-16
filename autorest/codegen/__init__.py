@@ -347,8 +347,8 @@ class CodeGenerator(Plugin):
 
         code_model = self._create_code_model(yaml_data=yaml_data, options=options)
 
-        serializer = JinjaSerializer(self._autorestapi)
-        serializer.serialize(code_model)
+        serializer = JinjaSerializer(self._autorestapi, code_model)
+        serializer.serialize()
 
         return True
 
