@@ -12,6 +12,7 @@ from typing import Any, TYPE_CHECKING
 from msrest import Deserializer, Serializer
 
 from azure.core import PipelineClient
+from azure.core.credentials import AzureKeyCredential
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AutoRestPagingTestServiceConfiguration
@@ -21,8 +22,6 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Dict
 
-    from azure.core.credentials import TokenCredential
-
 
 class AutoRestPagingTestService:
     """Long-running Operation for AutoRest.
@@ -30,7 +29,7 @@ class AutoRestPagingTestService:
     :ivar paging: PagingOperations operations
     :vartype paging: packagemode.operations.PagingOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials.TokenCredential
+    :type credential: ~azure.core.credentials.AzureKeyCredential
     :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
     :paramtype endpoint: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
@@ -38,7 +37,7 @@ class AutoRestPagingTestService:
     """
 
     def __init__(
-        self, credential: "TokenCredential", *, endpoint: str = "http://localhost:3000", **kwargs: Any
+        self, credential: AzureKeyCredential, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
 
         self._config = AutoRestPagingTestServiceConfiguration(credential=credential, **kwargs)

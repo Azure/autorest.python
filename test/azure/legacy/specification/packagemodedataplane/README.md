@@ -8,6 +8,7 @@ output-folder: $(python-sdks-folder)/azure/legacy/Expected/AcceptanceTests/Packa
 namespace: packagemode
 package-name: packagemode
 add-credentials: true
+credential-default-policy-type: AzureKeyCredentialPolicy
 license-header: MICROSOFT_MIT_NO_VERSION
 package-version: 1.0.0b1
 output-artifact: code-model-v4-no-tags
