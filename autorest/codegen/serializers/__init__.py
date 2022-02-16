@@ -75,11 +75,11 @@ class JinjaSerializer:
         if self.code_model.options["models_mode"] and (self.code_model.schemas or self.code_model.enums):
             self._serialize_and_write_models_folder(env=env, namespace_path=namespace_path)
 
-        if code_model.options["package_mode"]:
-            self._serialize_and_write_package_files(code_model=code_model, out_path=namespace_path)
+        if self.code_model.options["package_mode"]:
+            self._serialize_and_write_package_files(out_path=namespace_path)
 
 
-    def _serialize_and_write_package_files(self, code_model: CodeModel, out_path: Path) -> None:
+    def _serialize_and_write_package_files(self, out_path: Path) -> None:
         def _serialize_and_write_package_files_proc(**kwargs: Any):
             for template_name in env.list_templates():
                 template = env.get_template(template_name)
@@ -88,32 +88,33 @@ class JinjaSerializer:
                 self._autorestapi.write_file(out_path / output_name, render_result)
 
         def _prepare_params() -> Dict[Any, Any]:
-            package_parts = code_model.options["package_name"].split("-")[:-1]
+            package_parts = self.code_model.options["package_name"].split("-")[:-1]
+            token_cred = isinstance(self.code_model.credential_schema_policy.credential, TokenCredentialSchema)
             params = {
-                "azure_identity": isinstance(code_model.credential_schema_policy.credential, TokenCredentialSchema),
+                "token_credential": token_cred,
                 "pkgutil_names": [".".join(package_parts[: i + 1]) for i in range(len(package_parts))],
                 "init_names": ["/".join(package_parts[: i + 1]) + "/__init__.py" for i in range(len(package_parts))]
             }
-            params.update(code_model.options)
-            params.update(code_model.package_dependency)
+            params.update(self.code_model.options)
+            params.update(self.code_model.package_dependency)
             return params
 
-        count = code_model.options["package_name"].count("-") + 1
+        count = self.code_model.options["package_name"].count("-") + 1
         for _ in range(count):
             out_path = out_path / Path("..")
 
-        if code_model.options["package_mode"] in ("dataplane", "mgmtplane"):
+        if self.code_model.options["package_mode"] in ("dataplane", "mgmtplane"):
             env = Environment(
                 loader=PackageLoader("autorest.codegen", "templates/templates_package"),
                 undefined=StrictUndefined)
             _serialize_and_write_package_files_proc(**_prepare_params())
-        elif Path(code_model.options["package_mode"]).exists():
+        elif Path(self.code_model.options["package_mode"]).exists():
             env = Environment(
-                loader=FileSystemLoader(str(Path(code_model.options["package_mode"]))),
+                loader=FileSystemLoader(str(Path(self.code_model.options["package_mode"]))),
                 keep_trailing_newline=True,
                 undefined=StrictUndefined
             )
-            params = code_model.options["package_configuration"] or {}
+            params = self.code_model.options["package_configuration"] or {}
             _serialize_and_write_package_files_proc(**params)
 
 
