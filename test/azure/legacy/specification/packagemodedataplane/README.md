@@ -7,9 +7,8 @@ input-file: ../../../../../node_modules/@microsoft.azure/autorest.testserver/swa
 output-folder: $(python-sdks-folder)/azure/legacy/Expected/AcceptanceTests/PackageModeDataPlane
 namespace: packagemode
 package-name: packagemode
-license-header: MICROSOFT_MIT_NO_VERSION
-azure-arm: true
 add-credentials: true
+license-header: MICROSOFT_MIT_NO_VERSION
 package-version: 1.0.0b1
 output-artifact: code-model-v4-no-tags
 payload-flattening-threshold: 1

@@ -11,8 +11,8 @@ from typing import Any, Awaitable, TYPE_CHECKING
 
 from msrest import Deserializer, Serializer
 
+from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
-from azure.mgmt.core import AsyncARMPipelineClient
 
 from ._configuration import AutoRestPagingTestServiceConfiguration
 from .operations import PagingOperations
@@ -41,7 +41,7 @@ class AutoRestPagingTestService:
         self, credential: "AsyncTokenCredential", *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestPagingTestServiceConfiguration(credential=credential, **kwargs)
-        self._client = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

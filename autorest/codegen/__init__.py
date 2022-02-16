@@ -118,6 +118,15 @@ class CodeGenerator(Plugin):
                     exceptions_set.add(id(exception["schema"]))
         return exceptions_set
 
+    @staticmethod
+    def _build_package_dependency() -> Dict[str, str]:
+        return {
+            "dependency_azure_mgmt_core": "azure-mgmt-core>=1.3.0,<2.0.0",
+            "dependency_azure_core": "azure-core<2.0.0,>=1.20.1",
+            "dependency_azure_common": "azure-common~=1.1",
+            "dependency_msrest": "msrest>=0.6.21",
+        }
+
     def _create_code_model(self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]) -> CodeModel:
         # Create a code model
 
@@ -162,6 +171,7 @@ class CodeGenerator(Plugin):
         if options["credential"]:
             code_model.global_parameters.add_credential_global_parameter()
 
+        code_model.package_dependency = self._build_package_dependency()
         return code_model
 
     def _get_credential_scopes(self, credential):

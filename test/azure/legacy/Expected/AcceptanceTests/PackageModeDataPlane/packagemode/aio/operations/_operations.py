@@ -19,11 +19,10 @@ from azure.core.exceptions import (
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
+from azure.core.polling.async_base_polling import AsyncLROBasePolling
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
-from azure.mgmt.core.exceptions import ARMErrorFormat
-from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ...operations._operations import (
     build_paging_first_response_empty_request,
@@ -129,7 +128,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -193,7 +192,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -257,7 +256,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -322,7 +321,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -408,7 +407,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -487,7 +486,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -573,7 +572,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -664,7 +663,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -729,7 +728,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -794,7 +793,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -858,7 +857,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -922,7 +921,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -986,7 +985,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -1063,7 +1062,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -1140,7 +1139,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -1172,7 +1171,7 @@ class PagingOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+            raise HttpResponseError(response=response)
 
         if response.content:
             deserialized = response.json()
@@ -1203,8 +1202,8 @@ class PagingOperations:
          seconds. The default is 30 seconds.
         :paramtype timeout: int
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
+        :keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False
+         for this operation to not poll, or pass in your own initialized polling object for a personal
          polling strategy.
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
@@ -1256,7 +1255,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                raise HttpResponseError(response=response)
 
             return pipeline_response
 
@@ -1283,7 +1282,7 @@ class PagingOperations:
             return AsyncItemPaged(internal_get_next, extract_data)
 
         if polling is True:
-            polling_method = AsyncARMPolling(lro_delay, **kwargs)
+            polling_method = AsyncLROBasePolling(lro_delay, **kwargs)
         elif polling is False:
             polling_method = AsyncNoPolling()
         else:
@@ -1356,7 +1355,7 @@ class PagingOperations:
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+                raise HttpResponseError(response=response)
 
             return pipeline_response
 

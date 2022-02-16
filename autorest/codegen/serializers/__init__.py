@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import time
 from typing import Dict, List, Optional, Any
 from pathlib import Path
 from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
@@ -14,6 +13,7 @@ from ..models import (
     CodeModel,
     OperationGroup,
     RequestBuilder,
+    TokenCredentialSchema
 )
 from .enum_serializer import EnumSerializer
 from .general_serializer import GeneralSerializer
@@ -87,11 +87,12 @@ class JinjaSerializer:
         def _prepare_params() -> Dict[Any, Any]:
             package_parts = code_model.options["package_name"].split("-")[:-1]
             params = {
-                "release_time": time.strftime('%Y-%m-%d', time.localtime()),
-                "nspkg_names": [".".join(package_parts[: i + 1]) for i in range(len(package_parts))],
+                "azure_identity": isinstance(code_model.credential_schema_policy.credential, TokenCredentialSchema),
+                "pkgutil_names": [".".join(package_parts[: i + 1]) for i in range(len(package_parts))],
                 "init_names": ["/".join(package_parts[: i + 1]) + "/__init__.py" for i in range(len(package_parts))]
             }
             params.update(code_model.options)
+            params.update(code_model.package_dependency)
             return params
 
         count = code_model.options["package_name"].count("-") + 1

@@ -11,8 +11,8 @@ from typing import Any, TYPE_CHECKING
 
 from msrest import Deserializer, Serializer
 
+from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
-from azure.mgmt.core import ARMPipelineClient
 
 from ._configuration import AutoRestPagingTestServiceConfiguration
 from .operations import PagingOperations
@@ -42,7 +42,7 @@ class AutoRestPagingTestService:
     ) -> None:
 
         self._config = AutoRestPagingTestServiceConfiguration(credential=credential, **kwargs)
-        self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
