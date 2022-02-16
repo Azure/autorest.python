@@ -53,7 +53,7 @@ class JinjaSerializer:
 
         if code_model.options["models_mode"] and (code_model.schemas or code_model.enums):
             self._keep_patch_file(namespace_path / Path("models") / Path("_patch.py"), env)
-        if code_model.options["show_operations"]:
+        if code_model.options["show_operations"] and code_model.operation_groups:
             self._keep_patch_file(namespace_path / Path(code_model.operations_folder_name) / Path("_patch.py"), env)
             if not code_model.options["no_async"]:
                 self._keep_patch_file(
