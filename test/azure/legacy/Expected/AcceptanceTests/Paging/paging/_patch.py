@@ -24,8 +24,41 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+import copy
+from typing import List
+import importlib
+import urllib.parse
+from ._auto_rest_paging_test_service import AutoRestPagingTestService as AutoRestPagingTestServiceGenerated
+from azure.core.pipeline.policies import SansIOHTTPPolicy
+
+class RemoveDuplicateParamsPolicy(SansIOHTTPPolicy):
+    def __init__(self, duplicate_param_names):
+        # type: (List[str]) -> None
+        self.duplicate_param_names = duplicate_param_names
+
+    def on_request(self, request):
+        parsed_url = urllib.parse.urlparse(request.http_request.url)
+        query_params = urllib.parse.parse_qs(parsed_url.query)
+        updated_query_params = copy.copy(query_params)
+        for query in query_params:
+            if query in self.duplicate_param_names and (isinstance(query_params[query], list) and len(query_params[query]) > 1):
+                updated_query_params[query] = [query_params[query][-1]]
+        # service returned will be later in the url because of how we format
+        request.http_request.url = request.http_request.url.replace(parsed_url.query, "") + urllib.parse.urlencode(updated_query_params, doseq=True)
+        return super().on_request(request)
+
+class AutoRestPagingTestService(AutoRestPagingTestServiceGenerated):
+    def __init__(self, *args, **kwargs):
+        per_call_policies = kwargs.pop("per_call_policies", [])
+        params_policy = RemoveDuplicateParamsPolicy(duplicate_param_names=["$filter", "$skiptoken"])
+        try:
+            per_call_policies.append(params_policy)
+        except AttributeError:
+            per_call_policies = [per_call_policies, params_policy]
+        super().__init__(*args, per_call_policies=per_call_policies, **kwargs)
 
 # This file is used for handwritten extensions to the generated code. Example:
 # https://github.com/Azure/azure-sdk-for-python/blob/main/doc/dev/customize_code/how-to-patch-sdk-code.md
 def patch_sdk():
-    pass
+    curr_package = importlib.import_module("paging")
+    curr_package.AutoRestPagingTestService = AutoRestPagingTestService

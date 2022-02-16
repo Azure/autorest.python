@@ -164,3 +164,6 @@ def test_initial_response_no_items(client):
     pages = client.paging.first_response_empty()
     items = [i for i in pages]
     assert len(items) == 1
+
+def test_duplicate_params(client: AutoRestPagingTestService):
+    pages = list(client.paging.duplicate_params("duplicateParams", filter="foo"))
