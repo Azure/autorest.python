@@ -7,6 +7,7 @@ input-file: ../../../../../node_modules/@microsoft.azure/autorest.testserver/swa
 output-folder: $(python-sdks-folder)/azure/legacy/Expected/AcceptanceTests/PackageModeMgmtPlane
 namespace: azure.package.mode
 package-name: azure-package-mode
+package-pprint-name: Azure Package Mode
 license-header: MICROSOFT_MIT_NO_VERSION
 azure-arm: true
 add-credentials: true

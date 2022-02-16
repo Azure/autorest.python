@@ -12,7 +12,7 @@ from setuptools import setup, find_packages
 
 # Change the PACKAGE_NAME only to change folder and different name
 PACKAGE_NAME = "azure-package-mode"
-PACKAGE_PPRINT_NAME = "None"
+PACKAGE_PPRINT_NAME = "Azure Package Mode"
 
 # a-b-c => a/b/c
 package_folder_path = PACKAGE_NAME.replace("-", "/")
@@ -27,7 +27,7 @@ if not version:
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="Microsoft None Client Library for Python",
+    description="Microsoft Azure Package Mode Client Library for Python",
     long_description=open("README.md", "r").read(),
     long_description_content_type="text/markdown",
     license="MIT License",
