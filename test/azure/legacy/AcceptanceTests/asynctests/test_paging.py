@@ -240,3 +240,10 @@ class TestPaging(object):
         async for item in pages:
             items.append(item)
         assert len(items) == 1
+
+    @pytest.mark.asyncio
+    async def test_duplicate_params(self, client):
+        pages = [p async for p in client.paging.duplicate_params(filter="foo")]
+        assert len(pages) == 1
+        assert pages[0].properties.id == 1
+        assert pages[0].properties.name == "Product"
