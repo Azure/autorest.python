@@ -29,6 +29,12 @@ import importlib
 import urllib.parse
 from ._auto_rest_paging_test_service import AutoRestPagingTestService as AutoRestPagingTestServiceGenerated
 from azure.core.pipeline.policies import SansIOHTTPPolicy
+try:
+    binary_type = str
+    import urlparse  # type: ignore
+except ImportError:
+    binary_type = bytes  # type: ignore
+    from urllib import parse as urlparse
 
 class RemoveDuplicateParamsPolicy(SansIOHTTPPolicy):
     def __init__(self, duplicate_param_names):
@@ -36,14 +42,14 @@ class RemoveDuplicateParamsPolicy(SansIOHTTPPolicy):
         self.duplicate_param_names = duplicate_param_names
 
     def on_request(self, request):
-        parsed_url = urllib.parse.urlparse(request.http_request.url)
-        query_params = urllib.parse.parse_qs(parsed_url.query)
+        parsed_url = urlparse.urlparse(request.http_request.url)
+        query_params = urlparse.parse_qs(parsed_url.query)
         # service returned will be later in the url because of how we format
         filtered_query_params = {
             k: v[-1:] if k in self.duplicate_param_names else v
             for k, v in query_params.items()
         }
-        request.http_request.url = request.http_request.url.replace(parsed_url.query, "") + urllib.parse.urlencode(filtered_query_params, doseq=True)
+        request.http_request.url = request.http_request.url.replace(parsed_url.query, "") + urlparse.urlencode(filtered_query_params, doseq=True)
         return super().on_request(request)
 
 class AutoRestPagingTestService(AutoRestPagingTestServiceGenerated):
