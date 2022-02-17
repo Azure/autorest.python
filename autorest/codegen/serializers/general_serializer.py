@@ -3,6 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from ast import Param
+from autorest.codegen.models import code_model
 from jinja2 import Environment
 from .import_serializer import FileImportSerializer, TypingSection
 from ..models import FileImport, ImportType, CodeModel, TokenCredentialSchema, ParameterList
@@ -119,4 +121,7 @@ class GeneralSerializer:
 
     def serialize_setup_file(self) -> str:
         template = self.env.get_template("setup.py.jinja2")
-        return template.render(code_model=self.code_model)
+        params = {}
+        params.update(self.code_model.options)
+        params.update(self.code_model.package_dependency)
+        return template.render(code_model=self.code_model, **params)

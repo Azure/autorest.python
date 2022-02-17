@@ -30,6 +30,15 @@ __all__ = [
     "JinjaSerializer",
 ]
 
+_PACKAGE_FILES = [
+    "CHANGELOG.md.jinja2",
+    "dev_requirements.txt.jinja2",
+    "LICENSE.jinja2",
+    "MANIFEST.in.jinja2",
+    "README.md.jinja2",
+    "setup.py.jinja2",
+]
+
 class JinjaSerializer:
     def __init__(self, autorestapi: AutorestAPI, code_model: CodeModel) -> None:
         self._autorestapi = autorestapi
@@ -81,11 +90,12 @@ class JinjaSerializer:
 
     def _serialize_and_write_package_files(self, out_path: Path) -> None:
         def _serialize_and_write_package_files_proc(**kwargs: Any):
-            for template_name in env.list_templates():
-                template = env.get_template(template_name)
-                render_result = template.render(**kwargs)
-                output_name = template_name.replace(".jinja2", "")
-                self._autorestapi.write_file(out_path / output_name, render_result)
+            for template_name in package_files:
+                output_name = out_path / (template_name.replace(".jinja2", ""))
+                if not output_name.exists():
+                    template = env.get_template(template_name)
+                    render_result = template.render(**kwargs)
+                    self._autorestapi.write_file(output_name, render_result)
 
         def _prepare_params() -> Dict[Any, Any]:
             package_parts = self.code_model.options["package_name"].split("-")[:-1]
@@ -105,8 +115,9 @@ class JinjaSerializer:
 
         if self.code_model.options["package_mode"] in ("dataplane", "mgmtplane"):
             env = Environment(
-                loader=PackageLoader("autorest.codegen", "templates/templates_package"),
+                loader=PackageLoader("autorest.codegen", "templates"),
                 undefined=StrictUndefined)
+            package_files = _PACKAGE_FILES
             _serialize_and_write_package_files_proc(**_prepare_params())
         elif Path(self.code_model.options["package_mode"]).exists():
             env = Environment(
@@ -114,6 +125,7 @@ class JinjaSerializer:
                 keep_trailing_newline=True,
                 undefined=StrictUndefined
             )
+            package_files = env.list_templates()
             params = self.code_model.options["package_configuration"] or {}
             _serialize_and_write_package_files_proc(**params)
 

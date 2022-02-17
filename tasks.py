@@ -488,7 +488,7 @@ def regenerate_package_mode(c, debug=False):
     cwd = os.getcwd()
     package_mode = {
         'mgmtplane': 'test/azure/legacy/specification/packagemodemgmtplane/README.md',
-        'dataplane': 'test/azure/legacy/specification/packagemodedataplane/README.md',
+        'dataplane': 'test/vanilla/legacy/specification/packagemodedataplane/README.md',
         'test/azure/legacy/specification/packagemodecustomize/template': 'test/azure/legacy/specification/packagemodecustomize/README.md',
     }
     cmds = [

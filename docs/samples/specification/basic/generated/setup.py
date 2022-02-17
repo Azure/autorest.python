@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 # coding: utf-8
-
 from setuptools import setup, find_packages
 
 NAME = "azure-basic-sample"
@@ -21,7 +20,8 @@ VERSION = "0.1.0"
 
 REQUIRES = [
     "msrest>=0.6.21",
-    "azure-core<2.0.0,>=1.20.1",]
+    "azure-core<2.0.0,>=1.20.1",
+]
 
 setup(
     name=NAME,

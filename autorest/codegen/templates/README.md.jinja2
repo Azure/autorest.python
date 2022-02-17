@@ -5,10 +5,6 @@ This is the Microsoft {{package_pprint_name}} Client Library.
 This package has been tested with Python 3.6+.
 For a more complete view of Azure libraries, see the [azure sdk python release](https://aka.ms/azsdk/python/all).
 
-## _Disclaimer_
-
-_Azure SDK Python packages support for Python 2.7 has ended 01 January 2022. For more information and questions, please refer to https://github.com/Azure/azure-sdk-for-python/issues/20691_
-
 # Usage
 
 To learn how to use this package, see the [quickstart guide](https://aka.ms/azsdk/python/mgmt)
@@ -79,16 +75,12 @@ Use the returned token credential to authenticate the client:
 
 >>> client = {{ client_name }}(endpoint='<endpoint>', credential=DefaultAzureCredential())
 >>> try:
-        <!-- wirte test code here -->
+        <!-- write test code here -->
     except HttpResponseError as e:
         print('service responds error: {}'.format(e.response.json()))
 
 ```
 {%- endif %}
-
-## Next steps
-
-More examples are coming soon...
 
 ## Contributing
 
@@ -115,5 +107,4 @@ additional questions or comments.
 [default_azure_credential]: https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/identity/azure-identity#defaultazurecredential
 [pip]: https://pypi.org/project/pip/
 [azure_sub]: https://azure.microsoft.com/free/
-
 {% endif %}

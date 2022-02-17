@@ -21,10 +21,6 @@ python -m pip install packagemode
 - You need an [Azure subscription][azure_sub] to use this package.
 - An existing Azure Package Mode instance.
 
-## Next steps
-
-More examples are coming soon...
-
 ## Contributing
 
 This project welcomes contributions and suggestions. Most contributions require
@@ -50,4 +46,3 @@ additional questions or comments.
 [default_azure_credential]: https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/identity/azure-identity#defaultazurecredential
 [pip]: https://pypi.org/project/pip/
 [azure_sub]: https://azure.microsoft.com/free/
-

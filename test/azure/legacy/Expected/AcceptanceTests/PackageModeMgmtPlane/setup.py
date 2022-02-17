@@ -6,9 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 # coding: utf-8
+
 import os
 import re
 from setuptools import setup, find_packages
+
 
 # Change the PACKAGE_NAME only to change folder and different name
 PACKAGE_NAME = "azure-package-mode"

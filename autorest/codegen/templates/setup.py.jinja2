@@ -1,10 +1,75 @@
-{% set name = code_model.options["package_name"] or code_model.class_name %}
 # coding=utf-8
-{{ code_model.options['license_header'] }}
+{{ license_header }}
 # coding: utf-8
-
+{% if package_mode %}
+import os
+import re
+{% endif -%}
 from setuptools import setup, find_packages
 
+{% if package_mode %}
+# Change the PACKAGE_NAME only to change folder and different name
+PACKAGE_NAME = "{{ package_name }}"
+PACKAGE_PPRINT_NAME = "{{ package_pprint_name }}"
+
+# a-b-c => a/b/c
+package_folder_path = PACKAGE_NAME.replace("-", "/")
+
+# Version extraction inspired from 'requests'
+with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
+    version = re.search(
+        r'^VERSION\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE
+    ).group(1)
+
+if not version:
+    raise RuntimeError("Cannot find version information")
+
+setup(
+    name=PACKAGE_NAME,
+    version=version,
+    description="Microsoft {{ package_pprint_name }} Client Library for Python",
+    long_description=open("README.md", "r").read(),
+    long_description_content_type="text/markdown",
+    license="MIT License",
+    author="Microsoft Corporation",
+    author_email="azpysdkhelp@microsoft.com",
+    url="https://github.com/Azure/azure-sdk-for-python/tree/main/sdk",
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3 :: Only",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "License :: OSI Approved :: MIT License",
+    ],
+    zip_safe=False,
+    packages=find_packages(
+        exclude=[
+            "tests",
+            # Exclude packages that will be covered by PEP420 or nspkg
+            {%- for pkgutil_name in pkgutil_names %}
+            "{{ pkgutil_name }}",
+            {%- endfor %}
+        ]
+    ),
+    install_requires=[
+        "{{ dependency_msrest }}",
+        {%- if package_mode == "mgmtplane" %}
+        "{{ dependency_azure_common }}",
+        "{{ dependency_azure_mgmt_core }}",
+        {%- endif %}
+        {%- if package_mode == "dataplane" %}
+        "{{ dependency_azure_core }}",
+        {%- endif %}
+    ],
+    python_requires=">=3.6",
+)
+{% else %}
+{% set name = package_name or code_model.class_name %}
 NAME = "{{ name|lower }}"
 VERSION = "{{ code_model.options.get('package_version', '0.0.0') }}"
 
@@ -16,11 +81,11 @@ VERSION = "{{ code_model.options.get('package_version', '0.0.0') }}"
 # http://pypi.python.org/pypi/setuptools
 
 REQUIRES = [
-    "{{ code_model.package_dependency["dependency_msrest"] }}",
-    "{{ code_model.package_dependency["dependency_azure_core"] }}",
-    {%- if code_model.options["azure_arm"] %}
-    "{{ code_model.package_dependency["dependency_azure_mgmt_core"] }}"
-    {%- endif %}
+    "{{ dependency_msrest }}",
+    "{{ dependency_azure_core }}",
+    {% if azure_arm %}
+    "{{ dependency_azure_mgmt_core }}"
+    {% endif %}
 ]
 
 setup(
@@ -37,3 +102,4 @@ setup(
     {{ code_model.description }}
     """
 )
+{% endif %}
