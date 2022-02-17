@@ -3,8 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from ast import Param
-from autorest.codegen.models import code_model
 from jinja2 import Environment
 from .import_serializer import FileImportSerializer, TypingSection
 from ..models import FileImport, ImportType, CodeModel, TokenCredentialSchema, ParameterList
