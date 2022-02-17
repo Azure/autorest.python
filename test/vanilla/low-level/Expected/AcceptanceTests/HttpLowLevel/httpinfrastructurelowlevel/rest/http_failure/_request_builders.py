@@ -11,6 +11,8 @@ from msrest import Serializer
 
 from azure.core.rest import HttpRequest
 
+from ..._vendor import _get_from_dict
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Dict
@@ -35,18 +37,20 @@ def build_get_empty_error_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     _url = "/http/failure/emptybody/error"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -66,18 +70,20 @@ def build_get_no_model_error_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     _url = "/http/failure/nomodel/error"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -97,17 +103,19 @@ def build_get_no_model_empty_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     _url = "/http/failure/nomodel/empty"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )

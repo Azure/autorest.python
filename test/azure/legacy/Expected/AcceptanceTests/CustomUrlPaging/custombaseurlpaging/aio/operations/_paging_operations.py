@@ -64,16 +64,21 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custombaseurlpaging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
 
                 request = build_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 path_format_arguments = {
@@ -86,6 +91,8 @@ class PagingOperations:
 
                 request = build_get_pages_partial_url_request(
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 path_format_arguments = {
@@ -139,16 +146,21 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custombaseurlpaging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
 
                 request = build_get_pages_partial_url_operation_request(
                     template_url=self.get_pages_partial_url_operation.metadata["url"],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 path_format_arguments = {
@@ -162,6 +174,8 @@ class PagingOperations:
                 request = build_get_pages_partial_url_operation_next_request(
                     next_link=next_link,
                     template_url="/paging/customurl/{nextLink}",
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 path_format_arguments = {

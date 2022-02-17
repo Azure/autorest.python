@@ -56,7 +56,7 @@ class OperationGroupOneOperations:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
 
         api_version = kwargs.pop('api_version', "1.0.0")  # type: str
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
@@ -65,6 +65,8 @@ class OperationGroupOneOperations:
         request = build_test_two_request(
             api_version=api_version,
             template_url=self.test_two.metadata['url'],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

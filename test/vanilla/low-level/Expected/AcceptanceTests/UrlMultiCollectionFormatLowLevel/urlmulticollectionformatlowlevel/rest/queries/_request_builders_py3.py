@@ -11,6 +11,8 @@ from msrest import Serializer
 
 from azure.core.rest import HttpRequest
 
+from ..._vendor import _get_from_dict
+
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
@@ -30,22 +32,24 @@ def build_array_string_multi_null_request(*, array_query: Optional[List[str]] = 
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/queries/array/multi/string/null"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        _query_parameters["arrayQuery"] = [
+        _params["arrayQuery"] = [
             _SERIALIZER.query("array_query", q, "str") if q is not None else "" for q in array_query
         ]
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_array_string_multi_empty_request(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
@@ -63,22 +67,24 @@ def build_array_string_multi_empty_request(*, array_query: Optional[List[str]] =
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/queries/array/multi/string/empty"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        _query_parameters["arrayQuery"] = [
+        _params["arrayQuery"] = [
             _SERIALIZER.query("array_query", q, "str") if q is not None else "" for q in array_query
         ]
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_array_string_multi_valid_request(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
@@ -97,19 +103,21 @@ def build_array_string_multi_valid_request(*, array_query: Optional[List[str]] =
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/queries/array/multi/string/valid"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        _query_parameters["arrayQuery"] = [
+        _params["arrayQuery"] = [
             _SERIALIZER.query("array_query", q, "str") if q is not None else "" for q in array_query
         ]
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)

@@ -25,3 +25,9 @@ def _format_url_section(template, **kwargs):
                 c for c in formatted_components if "{}".format(key.args[0]) not in c
             ]
             template = "/".join(components)
+
+def _get_from_dict(param_dict, rest_api_name):
+    try:
+        return next(v for k, v in param_dict.items() if k.lower() == rest_api_name.lower())
+    except StopIteration:
+        return None

@@ -11,7 +11,7 @@ from msrest import Serializer
 
 from azure.core.rest import HttpRequest
 
-from ..._vendor import _format_url_section
+from ..._vendor import _format_url_section, _get_from_dict
 
 _SERIALIZER = Serializer()
 
@@ -32,7 +32,10 @@ def build_post_method_global_valid_request(subscription_id: str, **kwargs: Any) 
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"
     path_format_arguments = {
@@ -42,10 +45,9 @@ def build_post_method_global_valid_request(subscription_id: str, **kwargs: Any) 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 def build_post_method_global_null_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
@@ -64,7 +66,10 @@ def build_post_method_global_null_request(subscription_id: str, **kwargs: Any) -
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"
     path_format_arguments = {
@@ -74,10 +79,9 @@ def build_post_method_global_null_request(subscription_id: str, **kwargs: Any) -
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 def build_post_method_global_not_provided_valid_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
@@ -96,9 +100,12 @@ def build_post_method_global_not_provided_valid_request(subscription_id: str, **
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    api_version = kwargs.pop("api_version", _get_from_dict(_params, "api-version") or "2015-07-01-preview")  # type: str
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = (
         "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}"
@@ -110,14 +117,12 @@ def build_post_method_global_not_provided_valid_request(subscription_id: str, **
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_post_path_global_valid_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
@@ -136,7 +141,10 @@ def build_post_path_global_valid_request(subscription_id: str, **kwargs: Any) ->
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"
     path_format_arguments = {
@@ -146,10 +154,9 @@ def build_post_path_global_valid_request(subscription_id: str, **kwargs: Any) ->
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 def build_post_swagger_global_valid_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
@@ -168,7 +175,10 @@ def build_post_swagger_global_valid_request(subscription_id: str, **kwargs: Any)
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"
     path_format_arguments = {
@@ -178,7 +188,6 @@ def build_post_swagger_global_valid_request(subscription_id: str, **kwargs: Any)
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)

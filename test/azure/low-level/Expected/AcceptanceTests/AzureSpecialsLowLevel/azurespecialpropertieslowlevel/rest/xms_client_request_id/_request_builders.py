@@ -11,6 +11,8 @@ from msrest import Serializer
 
 from azure.core.rest import HttpRequest
 
+from ..._vendor import _get_from_dict
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Dict
@@ -64,20 +66,21 @@ def build_param_get_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    x_ms_client_request_id = kwargs.pop('x_ms_client_request_id')  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    x_ms_client_request_id = kwargs.pop('x_ms_client_request_id')  # type: str
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     _url = "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['x-ms-client-request-id'] = _SERIALIZER.header("x_ms_client_request_id", x_ms_client_request_id, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['x-ms-client-request-id'] = _SERIALIZER.header("x_ms_client_request_id", x_ms_client_request_id, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )

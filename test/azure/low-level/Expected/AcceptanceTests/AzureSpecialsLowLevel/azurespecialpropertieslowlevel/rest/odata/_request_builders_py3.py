@@ -11,6 +11,8 @@ from msrest import Serializer
 
 from azure.core.rest import HttpRequest
 
+from ..._vendor import _get_from_dict
+
 _SERIALIZER = Serializer()
 
 
@@ -35,21 +37,23 @@ def build_get_with_filter_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/azurespecials/odata/filter"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if filter is not None:
-        _query_parameters["$filter"] = _SERIALIZER.query("filter", filter, "str")
+        _params["$filter"] = _SERIALIZER.query("filter", filter, "str")
     if top is not None:
-        _query_parameters["$top"] = _SERIALIZER.query("top", top, "int")
+        _params["$top"] = _SERIALIZER.query("top", top, "int")
     if orderby is not None:
-        _query_parameters["$orderby"] = _SERIALIZER.query("orderby", orderby, "str")
+        _params["$orderby"] = _SERIALIZER.query("orderby", orderby, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)

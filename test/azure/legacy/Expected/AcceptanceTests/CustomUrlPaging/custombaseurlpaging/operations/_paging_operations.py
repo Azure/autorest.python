@@ -24,7 +24,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._vendor import _convert_request, _format_url_section
+from .._vendor import _convert_request, _format_url_section, _get_from_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -41,18 +41,20 @@ def build_get_pages_partial_url_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     _url = kwargs.pop("template_url", "/paging/customurl/partialnextlink")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -61,18 +63,20 @@ def build_get_pages_partial_url_operation_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     _url = kwargs.pop("template_url", "/paging/customurl/partialnextlinkop")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -82,7 +86,10 @@ def build_get_pages_partial_url_operation_next_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     _url = kwargs.pop("template_url", "/paging/customurl/{nextLink}")
     path_format_arguments = {
@@ -92,13 +99,12 @@ def build_get_pages_partial_url_operation_next_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -139,16 +145,21 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custombaseurlpaging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
 
                 request = build_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 path_format_arguments = {
@@ -161,6 +172,8 @@ class PagingOperations(object):
 
                 request = build_get_pages_partial_url_request(
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 path_format_arguments = {
@@ -217,16 +230,21 @@ class PagingOperations(object):
         :rtype: ~azure.core.paging.ItemPaged[~custombaseurlpaging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
 
                 request = build_get_pages_partial_url_operation_request(
                     template_url=self.get_pages_partial_url_operation.metadata["url"],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 path_format_arguments = {
@@ -240,6 +258,8 @@ class PagingOperations(object):
                 request = build_get_pages_partial_url_operation_next_request(
                     next_link=next_link,
                     template_url="/paging/customurl/{nextLink}",
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 path_format_arguments = {
