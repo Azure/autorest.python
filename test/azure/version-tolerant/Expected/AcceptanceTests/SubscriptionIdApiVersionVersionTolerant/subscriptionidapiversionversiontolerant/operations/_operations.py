@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from .._vendor import _format_url_section
+from .._vendor import _format_url_section, _get_from_dict
 
 T = TypeVar("T")
 JSONType = Any
@@ -36,9 +36,12 @@ _SERIALIZER.client_side_validation = False
 def build_group_get_sample_resource_group_request(
     subscription_id: str, resource_group_name: str, **kwargs: Any
 ) -> HttpRequest:
-    api_version = kwargs.pop("api_version", "2014-04-01-preview")  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    api_version = kwargs.pop("api_version", _get_from_dict(_params, "api-version") or "2014-04-01-preview")  # type: str
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}"
     path_format_arguments = {
@@ -49,14 +52,12 @@ def build_group_get_sample_resource_group_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 class GroupOperations(object):
@@ -98,14 +99,21 @@ class GroupOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2014-04-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", _get_from_dict(_params, "api-version") or "2014-04-01-preview"
+        )  # type: str
 
         request = build_group_get_sample_resource_group_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             api_version=api_version,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 

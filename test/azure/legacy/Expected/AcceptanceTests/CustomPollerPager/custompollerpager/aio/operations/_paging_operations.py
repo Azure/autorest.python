@@ -22,7 +22,7 @@ from custompollerpagerdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
 
 from ... import models as _models
 from ..._vendor import _convert_request
-from ...operations._paging_operations import build_first_response_empty_request, build_get_multiple_pages_failure_request, build_get_multiple_pages_failure_uri_request, build_get_multiple_pages_fragment_next_link_request, build_get_multiple_pages_fragment_with_grouping_next_link_request, build_get_multiple_pages_lro_request_initial, build_get_multiple_pages_request, build_get_multiple_pages_retry_first_request, build_get_multiple_pages_retry_second_request, build_get_multiple_pages_with_offset_request, build_get_no_item_name_pages_request, build_get_null_next_link_name_pages_request, build_get_odata_multiple_pages_request, build_get_paging_model_with_item_name_with_xms_client_name_request, build_get_single_pages_failure_request, build_get_single_pages_request, build_get_with_query_params_request, build_next_fragment_request, build_next_fragment_with_grouping_request, build_next_operation_with_query_params_request
+from ...operations._paging_operations import build_duplicate_params_request, build_first_response_empty_request, build_get_multiple_pages_failure_request, build_get_multiple_pages_failure_uri_request, build_get_multiple_pages_fragment_next_link_request, build_get_multiple_pages_fragment_with_grouping_next_link_request, build_get_multiple_pages_lro_request_initial, build_get_multiple_pages_request, build_get_multiple_pages_retry_first_request, build_get_multiple_pages_retry_second_request, build_get_multiple_pages_with_offset_request, build_get_no_item_name_pages_request, build_get_null_next_link_name_pages_request, build_get_odata_multiple_pages_request, build_get_paging_model_with_item_name_with_xms_client_name_request, build_get_single_pages_failure_request, build_get_single_pages_request, build_get_with_query_params_request, build_next_fragment_request, build_next_fragment_with_grouping_request, build_next_operation_with_query_params_request
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -60,16 +60,22 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResultValue]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResultValue"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
         def prepare_request(next_link=None):
             if not next_link:
                 
                 request = build_get_no_item_name_pages_request(
                     template_url=self.get_no_item_name_pages.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -78,6 +84,8 @@ class PagingOperations:
                 
                 request = build_get_no_item_name_pages_request(
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -125,16 +133,22 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
         def prepare_request(next_link=None):
             if not next_link:
                 
                 request = build_get_null_next_link_name_pages_request(
                     template_url=self.get_null_next_link_name_pages.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -143,6 +157,8 @@ class PagingOperations:
                 
                 request = build_get_null_next_link_name_pages_request(
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -191,16 +207,22 @@ class PagingOperations:
          ~custompollerpagerdefinitions.aio.AsyncCustomPager[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
         def prepare_request(next_link=None):
             if not next_link:
                 
                 request = build_get_single_pages_request(
                     template_url=self.get_single_pages.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -209,6 +231,8 @@ class PagingOperations:
                 
                 request = build_get_single_pages_request(
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -257,16 +281,22 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResultValue]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResultValue"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
         def prepare_request(next_link=None):
             if not next_link:
                 
                 request = build_first_response_empty_request(
                     template_url=self.first_response_empty.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -275,6 +305,8 @@ class PagingOperations:
                 
                 request = build_first_response_empty_request(
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -329,11 +361,15 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
         def prepare_request(next_link=None):
             if not next_link:
                 _maxresults = None
@@ -347,6 +383,8 @@ class PagingOperations:
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.get_multiple_pages.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -363,6 +401,8 @@ class PagingOperations:
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -419,13 +459,16 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        query_constant = kwargs.pop('query_constant', True)  # type: bool
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        query_constant = kwargs.pop('query_constant', _get_from_dict(_params, 'queryConstant') or True)  # type: bool
 
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
         def prepare_request(next_link=None):
             if not next_link:
                 
@@ -433,6 +476,8 @@ class PagingOperations:
                     query_constant=query_constant,
                     required_query_parameter=required_query_parameter,
                     template_url=self.get_with_query_params.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -442,6 +487,8 @@ class PagingOperations:
                 request = build_next_operation_with_query_params_request(
                     query_constant=query_constant,
                     template_url='/paging/multiple/nextOperationWithQueryParams',
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -478,6 +525,86 @@ class PagingOperations:
     get_with_query_params.metadata = {'url': "/paging/multiple/getWithQueryParams"}  # type: ignore
 
     @distributed_trace
+    def duplicate_params(
+        self,
+        filter: Optional[str] = None,
+        **kwargs: Any
+    ) -> AsyncIterable["_models.ProductResult"]:
+        """Define ``filter`` as a query param for all calls. However, the returned next link will also
+        include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
+        param in the url sent.
+
+        :param filter: OData filter options. Pass in 'foo'.
+        :type filter: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: An iterator like instance of either ProductResult or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResult]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
+        error_map = {
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
+        }
+        error_map.update(kwargs.pop('error_map', {})) or {}
+        def prepare_request(next_link=None):
+            if not next_link:
+                
+                request = build_duplicate_params_request(
+                    filter=filter,
+                    template_url=self.duplicate_params.metadata['url'],
+                    headers=_headers,
+                    params=_params,
+                )
+                request = _convert_request(request)
+                request.url = self._client.format_url(request.url)
+
+            else:
+                
+                request = build_duplicate_params_request(
+                    filter=filter,
+                    template_url=next_link,
+                    headers=_headers,
+                    params=_params,
+                )
+                request = _convert_request(request)
+                request.url = self._client.format_url(request.url)
+                request.method = "GET"
+            return request
+
+        async def extract_data(pipeline_response):
+            deserialized = self._deserialize("ProductResult", pipeline_response)
+            list_of_elem = deserialized.values
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.next_link or None, AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+                request,
+                stream=False,
+                **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+            return pipeline_response
+
+
+        return AsyncItemPaged(
+            get_next, extract_data
+        )
+    duplicate_params.metadata = {'url': "/paging/multiple/duplicateParams/1"}  # type: ignore
+
+    @distributed_trace
     def get_odata_multiple_pages(
         self,
         client_request_id: Optional[str] = None,
@@ -496,11 +623,15 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.OdataProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
         def prepare_request(next_link=None):
             if not next_link:
                 _maxresults = None
@@ -514,6 +645,8 @@ class PagingOperations:
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.get_odata_multiple_pages.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -530,6 +663,8 @@ class PagingOperations:
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -584,11 +719,15 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
         def prepare_request(next_link=None):
             if not next_link:
                 _maxresults = None
@@ -605,6 +744,8 @@ class PagingOperations:
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.get_multiple_pages_with_offset.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -624,6 +765,8 @@ class PagingOperations:
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -672,16 +815,22 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
         def prepare_request(next_link=None):
             if not next_link:
                 
                 request = build_get_multiple_pages_retry_first_request(
                     template_url=self.get_multiple_pages_retry_first.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -690,6 +839,8 @@ class PagingOperations:
                 
                 request = build_get_multiple_pages_retry_first_request(
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -738,16 +889,22 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
         def prepare_request(next_link=None):
             if not next_link:
                 
                 request = build_get_multiple_pages_retry_second_request(
                     template_url=self.get_multiple_pages_retry_second.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -756,6 +913,8 @@ class PagingOperations:
                 
                 request = build_get_multiple_pages_retry_second_request(
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -803,16 +962,22 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
         def prepare_request(next_link=None):
             if not next_link:
                 
                 request = build_get_single_pages_failure_request(
                     template_url=self.get_single_pages_failure.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -821,6 +986,8 @@ class PagingOperations:
                 
                 request = build_get_single_pages_failure_request(
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -868,16 +1035,22 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
         def prepare_request(next_link=None):
             if not next_link:
                 
                 request = build_get_multiple_pages_failure_request(
                     template_url=self.get_multiple_pages_failure.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -886,6 +1059,8 @@ class PagingOperations:
                 
                 request = build_get_multiple_pages_failure_request(
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -933,16 +1108,22 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
         def prepare_request(next_link=None):
             if not next_link:
                 
                 request = build_get_multiple_pages_failure_uri_request(
                     template_url=self.get_multiple_pages_failure_uri.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -951,6 +1132,8 @@ class PagingOperations:
                 
                 request = build_get_multiple_pages_failure_uri_request(
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -1004,11 +1187,15 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.OdataProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
         def prepare_request(next_link=None):
             if not next_link:
                 
@@ -1016,6 +1203,8 @@ class PagingOperations:
                     tenant=tenant,
                     api_version=api_version,
                     template_url=self.get_multiple_pages_fragment_next_link.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -1027,6 +1216,8 @@ class PagingOperations:
                     next_link=next_link,
                     api_version=api_version,
                     template_url='/paging/multiple/fragment/{tenant}/{nextLink}',
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -1077,11 +1268,15 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.OdataProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
         def prepare_request(next_link=None):
             if not next_link:
                 _api_version = None
@@ -1094,6 +1289,8 @@ class PagingOperations:
                     tenant=_tenant,
                     api_version=_api_version,
                     template_url=self.get_multiple_pages_fragment_with_grouping_next_link.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -1110,6 +1307,8 @@ class PagingOperations:
                     next_link=next_link,
                     api_version=_api_version,
                     template_url='/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}',
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -1155,7 +1354,11 @@ class PagingOperations:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
 
         _maxresults = None
         _timeout = None
@@ -1168,6 +1371,8 @@ class PagingOperations:
             maxresults=_maxresults,
             timeout=_timeout,
             template_url=self._get_multiple_pages_lro_initial.metadata['url'],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -1222,11 +1427,15 @@ class PagingOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
         def prepare_request(next_link=None):
             if not next_link:
                 _maxresults = None
@@ -1240,6 +1449,8 @@ class PagingOperations:
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.begin_get_multiple_pages_lro.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -1256,6 +1467,8 @@ class PagingOperations:
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -1342,16 +1555,22 @@ class PagingOperations:
          ~azure.core.async_paging.AsyncItemPaged[~custompollerpager.models.ProductResultValueWithXMSClientName]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResultValueWithXMSClientName"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
         def prepare_request(next_link=None):
             if not next_link:
                 
                 request = build_get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=self.get_paging_model_with_item_name_with_xms_client_name.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -1360,6 +1579,8 @@ class PagingOperations:
                 
                 request = build_get_paging_model_with_item_name_with_xms_client_name_request(
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)

@@ -21,6 +21,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
+from ..._vendor import _get_from_dict
 from ...operations._operations import (
     build_array_get_array_empty_request,
     build_array_get_array_item_empty_request,
@@ -134,9 +135,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_null_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_null_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -176,9 +183,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_invalid_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_invalid_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -218,9 +231,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_empty_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_empty_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -264,15 +283,22 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = array_body
 
         request = build_array_put_empty_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -306,9 +332,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[bool]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_boolean_tfft_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_boolean_tfft_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -352,15 +384,22 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = array_body
 
         request = build_array_put_boolean_tfft_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -394,9 +433,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[bool]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_boolean_invalid_null_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_boolean_invalid_null_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -436,9 +481,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[bool]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_boolean_invalid_string_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_boolean_invalid_string_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -478,9 +529,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_integer_valid_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_integer_valid_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -524,15 +581,22 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = array_body
 
         request = build_array_put_integer_valid_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -566,9 +630,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_int_invalid_null_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_int_invalid_null_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -608,9 +678,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_int_invalid_string_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_int_invalid_string_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -650,9 +726,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_long_valid_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_long_valid_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -696,15 +778,22 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = array_body
 
         request = build_array_put_long_valid_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -738,9 +827,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_long_invalid_null_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_long_invalid_null_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -780,9 +875,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_long_invalid_string_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_long_invalid_string_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -822,9 +923,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_float_valid_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_float_valid_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -868,15 +975,22 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = array_body
 
         request = build_array_put_float_valid_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -910,9 +1024,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_float_invalid_null_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_float_invalid_null_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -952,9 +1072,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_float_invalid_string_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_float_invalid_string_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -994,9 +1120,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_double_valid_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_double_valid_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1040,15 +1172,22 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = array_body
 
         request = build_array_put_double_valid_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1082,9 +1221,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_double_invalid_null_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_double_invalid_null_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1124,9 +1269,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_double_invalid_string_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_double_invalid_string_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1166,9 +1317,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_string_valid_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_string_valid_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1212,15 +1369,22 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = array_body
 
         request = build_array_put_string_valid_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1254,9 +1418,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_enum_valid_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_enum_valid_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1300,15 +1470,22 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = array_body
 
         request = build_array_put_enum_valid_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1342,9 +1519,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_string_enum_valid_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_string_enum_valid_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1388,15 +1571,22 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = array_body
 
         request = build_array_put_string_enum_valid_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1430,9 +1620,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_string_with_null_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_string_with_null_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1472,9 +1668,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_string_with_invalid_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_string_with_invalid_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1515,9 +1717,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_uuid_valid_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_uuid_valid_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1562,15 +1770,22 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = array_body
 
         request = build_array_put_uuid_valid_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1604,9 +1819,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_uuid_invalid_chars_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_uuid_invalid_chars_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1646,9 +1867,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.date]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_date_valid_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_date_valid_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1692,15 +1919,22 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = array_body
 
         request = build_array_put_date_valid_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1734,9 +1968,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.date]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_date_invalid_null_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_date_invalid_null_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1776,9 +2016,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.date]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_date_invalid_chars_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_date_invalid_chars_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1819,9 +2065,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_date_time_valid_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_date_time_valid_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1866,15 +2118,22 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = array_body
 
         request = build_array_put_date_time_valid_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1908,9 +2167,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_date_time_invalid_null_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_date_time_invalid_null_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1950,9 +2215,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_date_time_invalid_chars_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_date_time_invalid_chars_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1993,9 +2264,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_date_time_rfc1123_valid_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_date_time_rfc1123_valid_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2040,15 +2317,22 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = array_body
 
         request = build_array_put_date_time_rfc1123_valid_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -2082,9 +2366,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[datetime.timedelta]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_duration_valid_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_duration_valid_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2128,15 +2418,22 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = array_body
 
         request = build_array_put_duration_valid_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -2171,9 +2468,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[bytearray]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_byte_valid_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_byte_valid_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2218,15 +2521,22 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = array_body
 
         request = build_array_put_byte_valid_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -2260,9 +2570,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[bytearray]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_byte_invalid_null_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_byte_invalid_null_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2303,9 +2619,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[bytes]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_base64_url_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_base64_url_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2348,9 +2670,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_complex_null_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_complex_null_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2393,9 +2721,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_complex_empty_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_complex_empty_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2439,9 +2773,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_complex_item_null_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_complex_item_null_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2485,9 +2825,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_complex_item_empty_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_complex_item_empty_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2531,9 +2877,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_complex_valid_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_complex_valid_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2581,15 +2933,22 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = array_body
 
         request = build_array_put_complex_valid_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -2625,9 +2984,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_array_null_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_array_null_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2669,9 +3034,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_array_empty_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_array_empty_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2713,9 +3084,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_array_item_null_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_array_item_null_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2757,9 +3134,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_array_item_empty_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_array_item_empty_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2801,9 +3184,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_array_valid_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_array_valid_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2849,15 +3238,22 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = array_body
 
         request = build_array_put_array_valid_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -2893,9 +3289,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_dictionary_null_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_dictionary_null_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2937,9 +3339,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_dictionary_empty_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_dictionary_empty_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2982,9 +3390,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_dictionary_item_null_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_dictionary_item_null_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -3027,9 +3441,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_dictionary_item_empty_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_dictionary_item_empty_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -3072,9 +3492,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        request = build_array_get_dictionary_valid_request()
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        request = build_array_get_dictionary_valid_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)
 
         pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -3121,15 +3547,22 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = array_body
 
         request = build_array_put_dictionary_valid_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 

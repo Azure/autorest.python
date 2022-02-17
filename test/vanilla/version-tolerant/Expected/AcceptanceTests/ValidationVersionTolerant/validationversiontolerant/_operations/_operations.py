@@ -22,7 +22,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .._vendor import _format_url_section
+from .._vendor import _format_url_section, _get_from_dict
 
 T = TypeVar("T")
 JSONType = Any
@@ -34,9 +34,12 @@ _SERIALIZER = Serializer()
 def build_validation_of_method_parameters_request(
     subscription_id: str, resource_group_name: str, id: int, **kwargs: Any
 ) -> HttpRequest:
-    api_version = kwargs.pop("api_version", "1.0.0")  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    api_version = kwargs.pop("api_version", _get_from_dict(_params, "apiVersion") or "1.0.0")  # type: str
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"
     path_format_arguments = {
@@ -50,14 +53,12 @@ def build_validation_of_method_parameters_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["apiVersion"] = _SERIALIZER.query("api_version", api_version, "str")
+    _params["apiVersion"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_validation_of_body_request(
@@ -69,10 +70,13 @@ def build_validation_of_body_request(
     content: Any = None,
     **kwargs: Any
 ) -> HttpRequest:
-    api_version = kwargs.pop("api_version", "1.0.0")  # type: str
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    api_version = kwargs.pop("api_version", _get_from_dict(_params, "apiVersion") or "1.0.0")  # type: str
+    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"
     path_format_arguments = {
@@ -86,29 +90,18 @@ def build_validation_of_body_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["apiVersion"] = _SERIALIZER.query("api_version", api_version, "str")
+    _params["apiVersion"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
-        json=json,
-        content=content,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
     constant_param = kwargs.pop("constant_param", "constant")  # type: str
-
     # Construct URL
     _url = "/validation/constantsInPath/{constantParam}/value"
     path_format_arguments = {
@@ -123,10 +116,12 @@ def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
 def build_post_with_constant_in_body_request(
     *, json: JSONType = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
-    constant_param = kwargs.pop("constant_param", "constant")  # type: str
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    constant_param = kwargs.pop("constant_param", "constant")  # type: str
+    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/validation/constantsInPath/{constantParam}/value"
     path_format_arguments = {
@@ -136,12 +131,11 @@ def build_post_with_constant_in_body_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 class AutoRestValidationTestOperationsMixin(object):
@@ -189,15 +183,20 @@ class AutoRestValidationTestOperationsMixin(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "1.0.0")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop("api_version", _get_from_dict(_params, "apiVersion") or "1.0.0")  # type: str
 
         request = build_validation_of_method_parameters_request(
             subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
             api_version=api_version,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -293,10 +292,15 @@ class AutoRestValidationTestOperationsMixin(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "1.0.0")  # type: str
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop("api_version", _get_from_dict(_params, "apiVersion") or "1.0.0")  # type: str
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         if body is not None:
             _json = body
@@ -310,6 +314,8 @@ class AutoRestValidationTestOperationsMixin(object):
             api_version=api_version,
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -345,12 +351,17 @@ class AutoRestValidationTestOperationsMixin(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         constant_param = kwargs.pop("constant_param", "constant")  # type: str
 
         request = build_get_with_constant_in_path_request(
             constant_param=constant_param,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -438,10 +449,15 @@ class AutoRestValidationTestOperationsMixin(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         constant_param = kwargs.pop("constant_param", "constant")  # type: str
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         if body is not None:
             _json = body
@@ -452,6 +468,8 @@ class AutoRestValidationTestOperationsMixin(object):
             constant_param=constant_param,
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 

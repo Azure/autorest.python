@@ -21,7 +21,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._vendor import _convert_request
+from ..._vendor import _convert_request, _get_from_dict
 from ...operations._http_retry_operations import (
     build_delete503_request,
     build_get502_request,
@@ -71,10 +71,15 @@ class HttpRetryOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_head408_request(
             template_url=self.head408.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -109,9 +114,14 @@ class HttpRetryOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -122,6 +132,8 @@ class HttpRetryOperations:
             content_type=content_type,
             json=_json,
             template_url=self.put500.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -156,9 +168,14 @@ class HttpRetryOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -169,6 +186,8 @@ class HttpRetryOperations:
             content_type=content_type,
             json=_json,
             template_url=self.patch500.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -199,10 +218,15 @@ class HttpRetryOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_get502_request(
             template_url=self.get502.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -233,10 +257,15 @@ class HttpRetryOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[bool]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_options502_request(
             template_url=self.options502.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -275,9 +304,14 @@ class HttpRetryOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -288,6 +322,8 @@ class HttpRetryOperations:
             content_type=content_type,
             json=_json,
             template_url=self.post503.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -322,9 +358,14 @@ class HttpRetryOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -335,6 +376,8 @@ class HttpRetryOperations:
             content_type=content_type,
             json=_json,
             template_url=self.delete503.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -369,9 +412,14 @@ class HttpRetryOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -382,6 +430,8 @@ class HttpRetryOperations:
             content_type=content_type,
             json=_json,
             template_url=self.put504.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -416,9 +466,14 @@ class HttpRetryOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         if boolean_value is not None:
             _json = self._serialize.body(boolean_value, "bool")
@@ -429,6 +484,8 @@ class HttpRetryOperations:
             content_type=content_type,
             json=_json,
             template_url=self.patch504.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)

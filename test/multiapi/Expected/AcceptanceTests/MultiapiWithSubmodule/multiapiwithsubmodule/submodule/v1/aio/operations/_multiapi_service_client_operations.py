@@ -20,7 +20,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ... import models as _models
-from ..._vendor import _convert_request
+from ..._vendor import _convert_request, _get_from_dict
 from ...operations._multiapi_service_client_operations import build_test_different_calls_request, build_test_lro_and_paging_request_initial, build_test_lro_request_initial, build_test_one_request
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -49,9 +49,12 @@ class MultiapiServiceClientOperationsMixin:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
 
-        api_version = kwargs.pop('api_version', "1.0.0")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop('api_version', _get_from_dict(_params, 'api-version') or "1.0.0")  # type: str
 
         
         request = build_test_one_request(
@@ -59,6 +62,8 @@ class MultiapiServiceClientOperationsMixin:
             id=id,
             message=message,
             template_url=self.test_one.metadata['url'],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -90,9 +95,12 @@ class MultiapiServiceClientOperationsMixin:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
 
-        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or "application/json")  # type: Optional[str]
 
         if product is not None:
             _json = self._serialize.body(product, 'Product')
@@ -103,6 +111,8 @@ class MultiapiServiceClientOperationsMixin:
             content_type=content_type,
             json=_json,
             template_url=self._test_lro_initial.metadata['url'],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -153,7 +163,10 @@ class MultiapiServiceClientOperationsMixin:
         :rtype: ~azure.core.polling.AsyncLROPoller[~multiapiwithsubmodule.submodule.v1.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or "application/json")  # type: Optional[str]
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         lro_delay = kwargs.pop(
@@ -202,7 +215,11 @@ class MultiapiServiceClientOperationsMixin:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
 
         _maxresults = None
         _timeout = None
@@ -215,6 +232,8 @@ class MultiapiServiceClientOperationsMixin:
             maxresults=_maxresults,
             timeout=_timeout,
             template_url=self._test_lro_and_paging_initial.metadata['url'],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -269,11 +288,15 @@ class MultiapiServiceClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
         def prepare_request(next_link=None):
             if not next_link:
                 _maxresults = None
@@ -287,6 +310,8 @@ class MultiapiServiceClientOperationsMixin:
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.begin_test_lro_and_paging.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -303,6 +328,8 @@ class MultiapiServiceClientOperationsMixin:
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -393,15 +420,20 @@ class MultiapiServiceClientOperationsMixin:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
 
-        api_version = kwargs.pop('api_version', "1.0.0")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop('api_version', _get_from_dict(_params, 'api-version') or "1.0.0")  # type: str
 
         
         request = build_test_different_calls_request(
             api_version=api_version,
             greeting_in_english=greeting_in_english,
             template_url=self.test_different_calls.metadata['url'],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)

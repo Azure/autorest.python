@@ -22,7 +22,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .._vendor import _format_url_section
+from .._vendor import _format_url_section, _get_from_dict
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -34,7 +34,11 @@ _SERIALIZER.client_side_validation = False
 def build_paths_get_empty_request(
     key_name: str, subscription_id: str, *, key_version: Optional[str] = "v1", **kwargs: Any
 ) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/customuri/{subscriptionId}/{keyName}"
     path_format_arguments = {
@@ -45,15 +49,13 @@ def build_paths_get_empty_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if key_version is not None:
-        _query_parameters["keyVersion"] = _SERIALIZER.query("key_version", key_version, "str")
+        _params["keyVersion"] = _SERIALIZER.query("key_version", key_version, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 class PathsOperations(object):
@@ -94,12 +96,17 @@ class PathsOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_paths_get_empty_request(
             key_name=key_name,
             subscription_id=self._config.subscription_id,
             key_version=key_version,
+            headers=_headers,
+            params=_params,
         )
         path_format_arguments = {
             "vault": self._serialize.url("vault", vault, "str", skip_quote=True),

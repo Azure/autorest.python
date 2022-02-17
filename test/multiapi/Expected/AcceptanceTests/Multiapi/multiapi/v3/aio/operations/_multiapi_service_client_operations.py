@@ -37,16 +37,22 @@ class MultiapiServiceClientOperationsMixin:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~multiapi.v3.models.PagingResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
         def prepare_request(next_link=None):
             if not next_link:
                 
                 request = build_test_paging_request(
                     template_url=self.test_paging.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -55,6 +61,8 @@ class MultiapiServiceClientOperationsMixin:
                 
                 request = build_test_paging_request(
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)
@@ -115,9 +123,12 @@ class MultiapiServiceClientOperationsMixin:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
 
-        api_version = kwargs.pop('api_version', "3.0.0")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop('api_version', _get_from_dict(_params, 'api-version') or "3.0.0")  # type: str
 
         
         request = build_test_different_calls_request(
@@ -126,6 +137,8 @@ class MultiapiServiceClientOperationsMixin:
             greeting_in_chinese=greeting_in_chinese,
             greeting_in_french=greeting_in_french,
             template_url=self.test_different_calls.metadata['url'],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)

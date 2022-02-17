@@ -27,6 +27,7 @@ from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 from custompollerpagerdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
 
 from ...operations._operations import (
+    build_paging_duplicate_params_request,
     build_paging_first_response_empty_request,
     build_paging_get_multiple_pages_failure_request,
     build_paging_get_multiple_pages_failure_uri_request,
@@ -96,19 +97,28 @@ class PagingOperations:
                     ]
                 }
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_no_item_name_pages_request()
+                request = build_paging_get_no_item_name_pages_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_no_item_name_pages_request()
+                request = build_paging_get_no_item_name_pages_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
@@ -160,19 +170,28 @@ class PagingOperations:
                     ]
                 }
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_null_next_link_name_pages_request()
+                request = build_paging_get_null_next_link_name_pages_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_null_next_link_name_pages_request()
+                request = build_paging_get_null_next_link_name_pages_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
@@ -224,19 +243,28 @@ class PagingOperations:
                     ]
                 }
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_single_pages_request()
+                request = build_paging_get_single_pages_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_single_pages_request()
+                request = build_paging_get_single_pages_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
@@ -289,19 +317,28 @@ class PagingOperations:
                     ]
                 }
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_first_response_empty_request()
+                request = build_paging_first_response_empty_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_first_response_empty_request()
+                request = build_paging_first_response_empty_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
@@ -367,9 +404,12 @@ class PagingOperations:
                     ]
                 }
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -378,6 +418,8 @@ class PagingOperations:
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(request.url)
 
@@ -387,6 +429,8 @@ class PagingOperations:
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(next_link)
                 request.method = "GET"
@@ -447,11 +491,14 @@ class PagingOperations:
                     ]
                 }
         """
-        query_constant = kwargs.pop("query_constant", True)  # type: bool
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        query_constant = kwargs.pop("query_constant", _get_from_dict(_params, "queryConstant") or True)  # type: bool
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -459,6 +506,8 @@ class PagingOperations:
                 request = build_paging_get_with_query_params_request(
                     query_constant=query_constant,
                     required_query_parameter=required_query_parameter,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(request.url)
 
@@ -466,9 +515,90 @@ class PagingOperations:
 
                 request = build_paging_next_operation_with_query_params_request(
                     query_constant=query_constant,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(request.url)
 
+            return request
+
+        async def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = deserialized["values"]
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.get("nextLink", None), AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+                request, stream=False, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
+
+    @distributed_trace
+    def duplicate_params(self, *, filter: Optional[str] = None, **kwargs: Any) -> AsyncIterable[JSONType]:
+        """Define ``filter`` as a query param for all calls. However, the returned next link will also
+        include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
+        param in the url sent.
+
+        :keyword filter: OData filter options. Pass in 'foo'.
+        :paramtype filter: str
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str",  # Optional.
+                    "values": [
+                        {
+                            "properties": {
+                                "id": 0,  # Optional.
+                                "name": "str"  # Optional.
+                            }
+                        }
+                    ]
+                }
+        """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                request = build_paging_duplicate_params_request(
+                    filter=filter,
+                    headers=_headers,
+                    params=_params,
+                )
+                request.url = self._client.format_url(request.url)
+
+            else:
+
+                request = build_paging_duplicate_params_request(
+                    filter=filter,
+                    headers=_headers,
+                    params=_params,
+                )
+                request.url = self._client.format_url(next_link)
+                request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
@@ -532,9 +662,12 @@ class PagingOperations:
                     ]
                 }
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -543,6 +676,8 @@ class PagingOperations:
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(request.url)
 
@@ -552,6 +687,8 @@ class PagingOperations:
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(next_link)
                 request.method = "GET"
@@ -621,9 +758,12 @@ class PagingOperations:
                     ]
                 }
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -633,6 +773,8 @@ class PagingOperations:
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(request.url)
 
@@ -643,6 +785,8 @@ class PagingOperations:
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(next_link)
                 request.method = "GET"
@@ -696,19 +840,28 @@ class PagingOperations:
                     ]
                 }
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_retry_first_request()
+                request = build_paging_get_multiple_pages_retry_first_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_multiple_pages_retry_first_request()
+                request = build_paging_get_multiple_pages_retry_first_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
@@ -761,19 +914,28 @@ class PagingOperations:
                     ]
                 }
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_retry_second_request()
+                request = build_paging_get_multiple_pages_retry_second_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_multiple_pages_retry_second_request()
+                request = build_paging_get_multiple_pages_retry_second_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
@@ -825,19 +987,28 @@ class PagingOperations:
                     ]
                 }
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_single_pages_failure_request()
+                request = build_paging_get_single_pages_failure_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_single_pages_failure_request()
+                request = build_paging_get_single_pages_failure_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
@@ -889,19 +1060,28 @@ class PagingOperations:
                     ]
                 }
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_failure_request()
+                request = build_paging_get_multiple_pages_failure_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_multiple_pages_failure_request()
+                request = build_paging_get_multiple_pages_failure_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
@@ -953,19 +1133,28 @@ class PagingOperations:
                     ]
                 }
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_failure_uri_request()
+                request = build_paging_get_multiple_pages_failure_uri_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_multiple_pages_failure_uri_request()
+                request = build_paging_get_multiple_pages_failure_uri_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request
@@ -1023,9 +1212,12 @@ class PagingOperations:
                     ]
                 }
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1033,6 +1225,8 @@ class PagingOperations:
                 request = build_paging_get_multiple_pages_fragment_next_link_request(
                     tenant=tenant,
                     api_version=api_version,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(request.url)
 
@@ -1042,6 +1236,8 @@ class PagingOperations:
                     tenant=tenant,
                     next_link=next_link,
                     api_version=api_version,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(request.url)
 
@@ -1100,9 +1296,12 @@ class PagingOperations:
                     ]
                 }
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1110,6 +1309,8 @@ class PagingOperations:
                 request = build_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
                     tenant=tenant,
                     api_version=api_version,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(request.url)
 
@@ -1119,6 +1320,8 @@ class PagingOperations:
                     tenant=tenant,
                     next_link=next_link,
                     api_version=api_version,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(request.url)
 
@@ -1157,12 +1360,17 @@ class PagingOperations:
     ) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_paging_get_multiple_pages_lro_request_initial(
             client_request_id=client_request_id,
             maxresults=maxresults,
             timeout=timeout,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -1216,9 +1424,12 @@ class PagingOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1227,6 +1438,8 @@ class PagingOperations:
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(request.url)
 
@@ -1236,6 +1449,8 @@ class PagingOperations:
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(next_link)
                 request.method = "GET"
@@ -1324,19 +1539,28 @@ class PagingOperations:
                     ]
                 }
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request()
+                request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(request.url)
 
             else:
 
-                request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request()
+                request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request

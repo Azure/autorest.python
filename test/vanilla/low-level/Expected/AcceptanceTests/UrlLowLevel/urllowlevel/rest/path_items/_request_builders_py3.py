@@ -11,7 +11,7 @@ from msrest import Serializer
 
 from azure.core.rest import HttpRequest
 
-from ..._vendor import _format_url_section
+from ..._vendor import _format_url_section, _get_from_dict
 
 _SERIALIZER = Serializer()
 
@@ -52,7 +52,11 @@ def build_get_all_with_values_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -64,21 +68,17 @@ def build_get_all_with_values_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if path_item_string_query is not None:
-        _query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
-            "path_item_string_query", path_item_string_query, "str"
-        )
+        _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
     if global_string_query is not None:
-        _query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
+        _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
-        _query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
+        _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_get_global_query_null_request(
@@ -117,7 +117,11 @@ def build_get_global_query_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -129,21 +133,17 @@ def build_get_global_query_null_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if path_item_string_query is not None:
-        _query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
-            "path_item_string_query", path_item_string_query, "str"
-        )
+        _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
     if global_string_query is not None:
-        _query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
+        _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
-        _query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
+        _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_get_global_and_local_query_null_request(
@@ -182,7 +182,11 @@ def build_get_global_and_local_query_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -194,21 +198,17 @@ def build_get_global_and_local_query_null_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if path_item_string_query is not None:
-        _query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
-            "path_item_string_query", path_item_string_query, "str"
-        )
+        _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
     if global_string_query is not None:
-        _query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
+        _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
-        _query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
+        _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_get_local_path_item_query_null_request(
@@ -246,7 +246,11 @@ def build_get_local_path_item_query_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -258,18 +262,14 @@ def build_get_local_path_item_query_null_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if path_item_string_query is not None:
-        _query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
-            "path_item_string_query", path_item_string_query, "str"
-        )
+        _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
     if global_string_query is not None:
-        _query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
+        _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
-        _query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
+        _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)

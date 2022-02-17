@@ -77,14 +77,20 @@ class PagingOperations:
                     ]
                 }
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_pages_partial_url_request()
+                request = build_paging_get_pages_partial_url_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -93,7 +99,10 @@ class PagingOperations:
 
             else:
 
-                request = build_paging_get_pages_partial_url_request()
+                request = build_paging_get_pages_partial_url_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -156,14 +165,20 @@ class PagingOperations:
                     ]
                 }
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_pages_partial_url_operation_request()
+                request = build_paging_get_pages_partial_url_operation_request(
+                    headers=_headers,
+                    params=_params,
+                )
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
@@ -174,6 +189,8 @@ class PagingOperations:
 
                 request = build_paging_get_pages_partial_url_operation_next_request(
                     next_link=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),

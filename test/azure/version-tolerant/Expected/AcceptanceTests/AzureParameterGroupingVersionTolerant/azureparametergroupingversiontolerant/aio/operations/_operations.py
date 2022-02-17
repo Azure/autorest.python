@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
+from ..._vendor import _get_from_dict
 from ...operations._operations import (
     build_parameter_grouping_post_multi_param_groups_request,
     build_parameter_grouping_post_optional_request,
@@ -71,9 +72,14 @@ class ParameterGroupingOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = body
 
@@ -83,6 +89,8 @@ class ParameterGroupingOperations:
             json=_json,
             custom_header=custom_header,
             query=query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -114,11 +122,16 @@ class ParameterGroupingOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_parameter_grouping_post_optional_request(
             custom_header=custom_header,
             query=query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -150,11 +163,16 @@ class ParameterGroupingOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_parameter_grouping_post_reserved_words_request(
             from_parameter=from_parameter,
             accept_parameter=accept_parameter,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -196,13 +214,18 @@ class ParameterGroupingOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_parameter_grouping_post_multi_param_groups_request(
             header_one=header_one,
             query_one=query_one,
             header_two=header_two,
             query_two=query_two,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -234,11 +257,16 @@ class ParameterGroupingOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_parameter_grouping_post_shared_parameter_group_object_request(
             header_one=header_one,
             query_one=query_one,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 

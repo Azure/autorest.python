@@ -11,6 +11,8 @@ from msrest import Serializer
 
 from azure.core.rest import HttpRequest
 
+from .._vendor import _get_from_dict
+
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
@@ -39,17 +41,19 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
             }
     """
 
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/report/azure"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if qualifier is not None:
-        _query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
+        _params["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)

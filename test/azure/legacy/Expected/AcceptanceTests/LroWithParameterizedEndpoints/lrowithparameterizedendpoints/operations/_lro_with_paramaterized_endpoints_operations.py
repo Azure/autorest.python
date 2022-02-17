@@ -25,7 +25,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models as _models
-from .._vendor import _convert_request, _format_url_section
+from .._vendor import _convert_request, _format_url_section, _get_from_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -42,18 +42,20 @@ def build_poll_with_parameterized_endpoints_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     _url = kwargs.pop("template_url", "/lroParameterizedEndpoints")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -62,9 +64,11 @@ def build_poll_with_constant_parameterized_endpoints_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    constant_parameter = kwargs.pop('constant_parameter', "iAmConstant")  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    constant_parameter = kwargs.pop('constant_parameter', "iAmConstant")  # type: str
+    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+
     # Construct URL
     _url = kwargs.pop("template_url", "/lroConstantParameterizedEndpoints/{constantParameter}")
     path_format_arguments = {
@@ -74,13 +78,12 @@ def build_poll_with_constant_parameterized_endpoints_request_initial(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -94,10 +97,15 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         # type: (...) -> Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_poll_with_parameterized_endpoints_request_initial(
             template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         path_format_arguments = {
@@ -153,6 +161,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         :rtype: ~azure.core.polling.LROPoller[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -205,13 +216,18 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         # type: (...) -> Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
 
         request = build_poll_with_constant_parameterized_endpoints_request_initial(
             constant_parameter=constant_parameter,
             template_url=self._poll_with_constant_parameterized_endpoints_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         path_format_arguments = {
@@ -270,6 +286,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         :rtype: ~azure.core.polling.LROPoller[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]

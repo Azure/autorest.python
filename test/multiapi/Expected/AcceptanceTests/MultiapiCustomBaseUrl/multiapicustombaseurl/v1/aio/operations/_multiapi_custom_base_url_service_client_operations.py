@@ -42,15 +42,20 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {})) or {}
 
-        api_version = kwargs.pop('api_version', "1.0.0")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop('api_version', _get_from_dict(_params, 'api-version') or "1.0.0")  # type: str
 
         
         request = build_test_request(
             api_version=api_version,
             id=id,
             template_url=self.test.metadata['url'],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         path_format_arguments = {

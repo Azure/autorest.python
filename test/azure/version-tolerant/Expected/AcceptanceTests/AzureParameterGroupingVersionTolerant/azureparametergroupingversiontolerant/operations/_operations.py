@@ -22,7 +22,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .._vendor import _format_url_section
+from .._vendor import _format_url_section, _get_from_dict
 
 T = TypeVar("T")
 JSONType = Any
@@ -40,9 +40,12 @@ def build_parameter_grouping_post_required_request(
     query: Optional[int] = 30,
     **kwargs: Any
 ) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/parameterGrouping/postRequired/{path}"
     path_format_arguments = {
@@ -52,69 +55,63 @@ def build_parameter_grouping_post_required_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if query is not None:
-        _query_parameters["query"] = _SERIALIZER.query("query", query, "int")
+        _params["query"] = _SERIALIZER.query("query", query, "int")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if custom_header is not None:
-        _header_parameters["customHeader"] = _SERIALIZER.header("custom_header", custom_header, "str")
+        _headers["customHeader"] = _SERIALIZER.header("custom_header", custom_header, "str")
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
-        json=json,
-        content=content,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_parameter_grouping_post_optional_request(
     *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs: Any
 ) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/parameterGrouping/postOptional"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if query is not None:
-        _query_parameters["query"] = _SERIALIZER.query("query", query, "int")
+        _params["query"] = _SERIALIZER.query("query", query, "int")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if custom_header is not None:
-        _header_parameters["customHeader"] = _SERIALIZER.header("custom_header", custom_header, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["customHeader"] = _SERIALIZER.header("custom_header", custom_header, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_parameter_grouping_post_reserved_words_request(
     *, from_parameter: Optional[str] = None, accept_parameter: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/parameterGrouping/postReservedWords"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if from_parameter is not None:
-        _query_parameters["from"] = _SERIALIZER.query("from_parameter", from_parameter, "str")
+        _params["from"] = _SERIALIZER.query("from_parameter", from_parameter, "str")
     if accept_parameter is not None:
-        _query_parameters["accept"] = _SERIALIZER.query("accept_parameter", accept_parameter, "str")
+        _params["accept"] = _SERIALIZER.query("accept_parameter", accept_parameter, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_parameter_grouping_post_multi_param_groups_request(
@@ -125,47 +122,51 @@ def build_parameter_grouping_post_multi_param_groups_request(
     query_two: Optional[int] = 30,
     **kwargs: Any
 ) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/parameterGrouping/postMultipleParameterGroups"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if query_one is not None:
-        _query_parameters["query-one"] = _SERIALIZER.query("query_one", query_one, "int")
+        _params["query-one"] = _SERIALIZER.query("query_one", query_one, "int")
     if query_two is not None:
-        _query_parameters["query-two"] = _SERIALIZER.query("query_two", query_two, "int")
+        _params["query-two"] = _SERIALIZER.query("query_two", query_two, "int")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if header_one is not None:
-        _header_parameters["header-one"] = _SERIALIZER.header("header_one", header_one, "str")
+        _headers["header-one"] = _SERIALIZER.header("header_one", header_one, "str")
     if header_two is not None:
-        _header_parameters["header-two"] = _SERIALIZER.header("header_two", header_two, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["header-two"] = _SERIALIZER.header("header_two", header_two, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_parameter_grouping_post_shared_parameter_group_object_request(
     *, header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs: Any
 ) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+    accept = _get_from_dict(_headers, "Accept") or "application/json"
+
     # Construct URL
     _url = "/parameterGrouping/sharedParameterGroupObject"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if query_one is not None:
-        _query_parameters["query-one"] = _SERIALIZER.query("query_one", query_one, "int")
+        _params["query-one"] = _SERIALIZER.query("query_one", query_one, "int")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if header_one is not None:
-        _header_parameters["header-one"] = _SERIALIZER.header("header_one", header_one, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["header-one"] = _SERIALIZER.header("header_one", header_one, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 class ParameterGroupingOperations(object):
@@ -206,9 +207,14 @@ class ParameterGroupingOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+        )  # type: Optional[str]
 
         _json = body
 
@@ -218,6 +224,8 @@ class ParameterGroupingOperations(object):
             json=_json,
             custom_header=custom_header,
             query=query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -249,11 +257,16 @@ class ParameterGroupingOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_parameter_grouping_post_optional_request(
             custom_header=custom_header,
             query=query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -285,11 +298,16 @@ class ParameterGroupingOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_parameter_grouping_post_reserved_words_request(
             from_parameter=from_parameter,
             accept_parameter=accept_parameter,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -331,13 +349,18 @@ class ParameterGroupingOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_parameter_grouping_post_multi_param_groups_request(
             header_one=header_one,
             query_one=query_one,
             header_two=header_two,
             query_two=query_two,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -369,11 +392,16 @@ class ParameterGroupingOperations(object):
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_parameter_grouping_post_shared_parameter_group_object_request(
             header_one=header_one,
             query_one=query_one,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 

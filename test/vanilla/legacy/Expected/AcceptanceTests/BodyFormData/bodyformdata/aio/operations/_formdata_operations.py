@@ -21,7 +21,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._vendor import _convert_request
+from ..._vendor import _convert_request, _get_from_dict
 from ...operations._formdata_operations import (
     build_upload_file_request,
     build_upload_file_via_body_request,
@@ -69,9 +69,14 @@ class FormdataOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or None
+        )  # type: Optional[str]
 
         # Construct form data
         _files = {
@@ -83,6 +88,8 @@ class FormdataOperations:
             content_type=content_type,
             files=_files,
             template_url=self.upload_file.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request, _files)
         request.url = self._client.format_url(request.url)
@@ -119,9 +126,14 @@ class FormdataOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or "application/octet-stream"
+        )  # type: Optional[str]
 
         _content = file_content
 
@@ -129,6 +141,8 @@ class FormdataOperations:
             content_type=content_type,
             content=_content,
             template_url=self.upload_file_via_body.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
@@ -165,9 +179,14 @@ class FormdataOperations:
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", _get_from_dict(_headers, "Content-Type") or None
+        )  # type: Optional[str]
 
         # Construct form data
         _files = {
@@ -178,6 +197,8 @@ class FormdataOperations:
             content_type=content_type,
             files=_files,
             template_url=self.upload_files.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request, _files)
         request.url = self._client.format_url(request.url)

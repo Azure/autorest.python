@@ -76,10 +76,15 @@ class PetOperations:
             404: lambda response: ResourceNotFoundError(response=response),
             501: HttpResponseError,
         }
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_pet_get_pet_by_id_request(
             pet_id=pet_id,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -129,10 +134,15 @@ class PetOperations:
             409: ResourceExistsError,
             500: HttpResponseError,
         }
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_pet_do_something_request(
             what_action=what_action,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
@@ -176,10 +186,15 @@ class PetOperations:
             409: ResourceExistsError,
             500: HttpResponseError,
         }
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         request = build_pet_has_models_param_request(
             models=models,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)
 
