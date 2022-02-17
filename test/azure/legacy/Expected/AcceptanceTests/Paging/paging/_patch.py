@@ -26,15 +26,16 @@
 # --------------------------------------------------------------------------
 from typing import List
 import importlib
-import urllib.parse
 from ._auto_rest_paging_test_service import AutoRestPagingTestService as AutoRestPagingTestServiceGenerated
 from azure.core.pipeline.policies import SansIOHTTPPolicy
 try:
     binary_type = str
     import urlparse  # type: ignore
+    from urllib import urlencode
 except ImportError:
     binary_type = bytes  # type: ignore
     from urllib import parse as urlparse
+    from urllib.parse import urlencode
 
 class RemoveDuplicateParamsPolicy(SansIOHTTPPolicy):
     def __init__(self, duplicate_param_names):
@@ -49,8 +50,8 @@ class RemoveDuplicateParamsPolicy(SansIOHTTPPolicy):
             k: v[-1:] if k in self.duplicate_param_names else v
             for k, v in query_params.items()
         }
-        request.http_request.url = request.http_request.url.replace(parsed_url.query, "") + urlparse.urlencode(filtered_query_params, doseq=True)
-        return super().on_request(request)
+        request.http_request.url = request.http_request.url.replace(parsed_url.query, "") + urlencode(filtered_query_params, doseq=True)
+        return super(RemoveDuplicateParamsPolicy, self).on_request(request)
 
 class AutoRestPagingTestService(AutoRestPagingTestServiceGenerated):
     def __init__(self, *args, **kwargs):
@@ -60,7 +61,7 @@ class AutoRestPagingTestService(AutoRestPagingTestServiceGenerated):
             per_call_policies.append(params_policy)
         except AttributeError:
             per_call_policies = [per_call_policies, params_policy]
-        super().__init__(*args, per_call_policies=per_call_policies, **kwargs)
+        super(AutoRestPagingTestService, self).__init__(*args, per_call_policies=per_call_policies, **kwargs)
 
 # This file is used for handwritten extensions to the generated code. Example:
 # https://github.com/Azure/azure-sdk-for-python/blob/main/doc/dev/customize_code/how-to-patch-sdk-code.md

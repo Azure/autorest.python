@@ -180,6 +180,7 @@ class TestPaging(object):
         items = [i for i in pages]
         assert len(items) == 1
 
+    @pytest.mark.skipif(sys.version_info < (3,5), reason="2.7 does different url encoding")
     def test_duplicate_params(self, client):
         pages = list(client.paging.duplicate_params(filter="foo"))
         assert len(pages) == 1
