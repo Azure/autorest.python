@@ -16,8 +16,8 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
     @property
     def in_method_signature(self) -> bool:
         return not(
-            # don't put accept in method signature
-            self.rest_api_name == "Accept"
+            # if not inputtable, don't put in signature
+            not self.inputtable_by_user
             # If i'm not in the method code, no point in being in signature
             or not self.in_method_code
             # If I'm a flattened property of a body, don't want me, want the body param
