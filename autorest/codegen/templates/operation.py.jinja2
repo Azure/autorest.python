@@ -14,7 +14,7 @@
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
     {{ op_tools.serialize(operation_serializer.error_map(operation)) | indent }}
-    {% if operation.parameters.kwargs_to_pop(async_mode) %}
+    {% if operation_serializer.pop_kwargs_from_signature(operation) %}
     {{ op_tools.serialize(operation_serializer.pop_kwargs_from_signature(operation)) | indent }}
     {% endif %}
     {{ op_tools.serialize(operation_serializer.call_request_builder(operation)) | indent }}

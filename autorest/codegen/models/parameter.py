@@ -167,6 +167,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         return self.location == ParameterLocation.Body
 
     @property
+    def inputtable_by_user(self) -> bool:
+        return self.rest_api_name != "Accept"
+
+    @property
     def pre_semicolon_content_types(self) -> List[str]:
         """Splits on semicolon of media types and returns the first half.
         I.e. ["text/plain; charset=UTF-8"] -> ["text/plain"]
@@ -176,8 +180,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     @property
     def in_method_signature(self) -> bool:
         return not(
-            # don't put accept in signature
-            self.rest_api_name == "Accept"
+            not self.inputtable_by_user
             # If i'm not in the method code, no point in being in signature
             or not self.in_method_code
             # If I'm grouped, my grouper will be on signature, not me
@@ -301,7 +304,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     @property
     def is_kwarg(self) -> bool:
         # this means "am I in **kwargs?"
-        return self.rest_api_name == "Content-Type" or (self.constant and self.rest_api_name != "Accept")
+        return self.rest_api_name == "Content-Type" or (self.constant and self.inputtable_by_user)
 
     @property
     def is_keyword_only(self) -> bool:

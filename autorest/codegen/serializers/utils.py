@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import List
-from ..models import ParameterStyle, ListSchema, Parameter
+from ..models import ParameterStyle, ListSchema, Parameter, ParameterLocation
 
 
 def serialize_method(
@@ -102,13 +102,29 @@ def method_signature_and_response_type_annotation_template(
         return f"{method_signature} -> {response_type_annotation}:"
     return f"{method_signature}:\n    # type: (...) -> {response_type_annotation}"
 
-def pop_kwargs_from_signature(kwargs_to_pop: List[Parameter]) -> List[str]:
+def pop_kwargs_from_signature(
+    kwargs_to_pop: List[Parameter],
+    check_kwarg_dict: bool,
+    pop_headers_kwarg: bool,
+    pop_params_kwarg: bool
+) -> List[str]:
     retval = []
+    pop_kwarg_template = '_{} = kwargs.pop("{}", {{}}) or {{}}  # type: Dict[str, Any]'
+    if pop_headers_kwarg:
+        retval.append(pop_kwarg_template.format("headers", "headers"))
+    if pop_params_kwarg:
+        retval.append(pop_kwarg_template.format("params", "params"))
+    if pop_headers_kwarg or pop_params_kwarg:
+        retval.append("")
     for kwarg in kwargs_to_pop:
         if kwarg.has_default_value:
+            default_value = kwarg.default_value_declaration
+            if check_kwarg_dict and (kwarg.location in [ParameterLocation.Header, ParameterLocation.Query]):
+                kwarg_dict = "headers" if kwarg.location == ParameterLocation.Header else "params"
+                default_value = f"_get_from_dict(_{kwarg_dict}, '{kwarg.rest_api_name}') or {default_value}"
             retval.append(
                 f"{kwarg.serialized_name} = kwargs.pop('{kwarg.serialized_name}', "
-                + f"{kwarg.default_value_declaration})  # type: {kwarg.type_annotation}"
+                + f"{default_value})  # type: {kwarg.type_annotation}"
             )
         else:
             retval.append(
