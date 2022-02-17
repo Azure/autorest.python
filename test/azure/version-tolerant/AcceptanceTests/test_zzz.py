@@ -41,6 +41,7 @@ class TestAcceptance(object):
         # Please add missing features or failing tests here
         missing_features_or_bugs = {
             "LROPatchInlineCompleteIgnoreHeaders": 1,
+            "PagingDuplicateParameters": 1  # skipping for now, going to do another PR soon changing paging behavior for version tolerant
         }
 
         print("Coverage:")
