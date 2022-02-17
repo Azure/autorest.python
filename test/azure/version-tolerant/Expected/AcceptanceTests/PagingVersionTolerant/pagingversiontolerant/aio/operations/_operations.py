@@ -25,6 +25,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ...operations._operations import (
+    build_paging_duplicate_params_request,
     build_paging_first_response_empty_request,
     build_paging_get_multiple_pages_failure_request,
     build_paging_get_multiple_pages_failure_uri_request,
@@ -467,6 +468,78 @@ class PagingOperations:
                 )
                 request.url = self._client.format_url(request.url)
 
+            return request
+
+        async def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = deserialized["values"]
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.get("nextLink", None), AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+                request, stream=False, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
+
+    @distributed_trace
+    def duplicate_params(self, *, filter: Optional[str] = None, **kwargs: Any) -> AsyncIterable[JSONType]:
+        """Define ``filter`` as a query param for all calls. However, the returned next link will also
+        include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
+        param in the url sent.
+
+        :keyword filter: OData filter options. Pass in 'foo'.
+        :paramtype filter: str
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str",  # Optional.
+                    "values": [
+                        {
+                            "properties": {
+                                "id": 0,  # Optional.
+                                "name": "str"  # Optional.
+                            }
+                        }
+                    ]
+                }
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                request = build_paging_duplicate_params_request(
+                    filter=filter,
+                )
+                request.url = self._client.format_url(request.url)
+
+            else:
+
+                request = build_paging_duplicate_params_request(
+                    filter=filter,
+                )
+                request.url = self._client.format_url(next_link)
+                request.method = "GET"
             return request
 
         async def extract_data(pipeline_response):
