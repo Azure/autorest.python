@@ -8,28 +8,29 @@
 # coding: utf-8
 from setuptools import setup, find_packages
 
-NAME = "autorestheadexceptiontestservice"
-VERSION = "0.1.0"
 
+PACKAGE_NAME = "autorestheadexceptiontestservice"
+version = "0.1.0"
 # To install the library, run the following
 #
 # python setup.py install
 #
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
-
-REQUIRES = ["msrest>=0.6.21", "azure-core<2.0.0,>=1.20.1", "azure-mgmt-core>=1.3.0,<2.0.0"]
-
 setup(
-    name=NAME,
-    version=VERSION,
+    name=PACKAGE_NAME,
+    version=version,
     description="AutoRestHeadExceptionTestService",
     author_email="",
     url="",
     keywords=["Swagger", "AutoRestHeadExceptionTestService"],
-    install_requires=REQUIRES,
     packages=find_packages(),
     include_package_data=True,
+    install_requires=[
+        "msrest>=0.6.21",
+        "azure-mgmt-core>=1.3.0,<2.0.0",
+        "azure-core<2.0.0,>=1.20.1",
+    ],
     long_description="""\
     Test Infrastructure for AutoRest.
     """,

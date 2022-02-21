@@ -8,31 +8,28 @@
 # coding: utf-8
 from setuptools import setup, find_packages
 
-NAME = "autorestswaggerbatformdataservice"
-VERSION = "0.1.0"
 
+PACKAGE_NAME = "autorestswaggerbatformdataservice"
+version = "0.1.0"
 # To install the library, run the following
 #
 # python setup.py install
 #
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
-
-REQUIRES = [
-    "msrest>=0.6.21",
-    "azure-core<2.0.0,>=1.20.1",
-]
-
 setup(
-    name=NAME,
-    version=VERSION,
+    name=PACKAGE_NAME,
+    version=version,
     description="AutoRestSwaggerBATFormDataService",
     author_email="",
     url="",
     keywords=["Swagger", "AutoRestSwaggerBATFormDataService"],
-    install_requires=REQUIRES,
     packages=find_packages(),
     include_package_data=True,
+    install_requires=[
+        "msrest>=0.6.21",
+        "azure-core<2.0.0,>=1.20.1",
+    ],
     long_description="""\
     Test Infrastructure for AutoRest Swagger BAT.
     """,

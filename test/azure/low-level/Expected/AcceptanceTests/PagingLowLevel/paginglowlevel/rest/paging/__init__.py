@@ -13,7 +13,6 @@ try:
     from ._request_builders_py3 import build_first_response_empty_request
     from ._request_builders_py3 import build_get_multiple_pages_request
     from ._request_builders_py3 import build_get_with_query_params_request
-    from ._request_builders_py3 import build_duplicate_params_request
     from ._request_builders_py3 import build_next_operation_with_query_params_request
     from ._request_builders_py3 import build_get_odata_multiple_pages_request
     from ._request_builders_py3 import build_get_multiple_pages_with_offset_request
@@ -35,7 +34,6 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_first_response_empty_request  # type: ignore
     from ._request_builders import build_get_multiple_pages_request  # type: ignore
     from ._request_builders import build_get_with_query_params_request  # type: ignore
-    from ._request_builders import build_duplicate_params_request  # type: ignore
     from ._request_builders import build_next_operation_with_query_params_request  # type: ignore
     from ._request_builders import build_get_odata_multiple_pages_request  # type: ignore
     from ._request_builders import build_get_multiple_pages_with_offset_request  # type: ignore
@@ -58,7 +56,6 @@ __all__ = [
     "build_first_response_empty_request",
     "build_get_multiple_pages_request",
     "build_get_with_query_params_request",
-    "build_duplicate_params_request",
     "build_next_operation_with_query_params_request",
     "build_get_odata_multiple_pages_request",
     "build_get_multiple_pages_with_offset_request",

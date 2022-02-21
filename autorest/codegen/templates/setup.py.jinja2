@@ -7,9 +7,10 @@ import re
 {% endif -%}
 from setuptools import setup, find_packages
 
-{% if package_mode %}
-# Change the PACKAGE_NAME only to change folder and different name
-PACKAGE_NAME = "{{ package_name }}"
+{% set package_name_render = package_name or code_model.class_name %}
+
+PACKAGE_NAME = "{{ package_name_render|lower }}"
+{% if package_mode -%}
 PACKAGE_PPRINT_NAME = "{{ package_pprint_name }}"
 
 # a-b-c => a/b/c
@@ -23,19 +24,37 @@ with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
 
 if not version:
     raise RuntimeError("Cannot find version information")
-
+{% set description = "Microsoft %s Client Library for Python"|format(package_pprint_name) %}
+{% set author_email = "azpysdkhelp@microsoft.com" %}
+{% set url = "https://github.com/Azure/azure-sdk-for-python/tree/main/sdk" %}
+{% else %}
+version = "{{ code_model.options.get('package_version', '0.0.0') }}"
+{% set description = "%s"|format(package_name_render) %}
+{% set long_description = code_model.description %}
+{% set author_email = "" %}
+{% set url = "" %}
+{% endif -%}
+# To install the library, run the following
+#
+# python setup.py install
+#
+# prerequisite: setuptools
+# http://pypi.python.org/pypi/setuptools
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="Microsoft {{ package_pprint_name }} Client Library for Python",
+    description="{{ description }}",
+    {% if package_mode %}
     long_description=open("README.md", "r").read(),
     long_description_content_type="text/markdown",
     license="MIT License",
     author="Microsoft Corporation",
-    author_email="azpysdkhelp@microsoft.com",
-    url="https://github.com/Azure/azure-sdk-for-python/tree/main/sdk",
+    {% endif %}
+    author_email="{{ author_email }}",
+    url="{{ url }}",
+    {% if package_mode %}
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: {{ dev_status }}",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3 :: Only",
         "Programming Language :: Python :: 3",
@@ -56,50 +75,28 @@ setup(
             {%- endfor %}
         ]
     ),
-    install_requires=[
-        "{{ dependency_msrest }}",
-        {%- if package_mode == "mgmtplane" %}
-        "{{ dependency_azure_common }}",
-        "{{ dependency_azure_mgmt_core }}",
-        {%- endif %}
-        {%- if package_mode == "dataplane" %}
-        "{{ dependency_azure_core }}",
-        {%- endif %}
-    ],
-    python_requires=">=3.6",
-)
-{% else %}
-{% set name = package_name or code_model.class_name %}
-NAME = "{{ name|lower }}"
-VERSION = "{{ code_model.options.get('package_version', '0.0.0') }}"
-
-# To install the library, run the following
-#
-# python setup.py install
-#
-# prerequisite: setuptools
-# http://pypi.python.org/pypi/setuptools
-
-REQUIRES = [
-    "{{ dependency_msrest }}",
-    "{{ dependency_azure_core }}",
-    {% if azure_arm %}
-    "{{ dependency_azure_mgmt_core }}"
-    {% endif %}
-]
-
-setup(
-    name=NAME,
-    version=VERSION,
-    description="{{ name }}",
-    author_email="",
-    url="",
+    {% else %}
     keywords=["Swagger", "{{ code_model.class_name }}"],
-    install_requires=REQUIRES,
     packages=find_packages(),
     include_package_data=True,
+    {% endif %}
+    install_requires=[
+        "{{ dependency_msrest }}",
+        {% if package_mode == "mgmtplane" %}
+        "{{ dependency_azure_common }}",
+        {% endif %}
+        {% if package_mode == "mgmtplane" or azure_arm %}
+        "{{ dependency_azure_mgmt_core }}",
+        {% endif %}
+        {% if package_mode == "dataplane" or basic_setup_py %}
+        "{{ dependency_azure_core }}",
+        {% endif %}
+    ],
+    {% if package_mode %}
+    python_requires=">=3.6",
+    {% else %}
     long_description="""\
     {{ code_model.description }}
     """
+    {% endif %}
 )
-{% endif %}

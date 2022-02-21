@@ -11,7 +11,7 @@ package-pprint-name: Azure Package Mode
 license-header: MICROSOFT_MIT_NO_VERSION
 azure-arm: true
 add-credentials: true
-package-version: 1.0.0b1
+package-version: 1.0.0
 output-artifact: code-model-v4-no-tags
 payload-flattening-threshold: 1
 clear-output-folder: true

@@ -12,7 +12,6 @@ import re
 from setuptools import setup, find_packages
 
 
-# Change the PACKAGE_NAME only to change folder and different name
 PACKAGE_NAME = "azure-package-mode"
 PACKAGE_PPRINT_NAME = "Azure Package Mode"
 
@@ -26,6 +25,13 @@ with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
 if not version:
     raise RuntimeError("Cannot find version information")
 
+
+# To install the library, run the following
+#
+# python setup.py install
+#
+# prerequisite: setuptools
+# http://pypi.python.org/pypi/setuptools
 setup(
     name=PACKAGE_NAME,
     version=version,
@@ -37,7 +43,7 @@ setup(
     author_email="azpysdkhelp@microsoft.com",
     url="https://github.com/Azure/azure-sdk-for-python/tree/main/sdk",
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Production/Stable",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3 :: Only",
         "Programming Language :: Python :: 3",

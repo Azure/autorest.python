@@ -91,8 +91,9 @@ class JinjaSerializer:
     def _serialize_and_write_package_files(self, out_path: Path) -> None:
         def _serialize_and_write_package_files_proc(**kwargs: Any):
             for template_name in package_files:
-                output_name = out_path / (template_name.replace(".jinja2", ""))
-                if not output_name.exists():
+                file = template_name.replace(".jinja2", "")
+                output_name = out_path / file
+                if not self._autorestapi.read_file(output_name) or file == 'setup.py':
                     template = env.get_template(template_name)
                     render_result = template.render(**kwargs)
                     self._autorestapi.write_file(output_name, render_result)
@@ -100,10 +101,12 @@ class JinjaSerializer:
         def _prepare_params() -> Dict[Any, Any]:
             package_parts = self.code_model.options["package_name"].split("-")[:-1]
             token_cred = isinstance(self.code_model.credential_schema_policy.credential, TokenCredentialSchema)
+            version = self.code_model.options.get("package_version", "0.0.0")
             params = {
                 "token_credential": token_cred,
                 "pkgutil_names": [".".join(package_parts[: i + 1]) for i in range(len(package_parts))],
-                "init_names": ["/".join(package_parts[: i + 1]) + "/__init__.py" for i in range(len(package_parts))]
+                "init_names": ["/".join(package_parts[: i + 1]) + "/__init__.py" for i in range(len(package_parts))],
+                "dev_status": "4 - Beta" if any(x in version for x in ["a", "b", "rc"]) else "5 - Production/Stable"
             }
             params.update(self.code_model.options)
             params.update(self.code_model.package_dependency)

@@ -128,23 +128,6 @@ def build_paging_get_with_query_params_request(*, required_query_parameter: int,
     return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
-def build_paging_duplicate_params_request(*, filter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
-    # Construct URL
-    _url = "/paging/multiple/duplicateParams/1"
-
-    # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    if filter is not None:
-        _query_parameters["$filter"] = _SERIALIZER.query("filter", filter, "str")
-
-    # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
-
-
 def build_paging_next_operation_with_query_params_request(**kwargs: Any) -> HttpRequest:
     query_constant = kwargs.pop("query_constant", True)  # type: bool
 
@@ -821,79 +804,6 @@ class PagingOperations(object):
                 )
                 request.url = self._client.format_url(request.url)
 
-            return request
-
-        def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = deserialized["values"]
-            if cls:
-                list_of_elem = cls(list_of_elem)
-            return deserialized.get("nextLink", None), iter(list_of_elem)
-
-        def get_next(next_link=None):
-            request = prepare_request(next_link)
-
-            pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=False, **kwargs
-            )
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
-
-            return pipeline_response
-
-        return ItemPaged(get_next, extract_data)
-
-    @distributed_trace
-    def duplicate_params(self, *, filter: Optional[str] = None, **kwargs: Any) -> Iterable[JSONType]:
-        """Define ``filter`` as a query param for all calls. However, the returned next link will also
-        include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
-        param in the url sent.
-
-        :keyword filter: OData filter options. Pass in 'foo'.
-        :paramtype filter: str
-        :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.paging.ItemPaged[JSONType]
-        :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == {
-                    "nextLink": "str",  # Optional.
-                    "values": [
-                        {
-                            "properties": {
-                                "id": 0,  # Optional.
-                                "name": "str"  # Optional.
-                            }
-                        }
-                    ]
-                }
-        """
-
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
-
-        def prepare_request(next_link=None):
-            if not next_link:
-
-                request = build_paging_duplicate_params_request(
-                    filter=filter,
-                )
-                request.url = self._client.format_url(request.url)
-
-            else:
-
-                request = build_paging_duplicate_params_request(
-                    filter=filter,
-                )
-                request.url = self._client.format_url(next_link)
-                request.method = "GET"
             return request
 
         def extract_data(pipeline_response):

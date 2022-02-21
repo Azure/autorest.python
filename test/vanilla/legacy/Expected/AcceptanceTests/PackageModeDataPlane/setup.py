@@ -12,7 +12,6 @@ import re
 from setuptools import setup, find_packages
 
 
-# Change the PACKAGE_NAME only to change folder and different name
 PACKAGE_NAME = "packagemode"
 PACKAGE_PPRINT_NAME = "Azure Package Mode"
 
@@ -26,6 +25,13 @@ with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
 if not version:
     raise RuntimeError("Cannot find version information")
 
+
+# To install the library, run the following
+#
+# python setup.py install
+#
+# prerequisite: setuptools
+# http://pypi.python.org/pypi/setuptools
 setup(
     name=PACKAGE_NAME,
     version=version,

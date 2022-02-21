@@ -5,6 +5,3 @@ recursive-include samples *.py *.md
 {%- for init_name in init_names %}
 include {{ init_name }}
 {%- endfor %}
-{%- if package_mode == "mgmtplane" %}
-include _meta.json
-{%- endif %}
