@@ -6,6 +6,7 @@
 import logging
 from pathlib import Path
 import black
+import os
 
 from .. import Plugin
 
@@ -21,7 +22,7 @@ class BlackScriptPlugin(Plugin):
         output_folder_uri = self._autorestapi.get_value("outputFolderUri")
         if output_folder_uri.startswith("file:"):
             output_folder_uri = output_folder_uri[5:]
-        if output_folder_uri.startswith("///"):
+        if os.name == 'nt' and output_folder_uri.startswith("///"):
             output_folder_uri = output_folder_uri[3:]
         self.output_folder = Path(output_folder_uri)
 
