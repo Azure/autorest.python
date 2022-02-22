@@ -5,8 +5,8 @@
 # --------------------------------------------------------------------------
 import logging
 from pathlib import Path
-import black
 import os
+import black
 
 from .. import Plugin
 
