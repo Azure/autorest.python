@@ -279,3 +279,11 @@ def test_initial_response_no_items(get_pager):
     )
     items = [i for i in pages]
     assert len(items) == 1
+
+def test_duplicate_params(get_pager):
+    pages = get_pager(
+        initial_request=functools.partial(paging.build_duplicate_params_request, filter="foo"),
+        item_name="values"
+    )
+    items = [i for i in pages]
+    assert len(items) == 1
