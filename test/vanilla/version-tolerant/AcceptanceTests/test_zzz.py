@@ -44,6 +44,8 @@ class TestAcceptance(object):
         # Please add missing features or failing tests here
         missing_features_or_bugs = {
             'ConstantsInBody': 1,  # https://github.com/Azure/autorest.modelerfour/issues/83
+            "ResponsesScenarioF400DefaultModel": 1,
+            "ResponsesScenarioF400DefaultNone": 1,
         }
 
         print("Coverage:")
