@@ -9,7 +9,7 @@ pr:
       - autorestv3
 
 variables:
-  NodeVersion: "12.x"
+  NodeVersion: "14.x"
   PythonVersion: "3.7"
   TestFolder: "$(Build.SourcesDirectory)/test/"
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/coverage/"
