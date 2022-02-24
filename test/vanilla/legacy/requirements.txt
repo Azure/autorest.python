@@ -50,3 +50,4 @@ azure-core==1.20.1
 -e ./Expected/AcceptanceTests/Validation
 -e ./Expected/AcceptanceTests/Xml
 -e ./Expected/AcceptanceTests/XmsErrorResponse
+-e ./Expected/AcceptanceTests/PackageModeDataPlane

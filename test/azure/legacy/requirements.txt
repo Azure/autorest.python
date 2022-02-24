@@ -22,3 +22,4 @@ msrest==0.6.21
 -e ./Expected/AcceptanceTests/SubscriptionIdApiVersion
 -e ./Expected/AcceptanceTests/CustomPollerPager
 -e ./Expected/AcceptanceTests/CustomPollerPagerDefinitions
+-e ./Expected/AcceptanceTests/PackageModeMgmtPlane
