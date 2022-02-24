@@ -28,6 +28,9 @@ def create_parameters(
             name = yaml["language"]["python"]["name"]
             if name in _M4_HEADER_PARAMETERS:
                 parameters.append(parameter)
+                if name == "content_type" and multiple_requests:
+                    parameter.is_kwarg = False
+                    parameter.description = "Media type of the body sent to the API."
             elif multiple_requests:
                 parameter.has_multiple_content_types = True
                 multiple_content_type_parameters.append(parameter)

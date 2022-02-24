@@ -99,6 +99,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         self.body_kwargs: List[Parameter] = []
         self.is_body_kwarg = False
         self.need_import = True
+        self.is_kwarg = (self.rest_api_name == "Content-Type" or (self.constant and self.rest_api_name != "Accept"))
 
     def __hash__(self) -> int:
         return hash(self.serialized_name)
@@ -113,6 +114,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
                 description += f"{self.schema.extra_description_information}"
             if self.constant:
                 description += " Note that overriding this default value may result in unsupported behavior."
+            if self.default_value_declaration:
+                description += f" The default value is {self.default_value_declaration}."
             return description
         except AttributeError:
             pass
@@ -299,18 +302,13 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         return origin_name
 
     @property
-    def is_kwarg(self) -> bool:
-        # this means "am I in **kwargs?"
-        return self.rest_api_name == "Content-Type" or (self.constant and self.rest_api_name != "Accept")
-
-    @property
     def is_keyword_only(self) -> bool:
         # this means in async mode, I am documented like def hello(positional_1, *, me!)
         return self._keyword_only
 
     @property
     def is_hidden(self) -> bool:
-        return self.serialized_name in _HIDDEN_KWARGS or (
+        return self.serialized_name in _HIDDEN_KWARGS and self.is_kwarg or (
             self.yaml_data["implementation"] == "Client" and self.constant
         )
 
