@@ -50,9 +50,9 @@ class AutoRestComplexTestService:  # pylint: disable=too-many-instance-attribute
     :vartype readonlyproperty: bodycomplex.aio.operations.ReadonlypropertyOperations
     :ivar flattencomplex: FlattencomplexOperations operations
     :vartype flattencomplex: bodycomplex.aio.operations.FlattencomplexOperations
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
-    :keyword api_version: Api Version. The default value is "2016-02-29". Note that overriding this
+    :keyword api_version: Api Version. Default value is "2016-02-29". Note that overriding this
      default value may result in unsupported behavior.
     :paramtype api_version: str
     """

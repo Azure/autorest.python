@@ -240,7 +240,7 @@ class ReservedWordsClientOperationsMixin:
          Pass in 'x-ms-header' to pass.
         :type header_parameters: str
         :param query_parameters: Query args that uses same name as queryParameters in generated code.
-         Pass in ['one', 'two'] to pass test.
+         Pass in ['one', 'two'] to pass test. Default value is None.
         :type query_parameters: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: any, or the result of cls(response)

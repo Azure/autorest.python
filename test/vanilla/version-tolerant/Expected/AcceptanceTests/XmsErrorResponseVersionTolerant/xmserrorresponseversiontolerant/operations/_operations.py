@@ -215,7 +215,7 @@ class PetOperations(object):
         conflict with the input param name 'models'.
 
         :keyword models: Make sure model deserialization doesn't conflict with this param name, which
-         has input name 'models'. Use client default value in call.
+         has input name 'models'. Use client default value in call. Default value is "value1".
         :paramtype models: str
         :return: None
         :rtype: None

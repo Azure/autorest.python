@@ -50,7 +50,7 @@ class IntOperations:
     async def put(self, input: Optional[Union[int, "_models.IntEnum"]] = None, **kwargs: Any) -> str:
         """Put an int enum.
 
-        :param input: Input int enum.
+        :param input: Input int enum. Default value is None.
         :type input: int or ~nonstringenums.models.IntEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)

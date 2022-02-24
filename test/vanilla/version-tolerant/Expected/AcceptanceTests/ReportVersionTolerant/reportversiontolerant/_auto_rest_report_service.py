@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 class AutoRestReportService(AutoRestReportServiceOperationsMixin):
     """Test Infrastructure for AutoRest.
 
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 

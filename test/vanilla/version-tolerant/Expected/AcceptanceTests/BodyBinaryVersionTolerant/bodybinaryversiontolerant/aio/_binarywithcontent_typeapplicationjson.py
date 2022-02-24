@@ -27,7 +27,7 @@ class BinaryWithContentTypeApplicationJson:
 
     :ivar upload: UploadOperations operations
     :vartype upload: bodybinaryversiontolerant.aio.operations.UploadOperations
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 

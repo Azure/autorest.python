@@ -74,9 +74,11 @@ def build_put_horse_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Put a horse with name 'General' and isAShowHorse false.
+     Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Put a horse with name 'General' and isAShowHorse false.
+     Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -162,10 +164,10 @@ def build_put_pet_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Put a pet with name 'Butter'.
+     our example to find the input shape. Put a pet with name 'Butter'. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Put a pet with name 'Butter'.
+     a byte iterator, or stream input). Put a pet with name 'Butter'. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -251,10 +253,12 @@ def build_put_feline_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Put a feline who hisses and doesn't meow.
+     our example to find the input shape. Put a feline who hisses and doesn't meow. Default value is
+     None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Put a feline who hisses and doesn't meow.
+     a byte iterator, or stream input). Put a feline who hisses and doesn't meow. Default value is
+     None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -344,11 +348,11 @@ def build_put_cat_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Put a cat with name 'Boots' where likesMilk and hisses is
-     false, meows is true.
+     false, meows is true. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Put a cat with name 'Boots' where likesMilk and hisses is
-     false, meows is true.
+     false, meows is true. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -443,11 +447,11 @@ def build_put_kitten_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Put a kitten with name 'Kitty' where likesMilk and hisses
-     is false, meows and eatsMiceYet is true.
+     is false, meows and eatsMiceYet is true. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Put a kitten with name 'Kitty' where likesMilk and hisses is
-     false, meows and eatsMiceYet is true.
+     false, meows and eatsMiceYet is true. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

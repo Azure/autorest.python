@@ -40,7 +40,7 @@ class MediaTypesClientOperationsMixin:
     async def analyze_body(self, input: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs: Any) -> str:
         """Analyze body, that could be different media types.
 
-        :param input: Input parameter.
+        :param input: Input parameter. Default value is None.
         :type input: IO or ~mediatypes.models.SourcePath
         :keyword str content_type: Media type of the body sent to the API. Default value is
          "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
@@ -105,7 +105,7 @@ class MediaTypesClientOperationsMixin:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
         type.
 
-        :param input: Input parameter.
+        :param input: Input parameter. Default value is None.
         :type input: IO or ~mediatypes.models.SourcePath
         :keyword str content_type: Media type of the body sent to the API. Default value is
          "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
@@ -163,7 +163,7 @@ class MediaTypesClientOperationsMixin:
     async def content_type_with_encoding(self, input: Optional[str] = None, **kwargs: Any) -> str:
         """Pass in contentType 'text/plain; charset=UTF-8' to pass test. Value for input does not matter.
 
-        :param input: Input parameter.
+        :param input: Input parameter. Default value is None.
         :type input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)

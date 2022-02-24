@@ -51,7 +51,7 @@ class OperationGroupOneOperations:
     ) -> "_models.ModelThree":
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
-        :param parameter_one: A ModelThree parameter.
+        :param parameter_one: A ModelThree parameter. Default value is None.
         :type parameter_one: ~multiapi.v3.models.ModelThree
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelThree, or the result of cls(response)

@@ -1732,8 +1732,8 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> "_models.ListContainersResponse"
         """Lists containers in a storage account.
 
-        :keyword comp: The default value is "list". Note that overriding this default value may result
-         in unsupported behavior.
+        :keyword comp:  Default value is "list". Note that overriding this default value may result in
+         unsupported behavior.
         :paramtype comp: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ListContainersResponse, or the result of cls(response)
@@ -1778,10 +1778,10 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> "_models.StorageServiceProperties"
         """Gets storage service properties.
 
-        :keyword comp: The default value is "properties". Note that overriding this default value may
+        :keyword comp:  Default value is "properties". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "service". Note that overriding this default value may
+        :keyword restype:  Default value is "service". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1833,10 +1833,10 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
 
         :param properties:
         :type properties: ~xmlservice.models.StorageServiceProperties
-        :keyword comp: The default value is "properties". Note that overriding this default value may
+        :keyword comp:  Default value is "properties". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "service". Note that overriding this default value may
+        :keyword restype:  Default value is "service". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1885,10 +1885,10 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> List["_models.SignedIdentifier"]
         """Gets storage ACLs for a container.
 
-        :keyword comp: The default value is "acl". Note that overriding this default value may result
-         in unsupported behavior.
+        :keyword comp:  Default value is "acl". Note that overriding this default value may result in
+         unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "container". Note that overriding this default value may
+        :keyword restype:  Default value is "container". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1940,10 +1940,10 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
 
         :param properties:
         :type properties: list[~xmlservice.models.SignedIdentifier]
-        :keyword comp: The default value is "acl". Note that overriding this default value may result
-         in unsupported behavior.
+        :keyword comp:  Default value is "acl". Note that overriding this default value may result in
+         unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "container". Note that overriding this default value may
+        :keyword restype:  Default value is "container". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1995,10 +1995,10 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> "_models.ListBlobsResponse"
         """Lists blobs in a storage container.
 
-        :keyword comp: The default value is "list". Note that overriding this default value may result
-         in unsupported behavior.
+        :keyword comp:  Default value is "list". Note that overriding this default value may result in
+         unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "container". Note that overriding this default value may
+        :keyword restype:  Default value is "container". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2049,7 +2049,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
-        :param id:
+        :param id:  Default value is None.
         :type id: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -2218,7 +2218,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Put an XML document with binary property.
 
-        :param bytes:
+        :param bytes:  Default value is None.
         :type bytes: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -2307,7 +2307,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Put an XML document with uri property.
 
-        :param url:
+        :param url:  Default value is None.
         :type url: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

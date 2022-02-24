@@ -44,7 +44,7 @@ class AutoRestHttpInfrastructureTestService:  # pylint: disable=too-many-instanc
     :vartype http_retry: httpinfrastructure.aio.operations.HttpRetryOperations
     :ivar multiple_responses: MultipleResponsesOperations operations
     :vartype multiple_responses: httpinfrastructure.aio.operations.MultipleResponsesOperations
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     """
 

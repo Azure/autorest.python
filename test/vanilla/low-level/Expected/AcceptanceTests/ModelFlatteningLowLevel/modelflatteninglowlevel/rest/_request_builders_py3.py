@@ -27,10 +27,11 @@ def build_put_array_request(*, json: JSONType = None, content: Any = None, **kwa
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. External Resource as an Array to put.
+     our example to find the input shape. External Resource as an Array to put. Default value is
+     None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). External Resource as an Array to put.
+     a byte iterator, or stream input). External Resource as an Array to put. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -127,10 +128,11 @@ def build_put_wrapped_array_request(*, json: JSONType = None, content: Any = Non
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. External Resource as an Array to put.
+     our example to find the input shape. External Resource as an Array to put. Default value is
+     None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). External Resource as an Array to put.
+     a byte iterator, or stream input). External Resource as an Array to put. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -206,10 +208,12 @@ def build_put_dictionary_request(*, json: JSONType = None, content: Any = None, 
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. External Resource as a Dictionary to put.
+     our example to find the input shape. External Resource as a Dictionary to put. Default value is
+     None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). External Resource as a Dictionary to put.
+     a byte iterator, or stream input). External Resource as a Dictionary to put. Default value is
+     None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -314,10 +318,12 @@ def build_put_resource_collection_request(*, json: JSONType = None, content: Any
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. External Resource as a ResourceCollection to put.
+     our example to find the input shape. External Resource as a ResourceCollection to put. Default
+     value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). External Resource as a ResourceCollection to put.
+     a byte iterator, or stream input). External Resource as a ResourceCollection to put. Default
+     value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -512,10 +518,10 @@ def build_put_simple_product_request(*, json: JSONType = None, content: Any = No
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple body product to put.
+     our example to find the input shape. Simple body product to put. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple body product to put.
+     a byte iterator, or stream input). Simple body product to put. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -586,10 +592,10 @@ def build_post_flattened_simple_product_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple body product to post.
+     our example to find the input shape. Simple body product to post. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple body product to post.
+     a byte iterator, or stream input). Simple body product to post. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -662,10 +668,10 @@ def build_put_simple_product_with_grouping_request(
     :param name: Product name with value 'groupproduct'.
     :type name: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple body product to put.
+     our example to find the input shape. Simple body product to put. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple body product to put.
+     a byte iterator, or stream input). Simple body product to put. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

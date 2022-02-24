@@ -667,7 +667,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
          "empty".
         :type scenario: str
         :param value: Send a post request with header values "The quick brown fox jumps over the lazy
-         dog" or null or "".
+         dog" or null or "". Default value is None.
         :type value: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -925,7 +925,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
         :param value: Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon,
-         01 Jan 0001 00:00:00 GMT".
+         01 Jan 0001 00:00:00 GMT". Default value is None.
         :type value: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1180,7 +1180,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :param scenario: Send a post request with header values "scenario": "valid" or "null" or
          "empty".
         :type scenario: str
-        :param value: Send a post request with header values 'GREY'.
+        :param value: Send a post request with header values 'GREY'. Default value is None.
         :type value: str or ~header.models.GreyscaleColors
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

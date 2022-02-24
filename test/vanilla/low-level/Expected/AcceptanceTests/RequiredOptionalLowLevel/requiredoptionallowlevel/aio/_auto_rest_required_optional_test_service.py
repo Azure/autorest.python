@@ -28,9 +28,9 @@ class AutoRestRequiredOptionalTestService:
     :type required_global_path: str
     :param required_global_query: number of items to skip.
     :type required_global_query: str
-    :param optional_global_query: number of items to skip.
+    :param optional_global_query: number of items to skip. Default value is None.
     :type optional_global_query: int
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 

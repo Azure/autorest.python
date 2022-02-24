@@ -22,7 +22,7 @@ from .operations import AutoRestReportServiceOperationsMixin
 class AutoRestReportService(AutoRestReportServiceOperationsMixin):
     """Test Infrastructure for AutoRest.
 
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     """
 

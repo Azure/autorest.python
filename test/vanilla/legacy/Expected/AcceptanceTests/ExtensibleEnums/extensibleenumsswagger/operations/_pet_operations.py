@@ -162,7 +162,7 @@ class PetOperations(object):
         # type: (...) -> "_models.Pet"
         """add pet.
 
-        :param pet_param: pet param.
+        :param pet_param: pet param. Default value is None.
         :type pet_param: ~extensibleenumsswagger.models.Pet
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet, or the result of cls(response)

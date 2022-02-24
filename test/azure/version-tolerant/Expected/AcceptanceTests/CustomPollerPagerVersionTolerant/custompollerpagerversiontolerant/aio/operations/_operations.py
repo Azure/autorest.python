@@ -27,6 +27,7 @@ from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 from custompollerpagerdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
 
 from ...operations._operations import (
+    build_paging_duplicate_params_request,
     build_paging_first_response_empty_request,
     build_paging_get_multiple_pages_failure_request,
     build_paging_get_multiple_pages_failure_uri_request,
@@ -340,9 +341,10 @@ class PagingOperations:
     ) -> AsyncIterable[JSONType]:
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :keyword client_request_id:
+        :keyword client_request_id:  Default value is None.
         :paramtype client_request_id: str
-        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :keyword maxresults: Sets the maximum number of items to return in the response. Default value
+         is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds.
@@ -424,8 +426,8 @@ class PagingOperations:
          pass test.
         :paramtype required_query_parameter: int
         :keyword query_constant: A constant. Must be True and will be passed as a query parameter to
-         nextOperationWithQueryParams. The default value is True. Note that overriding this default
-         value may result in unsupported behavior.
+         nextOperationWithQueryParams. Default value is True. Note that overriding this default value
+         may result in unsupported behavior.
         :paramtype query_constant: bool
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
@@ -495,6 +497,78 @@ class PagingOperations:
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
+    def duplicate_params(self, *, filter: Optional[str] = None, **kwargs: Any) -> AsyncIterable[JSONType]:
+        """Define ``filter`` as a query param for all calls. However, the returned next link will also
+        include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
+        param in the url sent.
+
+        :keyword filter: OData filter options. Pass in 'foo'. Default value is None.
+        :paramtype filter: str
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str",  # Optional.
+                    "values": [
+                        {
+                            "properties": {
+                                "id": 0,  # Optional.
+                                "name": "str"  # Optional.
+                            }
+                        }
+                    ]
+                }
+        """
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop("error_map", {}))
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                request = build_paging_duplicate_params_request(
+                    filter=filter,
+                )
+                request.url = self._client.format_url(request.url)
+
+            else:
+
+                request = build_paging_duplicate_params_request(
+                    filter=filter,
+                )
+                request.url = self._client.format_url(next_link)
+                request.method = "GET"
+            return request
+
+        async def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = deserialized["values"]
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.get("nextLink", None), AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+                request, stream=False, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
+
+    @distributed_trace
     def get_odata_multiple_pages(
         self,
         *,
@@ -505,9 +579,10 @@ class PagingOperations:
     ) -> AsyncIterable[JSONType]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
-        :keyword client_request_id:
+        :keyword client_request_id:  Default value is None.
         :paramtype client_request_id: str
-        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :keyword maxresults: Sets the maximum number of items to return in the response. Default value
+         is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds.
@@ -594,9 +669,10 @@ class PagingOperations:
 
         :param offset: Offset of return value.
         :type offset: int
-        :keyword client_request_id:
+        :keyword client_request_id:  Default value is None.
         :paramtype client_request_id: str
-        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :keyword maxresults: Sets the maximum number of items to return in the response. Default value
+         is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds.
@@ -1196,9 +1272,10 @@ class PagingOperations:
     ) -> AsyncCustomPoller[AsyncItemPaged[JSONType]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :keyword client_request_id:
+        :keyword client_request_id:  Default value is None.
         :paramtype client_request_id: str
-        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :keyword maxresults: Sets the maximum number of items to return in the response. Default value
+         is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds.

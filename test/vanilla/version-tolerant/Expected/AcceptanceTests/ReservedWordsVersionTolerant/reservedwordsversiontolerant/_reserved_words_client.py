@@ -27,7 +27,7 @@ class ReservedWordsClient(ReservedWordsClientOperationsMixin):
 
     :ivar import_operations: ImportOperations operations
     :vartype import_operations: reservedwordsversiontolerant.operations.ImportOperations
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 

@@ -71,7 +71,7 @@ class AutoRestReportServiceOperationsMixin(object):
 
         :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
          in for Python). The only effect is, that generators that run all tests several times, can
-         distinguish the generated reports.
+         distinguish the generated reports. Default value is None.
         :paramtype qualifier: str
         :return: dict mapping str to int
         :rtype: dict[str, int]
@@ -119,7 +119,7 @@ class AutoRestReportServiceOperationsMixin(object):
 
         :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
          in for Python). The only effect is, that generators that run all tests several times, can
-         distinguish the generated reports.
+         distinguish the generated reports. Default value is None.
         :paramtype qualifier: str
         :return: dict mapping str to int
         :rtype: dict[str, int]

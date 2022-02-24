@@ -575,7 +575,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
          "empty".
         :paramtype scenario: str
         :keyword value: Send a post request with header values "The quick brown fox jumps over the lazy
-         dog" or null or "".
+         dog" or null or "". Default value is None.
         :paramtype value: str
         :return: None
         :rtype: None
@@ -797,7 +797,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
         :paramtype scenario: str
         :keyword value: Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon,
-         01 Jan 0001 00:00:00 GMT".
+         01 Jan 0001 00:00:00 GMT". Default value is None.
         :paramtype value: ~datetime.datetime
         :return: None
         :rtype: None
@@ -1017,7 +1017,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
          "empty".
         :paramtype scenario: str
         :keyword value: Send a post request with header values 'GREY'. Possible values are: "White",
-         "black", and "GREY".
+         "black", and "GREY". Default value is None.
         :paramtype value: str
         :return: None
         :rtype: None
