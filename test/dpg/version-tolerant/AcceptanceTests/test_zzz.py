@@ -46,6 +46,10 @@ class TestAcceptance(object):
 
         # Please add missing features or failing tests here
         missing_features_or_bugs = {
+            'DPGAddOptionalInput_NoParams': 1,
+            'DPGAddOptionalInput_RequiredOptionalParam': 1,
+            'DPGAddOptionalInput_OptionalParam': 1,
+            'DPGGlassBreaker': 1,
         }
         for name in support_dict:
             if "DPG" not in name:
