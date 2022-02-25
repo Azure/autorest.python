@@ -62,6 +62,11 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
     def is_keyword_only(self) -> bool:
         return not self.location == ParameterLocation.Path and not self.is_kwarg
 
+    @is_keyword_only.setter
+    def is_keyword_only(self, val: bool) -> None:
+        self._keyword_only = val
+        self.is_kwarg = False
+
     @property
     def full_serialized_name(self) -> str:
         return self.serialized_name

@@ -13,6 +13,7 @@
 **Bug Fixes**
 
 - Add default value consistently for parameters #1164
+- Make `content_type` param keyword-only if there are multiple content types #1167
 
 ### 2022-02-09 - 5.12.6
 
