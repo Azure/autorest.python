@@ -62,6 +62,26 @@ jobs:
           npm install -g autorest
           npm install
         displayName: 'Prepare Environment for Generation'
+      - script: |
+          pylint autorest
+        displayName: 'Pylint'
+      - script: |
+          mypy autorest
+        displayName: 'Mypy'
+      - script: |
+          pytest test/unittests
+        displayName: 'Unit tests'
+      - script: |
+          inv regenerate
+        displayName: 'Regenerate Code'
+      - script: |
+          git add -A  # 'add' first so 'diff' includes untracked files
+          git diff --staged -w
+        displayName: 'Diff regeneration'
+      - task: UsePythonVersion@0
+        displayName: 'Use Python $(PythonVersion)'
+        inputs:
+          versionSpec: $(PythonVersion)
 
       - script: |
           pip install pip==20.2
@@ -183,8 +203,6 @@ jobs:
         displayName: "Test tarball"
 
       - script: |
-          ls $(Build.SourcesDirectory)/coverage/
-          cat $(Build.SourcesDirectory)/coverage/report-dpg.json
           npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
         workingDirectory: node_modules/@microsoft.azure/autorest.testserver
         displayName: "Publish coverage report to storage account"
