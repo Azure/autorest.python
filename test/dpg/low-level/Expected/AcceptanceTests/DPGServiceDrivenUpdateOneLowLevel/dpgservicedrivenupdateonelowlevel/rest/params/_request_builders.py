@@ -180,8 +180,8 @@ def build_post_parameters_request(
      a byte iterator, or stream input). I am a body parameter with a new content type. My only valid
      JSON entry is { url: "http://example.org/myimage.jpeg" }. Default value is None.
     :paramtype content: any
-    :keyword str content_type: Media type of the body sent to the API. Default value is
-     "application/json". Allowed values are: "image/jpeg", "application/json."
+    :keyword content_type: Media type of the body sent to the API. Possible values are:
+     "image/jpeg" or "application/json". Default value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.

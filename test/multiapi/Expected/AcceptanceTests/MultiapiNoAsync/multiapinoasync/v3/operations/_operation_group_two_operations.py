@@ -120,9 +120,10 @@ class OperationGroupTwoOperations(object):
 
         :param input: Input parameter. Default value is None.
         :type input: IO or ~multiapinoasync.v3.models.SourcePath
-        :keyword str content_type: Media type of the body sent to the API. Default value is
-         "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
-         "image/tiff", "application/json."
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
+         value is "application/json".
+        :paramtype content_type: str or ~multiapinoasync.v3.models.ContentType
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None

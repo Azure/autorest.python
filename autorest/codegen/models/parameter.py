@@ -68,7 +68,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         grouped_by: Optional["Parameter"] = None,
         original_parameter: Optional["Parameter"] = None,
         client_default_value: Optional[Any] = None,
-        keyword_only: bool = False,
+        keyword_only: Optional[bool] = None,
         content_types: Optional[List[str]] = None,
     ) -> None:
         super().__init__(yaml_data)
@@ -118,8 +118,6 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
                 description += f" Default value is {self.default_value_declaration}."
             if self.constant:
                 description += " Note that overriding this default value may result in unsupported behavior."
-            if self.default_value_declaration:
-                description += f" The default value is {self.default_value_declaration}."
             return description
         except AttributeError:
             pass
@@ -308,7 +306,12 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     @property
     def is_keyword_only(self) -> bool:
         # this means in async mode, I am documented like def hello(positional_1, *, me!)
-        return self._keyword_only
+        return self._keyword_only or False
+
+    @is_keyword_only.setter
+    def is_keyword_only(self, val: bool) -> None:
+        self._keyword_only = val
+        self.is_kwarg = False
 
     @property
     def is_hidden(self) -> bool:
@@ -367,6 +370,8 @@ class ParameterOnlyPathAndBodyPositional(Parameter):
 
     @property
     def is_keyword_only(self) -> bool:
+        if self._keyword_only is not None:
+            return self._keyword_only
         return self.in_method_signature and not (
             self.is_hidden or
             self.location == ParameterLocation.Path or
@@ -374,6 +379,11 @@ class ParameterOnlyPathAndBodyPositional(Parameter):
             self.location == ParameterLocation.Body or
             self.is_kwarg
         )
+
+    @is_keyword_only.setter
+    def is_keyword_only(self, val: bool) -> None:
+        self._keyword_only = val
+        self.is_kwarg = False
 
 def get_parameter(code_model):
     if code_model.options["only_path_and_body_params_positional"]:
