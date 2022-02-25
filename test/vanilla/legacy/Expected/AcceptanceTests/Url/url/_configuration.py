@@ -26,7 +26,7 @@ class AutoRestUrlTestServiceConfiguration(Configuration):  # pylint: disable=too
 
     :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
     :type global_string_path: str
-    :param global_string_query: should contain value null.
+    :param global_string_query: should contain value null. Default value is None.
     :type global_string_query: str
     """
 

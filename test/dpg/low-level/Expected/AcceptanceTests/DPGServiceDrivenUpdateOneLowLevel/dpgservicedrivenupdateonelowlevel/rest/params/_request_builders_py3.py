@@ -19,12 +19,13 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_head_no_params_request(*, new_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    """Head request, no params.
+    """Head request, no params. Initially has no query parameters. After evolution, a new optional
+    query parameter is added.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword new_parameter: I'm a new input optional parameter.
+    :keyword new_parameter: I'm a new input optional parameter. Default value is None.
     :paramtype new_parameter: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -50,13 +51,15 @@ def build_head_no_params_request(*, new_parameter: Optional[str] = None, **kwarg
 
 def build_get_required_request(*, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Get true Boolean value on path.
+     Initially only has one required Query Parameter. After evolution, a new optional query
+    parameter is added.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
     :keyword parameter: I am a required parameter.
     :paramtype parameter: str
-    :keyword new_parameter: I'm a new input optional parameter.
+    :keyword new_parameter: I'm a new input optional parameter. Default value is None.
     :paramtype new_parameter: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -84,16 +87,17 @@ def build_get_required_request(*, parameter: str, new_parameter: Optional[str] =
 def build_put_required_optional_request(
     *, required_param: str, optional_param: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
-    """Put, has both required and optional params.
+    """Initially has one required query parameter and one optional query parameter.  After evolution,
+    a new optional query parameter is added.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
     :keyword required_param: I am a required parameter.
     :paramtype required_param: str
-    :keyword optional_param: I am an optional parameter.
+    :keyword optional_param: I am an optional parameter. Default value is None.
     :paramtype optional_param: str
-    :keyword new_parameter: I'm a new input optional parameter.
+    :keyword new_parameter: I'm a new input optional parameter. Default value is None.
     :paramtype new_parameter: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -128,11 +132,11 @@ def build_post_parameters_request(*, json: JSONType = None, content: Any = None,
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. I am a body parameter with a new content type. My only
-     valid JSON entry is { url: "http://example.org/myimage.jpeg" }.
+     valid JSON entry is { url: "http://example.org/myimage.jpeg" }. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). I am a body parameter with a new content type. My only valid
-     JSON entry is { url: "http://example.org/myimage.jpeg" }.
+     JSON entry is { url: "http://example.org/myimage.jpeg" }. Default value is None.
     :paramtype content: any
     :keyword str content_type: Media type of the body sent to the API. Default value is
      "application/json". Allowed values are: "image/jpeg", "application/json."
@@ -165,6 +169,8 @@ def build_post_parameters_request(*, json: JSONType = None, content: Any = None,
 
 def build_delete_parameters_request(**kwargs: Any) -> HttpRequest:
     """Delete something.
+     Initially the path exists but there is no delete method. After evolution this is a new method
+    in a known path.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
@@ -185,13 +191,15 @@ def build_get_optional_request(
     *, optional_param: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     """Get true Boolean value on path.
+     Initially has one optional query parameter. After evolution, a new optional query parameter is
+    added.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword optional_param: I am an optional parameter.
+    :keyword optional_param: I am an optional parameter. Default value is None.
     :paramtype optional_param: str
-    :keyword new_parameter: I'm a new input optional parameter.
+    :keyword new_parameter: I'm a new input optional parameter. Default value is None.
     :paramtype new_parameter: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -219,6 +227,8 @@ def build_get_optional_request(
 
 def build_get_new_operation_request(**kwargs: Any) -> HttpRequest:
     """I'm a new operation.
+     Initiallty neither path or method exist for this operation. After evolution, this is a new
+    method in a new path.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.

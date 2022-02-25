@@ -933,7 +933,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Put big double value 99999999.99.
 
-        :keyword number_body: The default value is 99999999.99. Note that overriding this default value
+        :keyword number_body:  Default value is 99999999.99. Note that overriding this default value
          may result in unsupported behavior.
         :paramtype number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1019,8 +1019,8 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Put big double value -99999999.99.
 
-        :keyword number_body: The default value is -99999999.99. Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword number_body:  Default value is -99999999.99. Note that overriding this default value
+         may result in unsupported behavior.
         :paramtype number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1193,7 +1193,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Put big decimal value 99999999.99.
 
-        :keyword number_body: The default value is 99999999.99. Note that overriding this default value
+        :keyword number_body:  Default value is 99999999.99. Note that overriding this default value
          may result in unsupported behavior.
         :paramtype number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1279,8 +1279,8 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Put big decimal value -99999999.99.
 
-        :keyword number_body: The default value is -99999999.99. Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword number_body:  Default value is -99999999.99. Note that overriding this default value
+         may result in unsupported behavior.
         :paramtype number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

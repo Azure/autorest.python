@@ -1107,8 +1107,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     async def list_containers(self, **kwargs: Any) -> JSONType:
         """Lists containers in a storage account.
 
-        :keyword comp: The default value is "list". Note that overriding this default value may result
-         in unsupported behavior.
+        :keyword comp:  Default value is "list". Note that overriding this default value may result in
+         unsupported behavior.
         :paramtype comp: str
         :return: JSON object
         :rtype: JSONType
@@ -1181,10 +1181,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     async def get_service_properties(self, **kwargs: Any) -> JSONType:
         """Gets storage service properties.
 
-        :keyword comp: The default value is "properties". Note that overriding this default value may
+        :keyword comp:  Default value is "properties". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "service". Note that overriding this default value may
+        :keyword restype:  Default value is "service". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
         :return: JSON object
@@ -1315,10 +1315,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param properties:
         :type properties: JSONType
-        :keyword comp: The default value is "properties". Note that overriding this default value may
+        :keyword comp:  Default value is "properties". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "service". Note that overriding this default value may
+        :keyword restype:  Default value is "service". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
         :return: None
@@ -1443,10 +1443,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     async def get_acls(self, **kwargs: Any) -> List[JSONType]:
         """Gets storage ACLs for a container.
 
-        :keyword comp: The default value is "acl". Note that overriding this default value may result
-         in unsupported behavior.
+        :keyword comp:  Default value is "acl". Note that overriding this default value may result in
+         unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "container". Note that overriding this default value may
+        :keyword restype:  Default value is "container". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
         :return: list of JSON object
@@ -1511,10 +1511,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         :param properties:
         :type properties: list[JSONType]
-        :keyword comp: The default value is "acl". Note that overriding this default value may result
-         in unsupported behavior.
+        :keyword comp:  Default value is "acl". Note that overriding this default value may result in
+         unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "container". Note that overriding this default value may
+        :keyword restype:  Default value is "container". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
         :return: None
@@ -1573,10 +1573,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     async def list_blobs(self, **kwargs: Any) -> JSONType:
         """Lists blobs in a storage container.
 
-        :keyword comp: The default value is "list". Note that overriding this default value may result
-         in unsupported behavior.
+        :keyword comp:  Default value is "list". Note that overriding this default value may result in
+         unsupported behavior.
         :paramtype comp: str
-        :keyword restype: The default value is "container". Note that overriding this default value may
+        :keyword restype:  Default value is "container". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
         :return: JSON object

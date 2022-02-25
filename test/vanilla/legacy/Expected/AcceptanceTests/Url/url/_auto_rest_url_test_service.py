@@ -35,9 +35,9 @@ class AutoRestUrlTestService(object):
     :vartype path_items: url.operations.PathItemsOperations
     :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
     :type global_string_path: str
-    :param global_string_query: should contain value null.
+    :param global_string_query: should contain value null. Default value is None.
     :type global_string_query: str
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     """
 

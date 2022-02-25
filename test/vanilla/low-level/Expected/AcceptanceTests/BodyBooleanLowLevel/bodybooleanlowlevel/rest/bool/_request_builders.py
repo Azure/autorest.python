@@ -63,7 +63,7 @@ def build_put_true_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: The default value is True. Note that overriding this default value may result in
+    :keyword json:  Default value is True. Note that overriding this default value may result in
      unsupported behavior.
     :paramtype json: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -134,8 +134,8 @@ def build_put_false_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: The default value is False. Note that overriding this default value may result
-     in unsupported behavior.
+    :keyword json:  Default value is False. Note that overriding this default value may result in
+     unsupported behavior.
     :paramtype json: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

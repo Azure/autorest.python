@@ -404,7 +404,7 @@ class ReservedWordsClientOperationsMixin(object):
          code. Pass in 'x-ms-header' to pass.
         :paramtype header_parameters: str
         :keyword query_parameters: Query args that uses same name as queryParameters in generated code.
-         Pass in ['one', 'two'] to pass test.
+         Pass in ['one', 'two'] to pass test. Default value is None.
         :paramtype query_parameters: list[str]
         :return: any
         :rtype: any

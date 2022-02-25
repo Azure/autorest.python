@@ -70,7 +70,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2".
+        :keyword input: Possible values are: "value1" or "value2". Default value is None.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -105,7 +105,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2".
+        :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -140,7 +140,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: The default value is "value1".
+        :keyword input:  Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -175,7 +175,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: The default value is "value1".
+        :keyword input:  Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -245,7 +245,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2".
+        :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -280,8 +280,8 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: The default value is "value1". Note that overriding this default value may
-         result in unsupported behavior.
+        :keyword input:  Default value is "value1". Note that overriding this default value may result
+         in unsupported behavior.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -318,8 +318,8 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: The default value is "value1". Note that overriding this default value may
-         result in unsupported behavior.
+        :keyword input:  Default value is "value1". Note that overriding this default value may result
+         in unsupported behavior.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -356,7 +356,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2".
+        :keyword input: Possible values are: "value1" or "value2". Default value is None.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -391,7 +391,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2".
+        :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -426,7 +426,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: "value1"
+        :keyword input: "value1" Default value is None.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -461,7 +461,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: "value1"
+        :keyword input: "value1" Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -531,7 +531,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2".
+        :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -601,7 +601,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: "value1"
+        :keyword input: "value1" Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None

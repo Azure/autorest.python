@@ -112,6 +112,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
                 if description:
                     description += " "
                 description += f"{self.schema.extra_description_information}"
+            if self.has_default_value and not any(
+                l for l in ["default value is", "default is"] if l in description.lower()
+            ):
+                description += f" Default value is {self.default_value_declaration}."
             if self.constant:
                 description += " Note that overriding this default value may result in unsupported behavior."
             if self.default_value_declaration:

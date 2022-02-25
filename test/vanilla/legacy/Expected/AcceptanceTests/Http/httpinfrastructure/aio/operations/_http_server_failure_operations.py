@@ -129,7 +129,7 @@ class HttpServerFailureOperations:
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Default value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -176,7 +176,7 @@ class HttpServerFailureOperations:
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. The default value is True.
+        :param boolean_value: Simple boolean value true. Default value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

@@ -25,7 +25,7 @@ class LROWithParamaterizedEndpoints:
     """Test Infrastructure for AutoRest.
 
     :param host: A string value that is used as a global part of the parameterized host. Pass in
-     'host:3000' to pass test.
+     'host:3000' to pass test. Default value is "host".
     :type host: str
     """
 

@@ -56,7 +56,7 @@ class PathsOperations:
         :type secret: str
         :param key_name: The key name with value 'key1'.
         :type key_name: str
-        :keyword key_version: The key version. Default value 'v1'.
+        :keyword key_version: The key version. Default value 'v1'. Default value is "v1".
         :paramtype key_version: str
         :return: None
         :rtype: None

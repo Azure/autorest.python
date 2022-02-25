@@ -29,7 +29,7 @@ class MultiapiServiceClientOperationsMixin(object):
         # type: (...) -> LROPoller["_models.Product"]
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~multiapinoasync.v1.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -65,9 +65,9 @@ class MultiapiServiceClientOperationsMixin(object):
         # type: (...) -> LROPoller[ItemPaged["_models.PagingResult"]]
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :param client_request_id:
+        :param client_request_id:  Default value is None.
         :type client_request_id: str
-        :param test_lro_and_paging_options: Parameter group.
+        :param test_lro_and_paging_options: Parameter group. Default value is None.
         :type test_lro_and_paging_options: ~multiapinoasync.v1.models.TestLroAndPagingOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -108,9 +108,9 @@ class MultiapiServiceClientOperationsMixin(object):
 
         :param greeting_in_english: pass in 'hello' to pass test.
         :type greeting_in_english: str
-        :param greeting_in_chinese: pass in 'nihao' to pass test.
+        :param greeting_in_chinese: pass in 'nihao' to pass test. Default value is None.
         :type greeting_in_chinese: str
-        :param greeting_in_french: pass in 'bonjour' to pass test.
+        :param greeting_in_french: pass in 'bonjour' to pass test. Default value is None.
         :type greeting_in_french: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -145,7 +145,7 @@ class MultiapiServiceClientOperationsMixin(object):
 
         :param id: An int parameter.
         :type id: int
-        :param message: An optional string parameter.
+        :param message: An optional string parameter. Default value is None.
         :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

@@ -24,7 +24,8 @@ class AutoRestParameterizedHostTestClient:
 
     :ivar paths: PathsOperations operations
     :vartype paths: custombaseurl.aio.operations.PathsOperations
-    :param host: A string value that is used as a global part of the parameterized host.
+    :param host: A string value that is used as a global part of the parameterized host. Default
+     value is "host".
     :type host: str
     """
 

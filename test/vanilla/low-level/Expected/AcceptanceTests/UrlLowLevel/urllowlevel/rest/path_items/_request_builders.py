@@ -42,11 +42,11 @@ def build_get_all_with_values_request(
     :param local_string_path: should contain value 'localStringPath'.
     :type local_string_path: str
     :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-     parameter.
+     parameter. Default value is None.
     :paramtype path_item_string_query: str
-    :keyword global_string_query: should contain value null.
+    :keyword global_string_query: should contain value null. Default value is None.
     :paramtype global_string_query: str
-    :keyword local_string_query: should contain value 'localStringQuery'.
+    :keyword local_string_query: should contain value 'localStringQuery'. Default value is None.
     :paramtype local_string_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -112,11 +112,11 @@ def build_get_global_query_null_request(
     :param local_string_path: should contain value 'localStringPath'.
     :type local_string_path: str
     :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-     parameter.
+     parameter. Default value is None.
     :paramtype path_item_string_query: str
-    :keyword global_string_query: should contain value null.
+    :keyword global_string_query: should contain value null. Default value is None.
     :paramtype global_string_query: str
-    :keyword local_string_query: should contain value 'localStringQuery'.
+    :keyword local_string_query: should contain value 'localStringQuery'. Default value is None.
     :paramtype local_string_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -182,11 +182,11 @@ def build_get_global_and_local_query_null_request(
     :param local_string_path: should contain value 'localStringPath'.
     :type local_string_path: str
     :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-     parameter.
+     parameter. Default value is None.
     :paramtype path_item_string_query: str
-    :keyword global_string_query: should contain value null.
+    :keyword global_string_query: should contain value null. Default value is None.
     :paramtype global_string_query: str
-    :keyword local_string_query: should contain null value.
+    :keyword local_string_query: should contain null value. Default value is None.
     :paramtype local_string_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -251,11 +251,11 @@ def build_get_local_path_item_query_null_request(
     :type global_string_path: str
     :param local_string_path: should contain value 'localStringPath'.
     :type local_string_path: str
-    :keyword path_item_string_query: should contain value null.
+    :keyword path_item_string_query: should contain value null. Default value is None.
     :paramtype path_item_string_query: str
-    :keyword global_string_query: should contain value null.
+    :keyword global_string_query: should contain value null. Default value is None.
     :paramtype global_string_query: str
-    :keyword local_string_query: should contain value null.
+    :keyword local_string_query: should contain value null. Default value is None.
     :paramtype local_string_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

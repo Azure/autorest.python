@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 class MergePatchJsonClient(MergePatchJsonClientOperationsMixin):
     """Service client for testing merge patch json.
 
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     """
 
