@@ -62,7 +62,7 @@ jobs:
           npm install -g autorest
           npm install
         displayName: 'Prepare Environment for Generation'
-        
+
       - script: |
           pip install pip==20.2
           pip install tox coverage
@@ -183,6 +183,8 @@ jobs:
         displayName: "Test tarball"
 
       - script: |
+          ls $(Build.SourcesDirectory)/coverage/
+          cat $(Build.SourcesDirectory)/coverage/report-dpg.json
           npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
         workingDirectory: node_modules/@microsoft.azure/autorest.testserver
         displayName: "Publish coverage report to storage account"
