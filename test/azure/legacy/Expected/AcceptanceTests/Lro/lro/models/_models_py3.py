@@ -14,7 +14,6 @@ from ._auto_rest_long_running_operation_test_service_enums import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from . import OperationResultError
     import __init__ as _models
 
 

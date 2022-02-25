@@ -16,22 +16,6 @@ from ._auto_rest_swagger_batxml_service_enums import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from . import (
-        AccessPolicy,
-        Blob,
-        BlobPrefix,
-        BlobProperties,
-        Blobs,
-        ComplexTypeNoMeta,
-        ComplexTypeWithMeta,
-        Container,
-        ContainerProperties,
-        CorsRule,
-        Logging,
-        Metrics,
-        RetentionPolicy,
-        Slide,
-    )
     import __init__ as _models
 
 

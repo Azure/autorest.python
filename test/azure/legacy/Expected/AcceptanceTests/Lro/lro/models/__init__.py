@@ -30,6 +30,7 @@ from ._auto_rest_long_running_operation_test_service_enums import (
 )
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
+from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
     "OperationResult",
@@ -44,3 +45,4 @@ __all__ = [
     "SubProductPropertiesProvisioningStateValues",
 ]
 __all__.extend(_patch_all)
+_patch_sdk()

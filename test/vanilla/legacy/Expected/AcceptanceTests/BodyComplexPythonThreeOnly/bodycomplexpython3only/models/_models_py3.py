@@ -16,7 +16,6 @@ from ._auto_rest_complex_test_service_enums import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from . import Dog, DotFish, DotSalmon, Fish
     import __init__ as _models
 
 

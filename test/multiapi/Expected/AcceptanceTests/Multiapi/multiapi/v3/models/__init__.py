@@ -22,6 +22,7 @@ from ._multiapi_service_client_enums import (
 )
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
+from ._patch import patch_sdk as _patch_sdk
 __all__ = [
     'Error',
     'ModelThree',
@@ -30,3 +31,4 @@ __all__ = [
     'ContentType',
 ]
 __all__.extend(_patch_all)
+_patch_sdk()

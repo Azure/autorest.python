@@ -15,7 +15,6 @@ from ._storage_management_client_enums import *
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from . import Bar, CustomDomain, Endpoints, Foo, StorageAccount, Usage, UsageName
     import __init__ as _models
 
 

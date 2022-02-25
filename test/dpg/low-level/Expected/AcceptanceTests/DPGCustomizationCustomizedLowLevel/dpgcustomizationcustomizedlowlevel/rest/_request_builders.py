@@ -91,10 +91,10 @@ def build_post_model_request(
      before returning to users.
     :type mode: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Please put {'hello': 'world!'}.
+     our example to find the input shape. Please put {'hello': 'world!'}. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put {'hello': 'world!'}.
+     a byte iterator, or stream input). Please put {'hello': 'world!'}. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

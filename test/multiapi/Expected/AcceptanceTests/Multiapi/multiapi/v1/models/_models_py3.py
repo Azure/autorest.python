@@ -13,7 +13,6 @@ import msrest.serialization
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from . import Product
     import __init__ as _models
 
 

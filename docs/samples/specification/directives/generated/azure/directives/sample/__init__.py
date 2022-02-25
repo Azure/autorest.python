@@ -17,7 +17,6 @@ try:
 except ImportError:
     _patch_all = []
 from ._patch import patch_sdk as _patch_sdk
-
 __all__ = ['PollingPagingExample']
 __all__.extend(_patch_all)
 
