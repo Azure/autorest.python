@@ -27,7 +27,7 @@ class AutoRestDateTestService:
 
     :ivar date: DateOperations operations
     :vartype date: bodydateversiontolerant.operations.DateOperations
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 

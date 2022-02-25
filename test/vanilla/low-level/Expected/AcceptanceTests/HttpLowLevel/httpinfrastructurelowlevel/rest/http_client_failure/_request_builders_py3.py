@@ -94,10 +94,10 @@ def build_put400_request(*, json: JSONType = None, content: Any = None, **kwargs
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true.
+     our example to find the input shape. Simple boolean value true. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple boolean value true.
+     a byte iterator, or stream input). Simple boolean value true. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -133,10 +133,10 @@ def build_patch400_request(*, json: JSONType = None, content: Any = None, **kwar
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true.
+     our example to find the input shape. Simple boolean value true. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple boolean value true.
+     a byte iterator, or stream input). Simple boolean value true. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -172,10 +172,10 @@ def build_post400_request(*, json: JSONType = None, content: Any = None, **kwarg
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true.
+     our example to find the input shape. Simple boolean value true. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple boolean value true.
+     a byte iterator, or stream input). Simple boolean value true. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -211,10 +211,10 @@ def build_delete400_request(*, json: JSONType = None, content: Any = None, **kwa
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true.
+     our example to find the input shape. Simple boolean value true. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple boolean value true.
+     a byte iterator, or stream input). Simple boolean value true. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -342,10 +342,10 @@ def build_put404_request(*, json: JSONType = None, content: Any = None, **kwargs
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true.
+     our example to find the input shape. Simple boolean value true. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple boolean value true.
+     a byte iterator, or stream input). Simple boolean value true. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -381,10 +381,10 @@ def build_patch405_request(*, json: JSONType = None, content: Any = None, **kwar
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true.
+     our example to find the input shape. Simple boolean value true. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple boolean value true.
+     a byte iterator, or stream input). Simple boolean value true. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -420,10 +420,10 @@ def build_post406_request(*, json: JSONType = None, content: Any = None, **kwarg
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true.
+     our example to find the input shape. Simple boolean value true. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple boolean value true.
+     a byte iterator, or stream input). Simple boolean value true. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -459,10 +459,10 @@ def build_delete407_request(*, json: JSONType = None, content: Any = None, **kwa
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true.
+     our example to find the input shape. Simple boolean value true. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple boolean value true.
+     a byte iterator, or stream input). Simple boolean value true. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -498,10 +498,10 @@ def build_put409_request(*, json: JSONType = None, content: Any = None, **kwargs
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true.
+     our example to find the input shape. Simple boolean value true. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple boolean value true.
+     a byte iterator, or stream input). Simple boolean value true. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -629,10 +629,10 @@ def build_put413_request(*, json: JSONType = None, content: Any = None, **kwargs
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true.
+     our example to find the input shape. Simple boolean value true. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple boolean value true.
+     a byte iterator, or stream input). Simple boolean value true. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -668,10 +668,10 @@ def build_patch414_request(*, json: JSONType = None, content: Any = None, **kwar
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true.
+     our example to find the input shape. Simple boolean value true. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple boolean value true.
+     a byte iterator, or stream input). Simple boolean value true. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -707,10 +707,10 @@ def build_post415_request(*, json: JSONType = None, content: Any = None, **kwarg
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true.
+     our example to find the input shape. Simple boolean value true. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple boolean value true.
+     a byte iterator, or stream input). Simple boolean value true. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -769,10 +769,10 @@ def build_delete417_request(*, json: JSONType = None, content: Any = None, **kwa
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true.
+     our example to find the input shape. Simple boolean value true. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple boolean value true.
+     a byte iterator, or stream input). Simple boolean value true. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

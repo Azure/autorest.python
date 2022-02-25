@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 class AutoRestSwaggerBATDictionaryService:
     """Test Infrastructure for AutoRest Swagger BAT.
 
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 

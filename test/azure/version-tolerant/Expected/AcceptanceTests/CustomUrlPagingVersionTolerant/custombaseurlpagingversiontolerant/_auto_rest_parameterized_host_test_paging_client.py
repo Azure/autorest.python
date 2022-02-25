@@ -27,7 +27,8 @@ class AutoRestParameterizedHostTestPagingClient:
 
     :ivar paging: PagingOperations operations
     :vartype paging: custombaseurlpagingversiontolerant.operations.PagingOperations
-    :param host: A string value that is used as a global part of the parameterized host.
+    :param host: A string value that is used as a global part of the parameterized host. Default
+     value is "host".
     :type host: str
     """
 

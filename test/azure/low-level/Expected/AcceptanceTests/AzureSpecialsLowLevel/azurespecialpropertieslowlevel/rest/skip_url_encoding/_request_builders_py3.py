@@ -82,8 +82,8 @@ def build_get_swagger_path_valid_request(**kwargs: Any) -> HttpRequest:
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'. The
-     default value is "path1/path2/path3". Note that overriding this default value may result in
+    :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'.
+     Default value is "path1/path2/path3". Note that overriding this default value may result in
      unsupported behavior.
     :paramtype unencoded_path_param: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -145,7 +145,7 @@ def build_get_method_query_null_request(*, q1: Optional[str] = None, **kwargs: A
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword q1: Unencoded query parameter with value null.
+    :keyword q1: Unencoded query parameter with value null. Default value is None.
     :paramtype q1: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -204,7 +204,7 @@ def build_get_swagger_query_valid_request(**kwargs: Any) -> HttpRequest:
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. The default
+    :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. Default
      value is "value1&q2=value2&q3=value3". Note that overriding this default value may result in
      unsupported behavior.
     :paramtype q1: str

@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 class PollingPagingExample(PollingPagingExampleOperationsMixin):
     """Show polling and paging generation.
 
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.

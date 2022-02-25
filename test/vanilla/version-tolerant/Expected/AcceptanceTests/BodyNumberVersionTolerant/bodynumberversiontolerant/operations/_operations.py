@@ -664,7 +664,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
     def put_big_double_positive_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put big double value 99999999.99.
 
-        :keyword number_body: The default value is 99999999.99. Note that overriding this default value
+        :keyword number_body:  Default value is 99999999.99. Note that overriding this default value
          may result in unsupported behavior.
         :paramtype number_body: float
         :return: None
@@ -734,8 +734,8 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
     def put_big_double_negative_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put big double value -99999999.99.
 
-        :keyword number_body: The default value is -99999999.99. Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword number_body:  Default value is -99999999.99. Note that overriding this default value
+         may result in unsupported behavior.
         :paramtype number_body: float
         :return: None
         :rtype: None
@@ -876,7 +876,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
     def put_big_decimal_positive_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put big decimal value 99999999.99.
 
-        :keyword number_body: The default value is 99999999.99. Note that overriding this default value
+        :keyword number_body:  Default value is 99999999.99. Note that overriding this default value
          may result in unsupported behavior.
         :paramtype number_body: float
         :return: None
@@ -946,8 +946,8 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
     def put_big_decimal_negative_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put big decimal value -99999999.99.
 
-        :keyword number_body: The default value is -99999999.99. Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword number_body:  Default value is -99999999.99. Note that overriding this default value
+         may result in unsupported behavior.
         :paramtype number_body: float
         :return: None
         :rtype: None

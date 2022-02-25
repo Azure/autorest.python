@@ -233,7 +233,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
-        :param body:
+        :param body:  Default value is None.
         :type body: ~validation.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product, or the result of cls(response)
@@ -290,8 +290,8 @@ class AutoRestValidationTestOperationsMixin(object):
         # type: (...) -> None
         """get_with_constant_in_path.
 
-        :keyword constant_param: The default value is "constant". Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword constant_param:  Default value is "constant". Note that overriding this default value
+         may result in unsupported behavior.
         :paramtype constant_param: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -334,10 +334,10 @@ class AutoRestValidationTestOperationsMixin(object):
         # type: (...) -> "_models.Product"
         """post_with_constant_in_body.
 
-        :param body:
+        :param body:  Default value is None.
         :type body: ~validation.models.Product
-        :keyword constant_param: The default value is "constant". Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword constant_param:  Default value is "constant". Note that overriding this default value
+         may result in unsupported behavior.
         :paramtype constant_param: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product, or the result of cls(response)

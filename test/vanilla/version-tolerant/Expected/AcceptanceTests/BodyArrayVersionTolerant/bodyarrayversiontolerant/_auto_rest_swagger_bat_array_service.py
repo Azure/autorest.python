@@ -27,7 +27,7 @@ class AutoRestSwaggerBATArrayService:
 
     :ivar array: ArrayOperations operations
     :vartype array: bodyarrayversiontolerant.operations.ArrayOperations
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 

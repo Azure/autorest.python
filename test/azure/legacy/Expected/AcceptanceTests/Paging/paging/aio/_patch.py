@@ -24,14 +24,26 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+import importlib
+from .._patch import RemoveDuplicateParamsPolicy
+from ._auto_rest_paging_test_service import AutoRestPagingTestService as AutoRestPagingTestServiceGenerated
+
+
+class AutoRestPagingTestService(AutoRestPagingTestServiceGenerated):
+    def __init__(self, *args, **kwargs):
+        per_call_policies = kwargs.pop("per_call_policies", [])
+        params_policy = RemoveDuplicateParamsPolicy(duplicate_param_names=["$filter", "$skiptoken"])
+        try:
+            per_call_policies.append(params_policy)
+        except AttributeError:
+            per_call_policies = [per_call_policies, params_policy]
+        super().__init__(*args, per_call_policies=per_call_policies, **kwargs)
+
 
 # This file is used for handwritten customizations to the generated code.
 # Follow our quickstart here for examples: https://github.com/Azure/autorest.python/blob/autorestv3/docs/customizations.md
 
 
 def patch_sdk():
-    """Do not remove from this file"""
-    pass
-
-
-__all__ = []  # only add objects you want to be publicly available to your users at your package level
+    curr_package = importlib.import_module("paging.aio")
+    curr_package.AutoRestPagingTestService = AutoRestPagingTestService

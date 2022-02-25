@@ -50,7 +50,7 @@ class FloatOperations:
     async def put(self, input: Optional[Union[float, "_models.FloatEnum"]] = None, **kwargs: Any) -> str:
         """Put a float enum.
 
-        :param input: Input float enum.
+        :param input: Input float enum. Default value is None.
         :type input: float or ~nonstringenums.models.FloatEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)

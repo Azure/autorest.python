@@ -29,7 +29,7 @@ def build_get_empty_request(
     :type key_name: str
     :param subscription_id: The subscription id with value 'test12'.
     :type subscription_id: str
-    :keyword key_version: The key version. Default value 'v1'.
+    :keyword key_version: The key version. Default value 'v1'. Default value is "v1".
     :paramtype key_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

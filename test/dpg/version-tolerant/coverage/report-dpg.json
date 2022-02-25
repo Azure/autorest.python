@@ -7,10 +7,10 @@
   "GetHandwrittenModelPages": 0,
   "RawLRO": 0,
   "HandwrittenModelLRO": 0,
-  "DPGAddOptionalInput": 2,
-  "DPGNewBodyType.JSON": 2,
-  "DPGNewBodyType.JPEG": 1,
-  "DPGNewBodyType": 3,
-  "DPGAddNewOperation": 1,
-  "DPGAddNewPath": 1
+  "DPGAddOptionalInput": 4,
+  "DPGNewBodyType.JSON": 4,
+  "DPGNewBodyType.JPEG": 2,
+  "DPGNewBodyType": 6,
+  "DPGAddNewOperation": 2,
+  "DPGAddNewPath": 2
 }

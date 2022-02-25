@@ -73,10 +73,10 @@ def build_operation_with_json_param_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Pass in {'hello': 'world'}.
+     our example to find the input shape. Pass in {'hello': 'world'}. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Pass in {'hello': 'world'}.
+     a byte iterator, or stream input). Pass in {'hello': 'world'}. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -120,10 +120,10 @@ def build_operation_with_data_param_request(
     into your code flow.
 
     :keyword data: Pass in dictionary that contains form data to include in the body of the
-     request. Pass in 'hello'.
+     request. Pass in 'hello'. Default value is None.
     :paramtype data: dict[str, any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Pass in 'hello'.
+     a byte iterator, or stream input). Pass in 'hello'. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -170,10 +170,11 @@ def build_operation_with_files_param_request(
     into your code flow.
 
     :keyword files: Multipart input for files. See the template in our example to find the input
-     shape. Files to upload. Pass in list of input streams.
+     shape. Files to upload. Pass in list of input streams. Default value is None.
     :paramtype files: dict[str, any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Files to upload. Pass in list of input streams.
+     a byte iterator, or stream input). Files to upload. Pass in list of input streams. Default
+     value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -227,7 +228,7 @@ def build_operation_with_url_request(
      code. Pass in 'x-ms-header' to pass.
     :paramtype header_parameters: str
     :keyword query_parameters: Query args that uses same name as queryParameters in generated code.
-     Pass in ['one', 'two'] to pass test.
+     Pass in ['one', 'two'] to pass test. Default value is None.
     :paramtype query_parameters: list[str]
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

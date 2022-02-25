@@ -1140,8 +1140,8 @@ class ApiVersionLocalOperations(object):
     def get_method_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-        :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
-         value is "2.0". Note that overriding this default value may result in unsupported behavior.
+        :keyword api_version: This should appear as a method parameter, use value '2.0'. Default value
+         is "2.0". Note that overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: None
         :rtype: None
@@ -1177,7 +1177,7 @@ class ApiVersionLocalOperations(object):
         """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
 
         :keyword api_version: This should appear as a method parameter, use value null, this should
-         result in no serialized parameter.
+         result in no serialized parameter. Default value is None.
         :paramtype api_version: str
         :return: None
         :rtype: None
@@ -1208,8 +1208,8 @@ class ApiVersionLocalOperations(object):
     def get_path_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-        :keyword api_version: This should appear as a method parameter, use value '2.0'. The default
-         value is "2.0". Note that overriding this default value may result in unsupported behavior.
+        :keyword api_version: This should appear as a method parameter, use value '2.0'. Default value
+         is "2.0". Note that overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :return: None
         :rtype: None
@@ -1243,7 +1243,7 @@ class ApiVersionLocalOperations(object):
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
         :keyword api_version: The api version, which appears in the query, the value is always '2.0'.
-         The default value is "2.0". Note that overriding this default value may result in unsupported
+         Default value is "2.0". Note that overriding this default value may result in unsupported
          behavior.
         :paramtype api_version: str
         :return: None
@@ -1362,8 +1362,8 @@ class SkipUrlEncodingOperations(object):
     def get_swagger_path_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
-        :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'. The
-         default value is "path1/path2/path3". Note that overriding this default value may result in
+        :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'.
+         Default value is "path1/path2/path3". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype unencoded_path_param: str
         :return: None
@@ -1432,7 +1432,7 @@ class SkipUrlEncodingOperations(object):
     ) -> None:
         """Get method with unencoded query parameter with value null.
 
-        :keyword q1: Unencoded query parameter with value null.
+        :keyword q1: Unencoded query parameter with value null. Default value is None.
         :paramtype q1: str
         :return: None
         :rtype: None
@@ -1494,7 +1494,7 @@ class SkipUrlEncodingOperations(object):
     def get_swagger_query_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-        :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. The default
+        :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. Default
          value is "value1&q2=value2&q3=value3". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype q1: str
@@ -1550,11 +1550,12 @@ class OdataOperations(object):
     ) -> None:
         """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
 
-        :keyword filter: The filter parameter with value '$filter=id gt 5 and name eq 'foo''.
+        :keyword filter: The filter parameter with value '$filter=id gt 5 and name eq 'foo''. Default
+         value is None.
         :paramtype filter: str
-        :keyword top: The top parameter with value 10.
+        :keyword top: The top parameter with value 10. Default value is None.
         :paramtype top: int
-        :keyword orderby: The orderby parameter with value id.
+        :keyword orderby: The orderby parameter with value id. Default value is None.
         :paramtype orderby: str
         :return: None
         :rtype: None

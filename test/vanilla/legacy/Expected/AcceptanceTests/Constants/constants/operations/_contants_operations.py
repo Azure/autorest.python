@@ -446,7 +446,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input:  Default value is None.
         :type input: str or ~constants.models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -489,7 +489,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input:  Default value is "value1".
         :type input: str or ~constants.models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -532,7 +532,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :param input: The default value is "value1".
+        :param input:  Default value is "value1".
         :type input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -575,7 +575,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :param input: The default value is "value1".
+        :param input:  Default value is "value1".
         :type input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -661,7 +661,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input:  Default value is "value1".
         :type input: str or ~constants.models.NoModelAsStringRequiredTwoValueDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -702,8 +702,8 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :keyword input: The default value is "value1". Note that overriding this default value may
-         result in unsupported behavior.
+        :keyword input:  Default value is "value1". Note that overriding this default value may result
+         in unsupported behavior.
         :paramtype input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -746,8 +746,8 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :keyword input: The default value is "value1". Note that overriding this default value may
-         result in unsupported behavior.
+        :keyword input:  Default value is "value1". Note that overriding this default value may result
+         in unsupported behavior.
         :paramtype input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -792,7 +792,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input:  Default value is None.
         :type input: str or ~constants.models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -835,7 +835,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input:  Default value is "value1".
         :type input: str or ~constants.models.ModelAsStringNoRequiredTwoValueDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -878,7 +878,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input:  Default value is None.
         :type input: str or ~constants.models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -921,7 +921,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input:  Default value is "value1".
         :type input: str or ~constants.models.ModelAsStringNoRequiredOneValueDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1007,7 +1007,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input:  Default value is "value1".
         :type input: str or ~constants.models.ModelAsStringRequiredTwoValueDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1093,7 +1093,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input:  Default value is "value1".
         :type input: str or ~constants.models.ModelAsStringRequiredOneValueDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

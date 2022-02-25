@@ -31,7 +31,7 @@ def build_get_report_request(
 
     :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
      in for Python). The only effect is, that generators that run all tests several times, can
-     distinguish the generated reports.
+     distinguish the generated reports. Default value is None.
     :paramtype qualifier: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

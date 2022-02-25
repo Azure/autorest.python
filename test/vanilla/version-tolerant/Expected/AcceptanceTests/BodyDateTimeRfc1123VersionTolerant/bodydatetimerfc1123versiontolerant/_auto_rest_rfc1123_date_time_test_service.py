@@ -28,7 +28,7 @@ class AutoRestRFC1123DateTimeTestService:
     :ivar datetimerfc1123: Datetimerfc1123Operations operations
     :vartype datetimerfc1123:
      bodydatetimerfc1123versiontolerant.operations.Datetimerfc1123Operations
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 

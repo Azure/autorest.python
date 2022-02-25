@@ -300,7 +300,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # type: (...) -> None
         """Put External Resource as an Array.
 
-        :param resource_array: External Resource as an Array to put.
+        :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[~modelflattening.models.Resource]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -392,7 +392,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
-        :param resource_array: External Resource as an Array to put.
+        :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[~modelflattening.models.WrappedProduct]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -484,7 +484,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # type: (...) -> None
         """Put External Resource as a Dictionary.
 
-        :param resource_dictionary: External Resource as a Dictionary to put.
+        :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
         :type resource_dictionary: dict[str, ~modelflattening.models.FlattenedProduct]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -575,7 +575,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # type: (...) -> None
         """Put External Resource as a ResourceCollection.
 
-        :param resource_complex_object: External Resource as a ResourceCollection to put.
+        :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
+         is None.
         :type resource_complex_object: ~modelflattening.models.ResourceCollection
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -666,7 +667,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # type: (...) -> "_models.SimpleProduct"
         """Put Simple Product with client flattening true on the model.
 
-        :param simple_body_product: Simple body product to put.
+        :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: ~modelflattening.models.SimpleProduct
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct, or the result of cls(response)
@@ -729,15 +730,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
          longitude. For example, uberX in San Francisco will have a different product_id than uberX in
          Los Angeles.
         :type product_id: str
-        :param description: Description of product.
+        :param description: Description of product. Default value is None.
         :type description: str
-        :param max_product_display_name: Display name of product.
+        :param max_product_display_name: Display name of product. Default value is None.
         :type max_product_display_name: str
-        :param capacity: Capacity of product. For example, 4 people. The default value is "Large".
+        :param capacity: Capacity of product. For example, 4 people. Default value is "Large".
         :type capacity: str
-        :param generic_value: Generic URL value.
+        :param generic_value: Generic URL value. Default value is None.
         :type generic_value: str
-        :param odata_value: URL value.
+        :param odata_value: URL value. Default value is None.
         :type odata_value: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct, or the result of cls(response)

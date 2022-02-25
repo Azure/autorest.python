@@ -252,9 +252,9 @@ class PathItemsOperations(object):
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter.
+         parameter. Default value is None.
         :type path_item_string_query: str
-        :param local_string_query: should contain value 'localStringQuery'.
+        :param local_string_query: should contain value 'localStringQuery'. Default value is None.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -311,9 +311,9 @@ class PathItemsOperations(object):
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter.
+         parameter. Default value is None.
         :type path_item_string_query: str
-        :param local_string_query: should contain value 'localStringQuery'.
+        :param local_string_query: should contain value 'localStringQuery'. Default value is None.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -370,9 +370,9 @@ class PathItemsOperations(object):
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter.
+         parameter. Default value is None.
         :type path_item_string_query: str
-        :param local_string_query: should contain null value.
+        :param local_string_query: should contain null value. Default value is None.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -428,9 +428,9 @@ class PathItemsOperations(object):
         :type path_item_string_path: str
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
-        :param path_item_string_query: should contain value null.
+        :param path_item_string_query: should contain value null. Default value is None.
         :type path_item_string_query: str
-        :param local_string_query: should contain value null.
+        :param local_string_query: should contain value null. Default value is None.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

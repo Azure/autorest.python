@@ -40,10 +40,6 @@ class ConstantSchema(BaseSchema):
         return self.schema.get_declaration(self.value)
 
     @property
-    def extra_description_information(self) -> str:
-        return f"The default value is {self.get_declaration(self.value)}."
-
-    @property
     def serialization_type(self) -> str:
         """Returns the serialization value for msrest.
 

@@ -27,7 +27,7 @@ class AutoRestDurationTestService:
 
     :ivar duration: DurationOperations operations
     :vartype duration: bodydurationversiontolerant.operations.DurationOperations
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 
