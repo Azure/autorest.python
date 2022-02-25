@@ -25,28 +25,39 @@
 # --------------------------------------------------------------------------
 import platform
 import warnings
+from azure.core.rest import HttpRequest
 
-from azurereportversiontolerant import AutoRestReportServiceForAzure
+from dpgservicedriveninitialversiontolerant import DPGClient
+
+
 
 
 class TestAcceptance(object):
 
     def test_ensure_coverage(self):
-        client = AutoRestReportServiceForAzure()
-        report = client.get_report(qualifier=platform.python_version())
-
+        client = DPGClient()
+        request = HttpRequest("GET", "http://localhost:3000/report/dpg", params={"qualifier": platform.python_version()})
+        response = client.send_request(request)
+        response.raise_for_status()
+        support_dict = response.json()
         # Add tests that wont be supported due to the nature of Python here
         not_supported = {
-            "LROPatchInlineCompleteIgnoreHeaders": 1,
-            "PagingDuplicateParameters": 1  # skipping for now, going to do another PR soon changing paging behavior for version tolerant
         }
 
         # Please add missing features or failing tests here
-        missing_features_or_bugs = {}
+        missing_features_or_bugs = {
+            'DPGAddOptionalInput_NoParams': 1,
+            'DPGAddOptionalInput_RequiredOptionalParam': 1,
+            'DPGAddOptionalInput_OptionalParam': 1,
+            'DPGGlassBreaker': 1,
+        }
+        for name in support_dict:
+            if "DPG" not in name:
+                # this folder only does dpg
+                missing_features_or_bugs[name] = 1
 
         print("Coverage:")
-        self._print_report(report, not_supported, missing_features_or_bugs)
-
+        self._print_report(support_dict, not_supported, missing_features_or_bugs)
 
     def _print_report(self, report, not_supported=None, missing_features_or_bugs=None):
         if not_supported:
@@ -66,4 +77,4 @@ class TestAcceptance(object):
         total_tests = len(report)
         warnings.warn ("The test coverage is {0}/{1}.".format(total_tests - len(failed), total_tests))
 
-        #assert 0 == len(failed)
+        assert 0 == len(failed)
