@@ -80,7 +80,7 @@ async def test_binary_body_three_content_types(client):
     await client.binary_body_with_three_content_types(json_input)
 
     content = b"hello, world"
-    await client.binary_body_with_two_content_types(content, content_type="application/octet-stream")
+    await client.binary_body_with_three_content_types(content, content_type="application/octet-stream")
 
     content = "hello, world"
     await client.binary_body_with_three_content_types(content, content_type="text/plain")
