@@ -46,3 +46,18 @@ def test_add_optional_parameter(initial_client, update_one_client):
         parameter="foo",
         new_parameter="bar",
     )
+
+def test_add_new_content_type(initial_client, update_one_client):
+    initial_client.params.post_parameters({ "url": "http://example.org/myimage.jpeg" })
+    update_one_client.params.post_parameters({ "url": "http://example.org/myimage.jpeg" })
+    update_one_client.params.post_parameters(b"hello", content_type="image/jpeg")
+
+def test_add_new_operation(initial_client, update_one_client):
+    with pytest.raises(AttributeError):
+        initial_client.params.delete_parameters()
+    update_one_client.params.delete_parameters()
+
+def test_add_new_path(initial_client, update_one_client):
+    with pytest.raises(AttributeError):
+        initial_client.params.get_new_operation()
+    assert update_one_client.params.get_new_operation() == {'message': 'An object was successfully returned'}
