@@ -29,7 +29,7 @@ class AutoRestDurationTestService(object):
 
     :ivar duration: DurationOperations operations
     :vartype duration: bodyduration.operations.DurationOperations
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     """
 

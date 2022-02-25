@@ -60,7 +60,7 @@ class QueriesOperations:
     ) -> None:
         """Get a null array of string using the multi-array format.
 
-        :param array_query: a null array of string using the multi-array format.
+        :param array_query: a null array of string using the multi-array format. Default value is None.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -99,7 +99,8 @@ class QueriesOperations:
     ) -> None:
         """Get an empty array [] of string using the multi-array format.
 
-        :param array_query: an empty array [] of string using the multi-array format.
+        :param array_query: an empty array [] of string using the multi-array format. Default value is
+         None.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -140,7 +141,7 @@ class QueriesOperations:
         mult-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the mult-array format.
+         ''] using the mult-array format. Default value is None.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

@@ -384,7 +384,7 @@ class GlobalParameterList(ParameterList):
             schema=StringSchema(namespace="", yaml_data={"type": "str"}),
             rest_api_name=self.host_variable_name,
             serialized_name=self.host_variable_name,
-            description=f"Service URL. Default value is '{host_value}'.",
+            description=f"Service URL.",
             implementation="Client",
             required=True,
             location=ParameterLocation.Other,

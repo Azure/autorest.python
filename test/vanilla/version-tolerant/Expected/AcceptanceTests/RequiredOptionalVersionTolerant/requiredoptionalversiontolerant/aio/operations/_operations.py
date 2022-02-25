@@ -117,7 +117,7 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly optional query parameter.
 
-        :keyword query_parameter:
+        :keyword query_parameter:  Default value is None.
         :paramtype query_parameter: str
         :return: None
         :rtype: None
@@ -150,7 +150,7 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly optional header parameter.
 
-        :keyword query_parameter:
+        :keyword query_parameter:  Default value is None.
         :paramtype query_parameter: str
         :return: None
         :rtype: None
@@ -183,7 +183,7 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly optional body parameter.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: str
         :return: None
         :rtype: None
@@ -224,7 +224,7 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly optional body parameter.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: IO
         :return: None
         :rtype: None
@@ -368,7 +368,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional body parameter.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: IO
         :return: None
         :rtype: None
@@ -483,7 +483,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional integer. Please put null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: int
         :return: None
         :rtype: None
@@ -571,7 +571,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: JSONType
         :return: None
         :rtype: None
@@ -654,7 +654,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
-        :keyword header_parameter:
+        :keyword header_parameter:  Default value is None.
         :paramtype header_parameter: int
         :return: None
         :rtype: None
@@ -726,7 +726,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional string. Please put null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: str
         :return: None
         :rtype: None
@@ -814,7 +814,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: JSONType
         :return: None
         :rtype: None
@@ -897,7 +897,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional string. Please put a header 'headerParameter' => null.
 
-        :keyword body_parameter:
+        :keyword body_parameter:  Default value is None.
         :paramtype body_parameter: str
         :return: None
         :rtype: None
@@ -978,7 +978,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional complex object. Please put null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: JSONType
         :return: None
         :rtype: None
@@ -1078,7 +1078,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: JSONType
         :return: None
         :rtype: None
@@ -1177,7 +1177,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional array. Please put null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: list[str]
         :return: None
         :rtype: None
@@ -1275,7 +1275,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
-        :param body_parameter:
+        :param body_parameter:  Default value is None.
         :type body_parameter: JSONType
         :return: None
         :rtype: None
@@ -1360,7 +1360,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
-        :keyword header_parameter:
+        :keyword header_parameter:  Default value is None.
         :paramtype header_parameter: list[str]
         :return: None
         :rtype: None

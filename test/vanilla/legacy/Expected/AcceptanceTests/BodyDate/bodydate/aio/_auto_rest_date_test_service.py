@@ -24,7 +24,7 @@ class AutoRestDateTestService:
 
     :ivar date: DateOperations operations
     :vartype date: bodydate.aio.operations.DateOperations
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     """
 

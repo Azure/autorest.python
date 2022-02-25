@@ -29,7 +29,7 @@ class AutoRestSwaggerBATXMLService(object):
 
     :ivar xml: XmlOperations operations
     :vartype xml: xmlservice.operations.XmlOperations
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     """
 

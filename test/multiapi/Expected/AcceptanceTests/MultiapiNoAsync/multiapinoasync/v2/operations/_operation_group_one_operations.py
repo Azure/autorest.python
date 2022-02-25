@@ -118,7 +118,7 @@ class OperationGroupOneOperations(object):
         # type: (...) -> "_models.ModelTwo"
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
 
-        :param parameter_one: A ModelTwo parameter.
+        :param parameter_one: A ModelTwo parameter. Default value is None.
         :type parameter_one: ~multiapinoasync.v2.models.ModelTwo
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo, or the result of cls(response)

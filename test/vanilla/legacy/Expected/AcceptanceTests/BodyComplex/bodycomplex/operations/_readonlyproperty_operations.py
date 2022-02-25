@@ -151,7 +151,7 @@ class ReadonlypropertyOperations(object):
         # type: (...) -> None
         """Put complex types that have readonly properties.
 
-        :param size:
+        :param size:  Default value is None.
         :type size: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

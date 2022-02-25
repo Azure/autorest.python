@@ -27,7 +27,7 @@ class AutoRestIntegerTestService:
 
     :ivar int: IntOperations operations
     :vartype int: bodyintegerversiontolerant.operations.IntOperations
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 

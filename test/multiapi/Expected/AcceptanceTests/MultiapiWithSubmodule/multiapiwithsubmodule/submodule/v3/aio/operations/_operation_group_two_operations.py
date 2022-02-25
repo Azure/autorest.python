@@ -51,7 +51,7 @@ class OperationGroupTwoOperations:
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
-        :param input: Input parameter.
+        :param input: Input parameter. Default value is None.
         :type input: IO or ~multiapiwithsubmodule.submodule.v3.models.SourcePath
         :keyword str content_type: Media type of the body sent to the API. Default value is
          "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",

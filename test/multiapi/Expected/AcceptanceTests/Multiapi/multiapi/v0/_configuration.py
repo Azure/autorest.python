@@ -28,8 +28,8 @@ class MultiapiServiceClientConfiguration(Configuration):  # pylint: disable=too-
 
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials.TokenCredential
-    :keyword api_version: Api Version. The default value is "0.0.0". Note that overriding this
-     default value may result in unsupported behavior.
+    :keyword api_version: Api Version. Default value is "0.0.0". Note that overriding this default
+     value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

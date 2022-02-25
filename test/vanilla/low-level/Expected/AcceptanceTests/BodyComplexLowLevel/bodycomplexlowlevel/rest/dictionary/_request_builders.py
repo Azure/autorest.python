@@ -74,11 +74,11 @@ def build_put_valid_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put a dictionary with 5 key-value pairs:
-     "txt":"notepad", "bmp":"mspaint", "xls":"excel", "exe":"", "":null.
+     "txt":"notepad", "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put a dictionary with 5 key-value pairs:
-     "txt":"notepad", "bmp":"mspaint", "xls":"excel", "exe":"", "":null.
+     "txt":"notepad", "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -167,10 +167,10 @@ def build_put_empty_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Please put an empty dictionary.
+     our example to find the input shape. Please put an empty dictionary. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put an empty dictionary.
+     a byte iterator, or stream input). Please put an empty dictionary. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

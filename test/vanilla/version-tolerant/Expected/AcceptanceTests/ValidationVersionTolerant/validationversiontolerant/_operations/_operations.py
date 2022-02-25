@@ -228,7 +228,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
-        :param body:
+        :param body:  Default value is None.
         :type body: JSONType
         :return: JSON object
         :rtype: JSONType
@@ -336,8 +336,8 @@ class AutoRestValidationTestOperationsMixin(object):
     def get_with_constant_in_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """get_with_constant_in_path.
 
-        :keyword constant_param: The default value is "constant". Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword constant_param:  Default value is "constant". Note that overriding this default value
+         may result in unsupported behavior.
         :paramtype constant_param: str
         :return: None
         :rtype: None
@@ -370,10 +370,10 @@ class AutoRestValidationTestOperationsMixin(object):
     def post_with_constant_in_body(self, body: JSONType = None, **kwargs: Any) -> JSONType:
         """post_with_constant_in_body.
 
-        :param body:
+        :param body:  Default value is None.
         :type body: JSONType
-        :keyword constant_param: The default value is "constant". Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword constant_param:  Default value is "constant". Note that overriding this default value
+         may result in unsupported behavior.
         :paramtype constant_param: str
         :return: JSON object
         :rtype: JSONType

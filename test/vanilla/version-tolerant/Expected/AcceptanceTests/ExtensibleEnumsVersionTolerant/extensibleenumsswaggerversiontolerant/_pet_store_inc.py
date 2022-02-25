@@ -27,7 +27,7 @@ class PetStoreInc:
 
     :ivar pet: PetOperations operations
     :vartype pet: extensibleenumsswaggerversiontolerant.operations.PetOperations
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 

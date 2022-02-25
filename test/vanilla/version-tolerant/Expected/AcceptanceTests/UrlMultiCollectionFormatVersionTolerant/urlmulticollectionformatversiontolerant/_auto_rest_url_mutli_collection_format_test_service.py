@@ -27,7 +27,7 @@ class AutoRestUrlMutliCollectionFormatTestService:
 
     :ivar queries: QueriesOperations operations
     :vartype queries: urlmulticollectionformatversiontolerant.operations.QueriesOperations
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 

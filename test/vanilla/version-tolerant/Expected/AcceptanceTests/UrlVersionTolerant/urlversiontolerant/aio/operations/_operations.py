@@ -116,7 +116,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     async def get_boolean_true(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get true Boolean value on path.
 
-        :keyword bool_path: true boolean value. The default value is True. Note that overriding this
+        :keyword bool_path: true boolean value. Default value is True. Note that overriding this
          default value may result in unsupported behavior.
         :paramtype bool_path: bool
         :return: None
@@ -150,7 +150,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     async def get_boolean_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get false Boolean value on path.
 
-        :keyword bool_path: false boolean value. The default value is False. Note that overriding this
+        :keyword bool_path: false boolean value. Default value is False. Note that overriding this
          default value may result in unsupported behavior.
         :paramtype bool_path: bool
         :return: None
@@ -184,8 +184,8 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     async def get_int_one_million(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '1000000' integer value.
 
-        :keyword int_path: '1000000' integer value. The default value is 1000000. Note that overriding
-         this default value may result in unsupported behavior.
+        :keyword int_path: '1000000' integer value. Default value is 1000000. Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype int_path: int
         :return: None
         :rtype: None
@@ -220,8 +220,8 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get '-1000000' integer value.
 
-        :keyword int_path: '-1000000' integer value. The default value is -1000000. Note that
-         overriding this default value may result in unsupported behavior.
+        :keyword int_path: '-1000000' integer value. Default value is -1000000. Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype int_path: int
         :return: None
         :rtype: None
@@ -254,8 +254,8 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     async def get_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '10000000000' 64 bit integer value.
 
-        :keyword long_path: '10000000000' 64 bit integer value. The default value is 10000000000. Note
-         that overriding this default value may result in unsupported behavior.
+        :keyword long_path: '10000000000' 64 bit integer value. Default value is 10000000000. Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype long_path: long
         :return: None
         :rtype: None
@@ -288,8 +288,8 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     async def get_negative_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-10000000000' 64 bit integer value.
 
-        :keyword long_path: '-10000000000' 64 bit integer value. The default value is -10000000000.
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword long_path: '-10000000000' 64 bit integer value. Default value is -10000000000. Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype long_path: long
         :return: None
         :rtype: None
@@ -322,7 +322,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     async def float_scientific_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '1.034E+20' numeric value.
 
-        :keyword float_path: '1.034E+20'numeric value. The default value is 103400000000000000000. Note
+        :keyword float_path: '1.034E+20'numeric value. Default value is 103400000000000000000. Note
          that overriding this default value may result in unsupported behavior.
         :paramtype float_path: float
         :return: None
@@ -356,7 +356,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     async def float_scientific_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-1.034E-20' numeric value.
 
-        :keyword float_path: '-1.034E-20'numeric value. The default value is -1.034e-20. Note that
+        :keyword float_path: '-1.034E-20'numeric value. Default value is -1.034e-20. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype float_path: float
         :return: None
@@ -390,7 +390,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     async def double_decimal_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '9999999.999' numeric value.
 
-        :keyword double_path: '9999999.999'numeric value. The default value is 9999999.999. Note that
+        :keyword double_path: '9999999.999'numeric value. Default value is 9999999.999. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype double_path: float
         :return: None
@@ -424,7 +424,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     async def double_decimal_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-9999999.999' numeric value.
 
-        :keyword double_path: '-9999999.999'numeric value. The default value is -9999999.999. Note that
+        :keyword double_path: '-9999999.999'numeric value. Default value is -9999999.999. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype double_path: float
         :return: None
@@ -458,8 +458,8 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     async def string_unicode(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
-        :keyword string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. The default value is "啊齄丂狛狜隣郎隣兀﨩".
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. Default value is "啊齄丂狛狜隣郎隣兀﨩". Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype string_path: str
         :return: None
         :rtype: None
@@ -492,8 +492,8 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     async def string_url_encoded(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
-        :keyword string_path: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. The default value
-         is "begin!*'();:@ &=+$,/?#[]end". Note that overriding this default value may result in
+        :keyword string_path: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. Default value is
+         "begin!*'();:@ &=+$,/?#[]end". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype string_path: str
         :return: None
@@ -529,7 +529,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
 
-        :keyword string_path: 'begin!*'();:@&=+$,end' url encoded string value. The default value is
+        :keyword string_path: 'begin!*'();:@&=+$,end' url encoded string value. Default value is
          "begin!*'();:@&=+$,end". Note that overriding this default value may result in unsupported
          behavior.
         :paramtype string_path: str
@@ -564,8 +564,8 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     async def string_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get ''.
 
-        :keyword string_path: '' string value. The default value is "". Note that overriding this
-         default value may result in unsupported behavior.
+        :keyword string_path: '' string value. Default value is "". Note that overriding this default
+         value may result in unsupported behavior.
         :paramtype string_path: str
         :return: None
         :rtype: None
@@ -728,8 +728,8 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     async def byte_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '' as byte array.
 
-        :keyword byte_path: '' as byte array. The default value is bytearray("", encoding="utf-8").
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword byte_path: '' as byte array. Default value is bytearray("", encoding="utf-8"). Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype byte_path: bytearray
         :return: None
         :rtype: None
@@ -795,8 +795,8 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     async def date_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '2012-01-01' as date.
 
-        :keyword date_path: '2012-01-01' as date. The default value is "2012-01-01". Note that
-         overriding this default value may result in unsupported behavior.
+        :keyword date_path: '2012-01-01' as date. Default value is "2012-01-01". Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype date_path: ~datetime.date
         :return: None
         :rtype: None
@@ -863,7 +863,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     async def date_time_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '2012-01-01T01:01:01Z' as date-time.
 
-        :keyword date_time_path: '2012-01-01T01:01:01Z' as date-time. The default value is
+        :keyword date_time_path: '2012-01-01T01:01:01Z' as date-time. Default value is
          "2012-01-01T01:01:01Z". Note that overriding this default value may result in unsupported
          behavior.
         :paramtype date_time_path: ~datetime.datetime
@@ -1051,7 +1051,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     async def get_boolean_true(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get true Boolean value on path.
 
-        :keyword bool_query: true boolean value. The default value is True. Note that overriding this
+        :keyword bool_query: true boolean value. Default value is True. Note that overriding this
          default value may result in unsupported behavior.
         :paramtype bool_query: bool
         :return: None
@@ -1085,7 +1085,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     async def get_boolean_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get false Boolean value on path.
 
-        :keyword bool_query: false boolean value. The default value is False. Note that overriding this
+        :keyword bool_query: false boolean value. Default value is False. Note that overriding this
          default value may result in unsupported behavior.
         :paramtype bool_query: bool
         :return: None
@@ -1121,7 +1121,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null Boolean value on query (query string should be absent).
 
-        :keyword bool_query: null boolean value.
+        :keyword bool_query: null boolean value. Default value is None.
         :paramtype bool_query: bool
         :return: None
         :rtype: None
@@ -1152,7 +1152,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     async def get_int_one_million(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '1000000' integer value.
 
-        :keyword int_query: '1000000' integer value. The default value is 1000000. Note that overriding
+        :keyword int_query: '1000000' integer value. Default value is 1000000. Note that overriding
          this default value may result in unsupported behavior.
         :paramtype int_query: int
         :return: None
@@ -1188,8 +1188,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get '-1000000' integer value.
 
-        :keyword int_query: '-1000000' integer value. The default value is -1000000. Note that
-         overriding this default value may result in unsupported behavior.
+        :keyword int_query: '-1000000' integer value. Default value is -1000000. Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype int_query: int
         :return: None
         :rtype: None
@@ -1224,7 +1224,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null integer value (no query parameter).
 
-        :keyword int_query: null integer value.
+        :keyword int_query: null integer value. Default value is None.
         :paramtype int_query: int
         :return: None
         :rtype: None
@@ -1255,7 +1255,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     async def get_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '10000000000' 64 bit integer value.
 
-        :keyword long_query: '10000000000' 64 bit integer value. The default value is 10000000000. Note
+        :keyword long_query: '10000000000' 64 bit integer value. Default value is 10000000000. Note
          that overriding this default value may result in unsupported behavior.
         :paramtype long_query: long
         :return: None
@@ -1289,8 +1289,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     async def get_negative_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-10000000000' 64 bit integer value.
 
-        :keyword long_query: '-10000000000' 64 bit integer value. The default value is -10000000000.
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword long_query: '-10000000000' 64 bit integer value. Default value is -10000000000. Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype long_query: long
         :return: None
         :rtype: None
@@ -1325,7 +1325,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get 'null 64 bit integer value (no query param in uri).
 
-        :keyword long_query: null 64 bit integer value.
+        :keyword long_query: null 64 bit integer value. Default value is None.
         :paramtype long_query: long
         :return: None
         :rtype: None
@@ -1356,8 +1356,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     async def float_scientific_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '1.034E+20' numeric value.
 
-        :keyword float_query: '1.034E+20'numeric value. The default value is 103400000000000000000.
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword float_query: '1.034E+20'numeric value. Default value is 103400000000000000000. Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype float_query: float
         :return: None
         :rtype: None
@@ -1390,7 +1390,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     async def float_scientific_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-1.034E-20' numeric value.
 
-        :keyword float_query: '-1.034E-20'numeric value. The default value is -1.034e-20. Note that
+        :keyword float_query: '-1.034E-20'numeric value. Default value is -1.034e-20. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype float_query: float
         :return: None
@@ -1426,7 +1426,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null numeric value (no query parameter).
 
-        :keyword float_query: null numeric value.
+        :keyword float_query: null numeric value. Default value is None.
         :paramtype float_query: float
         :return: None
         :rtype: None
@@ -1457,7 +1457,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     async def double_decimal_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '9999999.999' numeric value.
 
-        :keyword double_query: '9999999.999'numeric value. The default value is 9999999.999. Note that
+        :keyword double_query: '9999999.999'numeric value. Default value is 9999999.999. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype double_query: float
         :return: None
@@ -1491,8 +1491,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     async def double_decimal_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-9999999.999' numeric value.
 
-        :keyword double_query: '-9999999.999'numeric value. The default value is -9999999.999. Note
-         that overriding this default value may result in unsupported behavior.
+        :keyword double_query: '-9999999.999'numeric value. Default value is -9999999.999. Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype double_query: float
         :return: None
         :rtype: None
@@ -1527,7 +1527,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null numeric value (no query parameter).
 
-        :keyword double_query: null numeric value.
+        :keyword double_query: null numeric value. Default value is None.
         :paramtype double_query: float
         :return: None
         :rtype: None
@@ -1558,8 +1558,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     async def string_unicode(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
-        :keyword string_query: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. The default value is "啊齄丂狛狜隣郎隣兀﨩".
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword string_query: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. Default value is "啊齄丂狛狜隣郎隣兀﨩". Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype string_query: str
         :return: None
         :rtype: None
@@ -1592,8 +1592,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     async def string_url_encoded(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
-        :keyword string_query: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. The default
-         value is "begin!*'();:@ &=+$,/?#[]end". Note that overriding this default value may result in
+        :keyword string_query: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. Default value is
+         "begin!*'();:@ &=+$,/?#[]end". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype string_query: str
         :return: None
@@ -1627,8 +1627,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     async def string_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get ''.
 
-        :keyword string_query: '' string value. The default value is "". Note that overriding this
-         default value may result in unsupported behavior.
+        :keyword string_query: '' string value. Default value is "". Note that overriding this default
+         value may result in unsupported behavior.
         :paramtype string_query: str
         :return: None
         :rtype: None
@@ -1663,7 +1663,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null (no query parameter in url).
 
-        :keyword string_query: null string value.
+        :keyword string_query: null string value. Default value is None.
         :paramtype string_query: str
         :return: None
         :rtype: None
@@ -1697,7 +1697,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         """Get using uri with query parameter 'green color'.
 
         :keyword enum_query: 'green color' enum value. Possible values are: "red color", "green color",
-         and "blue color".
+         and "blue color". Default value is None.
         :paramtype enum_query: str
         :return: None
         :rtype: None
@@ -1731,7 +1731,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         """Get null (no query parameter in url).
 
         :keyword enum_query: null string value. Possible values are: "red color", "green color", and
-         "blue color".
+         "blue color". Default value is None.
         :paramtype enum_query: str
         :return: None
         :rtype: None
@@ -1764,7 +1764,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
-        :keyword byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
+        :keyword byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array. Default value is
+         None.
         :paramtype byte_query: bytearray
         :return: None
         :rtype: None
@@ -1795,8 +1796,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     async def byte_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '' as byte array.
 
-        :keyword byte_query: '' as byte array. The default value is bytearray("", encoding="utf-8").
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword byte_query: '' as byte array. Default value is bytearray("", encoding="utf-8"). Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype byte_query: bytearray
         :return: None
         :rtype: None
@@ -1831,7 +1832,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null as byte array (no query parameters in uri).
 
-        :keyword byte_query: null as byte array (no query parameters in uri).
+        :keyword byte_query: null as byte array (no query parameters in uri). Default value is None.
         :paramtype byte_query: bytearray
         :return: None
         :rtype: None
@@ -1862,8 +1863,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     async def date_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '2012-01-01' as date.
 
-        :keyword date_query: '2012-01-01' as date. The default value is "2012-01-01". Note that
-         overriding this default value may result in unsupported behavior.
+        :keyword date_query: '2012-01-01' as date. Default value is "2012-01-01". Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype date_query: ~datetime.date
         :return: None
         :rtype: None
@@ -1898,7 +1899,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null as date - this should result in no query parameters in uri.
 
-        :keyword date_query: null as date (no query parameters in uri).
+        :keyword date_query: null as date (no query parameters in uri). Default value is None.
         :paramtype date_query: ~datetime.date
         :return: None
         :rtype: None
@@ -1929,7 +1930,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     async def date_time_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '2012-01-01T01:01:01Z' as date-time.
 
-        :keyword date_time_query: '2012-01-01T01:01:01Z' as date-time. The default value is
+        :keyword date_time_query: '2012-01-01T01:01:01Z' as date-time. Default value is
          "2012-01-01T01:01:01Z". Note that overriding this default value may result in unsupported
          behavior.
         :paramtype date_time_query: ~datetime.datetime
@@ -1966,7 +1967,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null as date-time, should result in no query parameters in uri.
 
-        :keyword date_time_query: null as date-time (no query parameters).
+        :keyword date_time_query: null as date-time (no query parameters). Default value is None.
         :paramtype date_time_query: ~datetime.datetime
         :return: None
         :rtype: None
@@ -2001,7 +2002,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         csv-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the csv-array format.
+         ''] using the csv-array format. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -2034,7 +2035,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get a null array of string using the csv-array format.
 
-        :keyword array_query: a null array of string using the csv-array format.
+        :keyword array_query: a null array of string using the csv-array format. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -2067,7 +2068,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get an empty array [] of string using the csv-array format.
 
-        :keyword array_query: an empty array [] of string using the csv-array format.
+        :keyword array_query: an empty array [] of string using the csv-array format. Default value is
+         None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -2102,6 +2104,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         'bonjour'] for the 'arrayQuery' parameter to the service.
 
         :keyword array_query: Array-typed query parameter. Pass in ['hello', 'nihao', 'bonjour'].
+         Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -2136,7 +2139,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         ssv-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the ssv-array format.
+         ''] using the ssv-array format. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -2171,7 +2174,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         tsv-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the tsv-array format.
+         ''] using the tsv-array format. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -2206,7 +2209,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipes-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the pipes-array format.
+         ''] using the pipes-array format. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -2271,9 +2274,9 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter.
+         parameter. Default value is None.
         :paramtype path_item_string_query: str
-        :keyword local_string_query: should contain value 'localStringQuery'.
+        :keyword local_string_query: should contain value 'localStringQuery'. Default value is None.
         :paramtype local_string_query: str
         :return: None
         :rtype: None
@@ -2324,9 +2327,9 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter.
+         parameter. Default value is None.
         :paramtype path_item_string_query: str
-        :keyword local_string_query: should contain value 'localStringQuery'.
+        :keyword local_string_query: should contain value 'localStringQuery'. Default value is None.
         :paramtype local_string_query: str
         :return: None
         :rtype: None
@@ -2377,9 +2380,9 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter.
+         parameter. Default value is None.
         :paramtype path_item_string_query: str
-        :keyword local_string_query: should contain null value.
+        :keyword local_string_query: should contain null value. Default value is None.
         :paramtype local_string_query: str
         :return: None
         :rtype: None
@@ -2429,9 +2432,9 @@ class PathItemsOperations:
         :type path_item_string_path: str
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
-        :keyword path_item_string_query: should contain value null.
+        :keyword path_item_string_query: should contain value null. Default value is None.
         :paramtype path_item_string_query: str
-        :keyword local_string_query: should contain value null.
+        :keyword local_string_query: should contain value null. Default value is None.
         :paramtype local_string_query: str
         :return: None
         :rtype: None

@@ -108,7 +108,7 @@ def build_put_valid_request(
                  'jawsize': 5
                }
              ]
-           };.
+           };. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put a salmon that looks like this:
@@ -143,7 +143,7 @@ def build_put_valid_request(
                  'jawsize': 5
                }
              ]
-           };.
+           };. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -419,10 +419,10 @@ def build_put_complicated_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.
+     our example to find the input shape.  Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
+     a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -484,10 +484,10 @@ def build_put_missing_discriminator_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.
+     our example to find the input shape.  Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
+     a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -595,7 +595,7 @@ def build_put_valid_missing_required_request(
                  "age": 105
              }
          ]
-     }.
+     }. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please attempt put a sawshark that looks like this, the
@@ -624,7 +624,7 @@ def build_put_valid_missing_required_request(
                  "age": 105
              }
          ]
-     }.
+     }. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

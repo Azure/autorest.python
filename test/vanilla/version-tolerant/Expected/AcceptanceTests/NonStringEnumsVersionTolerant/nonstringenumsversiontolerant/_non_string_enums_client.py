@@ -29,7 +29,7 @@ class NonStringEnumsClient:
     :vartype int: nonstringenumsversiontolerant.operations.IntOperations
     :ivar float: FloatOperations operations
     :vartype float: nonstringenumsversiontolerant.operations.FloatOperations
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 

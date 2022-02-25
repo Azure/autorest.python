@@ -29,7 +29,8 @@ def build_array_string_multi_null_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword array_query: a null array of string using the multi-array format.
+    :keyword array_query: a null array of string using the multi-array format. Default value is
+     None.
     :paramtype array_query: list[str]
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -70,7 +71,8 @@ def build_array_string_multi_empty_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword array_query: an empty array [] of string using the multi-array format.
+    :keyword array_query: an empty array [] of string using the multi-array format. Default value
+     is None.
     :paramtype array_query: list[str]
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -113,7 +115,7 @@ def build_array_string_multi_valid_request(
     into your code flow.
 
     :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-     ''] using the mult-array format.
+     ''] using the mult-array format. Default value is None.
     :paramtype array_query: list[str]
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
