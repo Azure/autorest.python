@@ -54,6 +54,7 @@ class ParamsOperations:
     @distributed_trace_async
     async def head_no_params(self, **kwargs: Any) -> Any:
         """Head request, no params.
+         Initially has no query parameters. After evolution, a new optional query parameter is added.
 
         :return: any
         :rtype: any
@@ -88,6 +89,8 @@ class ParamsOperations:
     @distributed_trace_async
     async def get_required(self, *, parameter: str, **kwargs: Any) -> Any:
         """Get true Boolean value on path.
+         Initially only has one required Query Parameter. After evolution, a new optional query
+        parameter is added.
 
         :keyword parameter: I am a required parameter.
         :paramtype parameter: str
@@ -127,7 +130,8 @@ class ParamsOperations:
     async def put_required_optional(
         self, *, required_param: str, optional_param: Optional[str] = None, **kwargs: Any
     ) -> Any:
-        """Put, has both required and optional params.
+        """Initially has one required query parameter and one optional query parameter.  After evolution,
+        a new optional query parameter is added.
 
         :keyword required_param: I am a required parameter.
         :paramtype required_param: str
@@ -221,6 +225,8 @@ class ParamsOperations:
     @distributed_trace_async
     async def get_optional(self, *, optional_param: Optional[str] = None, **kwargs: Any) -> Any:
         """Get true Boolean value on path.
+         Initially has one optional query parameter. After evolution, a new optional query parameter is
+        added.
 
         :keyword optional_param: I am an optional parameter. Default value is None.
         :paramtype optional_param: str

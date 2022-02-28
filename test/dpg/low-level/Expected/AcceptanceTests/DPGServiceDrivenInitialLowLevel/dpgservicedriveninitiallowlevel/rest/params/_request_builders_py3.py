@@ -20,6 +20,7 @@ _SERIALIZER.client_side_validation = False
 
 def build_head_no_params_request(**kwargs: Any) -> HttpRequest:
     """Head request, no params.
+     Initially has no query parameters. After evolution, a new optional query parameter is added.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
@@ -43,6 +44,8 @@ def build_head_no_params_request(**kwargs: Any) -> HttpRequest:
 
 def build_get_required_request(*, parameter: str, **kwargs: Any) -> HttpRequest:
     """Get true Boolean value on path.
+     Initially only has one required Query Parameter. After evolution, a new optional query
+    parameter is added.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
@@ -73,7 +76,8 @@ def build_get_required_request(*, parameter: str, **kwargs: Any) -> HttpRequest:
 def build_put_required_optional_request(
     *, required_param: str, optional_param: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
-    """Put, has both required and optional params.
+    """Initially has one required query parameter and one optional query parameter.  After evolution,
+    a new optional query parameter is added.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
@@ -150,6 +154,8 @@ def build_post_parameters_request(*, json: JSONType = None, content: Any = None,
 
 def build_get_optional_request(*, optional_param: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Get true Boolean value on path.
+     Initially has one optional query parameter. After evolution, a new optional query parameter is
+    added.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.

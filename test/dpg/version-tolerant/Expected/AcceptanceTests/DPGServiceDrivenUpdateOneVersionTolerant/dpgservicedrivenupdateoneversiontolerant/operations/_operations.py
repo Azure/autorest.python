@@ -165,7 +165,8 @@ class ParamsOperations(object):
 
     @distributed_trace
     def head_no_params(self, *, new_parameter: Optional[str] = None, **kwargs: Any) -> Any:
-        """Head request, no params.
+        """Head request, no params. Initially has no query parameters. After evolution, a new optional
+        query parameter is added.
 
         :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
@@ -204,6 +205,8 @@ class ParamsOperations(object):
     @distributed_trace
     def get_required(self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any) -> Any:
         """Get true Boolean value on path.
+         Initially only has one required Query Parameter. After evolution, a new optional query
+        parameter is added.
 
         :keyword parameter: I am a required parameter.
         :paramtype parameter: str
@@ -251,7 +254,8 @@ class ParamsOperations(object):
         new_parameter: Optional[str] = None,
         **kwargs: Any
     ) -> Any:
-        """Put, has both required and optional params.
+        """Initially has one required query parameter and one optional query parameter.  After evolution,
+        a new optional query parameter is added.
 
         :keyword required_param: I am a required parameter.
         :paramtype required_param: str
@@ -354,6 +358,8 @@ class ParamsOperations(object):
     @distributed_trace
     def delete_parameters(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Delete something.
+         Initially the path exists but there is no delete method. After evolution this is a new method
+        in a known path.
 
         :return: None
         :rtype: None
@@ -383,6 +389,8 @@ class ParamsOperations(object):
         self, *, optional_param: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
     ) -> Any:
         """Get true Boolean value on path.
+         Initially has one optional query parameter. After evolution, a new optional query parameter is
+        added.
 
         :keyword optional_param: I am an optional parameter. Default value is None.
         :paramtype optional_param: str
@@ -424,6 +432,8 @@ class ParamsOperations(object):
     @distributed_trace
     def get_new_operation(self, **kwargs: Any) -> Any:
         """I'm a new operation.
+         Initiallty neither path or method exist for this operation. After evolution, this is a new
+        method in a new path.
 
         :return: any
         :rtype: any

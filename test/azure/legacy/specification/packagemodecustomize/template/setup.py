@@ -36,7 +36,6 @@ setup(
     name=PACKAGE_NAME,
     version=version,
     description="Microsoft Azure Package Mode Client Library for Python",
-    long_description=open("README.md", "r").read(),
     long_description_content_type="text/markdown",
     license="MIT License",
     author="Microsoft Corporation",

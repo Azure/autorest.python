@@ -19,7 +19,8 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_head_no_params_request(*, new_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    """Head request, no params.
+    """Head request, no params. Initially has no query parameters. After evolution, a new optional
+    query parameter is added.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
@@ -50,6 +51,8 @@ def build_head_no_params_request(*, new_parameter: Optional[str] = None, **kwarg
 
 def build_get_required_request(*, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     """Get true Boolean value on path.
+     Initially only has one required Query Parameter. After evolution, a new optional query
+    parameter is added.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
@@ -84,7 +87,8 @@ def build_get_required_request(*, parameter: str, new_parameter: Optional[str] =
 def build_put_required_optional_request(
     *, required_param: str, optional_param: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
-    """Put, has both required and optional params.
+    """Initially has one required query parameter and one optional query parameter.  After evolution,
+    a new optional query parameter is added.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
@@ -165,6 +169,8 @@ def build_post_parameters_request(*, json: JSONType = None, content: Any = None,
 
 def build_delete_parameters_request(**kwargs: Any) -> HttpRequest:
     """Delete something.
+     Initially the path exists but there is no delete method. After evolution this is a new method
+    in a known path.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
@@ -185,6 +191,8 @@ def build_get_optional_request(
     *, optional_param: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     """Get true Boolean value on path.
+     Initially has one optional query parameter. After evolution, a new optional query parameter is
+    added.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
@@ -219,6 +227,8 @@ def build_get_optional_request(
 
 def build_get_new_operation_request(**kwargs: Any) -> HttpRequest:
     """I'm a new operation.
+     Initiallty neither path or method exist for this operation. After evolution, this is a new
+    method in a new path.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.

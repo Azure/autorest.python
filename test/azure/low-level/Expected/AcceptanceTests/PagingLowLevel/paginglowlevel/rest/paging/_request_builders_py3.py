@@ -289,6 +289,54 @@ def build_get_with_query_params_request(*, required_query_parameter: int, **kwar
     return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
+def build_duplicate_params_request(*, filter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+    """Define ``filter`` as a query param for all calls. However, the returned next link will also
+    include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
+    param in the url sent.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword filter: OData filter options. Pass in 'foo'. Default value is None.
+    :paramtype filter: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str",  # Optional.
+                "values": [
+                    {
+                        "properties": {
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
+                        }
+                    }
+                ]
+            }
+    """
+
+    accept = "application/json"
+    # Construct URL
+    _url = "/paging/multiple/duplicateParams/1"
+
+    # Construct parameters
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if filter is not None:
+        _query_parameters["$filter"] = _SERIALIZER.query("filter", filter, "str")
+
+    # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+
+
 def build_next_operation_with_query_params_request(**kwargs: Any) -> HttpRequest:
     """Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult.
 
