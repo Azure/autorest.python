@@ -37,7 +37,7 @@ class MultiapiServiceClientOperationsMixin:
 
         :param id: An int parameter.
         :type id: int
-        :param message: An optional string parameter.
+        :param message: An optional string parameter. Default value is None.
         :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -137,7 +137,7 @@ class MultiapiServiceClientOperationsMixin:
     ) -> AsyncLROPoller["_models.Product"]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~multiapidataplane.v1.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -248,9 +248,9 @@ class MultiapiServiceClientOperationsMixin:
     ) -> AsyncLROPoller[AsyncItemPaged["_models.PagingResult"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :param client_request_id:
+        :param client_request_id:  Default value is None.
         :type client_request_id: str
-        :param test_lro_and_paging_options: Parameter group.
+        :param test_lro_and_paging_options: Parameter group. Default value is None.
         :type test_lro_and_paging_options: ~multiapidataplane.v1.models.TestLroAndPagingOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.

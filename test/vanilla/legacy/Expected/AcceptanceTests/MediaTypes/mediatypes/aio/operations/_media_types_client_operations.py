@@ -37,14 +37,21 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class MediaTypesClientOperationsMixin:
     @distributed_trace_async
-    async def analyze_body(self, input: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs: Any) -> str:
+    async def analyze_body(
+        self,
+        input: Optional[Union[IO, "_models.SourcePath"]] = None,
+        *,
+        content_type: Optional[Union[str, "_models.ContentType"]] = "application/json",
+        **kwargs: Any
+    ) -> str:
         """Analyze body, that could be different media types.
 
-        :param input: Input parameter.
+        :param input: Input parameter. Default value is None.
         :type input: IO or ~mediatypes.models.SourcePath
-        :keyword str content_type: Media type of the body sent to the API. Default value is
-         "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
-         "image/tiff", "application/json."
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
+         value is "application/json".
+        :paramtype content_type: str or ~mediatypes.models.ContentType
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
         :rtype: str
@@ -53,10 +60,6 @@ class MediaTypesClientOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        content_type = kwargs.pop(
-            "content_type", "application/json"
-        )  # type: Optional[Union[str, "_models.ContentType"]]
 
         _json = None
         _content = None
@@ -100,16 +103,21 @@ class MediaTypesClientOperationsMixin:
 
     @distributed_trace_async
     async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[Union[IO, "_models.SourcePath"]] = None, **kwargs: Any
+        self,
+        input: Optional[Union[IO, "_models.SourcePath"]] = None,
+        *,
+        content_type: Optional[Union[str, "_models.ContentType"]] = "application/json",
+        **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
         type.
 
-        :param input: Input parameter.
+        :param input: Input parameter. Default value is None.
         :type input: IO or ~mediatypes.models.SourcePath
-        :keyword str content_type: Media type of the body sent to the API. Default value is
-         "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
-         "image/tiff", "application/json."
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
+         value is "application/json".
+        :paramtype content_type: str or ~mediatypes.models.ContentType
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -118,10 +126,6 @@ class MediaTypesClientOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        content_type = kwargs.pop(
-            "content_type", "application/json"
-        )  # type: Optional[Union[str, "_models.ContentType"]]
 
         _json = None
         _content = None
@@ -163,7 +167,7 @@ class MediaTypesClientOperationsMixin:
     async def content_type_with_encoding(self, input: Optional[str] = None, **kwargs: Any) -> str:
         """Pass in contentType 'text/plain; charset=UTF-8' to pass test. Value for input does not matter.
 
-        :param input: Input parameter.
+        :param input: Input parameter. Default value is None.
         :type input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
@@ -205,12 +209,17 @@ class MediaTypesClientOperationsMixin:
     content_type_with_encoding.metadata = {"url": "/mediatypes/contentTypeWithEncoding"}  # type: ignore
 
     @distributed_trace_async
-    async def binary_body_with_two_content_types(self, message: IO, **kwargs: Any) -> str:
+    async def binary_body_with_two_content_types(
+        self, message: IO, *, content_type: Optional[Union[str, "_models.ContentType1"]] = None, **kwargs: Any
+    ) -> str:
         """Binary body with two content types. Pass in of {'hello': 'world'} for the application/json
         content type, and a byte stream of 'hello, world!' for application/octet-stream.
 
         :param message: The payload body.
         :type message: IO
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/json" or "application/octet-stream". Default value is None.
+        :paramtype content_type: str or ~mediatypes.models.ContentType1
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
         :rtype: str
@@ -219,8 +228,6 @@ class MediaTypesClientOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        content_type = kwargs.pop("content_type", None)  # type: Optional[Union[str, "_models.ContentType1"]]
 
         _content = message
 
@@ -251,16 +258,23 @@ class MediaTypesClientOperationsMixin:
     binary_body_with_two_content_types.metadata = {"url": "/mediatypes/binaryBodyTwoContentTypes"}  # type: ignore
 
     @distributed_trace_async
-    async def binary_body_with_three_content_types(self, message: Union[IO, str], **kwargs: Any) -> str:
+    async def binary_body_with_three_content_types(
+        self,
+        message: Union[IO, str],
+        *,
+        content_type: Optional[Union[str, "_models.ContentType1"]] = "application/json",
+        **kwargs: Any
+    ) -> str:
         """Binary body with three content types. Pass in string 'hello, world' with content type
         'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
         'application/octet-stream'.
 
         :param message: The payload body.
         :type message: IO or str
-        :keyword str content_type: Media type of the body sent to the API. Default value is
-         "application/json". Allowed values are: "application/json", "application/octet-stream",
-         "text/plain."
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/json", "application/octet-stream", and "text/plain". Default value is
+         "application/json".
+        :paramtype content_type: str or ~mediatypes.models.ContentType1
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
         :rtype: str
@@ -269,10 +283,6 @@ class MediaTypesClientOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        content_type = kwargs.pop(
-            "content_type", "application/json"
-        )  # type: Optional[Union[str, "_models.ContentType1"]]
 
         _content = message
 
@@ -303,13 +313,16 @@ class MediaTypesClientOperationsMixin:
     binary_body_with_three_content_types.metadata = {"url": "/mediatypes/binaryBodyThreeContentTypes"}  # type: ignore
 
     @distributed_trace_async
-    async def put_text_and_json_body(self, message: Union[str, str], **kwargs: Any) -> str:
+    async def put_text_and_json_body(
+        self, message: Union[str, str], *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> str:
         """Body that's either text/plain or application/json.
 
         :param message: The payload body.
         :type message: str or str
-        :keyword str content_type: Media type of the body sent to the API. Default value is
-         "application/json". Allowed values are: "text/plain", "application/json."
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "text/plain" or "application/json". Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
         :rtype: str
@@ -318,8 +331,6 @@ class MediaTypesClientOperationsMixin:
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _json = None
         _content = None

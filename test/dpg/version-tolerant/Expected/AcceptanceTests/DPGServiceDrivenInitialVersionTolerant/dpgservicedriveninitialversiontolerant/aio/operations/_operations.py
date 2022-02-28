@@ -131,7 +131,7 @@ class ParamsOperations:
 
         :keyword required_param: I am a required parameter.
         :paramtype required_param: str
-        :keyword optional_param: I am an optional parameter.
+        :keyword optional_param: I am an optional parameter. Default value is None.
         :paramtype optional_param: str
         :return: any
         :rtype: any
@@ -222,7 +222,7 @@ class ParamsOperations:
     async def get_optional(self, *, optional_param: Optional[str] = None, **kwargs: Any) -> Any:
         """Get true Boolean value on path.
 
-        :keyword optional_param: I am an optional parameter.
+        :keyword optional_param: I am an optional parameter. Default value is None.
         :paramtype optional_param: str
         :return: any
         :rtype: any

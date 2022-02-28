@@ -394,7 +394,7 @@ class StringOperations(object):
         # type: (...) -> None
         """Set string value null.
 
-        :param string_body: string body.
+        :param string_body: string body. Default value is None.
         :type string_body: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -483,8 +483,8 @@ class StringOperations(object):
         # type: (...) -> None
         """Set string value empty ''.
 
-        :keyword string_body: string body. The default value is "". Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword string_body: string body. Default value is "". Note that overriding this default value
+         may result in unsupported behavior.
         :paramtype string_body: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -569,7 +569,7 @@ class StringOperations(object):
         # type: (...) -> None
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
-        :keyword string_body: string body. The default value is
+        :keyword string_body: string body. Default value is
          "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€". Note that overriding
          this default value may result in unsupported behavior.
         :paramtype string_body: str
@@ -662,8 +662,8 @@ class StringOperations(object):
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
-        :keyword string_body: string body. The default value is "    Now is the time for all good men
-         to come to the aid of their country    ". Note that overriding this default value may result in
+        :keyword string_body: string body. Default value is "    Now is the time for all good men to
+         come to the aid of their country    ". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype string_body: str
         :keyword callable cls: A custom type or function that will be passed the direct response

@@ -101,9 +101,9 @@ class MultiapiServiceClientOperationsMixin:
 
         :param greeting_in_english: pass in 'hello' to pass test.
         :type greeting_in_english: str
-        :param greeting_in_chinese: pass in 'nihao' to pass test.
+        :param greeting_in_chinese: pass in 'nihao' to pass test. Default value is None.
         :type greeting_in_chinese: str
-        :param greeting_in_french: pass in 'bonjour' to pass test.
+        :param greeting_in_french: pass in 'bonjour' to pass test. Default value is None.
         :type greeting_in_french: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

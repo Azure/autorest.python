@@ -188,11 +188,12 @@ class MediaTypesClientOperationsMixin(object):
         # type: (...) -> str
         """Analyze body, that could be different media types.
 
-        :param input: Input parameter.
+        :param input: Input parameter. Default value is None.
         :type input: IO or ~mediatypes.models.SourcePath
-        :keyword str content_type: Media type of the body sent to the API. Default value is
-         "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
-         "image/tiff", "application/json."
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
+         value is "application/json".
+        :paramtype content_type: str or ~mediatypes.models.ContentType
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
         :rtype: str
@@ -256,11 +257,12 @@ class MediaTypesClientOperationsMixin(object):
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
         type.
 
-        :param input: Input parameter.
+        :param input: Input parameter. Default value is None.
         :type input: IO or ~mediatypes.models.SourcePath
-        :keyword str content_type: Media type of the body sent to the API. Default value is
-         "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
-         "image/tiff", "application/json."
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
+         value is "application/json".
+        :paramtype content_type: str or ~mediatypes.models.ContentType
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -319,7 +321,7 @@ class MediaTypesClientOperationsMixin(object):
         # type: (...) -> str
         """Pass in contentType 'text/plain; charset=UTF-8' to pass test. Value for input does not matter.
 
-        :param input: Input parameter.
+        :param input: Input parameter. Default value is None.
         :type input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
@@ -372,6 +374,9 @@ class MediaTypesClientOperationsMixin(object):
 
         :param message: The payload body.
         :type message: IO
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/json" or "application/octet-stream". Default value is None.
+        :paramtype content_type: str or ~mediatypes.models.ContentType1
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
         :rtype: str
@@ -424,9 +429,10 @@ class MediaTypesClientOperationsMixin(object):
 
         :param message: The payload body.
         :type message: IO or str
-        :keyword str content_type: Media type of the body sent to the API. Default value is
-         "application/json". Allowed values are: "application/json", "application/octet-stream",
-         "text/plain."
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/json", "application/octet-stream", and "text/plain". Default value is
+         "application/json".
+        :paramtype content_type: str or ~mediatypes.models.ContentType1
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
         :rtype: str
@@ -479,8 +485,9 @@ class MediaTypesClientOperationsMixin(object):
 
         :param message: The payload body.
         :type message: str or str
-        :keyword str content_type: Media type of the body sent to the API. Default value is
-         "application/json". Allowed values are: "text/plain", "application/json."
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "text/plain" or "application/json". Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
         :rtype: str

@@ -235,7 +235,7 @@ class DictionaryOperations(object):
         # type: (...) -> None
         """Put complex types with dictionary property.
 
-        :param default_program: Dictionary of :code:`<string>`.
+        :param default_program: Dictionary of :code:`<string>`. Default value is None.
         :type default_program: dict[str, str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -324,7 +324,7 @@ class DictionaryOperations(object):
         # type: (...) -> None
         """Put complex types with dictionary property which is empty.
 
-        :param default_program: Dictionary of :code:`<string>`.
+        :param default_program: Dictionary of :code:`<string>`. Default value is None.
         :type default_program: dict[str, str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

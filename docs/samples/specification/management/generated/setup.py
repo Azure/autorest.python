@@ -28,8 +28,8 @@ setup(
     include_package_data=True,
     install_requires=[
         "msrest>=0.6.21",
+        "azure-common~=1.1",
         "azure-mgmt-core>=1.3.0,<2.0.0",
-        "azure-core<2.0.0,>=1.20.1",
     ],
     long_description="""\
     Test Infrastructure for AutoRest.

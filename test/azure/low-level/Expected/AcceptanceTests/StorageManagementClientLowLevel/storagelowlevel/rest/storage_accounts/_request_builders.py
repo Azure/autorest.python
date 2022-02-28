@@ -41,13 +41,15 @@ def build_check_name_availability_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The name of the storage account within the specified
      resource group. Storage account names must be between 3 and 24 characters in length and use
-     numbers and lower-case letters only.
+     numbers and lower-case letters only. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The name of the storage account within the specified
      resource group. Storage account names must be between 3 and 24 characters in length and use
-     numbers and lower-case letters only.
+     numbers and lower-case letters only. Default value is None.
     :paramtype content: any
+    :keyword content_type: Media type of the body sent to the API. Possible values are:
+     "application/json" or "text/json". Default value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -132,11 +134,15 @@ def build_create_request(
      subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. The parameters to provide for the created account.
+     our example to find the input shape. The parameters to provide for the created account. Default
+     value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). The parameters to provide for the created account.
+     a byte iterator, or stream input). The parameters to provide for the created account. Default
+     value is None.
     :paramtype content: any
+    :keyword content_type: Media type of the body sent to the API. Possible values are:
+     "application/json" or "text/json". Default value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -471,12 +477,14 @@ def build_update_request(
     :type subscription_id: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The parameters to update on the account. Note that only
-     one property can be changed at a time using this API.
+     one property can be changed at a time using this API. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The parameters to update on the account. Note that only one
-     property can be changed at a time using this API.
+     property can be changed at a time using this API. Default value is None.
     :paramtype content: any
+    :keyword content_type: Media type of the body sent to the API. Possible values are:
+     "application/json" or "text/json". Default value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -970,10 +978,14 @@ def build_regenerate_key_request(
     :type subscription_id: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Specifies name of the key which should be regenerated.
+     Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Specifies name of the key which should be regenerated.
+     Default value is None.
     :paramtype content: any
+    :keyword content_type: Media type of the body sent to the API. Possible values are:
+     "application/json" or "text/json". Default value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.

@@ -29,7 +29,7 @@ class BodyFormsDataURLEncoded(object):
 
     :ivar formdataurlencoded: FormdataurlencodedOperations operations
     :vartype formdataurlencoded: bodyformurlencodeddata.operations.FormdataurlencodedOperations
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     """
 

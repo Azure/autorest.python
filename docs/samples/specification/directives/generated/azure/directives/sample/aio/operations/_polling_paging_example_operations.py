@@ -83,7 +83,7 @@ class PollingPagingExampleOperationsMixin:
     ) -> AsyncCustomPoller["_models.Product"]:
         """A simple polling operation.
 
-        :param product: Product to put.
+        :param product: Product to put. Default value is None.
         :type product: ~azure.directives.sample.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.

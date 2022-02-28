@@ -340,9 +340,10 @@ class PagingOperations:
     ) -> AsyncIterable[JSONType]:
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :keyword client_request_id:
+        :keyword client_request_id:  Default value is None.
         :paramtype client_request_id: str
-        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :keyword maxresults: Sets the maximum number of items to return in the response. Default value
+         is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds.
@@ -424,8 +425,8 @@ class PagingOperations:
          pass test.
         :paramtype required_query_parameter: int
         :keyword query_constant: A constant. Must be True and will be passed as a query parameter to
-         nextOperationWithQueryParams. The default value is True. Note that overriding this default
-         value may result in unsupported behavior.
+         nextOperationWithQueryParams. Default value is True. Note that overriding this default value
+         may result in unsupported behavior.
         :paramtype query_constant: bool
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
@@ -505,9 +506,10 @@ class PagingOperations:
     ) -> AsyncIterable[JSONType]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
-        :keyword client_request_id:
+        :keyword client_request_id:  Default value is None.
         :paramtype client_request_id: str
-        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :keyword maxresults: Sets the maximum number of items to return in the response. Default value
+         is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds.
@@ -594,9 +596,10 @@ class PagingOperations:
 
         :param offset: Offset of return value.
         :type offset: int
-        :keyword client_request_id:
+        :keyword client_request_id:  Default value is None.
         :paramtype client_request_id: str
-        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :keyword maxresults: Sets the maximum number of items to return in the response. Default value
+         is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds.
@@ -1196,9 +1199,10 @@ class PagingOperations:
     ) -> AsyncCustomPoller[AsyncItemPaged[JSONType]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :keyword client_request_id:
+        :keyword client_request_id:  Default value is None.
         :paramtype client_request_id: str
-        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :keyword maxresults: Sets the maximum number of items to return in the response. Default value
+         is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds.

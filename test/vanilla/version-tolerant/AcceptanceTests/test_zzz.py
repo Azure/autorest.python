@@ -37,12 +37,13 @@ class TestAcceptance(object):
         optional_report = client.get_optional_report(qualifier=platform.python_version())
 
         # Add tests that wont be supported due to the nature of Python here
-        not_supported = {}
+        not_supported = {
+            "verifyIncorrectErrorParsing": 1,  # not deserializing errors yet in version tolerant
+        }
 
         # Please add missing features or failing tests here
         missing_features_or_bugs = {
             'ConstantsInBody': 1,  # https://github.com/Azure/autorest.modelerfour/issues/83
-            "verifyIncorrectErrorParsing": 1,  # not deserializing errors yet in version tolerant
             "ResponsesScenarioF400DefaultModel": 1,
             "ResponsesScenarioF400DefaultNone": 1,
         }
@@ -67,10 +68,10 @@ class TestAcceptance(object):
                 # dpg is in a separate test folder
                 missing_features_or_bugs[name] = 1
         print("Optional coverage:")
-        self._print_report(optional_report, not_supported, missing_features_or_bugs)
+        self._print_report(optional_report, not_supported, missing_features_or_bugs, fail_if_missing=False)
 
 
-    def _print_report(self, report, not_supported=None, missing_features_or_bugs=None):
+    def _print_report(self, report, not_supported=None, missing_features_or_bugs=None, fail_if_missing=True):
         if not_supported:
             report.update(not_supported)
             for s in not_supported.keys():
@@ -88,4 +89,5 @@ class TestAcceptance(object):
         total_tests = len(report)
         warnings.warn ("The test coverage is {0}/{1}.".format(total_tests - len(failed), total_tests))
 
-        assert 0 == len(failed)
+        if fail_if_missing:
+            assert 0 == len(failed)

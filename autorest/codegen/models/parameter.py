@@ -68,7 +68,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         grouped_by: Optional["Parameter"] = None,
         original_parameter: Optional["Parameter"] = None,
         client_default_value: Optional[Any] = None,
-        keyword_only: bool = False,
+        keyword_only: Optional[bool] = None,
         content_types: Optional[List[str]] = None,
     ) -> None:
         super().__init__(yaml_data)
@@ -99,6 +99,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         self.body_kwargs: List[Parameter] = []
         self.is_body_kwarg = False
         self.need_import = True
+        self.is_kwarg = (self.rest_api_name == "Content-Type" or (self.constant and self.rest_api_name != "Accept"))
 
     def __hash__(self) -> int:
         return hash(self.serialized_name)
@@ -111,6 +112,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
                 if description:
                     description += " "
                 description += f"{self.schema.extra_description_information}"
+            if self.has_default_value and not any(
+                l for l in ["default value is", "default is"] if l in description.lower()
+            ):
+                description += f" Default value is {self.default_value_declaration}."
             if self.constant:
                 description += " Note that overriding this default value may result in unsupported behavior."
             return description
@@ -299,18 +304,18 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         return origin_name
 
     @property
-    def is_kwarg(self) -> bool:
-        # this means "am I in **kwargs?"
-        return self.rest_api_name == "Content-Type" or (self.constant and self.rest_api_name != "Accept")
-
-    @property
     def is_keyword_only(self) -> bool:
         # this means in async mode, I am documented like def hello(positional_1, *, me!)
-        return self._keyword_only
+        return self._keyword_only or False
+
+    @is_keyword_only.setter
+    def is_keyword_only(self, val: bool) -> None:
+        self._keyword_only = val
+        self.is_kwarg = False
 
     @property
     def is_hidden(self) -> bool:
-        return self.serialized_name in _HIDDEN_KWARGS or (
+        return self.serialized_name in _HIDDEN_KWARGS and self.is_kwarg or (
             self.yaml_data["implementation"] == "Client" and self.constant
         )
 
@@ -365,6 +370,8 @@ class ParameterOnlyPathAndBodyPositional(Parameter):
 
     @property
     def is_keyword_only(self) -> bool:
+        if self._keyword_only is not None:
+            return self._keyword_only
         return self.in_method_signature and not (
             self.is_hidden or
             self.location == ParameterLocation.Path or
@@ -372,6 +379,11 @@ class ParameterOnlyPathAndBodyPositional(Parameter):
             self.location == ParameterLocation.Body or
             self.is_kwarg
         )
+
+    @is_keyword_only.setter
+    def is_keyword_only(self, val: bool) -> None:
+        self._keyword_only = val
+        self.is_kwarg = False
 
 def get_parameter(code_model):
     if code_model.options["only_path_and_body_params_positional"]:

@@ -100,7 +100,7 @@ class ArrayOperations:
     ) -> None:
         """Put complex types with array property.
 
-        :param array:
+        :param array:  Default value is None.
         :type array: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -183,7 +183,7 @@ class ArrayOperations:
     ) -> None:
         """Put complex types with array property which is empty.
 
-        :param array:
+        :param array:  Default value is None.
         :type array: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

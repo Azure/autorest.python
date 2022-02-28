@@ -849,9 +849,9 @@ class PagingOperations(object):
         # type: (...) -> Iterable["_models.ProductResult"]
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :param client_request_id:
+        :param client_request_id:  Default value is None.
         :type client_request_id: str
-        :param paging_get_multiple_pages_options: Parameter group.
+        :param paging_get_multiple_pages_options: Parameter group. Default value is None.
         :type paging_get_multiple_pages_options:
          ~custompollerpager.models.PagingGetMultiplePagesOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -942,8 +942,8 @@ class PagingOperations(object):
          test.
         :type required_query_parameter: int
         :keyword query_constant: A constant. Must be True and will be passed as a query parameter to
-         nextOperationWithQueryParams. The default value is True. Note that overriding this default
-         value may result in unsupported behavior.
+         nextOperationWithQueryParams. Default value is True. Note that overriding this default value
+         may result in unsupported behavior.
         :paramtype query_constant: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResult or the result of cls(response)
@@ -1018,9 +1018,9 @@ class PagingOperations(object):
         # type: (...) -> Iterable["_models.OdataProductResult"]
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
-        :param client_request_id:
+        :param client_request_id:  Default value is None.
         :type client_request_id: str
-        :param paging_get_odata_multiple_pages_options: Parameter group.
+        :param paging_get_odata_multiple_pages_options: Parameter group. Default value is None.
         :type paging_get_odata_multiple_pages_options:
          ~custompollerpager.models.PagingGetOdataMultiplePagesOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1110,7 +1110,7 @@ class PagingOperations(object):
         :param paging_get_multiple_pages_with_offset_options: Parameter group.
         :type paging_get_multiple_pages_with_offset_options:
          ~custompollerpager.models.PagingGetMultiplePagesWithOffsetOptions
-        :param client_request_id:
+        :param client_request_id:  Default value is None.
         :type client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResult or the result of cls(response)
@@ -1744,9 +1744,9 @@ class PagingOperations(object):
         # type: (...) -> CustomPoller[ItemPaged["_models.ProductResult"]]
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :param client_request_id:
+        :param client_request_id:  Default value is None.
         :type client_request_id: str
-        :param paging_get_multiple_pages_lro_options: Parameter group.
+        :param paging_get_multiple_pages_lro_options: Parameter group. Default value is None.
         :type paging_get_multiple_pages_lro_options:
          ~custompollerpager.models.PagingGetMultiplePagesLroOptions
         :keyword callable cls: A custom type or function that will be passed the direct response

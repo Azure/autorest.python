@@ -21,16 +21,16 @@ class AutoRestSwaggerConstantServiceConfiguration(Configuration):  # pylint: dis
     attributes.
 
     :keyword header_constant: Constant header property on the client that is a required parameter
-     for operation 'constants_putClientConstants'. The default value is True. Note that overriding
-     this default value may result in unsupported behavior.
+     for operation 'constants_putClientConstants'. Default value is True. Note that overriding this
+     default value may result in unsupported behavior.
     :paramtype header_constant: bool
     :keyword query_constant: Constant query property on the client that is a required parameter for
-     operation 'constants_putClientConstants'. The default value is 100. Note that overriding this
+     operation 'constants_putClientConstants'. Default value is 100. Note that overriding this
      default value may result in unsupported behavior.
     :paramtype query_constant: int
     :keyword path_constant: Constant path property on the client that is a required parameter for
-     operation 'constants_putClientConstants'. The default value is "path". Note that overriding
-     this default value may result in unsupported behavior.
+     operation 'constants_putClientConstants'. Default value is "path". Note that overriding this
+     default value may result in unsupported behavior.
     :paramtype path_constant: str
     """
 

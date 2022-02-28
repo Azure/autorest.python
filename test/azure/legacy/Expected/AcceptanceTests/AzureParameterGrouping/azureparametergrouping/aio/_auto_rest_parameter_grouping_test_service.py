@@ -24,7 +24,7 @@ class AutoRestParameterGroupingTestService:
 
     :ivar parameter_grouping: ParameterGroupingOperations operations
     :vartype parameter_grouping: azureparametergrouping.aio.operations.ParameterGroupingOperations
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     """
 

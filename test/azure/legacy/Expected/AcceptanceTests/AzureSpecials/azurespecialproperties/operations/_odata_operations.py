@@ -103,11 +103,12 @@ class OdataOperations(object):
         # type: (...) -> None
         """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
 
-        :param filter: The filter parameter with value '$filter=id gt 5 and name eq 'foo''.
+        :param filter: The filter parameter with value '$filter=id gt 5 and name eq 'foo''. Default
+         value is None.
         :type filter: str
-        :param top: The top parameter with value 10.
+        :param top: The top parameter with value 10. Default value is None.
         :type top: int
-        :param orderby: The orderby parameter with value id.
+        :param orderby: The orderby parameter with value id. Default value is None.
         :type orderby: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

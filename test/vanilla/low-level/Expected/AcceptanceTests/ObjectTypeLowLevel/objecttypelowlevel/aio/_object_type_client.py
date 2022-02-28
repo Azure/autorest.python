@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 class ObjectTypeClient:
     """Service client for testing basic type: object swaggers.
 
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 

@@ -24,10 +24,10 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
 
     :param subscription_id: Subscription ID.
     :type subscription_id: str
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
-    :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
-     default value may result in unsupported behavior.
+    :keyword api_version: Api Version. Default value is "1.0.0". Note that overriding this default
+     value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

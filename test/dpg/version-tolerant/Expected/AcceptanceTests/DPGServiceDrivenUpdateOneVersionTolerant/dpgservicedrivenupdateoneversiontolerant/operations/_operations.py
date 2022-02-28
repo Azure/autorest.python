@@ -167,7 +167,7 @@ class ParamsOperations(object):
     def head_no_params(self, *, new_parameter: Optional[str] = None, **kwargs: Any) -> Any:
         """Head request, no params.
 
-        :keyword new_parameter: I'm a new input optional parameter.
+        :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
         :return: any
         :rtype: any
@@ -207,7 +207,7 @@ class ParamsOperations(object):
 
         :keyword parameter: I am a required parameter.
         :paramtype parameter: str
-        :keyword new_parameter: I'm a new input optional parameter.
+        :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
         :return: any
         :rtype: any
@@ -255,9 +255,9 @@ class ParamsOperations(object):
 
         :keyword required_param: I am a required parameter.
         :paramtype required_param: str
-        :keyword optional_param: I am an optional parameter.
+        :keyword optional_param: I am an optional parameter. Default value is None.
         :paramtype optional_param: str
-        :keyword new_parameter: I'm a new input optional parameter.
+        :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
         :return: any
         :rtype: any
@@ -294,14 +294,17 @@ class ParamsOperations(object):
         return deserialized
 
     @distributed_trace
-    def post_parameters(self, parameter: Union[IO, JSONType], **kwargs: Any) -> Any:
+    def post_parameters(
+        self, parameter: Union[IO, JSONType], *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> Any:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
          url: "http://example.org/myimage.jpeg" }.
         :type parameter: IO or JSONType
-        :keyword str content_type: Media type of the body sent to the API. Default value is
-         "application/json". Allowed values are: "image/jpeg", "application/json."
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "image/jpeg" or "application/json". Default value is "application/json".
+        :paramtype content_type: str
         :return: any
         :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -309,8 +312,6 @@ class ParamsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
-
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _json = None
         _content = None
@@ -383,9 +384,9 @@ class ParamsOperations(object):
     ) -> Any:
         """Get true Boolean value on path.
 
-        :keyword optional_param: I am an optional parameter.
+        :keyword optional_param: I am an optional parameter. Default value is None.
         :paramtype optional_param: str
-        :keyword new_parameter: I'm a new input optional parameter.
+        :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
         :return: any
         :rtype: any

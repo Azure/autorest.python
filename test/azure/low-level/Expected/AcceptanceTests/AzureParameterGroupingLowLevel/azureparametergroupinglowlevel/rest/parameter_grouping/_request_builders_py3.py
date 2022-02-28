@@ -36,14 +36,14 @@ def build_post_required_request(
     :param path: Path parameter.
     :type path: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.
+     our example to find the input shape.  Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
+     a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
-    :keyword custom_header:
+    :keyword custom_header:  Default value is None.
     :paramtype custom_header: str
-    :keyword query: Query parameter with default.
+    :keyword query: Query parameter with default. Default value is 30.
     :paramtype query: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -100,9 +100,9 @@ def build_post_optional_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword custom_header:
+    :keyword custom_header:  Default value is None.
     :paramtype custom_header: str
-    :keyword query: Query parameter with default.
+    :keyword query: Query parameter with default. Default value is 30.
     :paramtype query: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -136,9 +136,11 @@ def build_post_reserved_words_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword from_parameter: 'from' is a reserved word. Pass in 'bob' to pass.
+    :keyword from_parameter: 'from' is a reserved word. Pass in 'bob' to pass. Default value is
+     None.
     :paramtype from_parameter: str
-    :keyword accept_parameter: 'accept' is a reserved word. Pass in 'yes' to pass.
+    :keyword accept_parameter: 'accept' is a reserved word. Pass in 'yes' to pass. Default value is
+     None.
     :paramtype accept_parameter: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -177,13 +179,13 @@ def build_post_multi_param_groups_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword header_one:
+    :keyword header_one:  Default value is None.
     :paramtype header_one: str
-    :keyword query_one: Query parameter with default.
+    :keyword query_one: Query parameter with default. Default value is 30.
     :paramtype query_one: int
-    :keyword header_two:
+    :keyword header_two:  Default value is None.
     :paramtype header_two: str
-    :keyword query_two: Query parameter with default.
+    :keyword query_two: Query parameter with default. Default value is 30.
     :paramtype query_two: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -221,9 +223,9 @@ def build_post_shared_parameter_group_object_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword header_one:
+    :keyword header_one:  Default value is None.
     :paramtype header_one: str
-    :keyword query_one: Query parameter with default.
+    :keyword query_one: Query parameter with default. Default value is 30.
     :paramtype query_one: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

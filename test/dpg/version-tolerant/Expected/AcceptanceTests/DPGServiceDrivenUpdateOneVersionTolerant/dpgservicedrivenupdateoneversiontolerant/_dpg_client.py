@@ -27,7 +27,7 @@ class DPGClient:
 
     :ivar params: ParamsOperations operations
     :vartype params: dpgservicedrivenupdateoneversiontolerant.operations.ParamsOperations
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 

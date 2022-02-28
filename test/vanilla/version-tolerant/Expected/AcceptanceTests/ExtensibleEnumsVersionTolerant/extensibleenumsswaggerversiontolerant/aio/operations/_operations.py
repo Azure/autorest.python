@@ -99,7 +99,7 @@ class PetOperations:
     async def add_pet(self, pet_param: JSONType = None, **kwargs: Any) -> JSONType:
         """add pet.
 
-        :param pet_param: pet param.
+        :param pet_param: pet param. Default value is None.
         :type pet_param: JSONType
         :return: JSON object
         :rtype: JSONType
