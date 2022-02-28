@@ -67,7 +67,11 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def check_name_availability(
-        self, account_name: "_models.StorageAccountCheckNameAvailabilityParameters", **kwargs: Any
+        self,
+        account_name: "_models.StorageAccountCheckNameAvailabilityParameters",
+        *,
+        content_type: Optional[str] = "application/json",
+        **kwargs: Any
     ) -> "_models.CheckNameAvailabilityResult":
         """Checks that account name is valid and is not in use.
 
@@ -75,6 +79,9 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
         :type account_name: ~storage.models.StorageAccountCheckNameAvailabilityParameters
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/json" or "text/json". Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CheckNameAvailabilityResult, or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
@@ -85,7 +92,6 @@ class StorageAccountsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
 
@@ -122,6 +128,8 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "_models.StorageAccountCreateParameters",
+        *,
+        content_type: Optional[str] = "application/json",
         **kwargs: Any
     ) -> Optional["_models.StorageAccount"]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.StorageAccount"]]
@@ -129,7 +137,6 @@ class StorageAccountsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _json = self._serialize.body(parameters, "StorageAccountCreateParameters")
 
@@ -171,6 +178,8 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "_models.StorageAccountCreateParameters",
+        *,
+        content_type: Optional[str] = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller["_models.StorageAccount"]:
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
@@ -186,6 +195,9 @@ class StorageAccountsOperations:
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
         :type parameters: ~storage.models.StorageAccountCreateParameters
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/json" or "text/json". Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -200,7 +212,6 @@ class StorageAccountsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -210,8 +221,8 @@ class StorageAccountsOperations:
                 resource_group_name=resource_group_name,
                 account_name=account_name,
                 parameters=parameters,
-                api_version=api_version,
                 content_type=content_type,
+                api_version=api_version,
                 cls=lambda x, y, z: x,
                 **kwargs
             )
@@ -347,6 +358,8 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "_models.StorageAccountUpdateParameters",
+        *,
+        content_type: Optional[str] = "application/json",
         **kwargs: Any
     ) -> "_models.StorageAccount":
         """Updates the account type or tags for a storage account. It can also be used to add a custom
@@ -366,6 +379,9 @@ class StorageAccountsOperations:
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API.
         :type parameters: ~storage.models.StorageAccountUpdateParameters
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/json" or "text/json". Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount, or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
@@ -376,7 +392,6 @@ class StorageAccountsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _json = self._serialize.body(parameters, "StorageAccountUpdateParameters")
 
@@ -601,6 +616,8 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         key_name: Optional[Union[str, "_models.KeyName"]] = None,
+        *,
+        content_type: Optional[str] = "application/json",
         **kwargs: Any
     ) -> "_models.StorageAccountKeys":
         """Regenerates the access keys for the specified storage account.
@@ -613,6 +630,9 @@ class StorageAccountsOperations:
         :type account_name: str
         :param key_name:  Default value is None.
         :type key_name: str or ~storage.models.KeyName
+        :keyword content_type: Media type of the body sent to the API. Possible values are:
+         "application/json" or "text/json". Default value is "application/json".
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys, or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
@@ -623,7 +643,6 @@ class StorageAccountsOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
 
         _regenerate_key = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
         _json = self._serialize.body(_regenerate_key, "StorageAccountRegenerateKeyParameters")

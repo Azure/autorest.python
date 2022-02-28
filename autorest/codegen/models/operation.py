@@ -303,6 +303,15 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         parameters, multiple_content_type_parameters = create_parameters(
             yaml_data, code_model, parameter_creator
         )
+        parameter_list = parameter_list_creator(code_model, parameters, schema_requests)
+        multiple_content_type_parameter_list = parameter_list_creator(
+            code_model, multiple_content_type_parameters, schema_requests
+        )
+
+        if len(parameter_list.content_types) > 1:
+            for p in parameter_list.parameters:
+                if p.rest_api_name == "Content-Type":
+                    p.is_keyword_only = True
 
         return cls(
             code_model=code_model,
@@ -310,10 +319,8 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             name=name,
             description=yaml_data["language"]["python"]["description"],
             api_versions=set(value_dict["version"] for value_dict in yaml_data["apiVersions"]),
-            parameters=parameter_list_creator(code_model, parameters, schema_requests),
-            multiple_content_type_parameters=parameter_list_creator(
-                code_model, multiple_content_type_parameters, schema_requests
-            ),
+            parameters=parameter_list,
+            multiple_content_type_parameters=multiple_content_type_parameter_list,
             schema_requests=schema_requests,
             summary=yaml_data["language"]["python"].get("summary"),
             responses=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])],

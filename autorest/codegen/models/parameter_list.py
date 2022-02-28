@@ -207,7 +207,9 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
             lambda parameter: parameter.implementation == self.implementation
         )
         positional = [p for p in parameters_of_this_implementation if p.is_positional]
-        keyword_only = [p for p in parameters_of_this_implementation if p.is_keyword_only]
+        keyword_only = self._filter_out_multiple_content_type(
+            [p for p in parameters_of_this_implementation if p.is_keyword_only]
+        )
         kwargs = self._filter_out_multiple_content_type(
             [p for p in parameters_of_this_implementation if p.is_kwarg]
         )
@@ -315,7 +317,9 @@ class ParameterOnlyPathAndBodyPositionalList(ParameterList):
             file_and_data_params.append(data_param)
         method_params = [p for p in method_params if not p.is_multipart and not p.is_data_input]
         positional = [p for p in method_params if p.is_positional]
-        keyword_only = [p for p in method_params if p.is_keyword_only]
+        keyword_only = self._filter_out_multiple_content_type(
+            [p for p in method_params if p.is_keyword_only]
+        )
         kwargs = self._filter_out_multiple_content_type(
             [p for p in method_params if p.is_kwarg]
         )
@@ -338,7 +342,9 @@ class GlobalParameterList(ParameterList):
         """
         # Client level should not be on Method, etc.
         positional = [p for p in self.parameters if p.is_positional]
-        keyword_only = [p for p in self.parameters if p.is_keyword_only]
+        keyword_only = self._filter_out_multiple_content_type(
+            [p for p in self.parameters if p.is_keyword_only]
+        )
         kwargs = self._filter_out_multiple_content_type(
             [p for p in self.parameters if p.is_kwarg]
         )
