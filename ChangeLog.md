@@ -1,6 +1,6 @@
 # Change Log
 
-### 2022-xx-xx - 5.12.7
+### 2022-xx-xx - 5.13.0
 
 | Library | Min Version
 | --------------- | -------
@@ -9,6 +9,10 @@
 |`azure-core` dep of generated code | `1.20.1`
 |`msrest` dep of generated code | `0.6.21`
 |`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+
+**Breaking Changes in Version Tolerant Generation**
+
+- Version tolerant paging does not reformat initial query parameters into the next link #1168
 
 **Bug Fixes**
 
