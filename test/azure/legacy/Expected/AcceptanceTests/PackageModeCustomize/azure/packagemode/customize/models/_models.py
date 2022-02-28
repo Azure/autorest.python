@@ -46,7 +46,7 @@ class OdataProductResult(msrest.serialization.Model):
     """OdataProductResult.
 
     :ivar values:
-    :vartype values: list[~azure.package.mode.models.Product]
+    :vartype values: list[~azure.packagemode.customize.models.Product]
     :ivar odata_next_link:
     :vartype odata_next_link: str
     """
@@ -59,7 +59,7 @@ class OdataProductResult(msrest.serialization.Model):
     def __init__(self, **kwargs):
         """
         :keyword values:
-        :paramtype values: list[~azure.package.mode.models.Product]
+        :paramtype values: list[~azure.packagemode.customize.models.Product]
         :keyword odata_next_link:
         :paramtype odata_next_link: str
         """
@@ -74,7 +74,7 @@ class OperationResult(msrest.serialization.Model):
     :ivar status: The status of the request. Possible values include: "Succeeded", "Failed",
      "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
      "OK".
-    :vartype status: str or ~azure.package.mode.models.OperationResultStatus
+    :vartype status: str or ~azure.packagemode.customize.models.OperationResultStatus
     """
 
     _attribute_map = {
@@ -86,7 +86,7 @@ class OperationResult(msrest.serialization.Model):
         :keyword status: The status of the request. Possible values include: "Succeeded", "Failed",
          "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
          "OK".
-        :paramtype status: str or ~azure.package.mode.models.OperationResultStatus
+        :paramtype status: str or ~azure.packagemode.customize.models.OperationResultStatus
         """
         super(OperationResult, self).__init__(**kwargs)
         self.status = kwargs.get("status", None)
@@ -220,7 +220,7 @@ class Product(msrest.serialization.Model):
     """Product.
 
     :ivar properties:
-    :vartype properties: ~azure.package.mode.models.ProductProperties
+    :vartype properties: ~azure.packagemode.customize.models.ProductProperties
     """
 
     _attribute_map = {
@@ -230,7 +230,7 @@ class Product(msrest.serialization.Model):
     def __init__(self, **kwargs):
         """
         :keyword properties:
-        :paramtype properties: ~azure.package.mode.models.ProductProperties
+        :paramtype properties: ~azure.packagemode.customize.models.ProductProperties
         """
         super(Product, self).__init__(**kwargs)
         self.properties = kwargs.get("properties", None)
@@ -266,7 +266,7 @@ class ProductResult(msrest.serialization.Model):
     """ProductResult.
 
     :ivar values:
-    :vartype values: list[~azure.package.mode.models.Product]
+    :vartype values: list[~azure.packagemode.customize.models.Product]
     :ivar next_link:
     :vartype next_link: str
     """
@@ -279,7 +279,7 @@ class ProductResult(msrest.serialization.Model):
     def __init__(self, **kwargs):
         """
         :keyword values:
-        :paramtype values: list[~azure.package.mode.models.Product]
+        :paramtype values: list[~azure.packagemode.customize.models.Product]
         :keyword next_link:
         :paramtype next_link: str
         """
@@ -292,7 +292,7 @@ class ProductResultValue(msrest.serialization.Model):
     """ProductResultValue.
 
     :ivar value:
-    :vartype value: list[~azure.package.mode.models.Product]
+    :vartype value: list[~azure.packagemode.customize.models.Product]
     :ivar next_link:
     :vartype next_link: str
     """
@@ -305,7 +305,7 @@ class ProductResultValue(msrest.serialization.Model):
     def __init__(self, **kwargs):
         """
         :keyword value:
-        :paramtype value: list[~azure.package.mode.models.Product]
+        :paramtype value: list[~azure.packagemode.customize.models.Product]
         :keyword next_link:
         :paramtype next_link: str
         """
@@ -318,7 +318,7 @@ class ProductResultValueWithXMSClientName(msrest.serialization.Model):
     """ProductResultValueWithXMSClientName.
 
     :ivar indexes:
-    :vartype indexes: list[~azure.package.mode.models.Product]
+    :vartype indexes: list[~azure.packagemode.customize.models.Product]
     :ivar next_link:
     :vartype next_link: str
     """
@@ -331,7 +331,7 @@ class ProductResultValueWithXMSClientName(msrest.serialization.Model):
     def __init__(self, **kwargs):
         """
         :keyword indexes:
-        :paramtype indexes: list[~azure.package.mode.models.Product]
+        :paramtype indexes: list[~azure.packagemode.customize.models.Product]
         :keyword next_link:
         :paramtype next_link: str
         """

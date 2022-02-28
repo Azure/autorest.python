@@ -28,7 +28,6 @@ from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._paging_operations import (
-    build_duplicate_params_request,
     build_first_response_empty_request,
     build_get_multiple_pages_failure_request,
     build_get_multiple_pages_failure_uri_request,
@@ -460,69 +459,6 @@ class PagingOperations:
         return AsyncItemPaged(get_next, extract_data)
 
     get_with_query_params.metadata = {"url": "/paging/multiple/getWithQueryParams"}  # type: ignore
-
-    @distributed_trace
-    def duplicate_params(self, filter: Optional[str] = None, **kwargs: Any) -> AsyncIterable["_models.ProductResult"]:
-        """Define ``filter`` as a query param for all calls. However, the returned next link will also
-        include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
-        param in the url sent.
-
-        :param filter: OData filter options. Pass in 'foo'. Default value is None.
-        :type filter: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: An iterator like instance of either ProductResult or the result of cls(response)
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.package.mode.models.ProductResult]
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
-        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
-
-        def prepare_request(next_link=None):
-            if not next_link:
-
-                request = build_duplicate_params_request(
-                    filter=filter,
-                    template_url=self.duplicate_params.metadata["url"],
-                )
-                request = _convert_request(request)
-                request.url = self._client.format_url(request.url)
-
-            else:
-
-                request = build_duplicate_params_request(
-                    filter=filter,
-                    template_url=next_link,
-                )
-                request = _convert_request(request)
-                request.url = self._client.format_url(request.url)
-                request.method = "GET"
-            return request
-
-        async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResult", pipeline_response)
-            list_of_elem = deserialized.values
-            if cls:
-                list_of_elem = cls(list_of_elem)
-            return deserialized.next_link or None, AsyncList(list_of_elem)
-
-        async def get_next(next_link=None):
-            request = prepare_request(next_link)
-
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=False, **kwargs
-            )
-            response = pipeline_response.http_response
-
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
-
-            return pipeline_response
-
-        return AsyncItemPaged(get_next, extract_data)
-
-    duplicate_params.metadata = {"url": "/paging/multiple/duplicateParams/1"}  # type: ignore
 
     @distributed_trace
     def get_odata_multiple_pages(

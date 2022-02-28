@@ -12,7 +12,7 @@ import re
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "azure-package-mode"
+PACKAGE_NAME = "azure-packagemode-customize"
 PACKAGE_PPRINT_NAME = "Azure Customized Package Mode"
 
 # a-b-c => a/b/c
@@ -36,7 +36,6 @@ setup(
     name=PACKAGE_NAME,
     version=version,
     description="Microsoft Azure Package Mode Client Library for Python",
-    long_description_content_type="text/markdown",
     license="MIT License",
     author="Microsoft Corporation",
     author_email="azpysdkhelp@microsoft.com",
