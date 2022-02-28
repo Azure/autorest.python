@@ -27,6 +27,7 @@ from ..models import (
     SchemaResponse,
     IOSchema,
     ParameterStyle,
+    ParameterLocation
 )
 from . import utils
 
@@ -798,6 +799,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         builder,
         request_builder: RequestBuilder,
         template_url: Optional[str] = None,
+        is_next_request: bool = False,
     ) -> List[str]:
         retval = []
         if len(builder.body_kwargs_to_pass_to_request_builder) > 1:
@@ -836,6 +838,15 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                 not parameter.constant and
                 parameter.serialized_name not in builder.body_kwargs_to_pass_to_request_builder
             ):
+                continue
+            if (
+                is_next_request and
+                not bool(builder.next_request_builder) and
+                self.code_model.options["version_tolerant"] and
+                parameter.location == ParameterLocation.Query
+            ):
+                # for version tolerant, we don't want to reformat query parameters if
+                # there is just one defined paging operation in the swagger
                 continue
             high_level_name = cast(RequestBuilderParameter, parameter).name_in_high_level_operation
             retval.append(f"    {parameter.serialized_name}={high_level_name},")
@@ -1083,11 +1094,13 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         else:
             request_builder = builder.request_builder
             template_url = "next_link"
+
         request_builder = builder.next_request_builder or builder.request_builder
         return self._call_request_builder_helper(
             builder,
             request_builder,
             template_url=template_url,
+            is_next_request=True
         )
 
     def _prepare_request_callback(self, builder) -> List[str]:
