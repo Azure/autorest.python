@@ -41,7 +41,7 @@ class AutoRestPagingTestService(AutoRestPagingTestServiceGenerated):
 
 
 # This file is used for handwritten customizations to the generated code.
-# Follow our quickstart here for examples: https://github.com/Azure/autorest.python/blob/autorestv3/docs/customizations.md
+# Follow our quickstart here for examples: aka.ms/azsdk/python/dpcodegen/python/customize
 
 
 def patch_sdk():
