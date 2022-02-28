@@ -102,11 +102,15 @@ class JinjaSerializer:
             package_parts = self.code_model.options["package_name"].split("-")[:-1]
             token_cred = isinstance(self.code_model.credential_schema_policy.credential, TokenCredentialSchema)
             version = self.code_model.options.get("package_version", "0.0.0")
+            if any(x in version for x in ["a", "b", "rc"]) or version[0] == '0':
+                dev_status = "4 - Beta"
+            else:
+                dev_status = "5 - Production/Stable"
             params = {
                 "token_credential": token_cred,
                 "pkgutil_names": [".".join(package_parts[: i + 1]) for i in range(len(package_parts))],
                 "init_names": ["/".join(package_parts[: i + 1]) + "/__init__.py" for i in range(len(package_parts))],
-                "dev_status": "4 - Beta" if any(x in version for x in ["a", "b", "rc"]) else "5 - Production/Stable"
+                "dev_status": dev_status
             }
             params.update(self.code_model.options)
             params.update(self.code_model.package_dependency)

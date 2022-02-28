@@ -82,13 +82,10 @@ setup(
     {% endif %}
     install_requires=[
         "{{ dependency_msrest }}",
-        {% if package_mode == "mgmtplane" %}
+        {% if azure_arm %}
         "{{ dependency_azure_common }}",
-        {% endif %}
-        {% if package_mode == "mgmtplane" or azure_arm %}
         "{{ dependency_azure_mgmt_core }}",
-        {% endif %}
-        {% if package_mode == "dataplane" or basic_setup_py %}
+        {% else %}
         "{{ dependency_azure_core }}",
         {% endif %}
     ],

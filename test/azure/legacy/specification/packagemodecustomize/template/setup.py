@@ -12,8 +12,8 @@ import re
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "packagemode"
-PACKAGE_PPRINT_NAME = "Azure Package Mode"
+PACKAGE_NAME = "azure-package-mode"
+PACKAGE_PPRINT_NAME = "Azure Customized Package Mode"
 
 # a-b-c => a/b/c
 package_folder_path = PACKAGE_NAME.replace("-", "/")
@@ -43,7 +43,7 @@ setup(
     author_email="azpysdkhelp@microsoft.com",
     url="https://github.com/Azure/azure-sdk-for-python/tree/main/sdk",
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Production/Stable",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3 :: Only",
         "Programming Language :: Python :: 3",
@@ -59,11 +59,14 @@ setup(
         exclude=[
             "tests",
             # Exclude packages that will be covered by PEP420 or nspkg
+            "azure",
+            "azure.package",
         ]
     ),
     install_requires=[
         "msrest>=0.6.21",
-        "azure-core<2.0.0,>=1.20.1",
+        "azure-common~=1.1",
+        "azure-mgmt-core>=1.3.0,<2.0.0",
     ],
-    python_requires=">=3.6",
+    python_requires=">={{ min_python_version }}",
 )

@@ -3,6 +3,8 @@
 ../../core/azure-core
 {% if token_credential -%}
 ../../identity/azure-identity
+{% endif -%}
+{% if azure_arm -%}
 ../../core/azure-mgmt-core
 {% endif -%}
 aiohttp
