@@ -20,6 +20,10 @@ parameters:
     default:
     - name: azure-messaging-webpubsubservice
       service: webpubsub
+      branchName: main
+    - name: azure-storage-blob
+      service: storage
+      branchName: feature/storage-autorest
 
 jobs:
   - job: "AutoRest_Python_CI"
@@ -209,16 +213,15 @@ jobs:
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
 
       - ${{ if eq(and(ne(variables['Build.Reason'], 'PullRequest'), ne(variables['PythonVersion'], '2.7')), 'True') }}:
-        - script: |
-            git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch main $(Build.SourcesDirectory)/regenerated/
-          displayName: 'Clone python repo'
-
-        - script: |
-            pip install tox-monorepo
-          displayName: 'Prepare environment'
-          workingDirectory: '$(Build.SourcesDirectory)/regenerated/'
-
         - ${{ each package in parameters.VerificationPackages }}:
+          - script: |
+              git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch ${{ package.branchName }} $(Build.SourcesDirectory)/regenerated/
+            displayName: 'Clone python repo'
+
+          - script: |
+              pip install tox-monorepo
+            displayName: 'Prepare environment'
+            workingDirectory: '$(Build.SourcesDirectory)/regenerated/'
           - script: |
               autorest ./swagger/README.md --use=$(Build.SourcesDirectory)
             displayName: 'Regenerate target package ${{ package.name }}'
