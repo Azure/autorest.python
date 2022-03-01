@@ -73,7 +73,6 @@ _DPG_SWAGGER_MAPPINGS = {
 
 _AZURE_SWAGGER_MAPPINGS = {
     'AzureBodyDuration': 'body-duration.json',
-    'AzureReport': 'azure-report.json',
     'AzureParameterGrouping': 'azure-parameter-grouping.json',
     'CustomBaseUri': 'custom-baseUrl.json',
     'LroWithParameterizedEndpoints': 'lro-parameterized-endpoints.json',
