@@ -371,6 +371,8 @@ def test_error_status_codes_411(send_request_assert_raises_with_status):
 def test_redirect_to_300(send_request_assert_status):
     request = http_redirects.build_get300_request()
     send_request_assert_status(request, 200)
+    request = http_redirects.build_head300_request()
+    send_request_assert_status(request, 200)
 
 def test_redirect_to_301(send_request_assert_status):
     request = http_redirects.build_head301_request()
