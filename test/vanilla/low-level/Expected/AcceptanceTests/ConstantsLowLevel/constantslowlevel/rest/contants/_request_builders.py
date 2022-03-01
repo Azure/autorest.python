@@ -115,7 +115,7 @@ def build_put_no_model_as_string_no_required_one_value_no_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    input = kwargs.pop('input', "value1")  # type: Optional[str]
+    input = kwargs.pop('input', None)  # type: Optional[str]
 
     # Construct URL
     _url = "/constants/putNoModelAsStringNoRequiredOneValueNoDefault"

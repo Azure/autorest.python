@@ -76,7 +76,7 @@ def build_put_no_model_as_string_no_required_two_value_default_request(
 
 
 def build_put_no_model_as_string_no_required_one_value_no_default_request(
-    *, input: Optional[str] = "value1", **kwargs: Any
+    *, input: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     """Puts constants to the testserver.
 
