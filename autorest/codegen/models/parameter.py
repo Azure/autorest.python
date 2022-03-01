@@ -237,7 +237,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
             default_value_declaration = "None"
         else:
             if isinstance(self.schema, ConstantSchema):
-                if self.required or self.is_content_type or not self.code_model.options["default_optional_constants_to_none"]:
+                if (self.required or self.is_content_type or
+                    not self.code_model.options["default_optional_constants_to_none"]):
                     default_value = self.schema.get_declaration(self.schema.value)
                 else:
                     default_value = None
@@ -321,7 +322,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         return self.serialized_name in _HIDDEN_KWARGS and self.is_kwarg or (
             self.yaml_data["implementation"] == "Client" and self.constant
         )
-    
+
     @property
     def is_content_type(self) -> bool:
         return self.serialized_name == "content_type" and self.location.value == "header"
