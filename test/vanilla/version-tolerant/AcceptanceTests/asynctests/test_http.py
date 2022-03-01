@@ -367,6 +367,7 @@ async def test_error_status_codes_411(client):
 @pytest.mark.asyncio
 async def test_redirect_to_300(client):
     await assert_status(200, client.http_redirects.get300)
+    await assert_status(200, client.http_redirects.head300)
 
 @pytest.mark.asyncio
 async def test_redirect_to_301(client):

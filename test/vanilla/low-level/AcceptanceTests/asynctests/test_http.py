@@ -403,6 +403,9 @@ async def test_redirect_to_300(send_request_assert_status):
     request = http_redirects.build_get300_request()
     await send_request_assert_status(request, 200)
 
+    request = http_redirects.build_head300_request()
+    await send_request_assert_status(request, 200)
+
 @pytest.mark.asyncio
 async def test_redirect_to_301(send_request_assert_status):
     request = http_redirects.build_head301_request()

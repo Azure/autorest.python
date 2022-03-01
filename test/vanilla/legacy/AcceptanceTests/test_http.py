@@ -350,6 +350,7 @@ class TestHttp(object):
 
     def test_redirect_to_300(self, client):
         self.assert_status(200, client.http_redirects.get300)
+        self.assert_status(200, client.http_redirects.head300)
 
     def test_redirect_to_301(self, client):
         self.assert_status(200, client.http_redirects.head301)
