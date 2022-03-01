@@ -237,7 +237,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
             default_value_declaration = "None"
         else:
             if isinstance(self.schema, ConstantSchema):
-                if (self.required or self.is_content_type or
+                if (self.required or
+                    self.is_content_type or
                     not self.code_model.options["default_optional_constants_to_none"]):
                     default_value = self.schema.get_declaration(self.schema.value)
                 else:

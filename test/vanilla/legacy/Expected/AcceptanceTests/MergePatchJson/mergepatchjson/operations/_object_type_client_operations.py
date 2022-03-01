@@ -35,6 +35,7 @@ _SERIALIZER.client_side_validation = False
 # fmt: off
 
 
+
 def build_patch_single_request(
     **kwargs  # type: Any
 ):
