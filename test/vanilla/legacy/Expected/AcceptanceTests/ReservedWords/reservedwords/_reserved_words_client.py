@@ -9,8 +9,9 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
+
+from azure.core import PipelineClient
 
 from . import models
 from ._configuration import ReservedWordsClientConfiguration
@@ -18,7 +19,7 @@ from .operations import ImportOperations, ReservedWordsClientOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.rest import HttpRequest, HttpResponse
 
@@ -28,7 +29,7 @@ class ReservedWordsClient(ReservedWordsClientOperationsMixin):
 
     :ivar import_operations: ImportOperations operations
     :vartype import_operations: reservedwords.operations.ImportOperations
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     """
 

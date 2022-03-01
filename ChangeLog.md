@@ -1,5 +1,51 @@
 # Change Log
 
+### 2022-xx-xx - 5.12.7
+
+| Library | Min Version
+| --------------- | -------
+|`@autorest/core` |  `3.6.2`
+|`@autorest/modelerfour` | `4.19.1`
+|`azure-core` dep of generated code | `1.20.1`
+|`msrest` dep of generated code | `0.6.21`
+|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+
+**Bug Fixes**
+
+- Add default value consistently for parameters #1164
+- Make `content_type` param keyword-only if there are multiple content types #1167
+
+### 2022-02-09 - 5.12.6
+
+| Library | Min Version
+| --------------- | -------
+|`@autorest/core` |  `3.6.2`
+|`@autorest/modelerfour` | `4.19.1`
+|`azure-core` dep of generated code | `1.20.1`
+|`msrest` dep of generated code | `0.6.21`
+|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+
+**Bug Fixes**
+
+- Remove unused `metadata` value for paging and long running operations with `version-tolerant` generations #1131
+- Remove name conflicts with parameters called `url`, `header_parameters`, and `query_parameters` #1143
+- Make `--version-tolerant` generated code pylint compatible in the `azure-sdk-for-python` repo when generated with the `--black` flag #1147, #1144, #1130
+
+### 2022-01-26 - 5.12.5
+
+| Library | Min Version
+| --------------- | -------
+|`@autorest/core` |  `3.6.2`
+|`@autorest/modelerfour` | `4.19.1`
+|`azure-core` dep of generated code | `1.20.1`
+|`msrest` dep of generated code | `0.6.21`
+|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+
+**Bug Fixes**
+
+- Fix usage of `--black` flag outside of repo  #1126
+- Remove unused `metadata` value for `version-tolerant` generations  #1127
+
 ### 2022-01-14 - 5.12.4
 
 | Library | Min Version

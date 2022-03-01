@@ -7,11 +7,12 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Optional, TYPE_CHECKING
+from typing import Any, Awaitable, TYPE_CHECKING
+
+from msrest import Deserializer, Serializer
 
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
-from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestComplexTestServiceConfiguration
 from .operations import (
@@ -31,7 +32,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestComplexTestService:
+class AutoRestComplexTestService:  # pylint: disable=too-many-instance-attributes
     """Test Infrastructure for AutoRest.
 
     :ivar basic: BasicOperations operations
@@ -53,9 +54,9 @@ class AutoRestComplexTestService:
     :vartype readonlyproperty: bodycomplexpython3only.aio.operations.ReadonlypropertyOperations
     :ivar flattencomplex: FlattencomplexOperations operations
     :vartype flattencomplex: bodycomplexpython3only.aio.operations.FlattencomplexOperations
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
-    :keyword api_version: Api Version. The default value is "2016-02-29". Note that overriding this
+    :keyword api_version: Api Version. Default value is "2016-02-29". Note that overriding this
      default value may result in unsupported behavior.
     :paramtype api_version: str
     """

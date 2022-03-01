@@ -14,7 +14,7 @@ from azure.core.pipeline import policies
 from .._version import VERSION
 
 
-class AutoRestResourceFlatteningTestServiceConfiguration(Configuration):
+class AutoRestResourceFlatteningTestServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for AutoRestResourceFlatteningTestService.
 
     Note that all parameters used to create this instance are saved as instance

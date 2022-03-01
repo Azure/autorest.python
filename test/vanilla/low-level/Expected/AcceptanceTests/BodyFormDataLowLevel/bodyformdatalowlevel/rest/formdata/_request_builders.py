@@ -7,12 +7,13 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, IO, List, Optional, TypeVar
+    from typing import Any, Dict, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
@@ -32,10 +33,10 @@ def build_upload_file_request(
     into your code flow.
 
     :keyword files: Multipart input for files. See the template in our example to find the input
-     shape. File to upload.
+     shape. File to upload. Default value is None.
     :paramtype files: dict[str, any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). File to upload.
+     a byte iterator, or stream input). File to upload. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -48,7 +49,8 @@ def build_upload_file_request(
             # multipart input template you can fill out and use as your `files` input.
             files = {
                 "file_content": b'bytes',  # File to upload.
-                "file_name": "str"  # File name to upload. Name has to be spelled exactly as written here.
+                "file_name": "str"  # File name to upload. Name has to be spelled exactly as
+                  written here.
             }
     """
 
@@ -56,18 +58,18 @@ def build_upload_file_request(
 
     accept = "application/octet-stream, application/json"
     # Construct URL
-    url = '/formdata/stream/uploadfile'
+    _url = "/formdata/stream/uploadfile"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -94,18 +96,18 @@ def build_upload_file_via_body_request(
 
     accept = "application/octet-stream, application/json"
     # Construct URL
-    url = '/formdata/stream/uploadfile'
+    _url = "/formdata/stream/uploadfile"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -120,10 +122,10 @@ def build_upload_files_request(
     into your code flow.
 
     :keyword files: Multipart input for files. See the template in our example to find the input
-     shape. Files to upload.
+     shape. Files to upload. Default value is None.
     :paramtype files: dict[str, any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Files to upload.
+     a byte iterator, or stream input). Files to upload. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -145,17 +147,17 @@ def build_upload_files_request(
 
     accept = "application/octet-stream, application/json"
     # Construct URL
-    url = '/formdata/stream/uploadfiles'
+    _url = "/formdata/stream/uploadfiles"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )

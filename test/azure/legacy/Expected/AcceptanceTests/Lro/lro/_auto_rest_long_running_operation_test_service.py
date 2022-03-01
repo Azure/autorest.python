@@ -9,8 +9,9 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from azure.mgmt.core import ARMPipelineClient
 from msrest import Deserializer, Serializer
+
+from azure.mgmt.core import ARMPipelineClient
 
 from . import models
 from ._configuration import AutoRestLongRunningOperationTestServiceConfiguration
@@ -18,7 +19,7 @@ from .operations import LRORetrysOperations, LROSADsOperations, LROsCustomHeader
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.credentials import TokenCredential
     from azure.core.rest import HttpRequest, HttpResponse
@@ -37,7 +38,7 @@ class AutoRestLongRunningOperationTestService(object):
     :vartype lr_os_custom_header: lro.operations.LROsCustomHeaderOperations
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials.TokenCredential
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.

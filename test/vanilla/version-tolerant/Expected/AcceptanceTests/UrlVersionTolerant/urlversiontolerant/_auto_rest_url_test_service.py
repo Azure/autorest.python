@@ -9,9 +9,10 @@
 from copy import deepcopy
 from typing import Any, Optional, TYPE_CHECKING
 
+from msrest import Deserializer, Serializer
+
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
-from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestUrlTestServiceConfiguration
 from .operations import PathItemsOperations, PathsOperations, QueriesOperations
@@ -32,9 +33,9 @@ class AutoRestUrlTestService:
     :vartype path_items: urlversiontolerant.operations.PathItemsOperations
     :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
     :type global_string_path: str
-    :param global_string_query: should contain value null.
+    :param global_string_query: should contain value null. Default value is None.
     :type global_string_query: str
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 
@@ -58,11 +59,7 @@ class AutoRestUrlTestService:
         self.queries = QueriesOperations(self._client, self._config, self._serialize, self._deserialize)
         self.path_items = PathItemsOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs: Any
-    ) -> HttpResponse:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

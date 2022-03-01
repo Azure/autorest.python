@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -6,9 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-import functools
-from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar, Union
-import warnings
+from typing import Any, Callable, Dict, List, Optional, TypeVar, Union
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -58,7 +57,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class PathsOperations:
+class PathsOperations:  # pylint: disable=too-many-public-methods
     """PathsOperations async operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -81,10 +80,10 @@ class PathsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_boolean_true(self, **kwargs: Any) -> None:
+    async def get_boolean_true(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get true Boolean value on path.
 
-        :keyword bool_path: true boolean value. The default value is True. Note that overriding this
+        :keyword bool_path: true boolean value. Default value is True. Note that overriding this
          default value may result in unsupported behavior.
         :paramtype bool_path: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -105,7 +104,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -119,10 +120,10 @@ class PathsOperations:
     get_boolean_true.metadata = {"url": "/paths/bool/true/{boolPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_boolean_false(self, **kwargs: Any) -> None:
+    async def get_boolean_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get false Boolean value on path.
 
-        :keyword bool_path: false boolean value. The default value is False. Note that overriding this
+        :keyword bool_path: false boolean value. Default value is False. Note that overriding this
          default value may result in unsupported behavior.
         :paramtype bool_path: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -143,7 +144,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -157,11 +160,11 @@ class PathsOperations:
     get_boolean_false.metadata = {"url": "/paths/bool/false/{boolPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_int_one_million(self, **kwargs: Any) -> None:
+    async def get_int_one_million(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '1000000' integer value.
 
-        :keyword int_path: '1000000' integer value. The default value is 1000000. Note that overriding
-         this default value may result in unsupported behavior.
+        :keyword int_path: '1000000' integer value. Default value is 1000000. Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype int_path: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -181,7 +184,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -195,11 +200,13 @@ class PathsOperations:
     get_int_one_million.metadata = {"url": "/paths/int/1000000/{intPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_int_negative_one_million(self, **kwargs: Any) -> None:
+    async def get_int_negative_one_million(  # pylint: disable=inconsistent-return-statements
+        self, **kwargs: Any
+    ) -> None:
         """Get '-1000000' integer value.
 
-        :keyword int_path: '-1000000' integer value. The default value is -1000000. Note that
-         overriding this default value may result in unsupported behavior.
+        :keyword int_path: '-1000000' integer value. Default value is -1000000. Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype int_path: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -219,7 +226,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -233,11 +242,11 @@ class PathsOperations:
     get_int_negative_one_million.metadata = {"url": "/paths/int/-1000000/{intPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_ten_billion(self, **kwargs: Any) -> None:
+    async def get_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '10000000000' 64 bit integer value.
 
-        :keyword long_path: '10000000000' 64 bit integer value. The default value is 10000000000. Note
-         that overriding this default value may result in unsupported behavior.
+        :keyword long_path: '10000000000' 64 bit integer value. Default value is 10000000000. Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype long_path: long
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -257,7 +266,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -271,11 +282,11 @@ class PathsOperations:
     get_ten_billion.metadata = {"url": "/paths/long/10000000000/{longPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def get_negative_ten_billion(self, **kwargs: Any) -> None:
+    async def get_negative_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-10000000000' 64 bit integer value.
 
-        :keyword long_path: '-10000000000' 64 bit integer value. The default value is -10000000000.
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword long_path: '-10000000000' 64 bit integer value. Default value is -10000000000. Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype long_path: long
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -295,7 +306,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -309,10 +322,10 @@ class PathsOperations:
     get_negative_ten_billion.metadata = {"url": "/paths/long/-10000000000/{longPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def float_scientific_positive(self, **kwargs: Any) -> None:
+    async def float_scientific_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '1.034E+20' numeric value.
 
-        :keyword float_path: '1.034E+20'numeric value. The default value is 103400000000000000000. Note
+        :keyword float_path: '1.034E+20'numeric value. Default value is 103400000000000000000. Note
          that overriding this default value may result in unsupported behavior.
         :paramtype float_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -333,7 +346,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -347,10 +362,10 @@ class PathsOperations:
     float_scientific_positive.metadata = {"url": "/paths/float/1.034E+20/{floatPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def float_scientific_negative(self, **kwargs: Any) -> None:
+    async def float_scientific_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-1.034E-20' numeric value.
 
-        :keyword float_path: '-1.034E-20'numeric value. The default value is -1.034e-20. Note that
+        :keyword float_path: '-1.034E-20'numeric value. Default value is -1.034e-20. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype float_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -371,7 +386,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -385,10 +402,10 @@ class PathsOperations:
     float_scientific_negative.metadata = {"url": "/paths/float/-1.034E-20/{floatPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def double_decimal_positive(self, **kwargs: Any) -> None:
+    async def double_decimal_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '9999999.999' numeric value.
 
-        :keyword double_path: '9999999.999'numeric value. The default value is 9999999.999. Note that
+        :keyword double_path: '9999999.999'numeric value. Default value is 9999999.999. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype double_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -409,7 +426,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -423,10 +442,10 @@ class PathsOperations:
     double_decimal_positive.metadata = {"url": "/paths/double/9999999.999/{doublePath}"}  # type: ignore
 
     @distributed_trace_async
-    async def double_decimal_negative(self, **kwargs: Any) -> None:
+    async def double_decimal_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-9999999.999' numeric value.
 
-        :keyword double_path: '-9999999.999'numeric value. The default value is -9999999.999. Note that
+        :keyword double_path: '-9999999.999'numeric value. Default value is -9999999.999. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype double_path: float
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -447,7 +466,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -461,11 +482,11 @@ class PathsOperations:
     double_decimal_negative.metadata = {"url": "/paths/double/-9999999.999/{doublePath}"}  # type: ignore
 
     @distributed_trace_async
-    async def string_unicode(self, **kwargs: Any) -> None:
+    async def string_unicode(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
-        :keyword string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. The default value is "啊齄丂狛狜隣郎隣兀﨩".
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. Default value is "啊齄丂狛狜隣郎隣兀﨩". Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -485,7 +506,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -499,11 +522,11 @@ class PathsOperations:
     string_unicode.metadata = {"url": "/paths/string/unicode/{stringPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def string_url_encoded(self, **kwargs: Any) -> None:
+    async def string_url_encoded(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
-        :keyword string_path: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. The default value
-         is "begin!*'();:@ &=+$,/?#[]end". Note that overriding this default value may result in
+        :keyword string_path: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. Default value is
+         "begin!*'();:@ &=+$,/?#[]end". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -524,7 +547,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -538,12 +563,12 @@ class PathsOperations:
     string_url_encoded.metadata = {"url": "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def string_url_non_encoded(self, **kwargs: Any) -> None:
+    async def string_url_non_encoded(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get 'begin!*'();:@&=+$,end.
 
         https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
 
-        :keyword string_path: 'begin!*'();:@&=+$,end' url encoded string value. The default value is
+        :keyword string_path: 'begin!*'();:@&=+$,end' url encoded string value. Default value is
          "begin!*'();:@&=+$,end". Note that overriding this default value may result in unsupported
          behavior.
         :paramtype string_path: str
@@ -565,7 +590,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -579,11 +606,11 @@ class PathsOperations:
     string_url_non_encoded.metadata = {"url": "/paths/string/begin!*'();:@&=+$,end/{stringPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def string_empty(self, **kwargs: Any) -> None:
+    async def string_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get ''.
 
-        :keyword string_path: '' string value. The default value is "". Note that overriding this
-         default value may result in unsupported behavior.
+        :keyword string_path: '' string value. Default value is "". Note that overriding this default
+         value may result in unsupported behavior.
         :paramtype string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -603,7 +630,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -617,7 +646,9 @@ class PathsOperations:
     string_empty.metadata = {"url": "/paths/string/empty/{stringPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def string_null(self, string_path: str, **kwargs: Any) -> None:
+    async def string_null(  # pylint: disable=inconsistent-return-statements
+        self, string_path: str, **kwargs: Any
+    ) -> None:
         """Get null (should throw).
 
         :param string_path: null string value.
@@ -638,7 +669,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -652,7 +685,9 @@ class PathsOperations:
     string_null.metadata = {"url": "/paths/string/null/{stringPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def enum_valid(self, enum_path: Union[str, "_models.UriColor"], **kwargs: Any) -> None:
+    async def enum_valid(  # pylint: disable=inconsistent-return-statements
+        self, enum_path: Union[str, "_models.UriColor"], **kwargs: Any
+    ) -> None:
         """Get using uri with 'green color' in path parameter.
 
         :param enum_path: send the value green.
@@ -673,7 +708,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -687,7 +724,9 @@ class PathsOperations:
     enum_valid.metadata = {"url": "/paths/enum/green%20color/{enumPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def enum_null(self, enum_path: Union[str, "_models.UriColor"], **kwargs: Any) -> None:
+    async def enum_null(  # pylint: disable=inconsistent-return-statements
+        self, enum_path: Union[str, "_models.UriColor"], **kwargs: Any
+    ) -> None:
         """Get null (should throw on the client before the request is sent on wire).
 
         :param enum_path: send null should throw.
@@ -708,7 +747,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -722,7 +763,9 @@ class PathsOperations:
     enum_null.metadata = {"url": "/paths/string/null/{enumPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def byte_multi_byte(self, byte_path: bytearray, **kwargs: Any) -> None:
+    async def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
+        self, byte_path: bytearray, **kwargs: Any
+    ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
@@ -743,7 +786,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -757,11 +802,11 @@ class PathsOperations:
     byte_multi_byte.metadata = {"url": "/paths/byte/multibyte/{bytePath}"}  # type: ignore
 
     @distributed_trace_async
-    async def byte_empty(self, **kwargs: Any) -> None:
+    async def byte_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '' as byte array.
 
-        :keyword byte_path: '' as byte array. The default value is bytearray("", encoding="utf-8").
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword byte_path: '' as byte array. Default value is bytearray("", encoding="utf-8"). Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype byte_path: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -781,7 +826,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -795,7 +842,9 @@ class PathsOperations:
     byte_empty.metadata = {"url": "/paths/byte/empty/{bytePath}"}  # type: ignore
 
     @distributed_trace_async
-    async def byte_null(self, byte_path: bytearray, **kwargs: Any) -> None:
+    async def byte_null(  # pylint: disable=inconsistent-return-statements
+        self, byte_path: bytearray, **kwargs: Any
+    ) -> None:
         """Get null as byte array (should throw).
 
         :param byte_path: null as byte array (should throw).
@@ -816,7 +865,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -830,11 +881,11 @@ class PathsOperations:
     byte_null.metadata = {"url": "/paths/byte/null/{bytePath}"}  # type: ignore
 
     @distributed_trace_async
-    async def date_valid(self, **kwargs: Any) -> None:
+    async def date_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '2012-01-01' as date.
 
-        :keyword date_path: '2012-01-01' as date. The default value is "2012-01-01". Note that
-         overriding this default value may result in unsupported behavior.
+        :keyword date_path: '2012-01-01' as date. Default value is "2012-01-01". Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype date_path: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -854,7 +905,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -868,7 +921,9 @@ class PathsOperations:
     date_valid.metadata = {"url": "/paths/date/2012-01-01/{datePath}"}  # type: ignore
 
     @distributed_trace_async
-    async def date_null(self, date_path: datetime.date, **kwargs: Any) -> None:
+    async def date_null(  # pylint: disable=inconsistent-return-statements
+        self, date_path: datetime.date, **kwargs: Any
+    ) -> None:
         """Get null as date - this should throw or be unusable on the client side, depending on date
         representation.
 
@@ -890,7 +945,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -904,10 +961,10 @@ class PathsOperations:
     date_null.metadata = {"url": "/paths/date/null/{datePath}"}  # type: ignore
 
     @distributed_trace_async
-    async def date_time_valid(self, **kwargs: Any) -> None:
+    async def date_time_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '2012-01-01T01:01:01Z' as date-time.
 
-        :keyword date_time_path: '2012-01-01T01:01:01Z' as date-time. The default value is
+        :keyword date_time_path: '2012-01-01T01:01:01Z' as date-time. Default value is
          "2012-01-01T01:01:01Z". Note that overriding this default value may result in unsupported
          behavior.
         :paramtype date_time_path: ~datetime.datetime
@@ -929,7 +986,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -943,7 +1002,9 @@ class PathsOperations:
     date_time_valid.metadata = {"url": "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}"}  # type: ignore
 
     @distributed_trace_async
-    async def date_time_null(self, date_time_path: datetime.datetime, **kwargs: Any) -> None:
+    async def date_time_null(  # pylint: disable=inconsistent-return-statements
+        self, date_time_path: datetime.datetime, **kwargs: Any
+    ) -> None:
         """Get null as date-time, should be disallowed or throw depending on representation of date-time.
 
         :param date_time_path: null as date-time.
@@ -964,7 +1025,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -978,7 +1041,9 @@ class PathsOperations:
     date_time_null.metadata = {"url": "/paths/datetime/null/{dateTimePath}"}  # type: ignore
 
     @distributed_trace_async
-    async def base64_url(self, base64_url_path: bytes, **kwargs: Any) -> None:
+    async def base64_url(  # pylint: disable=inconsistent-return-statements
+        self, base64_url_path: bytes, **kwargs: Any
+    ) -> None:
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
         :param base64_url_path: base64url encoded value.
@@ -999,7 +1064,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1013,7 +1080,9 @@ class PathsOperations:
     base64_url.metadata = {"url": "/paths/string/bG9yZW0/{base64UrlPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def array_csv_in_path(self, array_path: List[str], **kwargs: Any) -> None:
+    async def array_csv_in_path(  # pylint: disable=inconsistent-return-statements
+        self, array_path: List[str], **kwargs: Any
+    ) -> None:
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         csv-array format.
 
@@ -1036,7 +1105,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1050,7 +1121,9 @@ class PathsOperations:
     array_csv_in_path.metadata = {"url": "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}"}  # type: ignore
 
     @distributed_trace_async
-    async def unix_time_url(self, unix_time_url_path: datetime.datetime, **kwargs: Any) -> None:
+    async def unix_time_url(  # pylint: disable=inconsistent-return-statements
+        self, unix_time_url_path: datetime.datetime, **kwargs: Any
+    ) -> None:
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
 
         :param unix_time_url_path: Unix time encoded value.
@@ -1071,7 +1144,9 @@ class PathsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from typing import Any
 
 
-class XMSErrorResponseExtensionsConfiguration(Configuration):
+class XMSErrorResponseExtensionsConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for XMSErrorResponseExtensions.
 
     Note that all parameters used to create this instance are saved as instance

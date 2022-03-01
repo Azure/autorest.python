@@ -7,11 +7,12 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Optional, TYPE_CHECKING
+from typing import Any, Awaitable, TYPE_CHECKING
+
+from msrest import Deserializer, Serializer
 
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
-from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestValidationTestConfiguration
 
@@ -25,10 +26,10 @@ class AutoRestValidationTest:
 
     :param subscription_id: Subscription ID.
     :type subscription_id: str
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
-    :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this
-     default value may result in unsupported behavior.
+    :keyword api_version: Api Version. Default value is "1.0.0". Note that overriding this default
+     value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

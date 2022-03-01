@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 from ..._vendor import _format_url_section
 
@@ -46,13 +47,19 @@ def build_list_request(
             response.json() == {
                 "value": [
                     {
-                        "currentValue": 0,  # Optional. Gets the current count of the allocated resources in the subscription.
-                        "limit": 0,  # Optional. Gets the maximum count of the resources that can be allocated in the subscription.
+                        "currentValue": 0,  # Optional. Gets the current count of the
+                          allocated resources in the subscription.
+                        "limit": 0,  # Optional. Gets the maximum count of the
+                          resources that can be allocated in the subscription.
                         "name": {
-                            "localizedValue": "str",  # Optional. Gets a localized string describing the resource name.
-                            "value": "str"  # Optional. Gets a string describing the resource name.
+                            "localizedValue": "str",  # Optional. Gets a
+                              localized string describing the resource name.
+                            "value": "str"  # Optional. Gets a string describing
+                              the resource name.
                         },
-                        "unit": "str"  # Optional. Gets the unit of measurement. Possible values include: "Count", "Bytes", "Seconds", "Percent", "CountsPerSecond", "BytesPerSecond".
+                        "unit": "str"  # Optional. Gets the unit of measurement.
+                          Possible values include: "Count", "Bytes", "Seconds", "Percent",
+                          "CountsPerSecond", "BytesPerSecond".
                     }
                 ]
             }
@@ -62,25 +69,25 @@ def build_list_request(
 
     accept = "application/json, text/json"
     # Construct URL
-    url = '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages'
+    _url = "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages"
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, 'str'),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )

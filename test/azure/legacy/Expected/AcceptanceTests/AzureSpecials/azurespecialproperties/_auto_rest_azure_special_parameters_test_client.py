@@ -9,8 +9,9 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from azure.mgmt.core import ARMPipelineClient
 from msrest import Deserializer, Serializer
+
+from azure.mgmt.core import ARMPipelineClient
 
 from . import models
 from ._configuration import AutoRestAzureSpecialParametersTestClientConfiguration
@@ -27,13 +28,13 @@ from .operations import (
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.credentials import TokenCredential
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestAzureSpecialParametersTestClient(object):
+class AutoRestAzureSpecialParametersTestClient(object):  # pylint: disable=too-many-instance-attributes
     """Test Infrastructure for AutoRest.
 
     :ivar xms_client_request_id: XMsClientRequestIdOperations operations
@@ -59,10 +60,10 @@ class AutoRestAzureSpecialParametersTestClient(object):
     :param subscription_id: The subscription id, which appears in the path, always modeled in
      credentials. The value is always '1234-5678-9012-3456'.
     :type subscription_id: str
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
-    :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that
-     overriding this default value may result in unsupported behavior.
+    :keyword api_version: Api Version. Default value is "2015-07-01-preview". Note that overriding
+     this default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

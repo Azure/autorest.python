@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 import logging
 from pathlib import Path
+import os
 import black
 
 from .. import Plugin
@@ -18,7 +19,12 @@ class BlackScriptPlugin(Plugin):
 
     def __init__(self, autorestapi):
         super(BlackScriptPlugin, self).__init__(autorestapi)
-        self.output_folder: Path = Path(self._autorestapi.get_value("output-folder")).resolve()
+        output_folder_uri = self._autorestapi.get_value("outputFolderUri")
+        if output_folder_uri.startswith("file:"):
+            output_folder_uri = output_folder_uri[5:]
+        if os.name == 'nt' and output_folder_uri.startswith("///"):
+            output_folder_uri = output_folder_uri[3:]
+        self.output_folder = Path(output_folder_uri)
 
     def process(self) -> bool:
         # apply format_file on every file in the output folder

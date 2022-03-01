@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, Optional, TypeVar
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 from ..._vendor import _format_url_section
 
@@ -37,7 +38,9 @@ def build_get_by_pet_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == {
-                "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet. Possible values include: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday". Default value: "Friday".
+                "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
+                  Possible values include: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                  "Saturday", "Sunday". Default value: "Friday".
                 "IntEnum": "str",  # Required. Possible values include: "1", "2", "3".
                 "name": "str"  # Optional. name.
             }
@@ -45,18 +48,18 @@ def build_get_by_pet_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/extensibleenums/pet/{petId}"
+    _url = "/extensibleenums/pet/{petId}"
     path_format_arguments = {
         "petId": _SERIALIZER.url("pet_id", pet_id, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_add_pet_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
@@ -66,10 +69,10 @@ def build_add_pet_request(*, json: JSONType = None, content: Any = None, **kwarg
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. pet param.
+     our example to find the input shape. pet param. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). pet param.
+     a byte iterator, or stream input). pet param. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -81,14 +84,18 @@ def build_add_pet_request(*, json: JSONType = None, content: Any = None, **kwarg
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet. Possible values include: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday". Default value: "Friday".
+                "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
+                  Possible values include: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                  "Saturday", "Sunday". Default value: "Friday".
                 "IntEnum": "str",  # Required. Possible values include: "1", "2", "3".
                 "name": "str"  # Optional. name.
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet. Possible values include: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday". Default value: "Friday".
+                "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
+                  Possible values include: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                  "Saturday", "Sunday". Default value: "Friday".
                 "IntEnum": "str",  # Required. Possible values include: "1", "2", "3".
                 "name": "str"  # Optional. name.
             }
@@ -98,12 +105,12 @@ def build_add_pet_request(*, json: JSONType = None, content: Any = None, **kwarg
 
     accept = "application/json"
     # Construct URL
-    url = "/extensibleenums/pet/addPet"
+    _url = "/extensibleenums/pet/addPet"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)

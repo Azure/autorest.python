@@ -9,9 +9,10 @@
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
+from msrest import Deserializer, Serializer
+
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
-from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestParameterizedHostTestPagingClientConfiguration
 
@@ -23,7 +24,8 @@ if TYPE_CHECKING:
 class AutoRestParameterizedHostTestPagingClient:
     """Test Infrastructure for AutoRest.
 
-    :param host: A string value that is used as a global part of the parameterized host.
+    :param host: A string value that is used as a global part of the parameterized host. Default
+     value is "host".
     :type host: str
     """
 
@@ -36,11 +38,7 @@ class AutoRestParameterizedHostTestPagingClient:
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
 
-    def send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs: Any
-    ) -> HttpResponse:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `custombaseurlpaginglowlevel.rest`.

@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -30,14 +31,14 @@ def build_operation_one_request(*, parameter1: str, **kwargs: Any) -> HttpReques
 
     accept = "application/json"
     # Construct URL
-    url = "/reservedWords/operationGroup/import"
+    _url = "/reservedWords/operationGroup/import"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["parameter1"] = _SERIALIZER.query("parameter1", parameter1, "str")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["parameter1"] = _SERIALIZER.query("parameter1", parameter1, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="PUT", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)

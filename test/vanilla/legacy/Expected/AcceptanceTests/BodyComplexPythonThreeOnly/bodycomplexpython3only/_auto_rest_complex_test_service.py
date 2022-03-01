@@ -7,11 +7,12 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional
+from typing import Any
+
+from msrest import Deserializer, Serializer
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
-from msrest import Deserializer, Serializer
 
 from . import models
 from ._configuration import AutoRestComplexTestServiceConfiguration
@@ -28,7 +29,7 @@ from .operations import (
 )
 
 
-class AutoRestComplexTestService:
+class AutoRestComplexTestService:  # pylint: disable=too-many-instance-attributes
     """Test Infrastructure for AutoRest.
 
     :ivar basic: BasicOperations operations
@@ -49,9 +50,9 @@ class AutoRestComplexTestService:
     :vartype readonlyproperty: bodycomplexpython3only.operations.ReadonlypropertyOperations
     :ivar flattencomplex: FlattencomplexOperations operations
     :vartype flattencomplex: bodycomplexpython3only.operations.FlattencomplexOperations
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
-    :keyword api_version: Api Version. The default value is "2016-02-29". Note that overriding this
+    :keyword api_version: Api Version. Default value is "2016-02-29". Note that overriding this
      default value may result in unsupported behavior.
     :paramtype api_version: str
     """
@@ -78,11 +79,7 @@ class AutoRestComplexTestService:
         )
         self.flattencomplex = FlattencomplexOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs: Any
-    ) -> HttpResponse:
+    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

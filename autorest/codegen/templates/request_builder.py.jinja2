@@ -13,15 +13,10 @@
     {% endfor %}
 {% endif %}
     # Construct URL
-{% if code_model.options["version_tolerant"] or code_model.options["low_level_client"] %}
-    {% set url_value = keywords.escape_str(request_builder.url) %}
-{% else %}
-    {% set url_value = 'kwargs.pop("template_url", ' + keywords.escape_str(request_builder.url) + ')' %}
-{% endif %}
-    url = {{ url_value }}
+    {{ request_builder_serializer.construct_url(request_builder) }}
 {% if request_builder.parameters.path %}
     {{ op_tools.serialize(request_builder_serializer.serialize_path(request_builder)) | indent }}
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 {% endif %}
 
 {% if request_builder.parameters.query %}

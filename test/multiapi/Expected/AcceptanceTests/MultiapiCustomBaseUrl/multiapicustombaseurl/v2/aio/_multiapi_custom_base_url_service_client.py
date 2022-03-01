@@ -9,9 +9,10 @@
 from copy import deepcopy
 from typing import Any, Awaitable, TYPE_CHECKING
 
+from msrest import Deserializer, Serializer
+
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
-from msrest import Deserializer, Serializer
 
 from .. import models
 from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
@@ -28,8 +29,8 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param endpoint: Pass in https://localhost:3000.
     :type endpoint: str
-    :keyword api_version: Api Version. The default value is "2.0.0". Note that overriding this
-     default value may result in unsupported behavior.
+    :keyword api_version: Api Version. Default value is "2.0.0". Note that overriding this default
+     value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

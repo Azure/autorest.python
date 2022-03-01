@@ -9,9 +9,10 @@
 from copy import deepcopy
 from typing import Any, Awaitable, Optional, TYPE_CHECKING
 
+from msrest import Deserializer, Serializer
+
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
-from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestUrlTestServiceConfiguration
 
@@ -25,9 +26,9 @@ class AutoRestUrlTestService:
 
     :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
     :type global_string_path: str
-    :param global_string_query: should contain value null.
+    :param global_string_query: should contain value null. Default value is None.
     :type global_string_query: str
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 

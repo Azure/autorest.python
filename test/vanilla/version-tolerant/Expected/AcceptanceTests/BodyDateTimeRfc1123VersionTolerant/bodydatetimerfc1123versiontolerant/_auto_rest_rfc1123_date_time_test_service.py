@@ -7,11 +7,12 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
+
+from msrest import Deserializer, Serializer
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
-from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestRFC1123DateTimeTestServiceConfiguration
 from .operations import Datetimerfc1123Operations
@@ -27,7 +28,7 @@ class AutoRestRFC1123DateTimeTestService:
     :ivar datetimerfc1123: Datetimerfc1123Operations operations
     :vartype datetimerfc1123:
      bodydatetimerfc1123versiontolerant.operations.Datetimerfc1123Operations
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 
@@ -41,11 +42,7 @@ class AutoRestRFC1123DateTimeTestService:
         self._serialize.client_side_validation = False
         self.datetimerfc1123 = Datetimerfc1123Operations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs: Any
-    ) -> HttpResponse:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

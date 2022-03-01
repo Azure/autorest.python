@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from typing import Any
 
 
-class AutoRestValidationTestConfiguration(Configuration):
+class AutoRestValidationTestConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for AutoRestValidationTest.
 
     Note that all parameters used to create this instance are saved as instance
@@ -26,7 +26,8 @@ class AutoRestValidationTestConfiguration(Configuration):
 
     :param subscription_id: Subscription ID.
     :type subscription_id: str
-    :keyword api_version: Api Version. The default value is "1.0.0". Note that overriding this default value may result in unsupported behavior.
+    :keyword api_version: Api Version. Default value is "1.0.0". Note that overriding this default
+     value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

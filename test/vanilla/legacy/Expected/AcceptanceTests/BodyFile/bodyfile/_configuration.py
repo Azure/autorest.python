@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from typing import Any
 
 
-class AutoRestSwaggerBATFileServiceConfiguration(Configuration):
+class AutoRestSwaggerBATFileServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for AutoRestSwaggerBATFileService.
 
     Note that all parameters used to create this instance are saved as instance

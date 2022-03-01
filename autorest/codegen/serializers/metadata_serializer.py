@@ -62,7 +62,7 @@ def _mixin_imports(mixin_operation_group: Optional[OperationGroup]) -> Tuple[Opt
     sync_mixin_imports = mixin_operation_group.imports_for_multiapi(async_mode=False)
     async_mixin_imports = mixin_operation_group.imports_for_multiapi(async_mode=True)
 
-    return _json_serialize_imports(sync_mixin_imports.imports), _json_serialize_imports(async_mixin_imports.imports)
+    return _json_serialize_imports(sync_mixin_imports.to_dict()), _json_serialize_imports(async_mixin_imports.to_dict())
 
 
 class MetadataSerializer:
@@ -102,20 +102,22 @@ class MetadataSerializer:
         file_import = FileImport()
         for gp in global_parameters:
             file_import.merge(gp.imports())
-        file_import.add_from_import("azure.profiles", "KnownProfiles", import_type=ImportType.AZURECORE)
-        file_import.add_from_import("azure.profiles", "ProfileDefinition", import_type=ImportType.AZURECORE)
-        file_import.add_from_import(
+        file_import.add_submodule_import("azure.profiles", "KnownProfiles", import_type=ImportType.AZURECORE)
+        file_import.add_submodule_import("azure.profiles", "ProfileDefinition", import_type=ImportType.AZURECORE)
+        file_import.add_submodule_import(
             "azure.profiles.multiapiclient", "MultiApiClientMixin", import_type=ImportType.AZURECORE
         )
-        file_import.add_from_import("._configuration", f"{self.code_model.class_name}Configuration", ImportType.LOCAL)
+        file_import.add_submodule_import(
+            "._configuration", f"{self.code_model.class_name}Configuration", ImportType.LOCAL
+        )
         # api_version and potentially endpoint require Optional typing
-        file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if mixin_operation_group:
-            file_import.add_from_import(
+            file_import.add_submodule_import(
                 "._operations_mixin", f"{self.code_model.class_name}OperationsMixin", ImportType.LOCAL
             )
         file_import.merge(self.code_model.service_client.imports_for_multiapi(async_mode=async_mode))
-        return _json_serialize_imports(file_import.imports)
+        return _json_serialize_imports(file_import.to_dict())
 
     def serialize(self) -> str:
         def _is_lro(operation):
@@ -179,10 +181,10 @@ class MetadataSerializer:
             sync_client_imports=sync_client_imports,
             async_client_imports=async_client_imports,
             sync_config_imports=_json_serialize_imports(
-                config_imports(self.code_model, self.code_model.global_parameters, async_mode=False).imports
+                config_imports(self.code_model, self.code_model.global_parameters, async_mode=False).to_dict()
             ),
             async_config_imports=_json_serialize_imports(
-                config_imports(self.code_model, async_global_parameters, async_mode=True).imports
+                config_imports(self.code_model, async_global_parameters, async_mode=True).to_dict()
             ),
             get_async_operation_serializer=functools.partial(
                 get_operation_serializer, code_model=self.code_model, async_mode=True, is_python3_file=True

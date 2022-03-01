@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -42,22 +43,22 @@ def build_get_horse_request(
             # response body for status code(s): 200
             response.json() == {
                 "isAShowHorse": bool,  # Optional.
-                "name": "str"  # Required. 
+                "name": "str"  # Required.
             }
     """
 
     accept = "application/json"
     # Construct URL
-    url = '/multipleInheritance/horse'
+    _url = "/multipleInheritance/horse"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -73,9 +74,11 @@ def build_put_horse_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Put a horse with name 'General' and isAShowHorse false.
+     Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Put a horse with name 'General' and isAShowHorse false.
+     Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -88,7 +91,7 @@ def build_put_horse_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "isAShowHorse": bool,  # Optional.
-                "name": "str"  # Required. 
+                "name": "str"  # Required.
             }
     """
 
@@ -96,18 +99,18 @@ def build_put_horse_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/multipleInheritance/horse'
+    _url = "/multipleInheritance/horse"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -131,22 +134,22 @@ def build_get_pet_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "name": "str"  # Required. 
+                "name": "str"  # Required.
             }
     """
 
     accept = "application/json"
     # Construct URL
-    url = '/multipleInheritance/pet'
+    _url = "/multipleInheritance/pet"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -161,10 +164,10 @@ def build_put_pet_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Put a pet with name 'Butter'.
+     our example to find the input shape. Put a pet with name 'Butter'. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Put a pet with name 'Butter'.
+     a byte iterator, or stream input). Put a pet with name 'Butter'. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -176,7 +179,7 @@ def build_put_pet_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "name": "str"  # Required. 
+                "name": "str"  # Required.
             }
     """
 
@@ -184,18 +187,18 @@ def build_put_pet_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/multipleInheritance/pet'
+    _url = "/multipleInheritance/pet"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -226,16 +229,16 @@ def build_get_feline_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/multipleInheritance/feline'
+    _url = "/multipleInheritance/feline"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -250,10 +253,12 @@ def build_put_feline_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Put a feline who hisses and doesn't meow.
+     our example to find the input shape. Put a feline who hisses and doesn't meow. Default value is
+     None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Put a feline who hisses and doesn't meow.
+     a byte iterator, or stream input). Put a feline who hisses and doesn't meow. Default value is
+     None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -274,18 +279,18 @@ def build_put_feline_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/multipleInheritance/feline'
+    _url = "/multipleInheritance/feline"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -312,22 +317,22 @@ def build_get_cat_request(
                 "hisses": bool,  # Optional.
                 "likesMilk": bool,  # Optional.
                 "meows": bool,  # Optional.
-                "name": "str"  # Required. 
+                "name": "str"  # Required.
             }
     """
 
     accept = "application/json"
     # Construct URL
-    url = '/multipleInheritance/cat'
+    _url = "/multipleInheritance/cat"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -343,11 +348,11 @@ def build_put_cat_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Put a cat with name 'Boots' where likesMilk and hisses is
-     false, meows is true.
+     false, meows is true. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Put a cat with name 'Boots' where likesMilk and hisses is
-     false, meows is true.
+     false, meows is true. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -362,7 +367,7 @@ def build_put_cat_request(
                 "hisses": bool,  # Optional.
                 "likesMilk": bool,  # Optional.
                 "meows": bool,  # Optional.
-                "name": "str"  # Required. 
+                "name": "str"  # Required.
             }
     """
 
@@ -370,18 +375,18 @@ def build_put_cat_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/multipleInheritance/cat'
+    _url = "/multipleInheritance/cat"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -410,22 +415,22 @@ def build_get_kitten_request(
                 "hisses": bool,  # Optional.
                 "likesMilk": bool,  # Optional.
                 "meows": bool,  # Optional.
-                "name": "str"  # Required. 
+                "name": "str"  # Required.
             }
     """
 
     accept = "application/json"
     # Construct URL
-    url = '/multipleInheritance/kitten'
+    _url = "/multipleInheritance/kitten"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -442,11 +447,11 @@ def build_put_kitten_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Put a kitten with name 'Kitty' where likesMilk and hisses
-     is false, meows and eatsMiceYet is true.
+     is false, meows and eatsMiceYet is true. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Put a kitten with name 'Kitty' where likesMilk and hisses is
-     false, meows and eatsMiceYet is true.
+     false, meows and eatsMiceYet is true. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -462,7 +467,7 @@ def build_put_kitten_request(
                 "hisses": bool,  # Optional.
                 "likesMilk": bool,  # Optional.
                 "meows": bool,  # Optional.
-                "name": "str"  # Required. 
+                "name": "str"  # Required.
             }
     """
 
@@ -470,17 +475,17 @@ def build_put_kitten_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/multipleInheritance/kitten'
+    _url = "/multipleInheritance/kitten"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )

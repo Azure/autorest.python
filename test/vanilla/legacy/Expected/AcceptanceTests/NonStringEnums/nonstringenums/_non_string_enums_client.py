@@ -9,15 +9,16 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
+
+from azure.core import PipelineClient
 
 from ._configuration import NonStringEnumsClientConfiguration
 from .operations import FloatOperations, IntOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict
 
     from azure.core.rest import HttpRequest, HttpResponse
 
@@ -29,7 +30,7 @@ class NonStringEnumsClient(object):
     :vartype int: nonstringenums.operations.IntOperations
     :ivar float: FloatOperations operations
     :vartype float: nonstringenums.operations.FloatOperations
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     """
 

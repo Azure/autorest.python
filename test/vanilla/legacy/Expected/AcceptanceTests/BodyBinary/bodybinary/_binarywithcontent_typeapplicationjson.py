@@ -9,15 +9,16 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
+
+from azure.core import PipelineClient
 
 from ._configuration import BinaryWithContentTypeApplicationJsonConfiguration
 from .operations import UploadOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict
 
     from azure.core.rest import HttpRequest, HttpResponse
 
@@ -27,7 +28,7 @@ class BinaryWithContentTypeApplicationJson(object):
 
     :ivar upload: UploadOperations operations
     :vartype upload: bodybinary.operations.UploadOperations
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     """
 

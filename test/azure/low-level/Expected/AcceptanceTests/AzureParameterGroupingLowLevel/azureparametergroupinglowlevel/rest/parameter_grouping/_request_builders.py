@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 from ..._vendor import _format_url_section
 
@@ -36,14 +37,14 @@ def build_post_required_request(
     :param path: Path parameter.
     :type path: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.
+     our example to find the input shape.  Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
+     a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
-    :keyword custom_header:
+    :keyword custom_header:  Default value is None.
     :paramtype custom_header: str
-    :keyword query: Query parameter with default.
+    :keyword query: Query parameter with default. Default value is 30.
     :paramtype query: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -63,31 +64,31 @@ def build_post_required_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/parameterGrouping/postRequired/{path}'
+    _url = "/parameterGrouping/postRequired/{path}"
     path_format_arguments = {
         "path": _SERIALIZER.url("path", path, 'str'),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if query is not None:
-        query_parameters['query'] = _SERIALIZER.query("query", query, 'int')
+        _query_parameters['query'] = _SERIALIZER.query("query", query, 'int')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if custom_header is not None:
-        header_parameters['customHeader'] = _SERIALIZER.header("custom_header", custom_header, 'str')
+        _header_parameters['customHeader'] = _SERIALIZER.header("custom_header", custom_header, 'str')
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -101,9 +102,9 @@ def build_post_optional_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword custom_header:
+    :keyword custom_header:  Default value is None.
     :paramtype custom_header: str
-    :keyword query: Query parameter with default.
+    :keyword query: Query parameter with default. Default value is 30.
     :paramtype query: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -116,24 +117,24 @@ def build_post_optional_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/parameterGrouping/postOptional'
+    _url = "/parameterGrouping/postOptional"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if query is not None:
-        query_parameters['query'] = _SERIALIZER.query("query", query, 'int')
+        _query_parameters['query'] = _SERIALIZER.query("query", query, 'int')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if custom_header is not None:
-        header_parameters['customHeader'] = _SERIALIZER.header("custom_header", custom_header, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['customHeader'] = _SERIALIZER.header("custom_header", custom_header, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -147,9 +148,11 @@ def build_post_reserved_words_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword from_parameter: 'from' is a reserved word. Pass in 'bob' to pass.
+    :keyword from_parameter: 'from' is a reserved word. Pass in 'bob' to pass. Default value is
+     None.
     :paramtype from_parameter: str
-    :keyword accept_parameter: 'accept' is a reserved word. Pass in 'yes' to pass.
+    :keyword accept_parameter: 'accept' is a reserved word. Pass in 'yes' to pass. Default value is
+     None.
     :paramtype accept_parameter: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -162,24 +165,24 @@ def build_post_reserved_words_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/parameterGrouping/postReservedWords'
+    _url = "/parameterGrouping/postReservedWords"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if from_parameter is not None:
-        query_parameters['from'] = _SERIALIZER.query("from_parameter", from_parameter, 'str')
+        _query_parameters['from'] = _SERIALIZER.query("from_parameter", from_parameter, 'str')
     if accept_parameter is not None:
-        query_parameters['accept'] = _SERIALIZER.query("accept_parameter", accept_parameter, 'str')
+        _query_parameters['accept'] = _SERIALIZER.query("accept_parameter", accept_parameter, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -193,13 +196,13 @@ def build_post_multi_param_groups_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword header_one:
+    :keyword header_one:  Default value is None.
     :paramtype header_one: str
-    :keyword query_one: Query parameter with default.
+    :keyword query_one: Query parameter with default. Default value is 30.
     :paramtype query_one: int
-    :keyword header_two:
+    :keyword header_two:  Default value is None.
     :paramtype header_two: str
-    :keyword query_two: Query parameter with default.
+    :keyword query_two: Query parameter with default. Default value is 30.
     :paramtype query_two: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -214,28 +217,28 @@ def build_post_multi_param_groups_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/parameterGrouping/postMultipleParameterGroups'
+    _url = "/parameterGrouping/postMultipleParameterGroups"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if query_one is not None:
-        query_parameters['query-one'] = _SERIALIZER.query("query_one", query_one, 'int')
+        _query_parameters['query-one'] = _SERIALIZER.query("query_one", query_one, 'int')
     if query_two is not None:
-        query_parameters['query-two'] = _SERIALIZER.query("query_two", query_two, 'int')
+        _query_parameters['query-two'] = _SERIALIZER.query("query_two", query_two, 'int')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if header_one is not None:
-        header_parameters['header-one'] = _SERIALIZER.header("header_one", header_one, 'str')
+        _header_parameters['header-one'] = _SERIALIZER.header("header_one", header_one, 'str')
     if header_two is not None:
-        header_parameters['header-two'] = _SERIALIZER.header("header_two", header_two, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['header-two'] = _SERIALIZER.header("header_two", header_two, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -249,9 +252,9 @@ def build_post_shared_parameter_group_object_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword header_one:
+    :keyword header_one:  Default value is None.
     :paramtype header_one: str
-    :keyword query_one: Query parameter with default.
+    :keyword query_one: Query parameter with default. Default value is 30.
     :paramtype query_one: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -264,23 +267,23 @@ def build_post_shared_parameter_group_object_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/parameterGrouping/sharedParameterGroupObject'
+    _url = "/parameterGrouping/sharedParameterGroupObject"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if query_one is not None:
-        query_parameters['query-one'] = _SERIALIZER.query("query_one", query_one, 'int')
+        _query_parameters['query-one'] = _SERIALIZER.query("query_one", query_one, 'int')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if header_one is not None:
-        header_parameters['header-one'] = _SERIALIZER.header("header_one", header_one, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['header-one'] = _SERIALIZER.header("header_one", header_one, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )

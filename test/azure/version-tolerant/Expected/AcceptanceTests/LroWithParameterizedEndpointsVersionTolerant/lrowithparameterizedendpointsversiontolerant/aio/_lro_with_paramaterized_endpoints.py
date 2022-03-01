@@ -9,9 +9,10 @@
 from copy import deepcopy
 from typing import Any, Awaitable, TYPE_CHECKING
 
+from msrest import Deserializer, Serializer
+
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
-from msrest import Deserializer, Serializer
 
 from ._configuration import LROWithParamaterizedEndpointsConfiguration
 from ._operations import LROWithParamaterizedEndpointsOperationsMixin
@@ -25,7 +26,7 @@ class LROWithParamaterizedEndpoints(LROWithParamaterizedEndpointsOperationsMixin
     """Test Infrastructure for AutoRest.
 
     :param host: A string value that is used as a global part of the parameterized host. Pass in
-     'host:3000' to pass test.
+     'host:3000' to pass test. Default value is "host".
     :type host: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.

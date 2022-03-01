@@ -7,12 +7,13 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, List, Optional, TypeVar
+    from typing import Any, Dict, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
@@ -50,16 +51,16 @@ def build_get_complex_type_ref_no_meta_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/complex-type-ref-no-meta'
+    _url = "/xml/complex-type-ref-no-meta"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -85,17 +86,17 @@ def build_put_complex_type_ref_no_meta_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = '/xml/complex-type-ref-no-meta'
+    _url = "/xml/complex-type-ref-no-meta"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -128,16 +129,16 @@ def build_get_complex_type_ref_with_meta_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/complex-type-ref-with-meta'
+    _url = "/xml/complex-type-ref-with-meta"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -163,17 +164,17 @@ def build_put_complex_type_ref_with_meta_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = '/xml/complex-type-ref-with-meta'
+    _url = "/xml/complex-type-ref-with-meta"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -214,16 +215,16 @@ def build_get_simple_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/simple'
+    _url = "/xml/simple"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -250,18 +251,18 @@ def build_put_simple_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/simple'
+    _url = "/xml/simple"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -296,16 +297,16 @@ def build_get_wrapped_lists_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/wrapped-lists'
+    _url = "/xml/wrapped-lists"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -332,18 +333,18 @@ def build_put_wrapped_lists_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/wrapped-lists'
+    _url = "/xml/wrapped-lists"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -364,11 +365,11 @@ def build_get_headers_request(
     """
 
     # Construct URL
-    url = '/xml/headers'
+    _url = "/xml/headers"
 
     return HttpRequest(
         method="GET",
-        url=url,
+        url=_url,
         **kwargs
     )
 
@@ -409,16 +410,16 @@ def build_get_empty_list_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/empty-list'
+    _url = "/xml/empty-list"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -444,17 +445,17 @@ def build_put_empty_list_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = '/xml/empty-list'
+    _url = "/xml/empty-list"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -489,16 +490,16 @@ def build_get_empty_wrapped_lists_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/empty-wrapped-lists'
+    _url = "/xml/empty-wrapped-lists"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -524,17 +525,17 @@ def build_put_empty_wrapped_lists_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = '/xml/empty-wrapped-lists'
+    _url = "/xml/empty-wrapped-lists"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -559,7 +560,8 @@ def build_get_root_list_request(
             # response body for status code(s): 200
             response.json() == [
                 {
-                    "expiration": "2020-02-20 00:00:00",  # Optional. The time at which you should reconsider eating this banana.
+                    "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
+                      you should reconsider eating this banana.
                     "flavor": "str",  # Optional.
                     "name": "str"  # Optional.
                 }
@@ -568,16 +570,16 @@ def build_get_root_list_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/root-list'
+    _url = "/xml/root-list"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -603,17 +605,17 @@ def build_put_root_list_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = '/xml/root-list'
+    _url = "/xml/root-list"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -638,7 +640,8 @@ def build_get_root_list_single_item_request(
             # response body for status code(s): 200
             response.json() == [
                 {
-                    "expiration": "2020-02-20 00:00:00",  # Optional. The time at which you should reconsider eating this banana.
+                    "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
+                      you should reconsider eating this banana.
                     "flavor": "str",  # Optional.
                     "name": "str"  # Optional.
                 }
@@ -647,16 +650,16 @@ def build_get_root_list_single_item_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/root-list-single-item'
+    _url = "/xml/root-list-single-item"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -682,17 +685,17 @@ def build_put_root_list_single_item_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = '/xml/root-list-single-item'
+    _url = "/xml/root-list-single-item"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -717,7 +720,8 @@ def build_get_empty_root_list_request(
             # response body for status code(s): 200
             response.json() == [
                 {
-                    "expiration": "2020-02-20 00:00:00",  # Optional. The time at which you should reconsider eating this banana.
+                    "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
+                      you should reconsider eating this banana.
                     "flavor": "str",  # Optional.
                     "name": "str"  # Optional.
                 }
@@ -726,16 +730,16 @@ def build_get_empty_root_list_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/empty-root-list'
+    _url = "/xml/empty-root-list"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -761,17 +765,17 @@ def build_put_empty_root_list_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = '/xml/empty-root-list'
+    _url = "/xml/empty-root-list"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -795,7 +799,8 @@ def build_get_empty_child_element_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "expiration": "2020-02-20 00:00:00",  # Optional. The time at which you should reconsider eating this banana.
+                "expiration": "2020-02-20 00:00:00",  # Optional. The time at which you
+                  should reconsider eating this banana.
                 "flavor": "str",  # Optional.
                 "name": "str"  # Optional.
             }
@@ -803,16 +808,16 @@ def build_get_empty_child_element_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/empty-child-element'
+    _url = "/xml/empty-child-element"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -838,17 +843,17 @@ def build_put_empty_child_element_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = '/xml/empty-child-element'
+    _url = "/xml/empty-child-element"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -862,8 +867,8 @@ def build_list_containers_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword comp: The default value is "list". Note that overriding this default value may result
-     in unsupported behavior.
+    :keyword comp:  Default value is "list". Note that overriding this default value may result in
+     unsupported behavior.
     :paramtype comp: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -878,24 +883,29 @@ def build_list_containers_request(
                 "Containers": [
                     {
                         "Metadata": {
-                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                            "str": "str"  # Optional. Dictionary of
+                              :code:`<string>`.
                         },
-                        "Name": "str",  # Required. 
+                        "Name": "str",  # Required.
                         "Properties": {
-                            "Etag": "str",  # Required. 
-                            "Last-Modified": "2020-02-20 00:00:00",  # Required. 
-                            "LeaseDuration": "str",  # Optional. Possible values include: "infinite", "fixed".
-                            "LeaseState": "str",  # Optional. Possible values include: "available", "leased", "expired", "breaking", "broken".
-                            "LeaseStatus": "str",  # Optional. Possible values include: "locked", "unlocked".
-                            "PublicAccess": "str"  # Optional. Possible values include: "container", "blob".
+                            "Etag": "str",  # Required.
+                            "Last-Modified": "2020-02-20 00:00:00",  # Required.
+                            "LeaseDuration": "str",  # Optional. Possible values
+                              include: "infinite", "fixed".
+                            "LeaseState": "str",  # Optional. Possible values
+                              include: "available", "leased", "expired", "breaking", "broken".
+                            "LeaseStatus": "str",  # Optional. Possible values
+                              include: "locked", "unlocked".
+                            "PublicAccess": "str"  # Optional. Possible values
+                              include: "container", "blob".
                         }
                     }
                 ],
                 "Marker": "str",  # Optional.
-                "MaxResults": 0,  # Required. 
-                "NextMarker": "str",  # Required. 
-                "Prefix": "str",  # Required. 
-                "ServiceEndpoint": "str"  # Required. 
+                "MaxResults": 0,  # Required.
+                "NextMarker": "str",  # Required.
+                "Prefix": "str",  # Required.
+                "ServiceEndpoint": "str"  # Required.
             }
     """
 
@@ -903,21 +913,21 @@ def build_list_containers_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/'
+    _url = "/xml/"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -931,10 +941,10 @@ def build_get_service_properties_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword comp: The default value is "properties". Note that overriding this default value may
+    :keyword comp:  Default value is "properties". Note that overriding this default value may
      result in unsupported behavior.
     :paramtype comp: str
-    :keyword restype: The default value is "service". Note that overriding this default value may
+    :keyword restype:  Default value is "service". Note that overriding this default value may
      result in unsupported behavior.
     :paramtype restype: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -949,45 +959,80 @@ def build_get_service_properties_request(
             response.json() == {
                 "Cors": [
                     {
-                        "AllowedHeaders": "str",  # Required. the request headers that the origin domain may specify on the CORS request.
-                        "AllowedMethods": "str",  # Required. The methods (HTTP request verbs) that the origin domain may use for a CORS request. (comma separated).
-                        "AllowedOrigins": "str",  # Required. The origin domains that are permitted to make a request against the storage service via CORS. The origin domain is the domain from which the request originates. Note that the origin must be an exact case-sensitive match with the origin that the user age sends to the service. You can also use the wildcard character '*' to allow all origin domains to make requests via CORS.
-                        "ExposedHeaders": "str",  # Required. The response headers that may be sent in the response to the CORS request and exposed by the browser to the request issuer.
-                        "MaxAgeInSeconds": 0  # Required. The maximum amount time that a browser should cache the preflight OPTIONS request.
+                        "AllowedHeaders": "str",  # Required. the request headers
+                          that the origin domain may specify on the CORS request.
+                        "AllowedMethods": "str",  # Required. The methods (HTTP
+                          request verbs) that the origin domain may use for a CORS request. (comma
+                          separated).
+                        "AllowedOrigins": "str",  # Required. The origin domains that
+                          are permitted to make a request against the storage service via CORS. The
+                          origin domain is the domain from which the request originates. Note that
+                          the origin must be an exact case-sensitive match with the origin that the
+                          user age sends to the service. You can also use the wildcard character
+                          '*' to allow all origin domains to make requests via CORS.
+                        "ExposedHeaders": "str",  # Required. The response headers
+                          that may be sent in the response to the CORS request and exposed by the
+                          browser to the request issuer.
+                        "MaxAgeInSeconds": 0  # Required. The maximum amount time
+                          that a browser should cache the preflight OPTIONS request.
                     }
                 ],
-                "DefaultServiceVersion": "str",  # Optional. The default version to use for requests to the Blob service if an incoming request's version is not specified. Possible values include version 2008-10-27 and all more recent versions.
+                "DefaultServiceVersion": "str",  # Optional. The default version to use for
+                  requests to the Blob service if an incoming request's version is not specified.
+                  Possible values include version 2008-10-27 and all more recent versions.
                 "DeleteRetentionPolicy": {
-                    "Days": 0,  # Optional. Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted.
-                    "Enabled": bool  # Required. Indicates whether a retention policy is enabled for the storage service.
+                    "Days": 0,  # Optional. Indicates the number of days that metrics or
+                      logging or soft-deleted data should be retained. All data older than this
+                      value will be deleted.
+                    "Enabled": bool  # Required. Indicates whether a retention policy is
+                      enabled for the storage service.
                 },
                 "HourMetrics": {
-                    "Enabled": bool,  # Required. Indicates whether metrics are enabled for the Blob service.
-                    "IncludeAPIs": bool,  # Optional. Indicates whether metrics should generate summary statistics for called API operations.
+                    "Enabled": bool,  # Required. Indicates whether metrics are enabled
+                      for the Blob service.
+                    "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
+                      generate summary statistics for called API operations.
                     "RetentionPolicy": {
-                        "Days": 0,  # Optional. Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted.
-                        "Enabled": bool  # Required. Indicates whether a retention policy is enabled for the storage service.
+                        "Days": 0,  # Optional. Indicates the number of days that
+                          metrics or logging or soft-deleted data should be retained. All data
+                          older than this value will be deleted.
+                        "Enabled": bool  # Required. Indicates whether a retention
+                          policy is enabled for the storage service.
                     },
-                    "Version": "str"  # Optional. The version of Storage Analytics to configure.
+                    "Version": "str"  # Optional. The version of Storage Analytics to
+                      configure.
                 },
                 "Logging": {
-                    "Delete": bool,  # Required. Indicates whether all delete requests should be logged.
-                    "Read": bool,  # Required. Indicates whether all read requests should be logged.
+                    "Delete": bool,  # Required. Indicates whether all delete requests
+                      should be logged.
+                    "Read": bool,  # Required. Indicates whether all read requests should
+                      be logged.
                     "RetentionPolicy": {
-                        "Days": 0,  # Optional. Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted.
-                        "Enabled": bool  # Required. Indicates whether a retention policy is enabled for the storage service.
+                        "Days": 0,  # Optional. Indicates the number of days that
+                          metrics or logging or soft-deleted data should be retained. All data
+                          older than this value will be deleted.
+                        "Enabled": bool  # Required. Indicates whether a retention
+                          policy is enabled for the storage service.
                     },
-                    "Version": "str",  # Required. The version of Storage Analytics to configure.
-                    "Write": bool  # Required. Indicates whether all write requests should be logged.
+                    "Version": "str",  # Required. The version of Storage Analytics to
+                      configure.
+                    "Write": bool  # Required. Indicates whether all write requests
+                      should be logged.
                 },
                 "MinuteMetrics": {
-                    "Enabled": bool,  # Required. Indicates whether metrics are enabled for the Blob service.
-                    "IncludeAPIs": bool,  # Optional. Indicates whether metrics should generate summary statistics for called API operations.
+                    "Enabled": bool,  # Required. Indicates whether metrics are enabled
+                      for the Blob service.
+                    "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
+                      generate summary statistics for called API operations.
                     "RetentionPolicy": {
-                        "Days": 0,  # Optional. Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted.
-                        "Enabled": bool  # Required. Indicates whether a retention policy is enabled for the storage service.
+                        "Days": 0,  # Optional. Indicates the number of days that
+                          metrics or logging or soft-deleted data should be retained. All data
+                          older than this value will be deleted.
+                        "Enabled": bool  # Required. Indicates whether a retention
+                          policy is enabled for the storage service.
                     },
-                    "Version": "str"  # Optional. The version of Storage Analytics to configure.
+                    "Version": "str"  # Optional. The version of Storage Analytics to
+                      configure.
                 }
             }
     """
@@ -997,22 +1042,22 @@ def build_get_service_properties_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/'
+    _url = "/xml/"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1026,10 +1071,10 @@ def build_put_service_properties_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword comp: The default value is "properties". Note that overriding this default value may
+    :keyword comp:  Default value is "properties". Note that overriding this default value may
      result in unsupported behavior.
     :paramtype comp: str
-    :keyword restype: The default value is "service". Note that overriding this default value may
+    :keyword restype:  Default value is "service". Note that overriding this default value may
      result in unsupported behavior.
     :paramtype restype: str
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
@@ -1046,23 +1091,23 @@ def build_put_service_properties_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = '/xml/'
+    _url = "/xml/"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1076,10 +1121,10 @@ def build_get_acls_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword comp: The default value is "acl". Note that overriding this default value may result
-     in unsupported behavior.
+    :keyword comp:  Default value is "acl". Note that overriding this default value may result in
+     unsupported behavior.
     :paramtype comp: str
-    :keyword restype: The default value is "container". Note that overriding this default value may
+    :keyword restype:  Default value is "container". Note that overriding this default value may
      result in unsupported behavior.
     :paramtype restype: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -1094,9 +1139,12 @@ def build_get_acls_request(
             response.json() == [
                 {
                     "AccessPolicy": {
-                        "Expiry": "2020-02-20 00:00:00",  # Required. the date-time the policy expires.
-                        "Permission": "str",  # Required. the permissions for the acl policy.
-                        "Start": "2020-02-20 00:00:00"  # Required. the date-time the policy is active.
+                        "Expiry": "2020-02-20 00:00:00",  # Required. the date-time
+                          the policy expires.
+                        "Permission": "str",  # Required. the permissions for the acl
+                          policy.
+                        "Start": "2020-02-20 00:00:00"  # Required. the date-time the
+                          policy is active.
                     },
                     "Id": "str"  # Required. a unique id.
                 }
@@ -1108,22 +1156,22 @@ def build_get_acls_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/mycontainer'
+    _url = "/xml/mycontainer"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1137,10 +1185,10 @@ def build_put_acls_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword comp: The default value is "acl". Note that overriding this default value may result
-     in unsupported behavior.
+    :keyword comp:  Default value is "acl". Note that overriding this default value may result in
+     unsupported behavior.
     :paramtype comp: str
-    :keyword restype: The default value is "container". Note that overriding this default value may
+    :keyword restype:  Default value is "container". Note that overriding this default value may
      result in unsupported behavior.
     :paramtype restype: str
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
@@ -1157,23 +1205,23 @@ def build_put_acls_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = '/xml/mycontainer'
+    _url = "/xml/mycontainer"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1187,10 +1235,10 @@ def build_list_blobs_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword comp: The default value is "list". Note that overriding this default value may result
-     in unsupported behavior.
+    :keyword comp:  Default value is "list". Note that overriding this default value may result in
+     unsupported behavior.
     :paramtype comp: str
-    :keyword restype: The default value is "container". Note that overriding this default value may
+    :keyword restype:  Default value is "container". Note that overriding this default value may
      result in unsupported behavior.
     :paramtype restype: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -1206,56 +1254,87 @@ def build_list_blobs_request(
                 "Blobs": {
                     "Blob": [
                         {
-                            "Deleted": bool,  # Required. 
+                            "Deleted": bool,  # Required.
                             "Metadata": {
-                                "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                                "str": "str"  # Optional. Dictionary of
+                                  :code:`<string>`.
                             },
-                            "Name": "str",  # Required. 
+                            "Name": "str",  # Required.
                             "Properties": {
-                                "AccessTier": "str",  # Optional. Possible values include: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot", "Cool", "Archive".
-                                "AccessTierInferred": bool,  # Optional. Required. Properties of a blob.
-                                "ArchiveStatus": "str",  # Optional. Possible values include: "rehydrate-pending-to-hot", "rehydrate-pending-to-cool".
-                                "BlobType": "str",  # Optional. Possible values include: "BlockBlob", "PageBlob", "AppendBlob".
-                                "Cache-Control": "str",  # Optional. Required. Properties of a blob.
-                                "Content-Disposition": "str",  # Optional. Required. Properties of a blob.
-                                "Content-Encoding": "str",  # Optional. Required. Properties of a blob.
-                                "Content-Language": "str",  # Optional. Required. Properties of a blob.
-                                "Content-Length": 0.0,  # Optional. Size in bytes.
-                                "Content-MD5": "str",  # Optional. Required. Properties of a blob.
-                                "Content-Type": "str",  # Optional. Required. Properties of a blob.
-                                "CopyCompletionTime": "2020-02-20 00:00:00",  # Optional. Required. Properties of a blob.
-                                "CopyId": "str",  # Optional. Required. Properties of a blob.
-                                "CopyProgress": "str",  # Optional. Required. Properties of a blob.
-                                "CopySource": "str",  # Optional. Required. Properties of a blob.
-                                "CopyStatus": "str",  # Optional. Possible values include: "pending", "success", "aborted", "failed".
-                                "CopyStatusDescription": "str",  # Optional. Required. Properties of a blob.
-                                "DeletedTime": "2020-02-20 00:00:00",  # Optional. Required. Properties of a blob.
-                                "DestinationSnapshot": "str",  # Optional. Required. Properties of a blob.
-                                "Etag": "str",  # Required. 
-                                "IncrementalCopy": bool,  # Optional. Required. Properties of a blob.
-                                "Last-Modified": "2020-02-20 00:00:00",  # Required. 
-                                "LeaseDuration": "str",  # Optional. Possible values include: "infinite", "fixed".
-                                "LeaseState": "str",  # Optional. Possible values include: "available", "leased", "expired", "breaking", "broken".
-                                "LeaseStatus": "str",  # Optional. Possible values include: "locked", "unlocked".
-                                "RemainingRetentionDays": 0,  # Optional. Required. Properties of a blob.
-                                "ServerEncrypted": bool,  # Optional. Required. Properties of a blob.
-                                "x-ms-blob-sequence-number": 0  # Optional. Required. Properties of a blob.
+                                "AccessTier": "str",  # Optional. Possible
+                                  values include: "P4", "P6", "P10", "P20", "P30", "P40", "P50",
+                                  "Hot", "Cool", "Archive".
+                                "AccessTierInferred": bool,  # Optional.
+                                  Required. Properties of a blob.
+                                "ArchiveStatus": "str",  # Optional. Possible
+                                  values include: "rehydrate-pending-to-hot",
+                                  "rehydrate-pending-to-cool".
+                                "BlobType": "str",  # Optional. Possible
+                                  values include: "BlockBlob", "PageBlob", "AppendBlob".
+                                "Cache-Control": "str",  # Optional.
+                                  Required. Properties of a blob.
+                                "Content-Disposition": "str",  # Optional.
+                                  Required. Properties of a blob.
+                                "Content-Encoding": "str",  # Optional.
+                                  Required. Properties of a blob.
+                                "Content-Language": "str",  # Optional.
+                                  Required. Properties of a blob.
+                                "Content-Length": 0.0,  # Optional. Size in
+                                  bytes.
+                                "Content-MD5": "str",  # Optional. Required.
+                                  Properties of a blob.
+                                "Content-Type": "str",  # Optional. Required.
+                                  Properties of a blob.
+                                "CopyCompletionTime": "2020-02-20 00:00:00",
+                                  # Optional. Required. Properties of a blob.
+                                "CopyId": "str",  # Optional. Required.
+                                  Properties of a blob.
+                                "CopyProgress": "str",  # Optional. Required.
+                                  Properties of a blob.
+                                "CopySource": "str",  # Optional. Required.
+                                  Properties of a blob.
+                                "CopyStatus": "str",  # Optional. Possible
+                                  values include: "pending", "success", "aborted", "failed".
+                                "CopyStatusDescription": "str",  # Optional.
+                                  Required. Properties of a blob.
+                                "DeletedTime": "2020-02-20 00:00:00",  #
+                                  Optional. Required. Properties of a blob.
+                                "DestinationSnapshot": "str",  # Optional.
+                                  Required. Properties of a blob.
+                                "Etag": "str",  # Required.
+                                "IncrementalCopy": bool,  # Optional.
+                                  Required. Properties of a blob.
+                                "Last-Modified": "2020-02-20 00:00:00",  #
+                                  Required.
+                                "LeaseDuration": "str",  # Optional. Possible
+                                  values include: "infinite", "fixed".
+                                "LeaseState": "str",  # Optional. Possible
+                                  values include: "available", "leased", "expired", "breaking",
+                                  "broken".
+                                "LeaseStatus": "str",  # Optional. Possible
+                                  values include: "locked", "unlocked".
+                                "RemainingRetentionDays": 0,  # Optional.
+                                  Required. Properties of a blob.
+                                "ServerEncrypted": bool,  # Optional.
+                                  Required. Properties of a blob.
+                                "x-ms-blob-sequence-number": 0  # Optional.
+                                  Required. Properties of a blob.
                             },
-                            "Snapshot": "str"  # Required. 
+                            "Snapshot": "str"  # Required.
                         }
                     ],
                     "BlobPrefix": [
                         {
-                            "Name": "str"  # Required. 
+                            "Name": "str"  # Required.
                         }
                     ]
                 },
-                "ContainerName": "str",  # Required. 
-                "Delimiter": "str",  # Required. 
-                "Marker": "str",  # Required. 
-                "MaxResults": 0,  # Required. 
-                "NextMarker": "str",  # Required. 
-                "Prefix": "str",  # Required. 
+                "ContainerName": "str",  # Required.
+                "Delimiter": "str",  # Required.
+                "Marker": "str",  # Required.
+                "MaxResults": 0,  # Required.
+                "NextMarker": "str",  # Required.
+                "Prefix": "str",  # Required.
                 "ServiceEndpoint": "str"  # Optional.
             }
     """
@@ -1265,22 +1344,22 @@ def build_list_blobs_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/mycontainer'
+    _url = "/xml/mycontainer"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1296,10 +1375,10 @@ def build_json_input_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.
+     our example to find the input shape.  Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
+     a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1318,17 +1397,17 @@ def build_json_input_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = '/xml/jsoninput'
+    _url = "/xml/jsoninput"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1358,16 +1437,16 @@ def build_json_output_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/xml/jsonoutput'
+    _url = "/xml/jsonoutput"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1399,16 +1478,16 @@ def build_get_xms_text_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/x-ms-text'
+    _url = "/xml/x-ms-text"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1438,16 +1517,16 @@ def build_get_bytes_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/bytes'
+    _url = "/xml/bytes"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1474,18 +1553,18 @@ def build_put_binary_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/bytes'
+    _url = "/xml/bytes"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1515,16 +1594,16 @@ def build_get_uri_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/url'
+    _url = "/xml/url"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1551,17 +1630,17 @@ def build_put_uri_request(
 
     accept = "application/xml"
     # Construct URL
-    url = '/xml/url'
+    _url = "/xml/url"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )

@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 from ..._vendor import _format_url_section
 
@@ -54,16 +55,16 @@ def build_get_no_item_name_pages_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/noitemname'
+    _url = "/paging/noitemname"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -101,16 +102,16 @@ def build_get_null_next_link_name_pages_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/nullnextlink'
+    _url = "/paging/nullnextlink"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -148,16 +149,16 @@ def build_get_single_pages_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/single'
+    _url = "/paging/single"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -196,16 +197,16 @@ def build_first_response_empty_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/firstResponseEmpty/1'
+    _url = "/paging/firstResponseEmpty/1"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -219,9 +220,10 @@ def build_get_multiple_pages_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword client_request_id:
+    :keyword client_request_id:  Default value is None.
     :paramtype client_request_id: str
-    :keyword maxresults: Sets the maximum number of items to return in the response.
+    :keyword maxresults: Sets the maximum number of items to return in the response. Default value
+     is None.
     :paramtype maxresults: int
     :keyword timeout: Sets the maximum time that the server can spend processing the request, in
      seconds. The default is 30 seconds.
@@ -254,22 +256,22 @@ def build_get_multiple_pages_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/multiple'
+    _url = "/paging/multiple"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if client_request_id is not None:
-        header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
+        _header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
     if maxresults is not None:
-        header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
+        _header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
     if timeout is not None:
-        header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -285,8 +287,8 @@ def build_get_with_query_params_request(
     into your code flow.
 
     :keyword query_constant: A constant. Must be True and will be passed as a query parameter to
-     nextOperationWithQueryParams. The default value is True. Note that overriding this default
-     value may result in unsupported behavior.
+     nextOperationWithQueryParams. Default value is True. Note that overriding this default value
+     may result in unsupported behavior.
     :paramtype query_constant: bool
     :keyword required_query_parameter: A required integer query parameter. Put in value '100' to
      pass test.
@@ -318,22 +320,81 @@ def build_get_with_query_params_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/multiple/getWithQueryParams'
+    _url = "/paging/multiple/getWithQueryParams"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['requiredQueryParameter'] = _SERIALIZER.query("required_query_parameter", required_query_parameter, 'int')
-    query_parameters['queryConstant'] = _SERIALIZER.query("query_constant", query_constant, 'bool')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['requiredQueryParameter'] = _SERIALIZER.query("required_query_parameter", required_query_parameter, 'int')
+    _query_parameters['queryConstant'] = _SERIALIZER.query("query_constant", query_constant, 'bool')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
+        **kwargs
+    )
+
+
+def build_duplicate_params_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Define ``filter`` as a query param for all calls. However, the returned next link will also
+    include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
+    param in the url sent.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword filter: OData filter options. Pass in 'foo'. Default value is None.
+    :paramtype filter: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # response body for status code(s): 200
+            response.json() == {
+                "nextLink": "str",  # Optional.
+                "values": [
+                    {
+                        "properties": {
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
+                        }
+                    }
+                ]
+            }
+    """
+
+    filter = kwargs.pop('filter', None)  # type: Optional[str]
+
+    accept = "application/json"
+    # Construct URL
+    _url = "/paging/multiple/duplicateParams/1"
+
+    # Construct parameters
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if filter is not None:
+        _query_parameters['$filter'] = _SERIALIZER.query("filter", filter, 'str')
+
+    # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -347,8 +408,8 @@ def build_next_operation_with_query_params_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword query_constant: A constant. Must be True. The default value is True. Note that
-     overriding this default value may result in unsupported behavior.
+    :keyword query_constant: A constant. Must be True. Default value is True. Note that overriding
+     this default value may result in unsupported behavior.
     :paramtype query_constant: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -376,21 +437,21 @@ def build_next_operation_with_query_params_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/multiple/nextOperationWithQueryParams'
+    _url = "/paging/multiple/nextOperationWithQueryParams"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['queryConstant'] = _SERIALIZER.query("query_constant", query_constant, 'bool')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['queryConstant'] = _SERIALIZER.query("query_constant", query_constant, 'bool')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -404,9 +465,10 @@ def build_get_odata_multiple_pages_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword client_request_id:
+    :keyword client_request_id:  Default value is None.
     :paramtype client_request_id: str
-    :keyword maxresults: Sets the maximum number of items to return in the response.
+    :keyword maxresults: Sets the maximum number of items to return in the response. Default value
+     is None.
     :paramtype maxresults: int
     :keyword timeout: Sets the maximum time that the server can spend processing the request, in
      seconds. The default is 30 seconds.
@@ -439,22 +501,22 @@ def build_get_odata_multiple_pages_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/multiple/odata'
+    _url = "/paging/multiple/odata"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if client_request_id is not None:
-        header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
+        _header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
     if maxresults is not None:
-        header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
+        _header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
     if timeout is not None:
-        header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -471,9 +533,10 @@ def build_get_multiple_pages_with_offset_request(
 
     :param offset: Offset of return value.
     :type offset: int
-    :keyword client_request_id:
+    :keyword client_request_id:  Default value is None.
     :paramtype client_request_id: str
-    :keyword maxresults: Sets the maximum number of items to return in the response.
+    :keyword maxresults: Sets the maximum number of items to return in the response. Default value
+     is None.
     :paramtype maxresults: int
     :keyword timeout: Sets the maximum time that the server can spend processing the request, in
      seconds. The default is 30 seconds.
@@ -506,27 +569,27 @@ def build_get_multiple_pages_with_offset_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/multiple/withpath/{offset}'
+    _url = "/paging/multiple/withpath/{offset}"
     path_format_arguments = {
         "offset": _SERIALIZER.url("offset", offset, 'int'),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if client_request_id is not None:
-        header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
+        _header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
     if maxresults is not None:
-        header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
+        _header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
     if timeout is not None:
-        header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -565,16 +628,16 @@ def build_get_multiple_pages_retry_first_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/multiple/retryfirst'
+    _url = "/paging/multiple/retryfirst"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -613,16 +676,16 @@ def build_get_multiple_pages_retry_second_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/multiple/retrysecond'
+    _url = "/paging/multiple/retrysecond"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -660,16 +723,16 @@ def build_get_single_pages_failure_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/single/failure'
+    _url = "/paging/single/failure"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -707,16 +770,16 @@ def build_get_multiple_pages_failure_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/multiple/failure'
+    _url = "/paging/multiple/failure"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -754,16 +817,16 @@ def build_get_multiple_pages_failure_uri_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/multiple/failureuri'
+    _url = "/paging/multiple/failureuri"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -808,26 +871,26 @@ def build_get_multiple_pages_fragment_next_link_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/multiple/fragment/{tenant}'
+    _url = "/paging/multiple/fragment/{tenant}"
     path_format_arguments = {
         "tenant": _SERIALIZER.url("tenant", tenant, 'str'),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -872,26 +935,26 @@ def build_get_multiple_pages_fragment_with_grouping_next_link_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/multiple/fragmentwithgrouping/{tenant}'
+    _url = "/paging/multiple/fragmentwithgrouping/{tenant}"
     path_format_arguments = {
         "tenant": _SERIALIZER.url("tenant", tenant, 'str'),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -905,9 +968,10 @@ def build_get_multiple_pages_lro_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword client_request_id:
+    :keyword client_request_id:  Default value is None.
     :paramtype client_request_id: str
-    :keyword maxresults: Sets the maximum number of items to return in the response.
+    :keyword maxresults: Sets the maximum number of items to return in the response. Default value
+     is None.
     :paramtype maxresults: int
     :keyword timeout: Sets the maximum time that the server can spend processing the request, in
      seconds. The default is 30 seconds.
@@ -940,22 +1004,22 @@ def build_get_multiple_pages_lro_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/multiple/lro'
+    _url = "/paging/multiple/lro"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if client_request_id is not None:
-        header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
+        _header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
     if maxresults is not None:
-        header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
+        _header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
     if timeout is not None:
-        header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1003,27 +1067,27 @@ def build_next_fragment_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/multiple/fragment/{tenant}/{nextLink}'
+    _url = "/paging/multiple/fragment/{tenant}/{nextLink}"
     path_format_arguments = {
         "tenant": _SERIALIZER.url("tenant", tenant, 'str'),
         "nextLink": _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1071,27 +1135,27 @@ def build_next_fragment_with_grouping_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}'
+    _url = "/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}"
     path_format_arguments = {
         "tenant": _SERIALIZER.url("tenant", tenant, 'str'),
         "nextLink": _SERIALIZER.url("next_link", next_link, 'str', skip_quote=True),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['api_version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -1130,15 +1194,15 @@ def build_get_paging_model_with_item_name_with_xms_client_name_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/paging/itemNameWithXMSClientName'
+    _url = "/paging/itemNameWithXMSClientName"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )

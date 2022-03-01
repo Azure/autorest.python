@@ -52,7 +52,7 @@ def test_get_null_and_invalid(send_request, send_request_json_response):
     request = duration.build_get_null_request()
     assert send_request(request).text() == ''
 
-    # in llc, we don't raise deserialization error
+    # in dpg, we don't raise deserialization error
     request = duration.build_get_invalid_request()
     with pytest.raises(isodate.ISO8601Error):
         isodate.parse_duration(send_request_json_response(request))

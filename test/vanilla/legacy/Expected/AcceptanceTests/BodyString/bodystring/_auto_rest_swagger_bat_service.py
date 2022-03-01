@@ -9,8 +9,9 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
+
+from azure.core import PipelineClient
 
 from . import models
 from ._configuration import AutoRestSwaggerBATServiceConfiguration
@@ -18,7 +19,7 @@ from .operations import EnumOperations, StringOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.rest import HttpRequest, HttpResponse
 
@@ -30,7 +31,7 @@ class AutoRestSwaggerBATService(object):
     :vartype string: bodystring.operations.StringOperations
     :ivar enum: EnumOperations operations
     :vartype enum: bodystring.operations.EnumOperations
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     """
 

@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class StorageManagementClientConfiguration(Configuration):
+class StorageManagementClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for StorageManagementClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -29,9 +29,11 @@ class StorageManagementClientConfiguration(Configuration):
 
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials.TokenCredential
-    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
+    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
+     subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
-    :keyword api_version: Api Version. The default value is "2015-05-01-preview". Note that overriding this default value may result in unsupported behavior.
+    :keyword api_version: Api Version. Default value is "2015-05-01-preview". Note that overriding
+     this default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

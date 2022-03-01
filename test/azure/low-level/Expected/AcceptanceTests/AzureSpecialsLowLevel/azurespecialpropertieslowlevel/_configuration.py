@@ -19,17 +19,21 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class AutoRestAzureSpecialParametersTestClientConfiguration(Configuration):
+class AutoRestAzureSpecialParametersTestClientConfiguration(
+    Configuration
+):  # pylint: disable=too-many-instance-attributes
     """Configuration for AutoRestAzureSpecialParametersTestClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param subscription_id: The subscription id, which appears in the path, always modeled in credentials. The value is always '1234-5678-9012-3456'.
+    :param subscription_id: The subscription id, which appears in the path, always modeled in
+     credentials. The value is always '1234-5678-9012-3456'.
     :type subscription_id: str
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: ~azure.core.credentials.TokenCredential
-    :keyword api_version: Api Version. The default value is "2015-07-01-preview". Note that overriding this default value may result in unsupported behavior.
+    :keyword api_version: Api Version. Default value is "2015-07-01-preview". Note that overriding
+     this default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

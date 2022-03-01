@@ -7,11 +7,12 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
+
+from msrest import Deserializer, Serializer
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
-from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestSwaggerBATServiceConfiguration
 from .operations import EnumOperations, StringOperations
@@ -28,7 +29,7 @@ class AutoRestSwaggerBATService:
     :vartype string: bodystringversiontolerant.operations.StringOperations
     :ivar enum: EnumOperations operations
     :vartype enum: bodystringversiontolerant.operations.EnumOperations
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 
@@ -43,11 +44,7 @@ class AutoRestSwaggerBATService:
         self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
         self.enum = EnumOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs: Any
-    ) -> HttpResponse:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

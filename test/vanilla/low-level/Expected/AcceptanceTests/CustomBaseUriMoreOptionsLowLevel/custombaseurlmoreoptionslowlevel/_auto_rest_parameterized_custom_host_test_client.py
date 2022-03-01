@@ -9,9 +9,10 @@
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
+from msrest import Deserializer, Serializer
+
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
-from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestParameterizedCustomHostTestClientConfiguration
 
@@ -26,7 +27,7 @@ class AutoRestParameterizedCustomHostTestClient:
     :param subscription_id: The subscription id with value 'test12'.
     :type subscription_id: str
     :param dns_suffix: A string value that is used as a global part of the parameterized host.
-     Default value 'host'.
+     Default value 'host'. Default value is "host".
     :type dns_suffix: str
     """
 
@@ -41,11 +42,7 @@ class AutoRestParameterizedCustomHostTestClient:
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
 
-    def send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs: Any
-    ) -> HttpResponse:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         We have helper methods to create requests specific to this service in `custombaseurlmoreoptionslowlevel.rest`.

@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from typing import Any, Optional
 
 
-class AutoRestUrlTestServiceConfiguration(Configuration):
+class AutoRestUrlTestServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for AutoRestUrlTestService.
 
     Note that all parameters used to create this instance are saved as instance
@@ -26,7 +26,7 @@ class AutoRestUrlTestServiceConfiguration(Configuration):
 
     :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
     :type global_string_path: str
-    :param global_string_query: should contain value null.
+    :param global_string_query: should contain value null. Default value is None.
     :type global_string_query: str
     """
 

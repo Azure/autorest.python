@@ -9,8 +9,9 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
+
+from azure.core import PipelineClient
 
 from . import models
 from ._configuration import AutoRestSwaggerConstantServiceConfiguration
@@ -18,7 +19,7 @@ from .operations import ContantsOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
     from azure.core.rest import HttpRequest, HttpResponse
 
@@ -28,19 +29,19 @@ class AutoRestSwaggerConstantService(object):
 
     :ivar contants: ContantsOperations operations
     :vartype contants: constants.operations.ContantsOperations
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     :keyword header_constant: Constant header property on the client that is a required parameter
-     for operation 'constants_putClientConstants'. The default value is True. Note that overriding
-     this default value may result in unsupported behavior.
+     for operation 'constants_putClientConstants'. Default value is True. Note that overriding this
+     default value may result in unsupported behavior.
     :paramtype header_constant: bool
     :keyword query_constant: Constant query property on the client that is a required parameter for
-     operation 'constants_putClientConstants'. The default value is 100. Note that overriding this
+     operation 'constants_putClientConstants'. Default value is 100. Note that overriding this
      default value may result in unsupported behavior.
     :paramtype query_constant: int
     :keyword path_constant: Constant path property on the client that is a required parameter for
-     operation 'constants_putClientConstants'. The default value is "path". Note that overriding
-     this default value may result in unsupported behavior.
+     operation 'constants_putClientConstants'. Default value is "path". Note that overriding this
+     default value may result in unsupported behavior.
     :paramtype path_constant: str
     """
 

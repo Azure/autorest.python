@@ -7,11 +7,12 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
+
+from msrest import Deserializer, Serializer
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
-from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestDurationTestServiceConfiguration
 from .operations import DurationOperations
@@ -26,7 +27,7 @@ class AutoRestDurationTestService:
 
     :ivar duration: DurationOperations operations
     :vartype duration: bodydurationversiontolerant.operations.DurationOperations
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 
@@ -40,11 +41,7 @@ class AutoRestDurationTestService:
         self._serialize.client_side_validation = False
         self.duration = DurationOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs: Any
-    ) -> HttpResponse:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

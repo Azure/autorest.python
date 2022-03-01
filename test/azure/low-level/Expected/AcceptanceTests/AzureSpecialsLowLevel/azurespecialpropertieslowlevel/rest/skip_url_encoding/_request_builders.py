@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 from ..._vendor import _format_url_section
 
@@ -40,21 +41,21 @@ def build_get_method_path_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}'
+    _url = "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}"
     path_format_arguments = {
         "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -79,21 +80,21 @@ def build_get_path_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}'
+    _url = "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}"
     path_format_arguments = {
         "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -107,8 +108,8 @@ def build_get_swagger_path_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'. The
-     default value is "path1/path2/path3". Note that overriding this default value may result in
+    :keyword unencoded_path_param: An unencoded path parameter with value 'path1/path2/path3'.
+     Default value is "path1/path2/path3". Note that overriding this default value may result in
      unsupported behavior.
     :paramtype unencoded_path_param: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -121,21 +122,21 @@ def build_get_swagger_path_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}'
+    _url = "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}"
     path_format_arguments = {
         "unencodedPathParam": _SERIALIZER.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -161,21 +162,21 @@ def build_get_method_query_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/azurespecials/skipUrlEncoding/method/query/valid'
+    _url = "/azurespecials/skipUrlEncoding/method/query/valid"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -189,7 +190,7 @@ def build_get_method_query_null_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword q1: Unencoded query parameter with value null.
+    :keyword q1: Unencoded query parameter with value null. Default value is None.
     :paramtype q1: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -201,22 +202,22 @@ def build_get_method_query_null_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/azurespecials/skipUrlEncoding/method/query/null'
+    _url = "/azurespecials/skipUrlEncoding/method/query/null"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if q1 is not None:
-        query_parameters['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
+        _query_parameters['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -242,21 +243,21 @@ def build_get_path_query_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/azurespecials/skipUrlEncoding/path/query/valid'
+    _url = "/azurespecials/skipUrlEncoding/path/query/valid"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -270,7 +271,7 @@ def build_get_swagger_query_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. The default
+    :keyword q1: An unencoded query parameter with value 'value1&q2=value2&q3=value3'. Default
      value is "value1&q2=value2&q3=value3". Note that overriding this default value may result in
      unsupported behavior.
     :paramtype q1: str
@@ -284,20 +285,20 @@ def build_get_swagger_query_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/azurespecials/skipUrlEncoding/swagger/query/valid'
+    _url = "/azurespecials/skipUrlEncoding/swagger/query/valid"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        params=query_parameters,
-        headers=header_parameters,
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )

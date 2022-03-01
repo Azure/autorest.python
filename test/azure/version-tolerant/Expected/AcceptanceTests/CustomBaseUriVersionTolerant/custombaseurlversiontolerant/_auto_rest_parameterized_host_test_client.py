@@ -9,9 +9,10 @@
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
+from msrest import Deserializer, Serializer
+
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
-from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestParameterizedHostTestClientConfiguration
 from .operations import PathsOperations
@@ -26,7 +27,8 @@ class AutoRestParameterizedHostTestClient:
 
     :ivar paths: PathsOperations operations
     :vartype paths: custombaseurlversiontolerant.operations.PathsOperations
-    :param host: A string value that is used as a global part of the parameterized host.
+    :param host: A string value that is used as a global part of the parameterized host. Default
+     value is "host".
     :type host: str
     """
 
@@ -39,11 +41,7 @@ class AutoRestParameterizedHostTestClient:
         self._deserialize = Deserializer()
         self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs: Any
-    ) -> HttpResponse:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

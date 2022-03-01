@@ -9,8 +9,9 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
+
+from azure.core import PipelineClient
 
 from . import models
 from ._configuration import AutoRestParameterizedHostTestClientConfiguration
@@ -28,7 +29,8 @@ class AutoRestParameterizedHostTestClient(object):
 
     :ivar paths: PathsOperations operations
     :vartype paths: custombaseurl.operations.PathsOperations
-    :param host: A string value that is used as a global part of the parameterized host.
+    :param host: A string value that is used as a global part of the parameterized host. Default
+     value is "host".
     :type host: str
     """
 

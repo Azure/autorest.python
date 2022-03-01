@@ -9,8 +9,9 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
+
+from azure.core import PipelineClient
 
 from . import models
 from ._configuration import AutoRestParameterizedCustomHostTestClientConfiguration
@@ -31,7 +32,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
     :param subscription_id: The subscription id with value 'test12'.
     :type subscription_id: str
     :param dns_suffix: A string value that is used as a global part of the parameterized host.
-     Default value 'host'.
+     Default value 'host'. Default value is "host".
     :type dns_suffix: str
     """
 

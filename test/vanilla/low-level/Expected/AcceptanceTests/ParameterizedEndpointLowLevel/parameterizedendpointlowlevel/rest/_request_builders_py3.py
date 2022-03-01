@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import Any
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -27,6 +28,6 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
     """
 
     # Construct URL
-    url = "/parameterizedEndpoint/get"
+    _url = "/parameterizedEndpoint/get"
 
-    return HttpRequest(method="GET", url=url, **kwargs)
+    return HttpRequest(method="GET", url=_url, **kwargs)

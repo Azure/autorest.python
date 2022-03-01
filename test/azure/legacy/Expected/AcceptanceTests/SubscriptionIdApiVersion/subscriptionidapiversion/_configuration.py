@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class MicrosoftAzureTestUrlConfiguration(Configuration):
+class MicrosoftAzureTestUrlConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for MicrosoftAzureTestUrl.
 
     Note that all parameters used to create this instance are saved as instance
@@ -31,7 +31,8 @@ class MicrosoftAzureTestUrlConfiguration(Configuration):
     :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: Subscription Id.
     :type subscription_id: str
-    :keyword api_version: Api Version. The default value is "2014-04-01-preview". Note that overriding this default value may result in unsupported behavior.
+    :keyword api_version: Api Version. Default value is "2014-04-01-preview". Note that overriding
+     this default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

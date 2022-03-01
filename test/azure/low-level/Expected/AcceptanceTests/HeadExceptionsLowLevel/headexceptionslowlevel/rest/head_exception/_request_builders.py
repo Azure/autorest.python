@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -35,11 +36,11 @@ def build_head200_request(
     """
 
     # Construct URL
-    url = '/http/success/200'
+    _url = "/http/success/200"
 
     return HttpRequest(
         method="HEAD",
-        url=url,
+        url=_url,
         **kwargs
     )
 
@@ -60,11 +61,11 @@ def build_head204_request(
     """
 
     # Construct URL
-    url = '/http/success/204'
+    _url = "/http/success/204"
 
     return HttpRequest(
         method="HEAD",
-        url=url,
+        url=_url,
         **kwargs
     )
 
@@ -85,10 +86,10 @@ def build_head404_request(
     """
 
     # Construct URL
-    url = '/http/success/404'
+    _url = "/http/success/404"
 
     return HttpRequest(
         method="HEAD",
-        url=url,
+        url=_url,
         **kwargs
     )

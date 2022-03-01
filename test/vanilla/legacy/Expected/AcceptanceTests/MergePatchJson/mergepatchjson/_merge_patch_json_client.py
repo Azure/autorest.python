@@ -9,15 +9,16 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
+
+from azure.core import PipelineClient
 
 from ._configuration import MergePatchJsonClientConfiguration
 from .operations import MergePatchJsonClientOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict
 
     from azure.core.rest import HttpRequest, HttpResponse
 
@@ -25,7 +26,7 @@ if TYPE_CHECKING:
 class MergePatchJsonClient(MergePatchJsonClientOperationsMixin):
     """Service client for testing merge patch json.
 
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     """
 

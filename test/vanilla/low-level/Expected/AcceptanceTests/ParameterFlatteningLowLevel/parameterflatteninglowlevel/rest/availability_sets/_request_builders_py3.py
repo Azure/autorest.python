@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, Optional, TypeVar
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 from ..._vendor import _format_url_section
 
@@ -32,10 +33,10 @@ def build_update_request(
     :param avset: The name of the storage availability set.
     :type avset: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. The tags.
+     our example to find the input shape. The tags. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). The tags.
+     a byte iterator, or stream input). The tags. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -48,7 +49,8 @@ def build_update_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "tags": {
-                    "str": "str"  # Required. A set of tags. A description about the set of tags.
+                    "str": "str"  # Required. A set of tags. A description about the set
+                      of tags.
                 }
             }
     """
@@ -56,17 +58,17 @@ def build_update_request(
     content_type = kwargs.pop("content_type", None)  # type: Optional[str]
 
     # Construct URL
-    url = "/parameterFlattening/{resourceGroupName}/{availabilitySetName}"
+    _url = "/parameterFlattening/{resourceGroupName}/{availabilitySetName}"
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
         "availabilitySetName": _SERIALIZER.url("avset", avset, "str", max_length=80, min_length=0),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PATCH", url=url, headers=header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PATCH", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)

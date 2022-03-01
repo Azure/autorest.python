@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, Optional
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 _SERIALIZER = Serializer()
 
@@ -21,11 +22,12 @@ def build_get_with_filter_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword filter: The filter parameter with value '$filter=id gt 5 and name eq 'foo''.
+    :keyword filter: The filter parameter with value '$filter=id gt 5 and name eq 'foo''. Default
+     value is None.
     :paramtype filter: str
-    :keyword top: The top parameter with value 10.
+    :keyword top: The top parameter with value 10. Default value is None.
     :paramtype top: int
-    :keyword orderby: The orderby parameter with value id.
+    :keyword orderby: The orderby parameter with value id. Default value is None.
     :paramtype orderby: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -35,19 +37,19 @@ def build_get_with_filter_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/odata/filter"
+    _url = "/azurespecials/odata/filter"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if filter is not None:
-        query_parameters["$filter"] = _SERIALIZER.query("filter", filter, "str")
+        _query_parameters["$filter"] = _SERIALIZER.query("filter", filter, "str")
     if top is not None:
-        query_parameters["$top"] = _SERIALIZER.query("top", top, "int")
+        _query_parameters["$top"] = _SERIALIZER.query("top", top, "int")
     if orderby is not None:
-        query_parameters["$orderby"] = _SERIALIZER.query("orderby", orderby, "str")
+        _query_parameters["$orderby"] = _SERIALIZER.query("orderby", orderby, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)

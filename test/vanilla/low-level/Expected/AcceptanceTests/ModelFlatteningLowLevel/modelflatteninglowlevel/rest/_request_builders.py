@@ -7,14 +7,15 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 from .._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, List, Optional, TypeVar
+    from typing import Any, Dict, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
@@ -34,10 +35,11 @@ def build_put_array_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. External Resource as an Array to put.
+     our example to find the input shape. External Resource as an Array to put. Default value is
+     None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). External Resource as an Array to put.
+     a byte iterator, or stream input). External Resource as an Array to put. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -54,7 +56,8 @@ def build_put_array_request(
                     "location": "str",  # Optional. Resource Location.
                     "name": "str",  # Optional. Resource Name.
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of
+                          :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -65,18 +68,18 @@ def build_put_array_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/model-flatten/array'
+    _url = "/model-flatten/array"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -107,11 +110,15 @@ def build_get_array_request(
                     "properties": {
                         "p.name": "str",  # Optional.
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str",  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str",  # Optional. Possible
+                          values include: "Succeeded", "Failed", "canceled", "Accepted",
+                          "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+                          "OK".
                         "type": "str"  # Optional.
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of
+                          :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -120,16 +127,16 @@ def build_get_array_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/model-flatten/array'
+    _url = "/model-flatten/array"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -145,10 +152,11 @@ def build_put_wrapped_array_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. External Resource as an Array to put.
+     our example to find the input shape. External Resource as an Array to put. Default value is
+     None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). External Resource as an Array to put.
+     a byte iterator, or stream input). External Resource as an Array to put. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -170,18 +178,18 @@ def build_put_wrapped_array_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/model-flatten/wrappedarray'
+    _url = "/model-flatten/wrappedarray"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -216,16 +224,16 @@ def build_get_wrapped_array_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/model-flatten/wrappedarray'
+    _url = "/model-flatten/wrappedarray"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -240,10 +248,12 @@ def build_put_dictionary_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. External Resource as a Dictionary to put.
+     our example to find the input shape. External Resource as a Dictionary to put. Default value is
+     None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). External Resource as a Dictionary to put.
+     a byte iterator, or stream input). External Resource as a Dictionary to put. Default value is
+     None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -262,11 +272,15 @@ def build_put_dictionary_request(
                     "properties": {
                         "p.name": "str",  # Optional.
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str",  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str",  # Optional. Possible
+                          values include: "Succeeded", "Failed", "canceled", "Accepted",
+                          "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+                          "OK".
                         "type": "str"  # Optional.
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of
+                          :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -277,18 +291,18 @@ def build_put_dictionary_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/model-flatten/dictionary'
+    _url = "/model-flatten/dictionary"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -319,11 +333,15 @@ def build_get_dictionary_request(
                     "properties": {
                         "p.name": "str",  # Optional.
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str",  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str",  # Optional. Possible
+                          values include: "Succeeded", "Failed", "canceled", "Accepted",
+                          "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+                          "OK".
                         "type": "str"  # Optional.
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of
+                          :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -332,16 +350,16 @@ def build_get_dictionary_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/model-flatten/dictionary'
+    _url = "/model-flatten/dictionary"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -356,10 +374,12 @@ def build_put_resource_collection_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. External Resource as a ResourceCollection to put.
+     our example to find the input shape. External Resource as a ResourceCollection to put. Default
+     value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). External Resource as a ResourceCollection to put.
+     a byte iterator, or stream input). External Resource as a ResourceCollection to put. Default
+     value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -379,11 +399,15 @@ def build_put_resource_collection_request(
                         "properties": {
                             "p.name": "str",  # Optional.
                             "provisioningState": "str",  # Optional.
-                            "provisioningStateValues": "str",  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                            "provisioningStateValues": "str",  # Optional.
+                              Possible values include: "Succeeded", "Failed", "canceled",
+                              "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting",
+                              "Deleted", "OK".
                             "type": "str"  # Optional.
                         },
                         "tags": {
-                            "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                            "str": "str"  # Optional. A set of tags. Dictionary
+                              of :code:`<string>`.
                         },
                         "type": "str"  # Optional. Resource Type.
                     }
@@ -394,13 +418,20 @@ def build_put_resource_collection_request(
                         "location": "str",  # Optional. Resource Location.
                         "name": "str",  # Optional. Resource Name.
                         "properties": {
-                            "p.name": "str",  # Optional. Dictionary of :code:`<FlattenedProduct>`.
-                            "provisioningState": "str",  # Optional. Dictionary of :code:`<FlattenedProduct>`.
-                            "provisioningStateValues": "str",  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
-                            "type": "str"  # Optional. Dictionary of :code:`<FlattenedProduct>`.
+                            "p.name": "str",  # Optional. Dictionary of
+                              :code:`<FlattenedProduct>`.
+                            "provisioningState": "str",  # Optional. Dictionary
+                              of :code:`<FlattenedProduct>`.
+                            "provisioningStateValues": "str",  # Optional.
+                              Possible values include: "Succeeded", "Failed", "canceled",
+                              "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting",
+                              "Deleted", "OK".
+                            "type": "str"  # Optional. Dictionary of
+                              :code:`<FlattenedProduct>`.
                         },
                         "tags": {
-                            "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                            "str": "str"  # Optional. A set of tags. Dictionary
+                              of :code:`<string>`.
                         },
                         "type": "str"  # Optional. Resource Type.
                     }
@@ -412,11 +443,15 @@ def build_put_resource_collection_request(
                     "properties": {
                         "p.name": "str",  # Optional. Flattened product.
                         "provisioningState": "str",  # Optional. Flattened product.
-                        "provisioningStateValues": "str",  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str",  # Optional. Possible
+                          values include: "Succeeded", "Failed", "canceled", "Accepted",
+                          "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+                          "OK".
                         "type": "str"  # Optional. Flattened product.
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of
+                          :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -427,18 +462,18 @@ def build_put_resource_collection_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/model-flatten/resourcecollection'
+    _url = "/model-flatten/resourcecollection"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -470,11 +505,15 @@ def build_get_resource_collection_request(
                         "properties": {
                             "p.name": "str",  # Optional.
                             "provisioningState": "str",  # Optional.
-                            "provisioningStateValues": "str",  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                            "provisioningStateValues": "str",  # Optional.
+                              Possible values include: "Succeeded", "Failed", "canceled",
+                              "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting",
+                              "Deleted", "OK".
                             "type": "str"  # Optional.
                         },
                         "tags": {
-                            "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                            "str": "str"  # Optional. A set of tags. Dictionary
+                              of :code:`<string>`.
                         },
                         "type": "str"  # Optional. Resource Type.
                     }
@@ -485,13 +524,20 @@ def build_get_resource_collection_request(
                         "location": "str",  # Optional. Resource Location.
                         "name": "str",  # Optional. Resource Name.
                         "properties": {
-                            "p.name": "str",  # Optional. Dictionary of :code:`<FlattenedProduct>`.
-                            "provisioningState": "str",  # Optional. Dictionary of :code:`<FlattenedProduct>`.
-                            "provisioningStateValues": "str",  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
-                            "type": "str"  # Optional. Dictionary of :code:`<FlattenedProduct>`.
+                            "p.name": "str",  # Optional. Dictionary of
+                              :code:`<FlattenedProduct>`.
+                            "provisioningState": "str",  # Optional. Dictionary
+                              of :code:`<FlattenedProduct>`.
+                            "provisioningStateValues": "str",  # Optional.
+                              Possible values include: "Succeeded", "Failed", "canceled",
+                              "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting",
+                              "Deleted", "OK".
+                            "type": "str"  # Optional. Dictionary of
+                              :code:`<FlattenedProduct>`.
                         },
                         "tags": {
-                            "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                            "str": "str"  # Optional. A set of tags. Dictionary
+                              of :code:`<string>`.
                         },
                         "type": "str"  # Optional. Resource Type.
                     }
@@ -503,11 +549,15 @@ def build_get_resource_collection_request(
                     "properties": {
                         "p.name": "str",  # Optional. Flattened product.
                         "provisioningState": "str",  # Optional. Flattened product.
-                        "provisioningStateValues": "str",  # Optional. Possible values include: "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str",  # Optional. Possible
+                          values include: "Succeeded", "Failed", "canceled", "Accepted",
+                          "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+                          "OK".
                         "type": "str"  # Optional. Flattened product.
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of :code:`<string>`.
+                        "str": "str"  # Optional. A set of tags. Dictionary of
+                          :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -516,16 +566,16 @@ def build_get_resource_collection_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/model-flatten/resourcecollection'
+    _url = "/model-flatten/resourcecollection"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -540,10 +590,10 @@ def build_put_simple_product_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple body product to put.
+     our example to find the input shape. Simple body product to put. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple body product to put.
+     a byte iterator, or stream input). Simple body product to put. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -556,10 +606,14 @@ def build_put_simple_product_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "base_product_description": "str",  # Optional. Description of product.
-                "base_product_id": "str",  # Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+                "base_product_id": "str",  # Required. Unique identifier representing a
+                  specific product for a given latitude & longitude. For example, uberX in San
+                  Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
-                    "max_product_capacity": "Large",  # Default value is "Large". Capacity of product. For example, 4 people. Has constant value: "Large".
-                    "max_product_display_name": "str",  # Required. Display name of product.
+                    "max_product_capacity": "Large",  # Default value is "Large".
+                      Capacity of product. For example, 4 people. Has constant value: "Large".
+                    "max_product_display_name": "str",  # Required. Display name of
+                      product.
                     "max_product_image": {
                         "@odata.value": "str",  # Optional. URL value.
                         "generic_value": "str"  # Optional. Generic URL value.
@@ -570,10 +624,14 @@ def build_put_simple_product_request(
             # response body for status code(s): 200
             response.json() == {
                 "base_product_description": "str",  # Optional. Description of product.
-                "base_product_id": "str",  # Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+                "base_product_id": "str",  # Required. Unique identifier representing a
+                  specific product for a given latitude & longitude. For example, uberX in San
+                  Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
-                    "max_product_capacity": "Large",  # Default value is "Large". Capacity of product. For example, 4 people. Has constant value: "Large".
-                    "max_product_display_name": "str",  # Required. Display name of product.
+                    "max_product_capacity": "Large",  # Default value is "Large".
+                      Capacity of product. For example, 4 people. Has constant value: "Large".
+                    "max_product_display_name": "str",  # Required. Display name of
+                      product.
                     "max_product_image": {
                         "@odata.value": "str",  # Optional. URL value.
                         "generic_value": "str"  # Optional. Generic URL value.
@@ -586,18 +644,18 @@ def build_put_simple_product_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/model-flatten/customFlattening'
+    _url = "/model-flatten/customFlattening"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -612,10 +670,10 @@ def build_post_flattened_simple_product_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple body product to post.
+     our example to find the input shape. Simple body product to post. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple body product to post.
+     a byte iterator, or stream input). Simple body product to post. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -628,10 +686,14 @@ def build_post_flattened_simple_product_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "base_product_description": "str",  # Optional. Description of product.
-                "base_product_id": "str",  # Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+                "base_product_id": "str",  # Required. Unique identifier representing a
+                  specific product for a given latitude & longitude. For example, uberX in San
+                  Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
-                    "max_product_capacity": "Large",  # Default value is "Large". Capacity of product. For example, 4 people. Has constant value: "Large".
-                    "max_product_display_name": "str",  # Required. Display name of product.
+                    "max_product_capacity": "Large",  # Default value is "Large".
+                      Capacity of product. For example, 4 people. Has constant value: "Large".
+                    "max_product_display_name": "str",  # Required. Display name of
+                      product.
                     "max_product_image": {
                         "@odata.value": "str",  # Optional. URL value.
                         "generic_value": "str"  # Optional. Generic URL value.
@@ -642,10 +704,14 @@ def build_post_flattened_simple_product_request(
             # response body for status code(s): 200
             response.json() == {
                 "base_product_description": "str",  # Optional. Description of product.
-                "base_product_id": "str",  # Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+                "base_product_id": "str",  # Required. Unique identifier representing a
+                  specific product for a given latitude & longitude. For example, uberX in San
+                  Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
-                    "max_product_capacity": "Large",  # Default value is "Large". Capacity of product. For example, 4 people. Has constant value: "Large".
-                    "max_product_display_name": "str",  # Required. Display name of product.
+                    "max_product_capacity": "Large",  # Default value is "Large".
+                      Capacity of product. For example, 4 people. Has constant value: "Large".
+                    "max_product_display_name": "str",  # Required. Display name of
+                      product.
                     "max_product_image": {
                         "@odata.value": "str",  # Optional. URL value.
                         "generic_value": "str"  # Optional. Generic URL value.
@@ -658,18 +724,18 @@ def build_post_flattened_simple_product_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/model-flatten/customFlattening'
+    _url = "/model-flatten/customFlattening"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -687,10 +753,10 @@ def build_put_simple_product_with_grouping_request(
     :param name: Product name with value 'groupproduct'.
     :type name: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple body product to put.
+     our example to find the input shape. Simple body product to put. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Simple body product to put.
+     a byte iterator, or stream input). Simple body product to put. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -703,10 +769,14 @@ def build_put_simple_product_with_grouping_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "base_product_description": "str",  # Optional. Description of product.
-                "base_product_id": "str",  # Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+                "base_product_id": "str",  # Required. Unique identifier representing a
+                  specific product for a given latitude & longitude. For example, uberX in San
+                  Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
-                    "max_product_capacity": "Large",  # Default value is "Large". Capacity of product. For example, 4 people. Has constant value: "Large".
-                    "max_product_display_name": "str",  # Required. Display name of product.
+                    "max_product_capacity": "Large",  # Default value is "Large".
+                      Capacity of product. For example, 4 people. Has constant value: "Large".
+                    "max_product_display_name": "str",  # Required. Display name of
+                      product.
                     "max_product_image": {
                         "@odata.value": "str",  # Optional. URL value.
                         "generic_value": "str"  # Optional. Generic URL value.
@@ -717,10 +787,14 @@ def build_put_simple_product_with_grouping_request(
             # response body for status code(s): 200
             response.json() == {
                 "base_product_description": "str",  # Optional. Description of product.
-                "base_product_id": "str",  # Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+                "base_product_id": "str",  # Required. Unique identifier representing a
+                  specific product for a given latitude & longitude. For example, uberX in San
+                  Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
-                    "max_product_capacity": "Large",  # Default value is "Large". Capacity of product. For example, 4 people. Has constant value: "Large".
-                    "max_product_display_name": "str",  # Required. Display name of product.
+                    "max_product_capacity": "Large",  # Default value is "Large".
+                      Capacity of product. For example, 4 people. Has constant value: "Large".
+                    "max_product_display_name": "str",  # Required. Display name of
+                      product.
                     "max_product_image": {
                         "@odata.value": "str",  # Optional. URL value.
                         "generic_value": "str"  # Optional. Generic URL value.
@@ -733,22 +807,22 @@ def build_put_simple_product_with_grouping_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/model-flatten/customFlattening/parametergrouping/{name}/'
+    _url = "/model-flatten/customFlattening/parametergrouping/{name}/"
     path_format_arguments = {
         "name": _SERIALIZER.url("name", name, 'str'),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )

@@ -7,12 +7,15 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
+
+from .._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, IO, Optional, TypeVar
+    from typing import Any, Dict, List, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
@@ -44,18 +47,18 @@ def build_operation_with_content_param_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/reservedWords/operation/content'
+    _url = "/reservedWords/operation/content"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -70,10 +73,10 @@ def build_operation_with_json_param_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Pass in {'hello': 'world'}.
+     our example to find the input shape. Pass in {'hello': 'world'}. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Pass in {'hello': 'world'}.
+     a byte iterator, or stream input). Pass in {'hello': 'world'}. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -91,18 +94,18 @@ def build_operation_with_json_param_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/reservedWords/operation/json'
+    _url = "/reservedWords/operation/json"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -117,10 +120,10 @@ def build_operation_with_data_param_request(
     into your code flow.
 
     :keyword data: Pass in dictionary that contains form data to include in the body of the
-     request. Pass in 'hello'.
+     request. Pass in 'hello'. Default value is None.
     :paramtype data: dict[str, any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Pass in 'hello'.
+     a byte iterator, or stream input). Pass in 'hello'. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -141,18 +144,18 @@ def build_operation_with_data_param_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/reservedWords/operation/data'
+    _url = "/reservedWords/operation/data"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -167,10 +170,11 @@ def build_operation_with_files_param_request(
     into your code flow.
 
     :keyword files: Multipart input for files. See the template in our example to find the input
-     shape. Files to upload. Pass in list of input streams.
+     shape. Files to upload. Pass in list of input streams. Default value is None.
     :paramtype files: dict[str, any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Files to upload. Pass in list of input streams.
+     a byte iterator, or stream input). Files to upload. Pass in list of input streams. Default
+     value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -191,17 +195,73 @@ def build_operation_with_files_param_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/reservedWords/operation/files'
+    _url = "/reservedWords/operation/files"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
+        **kwargs
+    )
+
+
+def build_operation_with_url_request(
+    url,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Operation with path format argument URL, header param headerParameters, and query param
+    queryParameters.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :param url: Pass in 'foo'.
+    :type url: str
+    :keyword header_parameters: Header arg that uses same name as headerParameters in generated
+     code. Pass in 'x-ms-header' to pass.
+    :paramtype header_parameters: str
+    :keyword query_parameters: Query args that uses same name as queryParameters in generated code.
+     Pass in ['one', 'two'] to pass test. Default value is None.
+    :paramtype query_parameters: list[str]
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    header_parameters = kwargs.pop('header_parameters')  # type: str
+    query_parameters = kwargs.pop('query_parameters', None)  # type: Optional[List[str]]
+
+    accept = "application/json"
+    # Construct URL
+    _url = "/reservedWords/{url}"
+    path_format_arguments = {
+        "url": _SERIALIZER.url("url", url, 'str'),
+    }
+
+    _url = _format_url_section(_url, **path_format_arguments)
+
+    # Construct parameters
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    if query_parameters is not None:
+        _query_parameters['queryParameters'] = [_SERIALIZER.query("query_parameters", q, 'str') if q is not None else '' for q in query_parameters]
+
+    # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['headerParameters'] = _SERIALIZER.header("header_parameters", header_parameters, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )

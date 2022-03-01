@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, Optional
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 from ..._vendor import _format_url_section
 
@@ -28,7 +29,7 @@ def build_get_empty_request(
     :type key_name: str
     :param subscription_id: The subscription id with value 'test12'.
     :type subscription_id: str
-    :keyword key_version: The key version. Default value 'v1'.
+    :keyword key_version: The key version. Default value 'v1'. Default value is "v1".
     :paramtype key_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -38,21 +39,21 @@ def build_get_empty_request(
 
     accept = "application/json"
     # Construct URL
-    url = "/customuri/{subscriptionId}/{keyName}"
+    _url = "/customuri/{subscriptionId}/{keyName}"
     path_format_arguments = {
         "keyName": _SERIALIZER.url("key_name", key_name, "str"),
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if key_version is not None:
-        query_parameters["keyVersion"] = _SERIALIZER.query("key_version", key_version, "str")
+        _query_parameters["keyVersion"] = _SERIALIZER.query("key_version", key_version, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)

@@ -9,8 +9,8 @@ pr:
       - autorestv3
 
 variables:
-  NodeVersion: "12.x"
-  PythonVersion: "3.6"
+  NodeVersion: "14.x"
+  PythonVersion: "3.7"
   TestFolder: "$(Build.SourcesDirectory)/test/"
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/coverage/"
 
@@ -31,15 +31,15 @@ jobs:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"
           PythonVersion: "2.7"
-        Linux_Python36:
+        Linux_Python37:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"
-          PythonVersion: "3.6"
+          PythonVersion: "3.7"
           CoverageArg: ""
-        Linux_Python38:
+        Linux_Python310:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"
-          PythonVersion: "3.8"
+          PythonVersion: "3.10"
 
     pool:
       name: azsdk-pool-mms-ubuntu-2004-general
@@ -52,9 +52,9 @@ jobs:
           versionSpec: "$(NodeVersion)"
 
       - task: UsePythonVersion@0
-        displayName: "Use Python 3.6"
+        displayName: "Use Python 3.7"
         inputs:
-          versionSpec: 3.6
+          versionSpec: 3.7
 
       - script: |
           cd $(Build.SourcesDirectory)
@@ -62,7 +62,6 @@ jobs:
           npm install -g autorest
           npm install
         displayName: 'Prepare Environment for Generation'
-
       - script: |
           pylint autorest
         displayName: 'Pylint'
@@ -124,6 +123,12 @@ jobs:
           searchFolder: "$(TestFolder)/azure/version-tolerant"
 
       - script: |
+          cd $(TestFolder)/azure/version-tolerant
+          tox -e lint
+        displayName: 'Lint version-tolerant "azure" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
+
+      - script: |
           cd $(TestFolder)/vanilla/legacy
           tox -e ci
         displayName: 'Execute legacy "vanilla" Tests - Python $(PythonVersion)'
@@ -159,15 +164,26 @@ jobs:
           searchFolder: "$(TestFolder)/vanilla/version-tolerant"
 
       - script: |
-          cd $(TestFolder)/llc/low-level
+          cd $(TestFolder)/vanilla/version-tolerant
+          tox -e lint
+        displayName: 'Lint version-tolerant "vanilla" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
+
+      - script: |
+          cd $(TestFolder)/dpg/low-level
           tox -e ci
-        displayName: 'Execute low level update "llc" Tests - Python $(PythonVersion)'
+        displayName: 'Execute low level update "dpg" Tests - Python $(PythonVersion)'
         condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
       - script: |
-          cd $(TestFolder)/llc/version-tolerant
+          cd $(TestFolder)/dpg/version-tolerant
           tox -e ci
-        displayName: 'Execute version-tolerant update "llc" Tests - Python $(PythonVersion)'
+        displayName: 'Execute version-tolerant update "dpg" Tests - Python $(PythonVersion)'
         condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+      - script: |
+          cd $(TestFolder)/dpg/version-tolerant
+          tox -e lint
+        displayName: 'Lint version-tolerant "dpg" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
       - script: |
           cd $(TestFolder)/multiapi
           tox -e ci
@@ -190,8 +206,9 @@ jobs:
           npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
         workingDirectory: node_modules/@microsoft.azure/autorest.testserver
         displayName: "Publish coverage report to storage account"
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
 
-      - ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
+      - ${{ if eq(and(ne(variables['Build.Reason'], 'PullRequest'), ne(variables['PythonVersion'], '2.7')), 'True') }}:
         - script: |
             git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch main $(Build.SourcesDirectory)/regenerated/
           displayName: 'Clone python repo'

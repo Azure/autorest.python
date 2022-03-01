@@ -7,11 +7,12 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
+
+from msrest import Deserializer, Serializer
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
-from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestSwaggerConstantServiceConfiguration
 from .operations import ContantsOperations
@@ -26,19 +27,19 @@ class AutoRestSwaggerConstantService:
 
     :ivar contants: ContantsOperations operations
     :vartype contants: constantsversiontolerant.operations.ContantsOperations
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     :keyword header_constant: Constant header property on the client that is a required parameter
-     for operation 'constants_putClientConstants'. The default value is True. Note that overriding
-     this default value may result in unsupported behavior.
+     for operation 'constants_putClientConstants'. Default value is True. Note that overriding this
+     default value may result in unsupported behavior.
     :paramtype header_constant: bool
     :keyword query_constant: Constant query property on the client that is a required parameter for
-     operation 'constants_putClientConstants'. The default value is 100. Note that overriding this
+     operation 'constants_putClientConstants'. Default value is 100. Note that overriding this
      default value may result in unsupported behavior.
     :paramtype query_constant: int
     :keyword path_constant: Constant path property on the client that is a required parameter for
-     operation 'constants_putClientConstants'. The default value is "path". Note that overriding
-     this default value may result in unsupported behavior.
+     operation 'constants_putClientConstants'. Default value is "path". Note that overriding this
+     default value may result in unsupported behavior.
     :paramtype path_constant: str
     """
 
@@ -52,11 +53,7 @@ class AutoRestSwaggerConstantService:
         self._serialize.client_side_validation = False
         self.contants = ContantsOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs: Any
-    ) -> HttpResponse:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

@@ -14,7 +14,7 @@ from azure.core.pipeline import policies
 from ._version import VERSION
 
 
-class MergePatchJsonClientConfiguration(Configuration):
+class MergePatchJsonClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for MergePatchJsonClient.
 
     Note that all parameters used to create this instance are saved as instance

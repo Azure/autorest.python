@@ -44,9 +44,12 @@ class ClientSerializer:
             base_class = f"{class_name}OperationsMixin"
         elif not (async_mode or self.is_python3_file):
             base_class = "object"
+        disable = ""
+        if len(self.code_model.operation_groups) > 6:
+            disable = "    # pylint: disable=too-many-instance-attributes"
         if base_class:
-            return f"class {class_name}({base_class}):"
-        return f"class {class_name}:"
+            return f"class {class_name}({base_class}):{disable}"
+        return f"class {class_name}:{disable}"
 
     def property_descriptions(self, async_mode: bool) -> List[str]:
         retval: List[str] = []
@@ -113,7 +116,7 @@ class ClientSerializer:
             method_name=self.code_model.send_request_name,
             is_in_class=True,
             method_param_signatures=self.code_model.service_client.send_request_signature(
-                async_mode, async_mode or self.is_python3_file
+                async_mode or self.is_python3_file
             ),
         )
 
@@ -227,3 +230,11 @@ class ConfigSerializer:
             for p in self.code_model.global_parameters.config_method
             if p.required and not p.constant
         ]
+
+    def property_descriptions(self) -> List[str]:
+        retval: List[str] = []
+        for p in self.code_model.global_parameters.config_method:
+            retval.append(f":{p.description_keyword} {p.serialized_name}: {p.description}")
+            retval.append(f":{p.docstring_type_keyword} {p.serialized_name}: {p.docstring_type}")
+        retval.append('"""')
+        return retval

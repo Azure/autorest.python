@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -6,9 +7,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-import functools
-from typing import Any, Callable, Dict, Generic, Optional, TypeVar
-import warnings
+from typing import Any, Callable, Dict, Optional, TypeVar
+
+from msrest import Serializer
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -21,7 +22,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
-from msrest import Serializer
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -33,26 +33,26 @@ _SERIALIZER.client_side_validation = False
 def build_header_param_existing_key_request(*, user_agent_parameter: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/param/existingkey"
+    _url = "/header/param/existingkey"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["User-Agent"] = _SERIALIZER.header("user_agent_parameter", user_agent_parameter, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["User-Agent"] = _SERIALIZER.header("user_agent_parameter", user_agent_parameter, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_response_existing_key_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/response/existingkey"
+    _url = "/header/response/existingkey"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_param_protected_key_request(**kwargs: Any) -> HttpRequest:
@@ -60,243 +60,243 @@ def build_header_param_protected_key_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/header/param/protectedkey"
+    _url = "/header/param/protectedkey"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_response_protected_key_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/response/protectedkey"
+    _url = "/header/response/protectedkey"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_param_integer_request(*, scenario: str, value: int, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/param/prim/integer"
+    _url = "/header/param/prim/integer"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["value"] = _SERIALIZER.header("value", value, "int")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["value"] = _SERIALIZER.header("value", value, "int")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_response_integer_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/response/prim/integer"
+    _url = "/header/response/prim/integer"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_param_long_request(*, scenario: str, value: int, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/param/prim/long"
+    _url = "/header/param/prim/long"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["value"] = _SERIALIZER.header("value", value, "long")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["value"] = _SERIALIZER.header("value", value, "long")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_response_long_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/response/prim/long"
+    _url = "/header/response/prim/long"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_param_float_request(*, scenario: str, value: float, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/param/prim/float"
+    _url = "/header/param/prim/float"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["value"] = _SERIALIZER.header("value", value, "float")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["value"] = _SERIALIZER.header("value", value, "float")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_response_float_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/response/prim/float"
+    _url = "/header/response/prim/float"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_param_double_request(*, scenario: str, value: float, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/param/prim/double"
+    _url = "/header/param/prim/double"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["value"] = _SERIALIZER.header("value", value, "float")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["value"] = _SERIALIZER.header("value", value, "float")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_response_double_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/response/prim/double"
+    _url = "/header/response/prim/double"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_param_bool_request(*, scenario: str, value: bool, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/param/prim/bool"
+    _url = "/header/param/prim/bool"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["value"] = _SERIALIZER.header("value", value, "bool")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["value"] = _SERIALIZER.header("value", value, "bool")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_response_bool_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/response/prim/bool"
+    _url = "/header/response/prim/bool"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_param_string_request(*, scenario: str, value: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/param/prim/string"
+    _url = "/header/param/prim/string"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
     if value is not None:
-        header_parameters["value"] = _SERIALIZER.header("value", value, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["value"] = _SERIALIZER.header("value", value, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_response_string_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/response/prim/string"
+    _url = "/header/response/prim/string"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_param_date_request(*, scenario: str, value: datetime.date, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/param/prim/date"
+    _url = "/header/param/prim/date"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["value"] = _SERIALIZER.header("value", value, "date")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["value"] = _SERIALIZER.header("value", value, "date")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_response_date_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/response/prim/date"
+    _url = "/header/response/prim/date"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_param_datetime_request(*, scenario: str, value: datetime.datetime, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/param/prim/datetime"
+    _url = "/header/param/prim/datetime"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["value"] = _SERIALIZER.header("value", value, "iso-8601")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["value"] = _SERIALIZER.header("value", value, "iso-8601")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_response_datetime_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/response/prim/datetime"
+    _url = "/header/response/prim/datetime"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_param_datetime_rfc1123_request(
@@ -304,126 +304,126 @@ def build_header_param_datetime_rfc1123_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/param/prim/datetimerfc1123"
+    _url = "/header/param/prim/datetimerfc1123"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
     if value is not None:
-        header_parameters["value"] = _SERIALIZER.header("value", value, "rfc-1123")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["value"] = _SERIALIZER.header("value", value, "rfc-1123")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_response_datetime_rfc1123_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/response/prim/datetimerfc1123"
+    _url = "/header/response/prim/datetimerfc1123"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_param_duration_request(*, scenario: str, value: datetime.timedelta, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/param/prim/duration"
+    _url = "/header/param/prim/duration"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["value"] = _SERIALIZER.header("value", value, "duration")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["value"] = _SERIALIZER.header("value", value, "duration")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_response_duration_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/response/prim/duration"
+    _url = "/header/response/prim/duration"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_param_byte_request(*, scenario: str, value: bytearray, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/param/prim/byte"
+    _url = "/header/param/prim/byte"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["value"] = _SERIALIZER.header("value", value, "bytearray")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["value"] = _SERIALIZER.header("value", value, "bytearray")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_response_byte_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/response/prim/byte"
+    _url = "/header/response/prim/byte"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_param_enum_request(*, scenario: str, value: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/param/prim/enum"
+    _url = "/header/param/prim/enum"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
     if value is not None:
-        header_parameters["value"] = _SERIALIZER.header("value", value, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _header_parameters["value"] = _SERIALIZER.header("value", value, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_response_enum_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/response/prim/enum"
+    _url = "/header/response/prim/enum"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["scenario"] = _SERIALIZER.header("scenario", scenario, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_header_custom_request_id_request(**kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"
+    _url = "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
 
 
-class HeaderOperations(object):
+class HeaderOperations(object):  # pylint: disable=too-many-public-methods
     """HeaderOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -442,7 +442,9 @@ class HeaderOperations(object):
         self._config = config
 
     @distributed_trace
-    def param_existing_key(self, *, user_agent_parameter: str, **kwargs: Any) -> None:
+    def param_existing_key(  # pylint: disable=inconsistent-return-statements
+        self, *, user_agent_parameter: str, **kwargs: Any
+    ) -> None:
         """Send a post request with header value "User-Agent": "overwrite".
 
         :keyword user_agent_parameter: Send a post request with header value "User-Agent": "overwrite".
@@ -460,7 +462,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -470,10 +474,8 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_existing_key.metadata = {"url": "/header/param/existingkey"}  # type: ignore
-
     @distributed_trace
-    def response_existing_key(self, **kwargs: Any) -> None:
+    def response_existing_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get a response with header value "User-Agent": "overwrite".
 
         :return: None
@@ -487,7 +489,9 @@ class HeaderOperations(object):
         request = build_header_response_existing_key_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -500,10 +504,8 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_existing_key.metadata = {"url": "/header/response/existingkey"}  # type: ignore
-
     @distributed_trace
-    def param_protected_key(self, **kwargs: Any) -> None:
+    def param_protected_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Send a post request with header value "Content-Type": "text/html".
 
         :return: None
@@ -521,7 +523,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -531,10 +535,8 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_protected_key.metadata = {"url": "/header/param/protectedkey"}  # type: ignore
-
     @distributed_trace
-    def response_protected_key(self, **kwargs: Any) -> None:
+    def response_protected_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get a response with header value "Content-Type": "text/html".
 
         :return: None
@@ -548,7 +550,9 @@ class HeaderOperations(object):
         request = build_header_response_protected_key_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -561,10 +565,10 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_protected_key.metadata = {"url": "/header/response/protectedkey"}  # type: ignore
-
     @distributed_trace
-    def param_integer(self, *, scenario: str, value: int, **kwargs: Any) -> None:
+    def param_integer(  # pylint: disable=inconsistent-return-statements
+        self, *, scenario: str, value: int, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 1 or "scenario":
         "negative", "value": -2.
 
@@ -586,7 +590,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -596,10 +602,10 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_integer.metadata = {"url": "/header/param/prim/integer"}  # type: ignore
-
     @distributed_trace
-    def response_integer(self, *, scenario: str, **kwargs: Any) -> None:
+    def response_integer(  # pylint: disable=inconsistent-return-statements
+        self, *, scenario: str, **kwargs: Any
+    ) -> None:
         """Get a response with header value "value": 1 or -2.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -617,7 +623,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -630,10 +638,10 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_integer.metadata = {"url": "/header/response/prim/integer"}  # type: ignore
-
     @distributed_trace
-    def param_long(self, *, scenario: str, value: int, **kwargs: Any) -> None:
+    def param_long(  # pylint: disable=inconsistent-return-statements
+        self, *, scenario: str, value: int, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
         "negative", "value": -2.
 
@@ -655,7 +663,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -665,10 +675,8 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_long.metadata = {"url": "/header/param/prim/long"}  # type: ignore
-
     @distributed_trace
-    def response_long(self, *, scenario: str, **kwargs: Any) -> None:
+    def response_long(self, *, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get a response with header value "value": 105 or -2.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -686,7 +694,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -699,10 +709,10 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_long.metadata = {"url": "/header/response/prim/long"}  # type: ignore
-
     @distributed_trace
-    def param_float(self, *, scenario: str, value: float, **kwargs: Any) -> None:
+    def param_float(  # pylint: disable=inconsistent-return-statements
+        self, *, scenario: str, value: float, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
         "negative", "value": -3.0.
 
@@ -724,7 +734,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -734,10 +746,8 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_float.metadata = {"url": "/header/param/prim/float"}  # type: ignore
-
     @distributed_trace
-    def response_float(self, *, scenario: str, **kwargs: Any) -> None:
+    def response_float(self, *, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get a response with header value "value": 0.07 or -3.0.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -755,7 +765,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -768,10 +780,10 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_float.metadata = {"url": "/header/response/prim/float"}  # type: ignore
-
     @distributed_trace
-    def param_double(self, *, scenario: str, value: float, **kwargs: Any) -> None:
+    def param_double(  # pylint: disable=inconsistent-return-statements
+        self, *, scenario: str, value: float, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
         "negative", "value": -3.0.
 
@@ -793,7 +805,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -803,10 +817,10 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_double.metadata = {"url": "/header/param/prim/double"}  # type: ignore
-
     @distributed_trace
-    def response_double(self, *, scenario: str, **kwargs: Any) -> None:
+    def response_double(  # pylint: disable=inconsistent-return-statements
+        self, *, scenario: str, **kwargs: Any
+    ) -> None:
         """Get a response with header value "value": 7e120 or -3.0.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -824,7 +838,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -837,10 +853,10 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_double.metadata = {"url": "/header/response/prim/double"}  # type: ignore
-
     @distributed_trace
-    def param_bool(self, *, scenario: str, value: bool, **kwargs: Any) -> None:
+    def param_bool(  # pylint: disable=inconsistent-return-statements
+        self, *, scenario: str, value: bool, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "true", "value": true or "scenario":
         "false", "value": false.
 
@@ -862,7 +878,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -872,10 +890,8 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_bool.metadata = {"url": "/header/param/prim/bool"}  # type: ignore
-
     @distributed_trace
-    def response_bool(self, *, scenario: str, **kwargs: Any) -> None:
+    def response_bool(self, *, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get a response with header value "value": true or false.
 
         :keyword scenario: Send a post request with header values "scenario": "true" or "false".
@@ -893,7 +909,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -906,10 +924,10 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_bool.metadata = {"url": "/header/response/prim/bool"}  # type: ignore
-
     @distributed_trace
-    def param_string(self, *, scenario: str, value: Optional[str] = None, **kwargs: Any) -> None:
+    def param_string(  # pylint: disable=inconsistent-return-statements
+        self, *, scenario: str, value: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
         over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
 
@@ -917,7 +935,7 @@ class HeaderOperations(object):
          "empty".
         :paramtype scenario: str
         :keyword value: Send a post request with header values "The quick brown fox jumps over the lazy
-         dog" or null or "".
+         dog" or null or "". Default value is None.
         :paramtype value: str
         :return: None
         :rtype: None
@@ -933,7 +951,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -943,10 +963,10 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_string.metadata = {"url": "/header/param/prim/string"}  # type: ignore
-
     @distributed_trace
-    def response_string(self, *, scenario: str, **kwargs: Any) -> None:
+    def response_string(  # pylint: disable=inconsistent-return-statements
+        self, *, scenario: str, **kwargs: Any
+    ) -> None:
         """Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "".
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
@@ -965,7 +985,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -978,10 +1000,10 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_string.metadata = {"url": "/header/response/prim/string"}  # type: ignore
-
     @distributed_trace
-    def param_date(self, *, scenario: str, value: datetime.date, **kwargs: Any) -> None:
+    def param_date(  # pylint: disable=inconsistent-return-statements
+        self, *, scenario: str, value: datetime.date, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or
         "scenario": "min", "value": "0001-01-01".
 
@@ -1003,7 +1025,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1013,10 +1037,8 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_date.metadata = {"url": "/header/param/prim/date"}  # type: ignore
-
     @distributed_trace
-    def response_date(self, *, scenario: str, **kwargs: Any) -> None:
+    def response_date(self, *, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get a response with header values "2010-01-01" or "0001-01-01".
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
@@ -1034,7 +1056,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1047,10 +1071,10 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_date.metadata = {"url": "/header/response/prim/date"}  # type: ignore
-
     @distributed_trace
-    def param_datetime(self, *, scenario: str, value: datetime.datetime, **kwargs: Any) -> None:
+    def param_datetime(  # pylint: disable=inconsistent-return-statements
+        self, *, scenario: str, value: datetime.datetime, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
         "scenario": "min", "value": "0001-01-01T00:00:00Z".
 
@@ -1073,7 +1097,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1083,10 +1109,10 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_datetime.metadata = {"url": "/header/param/prim/datetime"}  # type: ignore
-
     @distributed_trace
-    def response_datetime(self, *, scenario: str, **kwargs: Any) -> None:
+    def response_datetime(  # pylint: disable=inconsistent-return-statements
+        self, *, scenario: str, **kwargs: Any
+    ) -> None:
         """Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
@@ -1104,7 +1130,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1117,10 +1145,8 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_datetime.metadata = {"url": "/header/response/prim/datetime"}  # type: ignore
-
     @distributed_trace
-    def param_datetime_rfc1123(
+    def param_datetime_rfc1123(  # pylint: disable=inconsistent-return-statements
         self, *, scenario: str, value: Optional[datetime.datetime] = None, **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
@@ -1129,7 +1155,7 @@ class HeaderOperations(object):
         :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
         :paramtype scenario: str
         :keyword value: Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon,
-         01 Jan 0001 00:00:00 GMT".
+         01 Jan 0001 00:00:00 GMT". Default value is None.
         :paramtype value: ~datetime.datetime
         :return: None
         :rtype: None
@@ -1145,7 +1171,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1155,10 +1183,10 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_datetime_rfc1123.metadata = {"url": "/header/param/prim/datetimerfc1123"}  # type: ignore
-
     @distributed_trace
-    def response_datetime_rfc1123(self, *, scenario: str, **kwargs: Any) -> None:
+    def response_datetime_rfc1123(  # pylint: disable=inconsistent-return-statements
+        self, *, scenario: str, **kwargs: Any
+    ) -> None:
         """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
         GMT".
 
@@ -1177,7 +1205,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1190,10 +1220,10 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_datetime_rfc1123.metadata = {"url": "/header/response/prim/datetimerfc1123"}  # type: ignore
-
     @distributed_trace
-    def param_duration(self, *, scenario: str, value: datetime.timedelta, **kwargs: Any) -> None:
+    def param_duration(  # pylint: disable=inconsistent-return-statements
+        self, *, scenario: str, value: datetime.timedelta, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S".
 
         :keyword scenario: Send a post request with header values "scenario": "valid".
@@ -1214,7 +1244,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1224,10 +1256,10 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_duration.metadata = {"url": "/header/param/prim/duration"}  # type: ignore
-
     @distributed_trace
-    def response_duration(self, *, scenario: str, **kwargs: Any) -> None:
+    def response_duration(  # pylint: disable=inconsistent-return-statements
+        self, *, scenario: str, **kwargs: Any
+    ) -> None:
         """Get a response with header values "P123DT22H14M12.011S".
 
         :keyword scenario: Send a post request with header values "scenario": "valid".
@@ -1245,7 +1277,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1258,10 +1292,10 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_duration.metadata = {"url": "/header/response/prim/duration"}  # type: ignore
-
     @distributed_trace
-    def param_byte(self, *, scenario: str, value: bytearray, **kwargs: Any) -> None:
+    def param_byte(  # pylint: disable=inconsistent-return-statements
+        self, *, scenario: str, value: bytearray, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
 
         :keyword scenario: Send a post request with header values "scenario": "valid".
@@ -1282,7 +1316,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1292,10 +1328,8 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_byte.metadata = {"url": "/header/param/prim/byte"}  # type: ignore
-
     @distributed_trace
-    def response_byte(self, *, scenario: str, **kwargs: Any) -> None:
+    def response_byte(self, *, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
 
         :keyword scenario: Send a post request with header values "scenario": "valid".
@@ -1313,7 +1347,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1326,10 +1362,10 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_byte.metadata = {"url": "/header/response/prim/byte"}  # type: ignore
-
     @distributed_trace
-    def param_enum(self, *, scenario: str, value: Optional[str] = None, **kwargs: Any) -> None:
+    def param_enum(  # pylint: disable=inconsistent-return-statements
+        self, *, scenario: str, value: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
         "null", "value": null.
 
@@ -1337,7 +1373,7 @@ class HeaderOperations(object):
          "empty".
         :paramtype scenario: str
         :keyword value: Send a post request with header values 'GREY'. Possible values are: "White",
-         "black", and "GREY".
+         "black", and "GREY". Default value is None.
         :paramtype value: str
         :return: None
         :rtype: None
@@ -1353,7 +1389,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1363,10 +1401,8 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    param_enum.metadata = {"url": "/header/param/prim/enum"}  # type: ignore
-
     @distributed_trace
-    def response_enum(self, *, scenario: str, **kwargs: Any) -> None:
+    def response_enum(self, *, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get a response with header values "GREY" or null.
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
@@ -1385,7 +1421,9 @@ class HeaderOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1398,10 +1436,8 @@ class HeaderOperations(object):
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    response_enum.metadata = {"url": "/header/response/prim/enum"}  # type: ignore
-
     @distributed_trace
-    def custom_request_id(self, **kwargs: Any) -> None:
+    def custom_request_id(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the
         request.
 
@@ -1416,7 +1452,9 @@ class HeaderOperations(object):
         request = build_header_custom_request_id_request()
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1425,5 +1463,3 @@ class HeaderOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    custom_request_id.metadata = {"url": "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"}  # type: ignore

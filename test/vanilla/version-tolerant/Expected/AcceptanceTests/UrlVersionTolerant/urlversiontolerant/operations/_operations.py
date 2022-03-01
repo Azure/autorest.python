@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -6,9 +7,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-import functools
-from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
-import warnings
+from typing import Any, Callable, Dict, List, Optional, TypeVar
+
+from msrest import Serializer
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -21,7 +22,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
-from msrest import Serializer
 
 from .._vendor import _format_url_section
 
@@ -36,18 +36,18 @@ def build_paths_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/paths/bool/true/{boolPath}"
+    _url = "/paths/bool/true/{boolPath}"
     path_format_arguments = {
         "boolPath": _SERIALIZER.url("bool_path", bool_path, "bool"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
@@ -55,18 +55,18 @@ def build_paths_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/paths/bool/false/{boolPath}"
+    _url = "/paths/bool/false/{boolPath}"
     path_format_arguments = {
         "boolPath": _SERIALIZER.url("bool_path", bool_path, "bool"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
@@ -74,18 +74,18 @@ def build_paths_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/paths/int/1000000/{intPath}"
+    _url = "/paths/int/1000000/{intPath}"
     path_format_arguments = {
         "intPath": _SERIALIZER.url("int_path", int_path, "int"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
@@ -93,18 +93,18 @@ def build_paths_get_int_negative_one_million_request(**kwargs: Any) -> HttpReque
 
     accept = "application/json"
     # Construct URL
-    url = "/paths/int/-1000000/{intPath}"
+    _url = "/paths/int/-1000000/{intPath}"
     path_format_arguments = {
         "intPath": _SERIALIZER.url("int_path", int_path, "int"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
@@ -112,18 +112,18 @@ def build_paths_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/paths/long/10000000000/{longPath}"
+    _url = "/paths/long/10000000000/{longPath}"
     path_format_arguments = {
         "longPath": _SERIALIZER.url("long_path", long_path, "long"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
@@ -131,18 +131,18 @@ def build_paths_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/paths/long/-10000000000/{longPath}"
+    _url = "/paths/long/-10000000000/{longPath}"
     path_format_arguments = {
         "longPath": _SERIALIZER.url("long_path", long_path, "long"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
@@ -150,18 +150,18 @@ def build_paths_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/paths/float/1.034E+20/{floatPath}"
+    _url = "/paths/float/1.034E+20/{floatPath}"
     path_format_arguments = {
         "floatPath": _SERIALIZER.url("float_path", float_path, "float"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
@@ -169,18 +169,18 @@ def build_paths_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/paths/float/-1.034E-20/{floatPath}"
+    _url = "/paths/float/-1.034E-20/{floatPath}"
     path_format_arguments = {
         "floatPath": _SERIALIZER.url("float_path", float_path, "float"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
@@ -188,18 +188,18 @@ def build_paths_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/paths/double/9999999.999/{doublePath}"
+    _url = "/paths/double/9999999.999/{doublePath}"
     path_format_arguments = {
         "doublePath": _SERIALIZER.url("double_path", double_path, "float"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
@@ -207,18 +207,18 @@ def build_paths_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/paths/double/-9999999.999/{doublePath}"
+    _url = "/paths/double/-9999999.999/{doublePath}"
     path_format_arguments = {
         "doublePath": _SERIALIZER.url("double_path", double_path, "float"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_string_unicode_request(**kwargs: Any) -> HttpRequest:
@@ -226,18 +226,18 @@ def build_paths_string_unicode_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/paths/string/unicode/{stringPath}"
+    _url = "/paths/string/unicode/{stringPath}"
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
@@ -245,18 +245,18 @@ def build_paths_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}"
+    _url = "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}"
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_string_url_non_encoded_request(**kwargs: Any) -> HttpRequest:
@@ -264,18 +264,18 @@ def build_paths_string_url_non_encoded_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/paths/string/begin!*'();:@&=+$,end/{stringPath}"
+    _url = "/paths/string/begin!*'();:@&=+$,end/{stringPath}"
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, "str", skip_quote=True),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_string_empty_request(**kwargs: Any) -> HttpRequest:
@@ -283,86 +283,86 @@ def build_paths_string_empty_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/paths/string/empty/{stringPath}"
+    _url = "/paths/string/empty/{stringPath}"
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_string_null_request(string_path: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/paths/string/null/{stringPath}"
+    _url = "/paths/string/null/{stringPath}"
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_enum_valid_request(enum_path: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/paths/enum/green%20color/{enumPath}"
+    _url = "/paths/enum/green%20color/{enumPath}"
     path_format_arguments = {
         "enumPath": _SERIALIZER.url("enum_path", enum_path, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_enum_null_request(enum_path: str, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/paths/string/null/{enumPath}"
+    _url = "/paths/string/null/{enumPath}"
     path_format_arguments = {
         "enumPath": _SERIALIZER.url("enum_path", enum_path, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_byte_multi_byte_request(byte_path: bytearray, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/paths/byte/multibyte/{bytePath}"
+    _url = "/paths/byte/multibyte/{bytePath}"
     path_format_arguments = {
         "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_byte_empty_request(**kwargs: Any) -> HttpRequest:
@@ -370,35 +370,35 @@ def build_paths_byte_empty_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/paths/byte/empty/{bytePath}"
+    _url = "/paths/byte/empty/{bytePath}"
     path_format_arguments = {
         "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_byte_null_request(byte_path: bytearray, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/paths/byte/null/{bytePath}"
+    _url = "/paths/byte/null/{bytePath}"
     path_format_arguments = {
         "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_date_valid_request(**kwargs: Any) -> HttpRequest:
@@ -406,35 +406,35 @@ def build_paths_date_valid_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/paths/date/2012-01-01/{datePath}"
+    _url = "/paths/date/2012-01-01/{datePath}"
     path_format_arguments = {
         "datePath": _SERIALIZER.url("date_path", date_path, "date"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_date_null_request(date_path: datetime.date, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/paths/date/null/{datePath}"
+    _url = "/paths/date/null/{datePath}"
     path_format_arguments = {
         "datePath": _SERIALIZER.url("date_path", date_path, "date"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_date_time_valid_request(**kwargs: Any) -> HttpRequest:
@@ -442,88 +442,88 @@ def build_paths_date_time_valid_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}"
+    _url = "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}"
     path_format_arguments = {
         "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, "iso-8601"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_date_time_null_request(date_time_path: datetime.datetime, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/paths/datetime/null/{dateTimePath}"
+    _url = "/paths/datetime/null/{dateTimePath}"
     path_format_arguments = {
         "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, "iso-8601"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_base64_url_request(base64_url_path: bytes, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/paths/string/bG9yZW0/{base64UrlPath}"
+    _url = "/paths/string/bG9yZW0/{base64UrlPath}"
     path_format_arguments = {
         "base64UrlPath": _SERIALIZER.url("base64_url_path", base64_url_path, "base64"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_array_csv_in_path_request(array_path: List[str], **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = (
+    _url = (
         "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}"
     )
     path_format_arguments = {
         "arrayPath": _SERIALIZER.url("array_path", array_path, "[str]", div=","),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_paths_unix_time_url_request(unix_time_url_path: datetime.datetime, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/paths/int/1460505600/{unixTimeUrlPath}"
+    _url = "/paths/int/1460505600/{unixTimeUrlPath}"
     path_format_arguments = {
         "unixTimeUrlPath": _SERIALIZER.url("unix_time_url_path", unix_time_url_path, "unix-time"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
 def build_queries_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
@@ -531,17 +531,17 @@ def build_queries_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/bool/true"
+    _url = "/queries/bool/true"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
@@ -549,34 +549,34 @@ def build_queries_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/bool/false"
+    _url = "/queries/bool/false"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_get_boolean_null_request(*, bool_query: Optional[bool] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/queries/bool/null"
+    _url = "/queries/bool/null"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if bool_query is not None:
-        query_parameters["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
+        _query_parameters["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
@@ -584,17 +584,17 @@ def build_queries_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/int/1000000"
+    _url = "/queries/int/1000000"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
@@ -602,34 +602,34 @@ def build_queries_get_int_negative_one_million_request(**kwargs: Any) -> HttpReq
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/int/-1000000"
+    _url = "/queries/int/-1000000"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_get_int_null_request(*, int_query: Optional[int] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/queries/int/null"
+    _url = "/queries/int/null"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if int_query is not None:
-        query_parameters["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
+        _query_parameters["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
@@ -637,17 +637,17 @@ def build_queries_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/long/10000000000"
+    _url = "/queries/long/10000000000"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
@@ -655,34 +655,34 @@ def build_queries_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/long/-10000000000"
+    _url = "/queries/long/-10000000000"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_get_long_null_request(*, long_query: Optional[int] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/queries/long/null"
+    _url = "/queries/long/null"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if long_query is not None:
-        query_parameters["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
+        _query_parameters["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
@@ -690,17 +690,17 @@ def build_queries_float_scientific_positive_request(**kwargs: Any) -> HttpReques
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/float/1.034E+20"
+    _url = "/queries/float/1.034E+20"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
@@ -708,34 +708,34 @@ def build_queries_float_scientific_negative_request(**kwargs: Any) -> HttpReques
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/float/-1.034E-20"
+    _url = "/queries/float/-1.034E-20"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_float_null_request(*, float_query: Optional[float] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/queries/float/null"
+    _url = "/queries/float/null"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if float_query is not None:
-        query_parameters["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
+        _query_parameters["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
@@ -743,17 +743,17 @@ def build_queries_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/double/9999999.999"
+    _url = "/queries/double/9999999.999"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
@@ -761,34 +761,34 @@ def build_queries_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/double/-9999999.999"
+    _url = "/queries/double/-9999999.999"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_double_null_request(*, double_query: Optional[float] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/queries/double/null"
+    _url = "/queries/double/null"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if double_query is not None:
-        query_parameters["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
+        _query_parameters["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_string_unicode_request(**kwargs: Any) -> HttpRequest:
@@ -796,17 +796,17 @@ def build_queries_string_unicode_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/string/unicode/"
+    _url = "/queries/string/unicode/"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
@@ -814,17 +814,17 @@ def build_queries_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"
+    _url = "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_string_empty_request(**kwargs: Any) -> HttpRequest:
@@ -832,85 +832,85 @@ def build_queries_string_empty_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/string/empty"
+    _url = "/queries/string/empty"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_string_null_request(*, string_query: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/queries/string/null"
+    _url = "/queries/string/null"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if string_query is not None:
-        query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
+        _query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_enum_valid_request(*, enum_query: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/queries/enum/green%20color"
+    _url = "/queries/enum/green%20color"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if enum_query is not None:
-        query_parameters["enumQuery"] = _SERIALIZER.query("enum_query", enum_query, "str")
+        _query_parameters["enumQuery"] = _SERIALIZER.query("enum_query", enum_query, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_enum_null_request(*, enum_query: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/queries/enum/null"
+    _url = "/queries/enum/null"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if enum_query is not None:
-        query_parameters["enumQuery"] = _SERIALIZER.query("enum_query", enum_query, "str")
+        _query_parameters["enumQuery"] = _SERIALIZER.query("enum_query", enum_query, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_byte_multi_byte_request(*, byte_query: Optional[bytearray] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/queries/byte/multibyte"
+    _url = "/queries/byte/multibyte"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if byte_query is not None:
-        query_parameters["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
+        _query_parameters["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_byte_empty_request(**kwargs: Any) -> HttpRequest:
@@ -918,34 +918,34 @@ def build_queries_byte_empty_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/byte/empty"
+    _url = "/queries/byte/empty"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_byte_null_request(*, byte_query: Optional[bytearray] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/queries/byte/null"
+    _url = "/queries/byte/null"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if byte_query is not None:
-        query_parameters["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
+        _query_parameters["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_date_valid_request(**kwargs: Any) -> HttpRequest:
@@ -953,34 +953,34 @@ def build_queries_date_valid_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/date/2012-01-01"
+    _url = "/queries/date/2012-01-01"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["dateQuery"] = _SERIALIZER.query("date_query", date_query, "date")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["dateQuery"] = _SERIALIZER.query("date_query", date_query, "date")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_date_null_request(*, date_query: Optional[datetime.date] = None, **kwargs: Any) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/queries/date/null"
+    _url = "/queries/date/null"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if date_query is not None:
-        query_parameters["dateQuery"] = _SERIALIZER.query("date_query", date_query, "date")
+        _query_parameters["dateQuery"] = _SERIALIZER.query("date_query", date_query, "date")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_date_time_valid_request(**kwargs: Any) -> HttpRequest:
@@ -988,17 +988,17 @@ def build_queries_date_time_valid_request(**kwargs: Any) -> HttpRequest:
 
     accept = "application/json"
     # Construct URL
-    url = "/queries/datetime/2012-01-01T01%3A01%3A01Z"
+    _url = "/queries/datetime/2012-01-01T01%3A01%3A01Z"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    query_parameters["dateTimeQuery"] = _SERIALIZER.query("date_time_query", date_time_query, "iso-8601")
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters["dateTimeQuery"] = _SERIALIZER.query("date_time_query", date_time_query, "iso-8601")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_date_time_null_request(
@@ -1006,18 +1006,18 @@ def build_queries_date_time_null_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/queries/datetime/null"
+    _url = "/queries/datetime/null"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if date_time_query is not None:
-        query_parameters["dateTimeQuery"] = _SERIALIZER.query("date_time_query", date_time_query, "iso-8601")
+        _query_parameters["dateTimeQuery"] = _SERIALIZER.query("date_time_query", date_time_query, "iso-8601")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_array_string_csv_valid_request(
@@ -1025,18 +1025,18 @@ def build_queries_array_string_csv_valid_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/queries/array/csv/string/valid"
+    _url = "/queries/array/csv/string/valid"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+        _query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_array_string_csv_null_request(
@@ -1044,18 +1044,18 @@ def build_queries_array_string_csv_null_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/queries/array/csv/string/null"
+    _url = "/queries/array/csv/string/null"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+        _query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_array_string_csv_empty_request(
@@ -1063,18 +1063,18 @@ def build_queries_array_string_csv_empty_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/queries/array/csv/string/empty"
+    _url = "/queries/array/csv/string/empty"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+        _query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_array_string_no_collection_format_empty_request(
@@ -1082,18 +1082,18 @@ def build_queries_array_string_no_collection_format_empty_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/queries/array/none/string/empty"
+    _url = "/queries/array/none/string/empty"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+        _query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_array_string_ssv_valid_request(
@@ -1101,18 +1101,18 @@ def build_queries_array_string_ssv_valid_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/queries/array/ssv/string/valid"
+    _url = "/queries/array/ssv/string/valid"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=" ")
+        _query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=" ")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_array_string_tsv_valid_request(
@@ -1120,18 +1120,18 @@ def build_queries_array_string_tsv_valid_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/queries/array/tsv/string/valid"
+    _url = "/queries/array/tsv/string/valid"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div="	")
+        _query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div="	")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_queries_array_string_pipes_valid_request(
@@ -1139,18 +1139,18 @@ def build_queries_array_string_pipes_valid_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/queries/array/pipes/string/valid"
+    _url = "/queries/array/pipes/string/valid"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div="|")
+        _query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div="|")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_path_items_get_all_with_values_request(
@@ -1165,31 +1165,31 @@ def build_path_items_get_all_with_values_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"
+    _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"  # pylint: disable=line-too-long
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if path_item_string_query is not None:
-        query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
+        _query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
             "path_item_string_query", path_item_string_query, "str"
         )
     if global_string_query is not None:
-        query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
+        _query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
-        query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
+        _query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_path_items_get_global_query_null_request(
@@ -1204,31 +1204,31 @@ def build_path_items_get_global_query_null_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"
+    _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"  # pylint: disable=line-too-long
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if path_item_string_query is not None:
-        query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
+        _query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
             "path_item_string_query", path_item_string_query, "str"
         )
     if global_string_query is not None:
-        query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
+        _query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
-        query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
+        _query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_path_items_get_global_and_local_query_null_request(
@@ -1243,31 +1243,31 @@ def build_path_items_get_global_and_local_query_null_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"
+    _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"  # pylint: disable=line-too-long
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if path_item_string_query is not None:
-        query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
+        _query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
             "path_item_string_query", path_item_string_query, "str"
         )
     if global_string_query is not None:
-        query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
+        _query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
-        query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
+        _query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_path_items_get_local_path_item_query_null_request(
@@ -1282,34 +1282,34 @@ def build_path_items_get_local_path_item_query_null_request(
 ) -> HttpRequest:
     accept = "application/json"
     # Construct URL
-    url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null"
+    _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null"  # pylint: disable=line-too-long
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if path_item_string_query is not None:
-        query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
+        _query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
             "path_item_string_query", path_item_string_query, "str"
         )
     if global_string_query is not None:
-        query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
+        _query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
-        query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
+        _query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
-class PathsOperations(object):
+class PathsOperations(object):  # pylint: disable=too-many-public-methods
     """PathsOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -1328,10 +1328,10 @@ class PathsOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_boolean_true(self, **kwargs: Any) -> None:
+    def get_boolean_true(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get true Boolean value on path.
 
-        :keyword bool_path: true boolean value. The default value is True. Note that overriding this
+        :keyword bool_path: true boolean value. Default value is True. Note that overriding this
          default value may result in unsupported behavior.
         :paramtype bool_path: bool
         :return: None
@@ -1349,7 +1349,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1359,13 +1361,11 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_boolean_true.metadata = {"url": "/paths/bool/true/{boolPath}"}  # type: ignore
-
     @distributed_trace
-    def get_boolean_false(self, **kwargs: Any) -> None:
+    def get_boolean_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get false Boolean value on path.
 
-        :keyword bool_path: false boolean value. The default value is False. Note that overriding this
+        :keyword bool_path: false boolean value. Default value is False. Note that overriding this
          default value may result in unsupported behavior.
         :paramtype bool_path: bool
         :return: None
@@ -1383,7 +1383,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1393,14 +1395,12 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_boolean_false.metadata = {"url": "/paths/bool/false/{boolPath}"}  # type: ignore
-
     @distributed_trace
-    def get_int_one_million(self, **kwargs: Any) -> None:
+    def get_int_one_million(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '1000000' integer value.
 
-        :keyword int_path: '1000000' integer value. The default value is 1000000. Note that overriding
-         this default value may result in unsupported behavior.
+        :keyword int_path: '1000000' integer value. Default value is 1000000. Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype int_path: int
         :return: None
         :rtype: None
@@ -1417,7 +1417,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1427,14 +1429,12 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_int_one_million.metadata = {"url": "/paths/int/1000000/{intPath}"}  # type: ignore
-
     @distributed_trace
-    def get_int_negative_one_million(self, **kwargs: Any) -> None:
+    def get_int_negative_one_million(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-1000000' integer value.
 
-        :keyword int_path: '-1000000' integer value. The default value is -1000000. Note that
-         overriding this default value may result in unsupported behavior.
+        :keyword int_path: '-1000000' integer value. Default value is -1000000. Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype int_path: int
         :return: None
         :rtype: None
@@ -1451,7 +1451,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1461,14 +1463,12 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_int_negative_one_million.metadata = {"url": "/paths/int/-1000000/{intPath}"}  # type: ignore
-
     @distributed_trace
-    def get_ten_billion(self, **kwargs: Any) -> None:
+    def get_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '10000000000' 64 bit integer value.
 
-        :keyword long_path: '10000000000' 64 bit integer value. The default value is 10000000000. Note
-         that overriding this default value may result in unsupported behavior.
+        :keyword long_path: '10000000000' 64 bit integer value. Default value is 10000000000. Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype long_path: long
         :return: None
         :rtype: None
@@ -1485,7 +1485,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1495,14 +1497,12 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_ten_billion.metadata = {"url": "/paths/long/10000000000/{longPath}"}  # type: ignore
-
     @distributed_trace
-    def get_negative_ten_billion(self, **kwargs: Any) -> None:
+    def get_negative_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-10000000000' 64 bit integer value.
 
-        :keyword long_path: '-10000000000' 64 bit integer value. The default value is -10000000000.
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword long_path: '-10000000000' 64 bit integer value. Default value is -10000000000. Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype long_path: long
         :return: None
         :rtype: None
@@ -1519,7 +1519,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1529,13 +1531,11 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_negative_ten_billion.metadata = {"url": "/paths/long/-10000000000/{longPath}"}  # type: ignore
-
     @distributed_trace
-    def float_scientific_positive(self, **kwargs: Any) -> None:
+    def float_scientific_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '1.034E+20' numeric value.
 
-        :keyword float_path: '1.034E+20'numeric value. The default value is 103400000000000000000. Note
+        :keyword float_path: '1.034E+20'numeric value. Default value is 103400000000000000000. Note
          that overriding this default value may result in unsupported behavior.
         :paramtype float_path: float
         :return: None
@@ -1553,7 +1553,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1563,13 +1565,11 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    float_scientific_positive.metadata = {"url": "/paths/float/1.034E+20/{floatPath}"}  # type: ignore
-
     @distributed_trace
-    def float_scientific_negative(self, **kwargs: Any) -> None:
+    def float_scientific_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-1.034E-20' numeric value.
 
-        :keyword float_path: '-1.034E-20'numeric value. The default value is -1.034e-20. Note that
+        :keyword float_path: '-1.034E-20'numeric value. Default value is -1.034e-20. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype float_path: float
         :return: None
@@ -1587,7 +1587,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1597,13 +1599,11 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    float_scientific_negative.metadata = {"url": "/paths/float/-1.034E-20/{floatPath}"}  # type: ignore
-
     @distributed_trace
-    def double_decimal_positive(self, **kwargs: Any) -> None:
+    def double_decimal_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '9999999.999' numeric value.
 
-        :keyword double_path: '9999999.999'numeric value. The default value is 9999999.999. Note that
+        :keyword double_path: '9999999.999'numeric value. Default value is 9999999.999. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype double_path: float
         :return: None
@@ -1621,7 +1621,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1631,13 +1633,11 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    double_decimal_positive.metadata = {"url": "/paths/double/9999999.999/{doublePath}"}  # type: ignore
-
     @distributed_trace
-    def double_decimal_negative(self, **kwargs: Any) -> None:
+    def double_decimal_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-9999999.999' numeric value.
 
-        :keyword double_path: '-9999999.999'numeric value. The default value is -9999999.999. Note that
+        :keyword double_path: '-9999999.999'numeric value. Default value is -9999999.999. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype double_path: float
         :return: None
@@ -1655,7 +1655,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1665,14 +1667,12 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    double_decimal_negative.metadata = {"url": "/paths/double/-9999999.999/{doublePath}"}  # type: ignore
-
     @distributed_trace
-    def string_unicode(self, **kwargs: Any) -> None:
+    def string_unicode(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
-        :keyword string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. The default value is "啊齄丂狛狜隣郎隣兀﨩".
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword string_path: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. Default value is "啊齄丂狛狜隣郎隣兀﨩". Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype string_path: str
         :return: None
         :rtype: None
@@ -1689,7 +1689,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1699,14 +1701,12 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    string_unicode.metadata = {"url": "/paths/string/unicode/{stringPath}"}  # type: ignore
-
     @distributed_trace
-    def string_url_encoded(self, **kwargs: Any) -> None:
+    def string_url_encoded(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
-        :keyword string_path: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. The default value
-         is "begin!*'();:@ &=+$,/?#[]end". Note that overriding this default value may result in
+        :keyword string_path: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. Default value is
+         "begin!*'();:@ &=+$,/?#[]end". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype string_path: str
         :return: None
@@ -1724,7 +1724,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1734,15 +1736,13 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    string_url_encoded.metadata = {"url": "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}"}  # type: ignore
-
     @distributed_trace
-    def string_url_non_encoded(self, **kwargs: Any) -> None:
+    def string_url_non_encoded(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get 'begin!*'();:@&=+$,end.
 
         https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
 
-        :keyword string_path: 'begin!*'();:@&=+$,end' url encoded string value. The default value is
+        :keyword string_path: 'begin!*'();:@&=+$,end' url encoded string value. Default value is
          "begin!*'();:@&=+$,end". Note that overriding this default value may result in unsupported
          behavior.
         :paramtype string_path: str
@@ -1761,7 +1761,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1771,14 +1773,12 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    string_url_non_encoded.metadata = {"url": "/paths/string/begin!*'();:@&=+$,end/{stringPath}"}  # type: ignore
-
     @distributed_trace
-    def string_empty(self, **kwargs: Any) -> None:
+    def string_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get ''.
 
-        :keyword string_path: '' string value. The default value is "". Note that overriding this
-         default value may result in unsupported behavior.
+        :keyword string_path: '' string value. Default value is "". Note that overriding this default
+         value may result in unsupported behavior.
         :paramtype string_path: str
         :return: None
         :rtype: None
@@ -1795,7 +1795,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1805,10 +1807,8 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    string_empty.metadata = {"url": "/paths/string/empty/{stringPath}"}  # type: ignore
-
     @distributed_trace
-    def string_null(self, string_path: str, **kwargs: Any) -> None:
+    def string_null(self, string_path: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get null (should throw).
 
         :param string_path: null string value.
@@ -1826,7 +1826,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -1836,10 +1838,8 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    string_null.metadata = {"url": "/paths/string/null/{stringPath}"}  # type: ignore
-
     @distributed_trace
-    def enum_valid(self, enum_path: str, **kwargs: Any) -> None:
+    def enum_valid(self, enum_path: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get using uri with 'green color' in path parameter.
 
         :param enum_path: send the value green. Possible values are: "red color", "green color", and
@@ -1858,7 +1858,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1868,10 +1870,8 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    enum_valid.metadata = {"url": "/paths/enum/green%20color/{enumPath}"}  # type: ignore
-
     @distributed_trace
-    def enum_null(self, enum_path: str, **kwargs: Any) -> None:
+    def enum_null(self, enum_path: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get null (should throw on the client before the request is sent on wire).
 
         :param enum_path: send null should throw. Possible values are: "red color", "green color", and
@@ -1890,7 +1890,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -1900,10 +1902,10 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    enum_null.metadata = {"url": "/paths/string/null/{enumPath}"}  # type: ignore
-
     @distributed_trace
-    def byte_multi_byte(self, byte_path: bytearray, **kwargs: Any) -> None:
+    def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
+        self, byte_path: bytearray, **kwargs: Any
+    ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
@@ -1921,7 +1923,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1931,14 +1935,12 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    byte_multi_byte.metadata = {"url": "/paths/byte/multibyte/{bytePath}"}  # type: ignore
-
     @distributed_trace
-    def byte_empty(self, **kwargs: Any) -> None:
+    def byte_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '' as byte array.
 
-        :keyword byte_path: '' as byte array. The default value is bytearray("", encoding="utf-8").
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword byte_path: '' as byte array. Default value is bytearray("", encoding="utf-8"). Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype byte_path: bytearray
         :return: None
         :rtype: None
@@ -1955,7 +1957,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1965,10 +1969,8 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    byte_empty.metadata = {"url": "/paths/byte/empty/{bytePath}"}  # type: ignore
-
     @distributed_trace
-    def byte_null(self, byte_path: bytearray, **kwargs: Any) -> None:
+    def byte_null(self, byte_path: bytearray, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get null as byte array (should throw).
 
         :param byte_path: null as byte array (should throw).
@@ -1986,7 +1988,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -1996,14 +2000,12 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    byte_null.metadata = {"url": "/paths/byte/null/{bytePath}"}  # type: ignore
-
     @distributed_trace
-    def date_valid(self, **kwargs: Any) -> None:
+    def date_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '2012-01-01' as date.
 
-        :keyword date_path: '2012-01-01' as date. The default value is "2012-01-01". Note that
-         overriding this default value may result in unsupported behavior.
+        :keyword date_path: '2012-01-01' as date. Default value is "2012-01-01". Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype date_path: ~datetime.date
         :return: None
         :rtype: None
@@ -2020,7 +2022,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2030,10 +2034,10 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    date_valid.metadata = {"url": "/paths/date/2012-01-01/{datePath}"}  # type: ignore
-
     @distributed_trace
-    def date_null(self, date_path: datetime.date, **kwargs: Any) -> None:
+    def date_null(  # pylint: disable=inconsistent-return-statements
+        self, date_path: datetime.date, **kwargs: Any
+    ) -> None:
         """Get null as date - this should throw or be unusable on the client side, depending on date
         representation.
 
@@ -2052,7 +2056,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -2062,13 +2068,11 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    date_null.metadata = {"url": "/paths/date/null/{datePath}"}  # type: ignore
-
     @distributed_trace
-    def date_time_valid(self, **kwargs: Any) -> None:
+    def date_time_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '2012-01-01T01:01:01Z' as date-time.
 
-        :keyword date_time_path: '2012-01-01T01:01:01Z' as date-time. The default value is
+        :keyword date_time_path: '2012-01-01T01:01:01Z' as date-time. Default value is
          "2012-01-01T01:01:01Z". Note that overriding this default value may result in unsupported
          behavior.
         :paramtype date_time_path: ~datetime.datetime
@@ -2087,7 +2091,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2097,10 +2103,10 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    date_time_valid.metadata = {"url": "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}"}  # type: ignore
-
     @distributed_trace
-    def date_time_null(self, date_time_path: datetime.datetime, **kwargs: Any) -> None:
+    def date_time_null(  # pylint: disable=inconsistent-return-statements
+        self, date_time_path: datetime.datetime, **kwargs: Any
+    ) -> None:
         """Get null as date-time, should be disallowed or throw depending on representation of date-time.
 
         :param date_time_path: null as date-time.
@@ -2118,7 +2124,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [400]:
@@ -2128,10 +2136,10 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    date_time_null.metadata = {"url": "/paths/datetime/null/{dateTimePath}"}  # type: ignore
-
     @distributed_trace
-    def base64_url(self, base64_url_path: bytes, **kwargs: Any) -> None:
+    def base64_url(  # pylint: disable=inconsistent-return-statements
+        self, base64_url_path: bytes, **kwargs: Any
+    ) -> None:
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
         :param base64_url_path: base64url encoded value.
@@ -2149,7 +2157,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2159,10 +2169,10 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    base64_url.metadata = {"url": "/paths/string/bG9yZW0/{base64UrlPath}"}  # type: ignore
-
     @distributed_trace
-    def array_csv_in_path(self, array_path: List[str], **kwargs: Any) -> None:
+    def array_csv_in_path(  # pylint: disable=inconsistent-return-statements
+        self, array_path: List[str], **kwargs: Any
+    ) -> None:
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         csv-array format.
 
@@ -2182,7 +2192,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2192,10 +2204,10 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_csv_in_path.metadata = {"url": "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}"}  # type: ignore
-
     @distributed_trace
-    def unix_time_url(self, unix_time_url_path: datetime.datetime, **kwargs: Any) -> None:
+    def unix_time_url(  # pylint: disable=inconsistent-return-statements
+        self, unix_time_url_path: datetime.datetime, **kwargs: Any
+    ) -> None:
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
 
         :param unix_time_url_path: Unix time encoded value.
@@ -2213,7 +2225,9 @@ class PathsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2223,10 +2237,8 @@ class PathsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    unix_time_url.metadata = {"url": "/paths/int/1460505600/{unixTimeUrlPath}"}  # type: ignore
 
-
-class QueriesOperations(object):
+class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     """QueriesOperations operations.
 
     You should not instantiate this class directly. Instead, you should create a Client instance that
@@ -2245,10 +2257,10 @@ class QueriesOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_boolean_true(self, **kwargs: Any) -> None:
+    def get_boolean_true(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get true Boolean value on path.
 
-        :keyword bool_query: true boolean value. The default value is True. Note that overriding this
+        :keyword bool_query: true boolean value. Default value is True. Note that overriding this
          default value may result in unsupported behavior.
         :paramtype bool_query: bool
         :return: None
@@ -2266,7 +2278,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2276,13 +2290,11 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_boolean_true.metadata = {"url": "/queries/bool/true"}  # type: ignore
-
     @distributed_trace
-    def get_boolean_false(self, **kwargs: Any) -> None:
+    def get_boolean_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get false Boolean value on path.
 
-        :keyword bool_query: false boolean value. The default value is False. Note that overriding this
+        :keyword bool_query: false boolean value. Default value is False. Note that overriding this
          default value may result in unsupported behavior.
         :paramtype bool_query: bool
         :return: None
@@ -2300,7 +2312,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2310,13 +2324,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_boolean_false.metadata = {"url": "/queries/bool/false"}  # type: ignore
-
     @distributed_trace
-    def get_boolean_null(self, *, bool_query: Optional[bool] = None, **kwargs: Any) -> None:
+    def get_boolean_null(  # pylint: disable=inconsistent-return-statements
+        self, *, bool_query: Optional[bool] = None, **kwargs: Any
+    ) -> None:
         """Get null Boolean value on query (query string should be absent).
 
-        :keyword bool_query: null boolean value.
+        :keyword bool_query: null boolean value. Default value is None.
         :paramtype bool_query: bool
         :return: None
         :rtype: None
@@ -2331,7 +2345,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2341,13 +2357,11 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_boolean_null.metadata = {"url": "/queries/bool/null"}  # type: ignore
-
     @distributed_trace
-    def get_int_one_million(self, **kwargs: Any) -> None:
+    def get_int_one_million(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '1000000' integer value.
 
-        :keyword int_query: '1000000' integer value. The default value is 1000000. Note that overriding
+        :keyword int_query: '1000000' integer value. Default value is 1000000. Note that overriding
          this default value may result in unsupported behavior.
         :paramtype int_query: int
         :return: None
@@ -2365,7 +2379,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2375,14 +2391,12 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_int_one_million.metadata = {"url": "/queries/int/1000000"}  # type: ignore
-
     @distributed_trace
-    def get_int_negative_one_million(self, **kwargs: Any) -> None:
+    def get_int_negative_one_million(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-1000000' integer value.
 
-        :keyword int_query: '-1000000' integer value. The default value is -1000000. Note that
-         overriding this default value may result in unsupported behavior.
+        :keyword int_query: '-1000000' integer value. Default value is -1000000. Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype int_query: int
         :return: None
         :rtype: None
@@ -2399,7 +2413,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2409,13 +2425,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_int_negative_one_million.metadata = {"url": "/queries/int/-1000000"}  # type: ignore
-
     @distributed_trace
-    def get_int_null(self, *, int_query: Optional[int] = None, **kwargs: Any) -> None:
+    def get_int_null(  # pylint: disable=inconsistent-return-statements
+        self, *, int_query: Optional[int] = None, **kwargs: Any
+    ) -> None:
         """Get null integer value (no query parameter).
 
-        :keyword int_query: null integer value.
+        :keyword int_query: null integer value. Default value is None.
         :paramtype int_query: int
         :return: None
         :rtype: None
@@ -2430,7 +2446,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2440,13 +2458,11 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_int_null.metadata = {"url": "/queries/int/null"}  # type: ignore
-
     @distributed_trace
-    def get_ten_billion(self, **kwargs: Any) -> None:
+    def get_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '10000000000' 64 bit integer value.
 
-        :keyword long_query: '10000000000' 64 bit integer value. The default value is 10000000000. Note
+        :keyword long_query: '10000000000' 64 bit integer value. Default value is 10000000000. Note
          that overriding this default value may result in unsupported behavior.
         :paramtype long_query: long
         :return: None
@@ -2464,7 +2480,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2474,14 +2492,12 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_ten_billion.metadata = {"url": "/queries/long/10000000000"}  # type: ignore
-
     @distributed_trace
-    def get_negative_ten_billion(self, **kwargs: Any) -> None:
+    def get_negative_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-10000000000' 64 bit integer value.
 
-        :keyword long_query: '-10000000000' 64 bit integer value. The default value is -10000000000.
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword long_query: '-10000000000' 64 bit integer value. Default value is -10000000000. Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype long_query: long
         :return: None
         :rtype: None
@@ -2498,7 +2514,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2508,13 +2526,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_negative_ten_billion.metadata = {"url": "/queries/long/-10000000000"}  # type: ignore
-
     @distributed_trace
-    def get_long_null(self, *, long_query: Optional[int] = None, **kwargs: Any) -> None:
+    def get_long_null(  # pylint: disable=inconsistent-return-statements
+        self, *, long_query: Optional[int] = None, **kwargs: Any
+    ) -> None:
         """Get 'null 64 bit integer value (no query param in uri).
 
-        :keyword long_query: null 64 bit integer value.
+        :keyword long_query: null 64 bit integer value. Default value is None.
         :paramtype long_query: long
         :return: None
         :rtype: None
@@ -2529,7 +2547,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2539,14 +2559,12 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_long_null.metadata = {"url": "/queries/long/null"}  # type: ignore
-
     @distributed_trace
-    def float_scientific_positive(self, **kwargs: Any) -> None:
+    def float_scientific_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '1.034E+20' numeric value.
 
-        :keyword float_query: '1.034E+20'numeric value. The default value is 103400000000000000000.
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword float_query: '1.034E+20'numeric value. Default value is 103400000000000000000. Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype float_query: float
         :return: None
         :rtype: None
@@ -2563,7 +2581,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2573,13 +2593,11 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    float_scientific_positive.metadata = {"url": "/queries/float/1.034E+20"}  # type: ignore
-
     @distributed_trace
-    def float_scientific_negative(self, **kwargs: Any) -> None:
+    def float_scientific_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-1.034E-20' numeric value.
 
-        :keyword float_query: '-1.034E-20'numeric value. The default value is -1.034e-20. Note that
+        :keyword float_query: '-1.034E-20'numeric value. Default value is -1.034e-20. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype float_query: float
         :return: None
@@ -2597,7 +2615,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2607,13 +2627,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    float_scientific_negative.metadata = {"url": "/queries/float/-1.034E-20"}  # type: ignore
-
     @distributed_trace
-    def float_null(self, *, float_query: Optional[float] = None, **kwargs: Any) -> None:
+    def float_null(  # pylint: disable=inconsistent-return-statements
+        self, *, float_query: Optional[float] = None, **kwargs: Any
+    ) -> None:
         """Get null numeric value (no query parameter).
 
-        :keyword float_query: null numeric value.
+        :keyword float_query: null numeric value. Default value is None.
         :paramtype float_query: float
         :return: None
         :rtype: None
@@ -2628,7 +2648,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2638,13 +2660,11 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    float_null.metadata = {"url": "/queries/float/null"}  # type: ignore
-
     @distributed_trace
-    def double_decimal_positive(self, **kwargs: Any) -> None:
+    def double_decimal_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '9999999.999' numeric value.
 
-        :keyword double_query: '9999999.999'numeric value. The default value is 9999999.999. Note that
+        :keyword double_query: '9999999.999'numeric value. Default value is 9999999.999. Note that
          overriding this default value may result in unsupported behavior.
         :paramtype double_query: float
         :return: None
@@ -2662,7 +2682,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2672,14 +2694,12 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    double_decimal_positive.metadata = {"url": "/queries/double/9999999.999"}  # type: ignore
-
     @distributed_trace
-    def double_decimal_negative(self, **kwargs: Any) -> None:
+    def double_decimal_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '-9999999.999' numeric value.
 
-        :keyword double_query: '-9999999.999'numeric value. The default value is -9999999.999. Note
-         that overriding this default value may result in unsupported behavior.
+        :keyword double_query: '-9999999.999'numeric value. Default value is -9999999.999. Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype double_query: float
         :return: None
         :rtype: None
@@ -2696,7 +2716,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2706,13 +2728,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    double_decimal_negative.metadata = {"url": "/queries/double/-9999999.999"}  # type: ignore
-
     @distributed_trace
-    def double_null(self, *, double_query: Optional[float] = None, **kwargs: Any) -> None:
+    def double_null(  # pylint: disable=inconsistent-return-statements
+        self, *, double_query: Optional[float] = None, **kwargs: Any
+    ) -> None:
         """Get null numeric value (no query parameter).
 
-        :keyword double_query: null numeric value.
+        :keyword double_query: null numeric value. Default value is None.
         :paramtype double_query: float
         :return: None
         :rtype: None
@@ -2727,7 +2749,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2737,14 +2761,12 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    double_null.metadata = {"url": "/queries/double/null"}  # type: ignore
-
     @distributed_trace
-    def string_unicode(self, **kwargs: Any) -> None:
+    def string_unicode(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
-        :keyword string_query: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. The default value is "啊齄丂狛狜隣郎隣兀﨩".
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword string_query: '啊齄丂狛狜隣郎隣兀﨩'multi-byte string value. Default value is "啊齄丂狛狜隣郎隣兀﨩". Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype string_query: str
         :return: None
         :rtype: None
@@ -2761,7 +2783,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2771,14 +2795,12 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    string_unicode.metadata = {"url": "/queries/string/unicode/"}  # type: ignore
-
     @distributed_trace
-    def string_url_encoded(self, **kwargs: Any) -> None:
+    def string_url_encoded(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
-        :keyword string_query: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. The default
-         value is "begin!*'();:@ &=+$,/?#[]end". Note that overriding this default value may result in
+        :keyword string_query: 'begin!*'();:@ &=+$,/?#[]end' url encoded string value. Default value is
+         "begin!*'();:@ &=+$,/?#[]end". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype string_query: str
         :return: None
@@ -2796,7 +2818,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2806,14 +2830,12 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    string_url_encoded.metadata = {"url": "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"}  # type: ignore
-
     @distributed_trace
-    def string_empty(self, **kwargs: Any) -> None:
+    def string_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get ''.
 
-        :keyword string_query: '' string value. The default value is "". Note that overriding this
-         default value may result in unsupported behavior.
+        :keyword string_query: '' string value. Default value is "". Note that overriding this default
+         value may result in unsupported behavior.
         :paramtype string_query: str
         :return: None
         :rtype: None
@@ -2830,7 +2852,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2840,13 +2864,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    string_empty.metadata = {"url": "/queries/string/empty"}  # type: ignore
-
     @distributed_trace
-    def string_null(self, *, string_query: Optional[str] = None, **kwargs: Any) -> None:
+    def string_null(  # pylint: disable=inconsistent-return-statements
+        self, *, string_query: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Get null (no query parameter in url).
 
-        :keyword string_query: null string value.
+        :keyword string_query: null string value. Default value is None.
         :paramtype string_query: str
         :return: None
         :rtype: None
@@ -2861,7 +2885,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2871,14 +2897,14 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    string_null.metadata = {"url": "/queries/string/null"}  # type: ignore
-
     @distributed_trace
-    def enum_valid(self, *, enum_query: Optional[str] = None, **kwargs: Any) -> None:
+    def enum_valid(  # pylint: disable=inconsistent-return-statements
+        self, *, enum_query: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Get using uri with query parameter 'green color'.
 
         :keyword enum_query: 'green color' enum value. Possible values are: "red color", "green color",
-         and "blue color".
+         and "blue color". Default value is None.
         :paramtype enum_query: str
         :return: None
         :rtype: None
@@ -2893,7 +2919,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2903,14 +2931,14 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    enum_valid.metadata = {"url": "/queries/enum/green%20color"}  # type: ignore
-
     @distributed_trace
-    def enum_null(self, *, enum_query: Optional[str] = None, **kwargs: Any) -> None:
+    def enum_null(  # pylint: disable=inconsistent-return-statements
+        self, *, enum_query: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """Get null (no query parameter in url).
 
         :keyword enum_query: null string value. Possible values are: "red color", "green color", and
-         "blue color".
+         "blue color". Default value is None.
         :paramtype enum_query: str
         :return: None
         :rtype: None
@@ -2925,7 +2953,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2935,13 +2965,14 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    enum_null.metadata = {"url": "/queries/enum/null"}  # type: ignore
-
     @distributed_trace
-    def byte_multi_byte(self, *, byte_query: Optional[bytearray] = None, **kwargs: Any) -> None:
+    def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
+        self, *, byte_query: Optional[bytearray] = None, **kwargs: Any
+    ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
-        :keyword byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
+        :keyword byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array. Default value is
+         None.
         :paramtype byte_query: bytearray
         :return: None
         :rtype: None
@@ -2956,7 +2987,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -2966,14 +2999,12 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    byte_multi_byte.metadata = {"url": "/queries/byte/multibyte"}  # type: ignore
-
     @distributed_trace
-    def byte_empty(self, **kwargs: Any) -> None:
+    def byte_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '' as byte array.
 
-        :keyword byte_query: '' as byte array. The default value is bytearray("", encoding="utf-8").
-         Note that overriding this default value may result in unsupported behavior.
+        :keyword byte_query: '' as byte array. Default value is bytearray("", encoding="utf-8"). Note
+         that overriding this default value may result in unsupported behavior.
         :paramtype byte_query: bytearray
         :return: None
         :rtype: None
@@ -2990,7 +3021,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3000,13 +3033,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    byte_empty.metadata = {"url": "/queries/byte/empty"}  # type: ignore
-
     @distributed_trace
-    def byte_null(self, *, byte_query: Optional[bytearray] = None, **kwargs: Any) -> None:
+    def byte_null(  # pylint: disable=inconsistent-return-statements
+        self, *, byte_query: Optional[bytearray] = None, **kwargs: Any
+    ) -> None:
         """Get null as byte array (no query parameters in uri).
 
-        :keyword byte_query: null as byte array (no query parameters in uri).
+        :keyword byte_query: null as byte array (no query parameters in uri). Default value is None.
         :paramtype byte_query: bytearray
         :return: None
         :rtype: None
@@ -3021,7 +3054,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3031,14 +3066,12 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    byte_null.metadata = {"url": "/queries/byte/null"}  # type: ignore
-
     @distributed_trace
-    def date_valid(self, **kwargs: Any) -> None:
+    def date_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '2012-01-01' as date.
 
-        :keyword date_query: '2012-01-01' as date. The default value is "2012-01-01". Note that
-         overriding this default value may result in unsupported behavior.
+        :keyword date_query: '2012-01-01' as date. Default value is "2012-01-01". Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype date_query: ~datetime.date
         :return: None
         :rtype: None
@@ -3055,7 +3088,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3065,13 +3100,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    date_valid.metadata = {"url": "/queries/date/2012-01-01"}  # type: ignore
-
     @distributed_trace
-    def date_null(self, *, date_query: Optional[datetime.date] = None, **kwargs: Any) -> None:
+    def date_null(  # pylint: disable=inconsistent-return-statements
+        self, *, date_query: Optional[datetime.date] = None, **kwargs: Any
+    ) -> None:
         """Get null as date - this should result in no query parameters in uri.
 
-        :keyword date_query: null as date (no query parameters in uri).
+        :keyword date_query: null as date (no query parameters in uri). Default value is None.
         :paramtype date_query: ~datetime.date
         :return: None
         :rtype: None
@@ -3086,7 +3121,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3096,13 +3133,11 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    date_null.metadata = {"url": "/queries/date/null"}  # type: ignore
-
     @distributed_trace
-    def date_time_valid(self, **kwargs: Any) -> None:
+    def date_time_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '2012-01-01T01:01:01Z' as date-time.
 
-        :keyword date_time_query: '2012-01-01T01:01:01Z' as date-time. The default value is
+        :keyword date_time_query: '2012-01-01T01:01:01Z' as date-time. Default value is
          "2012-01-01T01:01:01Z". Note that overriding this default value may result in unsupported
          behavior.
         :paramtype date_time_query: ~datetime.datetime
@@ -3121,7 +3156,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3131,13 +3168,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    date_time_valid.metadata = {"url": "/queries/datetime/2012-01-01T01%3A01%3A01Z"}  # type: ignore
-
     @distributed_trace
-    def date_time_null(self, *, date_time_query: Optional[datetime.datetime] = None, **kwargs: Any) -> None:
+    def date_time_null(  # pylint: disable=inconsistent-return-statements
+        self, *, date_time_query: Optional[datetime.datetime] = None, **kwargs: Any
+    ) -> None:
         """Get null as date-time, should result in no query parameters in uri.
 
-        :keyword date_time_query: null as date-time (no query parameters).
+        :keyword date_time_query: null as date-time (no query parameters). Default value is None.
         :paramtype date_time_query: ~datetime.datetime
         :return: None
         :rtype: None
@@ -3152,7 +3189,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3162,15 +3201,15 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    date_time_null.metadata = {"url": "/queries/datetime/null"}  # type: ignore
-
     @distributed_trace
-    def array_string_csv_valid(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    def array_string_csv_valid(  # pylint: disable=inconsistent-return-statements
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         csv-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the csv-array format.
+         ''] using the csv-array format. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -3185,7 +3224,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3195,13 +3236,13 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_csv_valid.metadata = {"url": "/queries/array/csv/string/valid"}  # type: ignore
-
     @distributed_trace
-    def array_string_csv_null(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    def array_string_csv_null(  # pylint: disable=inconsistent-return-statements
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """Get a null array of string using the csv-array format.
 
-        :keyword array_query: a null array of string using the csv-array format.
+        :keyword array_query: a null array of string using the csv-array format. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -3216,7 +3257,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3226,13 +3269,14 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_csv_null.metadata = {"url": "/queries/array/csv/string/null"}  # type: ignore
-
     @distributed_trace
-    def array_string_csv_empty(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    def array_string_csv_empty(  # pylint: disable=inconsistent-return-statements
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """Get an empty array [] of string using the csv-array format.
 
-        :keyword array_query: an empty array [] of string using the csv-array format.
+        :keyword array_query: an empty array [] of string using the csv-array format. Default value is
+         None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -3247,7 +3291,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3257,16 +3303,15 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_csv_empty.metadata = {"url": "/queries/array/csv/string/empty"}  # type: ignore
-
     @distributed_trace
-    def array_string_no_collection_format_empty(
+    def array_string_no_collection_format_empty(  # pylint: disable=inconsistent-return-statements
         self, *, array_query: Optional[List[str]] = None, **kwargs: Any
     ) -> None:
         """Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao',
         'bonjour'] for the 'arrayQuery' parameter to the service.
 
         :keyword array_query: Array-typed query parameter. Pass in ['hello', 'nihao', 'bonjour'].
+         Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -3281,7 +3326,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3291,15 +3338,15 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_no_collection_format_empty.metadata = {"url": "/queries/array/none/string/empty"}  # type: ignore
-
     @distributed_trace
-    def array_string_ssv_valid(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    def array_string_ssv_valid(  # pylint: disable=inconsistent-return-statements
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         ssv-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the ssv-array format.
+         ''] using the ssv-array format. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -3314,7 +3361,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3324,15 +3373,15 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_ssv_valid.metadata = {"url": "/queries/array/ssv/string/valid"}  # type: ignore
-
     @distributed_trace
-    def array_string_tsv_valid(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    def array_string_tsv_valid(  # pylint: disable=inconsistent-return-statements
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         tsv-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the tsv-array format.
+         ''] using the tsv-array format. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -3347,7 +3396,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3357,15 +3408,15 @@ class QueriesOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    array_string_tsv_valid.metadata = {"url": "/queries/array/tsv/string/valid"}  # type: ignore
-
     @distributed_trace
-    def array_string_pipes_valid(self, *, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    def array_string_pipes_valid(  # pylint: disable=inconsistent-return-statements
+        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         pipes-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the pipes-array format.
+         ''] using the pipes-array format. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -3380,7 +3431,9 @@ class QueriesOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3389,8 +3442,6 @@ class QueriesOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_pipes_valid.metadata = {"url": "/queries/array/pipes/string/valid"}  # type: ignore
 
 
 class PathItemsOperations(object):
@@ -3412,7 +3463,7 @@ class PathItemsOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_all_with_values(
+    def get_all_with_values(  # pylint: disable=inconsistent-return-statements
         self,
         path_item_string_path: str,
         local_string_path: str,
@@ -3430,9 +3481,9 @@ class PathItemsOperations(object):
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter.
+         parameter. Default value is None.
         :paramtype path_item_string_query: str
-        :keyword local_string_query: should contain value 'localStringQuery'.
+        :keyword local_string_query: should contain value 'localStringQuery'. Default value is None.
         :paramtype local_string_query: str
         :return: None
         :rtype: None
@@ -3452,7 +3503,9 @@ class PathItemsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3462,10 +3515,8 @@ class PathItemsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_all_with_values.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"}  # type: ignore
-
     @distributed_trace
-    def get_global_query_null(
+    def get_global_query_null(  # pylint: disable=inconsistent-return-statements
         self,
         path_item_string_path: str,
         local_string_path: str,
@@ -3483,9 +3534,9 @@ class PathItemsOperations(object):
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter.
+         parameter. Default value is None.
         :paramtype path_item_string_query: str
-        :keyword local_string_query: should contain value 'localStringQuery'.
+        :keyword local_string_query: should contain value 'localStringQuery'. Default value is None.
         :paramtype local_string_query: str
         :return: None
         :rtype: None
@@ -3505,7 +3556,9 @@ class PathItemsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3515,10 +3568,8 @@ class PathItemsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_global_query_null.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"}  # type: ignore
-
     @distributed_trace
-    def get_global_and_local_query_null(
+    def get_global_and_local_query_null(  # pylint: disable=inconsistent-return-statements
         self,
         path_item_string_path: str,
         local_string_path: str,
@@ -3536,9 +3587,9 @@ class PathItemsOperations(object):
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter.
+         parameter. Default value is None.
         :paramtype path_item_string_query: str
-        :keyword local_string_query: should contain null value.
+        :keyword local_string_query: should contain null value. Default value is None.
         :paramtype local_string_query: str
         :return: None
         :rtype: None
@@ -3558,7 +3609,9 @@ class PathItemsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3568,10 +3621,8 @@ class PathItemsOperations(object):
         if cls:
             return cls(pipeline_response, None, {})
 
-    get_global_and_local_query_null.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"}  # type: ignore
-
     @distributed_trace
-    def get_local_path_item_query_null(
+    def get_local_path_item_query_null(  # pylint: disable=inconsistent-return-statements
         self,
         path_item_string_path: str,
         local_string_path: str,
@@ -3588,9 +3639,9 @@ class PathItemsOperations(object):
         :type path_item_string_path: str
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
-        :keyword path_item_string_query: should contain value null.
+        :keyword path_item_string_query: should contain value null. Default value is None.
         :paramtype path_item_string_query: str
-        :keyword local_string_query: should contain value null.
+        :keyword local_string_query: should contain value null. Default value is None.
         :paramtype local_string_query: str
         :return: None
         :rtype: None
@@ -3610,7 +3661,9 @@ class PathItemsOperations(object):
         )
         request.url = self._client.format_url(request.url)
 
-        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3619,5 +3672,3 @@ class PathItemsOperations(object):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_local_path_item_query_null.metadata = {"url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null"}  # type: ignore

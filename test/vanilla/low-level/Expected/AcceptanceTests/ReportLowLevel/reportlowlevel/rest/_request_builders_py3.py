@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, Optional
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -22,7 +23,7 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
 
     :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
      in for Python). The only effect is, that generators that run all tests several times, can
-     distinguish the generated reports.
+     distinguish the generated reports. Default value is None.
     :paramtype qualifier: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -40,18 +41,18 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
 
     accept = "application/json"
     # Construct URL
-    url = "/report"
+    _url = "/report"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if qualifier is not None:
-        query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
+        _query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
 def build_get_optional_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) -> HttpRequest:
@@ -62,7 +63,7 @@ def build_get_optional_report_request(*, qualifier: Optional[str] = None, **kwar
 
     :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
      in for Python). The only effect is, that generators that run all tests several times, can
-     distinguish the generated reports.
+     distinguish the generated reports. Default value is None.
     :paramtype qualifier: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -80,15 +81,15 @@ def build_get_optional_report_request(*, qualifier: Optional[str] = None, **kwar
 
     accept = "application/json"
     # Construct URL
-    url = "/report/optional"
+    _url = "/report/optional"
 
     # Construct parameters
-    query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if qualifier is not None:
-        query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
+        _query_parameters["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, params=query_parameters, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)

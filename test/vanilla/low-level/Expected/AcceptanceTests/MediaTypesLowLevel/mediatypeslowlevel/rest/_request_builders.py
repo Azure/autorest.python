@@ -7,12 +7,13 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, IO, Optional, TypeVar, Union
+    from typing import Any, Dict, Optional, TypeVar, Union
 
     T = TypeVar("T")
     JSONType = Any
@@ -32,14 +33,14 @@ def build_analyze_body_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Input parameter.
+     our example to find the input shape. Input parameter. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Input parameter.
+     a byte iterator, or stream input). Input parameter. Default value is None.
     :paramtype content: any
-    :keyword str content_type: Media type of the body sent to the API. Default value is
-     "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
-     "image/tiff", "application/json."
+    :keyword content_type: Media type of the body sent to the API. Possible values are:
+     "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
+     value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -56,18 +57,18 @@ def build_analyze_body_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/mediatypes/analyze'
+    _url = "/mediatypes/analyze"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -83,14 +84,14 @@ def build_analyze_body_no_accept_header_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Input parameter.
+     our example to find the input shape. Input parameter. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Input parameter.
+     a byte iterator, or stream input). Input parameter. Default value is None.
     :paramtype content: any
-    :keyword str content_type: Media type of the body sent to the API. Default value is
-     "application/json". Allowed values are: "application/pdf", "image/jpeg", "image/png",
-     "image/tiff", "application/json."
+    :keyword content_type: Media type of the body sent to the API. Possible values are:
+     "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
+     value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -106,17 +107,17 @@ def build_analyze_body_no_accept_header_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = '/mediatypes/analyzeNoAccept'
+    _url = "/mediatypes/analyzeNoAccept"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -131,7 +132,7 @@ def build_content_type_with_encoding_request(
     into your code flow.
 
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Input parameter.
+     a byte iterator, or stream input). Input parameter. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -143,18 +144,18 @@ def build_content_type_with_encoding_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/mediatypes/contentTypeWithEncoding'
+    _url = "/mediatypes/contentTypeWithEncoding"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -170,11 +171,13 @@ def build_binary_body_with_two_content_types_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. The payload body.
+     our example to find the input shape. The payload body. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). The payload body.
+     a byte iterator, or stream input). The payload body. Default value is None.
     :paramtype content: any
+    :keyword content_type: Media type of the body sent to the API. Possible values are:
+     "application/json" or "application/octet-stream". Default value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -191,18 +194,18 @@ def build_binary_body_with_two_content_types_request(
 
     accept = "text/plain"
     # Construct URL
-    url = '/mediatypes/binaryBodyTwoContentTypes'
+    _url = "/mediatypes/binaryBodyTwoContentTypes"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -219,14 +222,13 @@ def build_binary_body_with_three_content_types_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. The payload body.
+     our example to find the input shape. The payload body. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). The payload body.
+     a byte iterator, or stream input). The payload body. Default value is None.
     :paramtype content: any
-    :keyword str content_type: Media type of the body sent to the API. Default value is
-     "application/json". Allowed values are: "application/json", "application/octet-stream",
-     "text/plain."
+    :keyword content_type: Media type of the body sent to the API. Possible values are:
+     "application/json", "application/octet-stream", and "text/plain". Default value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -243,18 +245,18 @@ def build_binary_body_with_three_content_types_request(
 
     accept = "text/plain"
     # Construct URL
-    url = '/mediatypes/binaryBodyThreeContentTypes'
+    _url = "/mediatypes/binaryBodyThreeContentTypes"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -269,13 +271,13 @@ def build_put_text_and_json_body_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. The payload body.
+     our example to find the input shape. The payload body. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). The payload body.
+     a byte iterator, or stream input). The payload body. Default value is None.
     :paramtype content: any
-    :keyword str content_type: Media type of the body sent to the API. Default value is
-     "application/json". Allowed values are: "text/plain", "application/json."
+    :keyword content_type: Media type of the body sent to the API. Possible values are:
+     "text/plain" or "application/json". Default value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -292,17 +294,17 @@ def build_put_text_and_json_body_request(
 
     accept = "text/plain"
     # Construct URL
-    url = '/mediatypes/textAndJson'
+    _url = "/mediatypes/textAndJson"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )

@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 from ..._vendor import _format_url_section
 
@@ -39,10 +40,11 @@ def build_update_pet_with_form_request(
     :param pet_id: ID of pet that needs to be updated.
     :type pet_id: int
     :keyword data: Pass in dictionary that contains form data to include in the body of the
-     request. Can take a value of dog, or cat, or fish.
+     request. Can take a value of dog, or cat, or fish. Default value is None.
     :paramtype data: dict[str, any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Can take a value of dog, or cat, or fish.
+     a byte iterator, or stream input). Can take a value of dog, or cat, or fish. Default value is
+     None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -54,33 +56,36 @@ def build_update_pet_with_form_request(
 
             # form-encoded input template you can fill out and use as your `data` input.
             data = {
-                "name": "str",  # Optional. Updated name of the pet.
+                "name": "str",  # Optional. Updated name of the pet. Default value is None.
                 "pet_age": 0,  # How many years is it old?.
-                "pet_food": "str",  # Can take a value of meat, or fish, or plant. Possible values are: "meat", "fish", and "plant".
-                "pet_type": "str",  # Can take a value of dog, or cat, or fish. Possible values are: "dog", "cat", and "fish".
-                "status": "str"  # Optional. Updated status of the pet.
+                "pet_food": "str",  # Can take a value of meat, or fish, or plant. Possible
+                  values are: "meat", "fish", and "plant".
+                "pet_type": "str",  # Can take a value of dog, or cat, or fish. Possible
+                  values are: "dog", "cat", and "fish".
+                "status": "str"  # Optional. Updated status of the pet. Default value is
+                  None.
             }
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = '/formsdataurlencoded/pet/add/{petId}'
+    _url = "/formsdataurlencoded/pet/add/{petId}"
     path_format_arguments = {
         "petId": _SERIALIZER.url("pet_id", pet_id, 'int'),
     }
 
-    url = _format_url_section(url, **path_format_arguments)
+    _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -96,10 +101,11 @@ def build_partial_constant_body_request(
     into your code flow.
 
     :keyword data: Pass in dictionary that contains form data to include in the body of the
-     request. Indicates the name of your Azure container registry.
+     request. Indicates the name of your Azure container registry. Default value is None.
     :paramtype data: dict[str, any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Indicates the name of your Azure container registry.
+     a byte iterator, or stream input). Indicates the name of your Azure container registry. Default
+     value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -111,8 +117,11 @@ def build_partial_constant_body_request(
 
             # form-encoded input template you can fill out and use as your `data` input.
             data = {
-                "access_token": "str",  # AAD access token, mandatory when grant_type is access_token_refresh_token or access_token.
-                "grant_type": "access_token",  # Default value is "access_token". Constant part of a formdata body. The default value is "access_token". Note that overriding this default value may result in unsupported behavior.
+                "access_token": "str",  # AAD access token, mandatory when grant_type is
+                  access_token_refresh_token or access_token.
+                "grant_type": "access_token",  # Default value is "access_token". Constant
+                  part of a formdata body. Default value is "access_token". Note that overriding
+                  this default value may result in unsupported behavior.
                 "service": "str"  # Indicates the name of your Azure container registry.
             }
     """
@@ -120,16 +129,16 @@ def build_partial_constant_body_request(
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
     # Construct URL
-    url = '/formsdataurlencoded/partialConstantBody'
+    _url = "/formsdataurlencoded/partialConstantBody"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="POST",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )

@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -40,7 +41,7 @@ def build_get_valid_request(
 
             # response body for status code(s): 200
             response.json() == {
-                "length": 0.0,  # Required. 
+                "length": 0.0,  # Required.
                 "siblings": [
                     ...
                 ],
@@ -51,16 +52,16 @@ def build_get_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/complex/polymorphism/valid'
+    _url = "/complex/polymorphism/valid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -107,7 +108,7 @@ def build_put_valid_request(
                  'jawsize': 5
                }
              ]
-           };.
+           };. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put a salmon that looks like this:
@@ -142,7 +143,7 @@ def build_put_valid_request(
                  'jawsize': 5
                }
              ]
-           };.
+           };. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -156,7 +157,7 @@ def build_put_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "length": 0.0,  # Required. 
+                "length": 0.0,  # Required.
                 "siblings": [
                     ...
                 ],
@@ -169,18 +170,18 @@ def build_put_valid_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/complex/polymorphism/valid'
+    _url = "/complex/polymorphism/valid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -211,16 +212,16 @@ def build_get_dot_syntax_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/complex/polymorphism/dotsyntax'
+    _url = "/complex/polymorphism/dotsyntax"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -275,16 +276,16 @@ def build_get_composed_with_discriminator_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/complex/polymorphism/composedWithDiscriminator'
+    _url = "/complex/polymorphism/composedWithDiscriminator"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -339,16 +340,16 @@ def build_get_composed_without_discriminator_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/complex/polymorphism/composedWithoutDiscriminator'
+    _url = "/complex/polymorphism/composedWithoutDiscriminator"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -374,11 +375,11 @@ def build_get_complicated_request(
             # response body for status code(s): 200
             response.json() == {
                 "iswild": bool,  # Optional.
-                "length": 0.0,  # Required. 
+                "length": 0.0,  # Required.
                 "location": "str",  # Optional.
                 "siblings": [
                     {
-                        "length": 0.0,  # Required. 
+                        "length": 0.0,  # Required.
                         "siblings": [
                             ...
                         ],
@@ -393,16 +394,16 @@ def build_get_complicated_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/complex/polymorphism/complicated'
+    _url = "/complex/polymorphism/complicated"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -418,10 +419,10 @@ def build_put_complicated_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.
+     our example to find the input shape.  Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
+     a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -436,11 +437,11 @@ def build_put_complicated_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "iswild": bool,  # Optional.
-                "length": 0.0,  # Required. 
+                "length": 0.0,  # Required.
                 "location": "str",  # Optional.
                 "siblings": [
                     {
-                        "length": 0.0,  # Required. 
+                        "length": 0.0,  # Required.
                         "siblings": [
                             ...
                         ],
@@ -457,18 +458,18 @@ def build_put_complicated_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/complex/polymorphism/complicated'
+    _url = "/complex/polymorphism/complicated"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -483,10 +484,10 @@ def build_put_missing_discriminator_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.
+     our example to find the input shape.  Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
+     a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -501,11 +502,11 @@ def build_put_missing_discriminator_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "iswild": bool,  # Optional.
-                "length": 0.0,  # Required. 
+                "length": 0.0,  # Required.
                 "location": "str",  # Optional.
                 "siblings": [
                     {
-                        "length": 0.0,  # Required. 
+                        "length": 0.0,  # Required.
                         "siblings": [
                             ...
                         ],
@@ -520,11 +521,11 @@ def build_put_missing_discriminator_request(
             # response body for status code(s): 200
             response.json() == {
                 "iswild": bool,  # Optional.
-                "length": 0.0,  # Required. 
+                "length": 0.0,  # Required.
                 "location": "str",  # Optional.
                 "siblings": [
                     {
-                        "length": 0.0,  # Required. 
+                        "length": 0.0,  # Required.
                         "siblings": [
                             ...
                         ],
@@ -541,18 +542,18 @@ def build_put_missing_discriminator_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/complex/polymorphism/missingdiscriminator'
+    _url = "/complex/polymorphism/missingdiscriminator"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -594,7 +595,7 @@ def build_put_valid_missing_required_request(
                  "age": 105
              }
          ]
-     }.
+     }. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please attempt put a sawshark that looks like this, the
@@ -623,7 +624,7 @@ def build_put_valid_missing_required_request(
                  "age": 105
              }
          ]
-     }.
+     }. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -637,7 +638,7 @@ def build_put_valid_missing_required_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "length": 0.0,  # Required. 
+                "length": 0.0,  # Required.
                 "siblings": [
                     ...
                 ],
@@ -650,17 +651,17 @@ def build_put_valid_missing_required_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/complex/polymorphism/missingrequired/invalid'
+    _url = "/complex/polymorphism/missingrequired/invalid"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )

@@ -7,11 +7,12 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Optional
+from typing import Any, Awaitable
+
+from msrest import Deserializer, Serializer
 
 from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
-from msrest import Deserializer, Serializer
 
 from .. import models
 from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
@@ -26,7 +27,7 @@ from .operations import (
 )
 
 
-class AutoRestHttpInfrastructureTestService:
+class AutoRestHttpInfrastructureTestService:  # pylint: disable=too-many-instance-attributes
     """Test Infrastructure for AutoRest.
 
     :ivar http_failure: HttpFailureOperations operations
@@ -43,7 +44,7 @@ class AutoRestHttpInfrastructureTestService:
     :vartype http_retry: httpinfrastructure.aio.operations.HttpRetryOperations
     :ivar multiple_responses: MultipleResponsesOperations operations
     :vartype multiple_responses: httpinfrastructure.aio.operations.MultipleResponsesOperations
-    :param base_url: Service URL. Default value is 'http://localhost:3000'.
+    :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     """
 

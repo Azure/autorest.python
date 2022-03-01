@@ -9,9 +9,10 @@
 from copy import deepcopy
 from typing import Any, Optional, TYPE_CHECKING
 
+from msrest import Deserializer, Serializer
+
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
-from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
 from .operations import ExplicitOperations, ImplicitOperations
@@ -32,9 +33,9 @@ class AutoRestRequiredOptionalTestService:
     :type required_global_path: str
     :param required_global_query: number of items to skip.
     :type required_global_query: str
-    :param optional_global_query: number of items to skip.
+    :param optional_global_query: number of items to skip. Default value is None.
     :type optional_global_query: int
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 
@@ -61,11 +62,7 @@ class AutoRestRequiredOptionalTestService:
         self.implicit = ImplicitOperations(self._client, self._config, self._serialize, self._deserialize)
         self.explicit = ExplicitOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs: Any
-    ) -> HttpResponse:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest

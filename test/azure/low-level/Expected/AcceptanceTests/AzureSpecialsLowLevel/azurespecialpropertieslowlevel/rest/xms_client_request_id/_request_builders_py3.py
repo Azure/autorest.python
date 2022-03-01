@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 _SERIALIZER = Serializer()
 
@@ -27,9 +28,9 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
     """
 
     # Construct URL
-    url = "/azurespecials/overwrite/x-ms-client-request-id/method/"
+    _url = "/azurespecials/overwrite/x-ms-client-request-id/method/"
 
-    return HttpRequest(method="GET", url=url, **kwargs)
+    return HttpRequest(method="GET", url=_url, **kwargs)
 
 
 def build_param_get_request(*, x_ms_client_request_id: str, **kwargs: Any) -> HttpRequest:
@@ -50,13 +51,13 @@ def build_param_get_request(*, x_ms_client_request_id: str, **kwargs: Any) -> Ht
 
     accept = "application/json"
     # Construct URL
-    url = "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/"
+    _url = "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    header_parameters["x-ms-client-request-id"] = _SERIALIZER.header(
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters["x-ms-client-request-id"] = _SERIALIZER.header(
         "x_ms_client_request_id", x_ms_client_request_id, "str"
     )
-    header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=url, headers=header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)

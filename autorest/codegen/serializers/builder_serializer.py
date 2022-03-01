@@ -33,6 +33,9 @@ from . import utils
 T = TypeVar("T")
 OrderedSet = Dict[T, None]
 
+def _escape_str(input_str: str) -> str:
+    replace = input_str.replace("'", "\\'")
+    return f'"{replace}"'
 
 def _improve_json_string(template_representation: str) -> Any:
     origin = template_representation.split('\n')
@@ -110,7 +113,7 @@ def _pop_parameters_kwarg(
     function_name: str,
     kwarg_name: str,
 ) -> str:
-    return f'{function_name}_parameters = kwargs.pop("{kwarg_name}", {{}})  # type: Dict[str, Any]'
+    return f'_{function_name}_parameters = kwargs.pop("{kwarg_name}", {{}})  # type: Dict[str, Any]'
 
 def _serialize_grouped_body(builder) -> List[str]:
     retval: List[str] = []
@@ -149,12 +152,21 @@ def _serialize_flattened_body(builder) -> List[str]:
     return retval
 
 def _content_type_docstring(builder) -> str:
-    content_type_str = (
-        ":keyword str content_type: Media type of the body sent to the API. " +
-        f'Default value is "{builder.parameters.default_content_type}". ' +
-        'Allowed values are: "{}."'.format('", "'.join(builder.parameters.content_types))
+    content_types = [f'"{c}"' for c in builder.parameters.content_types]
+    if len(content_types) == 2:
+        possible_values_str = " or ".join(content_types)
+    else:
+        possible_values_str = ", ".join(
+            content_types[: len(content_types) - 1]
+        ) + f", and {content_types[-1]}"
+    default_value = next(
+        p for p in builder.parameters.method if p.rest_api_name == "Content-Type"
+    ).default_value_declaration
+    return (
+        ":keyword content_type: Media type of the body sent to the API. " +
+        f"Possible values are: {possible_values_str}. " +
+        f"Default value is {default_value}."
     )
-    return content_type_str
 
 class _BuilderSerializerProtocol(ABC):
     @property
@@ -178,11 +190,6 @@ class _BuilderSerializerProtocol(ABC):
     @abstractmethod
     def _want_inline_type_hints(self) -> bool:
         """Whether you want inline type hints. If false, your type hints will be commented'"""
-        ...
-
-    @abstractmethod
-    def _method_signature(self, builder) -> str:
-        """Signature of the builder. Does not include return type annotation"""
         ...
 
     @abstractmethod
@@ -266,20 +273,22 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
     def _cls_docstring_rtype(self) -> str:
         return "" if self.code_model.options["version_tolerant"] else " or the result of cls(response)"
 
-    def _method_signature(self, builder) -> str:
+    def _method_signature(self, builder: Operation, response_type_annotation: str) -> str:
         return utils.serialize_method(
             function_def=self._function_definition,
             method_name=builder.name,
             is_in_class=self._is_in_class,
             method_param_signatures=builder.parameters.method_signature(self._want_inline_type_hints),
+            ignore_inconsistent_return_statements=(response_type_annotation == "None")
         )
 
     def _response_type_annotation_wrapper(self, builder) -> List[str]:
         return []
 
     def method_signature_and_response_type_annotation(self, builder) -> str:
-        method_signature = self._method_signature(builder)
         response_type_annotation = self._response_type_annotation(builder)
+        # want pre-wrapped response type. As long as it's None, pylint will get mad about inconsistent return types
+        method_signature = self._method_signature(builder, response_type_annotation)
         for wrapper in self._response_type_annotation_wrapper(builder)[::-1]:
             response_type_annotation = f"{wrapper}[{response_type_annotation}]"
         return self._method_signature_and_response_type_annotation_template(method_signature, response_type_annotation)
@@ -304,13 +313,14 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
             description_list.append(
                 f":{param.docstring_type_keyword} { param.serialized_name }: { param.docstring_type }"
             )
-        try:
-            request_builder: RequestBuilder = cast(Operation, builder).request_builder
-        except AttributeError:
-            request_builder = cast(RequestBuilder, builder)
 
-        if len(request_builder.schema_requests) > 1:
-            description_list.append(_content_type_docstring(builder))
+        if len(builder.parameters.content_types) > 1:
+            description_list = [
+                _content_type_docstring(builder) if l.startswith(":keyword content_type:") else l
+                for l in description_list
+            ]
+            if not any(l for l in description_list if l.startswith(":keyword content_type:")):
+                description_list.append(_content_type_docstring(builder))
         return description_list
 
     def param_description_and_response_docstring(self, builder) -> List[str]:
@@ -402,7 +412,7 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
     def _serialize_parameter(
         self, param: Parameter, function_name: str
     ) -> List[str]:
-        set_parameter = "{}_parameters['{}'] = {}".format(
+        set_parameter = "_{}_parameters['{}'] = {}".format(
             function_name,
             param.rest_api_name,
             utils.build_serialize_data_call(param, function_name, self.serializer_name)
@@ -499,11 +509,11 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
     def create_http_request(self, builder) -> List[str]:
         retval = ["return HttpRequest("]
         retval.append(f'    method="{builder.method}",')
-        retval.append("    url=url,")
+        retval.append("    url=_url,")
         if builder.parameters.query:
-            retval.append("    params=query_parameters,")
+            retval.append("    params=_query_parameters,")
         if builder.parameters.headers:
-            retval.append("    headers=header_parameters,")
+            retval.append("    headers=_header_parameters,")
         if builder.parameters.has_body:
             retval.extend([
                 f"    {body_kwarg}={body_kwarg},"
@@ -532,6 +542,13 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
                 function_name="query",
             ))
         return retval
+
+    def construct_url(self, builder) -> str:
+        if any(o for o in ["low_level_client", "version_tolerant"] if self.code_model.options.get(o)):
+            url_value = _escape_str(builder.url)
+        else:
+            url_value = f'kwargs.pop("template_url", {_escape_str(builder.url)})'
+        return f"_url = {url_value}{'  # pylint: disable=line-too-long' if len(url_value) > 114 else ''}"
 
 class RequestBuilderGenericSerializer(_RequestBuilderBaseSerializer):
     @property
@@ -711,7 +728,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         )
         ser_ctxt_name = "serialization_ctxt"
         ser_ctxt = builder.parameters.body[0].xml_serialization_ctxt if send_xml else None
-        if ser_ctxt:
+        if ser_ctxt and self.code_model.options["models_mode"]:
             retval.append(f'{ser_ctxt_name} = {{"xml": {{{ser_ctxt}}}}}')
         serialize_body_call = self._serialize_body_call(
             builder,
@@ -986,7 +1003,8 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
 
     @staticmethod
     def get_metadata_url(builder) -> str:
-        return f"{builder.python_name}.metadata = {{'url': '{ builder.request_builder.url }'}}  # type: ignore"
+        url = _escape_str(builder.request_builder.url)
+        return f"{builder.python_name}.metadata = {{'url': { url }}}  # type: ignore"
 
 class _SyncOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=abstract-method
     @property
@@ -1114,7 +1132,7 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         deserialized = (
             f'self._deserialize("{response.serialization_type}", pipeline_response)'
             if self.code_model.options["models_mode"] else
-            "_loads(pipeline_response.http_response.body())"
+            "pipeline_response.http_response.json()"
         )
         retval.append(f"    deserialized = {deserialized}")
         item_name = builder.item_name(self.code_model)
@@ -1137,10 +1155,11 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         retval = [f"{self._def} get_next(next_link=None):"]
         retval.append("    request = prepare_request(next_link)")
         retval.append("")
-        retval.append(
-            f"    pipeline_response = {self._call_method}self._client._pipeline.run(request, "
-            f"stream={builder.is_stream_response}, **kwargs)"
-        )
+        retval.append(f"    pipeline_response = {self._call_method}self._client._pipeline.run(  # pylint: disable=protected-access")
+        retval.append("        request,")
+        retval.append(f"        stream={builder.is_stream_response},")
+        retval.append("        **kwargs")
+        retval.append("    )")
         retval.append("    response = pipeline_response.http_response")
         retval.append("")
         retval.extend([
@@ -1234,7 +1253,7 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
             "Pass in False for this operation to not poll, or pass in your own initialized polling object for a"
             " personal polling strategy."
         )
-        retval.append(f":paramtype polling: bool or ~{self._polling_method_type}")
+        retval.append(f":paramtype polling: bool or ~azure.core.polling.{self._polling_method_type}")
         retval.append(
             ":keyword int polling_interval: Default waiting time between two polls for LRO operations "
             "if no Retry-After header is present."
@@ -1287,9 +1306,8 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
         retval.append("        client=self._client,")
         retval.append("        deserialization_callback=get_long_running_output")
         retval.append("    )")
-        retval.append("else:")
         retval.append(
-            f"    return {self._poller(builder)}"
+            f"return {self._poller(builder)}"
             "(self._client, raw_result, get_long_running_output, polling_method)"
         )
         return retval
@@ -1335,7 +1353,7 @@ class _SyncLROOperationBaseSerializer(_LROOperationBaseSerializer, _SyncOperatio
 
     @property
     def _polling_method_type(self):
-        return "azure.core.polling.PollingMethod"
+        return "PollingMethod"
 
     def _poller(self, builder) -> str:
         return builder.get_poller(async_mode=False)
@@ -1368,7 +1386,7 @@ class AsyncLROOperationSerializer(_LROOperationBaseSerializer, AsyncOperationSer
 
     @property
     def _polling_method_type(self):
-        return "azure.core.polling.AsyncPollingMethod"
+        return "AsyncPollingMethod"
 
     def _poller(self, builder) -> str:
         return builder.get_poller(async_mode=True)
@@ -1383,8 +1401,7 @@ class _LROPagingOperationBaseSerializer(_LROOperationBaseSerializer, _PagingOper
         retval.append(f"    {self._def} internal_get_next(next_link=None):")
         retval.append("        if next_link is None:")
         retval.append("            return pipeline_response")
-        retval.append("        else:")
-        retval.append(f"            return {self._call_method}get_next(next_link)")
+        retval.append(f"        return {self._call_method}get_next(next_link)")
         retval.append("")
         retval.append(f"    return {self._pager(builder)}(")
         retval.append("        internal_get_next, extract_data")

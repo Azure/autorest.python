@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -35,10 +36,10 @@ def build_get_request(
     """
 
     # Construct URL
-    url = '/parameterizedEndpoint/get'
+    _url = "/parameterizedEndpoint/get"
 
     return HttpRequest(
         method="GET",
-        url=url,
+        url=_url,
         **kwargs
     )

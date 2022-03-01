@@ -7,8 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from azure.core.rest import HttpRequest
 from msrest import Serializer
+
+from azure.core.rest import HttpRequest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -32,10 +33,10 @@ def build_create_ap_true_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.
+     our example to find the input shape.  Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
+     a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -47,14 +48,14 @@ def build_create_ap_true_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
@@ -64,18 +65,18 @@ def build_create_ap_true_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/additionalProperties/true'
+    _url = "/additionalProperties/true"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -90,10 +91,10 @@ def build_create_cat_ap_true_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.
+     our example to find the input shape.  Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
+     a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -106,7 +107,7 @@ def build_create_cat_ap_true_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "friendly": bool,  # Optional.
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
@@ -114,7 +115,7 @@ def build_create_cat_ap_true_request(
             # response body for status code(s): 200
             response.json() == {
                 "friendly": bool,  # Optional.
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
@@ -124,18 +125,18 @@ def build_create_cat_ap_true_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/additionalProperties/true-subclass'
+    _url = "/additionalProperties/true-subclass"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -150,10 +151,10 @@ def build_create_ap_object_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.
+     our example to find the input shape.  Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
+     a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -165,14 +166,14 @@ def build_create_ap_object_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
@@ -182,18 +183,18 @@ def build_create_ap_object_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/additionalProperties/type/object'
+    _url = "/additionalProperties/type/object"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -208,10 +209,10 @@ def build_create_ap_string_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.
+     our example to find the input shape.  Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
+     a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -223,14 +224,14 @@ def build_create_ap_string_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
@@ -240,18 +241,18 @@ def build_create_ap_string_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/additionalProperties/type/string'
+    _url = "/additionalProperties/type/string"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -266,10 +267,10 @@ def build_create_ap_in_properties_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.
+     our example to find the input shape.  Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
+     a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -281,14 +282,14 @@ def build_create_ap_in_properties_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
@@ -298,18 +299,18 @@ def build_create_ap_in_properties_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/additionalProperties/in/properties'
+    _url = "/additionalProperties/in/properties"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -324,10 +325,10 @@ def build_create_ap_in_properties_with_ap_string_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.
+     our example to find the input shape.  Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).
+     a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -339,22 +340,22 @@ def build_create_ap_in_properties_with_ap_string_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "@odata.location": "str",  # Required. 
+                "@odata.location": "str",  # Required.
                 "additionalProperties": {
                     "str": 0.0  # Optional. Dictionary of :code:`<number>`.
                 },
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
 
             # response body for status code(s): 200
             response.json() == {
-                "@odata.location": "str",  # Required. 
+                "@odata.location": "str",  # Required.
                 "additionalProperties": {
                     "str": 0.0  # Optional. Dictionary of :code:`<number>`.
                 },
-                "id": 0,  # Required. 
+                "id": 0,  # Required.
                 "name": "str",  # Optional.
                 "status": bool  # Optional.
             }
@@ -364,17 +365,17 @@ def build_create_ap_in_properties_with_ap_string_request(
 
     accept = "application/json"
     # Construct URL
-    url = '/additionalProperties/in/properties/with/additionalProperties/string'
+    _url = "/additionalProperties/in/properties/with/additionalProperties/string"
 
     # Construct headers
-    header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
-        url=url,
-        headers=header_parameters,
+        url=_url,
+        headers=_header_parameters,
         **kwargs
     )

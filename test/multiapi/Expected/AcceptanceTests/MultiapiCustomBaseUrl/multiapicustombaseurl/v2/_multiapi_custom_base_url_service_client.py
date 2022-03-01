@@ -9,8 +9,9 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
+
+from azure.core import PipelineClient
 
 from . import models
 from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
@@ -30,8 +31,8 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
     :type credential: ~azure.core.credentials.TokenCredential
     :param endpoint: Pass in https://localhost:3000.
     :type endpoint: str
-    :keyword api_version: Api Version. The default value is "2.0.0". Note that overriding this
-     default value may result in unsupported behavior.
+    :keyword api_version: Api Version. Default value is "2.0.0". Note that overriding this default
+     value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

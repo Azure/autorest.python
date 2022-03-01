@@ -7,11 +7,12 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
+
+from msrest import Deserializer, Serializer
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
-from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestComplexTestServiceConfiguration
 from .operations import (
@@ -31,7 +32,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestComplexTestService:
+class AutoRestComplexTestService:  # pylint: disable=too-many-instance-attributes
     """Test Infrastructure for AutoRest.
 
     :ivar basic: BasicOperations operations
@@ -52,9 +53,9 @@ class AutoRestComplexTestService:
     :vartype readonlyproperty: bodycomplexpython3only.operations.ReadonlypropertyOperations
     :ivar flattencomplex: FlattencomplexOperations operations
     :vartype flattencomplex: bodycomplexpython3only.operations.FlattencomplexOperations
-    :keyword endpoint: Service URL. Default value is 'http://localhost:3000'.
+    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
-    :keyword api_version: Api Version. The default value is "2016-02-29". Note that overriding this
+    :keyword api_version: Api Version. Default value is "2016-02-29". Note that overriding this
      default value may result in unsupported behavior.
     :paramtype api_version: str
     """
@@ -81,11 +82,7 @@ class AutoRestComplexTestService:
         )
         self.flattencomplex = FlattencomplexOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(
-        self,
-        request,  # type: HttpRequest
-        **kwargs: Any
-    ) -> HttpResponse:
+    def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
