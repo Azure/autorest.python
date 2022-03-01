@@ -39,13 +39,12 @@ def send_request(client, base_send_request):
     return _send_request
 
 def test_create_secret(send_request):
-    # The actual test shouldn't have the secrets in the str output
-    # Until we figure out what to do for Python, just asserting
-    # what the string currently is for now.
-    request = rest.build_create_secret_request()
-    with pytest.raises(HttpResponseError) as ex:
-        send_request(request)
-    assert "1c88a67921784300a462b2cb61da2339" in str(ex.value)
+    request = rest.build_create_secret_request(
+        headers={"authorization": "SharedKey 1c88a67921784300a462b2cb61da2339"},
+        params={"key": "1c88a67921784300a462b2cb61da2339"},
+        json={ "key": "1c88a67921784300a462b2cb61da2339" },
+    )
+    send_request(request)
 
 def test_raise_error_with_secrets(send_request):
     request = rest.build_get_error_with_secrets_request()

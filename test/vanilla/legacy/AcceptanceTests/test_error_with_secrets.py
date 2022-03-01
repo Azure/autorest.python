@@ -25,6 +25,7 @@
 # --------------------------------------------------------------------------
 import pytest
 from errorwithsecrets import ErrorWithSecrets
+from errorwithsecrets.operations._errorwith_secrets_operations import build_create_secret_request
 from azure.core.exceptions import HttpResponseError
 
 @pytest.fixture
@@ -34,12 +35,13 @@ def client():
 
 
 def test_create_secret(client):
-    with pytest.raises(HttpResponseError) as ex:
-        client.create_secret()
-    # The actual test shouldn't have the secrets in the str output
-    # Until we figure out what to do for Python, just asserting
-    # what the string currently is for now.
-    assert "1c88a67921784300a462b2cb61da2339" in str(ex.value)
+    request = build_create_secret_request(
+        headers={"authorization": "SharedKey 1c88a67921784300a462b2cb61da2339"},
+        params={"key": "1c88a67921784300a462b2cb61da2339"},
+        json={ "key": "1c88a67921784300a462b2cb61da2339" },
+    )
+    response = client._send_request(request)
+    response.raise_for_status()
 
 def test_raise_error_with_secrets(client):
     with pytest.raises(HttpResponseError) as ex:
