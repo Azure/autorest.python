@@ -66,11 +66,11 @@ jobs:
           npm install -g autorest
           npm install
         displayName: 'Prepare Environment for Generation'
-      
+
 
       - ${{ if eq(and(ne(variables['Build.Reason'], 'PullRequest'), ne(variables['PythonVersion'], '2.7')), 'True') }}:
         - script: |
-            git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 $(Build.SourcesDirectory)/regenerated/
+            git clone https://github.com/Azure/azure-sdk-for-python.git $(Build.SourcesDirectory)/regenerated/
           displayName: 'Clone python repo'
 
         - script: |
