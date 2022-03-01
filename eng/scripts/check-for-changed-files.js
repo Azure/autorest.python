@@ -16,14 +16,8 @@ if (proc.stderr) {
 }
 
 if (proc.stdout || proc.stderr) {
-  if (process.argv[2] !== "publish") {
-    console.error(
-      `ERROR: There are diffs in regeneration. Please run 'inv regenerate' and re-run.`,
-    );
-  } else {
-    console.error(
-        `ERROR: There are diffs in regeneration. Please run 'inv regenerate' and re-run.`,
-    );
-  }
+  console.error(
+    `ERROR: There are diffs in regeneration. Please run 'inv regenerate' and re-run. You may also have to remove 'node_modules' and re-run 'npm install' to get the latest testserver.`,
+  );
   process.exit(1);
 }
