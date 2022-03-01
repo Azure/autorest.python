@@ -24,6 +24,15 @@ parameters:
     - name: azure-storage-blob
       service: storage
       branchName: feature/storage-autorest
+    - name: azure-storage-queue
+      service: storage
+      branchName: feature/storage-autorest
+    - name: azure-storage-file-datalake
+      service: storage
+      branchName: feature/storage-autorest
+    - name: azure-storage-file-share
+      service: storage
+      branchName: feature/storage-autorest
 
 jobs:
   - job: "AutoRest_Python_CI"
