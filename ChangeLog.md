@@ -14,7 +14,7 @@
 
 - Add default value consistently for parameters #1164
 - Make `content_type` param keyword-only if there are multiple content types #1167
-- Add default-optional-constants-to-none option for optional constant parameters #1171
+- Add flag `--default-optional-constants-to-none` for optional constant parameters #1171
 
 ### 2022-02-09 - 5.12.6
 
