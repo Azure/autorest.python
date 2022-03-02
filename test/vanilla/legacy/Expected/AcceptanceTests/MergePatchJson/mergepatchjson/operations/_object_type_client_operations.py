@@ -30,11 +30,10 @@ if TYPE_CHECKING:
 
     T = TypeVar("T")
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 # fmt: off
-
-
 
 def build_patch_single_request(
     **kwargs  # type: Any
@@ -100,6 +99,7 @@ class ObjectTypeClientOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize("object", pipeline_response)
             raise HttpResponseError(response=response, model=error)
+
         if cls:
             return cls(pipeline_response, None, {})
 

@@ -118,6 +118,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
                 description += f" Default value is {self.default_value_declaration}."
             if self.constant:
                 description += " Note that overriding this default value may result in unsupported behavior."
+            elif isinstance(self.schema, ConstantSchema):
+                schema_value_declaration = self.schema.get_declaration(self.schema.value)
+                if schema_value_declaration != self.default_value_declaration:
+                    description += f" Another value candidate is {schema_value_declaration}."
             return description
         except AttributeError:
             pass
@@ -326,7 +330,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
 
     @property
     def is_content_type(self) -> bool:
-        return self.serialized_name == "content_type" and self.location.value == "header"
+        return self.rest_api_name == "Content-Type" and self.location == ParameterLocation.Header
 
     @property
     def is_positional(self) -> bool:
