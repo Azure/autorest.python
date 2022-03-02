@@ -65,7 +65,6 @@ class TestAcceptance(object):
             "animalNotFoundError": 1,
             "linkNotFoundError": 1,
             "putEnumReferencedConstant": 1,  # can't do constants on body
-            "ErrorWithSecrets": 1,  # skip for now
         }
 
         print("Coverage:")
