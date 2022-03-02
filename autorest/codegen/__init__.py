@@ -123,7 +123,6 @@ class CodeGenerator(Plugin):
         return {
             "dependency_azure_mgmt_core": "azure-mgmt-core>=1.3.0,<2.0.0",
             "dependency_azure_core": "azure-core<2.0.0,>=1.20.1",
-            "dependency_azure_common": "azure-common~=1.1",
             "dependency_msrest": "msrest>=0.6.21",
         }
 

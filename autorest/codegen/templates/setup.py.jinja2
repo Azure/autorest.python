@@ -82,11 +82,9 @@ setup(
     {% endif %}
     install_requires=[
         "{{ dependency_msrest }}",
-        {% if azure_arm %}
-        "{{ dependency_azure_common }}",
-        "{{ dependency_azure_mgmt_core }}",
-        {% else %}
         "{{ dependency_azure_core }}",
+        {% if azure_arm %}
+        "{{ dependency_azure_mgmt_core }}",
         {% endif %}
     ],
     {% if package_mode %}
