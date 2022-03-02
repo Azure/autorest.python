@@ -10,6 +10,10 @@
 |`msrest` dep of generated code | `0.6.21`
 |`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
 
+**Breaking Changes**
+
+- Drop support for Python 2.7
+
 **Bug Fixes**
 
 - Add default value consistently for parameters #1164
