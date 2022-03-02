@@ -29,6 +29,7 @@ azure-core==1.20.1
 -e ./Expected/AcceptanceTests/ConstantsVersionTolerant/
 -e ./Expected/AcceptanceTests/CustomBaseUriVersionTolerant
 -e ./Expected/AcceptanceTests/CustomBaseUriMoreOptionsVersionTolerant
+-e ./Expected/AcceptanceTests/ErrorWithSecretsVersionTolerant/
 -e ./Expected/AcceptanceTests/ExtensibleEnumsVersionTolerant
 -e ./Expected/AcceptanceTests/HeaderVersionTolerant
 -e ./Expected/AcceptanceTests/HttpVersionTolerant
