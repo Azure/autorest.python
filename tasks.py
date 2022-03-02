@@ -42,6 +42,7 @@ _VANILLA_SWAGGER_MAPPINGS = {
     'BodyNumber': 'body-number.json',
     'BodyString': 'body-string.json',
     'BodyTime': 'body-time.json',
+    'ErrorWithSecrets': 'error-with-secrets.json',
     'ExtensibleEnums': 'extensible-enums-swagger.json',
     'Header': 'header.json',
     'Http': 'httpInfrastructure.json',
