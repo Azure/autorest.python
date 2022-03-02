@@ -1,6 +1,6 @@
 # Change Log
 
-### 2022-xx-xx - 5.12.7
+### 2022-03-02 - 5.13.0
 
 | Library | Min Version
 | --------------- | -------
@@ -14,6 +14,10 @@
 
 - Add default value consistently for parameters #1164
 - Make `content_type` param keyword-only if there are multiple content types #1167
+
+**Other Changes**
+
+- Drop testing support for 2.7 packages #1175
 
 ### 2022-02-09 - 5.12.6
 

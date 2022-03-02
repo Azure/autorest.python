@@ -95,9 +95,5 @@ class TestXmsRequestClientId(object):
     def test_models(self):
         from azurespecialproperties.models import Error
 
-        if sys.version_info >= (3,5):
-            from azurespecialproperties.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from azurespecialproperties.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+        from azurespecialproperties.models._models_py3 import Error as ErrorPy3
+        assert Error == ErrorPy3

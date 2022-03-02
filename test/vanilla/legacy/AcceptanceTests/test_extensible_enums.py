@@ -76,12 +76,8 @@ class TestExtensibleEnums(object):
     def test_models(self):
         from extensibleenumsswagger.models import Pet
 
-        if sys.version_info >= (3,5):
-            from extensibleenumsswagger.models._models_py3 import Pet as PetPy3
-            assert Pet == PetPy3
-        else:
-            from extensibleenumsswagger.models._models import Pet as PetPy2
-            assert Pet == PetPy2
+        from extensibleenumsswagger.models._models_py3 import Pet as PetPy3
+        assert Pet == PetPy3
 
     def test_operation_groups(self):
         from extensibleenumsswagger.operations import PetOperations

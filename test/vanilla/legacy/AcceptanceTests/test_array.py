@@ -284,18 +284,14 @@ class TestArray(object):
     def test_models(self):
         from bodyarray.models import Error
 
-        if sys.version_info >= (3,5):
-            from bodyarray.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from bodyarray.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+        from bodyarray.models._models_py3 import Error as ErrorPy3
+        assert Error == ErrorPy3
 
     def test_operation_groups(self):
         from bodyarray.operations import ArrayOperations
 
         with pytest.raises(ImportError):
             from bodyarray.operations import _array_operations_py3
-            
+
         from bodyarray.operations._array_operations import ArrayOperations as ArrayOperationsPy2
         assert ArrayOperations == ArrayOperationsPy2
