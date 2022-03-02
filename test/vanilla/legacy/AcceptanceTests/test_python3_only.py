@@ -26,7 +26,6 @@
 import sys
 import pytest
 
-@pytest.mark.skipif(sys.version_info < (3, 0), reason="This is python3 only")
 def test_models():
     from bodycomplexpython3only.models import Error
     from bodycomplexpython3only.models._models_py3 import Error as ErrorPy3
@@ -37,7 +36,6 @@ def test_models():
     with pytest.raises(ImportError):
         from bodycomplexpython3only.models._models import Error
 
-@pytest.mark.skipif(sys.version_info < (3, 0), reason="This is python3 only")
 def test_operation_groups():
     from bodycomplexpython3only.operations import ArrayOperations
     from bodycomplexpython3only.operations._array_operations import ArrayOperations as ArrayOperationsPy3
