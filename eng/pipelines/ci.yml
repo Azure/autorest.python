@@ -20,6 +20,19 @@ parameters:
     default:
     - name: azure-messaging-webpubsubservice
       service: webpubsub
+      branchName: main
+    - name: azure-storage-blob
+      service: storage
+      branchName: feature/storage-autorest
+    - name: azure-storage-queue
+      service: storage
+      branchName: feature/storage-autorest
+    - name: azure-storage-file-datalake
+      service: storage
+      branchName: feature/storage-autorest
+    - name: azure-storage-file-share
+      service: storage
+      branchName: feature/storage-autorest
 
 jobs:
   - job: "AutoRest_Python_CI"
@@ -204,7 +217,7 @@ jobs:
 
       - ${{ if eq(ne(variables['Build.Reason'], 'PullRequest'), 'True') }}:
         - script: |
-            git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch main $(Build.SourcesDirectory)/regenerated/
+            git clone https://github.com/Azure/azure-sdk-for-python.git $(Build.SourcesDirectory)/regenerated/
           displayName: 'Clone python repo'
 
         - script: |
@@ -214,6 +227,8 @@ jobs:
 
         - ${{ each package in parameters.VerificationPackages }}:
           - script: |
+              git fetch origin
+              git checkout ${{ package.branchName }}
               autorest ./swagger/README.md --use=$(Build.SourcesDirectory)
             displayName: 'Regenerate target package ${{ package.name }}'
             workingDirectory: '$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}'
