@@ -847,7 +847,6 @@ class StorageAccountsOperations(object):
 
                 request = build_list_request(
                     subscription_id=self._config.subscription_id,
-                    api_version=api_version,
                     template_url=next_link,
                 )
                 request = _convert_request(request)
@@ -921,7 +920,6 @@ class StorageAccountsOperations(object):
                 request = build_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
-                    api_version=api_version,
                     template_url=next_link,
                 )
                 request = _convert_request(request)
