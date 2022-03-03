@@ -1,25 +1,5 @@
 # Change Log
 
-### 2022-03-xx - 5.14.0
-
-| Library                                                                 | Min Version |
-| ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.6.2`     |
-| `@autorest/modelerfour`                                                 | `4.19.1`    |
-| `azure-core` dep of generated code                                      | `1.20.1`    |
-| `msrest` dep of generated code                                          | `0.6.21`    |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
-
-**Breaking Changes in Version Tolerant Generation**
-
-- Version tolerant paging does not reformat initial query parameters into the next link #1168
-
-**New Features**
-
-- Add flag `--reformat-next-link` that defaults to `True`. This flag determines whether we reformat query parameters
-  for next link for paging defined with a single operation in the swagger. Forced to `True` for version tolerant
-  generations #1168
-
 ### 2022-03-03 - 5.13.0
 
 | Library                                                                 | Min Version |
@@ -33,10 +13,12 @@
 **Breaking Changes in Version Tolerant Generation**
 
 - We now generate with optional constant parameters as None by defaulting `--default-optional-constants-to-none` to True #1171
+- Version tolerant paging does not reformat initial query parameters into the next link #1168
 
 **New Features**
 
 - Add flag `--default-optional-constants-to-none` with which optional constant parameters is default to None #1171
+- Add flag `--reformat-next-link`, determines whether we reformat initial query parameters into the next link. Defaults to `True` for the GA generator, forced to `False` for `--version-tolerant`.
 
 **Bug Fixes**
 
