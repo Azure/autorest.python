@@ -1,6 +1,6 @@
 # Change Log
 
-### 2022-xx-xx - 5.12.7
+### 2022-03-03 - 5.13.0
 
 | Library | Min Version
 | --------------- | -------
@@ -10,10 +10,22 @@
 |`msrest` dep of generated code | `0.6.21`
 |`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
 
+**Breaking Changes in Version Tolerant Generation**
+
+- We now generate with optional constant parameters as None by defaulting `--default-optional-constants-to-none` to True #1171
+
+**New Features**
+
+- Add flag `--default-optional-constants-to-none` with which optional constant parameters is default to None #1171
+
 **Bug Fixes**
 
 - Add default value consistently for parameters #1164
 - Make `content_type` param keyword-only if there are multiple content types #1167
+
+**Other Changes**
+
+- Drop testing support for 2.7 packages #1175
 
 ### 2022-02-09 - 5.12.6
 
