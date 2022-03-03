@@ -76,6 +76,12 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             "If you want operation files, pass in flag --show-operations"
         )
 
+    if options["reformat_next_link"] and options["version_tolerant"]:
+        raise ValueError(
+            "--reformat-next-link can not be true for version tolerant generations. "
+            "Please remove --reformat-next-link from your call for version tolerant generations."
+        )
+
 _LOGGER = logging.getLogger(__name__)
 class CodeGenerator(Plugin):
     @staticmethod
@@ -292,6 +298,7 @@ class CodeGenerator(Plugin):
             "default_optional_constants_to_none": self._autorestapi.get_boolean_value(
                 "default-optional-constants-to-none", low_level_client or version_tolerant
             ),
+            "reformat_next_link": self._autorestapi.get_boolean_value("reformat-next-link", not version_tolerant)
         }
 
         if options["builders_visibility"] is None:
