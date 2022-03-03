@@ -62,13 +62,13 @@ def python_run(venv_context, module, command=None, *, additional_dir=".", error_
             venv_context.env_exe,
             "-m", module
         ] + (command if command else [])
-        print("Executing: {}".format(" ".join(cmd_line)), file=sys.stderr)
+        print("Executing: {}".format(" ".join(cmd_line)))
         subprocess.run(
             cmd_line,
             cwd=_ROOT_DIR / additional_dir,
             check=True,
         )
     except subprocess.CalledProcessError as err:
-        print(err, file=sys.stderr)
+        print(err)
         if not error_ok:
             sys.exit(1)
