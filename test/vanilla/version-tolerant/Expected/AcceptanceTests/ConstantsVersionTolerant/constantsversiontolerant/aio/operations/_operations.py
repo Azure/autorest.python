@@ -140,7 +140,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input:  Default value is None. Another value candidate is "value1".
+        :keyword input: Possible values are "value1" or None. Default value is None.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -175,7 +175,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input:  Default value is "value1".
+        :keyword input: Possible values are "value1" or None. Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
