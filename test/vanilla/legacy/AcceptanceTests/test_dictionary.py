@@ -308,12 +308,8 @@ class TestDictionary(object):
     def test_models(self):
         from bodydictionary.models import Error
 
-        if sys.version_info >= (3,5):
-            from bodydictionary.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from bodydictionary.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+        from bodydictionary.models._models_py3 import Error as ErrorPy3
+        assert Error == ErrorPy3
 
     def test_operation_groups(self):
         from bodydictionary.operations import DictionaryOperations

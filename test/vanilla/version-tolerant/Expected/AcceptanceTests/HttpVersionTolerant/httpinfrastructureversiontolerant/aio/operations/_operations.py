@@ -375,11 +375,12 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def put200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Put boolean value true returning 200 success.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -416,11 +417,12 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def patch200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returning 200.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -457,11 +459,12 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def post200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Post bollean value true in request that returns a 200.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -498,11 +501,12 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def delete200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Delete simple boolean value true returns 200.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -539,11 +543,12 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def put201(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 201.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -580,11 +585,12 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def post201(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 201 (Created).
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -621,11 +627,12 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def put202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 202 (Accepted).
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -662,11 +669,12 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def patch202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 202.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -703,11 +711,12 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def post202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 202 (Accepted).
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -744,11 +753,12 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def delete202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -812,11 +822,12 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def put204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -853,11 +864,12 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def patch204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -894,11 +906,12 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def post204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -935,11 +948,12 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def delete204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Delete true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1162,12 +1176,13 @@ class HttpRedirectsOperations:
 
     @distributed_trace_async
     async def put301(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 301.  This request should not be automatically
         redirected, but should return the received 301 to the caller for evaluation.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1269,12 +1284,13 @@ class HttpRedirectsOperations:
 
     @distributed_trace_async
     async def patch302(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 302.  This request should not be automatically
         redirected, but should return the received 302 to the caller for evaluation.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1314,12 +1330,13 @@ class HttpRedirectsOperations:
 
     @distributed_trace_async
     async def post303(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 303.  This request should be automatically
         redirected usign a get, ultimately returning a 200 status code.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1453,11 +1470,12 @@ class HttpRedirectsOperations:
 
     @distributed_trace_async
     async def put307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Put redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1498,11 +1516,12 @@ class HttpRedirectsOperations:
 
     @distributed_trace_async
     async def patch307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Patch redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1543,11 +1562,12 @@ class HttpRedirectsOperations:
 
     @distributed_trace_async
     async def post307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Post redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1588,11 +1608,12 @@ class HttpRedirectsOperations:
 
     @distributed_trace_async
     async def delete307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Delete redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1733,11 +1754,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1774,11 +1796,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def patch400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1815,11 +1838,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1856,11 +1880,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def delete400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2005,11 +2030,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put404(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 404 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2046,11 +2072,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def patch405(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 405 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2087,11 +2114,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post406(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 406 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2128,11 +2156,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def delete407(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 407 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2169,11 +2198,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put409(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 409 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2318,11 +2348,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put413(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 413 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2359,11 +2390,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def patch414(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 414 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2400,11 +2432,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post415(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 415 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2468,11 +2501,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def delete417(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 417 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2609,11 +2643,12 @@ class HttpServerFailureOperations:
 
     @distributed_trace_async
     async def post505(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2650,11 +2685,12 @@ class HttpServerFailureOperations:
 
     @distributed_trace_async
     async def delete505(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2737,11 +2773,12 @@ class HttpRetryOperations:
 
     @distributed_trace_async
     async def put500(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 500 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2778,11 +2815,12 @@ class HttpRetryOperations:
 
     @distributed_trace_async
     async def patch500(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 500 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2880,11 +2918,12 @@ class HttpRetryOperations:
 
     @distributed_trace_async
     async def post503(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 503 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2921,11 +2960,12 @@ class HttpRetryOperations:
 
     @distributed_trace_async
     async def delete503(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 503 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2962,11 +3002,12 @@ class HttpRetryOperations:
 
     @distributed_trace_async
     async def put504(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 504 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3003,11 +3044,12 @@ class HttpRetryOperations:
 
     @distributed_trace_async
     async def patch504(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: Optional[bool] = None, **kwargs: Any
     ) -> None:
         """Return 504 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None

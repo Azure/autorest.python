@@ -57,11 +57,6 @@ def testserver():
     yield
     terminate_server_process(server)
 
-# Ignore collection of async tests for Python 2
-collect_ignore = []
-if sys.version_info < (3,5):
-    collect_ignore.append("asynctests")
-
 @pytest.fixture()
 def base_send_request():
     def send_request(client, request, **kwargs):

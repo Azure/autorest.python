@@ -49,7 +49,6 @@ def test_string_body_content_type_kwarg():
     request = build_analyze_body_request(content="hello", content_type="text/plain")
     assert request.headers["Content-Type"] == "text/plain"
 
-@pytest.mark.skipif(sys.version_info < (3, 0), reason="bytes are strings in 2.7")
 def test_io_body_no_content_type_kwarg():
     request = build_analyze_body_request(content=b"PDF")
     assert not request.headers.get("Content-Type")

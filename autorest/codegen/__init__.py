@@ -289,6 +289,9 @@ class CodeGenerator(Plugin):
             "low_level_client": low_level_client,
             "combine_operation_files": self._autorestapi.get_boolean_value("combine-operation-files", version_tolerant),
             "python3_only": python3_only,
+            "default_optional_constants_to_none": self._autorestapi.get_boolean_value(
+                "default-optional-constants-to-none", low_level_client or version_tolerant
+            ),
         }
 
         if options["builders_visibility"] is None:

@@ -379,6 +379,7 @@ class TestHttp(object):
     @pytest.mark.asyncio
     async def test_redirect_to_300(self, client):
         await self.assert_status(200, client.http_redirects.get300)
+        await self.assert_status(200, client.http_redirects.head300)
 
     @pytest.mark.asyncio
     async def test_redirect_to_301(self, client):

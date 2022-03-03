@@ -177,12 +177,8 @@ class TestXml(object):
     def test_models(self):
         from xmlservice.models import Error
 
-        if sys.version_info >= (3,5):
-            from xmlservice.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from xmlservice.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+        from xmlservice.models._models_py3 import Error as ErrorPy3
+        assert Error == ErrorPy3
 
     def test_xms_text(self, client):
         xml_object = client.xml.get_xms_text()
