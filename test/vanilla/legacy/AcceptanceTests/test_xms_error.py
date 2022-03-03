@@ -129,12 +129,8 @@ class TestXmsErrorResponse(object):
     def test_models(self):
         from xmserrorresponse.models import Animal
 
-        if sys.version_info >= (3,5):
-            from xmserrorresponse.models._models_py3 import Animal as AnimalPy3
-            assert Animal == AnimalPy3
-        else:
-            from xmserrorresponse.models._models import Animal as AnimalPy2
-            assert Animal == AnimalPy2
+        from xmserrorresponse.models._models_py3 import Animal as AnimalPy3
+        assert Animal == AnimalPy3
 
     def test_operation_groups(self):
         from xmserrorresponse.operations import PetOperations

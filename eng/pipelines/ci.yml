@@ -27,10 +27,6 @@ jobs:
 
     strategy:
       matrix:
-        Linux_Python27:
-          OSName: "Linux"
-          OSVmImage: "MMSUbuntu20.04"
-          PythonVersion: "2.7"
         Linux_Python37:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"
@@ -74,10 +70,8 @@ jobs:
       - script: |
           inv regenerate
         displayName: 'Regenerate Code'
-      - script: |
-          git add -A  # 'add' first so 'diff' includes untracked files
-          git diff --staged -w
-        displayName: 'Diff regeneration'
+      - script: node ./eng/scripts/check-for-changed-files.js
+        displayName: Fail on regeneration diff
       - task: UsePythonVersion@0
         displayName: 'Use Python $(PythonVersion)'
         inputs:
@@ -102,9 +96,9 @@ jobs:
           cd $(TestFolder)/azure/low-level
           tox -e ci
         displayName: 'Execute low-level "azure" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+        condition: succeededOrFailed()
       - task: PublishTestResults@2
-        condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+        condition: succeededOrFailed()
         displayName: 'Publish low-level "azure" Test Results'
         inputs:
           testRunTitle: "$(OSName) Python $(PythonVersion) - low-level azure"
@@ -114,9 +108,9 @@ jobs:
           cd $(TestFolder)/azure/version-tolerant
           tox -e ci
         displayName: 'Execute version-tolerant "azure" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+        condition: succeededOrFailed()
       - task: PublishTestResults@2
-        condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+        condition: succeededOrFailed()
         displayName: 'Publish version-tolerant "azure" Test Results'
         inputs:
           testRunTitle: "$(OSName) Python $(PythonVersion) - version-tolerant azure"
@@ -143,10 +137,10 @@ jobs:
           cd $(TestFolder)/vanilla/low-level
           tox -e ci
         displayName: 'Execute low level "vanilla" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+        condition: succeededOrFailed()
       - task: PublishTestResults@2
         displayName: 'Publish low level "vanilla" Test Results'
-        condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+        condition: succeededOrFailed()
         inputs:
           testRunTitle: "$(OSName) Python $(PythonVersion) - low level vanilla"
           searchFolder: "$(TestFolder)/vanilla/low-level"
@@ -155,10 +149,10 @@ jobs:
           cd $(TestFolder)/vanilla/version-tolerant
           tox -e ci
         displayName: 'Execute version-tolerant "vanilla" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+        condition: succeededOrFailed()
       - task: PublishTestResults@2
         displayName: 'Publish version-tolerant "vanilla" Test Results'
-        condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+        condition: succeededOrFailed()
         inputs:
           testRunTitle: "$(OSName) Python $(PythonVersion) - version-tolerant vanilla"
           searchFolder: "$(TestFolder)/vanilla/version-tolerant"
@@ -173,12 +167,12 @@ jobs:
           cd $(TestFolder)/dpg/low-level
           tox -e ci
         displayName: 'Execute low level update "dpg" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+        condition: succeededOrFailed()
       - script: |
           cd $(TestFolder)/dpg/version-tolerant
           tox -e ci
         displayName: 'Execute version-tolerant update "dpg" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), ne(variables['PythonVersion'], '2.7'))
+        condition: succeededOrFailed()
       - script: |
           cd $(TestFolder)/dpg/version-tolerant
           tox -e lint
@@ -208,7 +202,7 @@ jobs:
         displayName: "Publish coverage report to storage account"
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
 
-      - ${{ if eq(and(ne(variables['Build.Reason'], 'PullRequest'), ne(variables['PythonVersion'], '2.7')), 'True') }}:
+      - ${{ if eq(ne(variables['Build.Reason'], 'PullRequest'), 'True') }}:
         - script: |
             git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch main $(Build.SourcesDirectory)/regenerated/
           displayName: 'Clone python repo'

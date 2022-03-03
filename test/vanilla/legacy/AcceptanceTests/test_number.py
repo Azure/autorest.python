@@ -107,12 +107,8 @@ class TestNumber(object):
     def test_models(self):
         from bodynumber.models import Error
 
-        if sys.version_info >= (3,5):
-            from bodynumber.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from bodynumber.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+        from bodynumber.models._models_py3 import Error as ErrorPy3
+        assert Error == ErrorPy3
 
     def test_operation_groups(self):
         from bodynumber.operations import NumberOperations
