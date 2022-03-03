@@ -842,11 +842,12 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             if (
                 is_next_request and
                 not bool(builder.next_request_builder) and
-                self.code_model.options["version_tolerant"] and
+                not self.code_model.options["reformat_next_link"] and
                 parameter.location == ParameterLocation.Query
             ):
-                # for version tolerant, we don't want to reformat query parameters if
-                # there is just one defined paging operation in the swagger
+                # if we don't want to reformat query parameters for next link calls
+                # in paging operations with a single swagger operation defintion,
+                # we skip passing query params when building the next request
                 continue
             high_level_name = cast(RequestBuilderParameter, parameter).name_in_high_level_operation
             retval.append(f"    {parameter.serialized_name}={high_level_name},")
