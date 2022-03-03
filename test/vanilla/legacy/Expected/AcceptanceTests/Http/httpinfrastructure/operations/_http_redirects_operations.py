@@ -585,7 +585,8 @@ class HttpRedirectsOperations(object):
         """Put true Boolean value in request returns 301.  This request should not be automatically
         redirected, but should return the received 301 to the caller for evaluation.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -721,7 +722,8 @@ class HttpRedirectsOperations(object):
         """Patch true Boolean value in request returns 302.  This request should not be automatically
         redirected, but should return the received 302 to the caller for evaluation.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -775,7 +777,8 @@ class HttpRedirectsOperations(object):
         """Post true Boolean value in request returns 303.  This request should be automatically
         redirected usign a get, ultimately returning a 200 status code.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -952,7 +955,8 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Put redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1006,7 +1010,8 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Patch redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1060,7 +1065,8 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Post redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1114,7 +1120,8 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Delete redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

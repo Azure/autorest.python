@@ -134,13 +134,13 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = "value1", **kwargs: Any
+        self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :keyword input:  Default value is "value1".
+        :keyword input: Possible values are "value1" or None. Default value is None.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -175,7 +175,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input:  Default value is "value1".
+        :keyword input: Possible values are "value1" or None. Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None

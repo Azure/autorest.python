@@ -1,5 +1,23 @@
 # Change Log
 
+### 2022-xx-xx - 5.14.0
+
+| Library | Min Version
+| --------------- | -------
+|`@autorest/core` |  `3.6.2`
+|`@autorest/modelerfour` | `4.19.1`
+|`azure-core` dep of generated code | `1.20.1`
+|`msrest` dep of generated code | `0.6.21`
+|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+
+**Breaking Changes in Version Tolerant Generation**
+
+- We now generate with optional constant parameters as None by defaulting `--default-optional-constants-to-none` to True #1171
+
+**New Features**
+
+- Add flag `--default-optional-constants-to-none` with which optional constant parameters is default to None #1171
+
 ### 2022-03-02 - 5.13.0
 
 | Library | Min Version
