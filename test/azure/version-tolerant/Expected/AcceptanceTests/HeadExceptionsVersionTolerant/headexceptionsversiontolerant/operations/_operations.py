@@ -52,15 +52,12 @@ def build_head_exception_head404_request(**kwargs: Any) -> HttpRequest:
 
 
 class HeadExceptionOperations(object):
-    """HeadExceptionOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~headexceptionsversiontolerant.AutoRestHeadExceptionTestService`'s
+        :attr:`~headexceptionsversiontolerant.AutoRestHeadExceptionTestService.head_exception` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):

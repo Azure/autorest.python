@@ -406,15 +406,12 @@ def build_paging_get_paging_model_with_item_name_with_xms_client_name_request(**
 
 
 class PagingOperations(object):
-    """PagingOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~pagingversiontolerant.AutoRestPagingTestService`'s
+        :attr:`~pagingversiontolerant.AutoRestPagingTestService.paging` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):

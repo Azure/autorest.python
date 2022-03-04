@@ -338,15 +338,12 @@ def build_datetime_get_local_no_offset_min_date_time_request(**kwargs: Any) -> H
 
 
 class DatetimeOperations(object):  # pylint: disable=too-many-public-methods
-    """DatetimeOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~bodydatetimeversiontolerant.AutoRestDateTimeTestService`'s
+        :attr:`~bodydatetimeversiontolerant.AutoRestDateTimeTestService.datetime` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):

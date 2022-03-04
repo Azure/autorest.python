@@ -100,17 +100,12 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class ArrayOperations:  # pylint: disable=too-many-public-methods
-    """ArrayOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~vanilla.body.array.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~vanilla.body.array.aio.AutoRestSwaggerBATArrayService`'s
+        :attr:`~vanilla.body.array.aio.AutoRestSwaggerBATArrayService.array` attribute.
     """
 
     models = _models

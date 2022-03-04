@@ -29,17 +29,12 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class PolymorphicrecursiveOperations:
-    """PolymorphicrecursiveOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~bodycomplexpython3only.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~bodycomplexpython3only.aio.AutoRestComplexTestService`'s
+        :attr:`~bodycomplexpython3only.aio.AutoRestComplexTestService.polymorphicrecursive` attribute.
     """
 
     models = _models

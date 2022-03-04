@@ -33,17 +33,12 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class FormdataOperations:
-    """FormdataOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~bodyformdata.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~bodyformdata.aio.AutoRestSwaggerBATFormDataService`'s
+        :attr:`~bodyformdata.aio.AutoRestSwaggerBATFormDataService.formdata` attribute.
     """
 
     models = _models

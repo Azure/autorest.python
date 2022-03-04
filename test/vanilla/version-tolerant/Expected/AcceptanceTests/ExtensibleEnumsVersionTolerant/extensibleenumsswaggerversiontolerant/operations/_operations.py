@@ -66,15 +66,12 @@ def build_pet_add_pet_request(*, json: JSONType = None, content: Any = None, **k
 
 
 class PetOperations(object):
-    """PetOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~extensibleenumsswaggerversiontolerant.PetStoreInc`'s
+        :attr:`~extensibleenumsswaggerversiontolerant.PetStoreInc.pet` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):

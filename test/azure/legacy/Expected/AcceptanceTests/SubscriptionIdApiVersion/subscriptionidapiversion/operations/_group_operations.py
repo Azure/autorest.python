@@ -73,17 +73,12 @@ def build_get_sample_resource_group_request(
 
 # fmt: on
 class GroupOperations(object):
-    """GroupOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~subscriptionidapiversion.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~subscriptionidapiversion.MicrosoftAzureTestUrl`'s
+        :attr:`~subscriptionidapiversion.MicrosoftAzureTestUrl.group` attribute.
     """
 
     models = _models

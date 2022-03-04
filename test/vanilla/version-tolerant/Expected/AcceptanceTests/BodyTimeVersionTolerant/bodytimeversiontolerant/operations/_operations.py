@@ -60,15 +60,12 @@ def build_time_put_request(*, json: JSONType = None, content: Any = None, **kwar
 
 
 class TimeOperations(object):
-    """TimeOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~bodytimeversiontolerant.AutoRestTimeTestService`'s
+        :attr:`~bodytimeversiontolerant.AutoRestTimeTestService.time` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):

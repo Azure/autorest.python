@@ -61,17 +61,12 @@ def build_test_two_request(
 
 # fmt: on
 class OperationGroupOneOperations(object):
-    """OperationGroupOneOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~multiapi.v3.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~multiapi.v3.MultiapiServiceClient`'s
+        :attr:`~multiapi.v3.MultiapiServiceClient.operation_group_one` attribute.
     """
 
     models = _models

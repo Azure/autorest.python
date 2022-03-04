@@ -900,15 +900,12 @@ def build_dictionary_put_dictionary_valid_request(
 
 
 class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
-    """DictionaryOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~bodydictionaryversiontolerant.AutoRestSwaggerBATDictionaryService`'s
+        :attr:`~bodydictionaryversiontolerant.AutoRestSwaggerBATDictionaryService.dictionary` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):

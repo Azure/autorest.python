@@ -113,15 +113,12 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class LROsOperations:  # pylint: disable=too-many-public-methods
-    """LROsOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService`'s
+        :attr:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService.lros` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer) -> None:
@@ -5232,15 +5229,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
 
 class LRORetrysOperations:
-    """LRORetrysOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService`'s
+        :attr:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService.lro_retrys` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer) -> None:
@@ -6012,15 +6006,12 @@ class LRORetrysOperations:
 
 
 class LROSADsOperations:  # pylint: disable=too-many-public-methods
-    """LROSADsOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService`'s
+        :attr:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService.lrosads` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer) -> None:
@@ -8903,15 +8894,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
 
 class LROsCustomHeaderOperations:
-    """LROsCustomHeaderOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService`'s
+        :attr:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService.lr_os_custom_header` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer) -> None:

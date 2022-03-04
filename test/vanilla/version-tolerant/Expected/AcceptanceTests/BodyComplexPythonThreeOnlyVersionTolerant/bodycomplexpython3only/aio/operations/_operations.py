@@ -84,15 +84,12 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class BasicOperations:
-    """BasicOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~bodycomplexpython3only.aio.AutoRestComplexTestService`'s
+        :attr:`~bodycomplexpython3only.aio.AutoRestComplexTestService.basic` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer) -> None:
@@ -385,15 +382,12 @@ class BasicOperations:
 
 
 class PrimitiveOperations:  # pylint: disable=too-many-public-methods
-    """PrimitiveOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~bodycomplexpython3only.aio.AutoRestComplexTestService`'s
+        :attr:`~bodycomplexpython3only.aio.AutoRestComplexTestService.primitive` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer) -> None:
@@ -1396,15 +1390,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
 
 class ArrayOperations:
-    """ArrayOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~bodycomplexpython3only.aio.AutoRestComplexTestService`'s
+        :attr:`~bodycomplexpython3only.aio.AutoRestComplexTestService.array` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer) -> None:
@@ -1644,15 +1635,12 @@ class ArrayOperations:
 
 
 class DictionaryOperations:
-    """DictionaryOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~bodycomplexpython3only.aio.AutoRestComplexTestService`'s
+        :attr:`~bodycomplexpython3only.aio.AutoRestComplexTestService.dictionary` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer) -> None:
@@ -1936,15 +1924,12 @@ class DictionaryOperations:
 
 
 class InheritanceOperations:
-    """InheritanceOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~bodycomplexpython3only.aio.AutoRestComplexTestService`'s
+        :attr:`~bodycomplexpython3only.aio.AutoRestComplexTestService.inheritance` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer) -> None:
@@ -2065,15 +2050,12 @@ class InheritanceOperations:
 
 
 class PolymorphismOperations:
-    """PolymorphismOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~bodycomplexpython3only.aio.AutoRestComplexTestService`'s
+        :attr:`~bodycomplexpython3only.aio.AutoRestComplexTestService.polymorphism` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer) -> None:
@@ -2679,15 +2661,12 @@ class PolymorphismOperations:
 
 
 class PolymorphicrecursiveOperations:
-    """PolymorphicrecursiveOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~bodycomplexpython3only.aio.AutoRestComplexTestService`'s
+        :attr:`~bodycomplexpython3only.aio.AutoRestComplexTestService.polymorphicrecursive` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer) -> None:
@@ -2850,15 +2829,12 @@ class PolymorphicrecursiveOperations:
 
 
 class ReadonlypropertyOperations:
-    """ReadonlypropertyOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~bodycomplexpython3only.aio.AutoRestComplexTestService`'s
+        :attr:`~bodycomplexpython3only.aio.AutoRestComplexTestService.readonlyproperty` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer) -> None:
@@ -2959,15 +2935,12 @@ class ReadonlypropertyOperations:
 
 
 class FlattencomplexOperations:
-    """FlattencomplexOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~bodycomplexpython3only.aio.AutoRestComplexTestService`'s
+        :attr:`~bodycomplexpython3only.aio.AutoRestComplexTestService.flattencomplex` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer) -> None:

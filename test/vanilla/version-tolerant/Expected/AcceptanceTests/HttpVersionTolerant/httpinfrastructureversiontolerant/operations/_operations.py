@@ -1529,15 +1529,12 @@ def build_multiple_responses_get200_model_a202_valid_request(**kwargs: Any) -> H
 
 
 class HttpFailureOperations(object):
-    """HttpFailureOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService.http_failure` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):
@@ -1650,15 +1647,12 @@ class HttpFailureOperations(object):
 
 
 class HttpSuccessOperations(object):
-    """HttpSuccessOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService.http_success` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):
@@ -2406,15 +2400,12 @@ class HttpSuccessOperations(object):
 
 
 class HttpRedirectsOperations(object):
-    """HttpRedirectsOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService.http_redirects` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):
@@ -3043,15 +3034,12 @@ class HttpRedirectsOperations(object):
 
 
 class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-methods
-    """HttpClientFailureOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService.http_client_failure` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):
@@ -3959,15 +3947,12 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
 
 
 class HttpServerFailureOperations(object):
-    """HttpServerFailureOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService.http_server_failure` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):
@@ -4116,15 +4101,12 @@ class HttpServerFailureOperations(object):
 
 
 class HttpRetryOperations(object):
-    """HttpRetryOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService.http_retry` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):
@@ -4475,15 +4457,12 @@ class HttpRetryOperations(object):
 
 
 class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-methods
-    """MultipleResponsesOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService.multiple_responses` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):

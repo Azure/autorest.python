@@ -581,17 +581,12 @@ def build_get_paging_model_with_item_name_with_xms_client_name_request(
 
 # fmt: on
 class PagingOperations(object):
-    """PagingOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~custompollerpager.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~custompollerpager.AutoRestPagingTestService`'s
+        :attr:`~custompollerpager.AutoRestPagingTestService.paging` attribute.
     """
 
     models = _models

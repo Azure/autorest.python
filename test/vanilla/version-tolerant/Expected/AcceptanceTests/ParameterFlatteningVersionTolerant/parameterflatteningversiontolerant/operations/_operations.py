@@ -55,15 +55,12 @@ def build_availability_sets_update_request(
 
 
 class AvailabilitySetsOperations(object):
-    """AvailabilitySetsOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~parameterflatteningversiontolerant.AutoRestParameterFlattening`'s
+        :attr:`~parameterflatteningversiontolerant.AutoRestParameterFlattening.availability_sets` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):

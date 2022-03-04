@@ -35,17 +35,12 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class ParameterGroupingOperations:
-    """ParameterGroupingOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~azureparametergrouping.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~azureparametergrouping.aio.AutoRestParameterGroupingTestService`'s
+        :attr:`~azureparametergrouping.aio.AutoRestParameterGroupingTestService.parameter_grouping` attribute.
     """
 
     models = _models

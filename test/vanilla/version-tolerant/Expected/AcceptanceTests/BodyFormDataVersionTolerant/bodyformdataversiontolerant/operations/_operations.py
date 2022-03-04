@@ -83,15 +83,12 @@ def build_formdata_upload_files_request(
 
 
 class FormdataOperations(object):
-    """FormdataOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~bodyformdataversiontolerant.AutoRestSwaggerBATFormDataService`'s
+        :attr:`~bodyformdataversiontolerant.AutoRestSwaggerBATFormDataService.formdata` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):

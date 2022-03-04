@@ -1310,15 +1310,12 @@ def build_path_items_get_local_path_item_query_null_request(
 
 
 class PathsOperations(object):  # pylint: disable=too-many-public-methods
-    """PathsOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~urlversiontolerant.AutoRestUrlTestService`'s
+        :attr:`~urlversiontolerant.AutoRestUrlTestService.paths` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):
@@ -2239,15 +2236,12 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
 
 
 class QueriesOperations(object):  # pylint: disable=too-many-public-methods
-    """QueriesOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~urlversiontolerant.AutoRestUrlTestService`'s
+        :attr:`~urlversiontolerant.AutoRestUrlTestService.queries` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):
@@ -3445,15 +3439,12 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
 
 
 class PathItemsOperations(object):
-    """PathItemsOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~urlversiontolerant.AutoRestUrlTestService`'s
+        :attr:`~urlversiontolerant.AutoRestUrlTestService.path_items` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):

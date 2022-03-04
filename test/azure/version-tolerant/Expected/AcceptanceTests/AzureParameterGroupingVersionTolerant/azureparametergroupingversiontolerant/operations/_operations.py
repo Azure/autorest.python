@@ -169,15 +169,12 @@ def build_parameter_grouping_post_shared_parameter_group_object_request(
 
 
 class ParameterGroupingOperations(object):
-    """ParameterGroupingOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~azureparametergroupingversiontolerant.AutoRestParameterGroupingTestService`'s
+        :attr:`~azureparametergroupingversiontolerant.AutoRestParameterGroupingTestService.parameter_grouping` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):

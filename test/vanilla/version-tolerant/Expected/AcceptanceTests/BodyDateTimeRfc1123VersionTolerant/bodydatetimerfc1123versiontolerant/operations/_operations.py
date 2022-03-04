@@ -152,15 +152,12 @@ def build_datetimerfc1123_get_utc_min_date_time_request(**kwargs: Any) -> HttpRe
 
 
 class Datetimerfc1123Operations(object):
-    """Datetimerfc1123Operations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~bodydatetimerfc1123versiontolerant.AutoRestRFC1123DateTimeTestService`'s
+        :attr:`~bodydatetimerfc1123versiontolerant.AutoRestRFC1123DateTimeTestService.datetimerfc1123` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):

@@ -80,17 +80,12 @@ def build_put_valid_request(
 
 # fmt: on
 class ReadonlypropertyOperations(object):
-    """ReadonlypropertyOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~bodycomplex.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~bodycomplex.AutoRestComplexTestService`'s
+        :attr:`~bodycomplex.AutoRestComplexTestService.readonlyproperty` attribute.
     """
 
     models = _models

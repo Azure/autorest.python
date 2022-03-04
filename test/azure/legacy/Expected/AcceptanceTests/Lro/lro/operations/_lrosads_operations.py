@@ -632,17 +632,12 @@ def build_post_async_relative_retry_invalid_json_polling_request_initial(
 
 # fmt: on
 class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
-    """LROSADsOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~lro.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~lro.AutoRestLongRunningOperationTestService`'s
+        :attr:`~lro.AutoRestLongRunningOperationTestService.lrosads` attribute.
     """
 
     models = _models

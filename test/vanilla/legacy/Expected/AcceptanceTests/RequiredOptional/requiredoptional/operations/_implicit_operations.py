@@ -243,17 +243,12 @@ def build_get_optional_global_query_request(
 
 # fmt: on
 class ImplicitOperations(object):
-    """ImplicitOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~requiredoptional.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~requiredoptional.AutoRestRequiredOptionalTestService`'s
+        :attr:`~requiredoptional.AutoRestRequiredOptionalTestService.implicit` attribute.
     """
 
     models = _models

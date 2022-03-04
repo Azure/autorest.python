@@ -33,15 +33,12 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class IntOperations:
-    """IntOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~nonstringenumsversiontolerant.aio.NonStringEnumsClient`'s
+        :attr:`~nonstringenumsversiontolerant.aio.NonStringEnumsClient.int` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer) -> None:
@@ -139,15 +136,12 @@ class IntOperations:
 
 
 class FloatOperations:
-    """FloatOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~nonstringenumsversiontolerant.aio.NonStringEnumsClient`'s
+        :attr:`~nonstringenumsversiontolerant.aio.NonStringEnumsClient.float` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer) -> None:

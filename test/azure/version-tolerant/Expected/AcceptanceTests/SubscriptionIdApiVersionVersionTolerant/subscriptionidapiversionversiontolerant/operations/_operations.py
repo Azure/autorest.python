@@ -60,15 +60,12 @@ def build_group_get_sample_resource_group_request(
 
 
 class GroupOperations(object):
-    """GroupOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~subscriptionidapiversionversiontolerant.MicrosoftAzureTestUrl`'s
+        :attr:`~subscriptionidapiversionversiontolerant.MicrosoftAzureTestUrl.group` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):

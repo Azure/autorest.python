@@ -112,15 +112,12 @@ def build_params_get_optional_request(*, optional_param: Optional[str] = None, *
 
 
 class ParamsOperations(object):
-    """ParamsOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~dpgservicedriveninitialversiontolerant.DPGClient`'s
+        :attr:`~dpgservicedriveninitialversiontolerant.DPGClient.params` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):

@@ -35,17 +35,12 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class ApiVersionDefaultOperations:
-    """ApiVersionDefaultOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~azurespecialproperties.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~azurespecialproperties.aio.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`~azurespecialproperties.aio.AutoRestAzureSpecialParametersTestClient.api_version_default` attribute.
     """
 
     models = _models

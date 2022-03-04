@@ -560,15 +560,12 @@ def build_header_custom_named_request_id_head_request(*, foo_client_request_id: 
 
 
 class XMsClientRequestIdOperations(object):
-    """XMsClientRequestIdOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.xms_client_request_id` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):
@@ -642,15 +639,12 @@ class XMsClientRequestIdOperations(object):
 
 
 class SubscriptionInCredentialsOperations(object):
-    """SubscriptionInCredentialsOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.subscription_in_credentials` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):
@@ -816,15 +810,12 @@ class SubscriptionInCredentialsOperations(object):
 
 
 class SubscriptionInMethodOperations(object):
-    """SubscriptionInMethodOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.subscription_in_method` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):
@@ -974,15 +965,12 @@ class SubscriptionInMethodOperations(object):
 
 
 class ApiVersionDefaultOperations(object):
-    """ApiVersionDefaultOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.api_version_default` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):
@@ -1119,15 +1107,12 @@ class ApiVersionDefaultOperations(object):
 
 
 class ApiVersionLocalOperations(object):
-    """ApiVersionLocalOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.api_version_local` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):
@@ -1275,15 +1260,12 @@ class ApiVersionLocalOperations(object):
 
 
 class SkipUrlEncodingOperations(object):
-    """SkipUrlEncodingOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.skip_url_encoding` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):
@@ -1527,15 +1509,12 @@ class SkipUrlEncodingOperations(object):
 
 
 class OdataOperations(object):
-    """OdataOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.odata` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):
@@ -1586,15 +1565,12 @@ class OdataOperations(object):
 
 
 class HeaderOperations(object):
-    """HeaderOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.header` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):

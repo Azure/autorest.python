@@ -521,15 +521,12 @@ def build_xml_put_uri_request(*, content: Any, **kwargs: Any) -> HttpRequest:
 
 
 class XmlOperations(object):  # pylint: disable=too-many-public-methods
-    """XmlOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through :class:`~xmlserviceversiontolerant.AutoRestSwaggerBATXMLService`'s
+        :attr:`~xmlserviceversiontolerant.AutoRestSwaggerBATXMLService.xml` attribute.
     """
 
     def __init__(self, client, config, serializer, deserializer):
