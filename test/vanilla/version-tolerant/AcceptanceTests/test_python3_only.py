@@ -30,4 +30,4 @@ def test_operation_groups():
     from bodycomplexpython3only.operations import ArrayOperations
     from bodycomplexpython3only.operations._operations import ArrayOperations as ArrayOperationsPy3
     assert ArrayOperations == ArrayOperationsPy3
-    ArrayOperationsPy3(client=None, config=None, serializer=None, deserializer=None)
+    ArrayOperationsPy3(None, config=None, serializer=None, deserializer=None)

@@ -122,10 +122,11 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     """
 
     def __init__(self, *args, **kwargs) -> None:
-        self._client = kwargs.pop("client", args[0])
-        self._config = kwargs.pop("config", args[1])
-        self._serialize = kwargs.pop("serializer", args[2])
-        self._deserialize = kwargs.pop("deserializer", args[3])
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     async def _put200_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> Optional[JSONType]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
@@ -5238,10 +5239,11 @@ class LRORetrysOperations:
     """
 
     def __init__(self, *args, **kwargs) -> None:
-        self._client = kwargs.pop("client", args[0])
-        self._config = kwargs.pop("config", args[1])
-        self._serialize = kwargs.pop("serializer", args[2])
-        self._deserialize = kwargs.pop("deserializer", args[3])
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     async def _put201_creating_succeeded200_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -6015,10 +6017,11 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     """
 
     def __init__(self, *args, **kwargs) -> None:
-        self._client = kwargs.pop("client", args[0])
-        self._config = kwargs.pop("config", args[1])
-        self._serialize = kwargs.pop("serializer", args[2])
-        self._deserialize = kwargs.pop("deserializer", args[3])
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     async def _put_non_retry400_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -8903,10 +8906,11 @@ class LROsCustomHeaderOperations:
     """
 
     def __init__(self, *args, **kwargs) -> None:
-        self._client = kwargs.pop("client", args[0])
-        self._config = kwargs.pop("config", args[1])
-        self._serialize = kwargs.pop("serializer", args[2])
-        self._deserialize = kwargs.pop("deserializer", args[3])
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     async def _put_async_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]

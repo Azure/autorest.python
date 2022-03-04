@@ -817,10 +817,11 @@ class BasicOperations(object):
     """
 
     def __init__(self, *args, **kwargs):
-        self._client = kwargs.pop("client", args[0])
-        self._config = kwargs.pop("config", args[1])
-        self._serialize = kwargs.pop("serializer", args[2])
-        self._deserialize = kwargs.pop("deserializer", args[3])
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSONType:
@@ -1115,10 +1116,11 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
     """
 
     def __init__(self, *args, **kwargs):
-        self._client = kwargs.pop("client", args[0])
-        self._config = kwargs.pop("config", args[1])
-        self._serialize = kwargs.pop("serializer", args[2])
-        self._deserialize = kwargs.pop("deserializer", args[3])
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_int(self, **kwargs: Any) -> JSONType:
@@ -2113,10 +2115,11 @@ class ArrayOperations(object):
     """
 
     def __init__(self, *args, **kwargs):
-        self._client = kwargs.pop("client", args[0])
-        self._config = kwargs.pop("config", args[1])
-        self._serialize = kwargs.pop("serializer", args[2])
-        self._deserialize = kwargs.pop("deserializer", args[3])
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSONType:
@@ -2358,10 +2361,11 @@ class DictionaryOperations(object):
     """
 
     def __init__(self, *args, **kwargs):
-        self._client = kwargs.pop("client", args[0])
-        self._config = kwargs.pop("config", args[1])
-        self._serialize = kwargs.pop("serializer", args[2])
-        self._deserialize = kwargs.pop("deserializer", args[3])
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSONType:
@@ -2647,10 +2651,11 @@ class InheritanceOperations(object):
     """
 
     def __init__(self, *args, **kwargs):
-        self._client = kwargs.pop("client", args[0])
-        self._config = kwargs.pop("config", args[1])
-        self._serialize = kwargs.pop("serializer", args[2])
-        self._deserialize = kwargs.pop("deserializer", args[3])
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSONType:
@@ -2773,10 +2778,11 @@ class PolymorphismOperations(object):
     """
 
     def __init__(self, *args, **kwargs):
-        self._client = kwargs.pop("client", args[0])
-        self._config = kwargs.pop("config", args[1])
-        self._serialize = kwargs.pop("serializer", args[2])
-        self._deserialize = kwargs.pop("deserializer", args[3])
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSONType:
@@ -3384,10 +3390,11 @@ class PolymorphicrecursiveOperations(object):
     """
 
     def __init__(self, *args, **kwargs):
-        self._client = kwargs.pop("client", args[0])
-        self._config = kwargs.pop("config", args[1])
-        self._serialize = kwargs.pop("serializer", args[2])
-        self._deserialize = kwargs.pop("deserializer", args[3])
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSONType:
@@ -3552,10 +3559,11 @@ class ReadonlypropertyOperations(object):
     """
 
     def __init__(self, *args, **kwargs):
-        self._client = kwargs.pop("client", args[0])
-        self._config = kwargs.pop("config", args[1])
-        self._serialize = kwargs.pop("serializer", args[2])
-        self._deserialize = kwargs.pop("deserializer", args[3])
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSONType:
@@ -3658,10 +3666,11 @@ class FlattencomplexOperations(object):
     """
 
     def __init__(self, *args, **kwargs):
-        self._client = kwargs.pop("client", args[0])
-        self._config = kwargs.pop("config", args[1])
-        self._serialize = kwargs.pop("serializer", args[2])
-        self._deserialize = kwargs.pop("deserializer", args[3])
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSONType:

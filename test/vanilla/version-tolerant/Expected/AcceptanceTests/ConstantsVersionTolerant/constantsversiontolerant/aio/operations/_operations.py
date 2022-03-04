@@ -54,10 +54,11 @@ class ContantsOperations:
     """
 
     def __init__(self, *args, **kwargs) -> None:
-        self._client = kwargs.pop("client", args[0])
-        self._config = kwargs.pop("config", args[1])
-        self._serialize = kwargs.pop("serializer", args[2])
-        self._deserialize = kwargs.pop("deserializer", args[3])
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
