@@ -43,11 +43,11 @@ class PetOperations:
 
     models = _models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace_async
     async def get_pet_by_id(self, pet_id: str, **kwargs: Any) -> Optional["_models.Pet"]:

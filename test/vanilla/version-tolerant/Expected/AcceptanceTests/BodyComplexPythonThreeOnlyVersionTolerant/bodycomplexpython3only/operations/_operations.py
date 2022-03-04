@@ -816,11 +816,11 @@ class BasicOperations(object):
         :attr:`~bodycomplexpython3only.AutoRestComplexTestService.basic` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSONType:
@@ -1114,11 +1114,11 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :attr:`~bodycomplexpython3only.AutoRestComplexTestService.primitive` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def get_int(self, **kwargs: Any) -> JSONType:
@@ -2112,11 +2112,11 @@ class ArrayOperations(object):
         :attr:`~bodycomplexpython3only.AutoRestComplexTestService.array` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSONType:
@@ -2357,11 +2357,11 @@ class DictionaryOperations(object):
         :attr:`~bodycomplexpython3only.AutoRestComplexTestService.dictionary` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSONType:
@@ -2646,11 +2646,11 @@ class InheritanceOperations(object):
         :attr:`~bodycomplexpython3only.AutoRestComplexTestService.inheritance` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSONType:
@@ -2772,11 +2772,11 @@ class PolymorphismOperations(object):
         :attr:`~bodycomplexpython3only.AutoRestComplexTestService.polymorphism` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSONType:
@@ -3383,11 +3383,11 @@ class PolymorphicrecursiveOperations(object):
         :attr:`~bodycomplexpython3only.AutoRestComplexTestService.polymorphicrecursive` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSONType:
@@ -3551,11 +3551,11 @@ class ReadonlypropertyOperations(object):
         :attr:`~bodycomplexpython3only.AutoRestComplexTestService.readonlyproperty` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSONType:
@@ -3657,11 +3657,11 @@ class FlattencomplexOperations(object):
         :attr:`~bodycomplexpython3only.AutoRestComplexTestService.flattencomplex` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSONType:

@@ -41,11 +41,11 @@ class PagingOperations:
         :attr:`~custombaseurlpagingversiontolerant.aio.AutoRestParameterizedHostTestPagingClient.paging` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def get_pages_partial_url(self, account_name: str, **kwargs: Any) -> AsyncIterable[JSONType]:

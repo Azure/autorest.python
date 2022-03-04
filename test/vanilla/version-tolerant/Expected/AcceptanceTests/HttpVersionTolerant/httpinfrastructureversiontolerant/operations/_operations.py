@@ -1537,11 +1537,11 @@ class HttpFailureOperations(object):
         :attr:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService.http_failure` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def get_empty_error(self, **kwargs: Any) -> bool:
@@ -1655,11 +1655,11 @@ class HttpSuccessOperations(object):
         :attr:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService.http_success` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def head200(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2408,11 +2408,11 @@ class HttpRedirectsOperations(object):
         :attr:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService.http_redirects` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def head300(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -3042,11 +3042,11 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         :attr:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService.http_client_failure` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def head400(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -3955,11 +3955,11 @@ class HttpServerFailureOperations(object):
         :attr:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService.http_server_failure` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def head501(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -4109,11 +4109,11 @@ class HttpRetryOperations(object):
         :attr:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService.http_retry` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def head408(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -4465,11 +4465,11 @@ class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-me
         :attr:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService.multiple_responses` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def get200_model204_no_model_default_error200_valid(self, **kwargs: Any) -> Optional[JSONType]:

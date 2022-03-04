@@ -121,11 +121,11 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :attr:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService.lros` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     async def _put200_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> Optional[JSONType]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
@@ -5237,11 +5237,11 @@ class LRORetrysOperations:
         :attr:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService.lro_retrys` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     async def _put201_creating_succeeded200_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -6014,11 +6014,11 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :attr:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService.lrosads` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     async def _put_non_retry400_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -8902,11 +8902,11 @@ class LROsCustomHeaderOperations:
         :attr:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService.lr_os_custom_header` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     async def _put_async_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]

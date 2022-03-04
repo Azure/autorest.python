@@ -568,11 +568,11 @@ class XMsClientRequestIdOperations(object):
         :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.xms_client_request_id` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -647,11 +647,11 @@ class SubscriptionInCredentialsOperations(object):
         :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.subscription_in_credentials` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def post_method_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -818,11 +818,11 @@ class SubscriptionInMethodOperations(object):
         :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.subscription_in_method` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def post_method_local_valid(  # pylint: disable=inconsistent-return-statements
@@ -973,11 +973,11 @@ class ApiVersionDefaultOperations(object):
         :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.api_version_default` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def get_method_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1115,11 +1115,11 @@ class ApiVersionLocalOperations(object):
         :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.api_version_local` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def get_method_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1268,11 +1268,11 @@ class SkipUrlEncodingOperations(object):
         :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.skip_url_encoding` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def get_method_path_valid(  # pylint: disable=inconsistent-return-statements
@@ -1517,11 +1517,11 @@ class OdataOperations(object):
         :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.odata` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def get_with_filter(  # pylint: disable=inconsistent-return-statements
@@ -1573,11 +1573,11 @@ class HeaderOperations(object):
         :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.header` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace
     def custom_named_request_id(  # pylint: disable=inconsistent-return-statements

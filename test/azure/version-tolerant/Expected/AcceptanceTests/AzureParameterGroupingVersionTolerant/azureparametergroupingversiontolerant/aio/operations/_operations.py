@@ -42,11 +42,11 @@ class ParameterGroupingOperations:
         :attr:`~azureparametergroupingversiontolerant.aio.AutoRestParameterGroupingTestService.parameter_grouping` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        self._client = kwargs.pop("client", args[0])
+        self._config = kwargs.pop("config", args[1])
+        self._serialize = kwargs.pop("serializer", args[2])
+        self._deserialize = kwargs.pop("deserializer", args[3])
 
     @distributed_trace_async
     async def post_required(  # pylint: disable=inconsistent-return-statements
