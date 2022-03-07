@@ -6,9 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_paging_test_service import AutoRestPagingTestService
+from ._auto_rest_head_test_service import AutoRestHeadTestService
 
-__all__ = ["AutoRestPagingTestService"]
+__all__ = ["AutoRestHeadTestService"]
 
 # `._patch.py` is used for handwritten extensions to the generated code
 # Example: https://github.com/Azure/azure-sdk-for-python/blob/main/doc/dev/customize_code/how-to-patch-sdk-code.md

@@ -3,7 +3,7 @@
 ### Settings
 
 ``` yaml
-input-file: ../../../../../node_modules/@microsoft.azure/autorest.testserver/swagger/paging.json
+input-file: ../../../../../node_modules/@microsoft.azure/autorest.testserver/swagger/head.json
 output-folder: $(python-sdks-folder)/azure/legacy/Expected/AcceptanceTests/PackageModeMgmtPlane
 namespace: azure.package.mode
 package-name: azure-package-mode
@@ -16,4 +16,5 @@ output-artifact: code-model-v4-no-tags
 payload-flattening-threshold: 1
 clear-output-folder: true
 black: true
+package-mode: mgmtplane
 ```

@@ -487,13 +487,13 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
 @task
 def regenerate_package_mode(c, debug=False):
     cwd = os.getcwd()
-    package_mode = {
-        'mgmtplane': 'test/azure/legacy/specification/packagemodemgmtplane/README.md',
-        'dataplane': 'test/vanilla/legacy/specification/packagemodedataplane/README.md',
-        'test/azure/legacy/specification/packagemodecustomize/template': 'test/azure/legacy/specification/packagemodecustomize/README.md',
-    }
+    package_mode = [
+        'test/azure/legacy/specification/packagemodemgmtplane/README.md',
+        'test/vanilla/legacy/specification/packagemodedataplane/README.md',
+        'test/azure/legacy/specification/packagemodecustomize/README.md',
+    ]
     cmds = [
-        f'autorest {v} --use=. --python-sdks-folder={cwd}/test/ --package-mode={k}' for k,v in package_mode.items()
+        f'autorest {readme} --use=. --python-sdks-folder={cwd}/test/' for readme in package_mode
     ]
 
     _run_autorest(cmds, debug=debug)

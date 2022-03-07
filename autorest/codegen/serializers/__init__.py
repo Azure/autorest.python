@@ -39,6 +39,11 @@ _PACKAGE_FILES = [
     "setup.py.jinja2",
 ]
 
+_REGENERATE_FILES = {
+    "setup.py",
+    "MANIFEST.in"
+}
+
 class JinjaSerializer:
     def __init__(self, autorestapi: AutorestAPI, code_model: CodeModel) -> None:
         self._autorestapi = autorestapi
@@ -93,15 +98,18 @@ class JinjaSerializer:
             for template_name in package_files:
                 file = template_name.replace(".jinja2", "")
                 output_name = out_path / file
-                if not self._autorestapi.read_file(output_name) or file == 'setup.py':
+                if not self._autorestapi.read_file(output_name) or file in _REGENERATE_FILES:
                     template = env.get_template(template_name)
                     render_result = template.render(**kwargs)
                     self._autorestapi.write_file(output_name, render_result)
 
         def _prepare_params() -> Dict[Any, Any]:
             package_parts = self.code_model.options["package_name"].split("-")[:-1]
-            token_cred = isinstance(self.code_model.credential_schema_policy.credential, TokenCredentialSchema)
-            version = self.code_model.options.get("package_version", "0.0.0")
+            try:
+                token_cred = isinstance(self.code_model.credential_schema_policy.credential, TokenCredentialSchema)
+            except ValueError:
+                token_cred = False
+            version = self.code_model.options.get("package_version")
             if any(x in version for x in ["a", "b", "rc"]) or version[0] == '0':
                 dev_status = "4 - Beta"
             else:

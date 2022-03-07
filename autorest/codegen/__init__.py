@@ -71,6 +71,9 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
     if options["basic_setup_py"] and not options["package_version"]:
         raise ValueError("--basic-setup-py must be used with --package-version")
 
+    if options["package_mode"] and not options["package_version"]:
+        raise ValueError("--package-mode must be used with --package-version")
+
     if not options["show_operations"] and options["combine_operation_files"]:
         raise ValueError(
             "Can not combine operation files if you are not showing operations. "

@@ -12,7 +12,6 @@ from typing import Any, Awaitable, TYPE_CHECKING
 from msrest import Deserializer, Serializer
 
 from azure.core import AsyncPipelineClient
-from azure.core.credentials import AzureKeyCredential
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from ._configuration import AnythingClientConfiguration
@@ -27,14 +26,12 @@ class AnythingClient(AnythingClientOperationsMixin):
     """Service client for testing basic anything types. Those schemas without types can be anything:
     primitive, object, array.
 
-    :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials.AzureKeyCredential
     :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
     """
 
-    def __init__(self, credential: AzureKeyCredential, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
-        self._config = AnythingClientConfiguration(credential=credential, **kwargs)
+    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
+        self._config = AnythingClientConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {}  # type: Dict[str, Any]

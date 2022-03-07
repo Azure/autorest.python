@@ -26,12 +26,6 @@ if not version:
     raise RuntimeError("Cannot find version information")
 
 
-# To install the library, run the following
-#
-# python setup.py install
-#
-# prerequisite: setuptools
-# http://pypi.python.org/pypi/setuptools
 setup(
     name=PACKAGE_NAME,
     version=version,
@@ -42,6 +36,7 @@ setup(
     author="Microsoft Corporation",
     author_email="azpysdkhelp@microsoft.com",
     url="https://github.com/Azure/azure-sdk-for-python/tree/main/sdk",
+    keywords="azure, azure sdk",
     classifiers=[
         "Development Status :: 4 - Beta",
         "Programming Language :: Python",

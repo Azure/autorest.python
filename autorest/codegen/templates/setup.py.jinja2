@@ -34,12 +34,7 @@ version = "{{ code_model.options.get('package_version', '0.0.0') }}"
 {% set author_email = "" %}
 {% set url = "" %}
 {% endif -%}
-# To install the library, run the following
-#
-# python setup.py install
-#
-# prerequisite: setuptools
-# http://pypi.python.org/pypi/setuptools
+
 setup(
     name=PACKAGE_NAME,
     version=version,
@@ -52,6 +47,7 @@ setup(
     {% endif %}
     author_email="{{ author_email }}",
     url="{{ url }}",
+    keywords="azure, azure sdk",
     {% if package_mode %}
     classifiers=[
         "Development Status :: {{ dev_status }}",
@@ -76,15 +72,15 @@ setup(
         ]
     ),
     {% else %}
-    keywords=["Swagger", "{{ code_model.class_name }}"],
     packages=find_packages(),
     include_package_data=True,
     {% endif %}
     install_requires=[
         "{{ dependency_msrest }}",
-        "{{ dependency_azure_core }}",
         {% if azure_arm %}
         "{{ dependency_azure_mgmt_core }}",
+        {% else %}
+        "{{ dependency_azure_core }}",
         {% endif %}
     ],
     {% if package_mode %}

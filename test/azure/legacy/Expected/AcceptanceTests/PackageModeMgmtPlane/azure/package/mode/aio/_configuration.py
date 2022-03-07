@@ -19,8 +19,8 @@ if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class AutoRestPagingTestServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
-    """Configuration for AutoRestPagingTestService.
+class AutoRestHeadTestServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+    """Configuration for AutoRestHeadTestService.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
@@ -30,7 +30,7 @@ class AutoRestPagingTestServiceConfiguration(Configuration):  # pylint: disable=
     """
 
     def __init__(self, credential: "AsyncTokenCredential", **kwargs: Any) -> None:
-        super(AutoRestPagingTestServiceConfiguration, self).__init__(**kwargs)
+        super(AutoRestHeadTestServiceConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 

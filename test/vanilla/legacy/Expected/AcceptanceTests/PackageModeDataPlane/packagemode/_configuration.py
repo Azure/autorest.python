@@ -17,30 +17,20 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from typing import Any
 
-    from azure.core.credentials import AzureKeyCredential
-
 
 class AnythingClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
     """Configuration for AnythingClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
-
-    :param credential: Credential needed for the client to connect to Azure.
-    :type credential: ~azure.core.credentials.AzureKeyCredential
     """
 
     def __init__(
-        self,
-        credential,  # type: AzureKeyCredential
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         super(AnythingClientConfiguration, self).__init__(**kwargs)
-        if credential is None:
-            raise ValueError("Parameter 'credential' must not be None.")
 
-        self.credential = credential
         kwargs.setdefault("sdk_moniker", "packagemode/{}".format(VERSION))
         self._configure(**kwargs)
 
@@ -57,5 +47,3 @@ class AnythingClientConfiguration(Configuration):  # pylint: disable=too-many-in
         self.custom_hook_policy = kwargs.get("custom_hook_policy") or policies.CustomHookPolicy(**kwargs)
         self.redirect_policy = kwargs.get("redirect_policy") or policies.RedirectPolicy(**kwargs)
         self.authentication_policy = kwargs.get("authentication_policy")
-        if self.credential and not self.authentication_policy:
-            self.authentication_policy = policies.AzureKeyCredentialPolicy(self.credential, "api-key", **kwargs)

@@ -12,7 +12,7 @@ import re
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "{{ package_name }}"
+PACKAGE_NAME = "azure-packagemode-customize"
 PACKAGE_PPRINT_NAME = "Azure Customized Package Mode"
 
 # a-b-c => a/b/c
@@ -40,8 +40,9 @@ setup(
     author="Microsoft Corporation",
     author_email="azpysdkhelp@microsoft.com",
     url="https://github.com/Azure/azure-sdk-for-python/tree/main/sdk",
+    keywords="{{ key_words }}",
     classifiers=[
-        "Development Status :: 5 - Production/Stable",
+        "Development Status :: 4 - Beta",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3 :: Only",
         "Programming Language :: Python :: 3",
