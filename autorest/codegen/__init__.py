@@ -85,6 +85,11 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             "--package-mode can only be 'mgmtplane' or 'dataplane' or directory which contains template files"
         )
 
+    if options["reformat_next_link"] and options["version_tolerant"]:
+        raise ValueError(
+            "--reformat-next-link can not be true for version tolerant generations. "
+            "Please remove --reformat-next-link from your call for version tolerant generations."
+        )
 
 _LOGGER = logging.getLogger(__name__)
 class CodeGenerator(Plugin):
@@ -310,7 +315,11 @@ class CodeGenerator(Plugin):
             "python3_only": python3_only,
             "package_mode": self._autorestapi.get_value("package-mode"),
             "package_pprint_name": self._autorestapi.get_value("package-pprint-name"),
-            "package_configuration": self._autorestapi.get_value("package-configuration")
+            "package_configuration": self._autorestapi.get_value("package-configuration"),
+            "default_optional_constants_to_none": self._autorestapi.get_boolean_value(
+                "default-optional-constants-to-none", low_level_client or version_tolerant
+            ),
+            "reformat_next_link": self._autorestapi.get_boolean_value("reformat-next-link", not version_tolerant)
         }
 
         if options["builders_visibility"] is None:

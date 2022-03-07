@@ -11,24 +11,17 @@ from setuptools import setup, find_packages
 
 PACKAGE_NAME = "microsoftazuretesturl"
 version = "0.1.0"
-# To install the library, run the following
-#
-# python setup.py install
-#
-# prerequisite: setuptools
-# http://pypi.python.org/pypi/setuptools
 setup(
     name=PACKAGE_NAME,
     version=version,
     description="MicrosoftAzureTestUrl",
     author_email="",
     url="",
-    keywords=["Swagger", "MicrosoftAzureTestUrl"],
+    keywords="azure, azure sdk",
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
         "msrest>=0.6.21",
-        "azure-core<2.0.0,>=1.20.1",
         "azure-mgmt-core>=1.3.0,<2.0.0",
     ],
     long_description="""\

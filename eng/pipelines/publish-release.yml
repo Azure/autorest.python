@@ -6,8 +6,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  NodeVersion: '12.x'
+  NodeVersion: '14.x'
   TestFolder: '$(Build.SourcesDirectory)/test/'
+  AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/coverage/"
 
 steps:
   - task: NodeTool@0

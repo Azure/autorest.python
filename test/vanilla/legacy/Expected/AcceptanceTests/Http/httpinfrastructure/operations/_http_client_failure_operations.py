@@ -750,7 +750,8 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -800,7 +801,8 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -850,7 +852,8 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -900,7 +903,8 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1098,7 +1102,8 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         # type: (...) -> None
         """Return 404 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1148,7 +1153,8 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         # type: (...) -> None
         """Return 405 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1198,7 +1204,8 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         # type: (...) -> None
         """Return 406 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1248,7 +1255,8 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         # type: (...) -> None
         """Return 407 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1298,7 +1306,8 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         # type: (...) -> None
         """Return 409 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1496,7 +1505,8 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         # type: (...) -> None
         """Return 413 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1546,7 +1556,8 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         # type: (...) -> None
         """Return 414 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1596,7 +1607,8 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         # type: (...) -> None
         """Return 415 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1683,7 +1695,8 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         # type: (...) -> None
         """Return 417 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

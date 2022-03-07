@@ -538,9 +538,7 @@ class PagingOperations:
 
             else:
 
-                request = build_paging_duplicate_params_request(
-                    filter=filter,
-                )
+                request = build_paging_duplicate_params_request()
                 request.url = self._client.format_url(next_link)
                 request.method = "GET"
             return request

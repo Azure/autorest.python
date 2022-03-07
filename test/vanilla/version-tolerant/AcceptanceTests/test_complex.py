@@ -54,7 +54,7 @@ def min_date():
     min_date = datetime.min
     return min_date.replace(tzinfo=UTC())
 
-def test_basic_get_and_put_valid(client):
+def test_basic_get_and_put_valid(client: AutoRestComplexTestService):
     # GET basic/valid
     basic_result = client.basic.get_valid()
     assert 2 ==  basic_result['id']

@@ -11,19 +11,13 @@ from setuptools import setup, find_packages
 
 PACKAGE_NAME = "azure-basic-sample"
 version = "0.1.0"
-# To install the library, run the following
-#
-# python setup.py install
-#
-# prerequisite: setuptools
-# http://pypi.python.org/pypi/setuptools
 setup(
     name=PACKAGE_NAME,
     version=version,
     description="azure-basic-sample",
     author_email="",
     url="",
-    keywords=["Swagger", "AutoRestHeadTestService"],
+    keywords="azure, azure sdk",
     packages=find_packages(),
     include_package_data=True,
     install_requires=[

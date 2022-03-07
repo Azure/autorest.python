@@ -1,14 +1,24 @@
 # Change Log
 
-### 2022-03-02 - 5.13.0
+### 2022-03-03 - 5.13.0
 
-| Library | Min Version
-| --------------- | -------
-|`@autorest/core` |  `3.6.2`
-|`@autorest/modelerfour` | `4.19.1`
-|`azure-core` dep of generated code | `1.20.1`
-|`msrest` dep of generated code | `0.6.21`
-|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.6.2`     |
+| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `azure-core` dep of generated code                                      | `1.20.1`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
+
+**Breaking Changes in Version Tolerant Generation**
+
+- We now generate with optional constant parameters as None by defaulting `--default-optional-constants-to-none` to True #1171
+- Version tolerant paging does not reformat initial query parameters into the next link #1168
+
+**New Features**
+
+- Add flag `--default-optional-constants-to-none` with which optional constant parameters is default to None #1171
+- Add flag `--reformat-next-link`, determines whether we reformat initial query parameters into the next link. Defaults to `True` for the GA generator, forced to `False` for `--version-tolerant`.
 
 **Bug Fixes**
 
@@ -21,13 +31,13 @@
 
 ### 2022-02-09 - 5.12.6
 
-| Library | Min Version
-| --------------- | -------
-|`@autorest/core` |  `3.6.2`
-|`@autorest/modelerfour` | `4.19.1`
-|`azure-core` dep of generated code | `1.20.1`
-|`msrest` dep of generated code | `0.6.21`
-|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.6.2`     |
+| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `azure-core` dep of generated code                                      | `1.20.1`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **Bug Fixes**
 
@@ -37,57 +47,57 @@
 
 ### 2022-01-26 - 5.12.5
 
-| Library | Min Version
-| --------------- | -------
-|`@autorest/core` |  `3.6.2`
-|`@autorest/modelerfour` | `4.19.1`
-|`azure-core` dep of generated code | `1.20.1`
-|`msrest` dep of generated code | `0.6.21`
-|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.6.2`     |
+| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `azure-core` dep of generated code                                      | `1.20.1`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **Bug Fixes**
 
-- Fix usage of `--black` flag outside of repo  #1126
-- Remove unused `metadata` value for `version-tolerant` generations  #1127
+- Fix usage of `--black` flag outside of repo #1126
+- Remove unused `metadata` value for `version-tolerant` generations #1127
 
 ### 2022-01-14 - 5.12.4
 
-| Library | Min Version
-| --------------- | -------
-|`@autorest/core` |  `3.6.2`
-|`@autorest/modelerfour` | `4.19.1`
-|`azure-core` dep of generated code | `1.20.1`
-|`msrest` dep of generated code | `0.6.21`
-|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.6.2`     |
+| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `azure-core` dep of generated code                                      | `1.20.1`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **Bug Fixes**
 
-- Remove duplicate generation of properties in classes that inherit from multiple classes  #1120
+- Remove duplicate generation of properties in classes that inherit from multiple classes #1120
 
 ### 2022-01-13 - 5.12.3
 
-| Library | Min Version
-| --------------- | -------
-|`@autorest/core` |  `3.6.2`
-|`@autorest/modelerfour` | `4.19.1`
-|`azure-core` dep of generated code | `1.20.1`
-|`msrest` dep of generated code | `0.6.21`
-|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.6.2`     |
+| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `azure-core` dep of generated code                                      | `1.20.1`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **Bug Fixes**
 
-- Unify multiapi constant behavior with single API version  #1119
-- Clean up docstrings by removing descriptions for client constants on methods and request builders  #1119
+- Unify multiapi constant behavior with single API version #1119
+- Clean up docstrings by removing descriptions for client constants on methods and request builders #1119
 
 ### 2022-01-11 - 5.12.2
 
-| Library | Min Version
-| --------------- | -------
-|`@autorest/core` |  `3.6.2`
-|`@autorest/modelerfour` | `4.19.1`
-|`azure-core` dep of generated code | `1.20.1`
-|`msrest` dep of generated code | `0.6.21`
-|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.6.2`     |
+| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `azure-core` dep of generated code                                      | `1.20.1`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **Bug Fixes**
 
@@ -95,81 +105,81 @@
 
 ### 2022-01-10 - 5.12.1
 
-| Library | Min Version
-| --------------- | -------
-|`@autorest/core` |  `3.6.2`
-|`@autorest/modelerfour` | `4.19.1`
-|`azure-core` dep of generated code | `1.20.1`
-|`msrest` dep of generated code | `0.6.21`
-|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.6.2`     |
+| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `azure-core` dep of generated code                                      | `1.20.1`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **Bug Fixes**
 
-- Fix support for json merge patch  #1117
+- Fix support for json merge patch #1117
 
 ### 2021-12-06 - 5.12.0
 
-| Library | Min Version
-| --------------- | -------
-|`@autorest/core` |  `3.6.2`
-|`@autorest/modelerfour` | `4.19.1`
-|`azure-core` dep of generated code | `1.20.1`
-|`msrest` dep of generated code | `0.6.21`
-|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.6.2`     |
+| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `azure-core` dep of generated code                                      | `1.20.1`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **Breaking Changes in Version Tolerant Generation**
 
 - Remove metadata property for version tolerant and low level client generations #1090
-- Generate SDKs with `--python3-only` defaulting to `True` for version tolerant and low level client  #1087
+- Generate SDKs with `--python3-only` defaulting to `True` for version tolerant and low level client #1087
 
 **New Features**
 
-- Generate a `_patch.py` file if one does not exist. These files are used to customize the generated code  #1092
+- Generate a `_patch.py` file if one does not exist. These files are used to customize the generated code #1092
 
 **Bug Fixes**
 
 - Can now handle body params with names `json`, `content`, `data`, and `files` #1081
-- Improve generated templates for `data` and `files` input body params by adding quotes around the keys  #1082
-- Using flag `--python3-only` will get you typed sync client and config files  #1085
-- Pin `mistune` dependency to less than `2.x.x` so autorest can be successfully installed  #1106
+- Improve generated templates for `data` and `files` input body params by adding quotes around the keys #1082
+- Using flag `--python3-only` will get you typed sync client and config files #1085
+- Pin `mistune` dependency to less than `2.x.x` so autorest can be successfully installed #1106
 
 ### 2021-11-05 - 5.11.2
 
-| Library | Min Version
-| --------------- | -------
-|`@autorest/core` |  `3.6.2`
-|`@autorest/modelerfour` | `4.19.1`
-|`azure-core` dep of generated code | `1.20.0`
-|`msrest` dep of generated code | `0.6.21`
-|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.6.2`     |
+| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `azure-core` dep of generated code                                      | `1.20.0`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **Bug Fixes**
 
-- Respect no client side validation for low level client generations  #1080
+- Respect no client side validation for low level client generations #1080
 
 ### 2021-11-05 - 5.11.1
 
-| Library | Min Version
-| --------------- | -------
-|`@autorest/core` |  `3.6.2`
-|`@autorest/modelerfour` | `4.19.1`
-|`azure-core` dep of generated code | `1.20.0`
-|`msrest` dep of generated code | `0.6.21`
-|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.6.2`     |
+| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `azure-core` dep of generated code                                      | `1.20.0`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **Bug Fixes**
 
-- Hide mixin operations for version tolerant generation  #1071
+- Hide mixin operations for version tolerant generation #1071
 
 ### 2021-11-04 - 5.11.0
 
-| Library | Min Version
-| --------------- | -------
-|`@autorest/core` |  `3.6.2`
-|`@autorest/modelerfour` | `4.19.1`
-|`azure-core` dep of generated code | `1.20.0`
-|`msrest` dep of generated code | `0.6.21`
-|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.6.2`     |
+| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `azure-core` dep of generated code                                      | `1.20.0`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **New Features**
 
@@ -183,68 +193,69 @@
 
 ### 2021-11-01 - 5.10.0
 
-| Library | Min Version
-| --------------- | -------
-|`@autorest/core` |  `3.6.2`
-|`@autorest/modelerfour` | `4.19.1`
-|`azure-core` dep of generated code | `1.19.1`
-|`msrest` dep of generated code | `0.6.21`
-|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.6.2`     |
+| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `azure-core` dep of generated code                                      | `1.19.1`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **New Features**
 
-- Allow users to override constant swagger params with kwarg input  #1060
+- Allow users to override constant swagger params with kwarg input #1060
 
 ### 2021-10-15 - 5.9.3
 
-| Library | Min Version
-| --------------- | -------
-|`@autorest/core` |  `3.6.2`
-|`@autorest/modelerfour` | `4.19.1`
-|`azure-core` dep of generated code | `1.19.0`
-|`msrest` dep of generated code | `0.6.21`
-|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.6.2`     |
+| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `azure-core` dep of generated code                                      | `1.19.0`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **Bug Fixes**
 
-- Fix generation of form-data inputs  #1061
+- Fix generation of form-data inputs #1061
 
 ### 2021-10-05 - 5.9.2
 
-| Library | Min Version
-| --------------- | -------
-|`@autorest/core` |  `3.6.2`
-|`@autorest/modelerfour` | `4.19.1`
-|`azure-core` dep of generated code | `1.19.0`
-|`msrest` dep of generated code | `0.6.21`
-|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.6.2`     |
+| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `azure-core` dep of generated code                                      | `1.19.0`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **New Features**
+
 - Updating generated code for `azure-core` release `1.19.0`.
 
 ### 2021-09-27 - 5.9.1
 
-| Library | Min Version
-| --------------- | -------
-|`@autorest/core` |  `3.6.2`
-|`@autorest/modelerfour` | `4.19.1`
-|`azure-core` dep of generated code | `1.18.0`
-|`msrest` dep of generated code | `0.6.21`
-|`azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.6.2`     |
+| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `azure-core` dep of generated code                                      | `1.18.0`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **New Features**
 
 - We have added a **provisional** `rest` layer to our generated code. We have also added the following **provisional** flags listed [here](https://github.com/Azure/autorest.python/wiki/Generating-Low-Level-Client#generate-a-low-level-client). #875
-- With this new release, we are also dropping support for Python 3.5 + async.  #875
+- With this new release, we are also dropping support for Python 3.5 + async. #875
 - For mgmt plan SDK, default policy changes from `BearerTokenCredentialPolicy` to `ARMChallengeAuthenticationPolicy`.
 - We now add tracing by default, the flag `--trace` now defaults to `True` if you have operations.
-- Added flag `--python3-only` for users looking to generate SDKs that only support Python 3  #1044
+- Added flag `--python3-only` for users looking to generate SDKs that only support Python 3 #1044
 
 **Bug Fixes**
 
-- Correctly pad operation groups with reserved names with `Operations`  #1005
-- Fix the generated docstrings for input kwargs of models  #1026
-- Pass pipeline context to `msrest` in `failsafe_deserialize` so `msrest` has access to the context  #1030
+- Correctly pad operation groups with reserved names with `Operations` #1005
+- Fix the generated docstrings for input kwargs of models #1026
+- Pass pipeline context to `msrest` in `failsafe_deserialize` so `msrest` has access to the context #1030
 
 ### 2021-09-27 - 5.9.0
 
@@ -279,7 +290,7 @@ min Modelerfour version: 4.19.1
 
 **Bug Fixes**
 
-- We are now more lenient with our checks for the content type parameter  #956
+- We are now more lenient with our checks for the content type parameter #956
 
 ### 2021-06-16 - 5.8.1
 
@@ -290,7 +301,7 @@ min Modelerfour version: 4.19.1
 **Bug Fixes**
 
 - Fix optional properties with constant schemas. Now, properties that have constant schemas but are optional will not have the hardcoded constant value,
-but will default to its `x-ms-client-default` or `None`  #952
+  but will default to its `x-ms-client-default` or `None` #952
 
 ### 2021-05-17 - 5.8.0
 
@@ -300,7 +311,7 @@ min Modelerfour version: 4.19.1
 
 **New Features**
 
-- Add support for parameters and properties that can be of type "Anything".  #946
+- Add support for parameters and properties that can be of type "Anything". #946
 
 ### 2021-04-20 - 5.7.0
 
@@ -320,7 +331,7 @@ min Modelerfour version: 4.15.456
 
 **Bug Fixes**
 
-- Fix docstrings so they don't get split on hyphens  #931
+- Fix docstrings so they don't get split on hyphens #931
 
 ### 2021-04-07 - 5.6.5
 
@@ -330,7 +341,7 @@ min Modelerfour version: 4.15.456
 
 **Bug Fixes**
 
-- Fix regression in multiapi generation for multiapi versions without mixin operations  #928
+- Fix regression in multiapi generation for multiapi versions without mixin operations #928
 
 ### 2021-03-01 - 5.6.4
 
@@ -339,6 +350,7 @@ min Autorest core version: 3.1.0
 min Modelerfour version: 4.15.456
 
 **Bug Fixes**
+
 - Bump `Autorest core` minimum version to be able to deal with indented `python` blocks in config files
 
 ### 2021-02-10 - 5.6.3
@@ -348,7 +360,8 @@ min Autorest core version: 3.0.6372
 min Modelerfour version: 4.15.456
 
 **Bug Fixes**
-- Bump `Autorest core` minimum version to [correctly deal with](https://github.com/Azure/autorest/pull/3860) overriding configs. Fixes submodule-specific code in our multiapi client  #880
+
+- Bump `Autorest core` minimum version to [correctly deal with](https://github.com/Azure/autorest/pull/3860) overriding configs. Fixes submodule-specific code in our multiapi client #880
 
 ### 2021-02-04 - 5.6.2
 
@@ -357,7 +370,8 @@ Autorest core version: 3.0.6318
 Modelerfour version: 4.15.456
 
 **Bug Fixes**
-- Bump `Modelerfour` minimum version to [correctly deal with](https://github.com/Azure/autorest.modelerfour/pull/385) parameters specified as `'required': false` in swagger  #877
+
+- Bump `Modelerfour` minimum version to [correctly deal with](https://github.com/Azure/autorest.modelerfour/pull/385) parameters specified as `'required': false` in swagger #877
 
 ### 2021-01-27 - 5.6.1
 

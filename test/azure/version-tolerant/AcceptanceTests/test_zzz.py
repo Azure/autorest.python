@@ -37,8 +37,6 @@ class TestAcceptance(object):
 
         # Add tests that wont be supported due to the nature of Python here
         not_supported = {
-            "LROPatchInlineCompleteIgnoreHeaders": 1,
-            "PagingDuplicateParameters": 1  # skipping for now, going to do another PR soon changing paging behavior for version tolerant
         }
 
         # Please add missing features or failing tests here

@@ -308,7 +308,8 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 500 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -358,7 +359,8 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 500 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -486,7 +488,8 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 503 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -536,7 +539,8 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 503 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -586,7 +590,8 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 504 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -636,7 +641,8 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 504 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

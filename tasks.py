@@ -160,6 +160,7 @@ def _build_flags(
         generation_section += "/legacy"
         override_flags = override_flags or {}
         override_flags["payload-flattening-threshold"] = 1
+        override_flags["reformat-next-link"] = False
 
     flags = {
         "use": autorest_dir,
