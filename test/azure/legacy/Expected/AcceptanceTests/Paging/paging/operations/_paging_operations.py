@@ -1041,7 +1041,6 @@ class PagingOperations(object):
             else:
 
                 request = build_duplicate_params_request(
-                    filter=filter,
                     template_url=next_link,
                 )
                 request = _convert_request(request)
