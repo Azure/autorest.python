@@ -43,8 +43,9 @@ class PolymorphismOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplex.aio.AutoRestComplexTestService`'s
-        :attr:`~bodycomplex.aio.AutoRestComplexTestService.polymorphism` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplex.aio.AutoRestComplexTestService`'s
+        :attr:`polymorphism` attribute.
     """
 
     models = _models

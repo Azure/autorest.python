@@ -35,8 +35,9 @@ class FormdataurlencodedOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodyformurlencodeddataversiontolerant.aio.BodyFormsDataURLEncoded`'s
-        :attr:`~bodyformurlencodeddataversiontolerant.aio.BodyFormsDataURLEncoded.formdataurlencoded` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodyformurlencodeddataversiontolerant.aio.BodyFormsDataURLEncoded`'s
+        :attr:`formdataurlencoded` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

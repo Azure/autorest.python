@@ -36,8 +36,9 @@ class PetOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~xmserrorresponseversiontolerant.aio.XMSErrorResponseExtensions`'s
-        :attr:`~xmserrorresponseversiontolerant.aio.XMSErrorResponseExtensions.pet` attribute.
+        Instead, you should access the following operations through
+        :class:`~xmserrorresponseversiontolerant.aio.XMSErrorResponseExtensions`'s
+        :attr:`pet` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

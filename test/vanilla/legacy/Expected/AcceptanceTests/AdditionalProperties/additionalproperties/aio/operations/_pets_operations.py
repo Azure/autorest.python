@@ -40,8 +40,9 @@ class PetsOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`~additionalproperties.aio.AdditionalPropertiesClient.pets` attribute.
+        Instead, you should access the following operations through
+        :class:`~additionalproperties.aio.AdditionalPropertiesClient`'s
+        :attr:`pets` attribute.
     """
 
     models = _models

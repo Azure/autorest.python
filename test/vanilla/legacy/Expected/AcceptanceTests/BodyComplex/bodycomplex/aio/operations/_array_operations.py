@@ -39,8 +39,9 @@ class ArrayOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplex.aio.AutoRestComplexTestService`'s
-        :attr:`~bodycomplex.aio.AutoRestComplexTestService.array` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplex.aio.AutoRestComplexTestService`'s
+        :attr:`array` attribute.
     """
 
     models = _models

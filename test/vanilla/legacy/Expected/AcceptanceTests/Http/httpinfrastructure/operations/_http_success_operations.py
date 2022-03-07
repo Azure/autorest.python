@@ -477,8 +477,9 @@ class HttpSuccessOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~httpinfrastructure.AutoRestHttpInfrastructureTestService`'s
-        :attr:`~httpinfrastructure.AutoRestHttpInfrastructureTestService.http_success` attribute.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructure.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_success` attribute.
     """
 
     models = _models

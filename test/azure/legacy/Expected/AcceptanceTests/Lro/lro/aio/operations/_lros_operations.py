@@ -81,8 +81,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~lro.aio.AutoRestLongRunningOperationTestService`'s
-        :attr:`~lro.aio.AutoRestLongRunningOperationTestService.lros` attribute.
+        Instead, you should access the following operations through
+        :class:`~lro.aio.AutoRestLongRunningOperationTestService`'s
+        :attr:`lros` attribute.
     """
 
     models = _models

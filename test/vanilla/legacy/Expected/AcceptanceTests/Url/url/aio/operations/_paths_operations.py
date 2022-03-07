@@ -62,8 +62,9 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~url.aio.AutoRestUrlTestService`'s
-        :attr:`~url.aio.AutoRestUrlTestService.paths` attribute.
+        Instead, you should access the following operations through
+        :class:`~url.aio.AutoRestUrlTestService`'s
+        :attr:`paths` attribute.
     """
 
     models = _models

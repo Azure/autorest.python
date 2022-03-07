@@ -510,8 +510,9 @@ class DatetimeOperations(object):  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodydatetime.AutoRestDateTimeTestService`'s
-        :attr:`~bodydatetime.AutoRestDateTimeTestService.datetime` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodydatetime.AutoRestDateTimeTestService`'s
+        :attr:`datetime` attribute.
     """
 
     models = _models

@@ -25,8 +25,9 @@ class OperationGroupOneOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~multiapidataplane.v3.aio.MultiapiServiceClient`'s
-        :attr:`~multiapidataplane.v3.aio.MultiapiServiceClient.operation_group_one` attribute.
+        Instead, you should access the following operations through
+        :class:`~multiapidataplane.v3.aio.MultiapiServiceClient`'s
+        :attr:`operation_group_one` attribute.
     """
 
     models = _models

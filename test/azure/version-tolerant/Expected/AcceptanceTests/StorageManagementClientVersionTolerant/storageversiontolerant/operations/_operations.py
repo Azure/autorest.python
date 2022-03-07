@@ -359,8 +359,9 @@ class StorageAccountsOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~storageversiontolerant.StorageManagementClient`'s
-        :attr:`~storageversiontolerant.StorageManagementClient.storage_accounts` attribute.
+        Instead, you should access the following operations through
+        :class:`~storageversiontolerant.StorageManagementClient`'s
+        :attr:`storage_accounts` attribute.
     """
 
     def __init__(self, *args, **kwargs):
@@ -1410,8 +1411,9 @@ class UsageOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~storageversiontolerant.StorageManagementClient`'s
-        :attr:`~storageversiontolerant.StorageManagementClient.usage` attribute.
+        Instead, you should access the following operations through
+        :class:`~storageversiontolerant.StorageManagementClient`'s
+        :attr:`usage` attribute.
     """
 
     def __init__(self, *args, **kwargs):

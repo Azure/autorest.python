@@ -37,8 +37,9 @@ class IntOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~nonstringenumsversiontolerant.aio.NonStringEnumsClient`'s
-        :attr:`~nonstringenumsversiontolerant.aio.NonStringEnumsClient.int` attribute.
+        Instead, you should access the following operations through
+        :class:`~nonstringenumsversiontolerant.aio.NonStringEnumsClient`'s
+        :attr:`int` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -141,8 +142,9 @@ class FloatOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~nonstringenumsversiontolerant.aio.NonStringEnumsClient`'s
-        :attr:`~nonstringenumsversiontolerant.aio.NonStringEnumsClient.float` attribute.
+        Instead, you should access the following operations through
+        :class:`~nonstringenumsversiontolerant.aio.NonStringEnumsClient`'s
+        :attr:`float` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

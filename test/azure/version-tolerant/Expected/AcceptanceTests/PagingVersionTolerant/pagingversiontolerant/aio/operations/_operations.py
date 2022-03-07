@@ -58,8 +58,9 @@ class PagingOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~pagingversiontolerant.aio.AutoRestPagingTestService`'s
-        :attr:`~pagingversiontolerant.aio.AutoRestPagingTestService.paging` attribute.
+        Instead, you should access the following operations through
+        :class:`~pagingversiontolerant.aio.AutoRestPagingTestService`'s
+        :attr:`paging` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

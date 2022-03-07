@@ -145,8 +145,9 @@ class ByteOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodybyte.AutoRestSwaggerBATByteService`'s
-        :attr:`~bodybyte.AutoRestSwaggerBATByteService.byte` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodybyte.AutoRestSwaggerBATByteService`'s
+        :attr:`byte` attribute.
     """
 
     models = _models

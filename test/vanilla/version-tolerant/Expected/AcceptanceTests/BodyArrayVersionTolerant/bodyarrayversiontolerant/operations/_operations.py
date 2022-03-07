@@ -944,8 +944,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodyarrayversiontolerant.AutoRestSwaggerBATArrayService`'s
-        :attr:`~bodyarrayversiontolerant.AutoRestSwaggerBATArrayService.array` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodyarrayversiontolerant.AutoRestSwaggerBATArrayService`'s
+        :attr:`array` attribute.
     """
 
     def __init__(self, *args, **kwargs):

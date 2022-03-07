@@ -168,8 +168,9 @@ class DictionaryOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplex.AutoRestComplexTestService`'s
-        :attr:`~bodycomplex.AutoRestComplexTestService.dictionary` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplex.AutoRestComplexTestService`'s
+        :attr:`dictionary` attribute.
     """
 
     models = _models

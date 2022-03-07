@@ -62,8 +62,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~headerversiontolerant.aio.AutoRestSwaggerBATHeaderService`'s
-        :attr:`~headerversiontolerant.aio.AutoRestSwaggerBATHeaderService.header` attribute.
+        Instead, you should access the following operations through
+        :class:`~headerversiontolerant.aio.AutoRestSwaggerBATHeaderService`'s
+        :attr:`header` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

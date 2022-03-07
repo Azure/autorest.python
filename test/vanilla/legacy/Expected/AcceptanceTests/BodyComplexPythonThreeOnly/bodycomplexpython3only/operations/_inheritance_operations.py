@@ -66,8 +66,9 @@ class InheritanceOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplexpython3only.AutoRestComplexTestService`'s
-        :attr:`~bodycomplexpython3only.AutoRestComplexTestService.inheritance` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplexpython3only.AutoRestComplexTestService`'s
+        :attr:`inheritance` attribute.
     """
 
     models = _models

@@ -150,8 +150,9 @@ class ImportOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~reservedwordsversiontolerant.ReservedWordsClient`'s
-        :attr:`~reservedwordsversiontolerant.ReservedWordsClient.import_operations` attribute.
+        Instead, you should access the following operations through
+        :class:`~reservedwordsversiontolerant.ReservedWordsClient`'s
+        :attr:`import_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs):

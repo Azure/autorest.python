@@ -39,8 +39,9 @@ class ApiVersionLocalOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~azurespecialproperties.aio.AutoRestAzureSpecialParametersTestClient`'s
-        :attr:`~azurespecialproperties.aio.AutoRestAzureSpecialParametersTestClient.api_version_local` attribute.
+        Instead, you should access the following operations through
+        :class:`~azurespecialproperties.aio.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`api_version_local` attribute.
     """
 
     models = _models

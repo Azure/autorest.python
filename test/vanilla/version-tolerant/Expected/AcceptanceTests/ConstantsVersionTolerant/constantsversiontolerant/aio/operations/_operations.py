@@ -49,8 +49,9 @@ class ContantsOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~constantsversiontolerant.aio.AutoRestSwaggerConstantService`'s
-        :attr:`~constantsversiontolerant.aio.AutoRestSwaggerConstantService.contants` attribute.
+        Instead, you should access the following operations through
+        :class:`~constantsversiontolerant.aio.AutoRestSwaggerConstantService`'s
+        :attr:`contants` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

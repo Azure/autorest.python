@@ -66,8 +66,9 @@ class PolymorphicrecursiveOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplexpython3only.AutoRestComplexTestService`'s
-        :attr:`~bodycomplexpython3only.AutoRestComplexTestService.polymorphicrecursive` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplexpython3only.AutoRestComplexTestService`'s
+        :attr:`polymorphicrecursive` attribute.
     """
 
     models = _models

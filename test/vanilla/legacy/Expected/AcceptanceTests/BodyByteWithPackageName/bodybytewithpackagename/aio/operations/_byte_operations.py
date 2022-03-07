@@ -39,8 +39,9 @@ class ByteOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodybytewithpackagename.aio.ClassName`'s
-        :attr:`~bodybytewithpackagename.aio.ClassName.byte` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodybytewithpackagename.aio.ClassName`'s
+        :attr:`byte` attribute.
     """
 
     models = _models

@@ -342,8 +342,9 @@ class DatetimeOperations(object):  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodydatetimeversiontolerant.AutoRestDateTimeTestService`'s
-        :attr:`~bodydatetimeversiontolerant.AutoRestDateTimeTestService.datetime` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodydatetimeversiontolerant.AutoRestDateTimeTestService`'s
+        :attr:`datetime` attribute.
     """
 
     def __init__(self, *args, **kwargs):

@@ -1402,8 +1402,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodydictionary.AutoRestSwaggerBATDictionaryService`'s
-        :attr:`~bodydictionary.AutoRestSwaggerBATDictionaryService.dictionary` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodydictionary.AutoRestSwaggerBATDictionaryService`'s
+        :attr:`dictionary` attribute.
     """
 
     models = _models

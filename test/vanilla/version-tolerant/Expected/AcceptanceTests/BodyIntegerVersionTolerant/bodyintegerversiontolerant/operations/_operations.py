@@ -224,8 +224,9 @@ class IntOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodyintegerversiontolerant.AutoRestIntegerTestService`'s
-        :attr:`~bodyintegerversiontolerant.AutoRestIntegerTestService.int` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodyintegerversiontolerant.AutoRestIntegerTestService`'s
+        :attr:`int` attribute.
     """
 
     def __init__(self, *args, **kwargs):

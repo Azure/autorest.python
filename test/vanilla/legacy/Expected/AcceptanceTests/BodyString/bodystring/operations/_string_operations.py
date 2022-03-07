@@ -327,8 +327,9 @@ class StringOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodystring.AutoRestSwaggerBATService`'s
-        :attr:`~bodystring.AutoRestSwaggerBATService.string` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodystring.AutoRestSwaggerBATService`'s
+        :attr:`string` attribute.
     """
 
     models = _models

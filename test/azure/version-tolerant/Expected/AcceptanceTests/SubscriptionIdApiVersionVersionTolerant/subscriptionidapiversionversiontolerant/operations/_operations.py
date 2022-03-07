@@ -64,8 +64,9 @@ class GroupOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~subscriptionidapiversionversiontolerant.MicrosoftAzureTestUrl`'s
-        :attr:`~subscriptionidapiversionversiontolerant.MicrosoftAzureTestUrl.group` attribute.
+        Instead, you should access the following operations through
+        :class:`~subscriptionidapiversionversiontolerant.MicrosoftAzureTestUrl`'s
+        :attr:`group` attribute.
     """
 
     def __init__(self, *args, **kwargs):

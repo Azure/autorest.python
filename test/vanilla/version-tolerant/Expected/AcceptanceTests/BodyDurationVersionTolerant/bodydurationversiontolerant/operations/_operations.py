@@ -90,8 +90,9 @@ class DurationOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodydurationversiontolerant.AutoRestDurationTestService`'s
-        :attr:`~bodydurationversiontolerant.AutoRestDurationTestService.duration` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodydurationversiontolerant.AutoRestDurationTestService`'s
+        :attr:`duration` attribute.
     """
 
     def __init__(self, *args, **kwargs):

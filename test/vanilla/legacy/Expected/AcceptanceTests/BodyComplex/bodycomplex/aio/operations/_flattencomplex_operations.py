@@ -33,8 +33,9 @@ class FlattencomplexOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplex.aio.AutoRestComplexTestService`'s
-        :attr:`~bodycomplex.aio.AutoRestComplexTestService.flattencomplex` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplex.aio.AutoRestComplexTestService`'s
+        :attr:`flattencomplex` attribute.
     """
 
     models = _models

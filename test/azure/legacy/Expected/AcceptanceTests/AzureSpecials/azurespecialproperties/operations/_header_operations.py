@@ -110,8 +110,9 @@ class HeaderOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~azurespecialproperties.AutoRestAzureSpecialParametersTestClient`'s
-        :attr:`~azurespecialproperties.AutoRestAzureSpecialParametersTestClient.header` attribute.
+        Instead, you should access the following operations through
+        :class:`~azurespecialproperties.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`header` attribute.
     """
 
     models = _models

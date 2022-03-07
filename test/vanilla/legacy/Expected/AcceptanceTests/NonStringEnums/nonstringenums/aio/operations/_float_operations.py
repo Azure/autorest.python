@@ -33,8 +33,9 @@ class FloatOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~nonstringenums.aio.NonStringEnumsClient`'s
-        :attr:`~nonstringenums.aio.NonStringEnumsClient.float` attribute.
+        Instead, you should access the following operations through
+        :class:`~nonstringenums.aio.NonStringEnumsClient`'s
+        :attr:`float` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

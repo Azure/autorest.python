@@ -64,8 +64,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~header.aio.AutoRestSwaggerBATHeaderService`'s
-        :attr:`~header.aio.AutoRestSwaggerBATHeaderService.header` attribute.
+        Instead, you should access the following operations through
+        :class:`~header.aio.AutoRestSwaggerBATHeaderService`'s
+        :attr:`header` attribute.
     """
 
     models = _models

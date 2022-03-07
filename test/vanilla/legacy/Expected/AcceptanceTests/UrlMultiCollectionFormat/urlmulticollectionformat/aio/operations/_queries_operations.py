@@ -37,8 +37,9 @@ class QueriesOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~urlmulticollectionformat.aio.AutoRestUrlMutliCollectionFormatTestService`'s
-        :attr:`~urlmulticollectionformat.aio.AutoRestUrlMutliCollectionFormatTestService.queries` attribute.
+        Instead, you should access the following operations through
+        :class:`~urlmulticollectionformat.aio.AutoRestUrlMutliCollectionFormatTestService`'s
+        :attr:`queries` attribute.
     """
 
     models = _models

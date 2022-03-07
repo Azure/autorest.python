@@ -245,8 +245,9 @@ class HttpRetryOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~httpinfrastructure.AutoRestHttpInfrastructureTestService`'s
-        :attr:`~httpinfrastructure.AutoRestHttpInfrastructureTestService.http_retry` attribute.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructure.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_retry` attribute.
     """
 
     models = _models

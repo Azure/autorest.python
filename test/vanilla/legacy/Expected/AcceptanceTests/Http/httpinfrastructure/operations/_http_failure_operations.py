@@ -101,8 +101,9 @@ class HttpFailureOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~httpinfrastructure.AutoRestHttpInfrastructureTestService`'s
-        :attr:`~httpinfrastructure.AutoRestHttpInfrastructureTestService.http_failure` attribute.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructure.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_failure` attribute.
     """
 
     models = _models

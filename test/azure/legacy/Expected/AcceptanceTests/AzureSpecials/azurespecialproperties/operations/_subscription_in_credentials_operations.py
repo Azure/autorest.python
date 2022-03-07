@@ -178,8 +178,9 @@ class SubscriptionInCredentialsOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~azurespecialproperties.AutoRestAzureSpecialParametersTestClient`'s
-        :attr:`~azurespecialproperties.AutoRestAzureSpecialParametersTestClient.subscription_in_credentials` attribute.
+        Instead, you should access the following operations through
+        :class:`~azurespecialproperties.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`subscription_in_credentials` attribute.
     """
 
     models = _models

@@ -210,8 +210,9 @@ class ParameterGroupingOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~azureparametergrouping.AutoRestParameterGroupingTestService`'s
-        :attr:`~azureparametergrouping.AutoRestParameterGroupingTestService.parameter_grouping` attribute.
+        Instead, you should access the following operations through
+        :class:`~azureparametergrouping.AutoRestParameterGroupingTestService`'s
+        :attr:`parameter_grouping` attribute.
     """
 
     models = _models

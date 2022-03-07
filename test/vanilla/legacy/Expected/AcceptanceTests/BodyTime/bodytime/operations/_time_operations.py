@@ -86,8 +86,9 @@ class TimeOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodytime.AutoRestTimeTestService`'s
-        :attr:`~bodytime.AutoRestTimeTestService.time` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodytime.AutoRestTimeTestService`'s
+        :attr:`time` attribute.
     """
 
     models = _models

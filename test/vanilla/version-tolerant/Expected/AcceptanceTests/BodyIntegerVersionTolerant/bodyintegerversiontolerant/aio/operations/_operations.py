@@ -48,8 +48,9 @@ class IntOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodyintegerversiontolerant.aio.AutoRestIntegerTestService`'s
-        :attr:`~bodyintegerversiontolerant.aio.AutoRestIntegerTestService.int` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodyintegerversiontolerant.aio.AutoRestIntegerTestService`'s
+        :attr:`int` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

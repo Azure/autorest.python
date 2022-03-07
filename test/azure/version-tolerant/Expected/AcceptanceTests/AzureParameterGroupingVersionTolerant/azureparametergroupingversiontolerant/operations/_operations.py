@@ -173,8 +173,9 @@ class ParameterGroupingOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~azureparametergroupingversiontolerant.AutoRestParameterGroupingTestService`'s
-        :attr:`~azureparametergroupingversiontolerant.AutoRestParameterGroupingTestService.parameter_grouping` attribute.
+        Instead, you should access the following operations through
+        :class:`~azureparametergroupingversiontolerant.AutoRestParameterGroupingTestService`'s
+        :attr:`parameter_grouping` attribute.
     """
 
     def __init__(self, *args, **kwargs):

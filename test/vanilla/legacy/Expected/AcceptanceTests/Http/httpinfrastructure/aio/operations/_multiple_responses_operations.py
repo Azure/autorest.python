@@ -68,8 +68,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~httpinfrastructure.aio.AutoRestHttpInfrastructureTestService`'s
-        :attr:`~httpinfrastructure.aio.AutoRestHttpInfrastructureTestService.multiple_responses` attribute.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructure.aio.AutoRestHttpInfrastructureTestService`'s
+        :attr:`multiple_responses` attribute.
     """
 
     models = _models

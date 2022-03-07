@@ -173,8 +173,9 @@ class BoolOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodyboolean.AutoRestBoolTestService`'s
-        :attr:`~bodyboolean.AutoRestBoolTestService.bool` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodyboolean.AutoRestBoolTestService`'s
+        :attr:`bool` attribute.
     """
 
     models = _models

@@ -40,8 +40,9 @@ class BoolOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodyboolean.aio.AutoRestBoolTestService`'s
-        :attr:`~bodyboolean.aio.AutoRestBoolTestService.bool` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodyboolean.aio.AutoRestBoolTestService`'s
+        :attr:`bool` attribute.
     """
 
     models = _models

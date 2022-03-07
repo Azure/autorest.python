@@ -39,8 +39,9 @@ class BoolOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodybooleanversiontolerant.aio.AutoRestBoolTestService`'s
-        :attr:`~bodybooleanversiontolerant.aio.AutoRestBoolTestService.bool` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodybooleanversiontolerant.aio.AutoRestBoolTestService`'s
+        :attr:`bool` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

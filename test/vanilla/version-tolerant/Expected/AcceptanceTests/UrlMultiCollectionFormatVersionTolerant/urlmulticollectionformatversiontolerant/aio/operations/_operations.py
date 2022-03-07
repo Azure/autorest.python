@@ -35,8 +35,9 @@ class QueriesOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~urlmulticollectionformatversiontolerant.aio.AutoRestUrlMutliCollectionFormatTestService`'s
-        :attr:`~urlmulticollectionformatversiontolerant.aio.AutoRestUrlMutliCollectionFormatTestService.queries` attribute.
+        Instead, you should access the following operations through
+        :class:`~urlmulticollectionformatversiontolerant.aio.AutoRestUrlMutliCollectionFormatTestService`'s
+        :attr:`queries` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

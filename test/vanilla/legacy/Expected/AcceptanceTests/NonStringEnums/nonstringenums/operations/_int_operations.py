@@ -85,8 +85,9 @@ class IntOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~nonstringenums.NonStringEnumsClient`'s
-        :attr:`~nonstringenums.NonStringEnumsClient.int` attribute.
+        Instead, you should access the following operations through
+        :class:`~nonstringenums.NonStringEnumsClient`'s
+        :attr:`int` attribute.
     """
 
     def __init__(self, *args, **kwargs):

@@ -121,8 +121,9 @@ class PetOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~xmserrorresponse.XMSErrorResponseExtensions`'s
-        :attr:`~xmserrorresponse.XMSErrorResponseExtensions.pet` attribute.
+        Instead, you should access the following operations through
+        :class:`~xmserrorresponse.XMSErrorResponseExtensions`'s
+        :attr:`pet` attribute.
     """
 
     models = _models

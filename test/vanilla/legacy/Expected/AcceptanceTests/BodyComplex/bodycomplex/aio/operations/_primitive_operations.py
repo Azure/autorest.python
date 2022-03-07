@@ -57,8 +57,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplex.aio.AutoRestComplexTestService`'s
-        :attr:`~bodycomplex.aio.AutoRestComplexTestService.primitive` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplex.aio.AutoRestComplexTestService`'s
+        :attr:`primitive` attribute.
     """
 
     models = _models

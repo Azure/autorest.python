@@ -108,8 +108,9 @@ class PagingOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~custombaseurlpaging.AutoRestParameterizedHostTestPagingClient`'s
-        :attr:`~custombaseurlpaging.AutoRestParameterizedHostTestPagingClient.paging` attribute.
+        Instead, you should access the following operations through
+        :class:`~custombaseurlpaging.AutoRestParameterizedHostTestPagingClient`'s
+        :attr:`paging` attribute.
     """
 
     models = _models

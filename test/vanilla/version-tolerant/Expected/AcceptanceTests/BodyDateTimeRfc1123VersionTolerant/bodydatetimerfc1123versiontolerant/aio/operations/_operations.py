@@ -43,8 +43,9 @@ class Datetimerfc1123Operations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodydatetimerfc1123versiontolerant.aio.AutoRestRFC1123DateTimeTestService`'s
-        :attr:`~bodydatetimerfc1123versiontolerant.aio.AutoRestRFC1123DateTimeTestService.datetimerfc1123` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodydatetimerfc1123versiontolerant.aio.AutoRestRFC1123DateTimeTestService`'s
+        :attr:`datetimerfc1123` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

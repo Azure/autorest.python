@@ -101,8 +101,9 @@ class FilesOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodyfile.AutoRestSwaggerBATFileService`'s
-        :attr:`~bodyfile.AutoRestSwaggerBATFileService.files` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodyfile.AutoRestSwaggerBATFileService`'s
+        :attr:`files` attribute.
     """
 
     models = _models

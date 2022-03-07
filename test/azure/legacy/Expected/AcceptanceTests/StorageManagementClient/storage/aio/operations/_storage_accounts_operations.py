@@ -48,8 +48,9 @@ class StorageAccountsOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~storage.aio.StorageManagementClient`'s
-        :attr:`~storage.aio.StorageManagementClient.storage_accounts` attribute.
+        Instead, you should access the following operations through
+        :class:`~storage.aio.StorageManagementClient`'s
+        :attr:`storage_accounts` attribute.
     """
 
     models = _models

@@ -41,8 +41,9 @@ class LROsCustomHeaderOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~lro.aio.AutoRestLongRunningOperationTestService`'s
-        :attr:`~lro.aio.AutoRestLongRunningOperationTestService.lr_os_custom_header` attribute.
+        Instead, you should access the following operations through
+        :class:`~lro.aio.AutoRestLongRunningOperationTestService`'s
+        :attr:`lr_os_custom_header` attribute.
     """
 
     models = _models

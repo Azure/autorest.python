@@ -83,8 +83,9 @@ class HttpSuccessOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~head.AutoRestHeadTestService`'s
-        :attr:`~head.AutoRestHeadTestService.http_success` attribute.
+        Instead, you should access the following operations through
+        :class:`~head.AutoRestHeadTestService`'s
+        :attr:`http_success` attribute.
     """
 
     def __init__(self, *args, **kwargs):

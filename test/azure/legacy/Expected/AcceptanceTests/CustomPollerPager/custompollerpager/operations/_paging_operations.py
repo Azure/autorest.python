@@ -585,8 +585,9 @@ class PagingOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~custompollerpager.AutoRestPagingTestService`'s
-        :attr:`~custompollerpager.AutoRestPagingTestService.paging` attribute.
+        Instead, you should access the following operations through
+        :class:`~custompollerpager.AutoRestPagingTestService`'s
+        :attr:`paging` attribute.
     """
 
     models = _models

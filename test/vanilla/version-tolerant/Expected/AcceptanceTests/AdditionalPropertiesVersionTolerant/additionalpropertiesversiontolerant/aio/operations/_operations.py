@@ -39,8 +39,9 @@ class PetsOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~additionalpropertiesversiontolerant.aio.AdditionalPropertiesClient`'s
-        :attr:`~additionalpropertiesversiontolerant.aio.AdditionalPropertiesClient.pets` attribute.
+        Instead, you should access the following operations through
+        :class:`~additionalpropertiesversiontolerant.aio.AdditionalPropertiesClient`'s
+        :attr:`pets` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

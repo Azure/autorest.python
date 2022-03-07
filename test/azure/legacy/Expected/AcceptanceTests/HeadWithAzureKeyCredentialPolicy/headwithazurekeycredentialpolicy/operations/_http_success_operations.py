@@ -83,8 +83,9 @@ class HttpSuccessOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~headwithazurekeycredentialpolicy.AutoRestHeadTestService`'s
-        :attr:`~headwithazurekeycredentialpolicy.AutoRestHeadTestService.http_success` attribute.
+        Instead, you should access the following operations through
+        :class:`~headwithazurekeycredentialpolicy.AutoRestHeadTestService`'s
+        :attr:`http_success` attribute.
     """
 
     def __init__(self, *args, **kwargs):

@@ -33,8 +33,9 @@ class PathsOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~custombaseurlmoreoptions.aio.AutoRestParameterizedCustomHostTestClient`'s
-        :attr:`~custombaseurlmoreoptions.aio.AutoRestParameterizedCustomHostTestClient.paths` attribute.
+        Instead, you should access the following operations through
+        :class:`~custombaseurlmoreoptions.aio.AutoRestParameterizedCustomHostTestClient`'s
+        :attr:`paths` attribute.
     """
 
     models = _models

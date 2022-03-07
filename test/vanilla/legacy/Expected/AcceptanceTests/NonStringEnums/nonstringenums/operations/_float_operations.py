@@ -85,8 +85,9 @@ class FloatOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~nonstringenums.NonStringEnumsClient`'s
-        :attr:`~nonstringenums.NonStringEnumsClient.float` attribute.
+        Instead, you should access the following operations through
+        :class:`~nonstringenums.NonStringEnumsClient`'s
+        :attr:`float` attribute.
     """
 
     def __init__(self, *args, **kwargs):

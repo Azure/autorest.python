@@ -276,8 +276,9 @@ class ContantsOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~constantsversiontolerant.AutoRestSwaggerConstantService`'s
-        :attr:`~constantsversiontolerant.AutoRestSwaggerConstantService.contants` attribute.
+        Instead, you should access the following operations through
+        :class:`~constantsversiontolerant.AutoRestSwaggerConstantService`'s
+        :attr:`contants` attribute.
     """
 
     def __init__(self, *args, **kwargs):

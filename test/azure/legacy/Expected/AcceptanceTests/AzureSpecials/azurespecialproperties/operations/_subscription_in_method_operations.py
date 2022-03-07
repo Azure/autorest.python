@@ -145,8 +145,9 @@ class SubscriptionInMethodOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~azurespecialproperties.AutoRestAzureSpecialParametersTestClient`'s
-        :attr:`~azurespecialproperties.AutoRestAzureSpecialParametersTestClient.subscription_in_method` attribute.
+        Instead, you should access the following operations through
+        :class:`~azurespecialproperties.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`subscription_in_method` attribute.
     """
 
     models = _models

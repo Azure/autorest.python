@@ -84,8 +84,9 @@ class PolymorphicrecursiveOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplex.AutoRestComplexTestService`'s
-        :attr:`~bodycomplex.AutoRestComplexTestService.polymorphicrecursive` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplex.AutoRestComplexTestService`'s
+        :attr:`polymorphicrecursive` attribute.
     """
 
     models = _models

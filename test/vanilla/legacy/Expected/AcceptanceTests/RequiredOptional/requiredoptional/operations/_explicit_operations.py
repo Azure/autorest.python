@@ -613,8 +613,9 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~requiredoptional.AutoRestRequiredOptionalTestService`'s
-        :attr:`~requiredoptional.AutoRestRequiredOptionalTestService.explicit` attribute.
+        Instead, you should access the following operations through
+        :class:`~requiredoptional.AutoRestRequiredOptionalTestService`'s
+        :attr:`explicit` attribute.
     """
 
     models = _models

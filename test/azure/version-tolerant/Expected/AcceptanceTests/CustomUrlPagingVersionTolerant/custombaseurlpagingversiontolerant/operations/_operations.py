@@ -79,8 +79,9 @@ class PagingOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~custombaseurlpagingversiontolerant.AutoRestParameterizedHostTestPagingClient`'s
-        :attr:`~custombaseurlpagingversiontolerant.AutoRestParameterizedHostTestPagingClient.paging` attribute.
+        Instead, you should access the following operations through
+        :class:`~custombaseurlpagingversiontolerant.AutoRestParameterizedHostTestPagingClient`'s
+        :attr:`paging` attribute.
     """
 
     def __init__(self, *args, **kwargs):

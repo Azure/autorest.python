@@ -173,8 +173,9 @@ class EnumOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodystring.AutoRestSwaggerBATService`'s
-        :attr:`~bodystring.AutoRestSwaggerBATService.enum` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodystring.AutoRestSwaggerBATService`'s
+        :attr:`enum` attribute.
     """
 
     models = _models

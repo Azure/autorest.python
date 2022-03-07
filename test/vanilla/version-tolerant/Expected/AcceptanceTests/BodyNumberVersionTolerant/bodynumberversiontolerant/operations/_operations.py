@@ -367,8 +367,9 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodynumberversiontolerant.AutoRestNumberTestService`'s
-        :attr:`~bodynumberversiontolerant.AutoRestNumberTestService.number` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodynumberversiontolerant.AutoRestNumberTestService`'s
+        :attr:`number` attribute.
     """
 
     def __init__(self, *args, **kwargs):

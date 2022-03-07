@@ -32,8 +32,9 @@ class PetOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~extensibleenumsswaggerversiontolerant.aio.PetStoreInc`'s
-        :attr:`~extensibleenumsswaggerversiontolerant.aio.PetStoreInc.pet` attribute.
+        Instead, you should access the following operations through
+        :class:`~extensibleenumsswaggerversiontolerant.aio.PetStoreInc`'s
+        :attr:`pet` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

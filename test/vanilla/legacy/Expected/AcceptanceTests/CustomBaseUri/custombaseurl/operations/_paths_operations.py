@@ -60,8 +60,9 @@ class PathsOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~custombaseurl.AutoRestParameterizedHostTestClient`'s
-        :attr:`~custombaseurl.AutoRestParameterizedHostTestClient.paths` attribute.
+        Instead, you should access the following operations through
+        :class:`~custombaseurl.AutoRestParameterizedHostTestClient`'s
+        :attr:`paths` attribute.
     """
 
     models = _models

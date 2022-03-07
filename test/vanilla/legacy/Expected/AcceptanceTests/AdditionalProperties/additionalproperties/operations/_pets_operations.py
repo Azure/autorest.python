@@ -185,8 +185,9 @@ class PetsOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~additionalproperties.AdditionalPropertiesClient`'s
-        :attr:`~additionalproperties.AdditionalPropertiesClient.pets` attribute.
+        Instead, you should access the following operations through
+        :class:`~additionalproperties.AdditionalPropertiesClient`'s
+        :attr:`pets` attribute.
     """
 
     models = _models

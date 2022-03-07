@@ -68,8 +68,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~xmlserviceversiontolerant.aio.AutoRestSwaggerBATXMLService`'s
-        :attr:`~xmlserviceversiontolerant.aio.AutoRestSwaggerBATXMLService.xml` attribute.
+        Instead, you should access the following operations through
+        :class:`~xmlserviceversiontolerant.aio.AutoRestSwaggerBATXMLService`'s
+        :attr:`xml` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

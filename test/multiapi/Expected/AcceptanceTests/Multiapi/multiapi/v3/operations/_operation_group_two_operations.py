@@ -92,8 +92,9 @@ class OperationGroupTwoOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~multiapi.v3.MultiapiServiceClient`'s
-        :attr:`~multiapi.v3.MultiapiServiceClient.operation_group_two` attribute.
+        Instead, you should access the following operations through
+        :class:`~multiapi.v3.MultiapiServiceClient`'s
+        :attr:`operation_group_two` attribute.
     """
 
     models = _models

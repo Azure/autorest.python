@@ -75,8 +75,9 @@ class UsageOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~storage.StorageManagementClient`'s
-        :attr:`~storage.StorageManagementClient.usage` attribute.
+        Instead, you should access the following operations through
+        :class:`~storage.StorageManagementClient`'s
+        :attr:`usage` attribute.
     """
 
     models = _models

@@ -56,8 +56,9 @@ class HeadExceptionOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~headexceptionsversiontolerant.AutoRestHeadExceptionTestService`'s
-        :attr:`~headexceptionsversiontolerant.AutoRestHeadExceptionTestService.head_exception` attribute.
+        Instead, you should access the following operations through
+        :class:`~headexceptionsversiontolerant.AutoRestHeadExceptionTestService`'s
+        :attr:`head_exception` attribute.
     """
 
     def __init__(self, *args, **kwargs):

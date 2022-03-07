@@ -40,8 +40,9 @@ class DictionaryOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplexpython3only.aio.AutoRestComplexTestService`'s
-        :attr:`~bodycomplexpython3only.aio.AutoRestComplexTestService.dictionary` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplexpython3only.aio.AutoRestComplexTestService`'s
+        :attr:`dictionary` attribute.
     """
 
     models = _models

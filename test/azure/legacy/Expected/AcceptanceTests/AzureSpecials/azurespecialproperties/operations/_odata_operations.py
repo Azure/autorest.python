@@ -75,8 +75,9 @@ class OdataOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~azurespecialproperties.AutoRestAzureSpecialParametersTestClient`'s
-        :attr:`~azurespecialproperties.AutoRestAzureSpecialParametersTestClient.odata` attribute.
+        Instead, you should access the following operations through
+        :class:`~azurespecialproperties.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`odata` attribute.
     """
 
     models = _models

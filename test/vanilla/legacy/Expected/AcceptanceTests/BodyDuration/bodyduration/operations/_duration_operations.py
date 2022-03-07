@@ -126,8 +126,9 @@ class DurationOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodyduration.AutoRestDurationTestService`'s
-        :attr:`~bodyduration.AutoRestDurationTestService.duration` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodyduration.AutoRestDurationTestService`'s
+        :attr:`duration` attribute.
     """
 
     models = _models

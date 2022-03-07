@@ -91,8 +91,9 @@ class IntOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~nonstringenumsversiontolerant.NonStringEnumsClient`'s
-        :attr:`~nonstringenumsversiontolerant.NonStringEnumsClient.int` attribute.
+        Instead, you should access the following operations through
+        :class:`~nonstringenumsversiontolerant.NonStringEnumsClient`'s
+        :attr:`int` attribute.
     """
 
     def __init__(self, *args, **kwargs):
@@ -195,8 +196,9 @@ class FloatOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~nonstringenumsversiontolerant.NonStringEnumsClient`'s
-        :attr:`~nonstringenumsversiontolerant.NonStringEnumsClient.float` attribute.
+        Instead, you should access the following operations through
+        :class:`~nonstringenumsversiontolerant.NonStringEnumsClient`'s
+        :attr:`float` attribute.
     """
 
     def __init__(self, *args, **kwargs):

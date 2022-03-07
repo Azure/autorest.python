@@ -33,8 +33,9 @@ class ReadonlypropertyOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplexpython3only.aio.AutoRestComplexTestService`'s
-        :attr:`~bodycomplexpython3only.aio.AutoRestComplexTestService.readonlyproperty` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplexpython3only.aio.AutoRestComplexTestService`'s
+        :attr:`readonlyproperty` attribute.
     """
 
     models = _models

@@ -32,8 +32,9 @@ class UploadOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodybinary.aio.BinaryWithContentTypeApplicationJson`'s
-        :attr:`~bodybinary.aio.BinaryWithContentTypeApplicationJson.upload` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodybinary.aio.BinaryWithContentTypeApplicationJson`'s
+        :attr:`upload` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

@@ -33,8 +33,9 @@ class HeadExceptionOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~headexceptions.aio.AutoRestHeadExceptionTestService`'s
-        :attr:`~headexceptions.aio.AutoRestHeadExceptionTestService.head_exception` attribute.
+        Instead, you should access the following operations through
+        :class:`~headexceptions.aio.AutoRestHeadExceptionTestService`'s
+        :attr:`head_exception` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

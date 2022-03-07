@@ -144,8 +144,9 @@ class HttpFailureOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService`'s
-        :attr:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService.http_failure` attribute.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_failure` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -263,8 +264,9 @@ class HttpSuccessOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService`'s
-        :attr:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService.http_success` attribute.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_success` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1017,8 +1019,9 @@ class HttpRedirectsOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService`'s
-        :attr:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService.http_redirects` attribute.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_redirects` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1652,8 +1655,9 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService`'s
-        :attr:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService.http_client_failure` attribute.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_client_failure` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2566,8 +2570,9 @@ class HttpServerFailureOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService`'s
-        :attr:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService.http_server_failure` attribute.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_server_failure` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2721,8 +2726,9 @@ class HttpRetryOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService`'s
-        :attr:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService.http_retry` attribute.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_retry` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -3078,8 +3084,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService`'s
-        :attr:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService.multiple_responses` attribute.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.aio.AutoRestHttpInfrastructureTestService`'s
+        :attr:`multiple_responses` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

@@ -304,8 +304,9 @@ class StringOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodystringversiontolerant.AutoRestSwaggerBATService`'s
-        :attr:`~bodystringversiontolerant.AutoRestSwaggerBATService.string` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodystringversiontolerant.AutoRestSwaggerBATService`'s
+        :attr:`string` attribute.
     """
 
     def __init__(self, *args, **kwargs):
@@ -790,8 +791,9 @@ class EnumOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodystringversiontolerant.AutoRestSwaggerBATService`'s
-        :attr:`~bodystringversiontolerant.AutoRestSwaggerBATService.enum` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodystringversiontolerant.AutoRestSwaggerBATService`'s
+        :attr:`enum` attribute.
     """
 
     def __init__(self, *args, **kwargs):

@@ -564,8 +564,9 @@ class XMsClientRequestIdOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
-        :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.xms_client_request_id` attribute.
+        Instead, you should access the following operations through
+        :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`xms_client_request_id` attribute.
     """
 
     def __init__(self, *args, **kwargs):
@@ -644,8 +645,9 @@ class SubscriptionInCredentialsOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
-        :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.subscription_in_credentials` attribute.
+        Instead, you should access the following operations through
+        :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`subscription_in_credentials` attribute.
     """
 
     def __init__(self, *args, **kwargs):
@@ -816,8 +818,9 @@ class SubscriptionInMethodOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
-        :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.subscription_in_method` attribute.
+        Instead, you should access the following operations through
+        :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`subscription_in_method` attribute.
     """
 
     def __init__(self, *args, **kwargs):
@@ -972,8 +975,9 @@ class ApiVersionDefaultOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
-        :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.api_version_default` attribute.
+        Instead, you should access the following operations through
+        :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`api_version_default` attribute.
     """
 
     def __init__(self, *args, **kwargs):
@@ -1115,8 +1119,9 @@ class ApiVersionLocalOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
-        :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.api_version_local` attribute.
+        Instead, you should access the following operations through
+        :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`api_version_local` attribute.
     """
 
     def __init__(self, *args, **kwargs):
@@ -1269,8 +1274,9 @@ class SkipUrlEncodingOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
-        :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.skip_url_encoding` attribute.
+        Instead, you should access the following operations through
+        :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`skip_url_encoding` attribute.
     """
 
     def __init__(self, *args, **kwargs):
@@ -1519,8 +1525,9 @@ class OdataOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
-        :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.odata` attribute.
+        Instead, you should access the following operations through
+        :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`odata` attribute.
     """
 
     def __init__(self, *args, **kwargs):
@@ -1576,8 +1583,9 @@ class HeaderOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
-        :attr:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient.header` attribute.
+        Instead, you should access the following operations through
+        :class:`~azurespecialpropertiesversiontolerant.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`header` attribute.
     """
 
     def __init__(self, *args, **kwargs):

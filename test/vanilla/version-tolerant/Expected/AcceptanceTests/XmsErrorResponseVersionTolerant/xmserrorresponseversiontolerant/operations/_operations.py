@@ -88,8 +88,9 @@ class PetOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~xmserrorresponseversiontolerant.XMSErrorResponseExtensions`'s
-        :attr:`~xmserrorresponseversiontolerant.XMSErrorResponseExtensions.pet` attribute.
+        Instead, you should access the following operations through
+        :class:`~xmserrorresponseversiontolerant.XMSErrorResponseExtensions`'s
+        :attr:`pet` attribute.
     """
 
     def __init__(self, *args, **kwargs):

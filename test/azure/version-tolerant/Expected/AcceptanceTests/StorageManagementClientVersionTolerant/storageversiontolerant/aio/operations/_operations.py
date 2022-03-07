@@ -48,8 +48,9 @@ class StorageAccountsOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~storageversiontolerant.aio.StorageManagementClient`'s
-        :attr:`~storageversiontolerant.aio.StorageManagementClient.storage_accounts` attribute.
+        Instead, you should access the following operations through
+        :class:`~storageversiontolerant.aio.StorageManagementClient`'s
+        :attr:`storage_accounts` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1099,8 +1100,9 @@ class UsageOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~storageversiontolerant.aio.StorageManagementClient`'s
-        :attr:`~storageversiontolerant.aio.StorageManagementClient.usage` attribute.
+        Instead, you should access the following operations through
+        :class:`~storageversiontolerant.aio.StorageManagementClient`'s
+        :attr:`usage` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

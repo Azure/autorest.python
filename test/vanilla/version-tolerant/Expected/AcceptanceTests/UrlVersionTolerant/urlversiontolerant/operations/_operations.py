@@ -1314,8 +1314,9 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~urlversiontolerant.AutoRestUrlTestService`'s
-        :attr:`~urlversiontolerant.AutoRestUrlTestService.paths` attribute.
+        Instead, you should access the following operations through
+        :class:`~urlversiontolerant.AutoRestUrlTestService`'s
+        :attr:`paths` attribute.
     """
 
     def __init__(self, *args, **kwargs):
@@ -2241,8 +2242,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~urlversiontolerant.AutoRestUrlTestService`'s
-        :attr:`~urlversiontolerant.AutoRestUrlTestService.queries` attribute.
+        Instead, you should access the following operations through
+        :class:`~urlversiontolerant.AutoRestUrlTestService`'s
+        :attr:`queries` attribute.
     """
 
     def __init__(self, *args, **kwargs):
@@ -3445,8 +3447,9 @@ class PathItemsOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~urlversiontolerant.AutoRestUrlTestService`'s
-        :attr:`~urlversiontolerant.AutoRestUrlTestService.path_items` attribute.
+        Instead, you should access the following operations through
+        :class:`~urlversiontolerant.AutoRestUrlTestService`'s
+        :attr:`path_items` attribute.
     """
 
     def __init__(self, *args, **kwargs):

@@ -65,8 +65,9 @@ class ImplicitOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~requiredoptionalversiontolerant.aio.AutoRestRequiredOptionalTestService`'s
-        :attr:`~requiredoptionalversiontolerant.aio.AutoRestRequiredOptionalTestService.implicit` attribute.
+        Instead, you should access the following operations through
+        :class:`~requiredoptionalversiontolerant.aio.AutoRestRequiredOptionalTestService`'s
+        :attr:`implicit` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -347,8 +348,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~requiredoptionalversiontolerant.aio.AutoRestRequiredOptionalTestService`'s
-        :attr:`~requiredoptionalversiontolerant.aio.AutoRestRequiredOptionalTestService.explicit` attribute.
+        Instead, you should access the following operations through
+        :class:`~requiredoptionalversiontolerant.aio.AutoRestRequiredOptionalTestService`'s
+        :attr:`explicit` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

@@ -49,8 +49,9 @@ class FlattencomplexOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplexpython3only.AutoRestComplexTestService`'s
-        :attr:`~bodycomplexpython3only.AutoRestComplexTestService.flattencomplex` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplexpython3only.AutoRestComplexTestService`'s
+        :attr:`flattencomplex` attribute.
     """
 
     models = _models

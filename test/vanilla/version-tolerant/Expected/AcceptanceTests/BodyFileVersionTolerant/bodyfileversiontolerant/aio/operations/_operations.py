@@ -36,8 +36,9 @@ class FilesOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodyfileversiontolerant.aio.AutoRestSwaggerBATFileService`'s
-        :attr:`~bodyfileversiontolerant.aio.AutoRestSwaggerBATFileService.files` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodyfileversiontolerant.aio.AutoRestSwaggerBATFileService`'s
+        :attr:`files` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

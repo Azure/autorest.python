@@ -59,8 +59,9 @@ class AvailabilitySetsOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~parameterflatteningversiontolerant.AutoRestParameterFlattening`'s
-        :attr:`~parameterflatteningversiontolerant.AutoRestParameterFlattening.availability_sets` attribute.
+        Instead, you should access the following operations through
+        :class:`~parameterflatteningversiontolerant.AutoRestParameterFlattening`'s
+        :attr:`availability_sets` attribute.
     """
 
     def __init__(self, *args, **kwargs):

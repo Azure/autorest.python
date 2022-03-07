@@ -40,8 +40,9 @@ class ParamsOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~dpgservicedrivenupdateoneversiontolerant.aio.DPGClient`'s
-        :attr:`~dpgservicedrivenupdateoneversiontolerant.aio.DPGClient.params` attribute.
+        Instead, you should access the following operations through
+        :class:`~dpgservicedrivenupdateoneversiontolerant.aio.DPGClient`'s
+        :attr:`params` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

@@ -127,8 +127,9 @@ class BasicOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplexpython3only.AutoRestComplexTestService`'s
-        :attr:`~bodycomplexpython3only.AutoRestComplexTestService.basic` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplexpython3only.AutoRestComplexTestService`'s
+        :attr:`basic` attribute.
     """
 
     models = _models

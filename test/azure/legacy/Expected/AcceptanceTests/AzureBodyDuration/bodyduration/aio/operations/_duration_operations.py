@@ -39,8 +39,9 @@ class DurationOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodyduration.aio.AutoRestDurationTestService`'s
-        :attr:`~bodyduration.aio.AutoRestDurationTestService.duration` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodyduration.aio.AutoRestDurationTestService`'s
+        :attr:`duration` attribute.
     """
 
     models = _models

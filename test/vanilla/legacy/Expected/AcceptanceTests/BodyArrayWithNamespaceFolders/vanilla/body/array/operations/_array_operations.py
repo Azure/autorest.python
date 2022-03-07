@@ -1494,8 +1494,9 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~vanilla.body.array.AutoRestSwaggerBATArrayService`'s
-        :attr:`~vanilla.body.array.AutoRestSwaggerBATArrayService.array` attribute.
+        Instead, you should access the following operations through
+        :class:`~vanilla.body.array.AutoRestSwaggerBATArrayService`'s
+        :attr:`array` attribute.
     """
 
     models = _models

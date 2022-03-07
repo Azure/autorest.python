@@ -88,8 +88,9 @@ class BasicOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService`'s
-        :attr:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService.basic` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService`'s
+        :attr:`basic` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -387,8 +388,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService`'s
-        :attr:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService.primitive` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService`'s
+        :attr:`primitive` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1396,8 +1398,9 @@ class ArrayOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService`'s
-        :attr:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService.array` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService`'s
+        :attr:`array` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1642,8 +1645,9 @@ class DictionaryOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService`'s
-        :attr:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService.dictionary` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService`'s
+        :attr:`dictionary` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1932,8 +1936,9 @@ class InheritanceOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService`'s
-        :attr:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService.inheritance` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService`'s
+        :attr:`inheritance` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2059,8 +2064,9 @@ class PolymorphismOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService`'s
-        :attr:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService.polymorphism` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService`'s
+        :attr:`polymorphism` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2671,8 +2677,9 @@ class PolymorphicrecursiveOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService`'s
-        :attr:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService.polymorphicrecursive` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService`'s
+        :attr:`polymorphicrecursive` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2840,8 +2847,9 @@ class ReadonlypropertyOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService`'s
-        :attr:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService.readonlyproperty` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService`'s
+        :attr:`readonlyproperty` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2947,8 +2955,9 @@ class FlattencomplexOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService`'s
-        :attr:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService.flattencomplex` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplexversiontolerant.aio.AutoRestComplexTestService`'s
+        :attr:`flattencomplex` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

@@ -59,8 +59,9 @@ class PagingOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~paging.aio.AutoRestPagingTestService`'s
-        :attr:`~paging.aio.AutoRestPagingTestService.paging` attribute.
+        Instead, you should access the following operations through
+        :class:`~paging.aio.AutoRestPagingTestService`'s
+        :attr:`paging` attribute.
     """
 
     models = _models

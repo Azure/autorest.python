@@ -37,8 +37,9 @@ class FilesOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodyfile.aio.AutoRestSwaggerBATFileService`'s
-        :attr:`~bodyfile.aio.AutoRestSwaggerBATFileService.files` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodyfile.aio.AutoRestSwaggerBATFileService`'s
+        :attr:`files` attribute.
     """
 
     models = _models

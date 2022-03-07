@@ -37,8 +37,9 @@ class PetOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~xmserrorresponse.aio.XMSErrorResponseExtensions`'s
-        :attr:`~xmserrorresponse.aio.XMSErrorResponseExtensions.pet` attribute.
+        Instead, you should access the following operations through
+        :class:`~xmserrorresponse.aio.XMSErrorResponseExtensions`'s
+        :attr:`pet` attribute.
     """
 
     models = _models

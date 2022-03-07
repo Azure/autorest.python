@@ -342,8 +342,9 @@ class IntOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodyinteger.AutoRestIntegerTestService`'s
-        :attr:`~bodyinteger.AutoRestIntegerTestService.int` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodyinteger.AutoRestIntegerTestService`'s
+        :attr:`int` attribute.
     """
 
     models = _models

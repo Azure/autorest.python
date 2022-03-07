@@ -38,8 +38,9 @@ class ParameterGroupingOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~azureparametergroupingversiontolerant.aio.AutoRestParameterGroupingTestService`'s
-        :attr:`~azureparametergroupingversiontolerant.aio.AutoRestParameterGroupingTestService.parameter_grouping` attribute.
+        Instead, you should access the following operations through
+        :class:`~azureparametergroupingversiontolerant.aio.AutoRestParameterGroupingTestService`'s
+        :attr:`parameter_grouping` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

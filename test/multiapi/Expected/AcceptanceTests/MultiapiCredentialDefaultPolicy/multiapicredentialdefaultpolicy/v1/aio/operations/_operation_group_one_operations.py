@@ -26,8 +26,9 @@ class OperationGroupOneOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~multiapicredentialdefaultpolicy.v1.aio.MultiapiServiceClient`'s
-        :attr:`~multiapicredentialdefaultpolicy.v1.aio.MultiapiServiceClient.operation_group_one` attribute.
+        Instead, you should access the following operations through
+        :class:`~multiapicredentialdefaultpolicy.v1.aio.MultiapiServiceClient`'s
+        :attr:`operation_group_one` attribute.
     """
 
     models = _models

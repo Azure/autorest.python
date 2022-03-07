@@ -148,8 +148,9 @@ class ArrayOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplex.AutoRestComplexTestService`'s
-        :attr:`~bodycomplex.AutoRestComplexTestService.array` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplex.AutoRestComplexTestService`'s
+        :attr:`array` attribute.
     """
 
     models = _models

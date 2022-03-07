@@ -36,8 +36,9 @@ class FormdataOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodyformdataversiontolerant.aio.AutoRestSwaggerBATFormDataService`'s
-        :attr:`~bodyformdataversiontolerant.aio.AutoRestSwaggerBATFormDataService.formdata` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodyformdataversiontolerant.aio.AutoRestSwaggerBATFormDataService`'s
+        :attr:`formdata` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

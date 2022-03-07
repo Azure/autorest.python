@@ -51,8 +51,9 @@ class ContantsOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~constants.aio.AutoRestSwaggerConstantService`'s
-        :attr:`~constants.aio.AutoRestSwaggerConstantService.contants` attribute.
+        Instead, you should access the following operations through
+        :class:`~constants.aio.AutoRestSwaggerConstantService`'s
+        :attr:`contants` attribute.
     """
 
     models = _models

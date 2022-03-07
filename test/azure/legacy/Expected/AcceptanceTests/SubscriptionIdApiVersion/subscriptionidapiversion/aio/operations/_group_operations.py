@@ -34,8 +34,9 @@ class GroupOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~subscriptionidapiversion.aio.MicrosoftAzureTestUrl`'s
-        :attr:`~subscriptionidapiversion.aio.MicrosoftAzureTestUrl.group` attribute.
+        Instead, you should access the following operations through
+        :class:`~subscriptionidapiversion.aio.MicrosoftAzureTestUrl`'s
+        :attr:`group` attribute.
     """
 
     models = _models

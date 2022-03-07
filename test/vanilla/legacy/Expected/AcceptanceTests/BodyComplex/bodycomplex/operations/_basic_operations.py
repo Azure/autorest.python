@@ -170,8 +170,9 @@ class BasicOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplex.AutoRestComplexTestService`'s
-        :attr:`~bodycomplex.AutoRestComplexTestService.basic` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplex.AutoRestComplexTestService`'s
+        :attr:`basic` attribute.
     """
 
     models = _models

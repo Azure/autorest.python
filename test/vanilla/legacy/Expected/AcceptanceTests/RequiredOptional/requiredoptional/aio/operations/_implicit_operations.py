@@ -42,8 +42,9 @@ class ImplicitOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~requiredoptional.aio.AutoRestRequiredOptionalTestService`'s
-        :attr:`~requiredoptional.aio.AutoRestRequiredOptionalTestService.implicit` attribute.
+        Instead, you should access the following operations through
+        :class:`~requiredoptional.aio.AutoRestRequiredOptionalTestService`'s
+        :attr:`implicit` attribute.
     """
 
     models = _models

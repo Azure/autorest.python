@@ -99,8 +99,9 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodydictionaryversiontolerant.aio.AutoRestSwaggerBATDictionaryService`'s
-        :attr:`~bodydictionaryversiontolerant.aio.AutoRestSwaggerBATDictionaryService.dictionary` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodydictionaryversiontolerant.aio.AutoRestSwaggerBATDictionaryService`'s
+        :attr:`dictionary` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

@@ -39,8 +39,9 @@ class SubscriptionInMethodOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~azurespecialproperties.aio.AutoRestAzureSpecialParametersTestClient`'s
-        :attr:`~azurespecialproperties.aio.AutoRestAzureSpecialParametersTestClient.subscription_in_method` attribute.
+        Instead, you should access the following operations through
+        :class:`~azurespecialproperties.aio.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`subscription_in_method` attribute.
     """
 
     models = _models

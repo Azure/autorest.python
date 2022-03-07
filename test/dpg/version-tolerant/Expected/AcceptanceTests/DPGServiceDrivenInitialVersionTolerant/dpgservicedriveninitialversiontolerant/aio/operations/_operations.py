@@ -38,8 +38,9 @@ class ParamsOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~dpgservicedriveninitialversiontolerant.aio.DPGClient`'s
-        :attr:`~dpgservicedriveninitialversiontolerant.aio.DPGClient.params` attribute.
+        Instead, you should access the following operations through
+        :class:`~dpgservicedriveninitialversiontolerant.aio.DPGClient`'s
+        :attr:`params` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

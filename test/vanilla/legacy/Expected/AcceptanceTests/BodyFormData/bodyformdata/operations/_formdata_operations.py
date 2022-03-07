@@ -113,8 +113,9 @@ class FormdataOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodyformdata.AutoRestSwaggerBATFormDataService`'s
-        :attr:`~bodyformdata.AutoRestSwaggerBATFormDataService.formdata` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodyformdata.AutoRestSwaggerBATFormDataService`'s
+        :attr:`formdata` attribute.
     """
 
     models = _models

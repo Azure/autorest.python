@@ -140,8 +140,9 @@ class DateOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodydateversiontolerant.AutoRestDateTestService`'s
-        :attr:`~bodydateversiontolerant.AutoRestDateTestService.date` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodydateversiontolerant.AutoRestDateTestService`'s
+        :attr:`date` attribute.
     """
 
     def __init__(self, *args, **kwargs):

@@ -38,8 +38,9 @@ class HttpServerFailureOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~httpinfrastructure.aio.AutoRestHttpInfrastructureTestService`'s
-        :attr:`~httpinfrastructure.aio.AutoRestHttpInfrastructureTestService.http_server_failure` attribute.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructure.aio.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_server_failure` attribute.
     """
 
     models = _models

@@ -569,8 +569,9 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodynumber.AutoRestNumberTestService`'s
-        :attr:`~bodynumber.AutoRestNumberTestService.number` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodynumber.AutoRestNumberTestService`'s
+        :attr:`number` attribute.
     """
 
     models = _models

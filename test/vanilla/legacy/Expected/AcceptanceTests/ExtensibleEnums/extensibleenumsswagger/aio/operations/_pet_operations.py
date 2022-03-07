@@ -33,8 +33,9 @@ class PetOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~extensibleenumsswagger.aio.PetStoreInc`'s
-        :attr:`~extensibleenumsswagger.aio.PetStoreInc.pet` attribute.
+        Instead, you should access the following operations through
+        :class:`~extensibleenumsswagger.aio.PetStoreInc`'s
+        :attr:`pet` attribute.
     """
 
     models = _models

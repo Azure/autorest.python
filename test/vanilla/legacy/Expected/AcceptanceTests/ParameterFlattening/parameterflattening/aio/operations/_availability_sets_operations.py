@@ -33,8 +33,9 @@ class AvailabilitySetsOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~parameterflattening.aio.AutoRestParameterFlattening`'s
-        :attr:`~parameterflattening.aio.AutoRestParameterFlattening.availability_sets` attribute.
+        Instead, you should access the following operations through
+        :class:`~parameterflattening.aio.AutoRestParameterFlattening`'s
+        :attr:`availability_sets` attribute.
     """
 
     models = _models

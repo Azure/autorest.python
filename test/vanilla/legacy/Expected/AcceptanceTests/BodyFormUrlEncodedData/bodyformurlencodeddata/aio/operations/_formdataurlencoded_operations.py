@@ -36,8 +36,9 @@ class FormdataurlencodedOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodyformurlencodeddata.aio.BodyFormsDataURLEncoded`'s
-        :attr:`~bodyformurlencodeddata.aio.BodyFormsDataURLEncoded.formdataurlencoded` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodyformurlencodeddata.aio.BodyFormsDataURLEncoded`'s
+        :attr:`formdataurlencoded` attribute.
     """
 
     models = _models

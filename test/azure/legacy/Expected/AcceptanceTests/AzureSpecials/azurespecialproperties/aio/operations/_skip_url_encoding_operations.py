@@ -42,8 +42,9 @@ class SkipUrlEncodingOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~azurespecialproperties.aio.AutoRestAzureSpecialParametersTestClient`'s
-        :attr:`~azurespecialproperties.aio.AutoRestAzureSpecialParametersTestClient.skip_url_encoding` attribute.
+        Instead, you should access the following operations through
+        :class:`~azurespecialproperties.aio.AutoRestAzureSpecialParametersTestClient`'s
+        :attr:`skip_url_encoding` attribute.
     """
 
     models = _models

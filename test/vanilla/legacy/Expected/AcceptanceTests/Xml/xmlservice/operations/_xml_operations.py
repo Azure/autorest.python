@@ -803,8 +803,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~xmlservice.AutoRestSwaggerBATXMLService`'s
-        :attr:`~xmlservice.AutoRestSwaggerBATXMLService.xml` attribute.
+        Instead, you should access the following operations through
+        :class:`~xmlservice.AutoRestSwaggerBATXMLService`'s
+        :attr:`xml` attribute.
     """
 
     models = _models

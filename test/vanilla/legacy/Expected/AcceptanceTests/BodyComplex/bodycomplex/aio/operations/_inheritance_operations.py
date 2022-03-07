@@ -33,8 +33,9 @@ class InheritanceOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodycomplex.aio.AutoRestComplexTestService`'s
-        :attr:`~bodycomplex.aio.AutoRestComplexTestService.inheritance` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodycomplex.aio.AutoRestComplexTestService`'s
+        :attr:`inheritance` attribute.
     """
 
     models = _models

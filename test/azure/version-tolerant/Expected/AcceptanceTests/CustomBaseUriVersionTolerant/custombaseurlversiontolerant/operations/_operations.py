@@ -45,8 +45,9 @@ class PathsOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~custombaseurlversiontolerant.AutoRestParameterizedHostTestClient`'s
-        :attr:`~custombaseurlversiontolerant.AutoRestParameterizedHostTestClient.paths` attribute.
+        Instead, you should access the following operations through
+        :class:`~custombaseurlversiontolerant.AutoRestParameterizedHostTestClient`'s
+        :attr:`paths` attribute.
     """
 
     def __init__(self, *args, **kwargs):

@@ -418,8 +418,9 @@ class ContantsOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~constants.AutoRestSwaggerConstantService`'s
-        :attr:`~constants.AutoRestSwaggerConstantService.contants` attribute.
+        Instead, you should access the following operations through
+        :class:`~constants.AutoRestSwaggerConstantService`'s
+        :attr:`contants` attribute.
     """
 
     models = _models

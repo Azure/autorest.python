@@ -38,8 +38,9 @@ class ByteOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodybyteversiontolerant.aio.AutoRestSwaggerBATByteService`'s
-        :attr:`~bodybyteversiontolerant.aio.AutoRestSwaggerBATByteService.byte` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodybyteversiontolerant.aio.AutoRestSwaggerBATByteService`'s
+        :attr:`byte` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

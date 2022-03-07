@@ -33,8 +33,9 @@ class TimeOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodytimeversiontolerant.aio.AutoRestTimeTestService`'s
-        :attr:`~bodytimeversiontolerant.aio.AutoRestTimeTestService.time` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodytimeversiontolerant.aio.AutoRestTimeTestService`'s
+        :attr:`time` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

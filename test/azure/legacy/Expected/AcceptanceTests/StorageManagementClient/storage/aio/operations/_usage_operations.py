@@ -34,8 +34,9 @@ class UsageOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~storage.aio.StorageManagementClient`'s
-        :attr:`~storage.aio.StorageManagementClient.usage` attribute.
+        Instead, you should access the following operations through
+        :class:`~storage.aio.StorageManagementClient`'s
+        :attr:`usage` attribute.
     """
 
     models = _models

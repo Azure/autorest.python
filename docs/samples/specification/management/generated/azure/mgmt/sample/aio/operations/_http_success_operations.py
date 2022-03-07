@@ -25,8 +25,9 @@ class HttpSuccessOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~azure.mgmt.sample.aio.AutoRestHeadTestService`'s
-        :attr:`~azure.mgmt.sample.aio.AutoRestHeadTestService.http_success` attribute.
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.sample.aio.AutoRestHeadTestService`'s
+        :attr:`http_success` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

@@ -33,8 +33,9 @@ class ImportOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~reservedwords.aio.ReservedWordsClient`'s
-        :attr:`~reservedwords.aio.ReservedWordsClient.import_operations` attribute.
+        Instead, you should access the following operations through
+        :class:`~reservedwords.aio.ReservedWordsClient`'s
+        :attr:`import_operations` attribute.
     """
 
     models = _models

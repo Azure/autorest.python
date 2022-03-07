@@ -247,8 +247,9 @@ class ImplicitOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~requiredoptional.AutoRestRequiredOptionalTestService`'s
-        :attr:`~requiredoptional.AutoRestRequiredOptionalTestService.implicit` attribute.
+        Instead, you should access the following operations through
+        :class:`~requiredoptional.AutoRestRequiredOptionalTestService`'s
+        :attr:`implicit` attribute.
     """
 
     models = _models

@@ -39,8 +39,9 @@ class ByteOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodybyte.aio.AutoRestSwaggerBATByteService`'s
-        :attr:`~bodybyte.aio.AutoRestSwaggerBATByteService.byte` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodybyte.aio.AutoRestSwaggerBATByteService`'s
+        :attr:`byte` attribute.
     """
 
     models = _models

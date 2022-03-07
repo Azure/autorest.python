@@ -1005,8 +1005,9 @@ class QueriesOperations(object):  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~url.AutoRestUrlTestService`'s
-        :attr:`~url.AutoRestUrlTestService.queries` attribute.
+        Instead, you should access the following operations through
+        :class:`~url.AutoRestUrlTestService`'s
+        :attr:`queries` attribute.
     """
 
     models = _models

@@ -38,8 +38,9 @@ class PathItemsOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~url.aio.AutoRestUrlTestService`'s
-        :attr:`~url.aio.AutoRestUrlTestService.path_items` attribute.
+        Instead, you should access the following operations through
+        :class:`~url.aio.AutoRestUrlTestService`'s
+        :attr:`path_items` attribute.
     """
 
     models = _models

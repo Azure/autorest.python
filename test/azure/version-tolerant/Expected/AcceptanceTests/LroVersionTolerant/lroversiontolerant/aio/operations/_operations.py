@@ -117,8 +117,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService`'s
-        :attr:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService.lros` attribute.
+        Instead, you should access the following operations through
+        :class:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService`'s
+        :attr:`lros` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -5234,8 +5235,9 @@ class LRORetrysOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService`'s
-        :attr:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService.lro_retrys` attribute.
+        Instead, you should access the following operations through
+        :class:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService`'s
+        :attr:`lro_retrys` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -6012,8 +6014,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService`'s
-        :attr:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService.lrosads` attribute.
+        Instead, you should access the following operations through
+        :class:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService`'s
+        :attr:`lrosads` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -8901,8 +8904,9 @@ class LROsCustomHeaderOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService`'s
-        :attr:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService.lr_os_custom_header` attribute.
+        Instead, you should access the following operations through
+        :class:`~lroversiontolerant.aio.AutoRestLongRunningOperationTestService`'s
+        :attr:`lr_os_custom_header` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:

@@ -43,8 +43,9 @@ class DateOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodydate.aio.AutoRestDateTestService`'s
-        :attr:`~bodydate.aio.AutoRestDateTestService.date` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodydate.aio.AutoRestDateTestService`'s
+        :attr:`date` attribute.
     """
 
     models = _models

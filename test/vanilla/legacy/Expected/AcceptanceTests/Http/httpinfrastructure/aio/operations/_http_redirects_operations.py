@@ -50,8 +50,9 @@ class HttpRedirectsOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~httpinfrastructure.aio.AutoRestHttpInfrastructureTestService`'s
-        :attr:`~httpinfrastructure.aio.AutoRestHttpInfrastructureTestService.http_redirects` attribute.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructure.aio.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_redirects` attribute.
     """
 
     models = _models

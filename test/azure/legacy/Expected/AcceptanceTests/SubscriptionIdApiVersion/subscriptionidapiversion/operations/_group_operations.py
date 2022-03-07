@@ -77,8 +77,9 @@ class GroupOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~subscriptionidapiversion.MicrosoftAzureTestUrl`'s
-        :attr:`~subscriptionidapiversion.MicrosoftAzureTestUrl.group` attribute.
+        Instead, you should access the following operations through
+        :class:`~subscriptionidapiversion.MicrosoftAzureTestUrl`'s
+        :attr:`group` attribute.
     """
 
     models = _models

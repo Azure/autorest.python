@@ -374,8 +374,9 @@ class StorageAccountsOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~storage.StorageManagementClient`'s
-        :attr:`~storage.StorageManagementClient.storage_accounts` attribute.
+        Instead, you should access the following operations through
+        :class:`~storage.StorageManagementClient`'s
+        :attr:`storage_accounts` attribute.
     """
 
     models = _models

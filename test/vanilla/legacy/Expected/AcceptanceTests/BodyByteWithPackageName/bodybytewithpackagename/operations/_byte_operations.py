@@ -145,8 +145,9 @@ class ByteOperations(object):
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodybytewithpackagename.ClassName`'s
-        :attr:`~bodybytewithpackagename.ClassName.byte` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodybytewithpackagename.ClassName`'s
+        :attr:`byte` attribute.
     """
 
     models = _models

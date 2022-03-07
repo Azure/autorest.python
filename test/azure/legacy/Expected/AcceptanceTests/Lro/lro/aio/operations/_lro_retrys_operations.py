@@ -44,8 +44,9 @@ class LRORetrysOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~lro.aio.AutoRestLongRunningOperationTestService`'s
-        :attr:`~lro.aio.AutoRestLongRunningOperationTestService.lro_retrys` attribute.
+        Instead, you should access the following operations through
+        :class:`~lro.aio.AutoRestLongRunningOperationTestService`'s
+        :attr:`lro_retrys` attribute.
     """
 
     models = _models

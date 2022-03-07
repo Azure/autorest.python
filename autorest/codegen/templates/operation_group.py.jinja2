@@ -1,13 +1,13 @@
 {% set disable = "  # pylint: disable=too-many-public-methods" if operation_group.operations | length > 20 else "" %}
-{% set client_full_path = "~" + code_model.namespace + (".aio." if async_mode else ".") + code_model.class_name %}
 class {{ operation_group.class_name }}{{ object_base_class }}:{{ disable }}
 {% if not operation_group.is_empty_operation_group %}
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`{{ client_full_path }}`'s
-        :attr:`{{ client_full_path }}.{{ operation_group.name }}` attribute.
+        Instead, you should access the following operations through
+        :class:`{{ "~" + code_model.namespace + (".aio." if async_mode else ".") + code_model.class_name }}`'s
+        :attr:`{{ operation_group.name }}` attribute.
     """
 
 {% if code_model.schemas and code_model.options["models_mode"] %}

@@ -34,8 +34,9 @@ class TimeOperations:
     .. warning::
         **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through :class:`~bodytime.aio.AutoRestTimeTestService`'s
-        :attr:`~bodytime.aio.AutoRestTimeTestService.time` attribute.
+        Instead, you should access the following operations through
+        :class:`~bodytime.aio.AutoRestTimeTestService`'s
+        :attr:`time` attribute.
     """
 
     models = _models
