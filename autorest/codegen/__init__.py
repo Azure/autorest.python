@@ -6,6 +6,7 @@
 import logging
 import sys
 from typing import Dict, Any, Set, Union, List, Type
+from pathlib import Path
 import yaml
 
 from .. import Plugin
@@ -70,11 +71,20 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
     if options["basic_setup_py"] and not options["package_version"]:
         raise ValueError("--basic-setup-py must be used with --package-version")
 
+    if options["package_mode"] and not options["package_version"]:
+        raise ValueError("--package-mode must be used with --package-version")
+
     if not options["show_operations"] and options["combine_operation_files"]:
         raise ValueError(
             "Can not combine operation files if you are not showing operations. "
             "If you want operation files, pass in flag --show-operations"
         )
+
+    if options["package_mode"]:
+        if options["package_mode"] not in ("mgmtplane", "dataplane") and not Path(options["package_mode"]).exists():
+            raise ValueError(
+                "--package-mode can only be 'mgmtplane' or 'dataplane' or directory which contains template files"
+            )
 
     if options["reformat_next_link"] and options["version_tolerant"]:
         raise ValueError(
@@ -116,6 +126,14 @@ class CodeGenerator(Plugin):
                         continue
                     exceptions_set.add(id(exception["schema"]))
         return exceptions_set
+
+    @staticmethod
+    def _build_package_dependency() -> Dict[str, str]:
+        return {
+            "dependency_azure_mgmt_core": "azure-mgmt-core>=1.3.0,<2.0.0",
+            "dependency_azure_core": "azure-core<2.0.0,>=1.20.1",
+            "dependency_msrest": "msrest>=0.6.21",
+        }
 
     def _create_code_model(self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]) -> CodeModel:
         # Create a code model
@@ -161,6 +179,7 @@ class CodeGenerator(Plugin):
         if options["credential"]:
             code_model.global_parameters.add_credential_global_parameter()
 
+        code_model.package_dependency = self._build_package_dependency()
         return code_model
 
     def _get_credential_scopes(self, credential):
@@ -295,6 +314,9 @@ class CodeGenerator(Plugin):
             "low_level_client": low_level_client,
             "combine_operation_files": self._autorestapi.get_boolean_value("combine-operation-files", version_tolerant),
             "python3_only": python3_only,
+            "package_mode": self._autorestapi.get_value("package-mode"),
+            "package_pprint_name": self._autorestapi.get_value("package-pprint-name"),
+            "package_configuration": self._autorestapi.get_value("package-configuration"),
             "default_optional_constants_to_none": self._autorestapi.get_boolean_value(
                 "default-optional-constants-to-none", low_level_client or version_tolerant
             ),

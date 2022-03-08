@@ -6,31 +6,24 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 # coding: utf-8
-
 from setuptools import setup, find_packages
 
-NAME = "anythingclient"
-VERSION = "0.1.0"
 
-# To install the library, run the following
-#
-# python setup.py install
-#
-# prerequisite: setuptools
-# http://pypi.python.org/pypi/setuptools
-
-REQUIRES = ["msrest>=0.6.21", "azure-core<2.0.0,>=1.20.1"]
-
+PACKAGE_NAME = "anythingclient"
+version = "0.1.0"
 setup(
-    name=NAME,
-    version=VERSION,
+    name=PACKAGE_NAME,
+    version=version,
     description="AnythingClient",
     author_email="",
     url="",
-    keywords=["Swagger", "AnythingClient"],
-    install_requires=REQUIRES,
+    keywords="azure, azure sdk",
     packages=find_packages(),
     include_package_data=True,
+    install_requires=[
+        "msrest>=0.6.21",
+        "azure-core<2.0.0,>=1.20.1",
+    ],
     long_description="""\
     Service client for testing basic anything types. Those schemas without types can be anything:  primitive, object, array.
     """,
