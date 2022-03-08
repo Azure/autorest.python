@@ -25,6 +25,8 @@
 #
 # --------------------------------------------------------------------------
 import pytest
+import json
+from azure.core.rest import HttpRequest
 
 from dpgservicedriveninitiallowlevel.aio import DPGClient as DPGClientInitial
 from dpgservicedrivenupdateonelowlevel.aio import DPGClient as DPGClientUpdateOne
@@ -62,3 +64,64 @@ async def test_required_to_optional(initial_send_request, update_one_send_reques
 
     request = params_update_one.build_get_required_request(parameter="foo", new_parameter="bar")
     await update_one_send_request(request)
+
+@pytest.mark.asyncio
+async def test_add_optional_parameter_to_none(initial_send_request, update_one_send_request):
+    request = params_initial.build_head_no_params_request()
+    await initial_send_request(request)
+
+    request = params_update_one.build_head_no_params_request(new_parameter="bar")
+    await update_one_send_request(request)
+
+@pytest.mark.asyncio
+async def test_add_optional_parameter_to_required_optional(initial_send_request, update_one_send_request):
+    request = params_initial.build_put_required_optional_request(required_param="foo", optional_param="bar")
+    await initial_send_request(request)
+
+    request = params_update_one.build_put_required_optional_request(required_param="foo", optional_param="bar", new_parameter="baz")
+    await update_one_send_request(request)
+
+@pytest.mark.asyncio
+async def test_add_optional_parameter_to_optional(initial_send_request, update_one_send_request):
+    request = params_initial.build_get_optional_request(optional_param="foo")
+    await initial_send_request(request)
+
+    request = params_update_one.build_get_optional_request(optional_param="foo", new_parameter="bar")
+    await update_one_send_request(request)
+
+@pytest.mark.asyncio
+async def test_add_new_content_type(initial_send_request, update_one_send_request):
+    request = params_initial.build_post_parameters_request(json={ "url": "http://example.org/myimage.jpeg" })
+    await initial_send_request(request)
+
+    request = params_update_one.build_post_parameters_request(json={ "url": "http://example.org/myimage.jpeg" })
+    await update_one_send_request(request)
+    request = params_update_one.build_post_parameters_request(content=b"hello", content_type="image/jpeg")
+    await update_one_send_request(request)
+
+@pytest.mark.asyncio
+async def test_add_new_operation(update_one_send_request):
+    with pytest.raises(AttributeError):
+        params_initial.build_delete_parameters_request()
+    
+    request = params_update_one.build_delete_parameters_request()
+    await update_one_send_request(request)
+
+@pytest.mark.asyncio
+async def test_add_new_path(update_one_send_request):
+    with pytest.raises(AttributeError):
+        params_initial.build_get_new_operation_request()
+    
+    request = params_update_one.build_get_new_operation_request()
+    response = await update_one_send_request(request)
+    assert response.content.decode('utf8') == json.dumps(
+        {'message': 'An object was successfully returned'},
+        separators=(',', ':')
+    )
+
+@pytest.mark.asyncio
+async def test_glass_breaker(update_one_send_request):
+    request = HttpRequest(method="GET", url="/servicedriven/glassbreaker", params=[], headers={"Accept": "application/json"})
+    response = await update_one_send_request(request)
+    assert response.status_code == 200
+    assert response.content.decode('utf8') == json.dumps({'message': 'An object was successfully returned'}, separators=(',', ':'))

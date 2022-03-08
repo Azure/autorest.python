@@ -25,6 +25,8 @@
 #
 # --------------------------------------------------------------------------
 import pytest
+import json
+from azure.core.rest import HttpRequest
 from dpgservicedriveninitialversiontolerant.aio import DPGClient as DPGClientInitial
 from dpgservicedrivenupdateoneversiontolerant.aio import DPGClient as DPGClientUpdateOne
 
@@ -39,13 +41,54 @@ async def update_one_client():
         yield client
 
 @pytest.mark.asyncio
-async def test_add_optional_parameter(initial_client, update_one_client):
+async def test_add_optional_parameter_to_required(initial_client, update_one_client):
     await initial_client.params.get_required(
         parameter="foo"
     )
     await update_one_client.params.get_required(
         parameter="foo",
         new_parameter="bar",
+    )
+
+@pytest.mark.asyncio
+async def test_add_optional_parameter_to_none(initial_client, update_one_client):
+    await initial_client.params.head_no_params()
+    await update_one_client.params.head_no_params()
+    await update_one_client.params.head_no_params(
+        new_parameter="bar"
+    )
+    
+@pytest.mark.asyncio
+async def test_add_optional_parameter_to_required_optional(initial_client, update_one_client):
+    await initial_client.params.put_required_optional(
+        required_param="foo",
+        optional_param="bar"
+    )
+    await update_one_client.params.put_required_optional(
+        required_param="foo",
+        optional_param="bar"
+    )
+    await update_one_client.params.put_required_optional(
+        required_param="foo",
+        optional_param="bar",
+        new_parameter="baz"
+    )
+    await update_one_client.params.put_required_optional(
+        required_param="foo",
+        new_parameter="baz"
+    )
+
+@pytest.mark.asyncio
+async def test_add_optional_parameter_to_optional(initial_client, update_one_client):
+    await initial_client.params.get_optional(
+        optional_param="foo"
+    )
+    await update_one_client.params.get_optional(
+        optional_param="foo"
+    )
+    await update_one_client.params.get_optional(
+        optional_param="foo",
+        new_parameter="bar"
     )
 
 @pytest.mark.asyncio
@@ -65,3 +108,10 @@ async def test_add_new_path(initial_client, update_one_client):
     with pytest.raises(AttributeError):
         await initial_client.params.get_new_operation()
     assert await update_one_client.params.get_new_operation() == {'message': 'An object was successfully returned'}
+
+@pytest.mark.asyncio
+async def test_glass_breaker(update_one_client):
+    request = HttpRequest(method="GET", url="/servicedriven/glassbreaker", params=[], headers={"Accept": "application/json"})
+    response = await update_one_client.send_request(request)
+    assert response.status_code == 200
+    assert response.content.decode('utf8') == json.dumps({'message': 'An object was successfully returned'}, separators=(',', ':'))
