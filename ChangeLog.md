@@ -10,6 +10,10 @@
 | `msrest` dep of generated code                                          | `0.6.21`    |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
+**New Features**
+
+- Add flag `--package-mode` to generate necessary files for package #1154
+
 **Bug Fixes**
 
 - Improve operation group documentation to prevent users from initializing operation groups themselves #1179
