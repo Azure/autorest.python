@@ -25,7 +25,6 @@
 #
 # --------------------------------------------------------------------------
 import pytest
-import json
 from azure.core.rest import HttpRequest
 
 from dpgservicedriveninitiallowlevel import DPGClient as DPGClientInitial
@@ -107,13 +106,10 @@ def test_add_new_path(update_one_send_request):
         params_initial.build_get_new_operation_request()
     
     request = params_update_one.build_get_new_operation_request()
-    assert update_one_send_request(request).content.decode('utf8') == json.dumps(
-        {'message': 'An object was successfully returned'},
-        separators=(',', ':')
-    )
+    assert update_one_send_request(request).json() == {'message': 'An object was successfully returned'}
 
 def test_glass_breaker(update_one_send_request):
     request = HttpRequest(method="GET", url="/servicedriven/glassbreaker", params=[], headers={"Accept": "application/json"})
     response = update_one_send_request(request)
     assert response.status_code == 200
-    assert response.content.decode('utf8') == json.dumps({'message': 'An object was successfully returned'}, separators=(',', ':'))
+    assert response.json() == {'message': 'An object was successfully returned'}

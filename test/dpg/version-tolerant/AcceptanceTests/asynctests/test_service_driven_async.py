@@ -25,7 +25,6 @@
 #
 # --------------------------------------------------------------------------
 import pytest
-import json
 from azure.core.rest import HttpRequest
 from dpgservicedriveninitialversiontolerant.aio import DPGClient as DPGClientInitial
 from dpgservicedrivenupdateoneversiontolerant.aio import DPGClient as DPGClientUpdateOne
@@ -114,4 +113,4 @@ async def test_glass_breaker(update_one_client):
     request = HttpRequest(method="GET", url="/servicedriven/glassbreaker", params=[], headers={"Accept": "application/json"})
     response = await update_one_client.send_request(request)
     assert response.status_code == 200
-    assert response.content.decode('utf8') == json.dumps({'message': 'An object was successfully returned'}, separators=(',', ':'))
+    assert response.json() == {'message': 'An object was successfully returned'}
