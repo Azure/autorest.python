@@ -1,6 +1,6 @@
 # Change Log
 
-### 2022-03-xx - 5.13.1
+### 2022-03-08 - 5.14.0
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -12,7 +12,7 @@
 
 **New Features**
 
-- Add flag `--package-mode` to generate necessary files for package #1154
+- Add flag `--package-mode=mgmtplane|dataplane|<custom package template folder>` to generate necessary files for package #1154
 
 **Bug Fixes**
 
