@@ -109,7 +109,7 @@ class JinjaSerializer:
                 token_cred = isinstance(self.code_model.credential_schema_policy.credential, TokenCredentialSchema)
             except ValueError:
                 token_cred = False
-            version = self.code_model.options.get("package_version", "0.0.0")
+            version = self.code_model.options["package_version"]
             if any(x in version for x in ["a", "b", "rc"]) or version[0] == '0':
                 dev_status = "4 - Beta"
             else:
