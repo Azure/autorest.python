@@ -130,7 +130,7 @@ class CodeGenerator(Plugin):
     @staticmethod
     def _build_package_dependency() -> Dict[str, str]:
         return {
-            "dependency_azure_mgmt_core": "azure-mgmt-core>=1.3.0,<2.0.0",
+            "dependency_azure_mgmt_core": "azure-mgmt-core<2.0.0,>=1.3.0",
             "dependency_azure_core": "azure-core<2.0.0,>=1.20.1",
             "dependency_msrest": "msrest>=0.6.21",
         }
