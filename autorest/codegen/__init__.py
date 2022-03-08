@@ -80,7 +80,7 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             "If you want operation files, pass in flag --show-operations"
         )
 
-    if options["package_mode"] is not None:
+    if options["package_mode"]:
         if options["package_mode"] not in ("mgmtplane", "dataplane") and not Path(options["package_mode"]).exists():
             raise ValueError(
                 "--package-mode can only be 'mgmtplane' or 'dataplane' or directory which contains template files"
