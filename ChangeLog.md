@@ -1,6 +1,6 @@
 # Change Log
 
-### 2022-03-xx - 5.13.1
+### 2022-03-08 - 5.14.0
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -9,6 +9,10 @@
 | `azure-core` dep of generated code                                      | `1.20.1`    |
 | `msrest` dep of generated code                                          | `0.6.21`    |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
+
+**New Features**
+
+- Add flag `--package-mode=mgmtplane|dataplane|<custom package template folder>` to generate necessary files for package #1154
 
 **Bug Fixes**
 

@@ -1,0 +1,7 @@
+include *.md
+include LICENSE
+recursive-include tests *.py
+recursive-include samples *.py *.md
+{%- for init_name in init_names %}
+include {{ init_name }}
+{%- endfor %}

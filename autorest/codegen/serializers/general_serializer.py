@@ -119,4 +119,7 @@ class GeneralSerializer:
 
     def serialize_setup_file(self) -> str:
         template = self.env.get_template("setup.py.jinja2")
-        return template.render(code_model=self.code_model)
+        params = {}
+        params.update(self.code_model.options)
+        params.update(self.code_model.package_dependency)
+        return template.render(code_model=self.code_model, **params)
