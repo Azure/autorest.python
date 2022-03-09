@@ -46,26 +46,23 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class HttpRedirectsOperations:
-    """HttpRedirectsOperations async operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~httpinfrastructure.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructure.aio.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_redirects` attribute.
     """
 
     models = _models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs) -> None:
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def head300(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -231,7 +228,8 @@ class HttpRedirectsOperations:
         """Put true Boolean value in request returns 301.  This request should not be automatically
         redirected, but should return the received 301 to the caller for evaluation.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -358,7 +356,8 @@ class HttpRedirectsOperations:
         """Patch true Boolean value in request returns 302.  This request should not be automatically
         redirected, but should return the received 302 to the caller for evaluation.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -409,7 +408,8 @@ class HttpRedirectsOperations:
         """Post true Boolean value in request returns 303.  This request should be automatically
         redirected usign a get, ultimately returning a 200 status code.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -574,7 +574,8 @@ class HttpRedirectsOperations:
     ) -> None:
         """Put redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -625,7 +626,8 @@ class HttpRedirectsOperations:
     ) -> None:
         """Patch redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -676,7 +678,8 @@ class HttpRedirectsOperations:
     ) -> None:
         """Post redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -727,7 +730,8 @@ class HttpRedirectsOperations:
     ) -> None:
         """Delete redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

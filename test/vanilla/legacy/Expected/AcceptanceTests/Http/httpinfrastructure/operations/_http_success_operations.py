@@ -473,26 +473,23 @@ def build_head404_request(
 
 # fmt: on
 class HttpSuccessOperations(object):
-    """HttpSuccessOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :ivar models: Alias to model classes used in this operation group.
-    :type models: ~httpinfrastructure.models
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructure.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_success` attribute.
     """
 
     models = _models
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def head200(  # pylint: disable=inconsistent-return-statements
@@ -622,7 +619,8 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Put boolean value true returning 200 success.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -672,7 +670,8 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Patch true Boolean value in request returning 200.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -722,7 +721,8 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Post bollean value true in request that returns a 200.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -772,7 +772,8 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Delete simple boolean value true returns 200.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -822,7 +823,8 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Put true Boolean value in request returns 201.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -872,7 +874,8 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Post true Boolean value in request returns 201 (Created).
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -922,7 +925,8 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Put true Boolean value in request returns 202 (Accepted).
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -972,7 +976,8 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Patch true Boolean value in request returns 202.
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1022,7 +1027,8 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Post true Boolean value in request returns 202 (Accepted).
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1072,7 +1078,8 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Delete true Boolean value in request returns 202 (accepted).
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1159,7 +1166,8 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Put true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1209,7 +1217,8 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Patch true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1259,7 +1268,8 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Post true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1309,7 +1319,8 @@ class HttpSuccessOperations(object):
         # type: (...) -> None
         """Delete true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. Default value is True.
+        :param boolean_value: Simple boolean value true. Possible values are True or None. Default
+         value is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

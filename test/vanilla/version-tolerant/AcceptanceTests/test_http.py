@@ -335,6 +335,7 @@ def test_error_status_codes_411(client):
 
 def test_redirect_to_300(client):
     assert_status(200, client.http_redirects.get300)
+    assert_status(200, client.http_redirects.head300)
 
 def test_redirect_to_301(client):
     assert_status(200, client.http_redirects.head301)

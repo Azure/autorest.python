@@ -350,6 +350,7 @@ class TestHttp(object):
 
     def test_redirect_to_300(self, client):
         self.assert_status(200, client.http_redirects.get300)
+        self.assert_status(200, client.http_redirects.head300)
 
     def test_redirect_to_301(self, client):
         self.assert_status(200, client.http_redirects.head301)
@@ -423,12 +424,8 @@ class TestHttp(object):
     def test_models(self):
         from httpinfrastructure.models import Error
 
-        if sys.version_info >= (3,5):
-            from httpinfrastructure.models._models_py3 import Error as ErrorPy3
-            assert Error == ErrorPy3
-        else:
-            from httpinfrastructure.models._models import Error as ErrorPy2
-            assert Error == ErrorPy2
+        from httpinfrastructure.models._models_py3 import Error as ErrorPy3
+        assert Error == ErrorPy3
 
     def test_operation_groups(self):
         from httpinfrastructure.operations import MultipleResponsesOperations

@@ -355,22 +355,21 @@ def build_usage_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest
 
 
 class StorageAccountsOperations(object):
-    """StorageAccountsOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~storageversiontolerant.StorageManagementClient`'s
+        :attr:`storage_accounts` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def check_name_availability(
@@ -1154,7 +1153,6 @@ class StorageAccountsOperations(object):
 
                 request = build_storage_accounts_list_request(
                     subscription_id=self._config.subscription_id,
-                    api_version=api_version,
                 )
                 request.url = self._client.format_url(next_link)
                 request.method = "GET"
@@ -1301,7 +1299,6 @@ class StorageAccountsOperations(object):
                 request = build_storage_accounts_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
-                    api_version=api_version,
                 )
                 request.url = self._client.format_url(next_link)
                 request.method = "GET"
@@ -1410,22 +1407,21 @@ class StorageAccountsOperations(object):
 
 
 class UsageOperations(object):
-    """UsageOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~storageversiontolerant.StorageManagementClient`'s
+        :attr:`usage` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def list(self, **kwargs: Any) -> JSONType:
