@@ -49,6 +49,10 @@ class JinjaSerializer:
         self._autorestapi = autorestapi
         self.code_model = code_model
 
+    @property
+    def has_aio_folder(self) -> bool:
+        return self.code_model.options["no_async"] and bool(self.code_model.rest.request_builders)
+
     def serialize(self) -> None:
         env = Environment(
             loader=PackageLoader("autorest.codegen", "templates"),
@@ -66,7 +70,7 @@ class JinjaSerializer:
         )
         # if there was a patch file before, we keep it
         self._keep_patch_file(namespace_path / Path("_patch.py"), env)
-        if not self.code_model.options["no_async"]:
+        if self.has_aio_folder:
             self._keep_patch_file(namespace_path / Path("aio") / Path("_patch.py"), env)
 
         if self.code_model.options["models_mode"] and (self.code_model.schemas or self.code_model.enums):
@@ -75,7 +79,7 @@ class JinjaSerializer:
             self._keep_patch_file(
                 namespace_path / Path(self.code_model.operations_folder_name) / Path("_patch.py"), env
             )
-            if not self.code_model.options["no_async"]:
+            if self.has_aio_folder:
                 self._keep_patch_file(
                     namespace_path / Path("aio") / Path(self.code_model.operations_folder_name) / Path("_patch.py"), env
                 )
@@ -85,7 +89,7 @@ class JinjaSerializer:
         if self.code_model.rest.request_builders:
             if self.code_model.options["builders_visibility"] != "embedded":
                 self._serialize_and_write_rest_layer(env=env, namespace_path=namespace_path)
-            if not self.code_model.options["no_async"]:
+            if self.has_aio_folder:
                 self._serialize_and_write_aio_top_level_folder(
                     env=env, namespace_path=namespace_path,
                 )
@@ -273,7 +277,7 @@ class JinjaSerializer:
                 operation_group_serializer.serialize(),
             )
 
-        if not self.code_model.options["no_async"]:
+        if self.has_aio_folder:
             # write async operation group and operation files
             operation_group_async_serializer = OperationGroupsSerializer(
                 code_model=self.code_model,
@@ -303,7 +307,7 @@ class JinjaSerializer:
         )
 
         # write async operations init file
-        if not self.code_model.options["no_async"]:
+        if self.has_aio_folder:
             operations_async_init_serializer = OperationsInitSerializer(
                 code_model=self.code_model, env=env, async_mode=True
             )
@@ -407,10 +411,11 @@ class JinjaSerializer:
         self._autorestapi.write_file(aio_path / Path("__init__.py"), aio_general_serializer.serialize_init_file())
 
         # Write the service client
-        self._autorestapi.write_file(
-            aio_path / Path(f"_{self.code_model.module_name}.py"),
-            aio_general_serializer.serialize_service_client_file(),
-        )
+        if self.code_model.rest.request_builders:
+            self._autorestapi.write_file(
+                aio_path / Path(f"_{self.code_model.module_name}.py"),
+                aio_general_serializer.serialize_service_client_file(),
+            )
 
         # Write the config file
         self._autorestapi.write_file(
