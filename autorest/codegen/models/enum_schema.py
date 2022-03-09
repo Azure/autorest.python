@@ -89,7 +89,6 @@ class EnumSchema(BaseSchema):
         """
         return f'Union[{self.enum_type.type_annotation}, "_models.{self.name}"]'
 
-
     def get_declaration(self, value: Any) -> str:
         return self.enum_type.get_declaration(value)
 
