@@ -231,3 +231,7 @@ class ServiceClient(ServiceClientGenerated):
 
 __all__ = ["ServiceClient"]
 ```
+
+### If all else fails...
+
+For a last resort escape hatch, we also have `patch_sdk` functions defined in every patch file. See [this document](https://github.com/Azure/azure-sdk-for-python/blob/main/doc/dev/customize_code/how-to-patch-sdk-code.md) to find out more about them
