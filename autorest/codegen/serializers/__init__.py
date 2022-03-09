@@ -3,9 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Optional
+from typing import Dict, List, Optional, Any
 from pathlib import Path
-from jinja2 import PackageLoader, Environment
+from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
 from autorest.codegen.models.operation_group import OperationGroup
 
 from ...jsonrpc import AutorestAPI
@@ -13,6 +13,7 @@ from ..models import (
     CodeModel,
     OperationGroup,
     RequestBuilder,
+    TokenCredentialSchema
 )
 from .enum_serializer import EnumSerializer
 from .general_serializer import GeneralSerializer
@@ -28,6 +29,20 @@ from .patch_serializer import PatchSerializer
 __all__ = [
     "JinjaSerializer",
 ]
+
+_PACKAGE_FILES = [
+    "CHANGELOG.md.jinja2",
+    "dev_requirements.txt.jinja2",
+    "LICENSE.jinja2",
+    "MANIFEST.in.jinja2",
+    "README.md.jinja2",
+    "setup.py.jinja2",
+]
+
+_REGENERATE_FILES = {
+    "setup.py",
+    "MANIFEST.in"
+}
 
 class JinjaSerializer:
     def __init__(self, autorestapi: AutorestAPI, code_model: CodeModel) -> None:
@@ -90,6 +105,61 @@ class JinjaSerializer:
                 self._autorestapi.write_file(
                     namespace_path / Path("models.py"), self._autorestapi.read_file(namespace_path / Path("models.py"))
                 )
+
+        if self.code_model.options["package_mode"]:
+            self._serialize_and_write_package_files(out_path=namespace_path)
+
+
+    def _serialize_and_write_package_files(self, out_path: Path) -> None:
+        def _serialize_and_write_package_files_proc(**kwargs: Any):
+            for template_name in package_files:
+                file = template_name.replace(".jinja2", "")
+                output_name = out_path / file
+                if not self._autorestapi.read_file(output_name) or file in _REGENERATE_FILES:
+                    template = env.get_template(template_name)
+                    render_result = template.render(**kwargs)
+                    self._autorestapi.write_file(output_name, render_result)
+
+        def _prepare_params() -> Dict[Any, Any]:
+            package_parts = self.code_model.options["package_name"].split("-")[:-1]
+            try:
+                token_cred = isinstance(self.code_model.credential_schema_policy.credential, TokenCredentialSchema)
+            except ValueError:
+                token_cred = False
+            version = self.code_model.options["package_version"]
+            if any(x in version for x in ["a", "b", "rc"]) or version[0] == '0':
+                dev_status = "4 - Beta"
+            else:
+                dev_status = "5 - Production/Stable"
+            params = {
+                "token_credential": token_cred,
+                "pkgutil_names": [".".join(package_parts[: i + 1]) for i in range(len(package_parts))],
+                "init_names": ["/".join(package_parts[: i + 1]) + "/__init__.py" for i in range(len(package_parts))],
+                "dev_status": dev_status
+            }
+            params.update(self.code_model.options)
+            params.update(self.code_model.package_dependency)
+            return params
+
+        count = self.code_model.options["package_name"].count("-") + 1
+        for _ in range(count):
+            out_path = out_path / Path("..")
+
+        if self.code_model.options["package_mode"] in ("dataplane", "mgmtplane"):
+            env = Environment(
+                loader=PackageLoader("autorest.codegen", "templates"),
+                undefined=StrictUndefined)
+            package_files = _PACKAGE_FILES
+            _serialize_and_write_package_files_proc(**_prepare_params())
+        elif Path(self.code_model.options["package_mode"]).exists():
+            env = Environment(
+                loader=FileSystemLoader(str(Path(self.code_model.options["package_mode"]))),
+                keep_trailing_newline=True,
+                undefined=StrictUndefined
+            )
+            package_files = env.list_templates()
+            params = self.code_model.options["package_configuration"] or {}
+            _serialize_and_write_package_files_proc(**params)
 
 
     def _keep_patch_file(self, path_file: Path, env: Environment):

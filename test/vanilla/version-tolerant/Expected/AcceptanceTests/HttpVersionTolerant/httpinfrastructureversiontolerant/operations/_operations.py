@@ -1529,22 +1529,21 @@ def build_multiple_responses_get200_model_a202_valid_request(**kwargs: Any) -> H
 
 
 class HttpFailureOperations(object):
-    """HttpFailureOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_failure` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_empty_error(self, **kwargs: Any) -> bool:
@@ -1650,22 +1649,21 @@ class HttpFailureOperations(object):
 
 
 class HttpSuccessOperations(object):
-    """HttpSuccessOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_success` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def head200(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2406,22 +2404,21 @@ class HttpSuccessOperations(object):
 
 
 class HttpRedirectsOperations(object):
-    """HttpRedirectsOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_redirects` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def head300(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -3043,22 +3040,21 @@ class HttpRedirectsOperations(object):
 
 
 class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-methods
-    """HttpClientFailureOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_client_failure` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def head400(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -3959,22 +3955,21 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
 
 
 class HttpServerFailureOperations(object):
-    """HttpServerFailureOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_server_failure` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def head501(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -4116,22 +4111,21 @@ class HttpServerFailureOperations(object):
 
 
 class HttpRetryOperations(object):
-    """HttpRetryOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`http_retry` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def head408(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -4475,22 +4469,21 @@ class HttpRetryOperations(object):
 
 
 class MultipleResponsesOperations(object):  # pylint: disable=too-many-public-methods
-    """MultipleResponsesOperations operations.
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    You should not instantiate this class directly. Instead, you should create a Client instance that
-    instantiates it for you and attaches it as an attribute.
-
-    :param client: Client for service requests.
-    :param config: Configuration of service client.
-    :param serializer: An object model serializer.
-    :param deserializer: An object model deserializer.
+        Instead, you should access the following operations through
+        :class:`~httpinfrastructureversiontolerant.AutoRestHttpInfrastructureTestService`'s
+        :attr:`multiple_responses` attribute.
     """
 
-    def __init__(self, client, config, serializer, deserializer):
-        self._client = client
-        self._serialize = serializer
-        self._deserialize = deserializer
-        self._config = config
+    def __init__(self, *args, **kwargs):
+        args = list(args)
+        self._client = args.pop(0) if args else kwargs.pop("client")
+        self._config = args.pop(0) if args else kwargs.pop("config")
+        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
+        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get200_model204_no_model_default_error200_valid(self, **kwargs: Any) -> Optional[JSONType]:

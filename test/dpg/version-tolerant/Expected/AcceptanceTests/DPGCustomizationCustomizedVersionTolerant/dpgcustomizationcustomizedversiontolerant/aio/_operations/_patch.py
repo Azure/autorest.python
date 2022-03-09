@@ -82,4 +82,6 @@ def patch_sdk():
     pass
 
 
-__all__ = ["DPGClientOperationsMixin"]  # only add objects you want to be publicly available to your users at your package level
+__all__ = [
+    "DPGClientOperationsMixin"
+]  # only add objects you want to be publicly available to your users at your package level

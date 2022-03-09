@@ -51,6 +51,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     :type primitives: Dict[int, ~autorest.models.BaseSchema]
     :param operation_groups: The operation groups we are going to serialize
     :type operation_groups: list[~autorest.models.OperationGroup]
+    :param package_dependency: All the dependencies needed in setup.py
+    :type package_dependency: Dict[str, str]
     """
 
     def __init__(
@@ -76,6 +78,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         self._rest: Optional[Rest] = None
         self.request_builder_ids: Dict[int, RequestBuilder] = {}
         self._credential_schema_policy: Optional[CredentialSchemaPolicy] = None
+        self.package_dependency: Dict[str, str] = {}
 
     @property
     def global_parameters(self) -> GlobalParameterList:

@@ -362,6 +362,7 @@ def regenerate_legacy(c, swagger_name=None, debug=False):
         regenerate_samples(c, debug)
         regenerate_with_python3_operation_files(c, debug)
         regenerate_python3_only(c, debug)
+        regenerate_package_mode(c, debug)
 
 @task
 def regenerate(
@@ -482,6 +483,20 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
     cmds = [_multiapi_command_line(spec, debug) for spec in available_specifications if swagger_name.lower() in spec]
 
     _run_autorest(cmds, debug)
+
+@task
+def regenerate_package_mode(c, debug=False):
+    cwd = os.getcwd()
+    package_mode = [
+        'test/azure/legacy/specification/packagemodemgmtplane/README.md',
+        'test/vanilla/legacy/specification/packagemodedataplane/README.md',
+        'test/azure/legacy/specification/packagemodecustomize/README.md',
+    ]
+    cmds = [
+        f'autorest {readme} --use=. --python-sdks-folder={cwd}/test/' for readme in package_mode
+    ]
+
+    _run_autorest(cmds, debug=debug)
 
 @task
 def regenerate_custom_poller_pager_legacy(c, debug=False):

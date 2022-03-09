@@ -6,31 +6,24 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 # coding: utf-8
-
 from setuptools import setup, find_packages
 
-NAME = "parmaterizedendpointclient"
-VERSION = "0.1.0"
 
-# To install the library, run the following
-#
-# python setup.py install
-#
-# prerequisite: setuptools
-# http://pypi.python.org/pypi/setuptools
-
-REQUIRES = ["msrest>=0.6.21", "azure-core<2.0.0,>=1.20.1"]
-
+PACKAGE_NAME = "parmaterizedendpointclient"
+version = "0.1.0"
 setup(
-    name=NAME,
-    version=VERSION,
+    name=PACKAGE_NAME,
+    version=version,
     description="ParmaterizedEndpointClient",
     author_email="",
     url="",
-    keywords=["Swagger", "ParmaterizedEndpointClient"],
-    install_requires=REQUIRES,
+    keywords="azure, azure sdk",
     packages=find_packages(),
     include_package_data=True,
+    install_requires=[
+        "msrest>=0.6.21",
+        "azure-core<2.0.0,>=1.20.1",
+    ],
     long_description="""\
     Service client for testing parameterized hosts with the name 'endpoint'.
     """,

@@ -25,6 +25,7 @@
 #
 # --------------------------------------------------------------------------
 import pytest
+from azure.core.rest import HttpRequest
 
 from dpgservicedriveninitiallowlevel import DPGClient as DPGClientInitial
 from dpgservicedrivenupdateonelowlevel import DPGClient as DPGClientUpdateOne
@@ -62,3 +63,53 @@ def test_required_to_optional(initial_send_request, update_one_send_request):
 
     request = params_update_one.build_get_required_request(parameter="foo", new_parameter="bar")
     update_one_send_request(request)
+
+def test_add_optional_parameter_to_none(initial_send_request, update_one_send_request):
+    request = params_initial.build_head_no_params_request()
+    initial_send_request(request)
+
+    request = params_update_one.build_head_no_params_request(new_parameter="bar")
+    update_one_send_request(request)
+
+def test_add_optional_parameter_to_required_optional(initial_send_request, update_one_send_request):
+    request = params_initial.build_put_required_optional_request(required_param="foo", optional_param="bar")
+    initial_send_request(request)
+
+    request = params_update_one.build_put_required_optional_request(required_param="foo", optional_param="bar", new_parameter="baz")
+    update_one_send_request(request)
+
+def test_add_optional_parameter_to_optional(initial_send_request, update_one_send_request):
+    request = params_initial.build_get_optional_request(optional_param="foo")
+    initial_send_request(request)
+
+    request = params_update_one.build_get_optional_request(optional_param="foo", new_parameter="bar")
+    update_one_send_request(request)
+
+def test_add_new_content_type(initial_send_request, update_one_send_request):
+    request = params_initial.build_post_parameters_request(json={ "url": "http://example.org/myimage.jpeg" })
+    initial_send_request(request)
+
+    request = params_update_one.build_post_parameters_request(json={ "url": "http://example.org/myimage.jpeg" })
+    update_one_send_request(request)
+    request = params_update_one.build_post_parameters_request(content=b"hello", content_type="image/jpeg")
+    update_one_send_request(request)
+
+def test_add_new_operation(update_one_send_request):
+    with pytest.raises(AttributeError):
+        params_initial.build_delete_parameters_request()
+    
+    request = params_update_one.build_delete_parameters_request()
+    update_one_send_request(request)
+
+def test_add_new_path(update_one_send_request):
+    with pytest.raises(AttributeError):
+        params_initial.build_get_new_operation_request()
+    
+    request = params_update_one.build_get_new_operation_request()
+    assert update_one_send_request(request).json() == {'message': 'An object was successfully returned'}
+
+def test_glass_breaker(update_one_send_request):
+    request = HttpRequest(method="GET", url="/servicedriven/glassbreaker", params=[], headers={"Accept": "application/json"})
+    response = update_one_send_request(request)
+    assert response.status_code == 200
+    assert response.json() == {'message': 'An object was successfully returned'}
