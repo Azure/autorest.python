@@ -19,5 +19,5 @@ __all__ = [
     'Error',
     'ModelTwo',
 ]
-__all__.extend(_patch_all)
+__all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

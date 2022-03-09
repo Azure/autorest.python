@@ -51,7 +51,7 @@ class JinjaSerializer:
 
     @property
     def has_aio_folder(self) -> bool:
-        return self.code_model.options["no_async"] and bool(self.code_model.rest.request_builders)
+        return not self.code_model.options["no_async"] and bool(self.code_model.rest.request_builders)
 
     def serialize(self) -> None:
         env = Environment(
