@@ -27,7 +27,7 @@ import platform
 import warnings
 from azure.core.rest import HttpRequest
 
-from dpgservicedriveninitialversiontolerant import DPGClient
+from dpgservicedriveninitiallowlevel import DPGClient
 
 
 class TestAcceptance(object):
