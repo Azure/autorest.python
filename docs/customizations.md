@@ -7,7 +7,7 @@ OpenAPI definition of your service. If you absolutely can not modify the OpenAPI
 
 ## Key Concept: _patch.py
 
-The `_patch.py` files at each level of the modules will be the entry point to customize the generated code.
+The `_patch.py` files at each level of the subfolders will be the entry point to customize the generated code.
 
 For example, if you want to override a model, you will use the `_patch.py` file at the `models` level of your
 generated code to override.
@@ -110,7 +110,7 @@ __all__ = ["OperationGroup"]
 
 You can also easily overload generated operations. For example, if you want users to be able to pass in the body parameter
 as a positional-only single dictionary, or as splatted keyword arguments, you can inherit and override the operation on the operation group
-in the `_patch.py` file in the `operations` modules.
+in the `_patch.py` file in the `operations` subfolders.
 
 In this `_patch.py` file:
 
