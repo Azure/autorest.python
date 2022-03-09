@@ -25,6 +25,7 @@
 #
 # --------------------------------------------------------------------------
 import pytest
+import importlib
 from dpgcustomizationinitialversiontolerant.aio import DPGClient as DPGClientInitial
 from dpgcustomizationcustomizedversiontolerant.aio import DPGClient as DPGClientCustomized
 from dpgcustomizationcustomizedversiontolerant.models import *
@@ -83,3 +84,8 @@ async def test_customized_lro(client):
     assert isinstance(product, LROProduct)
     assert product.received == "model"
     assert product.provisioning_state == "Succeeded"
+
+@pytest.mark.parametrize("package_name", ["dpgcustomizationinitialversiontolerant", "dpgcustomizationcustomizedversiontolerant"])
+def test_dunder_all(package_name):
+    assert importlib.import_module(f"{package_name}.aio").__all__ == ["DPGClient"]
+    assert importlib.import_module(f"{package_name}.aio._operations").__all__ == ["DPGClientOperationsMixin"]
