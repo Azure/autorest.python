@@ -18,7 +18,11 @@ from .models.parameter_list import GlobalParameterList
 from .models.rest import Rest
 from .serializers import JinjaSerializer
 from .models.credential_schema_policy import CredentialSchemaPolicy, get_credential_schema_policy_type
+from .models.credential_schema_policy import BearerTokenCredentialPolicy, AzureKeyCredentialPolicy
 from .models.credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
+
+_AAD_TOKEN = "AADToken"
+_AZURE_KEY = "AzureKey"
 
 def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -> None:
     # Create operations
@@ -135,12 +139,37 @@ class CodeGenerator(Plugin):
             "dependency_msrest": "msrest>=0.6.21",
         }
 
+    @staticmethod
+    def _build_security(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+        security_yaml = yaml_data.get("security")
+        security: Dict[str, Any] = dict()
+        if security_yaml and security_yaml.get("authenticationRequired"):
+            # the key word is "AADToken" and "AzureKey"
+            aad_token = set()
+            azure_key = ""
+            for scheme in security_yaml.get("schemes"):
+                if _AAD_TOKEN == scheme["type"]:
+                    aad_token.update(scheme["scopes"])
+                elif _AZURE_KEY == scheme["type"]:
+                    # only accept the last one
+                    azure_key = scheme["headerName"]
+            if aad_token:
+                security[_AAD_TOKEN] = list(aad_token)
+            if azure_key:
+                security[_AZURE_KEY] = azure_key
+        return security
+
     def _create_code_model(self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]) -> CodeModel:
         # Create a code model
 
         code_model = CodeModel(options=options)
+        security = self._build_security(yaml_data)
         if code_model.options['credential']:
             self._handle_default_authentication_policy(code_model)
+        elif security:
+            code_model.options['credential'] = True
+            self._handle_authentication_policy(code_model, security)
+
         code_model.module_name = yaml_data["info"]["python_title"]
         code_model.class_name = yaml_data["info"]["pascal_case_title"]
         code_model.description = (
@@ -248,6 +277,24 @@ class CodeGenerator(Plugin):
             credential=AzureKeyCredentialSchema(),
             credential_key_header_name=credential_key_header_name,
         )
+
+    @staticmethod
+    def _handle_authentication_policy(code_model: CodeModel, security: Dict[str, Any]):
+        credential_scopes = security.get(_AAD_TOKEN, [])
+        azure_key_header = security.get(_AZURE_KEY, "")
+        if credential_scopes:
+            credential_schema_policy: CredentialSchemaPolicy = BearerTokenCredentialPolicy(
+                credential=TokenCredentialSchema(False),
+                credential_scopes=credential_scopes
+            )
+        elif azure_key_header:
+            credential_schema_policy = AzureKeyCredentialPolicy(
+                credential=AzureKeyCredentialSchema(),
+                credential_key_header_name=azure_key_header
+            )
+        else:
+            raise ValueError(f'can not find {_AAD_TOKEN} or {_AZURE_KEY} in security definition')
+        code_model.credential_schema_policy = credential_schema_policy
 
     def _handle_default_authentication_policy(self, code_model: CodeModel):
         credential_schema_policy_name = (

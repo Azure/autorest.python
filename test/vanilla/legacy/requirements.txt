@@ -6,6 +6,7 @@ pytest-asyncio==0.14.0;python_full_version>="3.5.2"
 async_generator;python_full_version>="3.5.2"
 msrest==0.6.21
 azure-core==1.20.1
+azure-identity==1.8.0
 -e ./Expected/AcceptanceTests/AdditionalProperties
 -e ./Expected/AcceptanceTests/Anything
 -e ./Expected/AcceptanceTests/BodyArray
@@ -52,3 +53,6 @@ azure-core==1.20.1
 -e ./Expected/AcceptanceTests/Xml
 -e ./Expected/AcceptanceTests/XmsErrorResponse
 -e ./Expected/AcceptanceTests/PackageModeDataPlane
+-e ./Expected/AcceptanceTests/SecurityAad
+-e ./Expected/AcceptanceTests/SecurityAzureKey
+-e ./Expected/AcceptanceTests/SecurityMixed

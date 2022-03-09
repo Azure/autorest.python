@@ -364,6 +364,7 @@ def regenerate_legacy(c, swagger_name=None, debug=False):
         regenerate_with_python3_operation_files(c, debug)
         regenerate_python3_only(c, debug)
         regenerate_package_mode(c, debug)
+        regenerate_security(c, debug)
 
 @task
 def regenerate(
@@ -479,6 +480,8 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
         "test/multiapi/specification/multiapidataplane/README.md",
         # multiapi client with custom base url (package-name=multiapicustombaseurl)
         "test/multiapi/specification/multiapicustombaseurl/README.md",
+        # create multiapi client with security definition (package-name=multapisecurity)
+        "test/multiapi/specification/multiapisecurity/README.md",
     ]
 
     cmds = [_multiapi_command_line(spec, debug) for spec in available_specifications if swagger_name.lower() in spec]
@@ -497,6 +500,19 @@ def regenerate_package_mode(c, debug=False):
         f'autorest {readme} --use=. --python-sdks-folder={cwd}/test/' for readme in package_mode
     ]
 
+    _run_autorest(cmds, debug=debug)
+
+@task
+def regenerate_security(c, debug=False):
+    cwd = os.getcwd()
+    security = [
+        'test/vanilla/legacy/specification/securityaad/README.md',
+        'test/vanilla/legacy/specification/securityazurekey/README.md',
+        'test/vanilla/legacy/specification/securitymixed/README.md',
+    ]
+    cmds = [
+        f'autorest {readme} --use=. --python-sdks-folder={cwd}/test/' for readme in security
+    ]
     _run_autorest(cmds, debug=debug)
 
 @task
