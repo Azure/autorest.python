@@ -254,7 +254,7 @@ def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
         regenerate_package_name_setup_py(c, debug)
         regenerate_with_python3_operation_files(c, debug)
         regenerate_python3_only(c, debug)
-        regenerate_package_mode(c, swagger_name=_SwaggerGroup.VANILLA)
+        regenerate_package_mode(c, swagger_group=_SwaggerGroup.VANILLA)
 
 @task
 def regenerate_dpg_low_level_client(c, swagger_name=None, debug=False, **kwargs):
@@ -311,7 +311,7 @@ def regenerate_azure_legacy(c, swagger_name=None, debug=False, **kwargs):
     _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, **kwargs)
     if not swagger_name:
         regenerate_custom_poller_pager_legacy(c, debug)
-        regenerate_package_mode(c, swagger_name=_SwaggerGroup.AZURE)
+        regenerate_package_mode(c, swagger_group=_SwaggerGroup.AZURE)
 
 @task
 def regenerate_azure_low_level_client(c, swagger_name=None, debug=False, **kwargs):
