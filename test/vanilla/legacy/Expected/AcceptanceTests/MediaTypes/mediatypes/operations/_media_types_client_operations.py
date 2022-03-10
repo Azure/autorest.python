@@ -209,6 +209,7 @@ class MediaTypesClientOperationsMixin(object):
 
         _json = None
         _content = None
+        content_type = content_type or ""
         if content_type.split(";")[0] in ["application/json"]:
             if input is not None:
                 _json = self._serialize.body(input, "SourcePath")
@@ -227,9 +228,9 @@ class MediaTypesClientOperationsMixin(object):
             template_url=self.analyze_body.metadata["url"],
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -278,6 +279,7 @@ class MediaTypesClientOperationsMixin(object):
 
         _json = None
         _content = None
+        content_type = content_type or ""
         if content_type.split(";")[0] in ["application/json"]:
             if input is not None:
                 _json = self._serialize.body(input, "SourcePath")
@@ -296,9 +298,9 @@ class MediaTypesClientOperationsMixin(object):
             template_url=self.analyze_body_no_accept_header.metadata["url"],
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -342,9 +344,9 @@ class MediaTypesClientOperationsMixin(object):
             template_url=self.content_type_with_encoding.metadata["url"],
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -396,9 +398,9 @@ class MediaTypesClientOperationsMixin(object):
             template_url=self.binary_body_with_two_content_types.metadata["url"],
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -454,9 +456,9 @@ class MediaTypesClientOperationsMixin(object):
             template_url=self.binary_body_with_three_content_types.metadata["url"],
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -501,6 +503,7 @@ class MediaTypesClientOperationsMixin(object):
 
         _json = None
         _content = None
+        content_type = content_type or ""
         if content_type.split(";")[0] in ["application/json"]:
             _json = message
         elif content_type.split(";")[0] in ["text/plain"]:
@@ -518,9 +521,9 @@ class MediaTypesClientOperationsMixin(object):
             template_url=self.put_text_and_json_body.metadata["url"],
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

@@ -28,6 +28,7 @@ def _format_url_section(template, **kwargs):
 {% if code_model.need_mixin_abc %}
 
 class MixinABC(ABC):
+    """DO NOT use this class. It is for internal typing use only."""
     _client: {{ keywords.async_class }}PipelineClient
     _config: {{ code_model.class_name }}Configuration
     _serialize: Serializer

@@ -362,7 +362,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     def need_vendored_code(self, async_mode: bool) -> bool:
         if async_mode:
             return self.need_mixin_abc
-        return self.need_request_converter or self.need_format_url
+        return self.need_request_converter or self.need_format_url or self.need_mixin_abc
 
     @property
     def need_request_converter(self) -> bool:

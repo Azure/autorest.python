@@ -5,17 +5,23 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from __future__ import annotations
 from abc import ABC
-
-from msrest import Deserializer, Serializer
-
-from azure.core import AsyncPipelineClient
+from typing import TYPE_CHECKING
 
 from ._configuration import AutoRestValidationTestConfiguration
 
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from msrest import Deserializer, Serializer
+
+    from azure.core import AsyncPipelineClient
+
 
 class MixinABC(ABC):
+    """DO NOT use this class. It is for internal typing use only."""
+
     _client: AsyncPipelineClient
     _config: AutoRestValidationTestConfiguration
     _serialize: Serializer
-    _deserializer: Deserializer
+    _deserialize: Deserializer
