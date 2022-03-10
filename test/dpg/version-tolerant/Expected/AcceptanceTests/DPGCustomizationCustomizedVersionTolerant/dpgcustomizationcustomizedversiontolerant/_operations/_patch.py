@@ -3,11 +3,13 @@
 # Licensed under the MIT License.
 # ------------------------------------
 
-from typing import Any, overload, Union, Literal
+from typing import Any, overload, Union, TYPE_CHECKING
 from azure.core.paging import ItemPaged
 from azure.core.polling import LROPoller
-from ..models import *
+from ..models import * # pylint: disable=wildcard-import,unused-wildcard-import
 from ._operations import DPGClientOperationsMixin as DPGClientOperationsMixinGenerated, JSONType
+if TYPE_CHECKING:
+    from typing import Literal
 
 
 def mode_checks(*args, **kwargs: Any) -> bool:
@@ -21,11 +23,11 @@ def mode_checks(*args, **kwargs: Any) -> bool:
 
 class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
     @overload
-    def get_model(self, mode: Literal["raw"], **kwargs: Any) -> JSONType:
+    def get_model(self, mode: "Literal['raw']", **kwargs: Any) -> JSONType:
         """Pass in mode='raw' to get raw JSON out"""
 
     @overload
-    def get_model(self, mode: Literal["model"], **kwargs: Any) -> Product:
+    def get_model(self, mode: "Literal['model']", **kwargs: Any) -> Product:
         """Pass in mode='model' to get a handwritten model out"""
 
     def get_model(self, *args, **kwargs: Any) -> Union[JSONType, Product]:
@@ -36,11 +38,11 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
         return response
 
     @overload
-    def post_model(self, mode: Literal["raw"], input: JSONType, **kwargs: Any) -> JSONType:
+    def post_model(self, mode: "Literal['raw']", input: JSONType, **kwargs: Any) -> JSONType:
         """Pass in mode='raw' to pass in raw json"""
 
     @overload
-    def post_model(self, mode: Literal["model"], input: Input, **kwargs: Any) -> Product:
+    def post_model(self, mode: "Literal['model']", input: Input, **kwargs: Any) -> Product:
         """Pass in mode='model' to pass in model"""
 
     def post_model(self, *args, **kwargs: Any) -> JSONType:
@@ -48,7 +50,7 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
         if model_mode:
             if len(args) > 1:
                 args = list(args)
-                args[1] = Input.serialize(args[1])
+                args[1] = Input.serialize(args[1])  # pylint: disable=expression-not-assigned
             else:
                 kwargs["input"] == Input.serialize(kwargs["input"])
         response = super().post_model(*args, **kwargs)
@@ -57,11 +59,11 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
         return response
 
     @overload
-    def get_pages(self, mode: Literal["raw"], **kwargs) -> ItemPaged[JSONType]:
+    def get_pages(self, mode: "Literal['raw']", **kwargs) -> ItemPaged[JSONType]:
         """Pass in mode='raw' to pass for raw json"""
 
     @overload
-    def get_pages(self, mode: Literal["model"], **kwargs) -> ItemPaged[Product]:
+    def get_pages(self, mode: "Literal['model']", **kwargs) -> ItemPaged[Product]:
         """Pass in mode='model' to pass for raw json"""
 
     def get_pages(self, *args, **kwargs):
@@ -71,11 +73,11 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
         return super().get_pages(*args, **kwargs)
 
     @overload
-    def begin_lro(self, mode: Literal["raw"], **kwargs) -> LROPoller[JSONType]:
+    def begin_lro(self, mode: "Literal['raw']", **kwargs) -> LROPoller[JSONType]:
         """Pass in mode='raw' to pass for raw json"""
 
     @overload
-    def begin_lro(self, mode: Literal["model"], **kwargs) -> LROPoller[LROProduct]:
+    def begin_lro(self, mode: "Literal['model']", **kwargs) -> LROPoller[LROProduct]:
         """Pass in mode='model' to pass for raw json"""
 
     def begin_lro(self, *args, **kwargs: Any):
