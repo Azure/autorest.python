@@ -172,6 +172,8 @@ class LROOperation(Operation):
         )
         base_polling_method = self.get_base_polling_method(async_mode)
         file_import.add_submodule_import(base_polling_method_import_path, base_polling_method, ImportType.AZURECORE)
+        file_import.add_submodule_import("azure.core.polling", "PollingMethod", ImportType.AZURECORE, TypingSection.TYPING)
+        file_import.add_submodule_import("azure.core.polling", "AsyncPollingMethod", ImportType.AZURECORE, TypingSection.TYPING)
 
         if async_mode:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)

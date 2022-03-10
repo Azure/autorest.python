@@ -18,4 +18,4 @@ class MixinABC(ABC):
     _client: AsyncPipelineClient
     _config: LROWithParamaterizedEndpointsConfiguration
     _serialize: Serializer
-    _deserializer: Deserializer
+    _deserialize: Deserializer

@@ -1286,7 +1286,7 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
         retval.append(")")
         retval.append("cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]")
         retval.append("if cont_token is None:")
-        retval.append(f"    raw_result = {self._call_method}self.{builder.initial_operation.name}(")
+        retval.append(f"    raw_result = {self._call_method}self.{builder.initial_operation.name}(  # type: ignore")
         retval.extend([
             f"        {parameter.serialized_name}={parameter.serialized_name},"
             for parameter in builder.parameters.method
@@ -1300,20 +1300,26 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
     def return_lro_poller(self, builder) -> List[str]:
         retval = []
         lro_options_str = (
-            ", lro_options={'final-state-via': '" + builder.lro_options['final-state-via'] + "'}"
+            "lro_options={'final-state-via': '" + builder.lro_options['final-state-via'] + "'},"
             if builder.lro_options else ""
         )
         path_format_arguments_str = ""
         if builder.parameters.path:
-            path_format_arguments_str = ", path_format_arguments=path_format_arguments"
+            path_format_arguments_str = "path_format_arguments=path_format_arguments,"
             retval.extend(self.serialize_path(builder))
             retval.append("")
-        retval.append(
-            f"if polling is True: polling_method = {self._default_polling_method(builder)}" +
-            f"(lro_delay{lro_options_str}{path_format_arguments_str}, **kwargs)"
+        retval.extend([
+            "if polling is True:",
+            f"    polling_method = {self._default_polling_method(builder)}(",
+            "        lro_delay,",
+            f"        {lro_options_str}",
+            f"        {path_format_arguments_str}",
+            "        **kwargs",
+            f")  # type: {self._polling_method_type}",
+        ]
         )
         retval.append(
-            f"elif polling is False: polling_method = {self._default_no_polling_method(builder)}()"
+            f"elif polling is False: polling_method = {self._default_no_polling_method(builder)}()  # type: ignore"
         )
         retval.append("else: polling_method = polling")
         retval.append("if cont_token:")

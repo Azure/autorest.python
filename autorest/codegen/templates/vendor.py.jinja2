@@ -31,5 +31,5 @@ class MixinABC(ABC):
     _client: {{ keywords.async_class }}PipelineClient
     _config: {{ code_model.class_name }}Configuration
     _serialize: Serializer
-    _deserializer: Deserializer
+    _deserialize: Deserializer
 {% endif %}
