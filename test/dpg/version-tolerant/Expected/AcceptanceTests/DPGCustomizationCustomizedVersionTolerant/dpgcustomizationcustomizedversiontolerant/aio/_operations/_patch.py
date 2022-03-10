@@ -5,10 +5,11 @@
 
 from typing import Any, Union, overload, TYPE_CHECKING
 from azure.core.polling import AsyncLROPoller
+from azure.core.async_paging import AsyncItemPaged
+
 from ._operations import DPGClientOperationsMixin as DPGClientOperationsMixinGenerated, JSONType
 from ...models import *  # pylint: disable=wildcard-import,unused-wildcard-import
 from ..._operations._patch import mode_checks
-from azure.core.async_paging import AsyncItemPaged
 
 if TYPE_CHECKING:
     from typing import Literal
@@ -45,7 +46,7 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
                 args = list(args)
                 args[1] = Input.serialize(args[1])  # pylint: disable=expression-not-assigned
             else:
-                kwargs["input"] == Input.serialize(kwargs["input"])
+                kwargs["input"] == Input.serialize(kwargs["input"])  # pylint: disable=expression-not-assigned
         response = await super().post_model(*args, **kwargs)
         if model_mode:
             return Product.deserialize(response)

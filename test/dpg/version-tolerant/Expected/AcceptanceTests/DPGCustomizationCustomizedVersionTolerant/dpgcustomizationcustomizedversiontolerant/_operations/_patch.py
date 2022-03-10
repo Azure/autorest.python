@@ -53,7 +53,7 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
                 args = list(args)
                 args[1] = Input.serialize(args[1])  # pylint: disable=expression-not-assigned
             else:
-                kwargs["input"] == Input.serialize(kwargs["input"])
+                kwargs["input"] == Input.serialize(kwargs["input"])  # pylint: disable=expression-not-assigned
         response = super().post_model(*args, **kwargs)
         if model_mode:
             return Product.deserialize(response)
