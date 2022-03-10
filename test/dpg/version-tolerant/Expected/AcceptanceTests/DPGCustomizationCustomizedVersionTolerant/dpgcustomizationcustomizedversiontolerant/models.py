@@ -11,6 +11,7 @@ from typing import (
 )
 from msrest.serialization import Model as _Model
 
+
 class Input(_Model):
     """Input.
 
