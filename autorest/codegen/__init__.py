@@ -141,20 +141,20 @@ class CodeGenerator(Plugin):
 
     @staticmethod
     def _build_security(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
-        security_yaml = yaml_data.get("security")
+        security_yaml = yaml_data.get("security", {})
         security: Dict[str, Any] = dict()
-        if security_yaml and security_yaml.get("authenticationRequired"):
+        if security_yaml.get("authenticationRequired"):
             # the key word is "AADToken" and "AzureKey"
-            aad_token = set()
+            aad_scopes = set()
             azure_key = ""
             for scheme in security_yaml.get("schemes"):
                 if _AAD_TOKEN == scheme["type"]:
-                    aad_token.update(scheme["scopes"])
+                    aad_scopes.update(scheme["scopes"])
                 elif _AZURE_KEY == scheme["type"]:
                     # only accept the last one
                     azure_key = scheme["headerName"]
-            if aad_token:
-                security[_AAD_TOKEN] = list(aad_token)
+            if aad_scopes:
+                security[_AAD_TOKEN] = list(aad_scopes)
             if azure_key:
                 security[_AZURE_KEY] = azure_key
         return security

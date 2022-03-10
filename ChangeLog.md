@@ -1,6 +1,6 @@
 # Change Log
 
-### 2022-03-XX - 5.14.1
+### 2022-03-XX - 5.15.0
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -12,7 +12,7 @@
 
 **New Features**
 
-- Support flag `--security`/`--security-scopes`/`--security-header-name` and security definition in swagger #1161
+- Add support for security configurations in the swagger(refer to [doc](https://github.com/Azure/autorest/blob/main/docs/generate/authentication.md) for more info) #1161
 
 ### 2022-03-08 - 5.14.0
 
