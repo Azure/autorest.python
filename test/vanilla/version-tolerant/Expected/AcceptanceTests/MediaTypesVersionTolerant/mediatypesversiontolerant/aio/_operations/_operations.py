@@ -28,13 +28,14 @@ from ..._operations._operations import (
     build_content_type_with_encoding_request,
     build_put_text_and_json_body_request,
 )
+from .._vendor import MixinABC
 
 T = TypeVar("T")
 JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MediaTypesClientOperationsMixin:
+class MediaTypesClientOperationsMixin(MixinABC):
     @distributed_trace_async
     async def analyze_body(
         self,
@@ -69,6 +70,7 @@ class MediaTypesClientOperationsMixin:
 
         _json = None
         _content = None
+        content_type = content_type or ""
         if content_type.split(";")[0] in ["application/json"]:
             if input is not None:
                 _json = input
@@ -85,9 +87,9 @@ class MediaTypesClientOperationsMixin:
             json=_json,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -96,10 +98,7 @@ class MediaTypesClientOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -141,6 +140,7 @@ class MediaTypesClientOperationsMixin:
 
         _json = None
         _content = None
+        content_type = content_type or ""
         if content_type.split(";")[0] in ["application/json"]:
             if input is not None:
                 _json = input
@@ -157,9 +157,9 @@ class MediaTypesClientOperationsMixin:
             json=_json,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -193,9 +193,9 @@ class MediaTypesClientOperationsMixin:
             content_type=content_type,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -204,10 +204,7 @@ class MediaTypesClientOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -236,6 +233,7 @@ class MediaTypesClientOperationsMixin:
 
         _json = None
         _content = None
+        content_type = content_type or ""
         if content_type.split(";")[0] in ["application/json"]:
             _json = message
         elif content_type.split(";")[0] in ["application/octet-stream"]:
@@ -251,9 +249,9 @@ class MediaTypesClientOperationsMixin:
             json=_json,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -262,10 +260,7 @@ class MediaTypesClientOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -296,6 +291,7 @@ class MediaTypesClientOperationsMixin:
 
         _json = None
         _content = None
+        content_type = content_type or ""
         if content_type.split(";")[0] in ["application/json"]:
             _json = message
         elif content_type.split(";")[0] in ["application/octet-stream", "text/plain"]:
@@ -311,9 +307,9 @@ class MediaTypesClientOperationsMixin:
             json=_json,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -322,10 +318,7 @@ class MediaTypesClientOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -353,6 +346,7 @@ class MediaTypesClientOperationsMixin:
 
         _json = None
         _content = None
+        content_type = content_type or ""
         if content_type.split(";")[0] in ["application/json"]:
             _json = message
         elif content_type.split(";")[0] in ["text/plain"]:
@@ -368,9 +362,9 @@ class MediaTypesClientOperationsMixin:
             json=_json,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -379,10 +373,7 @@ class MediaTypesClientOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})

@@ -1323,7 +1323,7 @@ def build_lr_os_custom_header_post_async_retry_succeeded_request_initial(
     return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
-class LROsOperations(object):  # pylint: disable=too-many-public-methods
+class LROsOperations:  # pylint: disable=too-many-public-methods
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -1334,11 +1334,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
     """
 
     def __init__(self, *args, **kwargs):
-        args = list(args)
-        self._client = args.pop(0) if args else kwargs.pop("client")
-        self._config = args.pop(0) if args else kwargs.pop("config")
-        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
-        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def _put200_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> Optional[JSONType]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
@@ -1356,9 +1356,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1449,10 +1449,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -1488,9 +1485,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1504,10 +1501,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             "str", response.headers.get("Azure-AsyncOperation")
         )
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -1589,10 +1583,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 "str", response.headers.get("Azure-AsyncOperation")
             )
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -1628,9 +1619,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1641,20 +1632,14 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
             response_headers["Azure-AsyncOperation"] = self._deserialize(
                 "str", response.headers.get("Azure-AsyncOperation")
             )
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -1730,10 +1715,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -1771,9 +1753,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1784,10 +1766,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 202:
             response_headers["Azure-AsyncOperation"] = self._deserialize(
@@ -1795,10 +1774,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -1877,10 +1853,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -1916,9 +1889,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1927,10 +1900,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2007,10 +1977,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2036,9 +2003,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lros_post202_list_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2115,10 +2082,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2154,9 +2118,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2165,10 +2129,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2245,10 +2206,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2284,9 +2242,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2295,10 +2253,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2376,10 +2331,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2415,9 +2367,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2427,16 +2379,10 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2514,10 +2460,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2553,9 +2496,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2564,10 +2507,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2645,10 +2585,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2684,9 +2621,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2696,16 +2633,10 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2783,10 +2714,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2822,9 +2750,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2833,10 +2761,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2914,10 +2839,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2953,9 +2875,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2967,10 +2889,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         response_headers = {}
         response_headers["location"] = self._deserialize("str", response.headers.get("location"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -3050,10 +2969,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
             response_headers["location"] = self._deserialize("str", response.headers.get("location"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -3089,9 +3005,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3107,10 +3023,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -3195,10 +3108,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -3234,9 +3144,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3251,10 +3161,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         )
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -3338,10 +3245,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -3377,9 +3281,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3395,10 +3299,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -3483,10 +3384,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -3522,9 +3420,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3539,10 +3437,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         )
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -3626,10 +3521,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             )
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -3665,9 +3557,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3681,10 +3573,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             "str", response.headers.get("Azure-AsyncOperation")
         )
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -3767,10 +3656,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
                 "str", response.headers.get("Azure-AsyncOperation")
             )
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -3806,9 +3692,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3817,10 +3703,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -3872,10 +3755,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -3911,9 +3791,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3922,10 +3802,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -3977,10 +3854,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4016,9 +3890,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -4027,10 +3901,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -4092,10 +3963,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4131,9 +3999,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -4142,10 +4010,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -4207,10 +4072,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4236,9 +4098,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lros_delete_provisioning202_accepted200_succeeded_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -4249,19 +4111,13 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -4316,10 +4172,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4345,9 +4198,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lros_delete_provisioning202_deleting_failed200_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -4358,19 +4211,13 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -4425,10 +4272,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4454,9 +4298,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lros_delete_provisioning202_deletingcanceled200_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -4467,19 +4311,13 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -4534,10 +4372,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4563,9 +4398,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lros_delete204_succeeded_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -4627,9 +4462,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lros_delete202_retry200_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -4702,10 +4537,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4731,9 +4563,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lros_delete202_no_retry204_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -4806,10 +4638,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4837,9 +4666,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lros_delete_no_header_in_retry_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -4908,9 +4737,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lros_delete_async_no_header_in_retry_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -4979,9 +4808,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lros_delete_async_retry_succeeded_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -5053,9 +4882,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lros_delete_async_no_retry_succeeded_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -5127,9 +4956,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lros_delete_async_retry_failed_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -5201,9 +5030,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lros_delete_async_retrycanceled_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -5273,9 +5102,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lros_post200_with_payload_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -5285,16 +5114,10 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 202:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -5336,10 +5159,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -5377,9 +5197,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -5482,9 +5302,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -5497,10 +5317,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -5581,10 +5398,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -5610,9 +5424,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lros_post_double_headers_final_location_get_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -5621,10 +5435,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -5679,10 +5490,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -5708,9 +5516,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lros_post_double_headers_final_azure_header_get_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -5719,10 +5527,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -5777,10 +5582,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -5806,9 +5608,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lros_post_double_headers_final_azure_header_get_default_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -5817,10 +5619,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -5877,10 +5676,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -5916,9 +5712,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -6018,10 +5814,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -6057,9 +5850,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -6159,10 +5952,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -6200,9 +5990,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -6311,9 +6101,9 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -6405,7 +6195,7 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
 
-class LRORetrysOperations(object):
+class LRORetrysOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -6416,11 +6206,11 @@ class LRORetrysOperations(object):
     """
 
     def __init__(self, *args, **kwargs):
-        args = list(args)
-        self._client = args.pop(0) if args else kwargs.pop("client")
-        self._config = args.pop(0) if args else kwargs.pop("config")
-        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
-        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def _put201_creating_succeeded200_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -6438,9 +6228,9 @@ class LRORetrysOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -6450,16 +6240,10 @@ class LRORetrysOperations(object):
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -6537,10 +6321,7 @@ class LRORetrysOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -6576,9 +6357,9 @@ class LRORetrysOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -6594,10 +6375,7 @@ class LRORetrysOperations(object):
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -6682,10 +6460,7 @@ class LRORetrysOperations(object):
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -6711,9 +6486,9 @@ class LRORetrysOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lro_retrys_delete_provisioning202_accepted200_succeeded_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -6724,19 +6499,13 @@ class LRORetrysOperations(object):
 
         response_headers = {}
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -6791,10 +6560,7 @@ class LRORetrysOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -6820,9 +6586,9 @@ class LRORetrysOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lro_retrys_delete202_retry200_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -6891,9 +6657,9 @@ class LRORetrysOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lro_retrys_delete_async_relative_retry_succeeded_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -6975,9 +6741,9 @@ class LRORetrysOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -7082,9 +6848,9 @@ class LRORetrysOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -7176,7 +6942,7 @@ class LRORetrysOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
 
-class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
+class LROSADsOperations:  # pylint: disable=too-many-public-methods
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -7187,11 +6953,11 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
     """
 
     def __init__(self, *args, **kwargs):
-        args = list(args)
-        self._client = args.pop(0) if args else kwargs.pop("client")
-        self._config = args.pop(0) if args else kwargs.pop("config")
-        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
-        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def _put_non_retry400_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -7209,9 +6975,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -7221,16 +6987,10 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -7306,10 +7066,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -7345,9 +7102,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -7357,16 +7114,10 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -7443,10 +7194,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -7482,9 +7230,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -7494,16 +7242,10 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -7582,10 +7324,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -7621,9 +7360,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -7639,10 +7378,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -7726,10 +7462,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -7755,9 +7488,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lrosads_delete_non_retry400_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -7823,9 +7556,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lrosads_delete202_non_retry400_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -7893,9 +7626,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lrosads_delete_async_relative_retry400_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -7977,9 +7710,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -8083,9 +7816,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -8189,9 +7922,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -8297,9 +8030,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -8309,16 +8042,10 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -8396,10 +8123,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -8435,9 +8159,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -8453,10 +8177,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -8541,10 +8262,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -8580,9 +8298,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -8598,10 +8316,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -8688,10 +8403,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -8717,9 +8429,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lrosads_delete204_succeeded_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -8783,9 +8495,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lrosads_delete_async_relative_retry_no_status_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -8867,9 +8579,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -8974,9 +8686,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -9083,9 +8795,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -9176,10 +8888,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -9215,9 +8924,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -9233,10 +8942,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -9323,10 +9029,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -9364,9 +9067,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -9382,10 +9085,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -9472,10 +9172,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -9503,9 +9200,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lrosads_delete202_retry_invalid_header_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -9574,9 +9271,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lrosads_delete_async_relative_retry_invalid_header_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -9648,9 +9345,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_lrosads_delete_async_relative_retry_invalid_json_polling_request_initial()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -9732,9 +9429,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -9839,9 +9536,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -9950,9 +9647,9 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -10044,7 +9741,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
 
-class LROsCustomHeaderOperations(object):
+class LROsCustomHeaderOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -10055,11 +9752,11 @@ class LROsCustomHeaderOperations(object):
     """
 
     def __init__(self, *args, **kwargs):
-        args = list(args)
-        self._client = args.pop(0) if args else kwargs.pop("client")
-        self._config = args.pop(0) if args else kwargs.pop("config")
-        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
-        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def _put_async_retry_succeeded_initial(self, product: JSONType = None, **kwargs: Any) -> JSONType:
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -10077,9 +9774,9 @@ class LROsCustomHeaderOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -10095,10 +9792,7 @@ class LROsCustomHeaderOperations(object):
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -10184,10 +9878,7 @@ class LROsCustomHeaderOperations(object):
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -10223,9 +9914,9 @@ class LROsCustomHeaderOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -10235,16 +9926,10 @@ class LROsCustomHeaderOperations(object):
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if response.status_code == 201:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -10323,10 +10008,7 @@ class LROsCustomHeaderOperations(object):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -10364,9 +10046,9 @@ class LROsCustomHeaderOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -10472,9 +10154,9 @@ class LROsCustomHeaderOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

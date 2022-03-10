@@ -21,13 +21,14 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._operations._operations import build_patch_single_request
+from .._vendor import MixinABC
 
 T = TypeVar("T")
 JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MergePatchJsonClientOperationsMixin:
+class MergePatchJsonClientOperationsMixin(MixinABC):
     @distributed_trace_async
     async def patch_single(self, body: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic patch with an object.
@@ -50,9 +51,9 @@ class MergePatchJsonClientOperationsMixin:
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

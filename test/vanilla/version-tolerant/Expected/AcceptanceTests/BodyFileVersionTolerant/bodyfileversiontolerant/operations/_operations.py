@@ -66,7 +66,7 @@ def build_files_get_empty_file_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
-class FilesOperations(object):
+class FilesOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -77,11 +77,11 @@ class FilesOperations(object):
     """
 
     def __init__(self, *args, **kwargs):
-        args = list(args)
-        self._client = args.pop(0) if args else kwargs.pop("client")
-        self._config = args.pop(0) if args else kwargs.pop("config")
-        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
-        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_file(self, **kwargs: Any) -> IO:
@@ -96,9 +96,9 @@ class FilesOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_files_get_file_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=True, **kwargs
         )
         response = pipeline_response.http_response
@@ -127,9 +127,9 @@ class FilesOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_files_get_file_large_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=True, **kwargs
         )
         response = pipeline_response.http_response
@@ -158,9 +158,9 @@ class FilesOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_files_get_empty_file_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=True, **kwargs
         )
         response = pipeline_response.http_response

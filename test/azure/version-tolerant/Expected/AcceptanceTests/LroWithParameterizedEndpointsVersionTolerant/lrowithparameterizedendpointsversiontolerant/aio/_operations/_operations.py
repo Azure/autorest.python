@@ -26,13 +26,14 @@ from ..._operations._operations import (
     build_poll_with_constant_parameterized_endpoints_request_initial,
     build_poll_with_parameterized_endpoints_request_initial,
 )
+from .._vendor import MixinABC
 
 T = TypeVar("T")
 JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class LROWithParamaterizedEndpointsOperationsMixin:
+class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
     async def _poll_with_parameterized_endpoints_initial(self, account_name: str, **kwargs: Any) -> Optional[str]:
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -43,9 +44,9 @@ class LROWithParamaterizedEndpointsOperationsMixin:
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        request.url = self._client.format_url(request.url, **path_format_arguments)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -99,10 +100,7 @@ class LROWithParamaterizedEndpointsOperationsMixin:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -148,9 +146,9 @@ class LROWithParamaterizedEndpointsOperationsMixin:
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        request.url = self._client.format_url(request.url, **path_format_arguments)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -210,10 +208,7 @@ class LROWithParamaterizedEndpointsOperationsMixin:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized

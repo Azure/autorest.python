@@ -37,11 +37,11 @@ class PathsOperations:
     """
 
     def __init__(self, *args, **kwargs) -> None:
-        args = list(args)
-        self._client = args.pop(0) if args else kwargs.pop("client")
-        self._config = args.pop(0) if args else kwargs.pop("config")
-        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
-        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get_empty(  # pylint: disable=inconsistent-return-statements
@@ -64,9 +64,9 @@ class PathsOperations:
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        request.url = self._client.format_url(request.url, **path_format_arguments)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

@@ -299,7 +299,7 @@ def build_enum_put_referenced_constant_request(
     return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
-class StringOperations(object):
+class StringOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -310,11 +310,11 @@ class StringOperations(object):
     """
 
     def __init__(self, *args, **kwargs):
-        args = list(args)
-        self._client = args.pop(0) if args else kwargs.pop("client")
-        self._config = args.pop(0) if args else kwargs.pop("config")
-        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
-        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_null(self, **kwargs: Any) -> Optional[str]:
@@ -329,9 +329,9 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_string_get_null_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -340,10 +340,7 @@ class StringOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -377,9 +374,9 @@ class StringOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -404,9 +401,9 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_string_get_empty_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -415,10 +412,7 @@ class StringOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -447,9 +441,9 @@ class StringOperations(object):
             content_type=content_type,
             json=string_body,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -474,9 +468,9 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_string_get_mbcs_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -485,10 +479,7 @@ class StringOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -520,9 +511,9 @@ class StringOperations(object):
             content_type=content_type,
             json=string_body,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -549,9 +540,9 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_string_get_whitespace_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -560,10 +551,7 @@ class StringOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -597,9 +585,9 @@ class StringOperations(object):
             content_type=content_type,
             json=string_body,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -624,9 +612,9 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_string_get_not_provided_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -635,10 +623,7 @@ class StringOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -658,9 +643,9 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_string_get_base64_encoded_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -669,10 +654,7 @@ class StringOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -692,9 +674,9 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_string_get_base64_url_encoded_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -703,10 +685,7 @@ class StringOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -737,9 +716,9 @@ class StringOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -764,9 +743,9 @@ class StringOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_string_get_null_base64_url_encoded_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -775,10 +754,7 @@ class StringOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -786,7 +762,7 @@ class StringOperations(object):
         return deserialized
 
 
-class EnumOperations(object):
+class EnumOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -797,11 +773,11 @@ class EnumOperations(object):
     """
 
     def __init__(self, *args, **kwargs):
-        args = list(args)
-        self._client = args.pop(0) if args else kwargs.pop("client")
-        self._config = args.pop(0) if args else kwargs.pop("config")
-        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
-        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_not_expandable(self, **kwargs: Any) -> str:
@@ -822,9 +798,9 @@ class EnumOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_enum_get_not_expandable_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -833,10 +809,7 @@ class EnumOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -868,9 +841,9 @@ class EnumOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -901,9 +874,9 @@ class EnumOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_enum_get_referenced_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -912,10 +885,7 @@ class EnumOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -947,9 +917,9 @@ class EnumOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -984,9 +954,9 @@ class EnumOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_enum_get_referenced_constant_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -995,10 +965,7 @@ class EnumOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1039,9 +1006,9 @@ class EnumOperations(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

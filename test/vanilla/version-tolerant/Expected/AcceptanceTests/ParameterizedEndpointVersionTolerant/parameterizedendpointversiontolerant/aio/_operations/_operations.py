@@ -21,12 +21,13 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._operations._operations import build_get_request
+from .._vendor import MixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ParmaterizedEndpointClientOperationsMixin:
+class ParmaterizedEndpointClientOperationsMixin(MixinABC):
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic get to make sure base url formatting of 'endpoint' works.
@@ -43,9 +44,9 @@ class ParmaterizedEndpointClientOperationsMixin:
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        request.url = self._client.format_url(request.url, **path_format_arguments)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

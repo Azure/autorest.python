@@ -22,7 +22,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .._vendor import _format_url_section
+from .._vendor import MixinABC, _format_url_section
 
 T = TypeVar("T")
 JSONType = Any
@@ -145,7 +145,7 @@ def build_operation_with_url_request(
     return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
-class ImportOperations(object):
+class ImportOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -156,11 +156,11 @@ class ImportOperations(object):
     """
 
     def __init__(self, *args, **kwargs):
-        args = list(args)
-        self._client = args.pop(0) if args else kwargs.pop("client")
-        self._config = args.pop(0) if args else kwargs.pop("config")
-        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
-        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def operation_one(self, *, parameter1: str, **kwargs: Any) -> Any:
@@ -179,9 +179,9 @@ class ImportOperations(object):
         request = build_import_builders_operation_one_request(
             parameter1=parameter1,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -190,10 +190,7 @@ class ImportOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -201,7 +198,7 @@ class ImportOperations(object):
         return deserialized
 
 
-class ReservedWordsClientOperationsMixin(object):
+class ReservedWordsClientOperationsMixin(MixinABC):
     @distributed_trace
     def operation_with_content_param(self, content: IO, **kwargs: Any) -> Any:
         """Operation with body param called content. Pass in b'hello, world'.
@@ -224,9 +221,9 @@ class ReservedWordsClientOperationsMixin(object):
             content_type=content_type,
             content=_content,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -235,10 +232,7 @@ class ReservedWordsClientOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -267,9 +261,9 @@ class ReservedWordsClientOperationsMixin(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -278,10 +272,7 @@ class ReservedWordsClientOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -318,9 +309,9 @@ class ReservedWordsClientOperationsMixin(object):
             content_type=content_type,
             data=data,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -329,10 +320,7 @@ class ReservedWordsClientOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -369,9 +357,9 @@ class ReservedWordsClientOperationsMixin(object):
             content_type=content_type,
             files=files,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -380,10 +368,7 @@ class ReservedWordsClientOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -418,9 +403,9 @@ class ReservedWordsClientOperationsMixin(object):
             header_parameters=header_parameters,
             query_parameters=query_parameters,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -429,10 +414,7 @@ class ReservedWordsClientOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})

@@ -22,6 +22,8 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
+from .._vendor import MixinABC
+
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -36,7 +38,7 @@ def build_get_incorrect_error_from_server_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class IncorrectReturnedErrorModelOperationsMixin(object):
+class IncorrectReturnedErrorModelOperationsMixin(MixinABC):
     @distributed_trace
     def get_incorrect_error_from_server(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get an error response from the server that is not as described in our Error object. Want to
@@ -51,9 +53,9 @@ class IncorrectReturnedErrorModelOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_get_incorrect_error_from_server_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

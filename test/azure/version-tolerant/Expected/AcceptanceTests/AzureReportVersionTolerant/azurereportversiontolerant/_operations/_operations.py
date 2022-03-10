@@ -22,6 +22,8 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
+from .._vendor import MixinABC
+
 T = TypeVar("T")
 JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -47,7 +49,7 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
     return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
 
 
-class AutoRestReportServiceForAzureOperationsMixin(object):
+class AutoRestReportServiceForAzureOperationsMixin(MixinABC):
     @distributed_trace
     def get_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
         """Get test coverage report.
@@ -75,9 +77,9 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
         request = build_get_report_request(
             qualifier=qualifier,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -86,10 +88,7 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})

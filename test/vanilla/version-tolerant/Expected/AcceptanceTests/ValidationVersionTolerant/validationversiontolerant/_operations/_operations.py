@@ -22,7 +22,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .._vendor import _format_url_section
+from .._vendor import MixinABC, _format_url_section
 
 T = TypeVar("T")
 JSONType = Any
@@ -144,7 +144,7 @@ def build_post_with_constant_in_body_request(
     return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
-class AutoRestValidationTestOperationsMixin(object):
+class AutoRestValidationTestOperationsMixin(MixinABC):
     @distributed_trace
     def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> JSONType:
         """Validates input parameters on the method. See swagger for details.
@@ -199,9 +199,9 @@ class AutoRestValidationTestOperationsMixin(object):
             id=id,
             api_version=api_version,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -210,10 +210,7 @@ class AutoRestValidationTestOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -311,9 +308,9 @@ class AutoRestValidationTestOperationsMixin(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -322,10 +319,7 @@ class AutoRestValidationTestOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -352,9 +346,9 @@ class AutoRestValidationTestOperationsMixin(object):
         request = build_get_with_constant_in_path_request(
             constant_param=constant_param,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -453,9 +447,9 @@ class AutoRestValidationTestOperationsMixin(object):
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -464,10 +458,7 @@ class AutoRestValidationTestOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})

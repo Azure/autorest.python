@@ -1,4 +1,11 @@
 {% set disable = "  # pylint: disable=too-many-public-methods" if operation_group.operations | length > 20 else "" %}
+{% if operation_group.is_empty_operation_group and code_model.need_mixin_abc %}
+    {% set object_base_class = "(MixinABC)" %}
+{% elif not (async_mode or code_model.options["python3_only"]) %}
+    {% set object_base_class = "(object)" %}
+{% else %}
+    {% set object_base_class = "" %}
+{% endif %}
 class {{ operation_group.class_name }}{{ object_base_class }}:{{ disable }}
 {% if not operation_group.is_empty_operation_group %}
     """
@@ -15,11 +22,11 @@ class {{ operation_group.class_name }}{{ object_base_class }}:{{ disable }}
 
 {% endif %}
     def __init__(self, *args, **kwargs){{ return_none_type_annotation }}:
-        args = list(args)
-        self._client = args.pop(0) if args else kwargs.pop("client")
-        self._config = args.pop(0) if args else kwargs.pop("config")
-        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
-        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
 {% endif %}
 {% for operation in operation_group.operations %}

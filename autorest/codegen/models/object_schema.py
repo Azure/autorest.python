@@ -224,23 +224,33 @@ class HiddenModelObjectSchema(ObjectSchema):
 
     @property
     def type_annotation(self) -> str:
+        if self.xml_metadata:
+            return "ET.Element"
         return "JSONType"
 
     @property
     def operation_type_annotation(self) -> str:
+        if self.xml_metadata:
+            return "ET.Element"
         return "JSONType"
 
     @property
     def docstring_type(self) -> str:
+        if self.xml_metadata:
+            return "ET.Element"
         return "JSONType"
 
     @property
     def docstring_text(self) -> str:
+        if self.xml_metadata:
+            return "XML Element"
         return "JSON object"
 
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        if self.xml_metadata:
+            file_import.add_submodule_import("xml.etree", "ElementTree", ImportType.STDLIB, alias="ET")
         return file_import
 
 def get_object_schema(code_model) -> Type[ObjectSchema]:

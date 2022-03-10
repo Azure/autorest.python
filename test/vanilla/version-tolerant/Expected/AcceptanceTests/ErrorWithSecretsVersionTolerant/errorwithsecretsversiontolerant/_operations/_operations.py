@@ -22,6 +22,8 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
+from .._vendor import MixinABC
+
 T = TypeVar("T")
 JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -54,7 +56,7 @@ def build_get_error_with_secrets_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
 
 
-class ErrorWithSecretsOperationsMixin(object):
+class ErrorWithSecretsOperationsMixin(MixinABC):
     @distributed_trace
     def create_secret(self, **kwargs: Any) -> JSONType:
         """Creates a secret.
@@ -77,9 +79,9 @@ class ErrorWithSecretsOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_create_secret_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -88,10 +90,7 @@ class ErrorWithSecretsOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.json()
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -111,9 +110,9 @@ class ErrorWithSecretsOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         request = build_get_error_with_secrets_request()
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
