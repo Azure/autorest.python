@@ -14,7 +14,6 @@ def patch_sdk():
     you can't otherwise do with the following handwritten customizations framework
     aka.ms/azsdk/python/dpcodegen/python/customize
     """
-    pass
 
 
 __all__ = []  # only add objects you want to be publicly available to your users at your package level

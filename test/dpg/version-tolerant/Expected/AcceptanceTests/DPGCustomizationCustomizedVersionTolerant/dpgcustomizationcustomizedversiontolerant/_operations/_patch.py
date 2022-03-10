@@ -92,7 +92,6 @@ def patch_sdk():
     you can't otherwise do with the following handwritten customizations framework
     aka.ms/azsdk/python/dpcodegen/python/customize
     """
-    pass
 
 
 __all__ = [
