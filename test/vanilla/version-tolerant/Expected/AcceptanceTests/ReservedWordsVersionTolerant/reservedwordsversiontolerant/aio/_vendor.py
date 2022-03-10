@@ -14,17 +14,6 @@ from azure.core import AsyncPipelineClient
 from ._configuration import ReservedWordsClientConfiguration
 
 
-def _format_url_section(template, **kwargs):
-    components = template.split("/")
-    while components:
-        try:
-            return template.format(**kwargs)
-        except KeyError as key:
-            formatted_components = template.split("/")
-            components = [c for c in formatted_components if "{}".format(key.args[0]) not in c]
-            template = "/".join(components)
-
-
 class MixinABC(ABC):
     _client: AsyncPipelineClient
     _config: ReservedWordsClientConfiguration

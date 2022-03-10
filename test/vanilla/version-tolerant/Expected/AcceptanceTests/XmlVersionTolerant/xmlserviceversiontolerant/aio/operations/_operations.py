@@ -697,11 +697,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_root_list(self, **kwargs: Any) -> List[ET.Element]:
+    async def get_root_list(self, **kwargs: Any) -> ET.Element:
         """Gets a list as the root element.
 
-        :return: list of XML Element
-        :rtype: list[ET.Element]
+        :return: XML Element
+        :rtype: ET.Element
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -717,7 +717,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[ET.Element]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -742,12 +742,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_root_list(  # pylint: disable=inconsistent-return-statements
-        self, bananas: List[ET.Element], **kwargs: Any
+        self, bananas: ET.Element, **kwargs: Any
     ) -> None:
         """Puts a list as the root element.
 
         :param bananas:
-        :type bananas: list[ET.Element]
+        :type bananas: ET.Element
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -792,11 +792,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_root_list_single_item(self, **kwargs: Any) -> List[ET.Element]:
+    async def get_root_list_single_item(self, **kwargs: Any) -> ET.Element:
         """Gets a list with a single item.
 
-        :return: list of XML Element
-        :rtype: list[ET.Element]
+        :return: XML Element
+        :rtype: ET.Element
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -812,7 +812,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[ET.Element]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -837,12 +837,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_root_list_single_item(  # pylint: disable=inconsistent-return-statements
-        self, bananas: List[ET.Element], **kwargs: Any
+        self, bananas: ET.Element, **kwargs: Any
     ) -> None:
         """Puts a list with a single item.
 
         :param bananas:
-        :type bananas: list[ET.Element]
+        :type bananas: ET.Element
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -887,11 +887,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_empty_root_list(self, **kwargs: Any) -> List[ET.Element]:
+    async def get_empty_root_list(self, **kwargs: Any) -> ET.Element:
         """Gets an empty list as the root element.
 
-        :return: list of XML Element
-        :rtype: list[ET.Element]
+        :return: XML Element
+        :rtype: ET.Element
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -907,7 +907,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[ET.Element]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -932,12 +932,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_empty_root_list(  # pylint: disable=inconsistent-return-statements
-        self, bananas: List[ET.Element], **kwargs: Any
+        self, bananas: ET.Element, **kwargs: Any
     ) -> None:
         """Puts an empty list as the root element.
 
         :param bananas:
-        :type bananas: list[ET.Element]
+        :type bananas: ET.Element
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1403,7 +1403,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_acls(self, **kwargs: Any) -> List[ET.Element]:
+    async def get_acls(self, **kwargs: Any) -> ET.Element:
         """Gets storage ACLs for a container.
 
         :keyword comp:  Default value is "acl". Note that overriding this default value may result in
@@ -1412,8 +1412,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :keyword restype:  Default value is "container". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype restype: str
-        :return: list of XML Element
-        :rtype: list[ET.Element]
+        :return: XML Element
+        :rtype: ET.Element
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1434,7 +1434,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[ET.Element]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -1465,12 +1465,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_acls(  # pylint: disable=inconsistent-return-statements
-        self, properties: List[ET.Element], **kwargs: Any
+        self, properties: ET.Element, **kwargs: Any
     ) -> None:
         """Puts storage ACLs for a container.
 
         :param properties:
-        :type properties: list[ET.Element]
+        :type properties: ET.Element
         :keyword comp:  Default value is "acl". Note that overriding this default value may result in
          unsupported behavior.
         :paramtype comp: str
