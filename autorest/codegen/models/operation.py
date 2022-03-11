@@ -172,6 +172,12 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         return self._imports_shared(async_mode)
 
     def imports(self, async_mode: bool) -> FileImport:
+        file_import = self._imports_base(async_mode)
+        if self.has_response_body and not self.has_optional_return_type:
+            file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
+        return file_import
+
+    def _imports_base(self, async_mode: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)
 
         # Exceptions

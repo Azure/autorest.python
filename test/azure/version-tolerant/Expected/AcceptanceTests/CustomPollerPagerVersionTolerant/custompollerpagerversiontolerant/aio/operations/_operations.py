@@ -1264,12 +1264,15 @@ class PagingOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace_async
     async def begin_get_multiple_pages_lro(

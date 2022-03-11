@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Dict, List, Optional, TypeVar, cast
 
 from msrest import Serializer
 
@@ -989,12 +989,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[int], deserialized), {})
 
-        return deserialized
+        return cast(List[int], deserialized)
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> List[int]:
@@ -1029,12 +1032,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[int], deserialized), {})
 
-        return deserialized
+        return cast(List[int], deserialized)
 
     @distributed_trace
     def get_empty(self, **kwargs: Any) -> List[int]:
@@ -1069,12 +1075,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[int], deserialized), {})
 
-        return deserialized
+        return cast(List[int], deserialized)
 
     @distributed_trace
     def put_empty(self, array_body: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1153,12 +1162,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[bool], deserialized), {})
 
-        return deserialized
+        return cast(List[bool], deserialized)
 
     @distributed_trace
     def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
@@ -1239,12 +1251,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[bool], deserialized), {})
 
-        return deserialized
+        return cast(List[bool], deserialized)
 
     @distributed_trace
     def get_boolean_invalid_string(self, **kwargs: Any) -> List[bool]:
@@ -1279,12 +1294,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[bool], deserialized), {})
 
-        return deserialized
+        return cast(List[bool], deserialized)
 
     @distributed_trace
     def get_integer_valid(self, **kwargs: Any) -> List[int]:
@@ -1319,12 +1337,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[int], deserialized), {})
 
-        return deserialized
+        return cast(List[int], deserialized)
 
     @distributed_trace
     def put_integer_valid(  # pylint: disable=inconsistent-return-statements
@@ -1405,12 +1426,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[int], deserialized), {})
 
-        return deserialized
+        return cast(List[int], deserialized)
 
     @distributed_trace
     def get_int_invalid_string(self, **kwargs: Any) -> List[int]:
@@ -1445,12 +1469,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[int], deserialized), {})
 
-        return deserialized
+        return cast(List[int], deserialized)
 
     @distributed_trace
     def get_long_valid(self, **kwargs: Any) -> List[int]:
@@ -1485,12 +1512,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[int], deserialized), {})
 
-        return deserialized
+        return cast(List[int], deserialized)
 
     @distributed_trace
     def put_long_valid(  # pylint: disable=inconsistent-return-statements
@@ -1571,12 +1601,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[int], deserialized), {})
 
-        return deserialized
+        return cast(List[int], deserialized)
 
     @distributed_trace
     def get_long_invalid_string(self, **kwargs: Any) -> List[int]:
@@ -1611,12 +1644,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[int], deserialized), {})
 
-        return deserialized
+        return cast(List[int], deserialized)
 
     @distributed_trace
     def get_float_valid(self, **kwargs: Any) -> List[float]:
@@ -1651,12 +1687,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[float], deserialized), {})
 
-        return deserialized
+        return cast(List[float], deserialized)
 
     @distributed_trace
     def put_float_valid(  # pylint: disable=inconsistent-return-statements
@@ -1737,12 +1776,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[float], deserialized), {})
 
-        return deserialized
+        return cast(List[float], deserialized)
 
     @distributed_trace
     def get_float_invalid_string(self, **kwargs: Any) -> List[float]:
@@ -1777,12 +1819,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[float], deserialized), {})
 
-        return deserialized
+        return cast(List[float], deserialized)
 
     @distributed_trace
     def get_double_valid(self, **kwargs: Any) -> List[float]:
@@ -1817,12 +1862,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[float], deserialized), {})
 
-        return deserialized
+        return cast(List[float], deserialized)
 
     @distributed_trace
     def put_double_valid(  # pylint: disable=inconsistent-return-statements
@@ -1903,12 +1951,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[float], deserialized), {})
 
-        return deserialized
+        return cast(List[float], deserialized)
 
     @distributed_trace
     def get_double_invalid_string(self, **kwargs: Any) -> List[float]:
@@ -1943,12 +1994,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[float], deserialized), {})
 
-        return deserialized
+        return cast(List[float], deserialized)
 
     @distributed_trace
     def get_string_valid(self, **kwargs: Any) -> List[str]:
@@ -1983,12 +2037,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[str], deserialized), {})
 
-        return deserialized
+        return cast(List[str], deserialized)
 
     @distributed_trace
     def put_string_valid(  # pylint: disable=inconsistent-return-statements
@@ -2069,12 +2126,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[str], deserialized), {})
 
-        return deserialized
+        return cast(List[str], deserialized)
 
     @distributed_trace
     def put_enum_valid(  # pylint: disable=inconsistent-return-statements
@@ -2155,12 +2215,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[str], deserialized), {})
 
-        return deserialized
+        return cast(List[str], deserialized)
 
     @distributed_trace
     def put_string_enum_valid(  # pylint: disable=inconsistent-return-statements
@@ -2241,12 +2304,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[str], deserialized), {})
 
-        return deserialized
+        return cast(List[str], deserialized)
 
     @distributed_trace
     def get_string_with_invalid(self, **kwargs: Any) -> List[str]:
@@ -2281,12 +2347,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[str], deserialized), {})
 
-        return deserialized
+        return cast(List[str], deserialized)
 
     @distributed_trace
     def get_uuid_valid(self, **kwargs: Any) -> List[str]:
@@ -2322,12 +2391,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[str], deserialized), {})
 
-        return deserialized
+        return cast(List[str], deserialized)
 
     @distributed_trace
     def put_uuid_valid(  # pylint: disable=inconsistent-return-statements
@@ -2409,12 +2481,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[str], deserialized), {})
 
-        return deserialized
+        return cast(List[str], deserialized)
 
     @distributed_trace
     def get_date_valid(self, **kwargs: Any) -> List[datetime.date]:
@@ -2449,12 +2524,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[datetime.date], deserialized), {})
 
-        return deserialized
+        return cast(List[datetime.date], deserialized)
 
     @distributed_trace
     def put_date_valid(  # pylint: disable=inconsistent-return-statements
@@ -2535,12 +2613,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[datetime.date], deserialized), {})
 
-        return deserialized
+        return cast(List[datetime.date], deserialized)
 
     @distributed_trace
     def get_date_invalid_chars(self, **kwargs: Any) -> List[datetime.date]:
@@ -2575,12 +2656,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[datetime.date], deserialized), {})
 
-        return deserialized
+        return cast(List[datetime.date], deserialized)
 
     @distributed_trace
     def get_date_time_valid(self, **kwargs: Any) -> List[datetime.datetime]:
@@ -2616,12 +2700,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[datetime.datetime], deserialized), {})
 
-        return deserialized
+        return cast(List[datetime.datetime], deserialized)
 
     @distributed_trace
     def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
@@ -2703,12 +2790,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[datetime.datetime], deserialized), {})
 
-        return deserialized
+        return cast(List[datetime.datetime], deserialized)
 
     @distributed_trace
     def get_date_time_invalid_chars(self, **kwargs: Any) -> List[datetime.datetime]:
@@ -2743,12 +2833,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[datetime.datetime], deserialized), {})
 
-        return deserialized
+        return cast(List[datetime.datetime], deserialized)
 
     @distributed_trace
     def get_date_time_rfc1123_valid(self, **kwargs: Any) -> List[datetime.datetime]:
@@ -2784,12 +2877,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[datetime.datetime], deserialized), {})
 
-        return deserialized
+        return cast(List[datetime.datetime], deserialized)
 
     @distributed_trace
     def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
@@ -2871,12 +2967,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[datetime.timedelta], deserialized), {})
 
-        return deserialized
+        return cast(List[datetime.timedelta], deserialized)
 
     @distributed_trace
     def put_duration_valid(  # pylint: disable=inconsistent-return-statements
@@ -2958,12 +3057,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[bytearray], deserialized), {})
 
-        return deserialized
+        return cast(List[bytearray], deserialized)
 
     @distributed_trace
     def put_byte_valid(  # pylint: disable=inconsistent-return-statements
@@ -3045,12 +3147,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[bytearray], deserialized), {})
 
-        return deserialized
+        return cast(List[bytearray], deserialized)
 
     @distributed_trace
     def get_base64_url(self, **kwargs: Any) -> List[bytes]:
@@ -3086,12 +3191,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[bytes], deserialized), {})
 
-        return deserialized
+        return cast(List[bytes], deserialized)
 
     @distributed_trace
     def get_complex_null(self, **kwargs: Any) -> List[JSONType]:
@@ -3129,12 +3237,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[JSONType], deserialized), {})
 
-        return deserialized
+        return cast(List[JSONType], deserialized)
 
     @distributed_trace
     def get_complex_empty(self, **kwargs: Any) -> List[JSONType]:
@@ -3172,12 +3283,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[JSONType], deserialized), {})
 
-        return deserialized
+        return cast(List[JSONType], deserialized)
 
     @distributed_trace
     def get_complex_item_null(self, **kwargs: Any) -> List[JSONType]:
@@ -3216,12 +3330,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[JSONType], deserialized), {})
 
-        return deserialized
+        return cast(List[JSONType], deserialized)
 
     @distributed_trace
     def get_complex_item_empty(self, **kwargs: Any) -> List[JSONType]:
@@ -3260,12 +3377,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[JSONType], deserialized), {})
 
-        return deserialized
+        return cast(List[JSONType], deserialized)
 
     @distributed_trace
     def get_complex_valid(self, **kwargs: Any) -> List[JSONType]:
@@ -3304,12 +3424,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[JSONType], deserialized), {})
 
-        return deserialized
+        return cast(List[JSONType], deserialized)
 
     @distributed_trace
     def put_complex_valid(  # pylint: disable=inconsistent-return-statements
@@ -3396,12 +3519,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[List[str]], deserialized), {})
 
-        return deserialized
+        return cast(List[List[str]], deserialized)
 
     @distributed_trace
     def get_array_empty(self, **kwargs: Any) -> List[List[str]]:
@@ -3438,12 +3564,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[List[str]], deserialized), {})
 
-        return deserialized
+        return cast(List[List[str]], deserialized)
 
     @distributed_trace
     def get_array_item_null(self, **kwargs: Any) -> List[List[str]]:
@@ -3480,12 +3609,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[List[str]], deserialized), {})
 
-        return deserialized
+        return cast(List[List[str]], deserialized)
 
     @distributed_trace
     def get_array_item_empty(self, **kwargs: Any) -> List[List[str]]:
@@ -3522,12 +3654,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[List[str]], deserialized), {})
 
-        return deserialized
+        return cast(List[List[str]], deserialized)
 
     @distributed_trace
     def get_array_valid(self, **kwargs: Any) -> List[List[str]]:
@@ -3564,12 +3699,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[List[str]], deserialized), {})
 
-        return deserialized
+        return cast(List[List[str]], deserialized)
 
     @distributed_trace
     def put_array_valid(  # pylint: disable=inconsistent-return-statements
@@ -3654,12 +3792,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[Dict[str, str]], deserialized), {})
 
-        return deserialized
+        return cast(List[Dict[str, str]], deserialized)
 
     @distributed_trace
     def get_dictionary_empty(self, **kwargs: Any) -> List[Dict[str, str]]:
@@ -3696,12 +3837,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[Dict[str, str]], deserialized), {})
 
-        return deserialized
+        return cast(List[Dict[str, str]], deserialized)
 
     @distributed_trace
     def get_dictionary_item_null(self, **kwargs: Any) -> List[Dict[str, str]]:
@@ -3739,12 +3883,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[Dict[str, str]], deserialized), {})
 
-        return deserialized
+        return cast(List[Dict[str, str]], deserialized)
 
     @distributed_trace
     def get_dictionary_item_empty(self, **kwargs: Any) -> List[Dict[str, str]]:
@@ -3782,12 +3929,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[Dict[str, str]], deserialized), {})
 
-        return deserialized
+        return cast(List[Dict[str, str]], deserialized)
 
     @distributed_trace
     def get_dictionary_valid(self, **kwargs: Any) -> List[Dict[str, str]]:
@@ -3825,12 +3975,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(List[Dict[str, str]], deserialized), {})
 
-        return deserialized
+        return cast(List[Dict[str, str]], deserialized)
 
     @distributed_trace
     def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements

@@ -435,12 +435,15 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     def _create_initial(
         self,
@@ -632,7 +635,10 @@ class StorageAccountsOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -803,12 +809,15 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def update(
@@ -966,12 +975,15 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def list_keys(self, resource_group_name: str, account_name: str, **kwargs: Any) -> JSONType:
@@ -1017,12 +1029,15 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def list(self, **kwargs: Any) -> Iterable[JSONType]:
@@ -1380,12 +1395,15 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
 
 class UsageOperations:
@@ -1458,9 +1476,12 @@ class UsageOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)

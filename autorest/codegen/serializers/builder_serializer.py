@@ -884,7 +884,6 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
 
     def response_headers_and_deserialization(
         self,
-        builder,
         response: SchemaResponse,
     ) -> List[str]:
         retval: List[str] = [
@@ -904,17 +903,15 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                 )
             )
         elif response.has_body:
-            is_xml = any(["xml" in ct for ct in response.content_types])
-            deserialized_value = "ET.fromstring(response.text())" if is_xml else "response.json()"
             if self.code_model.options["models_mode"]:
                 retval.append(f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)")
-            elif builder.has_optional_return_type:
+            else:
+                is_xml = any(["xml" in ct for ct in response.content_types])
+                deserialized_value = "ET.fromstring(response.text())" if is_xml else "response.json()"
                 retval.append(f"if response.content:")
                 retval.append(f"    deserialized = {deserialized_value}")
                 retval.append("else:")
-                retval.append("    deserialized = None")
-            else:
-                retval.append(f"deserialized = {deserialized_value}")
+                retval.append(f"    deserialized = None")
         return retval
 
     @property
@@ -954,22 +951,26 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                         retval.append(f"if response.status_code == {status_code}:")
                         retval.extend([
                             f"    {line}"
-                            for line in self.response_headers_and_deserialization(builder, response)
+                            for line in self.response_headers_and_deserialization(response)
                         ])
                         retval.append("")
             else:
                 retval.extend(self.response_headers_and_deserialization(
-                    builder, builder.responses[0]
+                    builder.responses[0]
                 ))
                 retval.append("")
+        if builder.has_optional_return_type:
+            deserialized = "deserialized"
+        else:
+            deserialized = f"cast({self._response_type_annotation(builder)}, deserialized)"
         retval.append("if cls:")
         retval.append("    return cls(pipeline_response, {}, {})".format(
-            "deserialized" if builder.has_response_body else "None",
+            deserialized if builder.has_response_body else "None",
             "response_headers" if builder.any_response_has_headers else '{}'
         ))
         if builder.has_response_body:
             retval.append("")
-            retval.append("return deserialized")
+            retval.append(f"return {deserialized}")
         if builder.request_builder.method == 'HEAD' and self.code_model.options['head_as_boolean']:
             retval.append("return 200 <= response.status_code <= 299")
         return retval
@@ -1323,7 +1324,8 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
         ]
         )
         retval.append(
-            f"elif polling is False: polling_method = cast({self._polling_method_type}, {self._default_no_polling_method(builder)}())"
+            f"elif polling is False: polling_method = cast({self._polling_method_type}, "
+            f"{self._default_no_polling_method(builder)}())"
         )
         retval.append("else: polling_method = polling")
         retval.append("if cont_token:")
@@ -1347,7 +1349,7 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
             retval.append("    response = pipeline_response.http_response")
             retval.extend([
                 f"    {line}"
-                for line in self.response_headers_and_deserialization(builder, builder.lro_response)
+                for line in self.response_headers_and_deserialization(builder.lro_response)
             ])
         retval.append("    if cls:")
         retval.append("        return cls(pipeline_response, {}, {})".format(

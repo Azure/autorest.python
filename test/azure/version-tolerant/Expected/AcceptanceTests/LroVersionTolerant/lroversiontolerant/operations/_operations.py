@@ -1449,7 +1449,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -1501,12 +1504,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             "str", response.headers.get("Azure-AsyncOperation")
         )
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_patch200_succeeded_ignore_headers(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -1583,7 +1589,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 "str", response.headers.get("Azure-AsyncOperation")
             )
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -1632,19 +1641,25 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 201:
             response_headers["Azure-AsyncOperation"] = self._deserialize(
                 "str", response.headers.get("Azure-AsyncOperation")
             )
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_patch201_retry_with_async_header(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -1715,7 +1730,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -1768,7 +1786,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 202:
             response_headers["Azure-AsyncOperation"] = self._deserialize(
@@ -1776,12 +1797,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_patch202_retry_with_async_and_location_header(
@@ -1855,7 +1879,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -1902,12 +1929,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put201_succeeded(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -1979,7 +2009,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2085,7 +2118,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2132,12 +2168,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put200_succeeded_no_state(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -2209,7 +2248,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2256,12 +2298,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put202_retry200(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -2334,7 +2379,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2382,15 +2430,21 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 201:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put201_creating_succeeded200(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -2463,7 +2517,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2510,12 +2567,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put200_updating_succeeded204(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -2588,7 +2648,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2636,15 +2699,21 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 201:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put201_creating_failed200(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -2717,7 +2786,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2764,12 +2836,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put200_acceptedcanceled200(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -2842,7 +2917,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -2892,12 +2970,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers = {}
         response_headers["location"] = self._deserialize("str", response.headers.get("location"))
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_no_header_in_retry(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -2972,7 +3053,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
             response_headers["location"] = self._deserialize("str", response.headers.get("location"))
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -3026,12 +3110,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_async_retry_succeeded(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -3111,7 +3198,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -3164,12 +3254,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         )
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_async_no_retry_succeeded(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -3248,7 +3341,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -3302,12 +3398,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_async_retry_failed(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -3387,7 +3486,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -3440,12 +3542,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         )
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_async_no_retrycanceled(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -3524,7 +3629,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -3576,12 +3684,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             "str", response.headers.get("Azure-AsyncOperation")
         )
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_async_no_header_in_retry(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -3659,7 +3770,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 "str", response.headers.get("Azure-AsyncOperation")
             )
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -3706,12 +3820,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_non_resource(self, sku: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -3758,7 +3875,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -3805,12 +3925,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_async_non_resource(self, sku: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -3857,7 +3980,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -3904,12 +4030,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_sub_resource(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -3966,7 +4095,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4013,12 +4145,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_async_sub_resource(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -4075,7 +4210,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4115,18 +4253,24 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs: Any) -> LROPoller[JSONType]:
@@ -4178,7 +4322,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4218,18 +4365,24 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_delete_provisioning202_deleting_failed200(self, **kwargs: Any) -> LROPoller[JSONType]:
@@ -4281,7 +4434,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4321,18 +4477,24 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_delete_provisioning202_deletingcanceled200(self, **kwargs: Any) -> LROPoller[JSONType]:
@@ -4384,7 +4546,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4551,7 +4716,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -4653,7 +4821,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -5136,15 +5307,21 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 202:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_post200_with_payload(self, **kwargs: Any) -> LROPoller[JSONType]:
@@ -5181,7 +5358,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -5339,12 +5519,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_post202_no_retry204(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -5420,7 +5603,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -5458,12 +5644,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_post_double_headers_final_location_get(self, **kwargs: Any) -> LROPoller[JSONType]:
@@ -5515,7 +5704,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -5555,12 +5747,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_post_double_headers_final_azure_header_get(self, **kwargs: Any) -> LROPoller[JSONType]:
@@ -5612,7 +5807,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -5652,12 +5850,15 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_post_double_headers_final_azure_header_get_default(self, **kwargs: Any) -> LROPoller[JSONType]:
@@ -5709,7 +5910,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -5847,7 +6051,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -5985,7 +6192,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -6273,15 +6483,21 @@ class LRORetrysOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 201:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put201_creating_succeeded200(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -6354,7 +6570,10 @@ class LRORetrysOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -6408,12 +6627,15 @@ class LRORetrysOperations:
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_async_relative_retry_succeeded(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -6493,7 +6715,10 @@ class LRORetrysOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -6533,18 +6758,24 @@ class LRORetrysOperations:
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs: Any) -> LROPoller[JSONType]:
@@ -6596,7 +6827,10 @@ class LRORetrysOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -7027,15 +7261,21 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 201:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_non_retry400(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -7106,7 +7346,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -7154,15 +7397,21 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 201:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_non_retry201_creating400(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -7234,7 +7483,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -7282,15 +7534,21 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 201:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_non_retry201_creating400_invalid_json(
@@ -7364,7 +7622,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -7418,12 +7679,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_async_relative_retry400(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -7502,7 +7766,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -8085,15 +8352,21 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 201:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_error201_no_provisioning_state_payload(
@@ -8166,7 +8439,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -8220,12 +8496,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_async_relative_retry_no_status(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -8305,7 +8584,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -8359,12 +8641,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_async_relative_retry_no_status_payload(
@@ -8446,7 +8731,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -8935,7 +9223,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -8989,12 +9280,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_async_relative_retry_invalid_header(
@@ -9076,7 +9370,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -9132,12 +9429,15 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_async_relative_retry_invalid_json_polling(
@@ -9219,7 +9519,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -9846,12 +10149,15 @@ class LROsCustomHeaderOperations:
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, cast(JSONType, deserialized), response_headers)
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put_async_retry_succeeded(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -9932,7 +10238,10 @@ class LROsCustomHeaderOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)
             return deserialized
@@ -9980,15 +10289,21 @@ class LROsCustomHeaderOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if response.status_code == 201:
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
     def begin_put201_creating_succeeded200(self, product: JSONType = None, **kwargs: Any) -> LROPoller[JSONType]:
@@ -10062,7 +10377,10 @@ class LROsCustomHeaderOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized

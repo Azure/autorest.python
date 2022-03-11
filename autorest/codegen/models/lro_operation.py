@@ -144,7 +144,7 @@ class LROOperation(Operation):
         return file_import
 
     def imports(self, async_mode: bool) -> FileImport:
-        file_import = super().imports(async_mode)
+        file_import = self._imports_base(async_mode)
         file_import.add_submodule_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         poller_import_path = ".".join(self.get_poller_path(async_mode).split(".")[:-1])

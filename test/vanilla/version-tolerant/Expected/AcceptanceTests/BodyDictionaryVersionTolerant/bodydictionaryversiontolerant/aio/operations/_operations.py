@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Dict, List, Optional, TypeVar, cast
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -144,12 +144,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, int], deserialized)
 
     @distributed_trace_async
     async def get_empty(self, **kwargs: Any) -> Dict[str, int]:
@@ -184,12 +187,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, int], deserialized)
 
     @distributed_trace_async
     async def put_empty(  # pylint: disable=inconsistent-return-statements
@@ -270,12 +276,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, str], deserialized)
 
     @distributed_trace_async
     async def get_null_key(self, **kwargs: Any) -> Dict[str, str]:
@@ -310,12 +319,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, str], deserialized)
 
     @distributed_trace_async
     async def get_empty_string_key(self, **kwargs: Any) -> Dict[str, str]:
@@ -350,12 +362,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, str], deserialized)
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> Dict[str, str]:
@@ -390,12 +405,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, str], deserialized)
 
     @distributed_trace_async
     async def get_boolean_tfft(self, **kwargs: Any) -> Dict[str, bool]:
@@ -430,12 +448,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, bool], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, bool], deserialized)
 
     @distributed_trace_async
     async def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
@@ -516,12 +537,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, bool], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, bool], deserialized)
 
     @distributed_trace_async
     async def get_boolean_invalid_string(self, **kwargs: Any) -> Dict[str, bool]:
@@ -556,12 +580,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, bool], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, bool], deserialized)
 
     @distributed_trace_async
     async def get_integer_valid(self, **kwargs: Any) -> Dict[str, int]:
@@ -596,12 +623,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, int], deserialized)
 
     @distributed_trace_async
     async def put_integer_valid(  # pylint: disable=inconsistent-return-statements
@@ -682,12 +712,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, int], deserialized)
 
     @distributed_trace_async
     async def get_int_invalid_string(self, **kwargs: Any) -> Dict[str, int]:
@@ -722,12 +755,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, int], deserialized)
 
     @distributed_trace_async
     async def get_long_valid(self, **kwargs: Any) -> Dict[str, int]:
@@ -762,12 +798,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, int], deserialized)
 
     @distributed_trace_async
     async def put_long_valid(  # pylint: disable=inconsistent-return-statements
@@ -848,12 +887,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, int], deserialized)
 
     @distributed_trace_async
     async def get_long_invalid_string(self, **kwargs: Any) -> Dict[str, int]:
@@ -888,12 +930,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, int], deserialized)
 
     @distributed_trace_async
     async def get_float_valid(self, **kwargs: Any) -> Dict[str, float]:
@@ -928,12 +973,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, float], deserialized)
 
     @distributed_trace_async
     async def put_float_valid(  # pylint: disable=inconsistent-return-statements
@@ -1014,12 +1062,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, float], deserialized)
 
     @distributed_trace_async
     async def get_float_invalid_string(self, **kwargs: Any) -> Dict[str, float]:
@@ -1054,12 +1105,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, float], deserialized)
 
     @distributed_trace_async
     async def get_double_valid(self, **kwargs: Any) -> Dict[str, float]:
@@ -1094,12 +1148,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, float], deserialized)
 
     @distributed_trace_async
     async def put_double_valid(  # pylint: disable=inconsistent-return-statements
@@ -1180,12 +1237,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, float], deserialized)
 
     @distributed_trace_async
     async def get_double_invalid_string(self, **kwargs: Any) -> Dict[str, float]:
@@ -1220,12 +1280,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, float], deserialized)
 
     @distributed_trace_async
     async def get_string_valid(self, **kwargs: Any) -> Dict[str, str]:
@@ -1260,12 +1323,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, str], deserialized)
 
     @distributed_trace_async
     async def put_string_valid(  # pylint: disable=inconsistent-return-statements
@@ -1346,12 +1412,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, str], deserialized)
 
     @distributed_trace_async
     async def get_string_with_invalid(self, **kwargs: Any) -> Dict[str, str]:
@@ -1386,12 +1455,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, str], deserialized)
 
     @distributed_trace_async
     async def get_date_valid(self, **kwargs: Any) -> Dict[str, datetime.date]:
@@ -1426,12 +1498,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, datetime.date], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, datetime.date], deserialized)
 
     @distributed_trace_async
     async def put_date_valid(  # pylint: disable=inconsistent-return-statements
@@ -1512,12 +1587,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, datetime.date], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, datetime.date], deserialized)
 
     @distributed_trace_async
     async def get_date_invalid_chars(self, **kwargs: Any) -> Dict[str, datetime.date]:
@@ -1552,12 +1630,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, datetime.date], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, datetime.date], deserialized)
 
     @distributed_trace_async
     async def get_date_time_valid(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
@@ -1593,12 +1674,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, datetime.datetime], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, datetime.datetime], deserialized)
 
     @distributed_trace_async
     async def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
@@ -1680,12 +1764,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, datetime.datetime], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, datetime.datetime], deserialized)
 
     @distributed_trace_async
     async def get_date_time_invalid_chars(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
@@ -1720,12 +1807,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, datetime.datetime], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, datetime.datetime], deserialized)
 
     @distributed_trace_async
     async def get_date_time_rfc1123_valid(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
@@ -1761,12 +1851,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, datetime.datetime], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, datetime.datetime], deserialized)
 
     @distributed_trace_async
     async def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
@@ -1848,12 +1941,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, datetime.timedelta], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, datetime.timedelta], deserialized)
 
     @distributed_trace_async
     async def put_duration_valid(  # pylint: disable=inconsistent-return-statements
@@ -1935,12 +2031,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, bytearray], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, bytearray], deserialized)
 
     @distributed_trace_async
     async def put_byte_valid(  # pylint: disable=inconsistent-return-statements
@@ -2023,12 +2122,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, bytearray], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, bytearray], deserialized)
 
     @distributed_trace_async
     async def get_base64_url(self, **kwargs: Any) -> Dict[str, bytes]:
@@ -2064,12 +2166,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, bytes], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, bytes], deserialized)
 
     @distributed_trace_async
     async def get_complex_null(self, **kwargs: Any) -> Optional[Dict[str, JSONType]]:
@@ -2107,12 +2212,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Optional[Dict[str, JSONType]], deserialized), {})
 
-        return deserialized
+        return cast(Optional[Dict[str, JSONType]], deserialized)
 
     @distributed_trace_async
     async def get_complex_empty(self, **kwargs: Any) -> Dict[str, JSONType]:
@@ -2150,12 +2258,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, JSONType], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, JSONType], deserialized)
 
     @distributed_trace_async
     async def get_complex_item_null(self, **kwargs: Any) -> Dict[str, JSONType]:
@@ -2194,12 +2305,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, JSONType], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, JSONType], deserialized)
 
     @distributed_trace_async
     async def get_complex_item_empty(self, **kwargs: Any) -> Dict[str, JSONType]:
@@ -2238,12 +2352,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, JSONType], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, JSONType], deserialized)
 
     @distributed_trace_async
     async def get_complex_valid(self, **kwargs: Any) -> Dict[str, JSONType]:
@@ -2282,12 +2399,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, JSONType], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, JSONType], deserialized)
 
     @distributed_trace_async
     async def put_complex_valid(  # pylint: disable=inconsistent-return-statements
@@ -2374,12 +2494,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Optional[Dict[str, List[str]]], deserialized), {})
 
-        return deserialized
+        return cast(Optional[Dict[str, List[str]]], deserialized)
 
     @distributed_trace_async
     async def get_array_empty(self, **kwargs: Any) -> Dict[str, List[str]]:
@@ -2416,12 +2539,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, List[str]], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, List[str]], deserialized)
 
     @distributed_trace_async
     async def get_array_item_null(self, **kwargs: Any) -> Dict[str, List[str]]:
@@ -2458,12 +2584,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, List[str]], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, List[str]], deserialized)
 
     @distributed_trace_async
     async def get_array_item_empty(self, **kwargs: Any) -> Dict[str, List[str]]:
@@ -2500,12 +2629,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, List[str]], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, List[str]], deserialized)
 
     @distributed_trace_async
     async def get_array_valid(self, **kwargs: Any) -> Dict[str, List[str]]:
@@ -2543,12 +2675,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, List[str]], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, List[str]], deserialized)
 
     @distributed_trace_async
     async def put_array_valid(  # pylint: disable=inconsistent-return-statements
@@ -2634,12 +2769,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, Dict[str, str]], deserialized)
 
     @distributed_trace_async
     async def get_dictionary_empty(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
@@ -2676,12 +2814,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, Dict[str, str]], deserialized)
 
     @distributed_trace_async
     async def get_dictionary_item_null(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
@@ -2719,12 +2860,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, Dict[str, str]], deserialized)
 
     @distributed_trace_async
     async def get_dictionary_item_empty(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
@@ -2762,12 +2906,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, Dict[str, str]], deserialized)
 
     @distributed_trace_async
     async def get_dictionary_valid(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
@@ -2806,12 +2953,15 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, Dict[str, str]], deserialized)
 
     @distributed_trace_async
     async def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements

@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, Optional, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar, cast
 
 from msrest import Serializer
 
@@ -193,12 +193,15 @@ class Datetimerfc1123Operations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Optional[datetime.datetime], deserialized), {})
 
-        return deserialized
+        return cast(Optional[datetime.datetime], deserialized)
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> datetime.datetime:
@@ -225,12 +228,15 @@ class Datetimerfc1123Operations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
 
-        return deserialized
+        return cast(datetime.datetime, deserialized)
 
     @distributed_trace
     def get_overflow(self, **kwargs: Any) -> datetime.datetime:
@@ -257,12 +263,15 @@ class Datetimerfc1123Operations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
 
-        return deserialized
+        return cast(datetime.datetime, deserialized)
 
     @distributed_trace
     def get_underflow(self, **kwargs: Any) -> datetime.datetime:
@@ -289,12 +298,15 @@ class Datetimerfc1123Operations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
 
-        return deserialized
+        return cast(datetime.datetime, deserialized)
 
     @distributed_trace
     def put_utc_max_date_time(  # pylint: disable=inconsistent-return-statements
@@ -359,12 +371,15 @@ class Datetimerfc1123Operations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
 
-        return deserialized
+        return cast(datetime.datetime, deserialized)
 
     @distributed_trace
     def get_utc_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -391,12 +406,15 @@ class Datetimerfc1123Operations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
 
-        return deserialized
+        return cast(datetime.datetime, deserialized)
 
     @distributed_trace
     def put_utc_min_date_time(  # pylint: disable=inconsistent-return-statements
@@ -461,9 +479,12 @@ class Datetimerfc1123Operations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
 
-        return deserialized
+        return cast(datetime.datetime, deserialized)

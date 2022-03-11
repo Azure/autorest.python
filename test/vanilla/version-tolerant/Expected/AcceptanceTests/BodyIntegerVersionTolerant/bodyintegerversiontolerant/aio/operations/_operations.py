@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, Optional, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar, cast
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -85,12 +85,15 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Optional[int], deserialized), {})
 
-        return deserialized
+        return cast(Optional[int], deserialized)
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> int:
@@ -117,12 +120,15 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(int, deserialized), {})
 
-        return deserialized
+        return cast(int, deserialized)
 
     @distributed_trace_async
     async def get_overflow_int32(self, **kwargs: Any) -> int:
@@ -149,12 +155,15 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(int, deserialized), {})
 
-        return deserialized
+        return cast(int, deserialized)
 
     @distributed_trace_async
     async def get_underflow_int32(self, **kwargs: Any) -> int:
@@ -181,12 +190,15 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(int, deserialized), {})
 
-        return deserialized
+        return cast(int, deserialized)
 
     @distributed_trace_async
     async def get_overflow_int64(self, **kwargs: Any) -> int:
@@ -213,12 +225,15 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(int, deserialized), {})
 
-        return deserialized
+        return cast(int, deserialized)
 
     @distributed_trace_async
     async def get_underflow_int64(self, **kwargs: Any) -> int:
@@ -245,12 +260,15 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(int, deserialized), {})
 
-        return deserialized
+        return cast(int, deserialized)
 
     @distributed_trace_async
     async def put_max32(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -421,12 +439,15 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
 
-        return deserialized
+        return cast(datetime.datetime, deserialized)
 
     @distributed_trace_async
     async def put_unix_time_date(  # pylint: disable=inconsistent-return-statements
@@ -491,12 +512,15 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
 
-        return deserialized
+        return cast(datetime.datetime, deserialized)
 
     @distributed_trace_async
     async def get_null_unix_time(self, **kwargs: Any) -> Optional[datetime.datetime]:
@@ -523,9 +547,12 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Optional[datetime.datetime], deserialized), {})
 
-        return deserialized
+        return cast(Optional[datetime.datetime], deserialized)

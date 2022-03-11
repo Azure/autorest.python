@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, Optional, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar, cast
 
 from msrest import Serializer
 
@@ -127,12 +127,15 @@ class DurationOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Optional[datetime.timedelta], deserialized), {})
 
-        return deserialized
+        return cast(Optional[datetime.timedelta], deserialized)
 
     @distributed_trace
     def put_positive_duration(  # pylint: disable=inconsistent-return-statements
@@ -197,12 +200,15 @@ class DurationOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(datetime.timedelta, deserialized), {})
 
-        return deserialized
+        return cast(datetime.timedelta, deserialized)
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> datetime.timedelta:
@@ -229,9 +235,12 @@ class DurationOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.json()
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(datetime.timedelta, deserialized), {})
 
-        return deserialized
+        return cast(datetime.timedelta, deserialized)

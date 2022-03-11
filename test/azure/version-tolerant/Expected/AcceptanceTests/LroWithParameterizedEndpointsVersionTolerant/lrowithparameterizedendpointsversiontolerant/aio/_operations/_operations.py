@@ -101,7 +101,10 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -212,7 +215,10 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = response.json()
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
