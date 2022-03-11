@@ -84,6 +84,10 @@ class OperationGroup(BaseModel):
                     request_builder.name,
                     import_type=ImportType.LOCAL
                 )
+        if self.code_model.need_mixin_abc:
+            file_import.add_submodule_import(
+                ".._vendor", "MixinABC", ImportType.LOCAL
+            )
         type_value = "Optional[Callable[[PipelineResponse[HttpRequest, {}HttpResponse], T, Dict[str, Any]], Any]]"
         file_import.define_mypy_type(
             "ClsType",

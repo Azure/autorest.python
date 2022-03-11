@@ -359,9 +359,10 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
                 if operation.multiple_content_type_parameters:
                     operation.convert_multiple_content_type_parameters()
 
-    @property
-    def need_vendored_code(self) -> bool:
-        return self.need_request_converter or self.need_format_url
+    def need_vendored_code(self, async_mode: bool) -> bool:
+        if async_mode:
+            return self.need_mixin_abc
+        return self.need_request_converter or self.need_format_url or self.need_mixin_abc
 
     @property
     def need_request_converter(self) -> bool:
@@ -370,6 +371,10 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     @property
     def need_format_url(self) -> bool:
         return any(rq for rq in self.rest.request_builders if rq.parameters.path)
+
+    @property
+    def need_mixin_abc(self) -> bool:
+        return any(o for o in self.operation_groups if o.is_empty_operation_group and self.options["python3_only"])
 
     @property
     def has_lro_operations(self) -> bool:
