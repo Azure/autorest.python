@@ -12,7 +12,11 @@
 
 **New Features**
 
-- Add support for handwritten customizations of generated code. For more information, see aka.ms/azsdk/python/dpcodegen/python/customize #1153
+- Add support for handwritten customizations of generated code. For more information, see https://aka.ms/azsdk/python/dpcodegen/python/customize #1153
+
+**Bug Fixes**
+
+- Make `--version-tolerant` generated code mypy compatible in the `azure-sdk-for-python` repo. Tested only with the `--black` flag #1185
 
 ### 2022-03-08 - 5.14.0
 

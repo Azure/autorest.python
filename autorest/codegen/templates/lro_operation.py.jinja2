@@ -6,7 +6,7 @@
 {% endif %}
 {{ operation_serializer.method_signature_and_response_type_annotation(operation) }}
     {{ op_tools.description(operation, operation_serializer) | indent -}}
-    {% if operation.parameters.kwargs_to_pop(async_mode) %}
+    {% if operation_serializer.pop_kwargs_from_signature(operation) %}
     {{ op_tools.serialize(operation_serializer.pop_kwargs_from_signature(operation)) | indent }}
     {%- endif %}
     {{ op_tools.serialize(operation_serializer.initial_call(operation)) | indent }}

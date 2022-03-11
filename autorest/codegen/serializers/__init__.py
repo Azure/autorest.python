@@ -379,7 +379,7 @@ class JinjaSerializer:
                 general_serializer.serialize_service_client_file()
             )
 
-        if self.code_model.need_vendored_code:
+        if self.code_model.need_vendored_code(async_mode=False):
             self._autorestapi.write_file(
                 namespace_path / Path("_vendor.py"),
                 general_serializer.serialize_vendor_file()
@@ -421,6 +421,11 @@ class JinjaSerializer:
         self._autorestapi.write_file(
             aio_path / Path("_configuration.py"), aio_general_serializer.serialize_config_file()
         )
+        if self.code_model.need_vendored_code(async_mode=True):
+            self._autorestapi.write_file(
+                aio_path / Path("_vendor.py"),
+                aio_general_serializer.serialize_vendor_file()
+            )
 
 
     def _serialize_and_write_metadata(self, env: Environment, namespace_path: Path) -> None:

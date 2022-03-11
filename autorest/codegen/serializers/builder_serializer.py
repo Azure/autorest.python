@@ -652,6 +652,11 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             response_str = f"Optional[{response_str}]"
         return response_str
 
+    def pop_kwargs_from_signature(self, builder) -> List[str]:
+        kwargs = utils.pop_kwargs_from_signature(self._get_kwargs_to_pop(builder))
+        kwargs.append(f"cls = kwargs.pop('cls', None)  {self.cls_type_annotation(builder)}")
+        return kwargs
+
     def cls_type_annotation(self, builder) -> str:
         return f"# type: ClsType[{self._response_type_annotation(builder, modify_if_head_as_boolean=False)}]"
 
@@ -780,6 +785,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         if len(body_kwargs) == 1:
             retval.extend(self._set_body_content_kwarg(builder, builder.parameters.body[0], body_kwargs[0]))
         else:
+            retval.append('content_type = content_type or ""')
             for idx, body_kwarg in enumerate(body_kwargs):
                 body_param = next(
                     b for b in builder_params
@@ -866,7 +872,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         if self.code_model.options["version_tolerant"] and template_url:
             url_to_format = template_url
         retval.append(
-            "request.url = self._client.format_url({}{})".format(
+            "request.url = self._client.format_url({}{})  # type: ignore".format(
                 url_to_format,
                 ", **path_format_arguments" if builder.parameters.path else ""
             )
@@ -901,12 +907,11 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                 retval.append(f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)")
             else:
                 is_xml = any(["xml" in ct for ct in response.content_types])
-                deserialized_value = ""
                 deserialized_value = "ET.fromstring(response.text())" if is_xml else "response.json()"
                 retval.append(f"if response.content:")
                 retval.append(f"    deserialized = {deserialized_value}")
                 retval.append("else:")
-                retval.append("    deserialized = None")
+                retval.append(f"    deserialized = None")
         return retval
 
     @property
@@ -954,14 +959,18 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                     builder.responses[0]
                 ))
                 retval.append("")
+        if builder.has_optional_return_type or self.code_model.options["models_mode"]:
+            deserialized = "deserialized"
+        else:
+            deserialized = f"cast({self._response_type_annotation(builder)}, deserialized)"
         retval.append("if cls:")
         retval.append("    return cls(pipeline_response, {}, {})".format(
-            "deserialized" if builder.has_response_body else "None",
+            deserialized if builder.has_response_body else "None",
             "response_headers" if builder.any_response_has_headers else '{}'
         ))
         if builder.has_response_body:
             retval.append("")
-            retval.append("return deserialized")
+            retval.append(f"return {deserialized}")
         if builder.request_builder.method == 'HEAD' and self.code_model.options['head_as_boolean']:
             retval.append("return 200 <= response.status_code <= 299")
         return retval
@@ -1185,7 +1194,7 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         return retval
 
     def set_up_params_for_pager(self, builder) -> List[str]:
-        retval = [f"cls = kwargs.pop('cls', None)  {self.cls_type_annotation(builder)}"]
+        retval = []
         retval.extend(self.error_map(builder))
         retval.extend(self._prepare_request_callback(builder))
         retval.append("")
@@ -1276,14 +1285,13 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
 
     def initial_call(self, builder) -> List[str]:
         retval = [f"polling = kwargs.pop('polling', True)  # type: Union[bool, {self._polling_method_type}]"]
-        retval.append(f"cls = kwargs.pop('cls', None)  {self.cls_type_annotation(builder)}")
         retval.append("lro_delay = kwargs.pop(")
         retval.append("    'polling_interval',")
         retval.append("    self._config.polling_interval")
         retval.append(")")
         retval.append("cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]")
         retval.append("if cont_token is None:")
-        retval.append(f"    raw_result = {self._call_method}self.{builder.initial_operation.name}(")
+        retval.append(f"    raw_result = {self._call_method}self.{builder.initial_operation.name}(  # type: ignore")
         retval.extend([
             f"        {parameter.serialized_name}={parameter.serialized_name},"
             for parameter in builder.parameters.method
@@ -1297,20 +1305,27 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
     def return_lro_poller(self, builder) -> List[str]:
         retval = []
         lro_options_str = (
-            ", lro_options={'final-state-via': '" + builder.lro_options['final-state-via'] + "'}"
+            "lro_options={'final-state-via': '" + builder.lro_options['final-state-via'] + "'},"
             if builder.lro_options else ""
         )
         path_format_arguments_str = ""
         if builder.parameters.path:
-            path_format_arguments_str = ", path_format_arguments=path_format_arguments"
+            path_format_arguments_str = "path_format_arguments=path_format_arguments,"
             retval.extend(self.serialize_path(builder))
             retval.append("")
-        retval.append(
-            f"if polling is True: polling_method = {self._default_polling_method(builder)}" +
-            f"(lro_delay{lro_options_str}{path_format_arguments_str}, **kwargs)"
+        retval.extend([
+            "if polling is True:",
+            f"    polling_method = cast({self._polling_method_type}, {self._default_polling_method(builder)}(",
+            "        lro_delay,",
+            f"        {lro_options_str}",
+            f"        {path_format_arguments_str}",
+            "        **kwargs",
+            f"))  # type: {self._polling_method_type}",
+        ]
         )
         retval.append(
-            f"elif polling is False: polling_method = {self._default_no_polling_method(builder)}()"
+            f"elif polling is False: polling_method = cast({self._polling_method_type}, "
+            f"{self._default_no_polling_method(builder)}())"
         )
         retval.append("else: polling_method = polling")
         retval.append("if cont_token:")

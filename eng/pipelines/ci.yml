@@ -136,6 +136,12 @@ jobs:
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
 
       - script: |
+          cd $(TestFolder)/azure/version-tolerant
+          tox -e mypy
+        displayName: 'Mypy version-tolerant "azure" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
+
+      - script: |
           cd $(TestFolder)/vanilla/legacy
           tox -e ci
         displayName: 'Execute legacy "vanilla" Tests - Python $(PythonVersion)'
@@ -177,6 +183,12 @@ jobs:
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
 
       - script: |
+          cd $(TestFolder)/vanilla/version-tolerant
+          tox -e mypy
+        displayName: 'Mypy version-tolerant "vanilla" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
+
+      - script: |
           cd $(TestFolder)/dpg/low-level
           tox -e ci
         displayName: 'Execute low level update "dpg" Tests - Python $(PythonVersion)'
@@ -191,6 +203,11 @@ jobs:
           tox -e lint
         displayName: 'Lint version-tolerant "dpg" Tests - Python $(PythonVersion)'
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
+      - script: |
+          cd $(TestFolder)/dpg/version-tolerant
+          tox -e mypy
+        displayName: 'Mypy version-tolerant "dpg" Tests - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
       - script: |
           cd $(TestFolder)/multiapi
           tox -e ci

@@ -77,12 +77,36 @@ class GeneralSerializer:
                 ImportType.AZURECORE,
             )
 
+        if self.code_model.need_mixin_abc:
+            file_import.add_submodule_import(
+                "__future__", "annotations", ImportType.STDLIB
+            )
+            file_import.add_submodule_import(
+                "abc",
+                "ABC",
+                ImportType.STDLIB,
+            )
+            file_import.add_submodule_import(
+                "azure.core",
+                f"{'Async' if self.async_mode else ''}PipelineClient",
+                ImportType.AZURECORE,
+                TypingSection.TYPING,
+            )
+            file_import.add_submodule_import(
+                "._configuration",
+                f"{self.code_model.class_name}Configuration",
+                ImportType.LOCAL
+            )
+            file_import.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY, TypingSection.TYPING)
+            file_import.add_submodule_import("msrest", "Deserializer", ImportType.THIRDPARTY, TypingSection.TYPING)
+
         return template.render(
             code_model=self.code_model,
             imports=FileImportSerializer(
                 file_import,
                 is_python3_file=self.async_mode,
-            )
+            ),
+            async_mode=self.async_mode,
         )
 
 

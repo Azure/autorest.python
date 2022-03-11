@@ -9,16 +9,15 @@
 {{ operation_serializer.method_signature_and_response_type_annotation(operation) }}
 {% if operation.want_description_docstring %}
     {{ op_tools.description(operation, operation_serializer) | indent }}{% endif %}
-    cls = kwargs.pop('cls', None)  {{ operation_serializer.cls_type_annotation(operation) }}
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
     {{ op_tools.serialize(operation_serializer.error_map(operation)) | indent }}
-    {% if operation.parameters.kwargs_to_pop(async_mode) %}
+    {% if operation_serializer.pop_kwargs_from_signature(operation) %}
     {{ op_tools.serialize(operation_serializer.pop_kwargs_from_signature(operation)) | indent }}
     {% endif %}
     {{ op_tools.serialize(operation_serializer.call_request_builder(operation)) | indent }}
-    pipeline_response = {{ keywords.await }}self._client._pipeline.run(  # pylint: disable=protected-access
+    pipeline_response = {{ keywords.await }}self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
         request,
         {{ stream_request_parameter }},
         **kwargs
