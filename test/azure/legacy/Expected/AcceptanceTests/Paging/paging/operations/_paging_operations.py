@@ -178,34 +178,6 @@ def build_get_with_query_params_request(
     )
 
 
-def build_duplicate_params_request(
-    **kwargs  # type: Any
-):
-    # type: (...) -> HttpRequest
-    filter = kwargs.pop('filter', None)  # type: Optional[str]
-
-    accept = "application/json"
-    # Construct URL
-    _url = kwargs.pop("template_url", "/paging/multiple/duplicateParams/1")
-
-    # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    if filter is not None:
-        _query_parameters['$filter'] = _SERIALIZER.query("filter", filter, 'str')
-
-    # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
-        **kwargs
-    )
-
-
 def build_next_operation_with_query_params_request(
     **kwargs  # type: Any
 ):

@@ -316,11 +316,6 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         return origin_name
 
     @property
-    def is_kwarg(self) -> bool:
-        # this means "am I in **kwargs?"
-        return self.rest_api_name == "Content-Type" or (self.constant and self.inputtable_by_user)
-
-    @property
     def is_keyword_only(self) -> bool:
         # this means in async mode, I am documented like def hello(positional_1, *, me!)
         return self._keyword_only or False

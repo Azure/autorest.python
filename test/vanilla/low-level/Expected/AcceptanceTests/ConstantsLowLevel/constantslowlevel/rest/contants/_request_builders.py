@@ -117,7 +117,7 @@ def build_put_no_model_as_string_no_required_one_value_no_default_request(
 
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: Optional[str]
+    input = kwargs.pop('input', _get_from_dict(_params, 'input') or None)  # type: Optional[str]
     # Construct URL
     _url = "/constants/putNoModelAsStringNoRequiredOneValueNoDefault"
 
