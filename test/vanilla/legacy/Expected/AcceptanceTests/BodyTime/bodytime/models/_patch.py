@@ -2,18 +2,19 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 # ------------------------------------
+"""Customize generated code here.
 
-# This file is used for handwritten customizations to the generated code.
-# Follow our quickstart here for examples: aka.ms/azsdk/python/dpcodegen/python/customize
+Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
+"""
 
 
 def patch_sdk():
     """Do not remove from this file.
 
     `patch_sdk` is a last resort escape hatch that allows you to do customizations
-    you can't otherwise do with the following handwritten customizations framework
-    aka.ms/azsdk/python/dpcodegen/python/customize
+    you can't accomplish using the techniques described in
+    https://aka.ms/azsdk/python/dpcodegen/python/customize
     """
 
 
-__all__ = []  # only add objects you want to be publicly available to your users at your package level
+__all__ = []  # add all objects you want publicly available to users at this package level
