@@ -14,11 +14,11 @@ import shutil
 import re
 
 init()
-class _SwaggerGroup(Enum):
-    VANILLA = auto()
-    AZURE = auto()
-    AZURE_ARM = auto()
-    DPG = auto()
+class _SwaggerGroup(str, Enum):
+    VANILLA = "vanilla"
+    AZURE = "azure"
+    AZURE_ARM = "azure-arm"
+    DPG = "dpg"
 
 _VANILLA_SWAGGER_MAPPINGS = {
     'AdditionalProperties': 'additionalProperties.json',
@@ -65,6 +65,8 @@ _VANILLA_SWAGGER_MAPPINGS = {
     'NoOperations': 'no-operations.json',
     "ParameterizedEndpoint": "parameterized-endpoint.json",
     "ReservedWords": "reserved-words.json",
+    "SecurityAadSwagger": "security-aad.json",
+    "SecurityKeySwagger": "security-key.json",
 }
 
 _DPG_SWAGGER_MAPPINGS = {
@@ -248,7 +250,14 @@ def _prepare_mapping_and_regenerate(c, mapping, swagger_group, swagger_name=None
 
 @task
 def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, **kwargs)
+    _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, **kwargs)
+    if not swagger_name:
+        regenerate_namespace_folders_test(c, debug)
+        regenerate_package_name_setup_py(c, debug)
+        regenerate_with_python3_operation_files(c, debug)
+        regenerate_python3_only(c, debug)
+        regenerate_package_mode(c, swagger_group=_SwaggerGroup.VANILLA)
+        regenerate_security(c, debug)
 
 @task
 def regenerate_dpg_low_level_client(c, swagger_name=None, debug=False, **kwargs):
@@ -288,7 +297,7 @@ def regenerate_dpg_version_tolerant(c, swagger_name=None, debug=False, **kwargs)
 
 @task
 def regenerate_vanilla_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(
+    _prepare_mapping_and_regenerate(
         c,
         _VANILLA_SWAGGER_MAPPINGS,
         _SwaggerGroup.VANILLA,
@@ -297,10 +306,15 @@ def regenerate_vanilla_version_tolerant(c, swagger_name=None, debug=False, **kwa
         version_tolerant=True,
         **kwargs
     )
+    if not swagger_name:
+        regenerate_python3_only(c, debug, version_tolerant=True)
 
 @task
 def regenerate_azure_legacy(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, **kwargs)
+    _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, **kwargs)
+    if not swagger_name:
+        regenerate_custom_poller_pager_legacy(c, debug)
+        regenerate_package_mode(c, swagger_group=_SwaggerGroup.AZURE)
 
 @task
 def regenerate_azure_low_level_client(c, swagger_name=None, debug=False, **kwargs):
@@ -308,11 +322,15 @@ def regenerate_azure_low_level_client(c, swagger_name=None, debug=False, **kwarg
 
 @task
 def regenerate_azure_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, version_tolerant=True, **kwargs)
+    _prepare_mapping_and_regenerate(c, _AZURE_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE, swagger_name, debug, version_tolerant=True, **kwargs)
+    if not swagger_name:
+        regenerate_custom_poller_pager_version_tolerant(c, debug)
 
 @task
 def regenerate_azure_arm_legacy(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, **kwargs)
+    _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, **kwargs)
+    if not swagger_name:
+        regenerate_credential_default_policy(c, debug)
 
 @task
 def regenerate_azure_arm_low_level_client(c, swagger_name=None, debug=False, **kwargs):
@@ -355,16 +373,8 @@ def regenerate_legacy(c, swagger_name=None, debug=False):
     regenerate_azure_legacy(c, swagger_name, debug)
     regenerate_azure_arm_legacy(c, swagger_name, debug)
     if not swagger_name:
-        regenerate_namespace_folders_test(c, debug)
         regenerate_multiapi(c, debug)
-        regenerate_credential_default_policy(c, debug)
-        regenerate_package_name_setup_py(c, debug)
-        regenerate_custom_poller_pager_legacy(c, debug)
         regenerate_samples(c, debug)
-        regenerate_with_python3_operation_files(c, debug)
-        regenerate_python3_only(c, debug)
-        regenerate_package_mode(c, debug)
-        regenerate_security(c, debug)
 
 @task
 def regenerate(
@@ -434,9 +444,6 @@ def regenerate_version_tolerant(c, swagger_name=None, debug=False):
     regenerate_vanilla_version_tolerant(c, swagger_name, debug)
     regenerate_azure_version_tolerant(c, swagger_name, debug)
     regenerate_azure_arm_version_tolerant(c, swagger_name, debug)
-    if not swagger_name:
-        regenerate_custom_poller_pager_version_tolerant(c, debug)
-        regenerate_python3_only(c, debug, version_tolerant=True)
 
 @task
 def test(c):
@@ -489,13 +496,21 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
     _run_autorest(cmds, debug)
 
 @task
-def regenerate_package_mode(c, debug=False):
+def regenerate_package_mode(c, debug=False, swagger_group=None):
     cwd = os.getcwd()
-    package_mode = [
+    azure_packages = [
         'test/azure/legacy/specification/packagemodemgmtplane/README.md',
-        'test/vanilla/legacy/specification/packagemodedataplane/README.md',
         'test/azure/legacy/specification/packagemodecustomize/README.md',
     ]
+    vanilla_packages = [
+        'test/vanilla/legacy/specification/packagemodedataplane/README.md',
+    ]
+    if swagger_group == _SwaggerGroup.VANILLA:
+        package_mode = vanilla_packages
+    elif swagger_group == _SwaggerGroup.AZURE:
+        package_mode = azure_packages
+    else:
+        package_mode = azure_packages + vanilla_packages
     cmds = [
         f'autorest {readme} --use=. --python-sdks-folder={cwd}/test/' for readme in package_mode
     ]
@@ -506,9 +521,9 @@ def regenerate_package_mode(c, debug=False):
 def regenerate_security(c, debug=False):
     cwd = os.getcwd()
     security = [
-        'test/vanilla/legacy/specification/securityaad/README.md',
-        'test/vanilla/legacy/specification/securityazurekey/README.md',
-        'test/vanilla/legacy/specification/securitymixed/README.md',
+        'test/vanilla/legacy/specification/securityaadflag/README.md',
+        'test/vanilla/legacy/specification/securitykeyflag/README.md',
+        'test/vanilla/legacy/specification/securitymixedflag/README.md',
     ]
     cmds = [
         f'autorest {readme} --use=. --python-sdks-folder={cwd}/test/' for readme in security

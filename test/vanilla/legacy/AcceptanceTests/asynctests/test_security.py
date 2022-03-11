@@ -24,25 +24,39 @@
 #
 # --------------------------------------------------------------------------
 import pytest
-from securityaad.aio import SecurityAadClient
-from securityazurekey.aio import SecurityAzureKeyClient
-from securitymixed.aio import SecurityMixedClient
+from securityaadflag.aio import SecurityAadFlagClient
+from securitykeyflag.aio import SecurityKeyFlagClient
+from securitymixedflag.aio import SecurityMixedFlagClient
+from securityaadswagger.aio import AutorestSecurityAad
+from securitykeyswagger.aio import AutorestSecurityKey
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline.policies import AzureKeyCredentialPolicy
 from azure.core.pipeline.policies import AsyncBearerTokenCredentialPolicy
 from azure.identity import DefaultAzureCredential
 
 @pytest.mark.asyncio
-async def test_security_azure_key():
-    client = SecurityAzureKeyClient(credential=AzureKeyCredential('000'))
+async def test_security_key_flag():
+    client = SecurityKeyFlagClient(credential=AzureKeyCredential('000'))
     assert isinstance(client._config.authentication_policy, AzureKeyCredentialPolicy)
 
 @pytest.mark.asyncio
-async def test_security_aad():
-    client = SecurityAadClient(credential=DefaultAzureCredential())
+async def test_security_aad_flag():
+    client = SecurityAadFlagClient(credential=DefaultAzureCredential())
     assert isinstance(client._config.authentication_policy, AsyncBearerTokenCredentialPolicy)
 
 @pytest.mark.asyncio
-async def test_security_mixed():
-    client = SecurityMixedClient(credential=DefaultAzureCredential())
+async def test_security_mixed_flag():
+    client = SecurityMixedFlagClient(credential=DefaultAzureCredential())
     assert isinstance(client._config.authentication_policy, AsyncBearerTokenCredentialPolicy)
+
+@pytest.mark.asyncio
+async def test_security_aad_swagger():
+    client = AutorestSecurityAad(credential=DefaultAzureCredential())
+    assert isinstance(client._config.authentication_policy, AsyncBearerTokenCredentialPolicy)
+
+@pytest.mark.asyncio
+async def test_security_key_swagger():
+    # the key value shall keep same with https://github.com/Azure/autorest.testserver/tree/main/src/test-routes/security.ts
+    client = AutorestSecurityKey(credential=AzureKeyCredential('123456789'))
+    assert isinstance(client._config.authentication_policy, AzureKeyCredentialPolicy)
+    await client.head()

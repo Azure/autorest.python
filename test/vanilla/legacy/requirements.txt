@@ -53,6 +53,8 @@ azure-identity==1.8.0
 -e ./Expected/AcceptanceTests/Xml
 -e ./Expected/AcceptanceTests/XmsErrorResponse
 -e ./Expected/AcceptanceTests/PackageModeDataPlane
--e ./Expected/AcceptanceTests/SecurityAad
--e ./Expected/AcceptanceTests/SecurityAzureKey
--e ./Expected/AcceptanceTests/SecurityMixed
+-e ./Expected/AcceptanceTests/SecurityAadFlag
+-e ./Expected/AcceptanceTests/SecurityKeyFlag
+-e ./Expected/AcceptanceTests/SecurityMixedFlag
+-e ./Expected/AcceptanceTests/SecurityAadSwagger
+-e ./Expected/AcceptanceTests/SecurityKeySwagger
