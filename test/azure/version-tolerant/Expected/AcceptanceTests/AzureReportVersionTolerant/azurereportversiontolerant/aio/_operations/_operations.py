@@ -49,9 +49,10 @@ class AutoRestReportServiceForAzureOperationsMixin(MixinABC):
                     "str": 0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
         request = build_get_report_request(
             qualifier=qualifier,

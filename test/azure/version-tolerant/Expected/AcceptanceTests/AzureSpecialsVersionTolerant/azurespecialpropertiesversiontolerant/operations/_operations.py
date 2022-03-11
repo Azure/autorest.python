@@ -585,9 +585,10 @@ class XMsClientRequestIdOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_xms_client_request_id_get_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -618,9 +619,10 @@ class XMsClientRequestIdOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_xms_client_request_id_param_get_request(
             x_ms_client_request_id=x_ms_client_request_id,
@@ -666,9 +668,10 @@ class SubscriptionInCredentialsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_subscription_in_credentials_post_method_global_valid_request(
             subscription_id=self._config.subscription_id,
@@ -696,9 +699,10 @@ class SubscriptionInCredentialsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_subscription_in_credentials_post_method_global_null_request(
             subscription_id=self._config.subscription_id,
@@ -728,11 +732,11 @@ class SubscriptionInCredentialsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_subscription_in_credentials_post_method_global_not_provided_valid_request(
             subscription_id=self._config.subscription_id,
@@ -761,9 +765,10 @@ class SubscriptionInCredentialsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_subscription_in_credentials_post_path_global_valid_request(
             subscription_id=self._config.subscription_id,
@@ -791,9 +796,10 @@ class SubscriptionInCredentialsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_subscription_in_credentials_post_swagger_global_valid_request(
             subscription_id=self._config.subscription_id,
@@ -844,9 +850,10 @@ class SubscriptionInMethodOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_subscription_in_method_post_method_local_valid_request(
             subscription_id=subscription_id,
@@ -879,9 +886,10 @@ class SubscriptionInMethodOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_subscription_in_method_post_method_local_null_request(
             subscription_id=subscription_id,
@@ -913,9 +921,10 @@ class SubscriptionInMethodOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_subscription_in_method_post_path_local_valid_request(
             subscription_id=subscription_id,
@@ -948,9 +957,10 @@ class SubscriptionInMethodOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_subscription_in_method_post_swagger_local_valid_request(
             subscription_id=subscription_id,
@@ -995,11 +1005,11 @@ class ApiVersionDefaultOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_api_version_default_get_method_global_valid_request(
             api_version=api_version,
@@ -1028,11 +1038,11 @@ class ApiVersionDefaultOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_api_version_default_get_method_global_not_provided_valid_request(
             api_version=api_version,
@@ -1059,11 +1069,11 @@ class ApiVersionDefaultOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_api_version_default_get_path_global_valid_request(
             api_version=api_version,
@@ -1090,11 +1100,11 @@ class ApiVersionDefaultOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_api_version_default_get_swagger_global_valid_request(
             api_version=api_version,
@@ -1142,11 +1152,11 @@ class ApiVersionLocalOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2.0")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_api_version_local_get_method_local_valid_request(
             api_version=api_version,
@@ -1178,9 +1188,10 @@ class ApiVersionLocalOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_api_version_local_get_method_local_null_request(
             api_version=api_version,
@@ -1210,11 +1221,11 @@ class ApiVersionLocalOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2.0")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_api_version_local_get_path_local_valid_request(
             api_version=api_version,
@@ -1245,11 +1256,11 @@ class ApiVersionLocalOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2.0")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_api_version_local_get_swagger_local_valid_request(
             api_version=api_version,
@@ -1298,9 +1309,10 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_skip_url_encoding_get_method_path_valid_request(
             unencoded_path_param=unencoded_path_param,
@@ -1331,9 +1343,10 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_skip_url_encoding_get_path_valid_request(
             unencoded_path_param=unencoded_path_param,
@@ -1364,11 +1377,11 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         unencoded_path_param = kwargs.pop("unencoded_path_param", "path1/path2/path3")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_skip_url_encoding_get_swagger_path_valid_request(
             unencoded_path_param=unencoded_path_param,
@@ -1399,9 +1412,10 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_skip_url_encoding_get_method_query_valid_request(
             q1=q1,
@@ -1432,9 +1446,10 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_skip_url_encoding_get_method_query_null_request(
             q1=q1,
@@ -1463,9 +1478,10 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_skip_url_encoding_get_path_query_valid_request(
             q1=q1,
@@ -1496,11 +1512,11 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         q1 = kwargs.pop("q1", "value1&q2=value2&q3=value3")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_skip_url_encoding_get_swagger_query_valid_request(
             q1=q1,
@@ -1554,9 +1570,10 @@ class OdataOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_odata_get_with_filter_request(
             filter=filter,
@@ -1607,9 +1624,10 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_header_custom_named_request_id_request(
             foo_client_request_id=foo_client_request_id,
@@ -1644,9 +1662,10 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_header_custom_named_request_id_param_grouping_request(
             foo_client_request_id=foo_client_request_id,
@@ -1678,9 +1697,10 @@ class HeaderOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_header_custom_named_request_id_head_request(
             foo_client_request_id=foo_client_request_id,

@@ -652,6 +652,11 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             response_str = f"Optional[{response_str}]"
         return response_str
 
+    def pop_kwargs_from_signature(self, builder) -> List[str]:
+        kwargs = utils.pop_kwargs_from_signature(self._get_kwargs_to_pop(builder))
+        kwargs.append(f"cls = kwargs.pop('cls', None)  {self.cls_type_annotation(builder)}")
+        return kwargs
+
     def cls_type_annotation(self, builder) -> str:
         return f"# type: ClsType[{self._response_type_annotation(builder, modify_if_head_as_boolean=False)}]"
 
@@ -1188,7 +1193,7 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
         return retval
 
     def set_up_params_for_pager(self, builder) -> List[str]:
-        retval = [f"cls = kwargs.pop('cls', None)  {self.cls_type_annotation(builder)}"]
+        retval = []
         retval.extend(self.error_map(builder))
         retval.extend(self._prepare_request_callback(builder))
         retval.append("")
@@ -1279,7 +1284,6 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
 
     def initial_call(self, builder) -> List[str]:
         retval = [f"polling = kwargs.pop('polling', True)  # type: Union[bool, {self._polling_method_type}]"]
-        retval.append(f"cls = kwargs.pop('cls', None)  {self.cls_type_annotation(builder)}")
         retval.append("lro_delay = kwargs.pop(")
         retval.append("    'polling_interval',")
         retval.append("    self._config.polling_interval")
@@ -1310,16 +1314,16 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
             retval.append("")
         retval.extend([
             "if polling is True:",
-            f"    polling_method = {self._default_polling_method(builder)}(",
+            f"    polling_method = cast({self._polling_method_type}, {self._default_polling_method(builder)}(",
             "        lro_delay,",
             f"        {lro_options_str}",
             f"        {path_format_arguments_str}",
             "        **kwargs",
-            f")  # type: {self._polling_method_type}",
+            f"))  # type: {self._polling_method_type}",
         ]
         )
         retval.append(
-            f"elif polling is False: polling_method = {self._default_no_polling_method(builder)}()  # type: ignore"
+            f"elif polling is False: polling_method = cast({self._polling_method_type}, {self._default_no_polling_method(builder)}())"
         )
         retval.append("else: polling_method = polling")
         retval.append("if cont_token:")

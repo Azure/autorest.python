@@ -77,6 +77,7 @@ class PagingOperations:
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -156,6 +157,7 @@ class PagingOperations:
                 }
         """
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
