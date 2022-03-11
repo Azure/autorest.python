@@ -120,6 +120,7 @@ class ListSchema(BaseSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_submodule_import("typing", "List", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        if not self.element_type.type_annotation == "ET.Element":
+            file_import.add_submodule_import("typing", "List", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.merge(self.element_type.imports())
         return file_import
