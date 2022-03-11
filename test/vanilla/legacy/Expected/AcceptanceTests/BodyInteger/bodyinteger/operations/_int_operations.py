@@ -388,6 +388,7 @@ class IntOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
+        deserialized = None
         deserialized = self._deserialize("int", pipeline_response)
 
         if cls:
@@ -951,6 +952,7 @@ class IntOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
+        deserialized = None
         deserialized = self._deserialize("unix-time", pipeline_response)
 
         if cls:

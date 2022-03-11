@@ -37,13 +37,22 @@ class SchemaResponse(BaseModel):
         self.status_codes = status_codes
         self.headers = headers
         self.binary = binary
-        self.nullable = self.yaml_data.get("nullable", False)
 
     @property
     def has_body(self) -> bool:
         """Tell if that response defines a body.
         """
         return bool(self.schema)
+
+    @property
+    def nullable(self) -> bool:
+        nullable = self.yaml_data.get("nullable", None)
+        if nullable:
+            return nullable
+        try:
+            return self.schema.nullable
+        except AttributeError:
+            return False
 
     @property
     def has_headers(self) -> bool:
@@ -61,24 +70,18 @@ class SchemaResponse(BaseModel):
     def operation_type_annotation(self) -> str:
         if not self.schema:
             return "None"
-        if self.nullable:
-            return f"Optional[{self.schema.operation_type_annotation}]"
         return self.schema.operation_type_annotation
 
     @property
     def docstring_text(self) -> str:
         if not self.schema:
             return "None"
-        if self.nullable:
-            return f"{self.schema.docstring_text} or None"
         return self.schema.docstring_text
 
     @property
     def docstring_type(self) -> str:
         if not self.schema:
             return "None"
-        if self.nullable:
-            return f"{self.schema.docstring_type} or None"
         return self.schema.docstring_type
 
     @property

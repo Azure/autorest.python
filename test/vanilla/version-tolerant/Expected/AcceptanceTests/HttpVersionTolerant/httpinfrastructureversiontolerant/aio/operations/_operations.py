@@ -1066,7 +1066,7 @@ class HttpRedirectsOperations:
     async def get300(self, **kwargs: Any) -> Optional[List[str]]:
         """Return 300 status code and redirect to /http/success/200.
 
-        :return: list of str
+        :return: list of str or None
         :rtype: list[str] or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -3100,7 +3100,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     async def get200_model204_no_model_default_error200_valid(self, **kwargs: Any) -> Optional[JSONType]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
-        :return: JSON object
+        :return: JSON object or None
         :rtype: JSONType or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -3144,7 +3144,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     async def get200_model204_no_model_default_error204_valid(self, **kwargs: Any) -> Optional[JSONType]:
         """Send a 204 response with no payload.
 
-        :return: JSON object
+        :return: JSON object or None
         :rtype: JSONType or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -3188,7 +3188,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     async def get200_model204_no_model_default_error201_invalid(self, **kwargs: Any) -> Optional[JSONType]:
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
-        :return: JSON object
+        :return: JSON object or None
         :rtype: JSONType or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -3232,7 +3232,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     async def get200_model204_no_model_default_error202_none(self, **kwargs: Any) -> Optional[JSONType]:
         """Send a 202 response with no payload:.
 
-        :return: JSON object
+        :return: JSON object or None
         :rtype: JSONType or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -3276,7 +3276,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     async def get200_model204_no_model_default_error400_valid(self, **kwargs: Any) -> Optional[JSONType]:
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
 
-        :return: JSON object
+        :return: JSON object or None
         :rtype: JSONType or None
         :raises: ~azure.core.exceptions.HttpResponseError
 

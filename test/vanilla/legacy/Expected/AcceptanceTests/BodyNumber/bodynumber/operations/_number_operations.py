@@ -615,6 +615,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
+        deserialized = None
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:

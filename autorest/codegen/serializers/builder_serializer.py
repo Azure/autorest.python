@@ -674,6 +674,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             }
             rtype = " or ".join(response_body_docstring_type.keys())
             if builder.has_optional_return_type:
+                response_docstring_text += " or None"
                 rtype += " or None"
         else:
             response_docstring_text = "None"

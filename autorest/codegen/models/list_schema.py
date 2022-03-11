@@ -18,12 +18,14 @@ class ListSchema(BaseSchema):
         max_items: Optional[int] = None,
         min_items: Optional[int] = None,
         unique_items: Optional[int] = None,
+        nullable: Optional[bool] = None,
     ) -> None:
         super(ListSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.element_type = element_type
         self.max_items = max_items
         self.min_items = min_items
         self.unique_items = unique_items
+        self.nullable = nullable
 
     @property
     def serialization_type(self) -> str:
@@ -104,6 +106,7 @@ class ListSchema(BaseSchema):
             max_items=yaml_data.get("maxItems"),
             min_items=yaml_data.get("minItems"),
             unique_items=yaml_data.get("uniqueItems"),
+            nullable=yaml_data.get("nullableItems"),
         )
 
     def imports(self) -> FileImport:

@@ -106,12 +106,12 @@
             "_test_lro_initial" : {
                 "sync": {
                     "signature": "def _test_lro_initial(\n    self,\n    product=None,  # type: Optional[\"_models.Product\"]\n    **kwargs  # type: Any\n):\n    # type: (...) -\u003e Optional[\"_models.Product\"]\n",
-                    "doc": "\n\n:param product: Product to put. Default value is None.\n:type product: ~multiapidataplane.v1.models.Product\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: Product, or the result of cls(response)\n:rtype: ~multiapidataplane.v1.models.Product or None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+                    "doc": "\n\n:param product: Product to put. Default value is None.\n:type product: ~multiapidataplane.v1.models.Product\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: Product or None, or the result of cls(response)\n:rtype: ~multiapidataplane.v1.models.Product or None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
                 },
                 "async": {
                     "coroutine": true,
                     "signature": "async def _test_lro_initial(\n    self,\n    product: Optional[\"_models.Product\"] = None,\n    **kwargs: Any\n) -\u003e Optional[\"_models.Product\"]:\n",
-                    "doc": "\n\n:param product: Product to put. Default value is None.\n:type product: ~multiapidataplane.v1.models.Product\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: Product, or the result of cls(response)\n:rtype: ~multiapidataplane.v1.models.Product or None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
+                    "doc": "\n\n:param product: Product to put. Default value is None.\n:type product: ~multiapidataplane.v1.models.Product\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: Product or None, or the result of cls(response)\n:rtype: ~multiapidataplane.v1.models.Product or None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\""
                 },
                 "call": "product"
             },

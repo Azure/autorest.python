@@ -2251,11 +2251,11 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_string_with_null(self, **kwargs: Any) -> List[str]:
+    def get_string_with_null(self, **kwargs: Any) -> Optional[List[str]]:
         """Get string array value ['foo', null, 'foo2'].
 
-        :return: list of str
-        :rtype: list[str]
+        :return: list of str or None
+        :rtype: list[str] or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2266,7 +2266,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
                     "str"  # Optional.
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -2282,6 +2282,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        deserialized = None
         if response.content:
             deserialized = response.json()
         else:
@@ -3166,11 +3167,11 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def get_complex_null(self, **kwargs: Any) -> List[JSONType]:
+    def get_complex_null(self, **kwargs: Any) -> Optional[List[JSONType]]:
         """Get array of complex type null value.
 
-        :return: list of JSON object
-        :rtype: list[JSONType]
+        :return: list of JSON object or None
+        :rtype: list[JSONType] or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3184,7 +3185,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[JSONType]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -3200,6 +3201,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        deserialized = None
         if response.content:
             deserialized = response.json()
         else:
@@ -3256,12 +3258,12 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def get_complex_item_null(self, **kwargs: Any) -> List[JSONType]:
+    def get_complex_item_null(self, **kwargs: Any) -> Optional[List[JSONType]]:
         """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
         'string': '6'}].
 
-        :return: list of JSON object
-        :rtype: list[JSONType]
+        :return: list of JSON object or None
+        :rtype: list[JSONType] or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3275,7 +3277,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[JSONType]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -3291,6 +3293,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        deserialized = None
         if response.content:
             deserialized = response.json()
         else:
@@ -3532,11 +3535,11 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def get_array_item_null(self, **kwargs: Any) -> List[List[str]]:
+    def get_array_item_null(self, **kwargs: Any) -> Optional[List[List[str]]]:
         """Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']].
 
-        :return: list of list of str
-        :rtype: list[list[str]]
+        :return: list of list of str or None
+        :rtype: list[list[str]] or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3549,7 +3552,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
                     ]
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[List[str]]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -3565,6 +3568,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        deserialized = None
         if response.content:
             deserialized = response.json()
         else:
@@ -3712,11 +3716,11 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_dictionary_null(self, **kwargs: Any) -> List[Dict[str, str]]:
+    def get_dictionary_null(self, **kwargs: Any) -> Optional[List[Dict[str, str]]]:
         """Get an array of Dictionaries with value null.
 
-        :return: list of dict mapping str to str
-        :rtype: list[dict[str, str]]
+        :return: list of dict mapping str to str or None
+        :rtype: list[dict[str, str]] or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3729,7 +3733,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[Dict[str, str]]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -3745,6 +3749,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        deserialized = None
         if response.content:
             deserialized = response.json()
         else:
@@ -3800,12 +3805,12 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def get_dictionary_item_null(self, **kwargs: Any) -> List[Dict[str, str]]:
+    def get_dictionary_item_null(self, **kwargs: Any) -> Optional[List[Dict[str, str]]]:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
-        :return: list of dict mapping str to str
-        :rtype: list[dict[str, str]]
+        :return: list of dict mapping str to str or None
+        :rtype: list[dict[str, str]] or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3818,7 +3823,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[Dict[str, str]]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -3834,6 +3839,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        deserialized = None
         if response.content:
             deserialized = response.json()
         else:

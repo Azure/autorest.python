@@ -256,6 +256,7 @@ class DateOperations(object):
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
+        deserialized = None
         deserialized = self._deserialize("date", pipeline_response)
 
         if cls:

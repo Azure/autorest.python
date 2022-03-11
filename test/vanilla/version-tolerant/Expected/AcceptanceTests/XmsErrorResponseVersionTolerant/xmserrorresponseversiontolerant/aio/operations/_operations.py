@@ -54,7 +54,7 @@ class PetOperations:
 
         :param pet_id: pet id.
         :type pet_id: str
-        :return: JSON object
+        :return: JSON object or None
         :rtype: JSONType or None
         :raises: ~azure.core.exceptions.HttpResponseError
 

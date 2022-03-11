@@ -293,6 +293,7 @@ class BoolOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        deserialized = None
         if response.content:
             deserialized = response.json()
         else:

@@ -101,6 +101,8 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             response for response in self.responses
             if any(code in self.success_status_code for code in response.status_codes)
         ]
+        if any(r for r in successful_responses if r.nullable):
+            return True
 
         return (
             self.has_response_body and

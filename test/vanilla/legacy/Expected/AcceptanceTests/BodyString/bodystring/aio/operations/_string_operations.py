@@ -90,6 +90,7 @@ class StringOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
+        deserialized = None
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
@@ -583,6 +584,7 @@ class StringOperations:
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
+        deserialized = None
         deserialized = self._deserialize("base64", pipeline_response)
 
         if cls:

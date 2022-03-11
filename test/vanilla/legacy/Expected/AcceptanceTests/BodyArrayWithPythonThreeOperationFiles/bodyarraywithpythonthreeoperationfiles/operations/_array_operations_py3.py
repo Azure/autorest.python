@@ -2148,15 +2148,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     put_string_enum_valid.metadata = {"url": "/array/prim/string-enum/foo1.foo2.foo3"}  # type: ignore
 
     @distributed_trace
-    def get_string_with_null(self, **kwargs: Any) -> List[str]:
+    def get_string_with_null(self, **kwargs: Any) -> Optional[List[str]]:
         """Get string array value ['foo', null, 'foo2'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of str, or the result of cls(response)
-        :rtype: list[str]
+        :return: list of str or None, or the result of cls(response)
+        :rtype: list[str] or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[str]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -2176,6 +2176,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
+        deserialized = None
         deserialized = self._deserialize("[str]", pipeline_response)
 
         if cls:
@@ -2991,15 +2992,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_base64_url.metadata = {"url": "/array/prim/base64url/valid"}  # type: ignore
 
     @distributed_trace
-    def get_complex_null(self, **kwargs: Any) -> List["_models.Product"]:
+    def get_complex_null(self, **kwargs: Any) -> Optional[List["_models.Product"]]:
         """Get array of complex type null value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of Product, or the result of cls(response)
-        :rtype: list[~bodyarraywithpythonthreeoperationfiles.models.Product]
+        :return: list of Product or None, or the result of cls(response)
+        :rtype: list[~bodyarraywithpythonthreeoperationfiles.models.Product] or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Product"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List["_models.Product"]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -3019,6 +3020,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
+        deserialized = None
         deserialized = self._deserialize("[Product]", pipeline_response)
 
         if cls:
@@ -3067,16 +3069,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_complex_empty.metadata = {"url": "/array/complex/empty"}  # type: ignore
 
     @distributed_trace
-    def get_complex_item_null(self, **kwargs: Any) -> List["_models.Product"]:
+    def get_complex_item_null(self, **kwargs: Any) -> Optional[List["_models.Product"]]:
         """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
         'string': '6'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of Product, or the result of cls(response)
-        :rtype: list[~bodyarraywithpythonthreeoperationfiles.models.Product]
+        :return: list of Product or None, or the result of cls(response)
+        :rtype: list[~bodyarraywithpythonthreeoperationfiles.models.Product] or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Product"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List["_models.Product"]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -3096,6 +3098,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
+        deserialized = None
         deserialized = self._deserialize("[Product]", pipeline_response)
 
         if cls:
@@ -3305,15 +3308,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_array_empty.metadata = {"url": "/array/array/empty"}  # type: ignore
 
     @distributed_trace
-    def get_array_item_null(self, **kwargs: Any) -> List[List[str]]:
+    def get_array_item_null(self, **kwargs: Any) -> Optional[List[List[str]]]:
         """Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of list of str, or the result of cls(response)
-        :rtype: list[list[str]]
+        :return: list of list of str or None, or the result of cls(response)
+        :rtype: list[list[str]] or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[List[str]]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[List[str]]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -3333,6 +3336,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
+        deserialized = None
         deserialized = self._deserialize("[[str]]", pipeline_response)
 
         if cls:
@@ -3463,15 +3467,15 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     put_array_valid.metadata = {"url": "/array/array/valid"}  # type: ignore
 
     @distributed_trace
-    def get_dictionary_null(self, **kwargs: Any) -> List[Dict[str, str]]:
+    def get_dictionary_null(self, **kwargs: Any) -> Optional[List[Dict[str, str]]]:
         """Get an array of Dictionaries with value null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of dict mapping str to str, or the result of cls(response)
-        :rtype: list[dict[str, str]]
+        :return: list of dict mapping str to str or None, or the result of cls(response)
+        :rtype: list[dict[str, str]] or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[Dict[str, str]]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -3491,6 +3495,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
+        deserialized = None
         deserialized = self._deserialize("[{str}]", pipeline_response)
 
         if cls:
@@ -3539,16 +3544,16 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_dictionary_empty.metadata = {"url": "/array/dictionary/empty"}  # type: ignore
 
     @distributed_trace
-    def get_dictionary_item_null(self, **kwargs: Any) -> List[Dict[str, str]]:
+    def get_dictionary_item_null(self, **kwargs: Any) -> Optional[List[Dict[str, str]]]:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of dict mapping str to str, or the result of cls(response)
-        :rtype: list[dict[str, str]]
+        :return: list of dict mapping str to str or None, or the result of cls(response)
+        :rtype: list[dict[str, str]] or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[Dict[str, str]]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[Dict[str, str]]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -3568,6 +3573,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
+        deserialized = None
         deserialized = self._deserialize("[{str}]", pipeline_response)
 
         if cls:
