@@ -50,7 +50,7 @@ class SchemaResponse(BaseModel):
         if nullable:
             return nullable
         try:
-            return self.schema.nullable
+            return self.schema.nullable  # type: ignore
         except AttributeError:
             return False
 
