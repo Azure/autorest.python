@@ -173,7 +173,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
     def imports(self, async_mode: bool) -> FileImport:
         file_import = self._imports_base(async_mode)
-        if self.has_response_body and not self.has_optional_return_type:
+        if self.has_response_body and not self.has_optional_return_type and not self.code_model.options["models_mode"]:
             file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
         return file_import
 

@@ -959,7 +959,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                     builder.responses[0]
                 ))
                 retval.append("")
-        if builder.has_optional_return_type:
+        if builder.has_optional_return_type or self.code_model.options["models_mode"]:
             deserialized = "deserialized"
         else:
             deserialized = f"cast({self._response_type_annotation(builder)}, deserialized)"
