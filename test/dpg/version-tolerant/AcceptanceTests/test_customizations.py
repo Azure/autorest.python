@@ -26,6 +26,8 @@
 # --------------------------------------------------------------------------
 import pytest
 import importlib
+import sys
+import inspect
 
 from dpgcustomizationinitialversiontolerant import DPGClient as DPGClientInitial
 from dpgcustomizationcustomizedversiontolerant import DPGClient as DPGClientCustomized
@@ -79,3 +81,17 @@ def test_customized_lro(client):
 def test_dunder_all(package_name):
     assert importlib.import_module(package_name).__all__ == ["DPGClient"]
     assert importlib.import_module(f"{package_name}._operations").__all__ == ["DPGClientOperationsMixin"]
+
+def test_imports():
+    # make sure we can import all of the models we've added to the customization class
+    from dpgcustomizationcustomizedversiontolerant.models import (
+        Input, LROProduct, Product, ProductResult
+    )
+    models = [Input, LROProduct, Product, ProductResult]
+    # check public models
+    public_models = [
+        name for name, obj in
+        inspect.getmembers(sys.modules["dpgcustomizationcustomizedversiontolerant.models"])
+        if name[0] != "_" and obj in models
+    ]
+    assert len(public_models) == 4
