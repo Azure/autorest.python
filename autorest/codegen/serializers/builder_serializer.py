@@ -879,6 +879,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
 
     def response_headers_and_deserialization(
         self,
+        builder,
         response: SchemaResponse,
     ) -> List[str]:
         retval: List[str] = [
@@ -898,16 +899,15 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                 )
             )
         elif response.has_body:
+            is_xml = any(["xml" in ct for ct in response.content_types])
+            deserialized_value = "ET.fromstring(response.text())" if is_xml else "response.json()"
             if self.code_model.options["models_mode"]:
                 retval.append(f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)")
-            else:
-                is_xml = any(["xml" in ct for ct in response.content_types])
-                deserialized_value = ""
-                deserialized_value = "ET.fromstring(response.text())" if is_xml else "response.json()"
+            elif builder.has_optional_return_type:
                 retval.append(f"if response.content:")
                 retval.append(f"    deserialized = {deserialized_value}")
-                retval.append("else:")
-                retval.append("    deserialized = None")
+            else:
+                retval.append(f"deserialized = {deserialized_value}")
         return retval
 
     @property
@@ -947,12 +947,12 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                         retval.append(f"if response.status_code == {status_code}:")
                         retval.extend([
                             f"    {line}"
-                            for line in self.response_headers_and_deserialization(response)
+                            for line in self.response_headers_and_deserialization(builder, response)
                         ])
                         retval.append("")
             else:
                 retval.extend(self.response_headers_and_deserialization(
-                    builder.responses[0]
+                    builder, builder.responses[0]
                 ))
                 retval.append("")
         retval.append("if cls:")
@@ -1335,7 +1335,7 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
             retval.append("    response = pipeline_response.http_response")
             retval.extend([
                 f"    {line}"
-                for line in self.response_headers_and_deserialization(builder.lro_response)
+                for line in self.response_headers_and_deserialization(builder, builder.lro_response)
             ])
         retval.append("    if cls:")
         retval.append("        return cls(pipeline_response, {}, {})".format(

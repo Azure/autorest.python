@@ -59,8 +59,6 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         if response.status_code == 200:
             if response.content:
                 deserialized = response.json()
-            else:
-                deserialized = None
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
@@ -99,10 +97,7 @@ class LROWithParamaterizedEndpointsOperationsMixin:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
@@ -164,8 +159,6 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         if response.status_code == 200:
             if response.content:
                 deserialized = response.json()
-            else:
-                deserialized = None
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
@@ -210,10 +203,7 @@ class LROWithParamaterizedEndpointsOperationsMixin:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.json()
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized
