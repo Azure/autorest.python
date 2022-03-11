@@ -59,9 +59,10 @@ class BoolOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[bool]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[bool]
 
         request = build_bool_get_true_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -93,12 +94,12 @@ class BoolOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         bool_body = kwargs.pop("bool_body", True)  # type: bool
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_bool_put_true_request(
             content_type=content_type,
@@ -126,9 +127,10 @@ class BoolOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[bool]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[bool]
 
         request = build_bool_get_false_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -160,12 +162,12 @@ class BoolOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         bool_body = kwargs.pop("bool_body", False)  # type: bool
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_bool_put_false_request(
             content_type=content_type,
@@ -193,9 +195,10 @@ class BoolOperations:
         :rtype: bool or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[bool]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[bool]]
 
         request = build_bool_get_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -224,9 +227,10 @@ class BoolOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[bool]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[bool]
 
         request = build_bool_get_invalid_request()
         request.url = self._client.format_url(request.url)  # type: ignore

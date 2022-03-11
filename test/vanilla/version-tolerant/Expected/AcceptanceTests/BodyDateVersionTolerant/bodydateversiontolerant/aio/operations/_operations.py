@@ -62,9 +62,10 @@ class DateOperations:
         :rtype: ~datetime.date or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[datetime.date]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[datetime.date]]
 
         request = build_date_get_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -93,9 +94,10 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
 
         request = build_date_get_invalid_date_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -124,9 +126,10 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
 
         request = build_date_get_overflow_date_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -155,9 +158,10 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
 
         request = build_date_get_underflow_date_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -190,11 +194,11 @@ class DateOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = date_body
 
@@ -224,9 +228,10 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
 
         request = build_date_get_max_date_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -259,11 +264,11 @@ class DateOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = date_body
 
@@ -293,9 +298,10 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.date]
 
         request = build_date_get_min_date_request()
         request.url = self._client.format_url(request.url)  # type: ignore

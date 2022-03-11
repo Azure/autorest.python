@@ -70,11 +70,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if resource_array is not None:
             _json = resource_array
@@ -133,9 +133,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
 
         request = build_get_array_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -179,11 +180,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if resource_array is not None:
             _json = resource_array
@@ -229,9 +230,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     }
                 ]
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
 
         request = build_get_wrapped_array_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -290,11 +292,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if resource_dictionary is not None:
             _json = resource_dictionary
@@ -353,9 +355,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
 
         request = build_get_dictionary_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -460,11 +463,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if resource_complex_object is not None:
             _json = resource_complex_object
@@ -568,9 +571,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_get_resource_collection_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -640,11 +644,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         if simple_body_product is not None:
             _json = simple_body_product
@@ -722,11 +726,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         if simple_body_product is not None:
             _json = simple_body_product
@@ -808,11 +812,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         if simple_body_product is not None:
             _json = simple_body_product

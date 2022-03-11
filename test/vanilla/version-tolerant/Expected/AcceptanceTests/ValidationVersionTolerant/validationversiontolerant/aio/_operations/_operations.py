@@ -76,11 +76,11 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "image": "str"  # Optional. Image URL representing the product.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "1.0.0")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_validation_of_method_parameters_request(
             subscription_id=self._config.subscription_id,
@@ -179,12 +179,12 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "image": "str"  # Optional. Image URL representing the product.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "1.0.0")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         if body is not None:
             _json = body
@@ -228,11 +228,11 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         constant_param = kwargs.pop("constant_param", "constant")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_with_constant_in_path_request(
             constant_param=constant_param,
@@ -321,12 +321,12 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "image": "str"  # Optional. Image URL representing the product.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         constant_param = kwargs.pop("constant_param", "constant")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         if body is not None:
             _json = body

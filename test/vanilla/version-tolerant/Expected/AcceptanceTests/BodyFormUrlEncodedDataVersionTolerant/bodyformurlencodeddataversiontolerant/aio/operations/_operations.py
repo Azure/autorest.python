@@ -79,11 +79,11 @@ class FormdataurlencodedOperations:
                       None.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/x-www-form-urlencoded")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_formdataurlencoded_update_pet_with_form_request(
             pet_id=pet_id,
@@ -131,11 +131,11 @@ class FormdataurlencodedOperations:
                     "service": "str"  # Indicates the name of your Azure container registry.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/x-www-form-urlencoded")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_formdataurlencoded_partial_constant_body_request(
             content_type=content_type,

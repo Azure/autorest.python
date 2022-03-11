@@ -1337,11 +1337,11 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         bool_path = kwargs.pop("bool_path", True)  # type: bool
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_get_boolean_true_request(
             bool_path=bool_path,
@@ -1371,11 +1371,11 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         bool_path = kwargs.pop("bool_path", False)  # type: bool
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_get_boolean_false_request(
             bool_path=bool_path,
@@ -1405,11 +1405,11 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         int_path = kwargs.pop("int_path", 1000000)  # type: int
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_get_int_one_million_request(
             int_path=int_path,
@@ -1439,11 +1439,11 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         int_path = kwargs.pop("int_path", -1000000)  # type: int
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_get_int_negative_one_million_request(
             int_path=int_path,
@@ -1473,11 +1473,11 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         long_path = kwargs.pop("long_path", 10000000000)  # type: int
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_get_ten_billion_request(
             long_path=long_path,
@@ -1507,11 +1507,11 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         long_path = kwargs.pop("long_path", -10000000000)  # type: int
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_get_negative_ten_billion_request(
             long_path=long_path,
@@ -1541,11 +1541,11 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         float_path = kwargs.pop("float_path", 103400000000000000000)  # type: float
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_float_scientific_positive_request(
             float_path=float_path,
@@ -1575,11 +1575,11 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         float_path = kwargs.pop("float_path", -1.034e-20)  # type: float
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_float_scientific_negative_request(
             float_path=float_path,
@@ -1609,11 +1609,11 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         double_path = kwargs.pop("double_path", 9999999.999)  # type: float
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_double_decimal_positive_request(
             double_path=double_path,
@@ -1643,11 +1643,11 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         double_path = kwargs.pop("double_path", -9999999.999)  # type: float
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_double_decimal_negative_request(
             double_path=double_path,
@@ -1677,11 +1677,11 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         string_path = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_string_unicode_request(
             string_path=string_path,
@@ -1712,11 +1712,11 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         string_path = kwargs.pop("string_path", "begin!*'();:@ &=+$,/?#[]end")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_string_url_encoded_request(
             string_path=string_path,
@@ -1749,11 +1749,11 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         string_path = kwargs.pop("string_path", "begin!*'();:@&=+$,end")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_string_url_non_encoded_request(
             string_path=string_path,
@@ -1783,11 +1783,11 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         string_path = kwargs.pop("string_path", "")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_string_empty_request(
             string_path=string_path,
@@ -1816,9 +1816,10 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_string_null_request(
             string_path=string_path,
@@ -1848,9 +1849,10 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_enum_valid_request(
             enum_path=enum_path,
@@ -1880,9 +1882,10 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_enum_null_request(
             enum_path=enum_path,
@@ -1913,9 +1916,10 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_byte_multi_byte_request(
             byte_path=byte_path,
@@ -1945,11 +1949,11 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         byte_path = kwargs.pop("byte_path", bytearray("", encoding="utf-8"))  # type: bytearray
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_byte_empty_request(
             byte_path=byte_path,
@@ -1978,9 +1982,10 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_byte_null_request(
             byte_path=byte_path,
@@ -2010,11 +2015,11 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         date_path = kwargs.pop("date_path", "2012-01-01")  # type: datetime.date
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_date_valid_request(
             date_path=date_path,
@@ -2046,9 +2051,10 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_date_null_request(
             date_path=date_path,
@@ -2079,11 +2085,11 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         date_time_path = kwargs.pop("date_time_path", "2012-01-01T01:01:01Z")  # type: datetime.datetime
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_date_time_valid_request(
             date_time_path=date_time_path,
@@ -2114,9 +2120,10 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_date_time_null_request(
             date_time_path=date_time_path,
@@ -2147,9 +2154,10 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_base64_url_request(
             base64_url_path=base64_url_path,
@@ -2182,9 +2190,10 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_array_csv_in_path_request(
             array_path=array_path,
@@ -2215,9 +2224,10 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_unix_time_url_request(
             unix_time_url_path=unix_time_url_path,
@@ -2265,11 +2275,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         bool_query = kwargs.pop("bool_query", True)  # type: bool
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_boolean_true_request(
             bool_query=bool_query,
@@ -2299,11 +2309,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         bool_query = kwargs.pop("bool_query", False)  # type: bool
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_boolean_false_request(
             bool_query=bool_query,
@@ -2334,9 +2344,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_boolean_null_request(
             bool_query=bool_query,
@@ -2366,11 +2377,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         int_query = kwargs.pop("int_query", 1000000)  # type: int
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_int_one_million_request(
             int_query=int_query,
@@ -2400,11 +2411,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         int_query = kwargs.pop("int_query", -1000000)  # type: int
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_int_negative_one_million_request(
             int_query=int_query,
@@ -2435,9 +2446,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_int_null_request(
             int_query=int_query,
@@ -2467,11 +2479,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         long_query = kwargs.pop("long_query", 10000000000)  # type: int
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_ten_billion_request(
             long_query=long_query,
@@ -2501,11 +2513,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         long_query = kwargs.pop("long_query", -10000000000)  # type: int
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_negative_ten_billion_request(
             long_query=long_query,
@@ -2536,9 +2548,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_long_null_request(
             long_query=long_query,
@@ -2568,11 +2581,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         float_query = kwargs.pop("float_query", 103400000000000000000)  # type: float
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_float_scientific_positive_request(
             float_query=float_query,
@@ -2602,11 +2615,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         float_query = kwargs.pop("float_query", -1.034e-20)  # type: float
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_float_scientific_negative_request(
             float_query=float_query,
@@ -2637,9 +2650,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_float_null_request(
             float_query=float_query,
@@ -2669,11 +2683,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         double_query = kwargs.pop("double_query", 9999999.999)  # type: float
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_double_decimal_positive_request(
             double_query=double_query,
@@ -2703,11 +2717,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         double_query = kwargs.pop("double_query", -9999999.999)  # type: float
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_double_decimal_negative_request(
             double_query=double_query,
@@ -2738,9 +2752,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_double_null_request(
             double_query=double_query,
@@ -2770,11 +2785,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         string_query = kwargs.pop("string_query", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_string_unicode_request(
             string_query=string_query,
@@ -2805,11 +2820,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         string_query = kwargs.pop("string_query", "begin!*'();:@ &=+$,/?#[]end")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_string_url_encoded_request(
             string_query=string_query,
@@ -2839,11 +2854,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         string_query = kwargs.pop("string_query", "")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_string_empty_request(
             string_query=string_query,
@@ -2874,9 +2889,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_string_null_request(
             string_query=string_query,
@@ -2908,9 +2924,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_enum_valid_request(
             enum_query=enum_query,
@@ -2942,9 +2959,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_enum_null_request(
             enum_query=enum_query,
@@ -2976,9 +2994,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_byte_multi_byte_request(
             byte_query=byte_query,
@@ -3008,11 +3027,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         byte_query = kwargs.pop("byte_query", bytearray("", encoding="utf-8"))  # type: bytearray
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_byte_empty_request(
             byte_query=byte_query,
@@ -3043,9 +3062,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_byte_null_request(
             byte_query=byte_query,
@@ -3075,11 +3095,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         date_query = kwargs.pop("date_query", "2012-01-01")  # type: datetime.date
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_date_valid_request(
             date_query=date_query,
@@ -3110,9 +3130,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_date_null_request(
             date_query=date_query,
@@ -3143,11 +3164,11 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         date_time_query = kwargs.pop("date_time_query", "2012-01-01T01:01:01Z")  # type: datetime.datetime
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_date_time_valid_request(
             date_time_query=date_time_query,
@@ -3178,9 +3199,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_date_time_null_request(
             date_time_query=date_time_query,
@@ -3213,9 +3235,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_array_string_csv_valid_request(
             array_query=array_query,
@@ -3246,9 +3269,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_array_string_csv_null_request(
             array_query=array_query,
@@ -3280,9 +3304,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_array_string_csv_empty_request(
             array_query=array_query,
@@ -3315,9 +3340,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_array_string_no_collection_format_empty_request(
             array_query=array_query,
@@ -3350,9 +3376,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_array_string_ssv_valid_request(
             array_query=array_query,
@@ -3385,9 +3412,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_array_string_tsv_valid_request(
             array_query=array_query,
@@ -3420,9 +3448,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_array_string_pipes_valid_request(
             array_query=array_query,
@@ -3486,9 +3515,10 @@ class PathItemsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_path_items_get_all_with_values_request(
             path_item_string_path=path_item_string_path,
@@ -3539,9 +3569,10 @@ class PathItemsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_path_items_get_global_query_null_request(
             path_item_string_path=path_item_string_path,
@@ -3592,9 +3623,10 @@ class PathItemsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_path_items_get_global_and_local_query_null_request(
             path_item_string_path=path_item_string_path,
@@ -3644,9 +3676,10 @@ class PathItemsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_path_items_get_local_path_item_query_null_request(
             path_item_string_path=path_item_string_path,

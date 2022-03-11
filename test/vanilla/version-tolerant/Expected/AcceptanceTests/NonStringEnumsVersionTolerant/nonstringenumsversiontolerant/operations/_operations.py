@@ -114,11 +114,11 @@ class IntOperations:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         if input is not None:
             _json = input
@@ -161,9 +161,10 @@ class IntOperations:
                 # response body for status code(s): 200
                 response.json() == 0  # Optional.
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[int]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[int]
 
         request = build_int_get_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -213,11 +214,11 @@ class FloatOperations:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         if input is not None:
             _json = input
@@ -260,9 +261,10 @@ class FloatOperations:
                 # response body for status code(s): 200
                 response.json() == 0.0  # Optional.
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[float]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
         request = build_float_get_request()
         request.url = self._client.format_url(request.url)  # type: ignore

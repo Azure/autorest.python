@@ -91,9 +91,10 @@ class FilesOperations:
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
 
         request = build_files_get_file_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -122,9 +123,10 @@ class FilesOperations:
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
 
         request = build_files_get_file_large_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -153,9 +155,10 @@ class FilesOperations:
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
 
         request = build_files_get_empty_file_request()
         request.url = self._client.format_url(request.url)  # type: ignore

@@ -120,9 +120,10 @@ class BasicOperations:
                       does not fit on a single line and a line break.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_basic_get_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -167,12 +168,12 @@ class BasicOperations:
                       does not fit on a single line and a line break.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2016-02-29")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -215,9 +216,10 @@ class BasicOperations:
                       does not fit on a single line and a line break.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_basic_get_invalid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -258,9 +260,10 @@ class BasicOperations:
                       does not fit on a single line and a line break.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_basic_get_empty_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -301,9 +304,10 @@ class BasicOperations:
                       does not fit on a single line and a line break.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_basic_get_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -344,9 +348,10 @@ class BasicOperations:
                       does not fit on a single line and a line break.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_basic_get_not_provided_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -402,9 +407,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_primitive_get_int_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -446,11 +452,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -489,9 +495,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_primitive_get_long_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -533,11 +540,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -576,9 +583,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_primitive_get_float_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -620,11 +628,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -664,9 +672,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                       0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_primitive_get_double_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -710,11 +719,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                       0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -753,9 +762,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field_true": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_primitive_get_bool_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -797,11 +807,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field_true": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -841,9 +851,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "null": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_primitive_get_string_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -886,11 +897,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "null": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -929,9 +940,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "leap": "2020-02-20"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_primitive_get_date_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -973,11 +985,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "leap": "2020-02-20"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -1016,9 +1028,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "now": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_primitive_get_date_time_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1060,11 +1073,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "now": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -1103,9 +1116,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "now": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_primitive_get_date_time_rfc1123_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1148,11 +1162,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "now": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -1190,9 +1204,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field": "1 day, 0:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_primitive_get_duration_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1233,11 +1248,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field": "1 day, 0:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -1275,9 +1290,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field": bytearray("bytearray", encoding="utf-8")  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_primitive_get_byte_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1318,11 +1334,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field": bytearray("bytearray", encoding="utf-8")  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -1380,9 +1396,10 @@ class ArrayOperations:
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_array_get_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1426,11 +1443,11 @@ class ArrayOperations:
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -1470,9 +1487,10 @@ class ArrayOperations:
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_array_get_empty_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1515,11 +1533,11 @@ class ArrayOperations:
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -1559,9 +1577,10 @@ class ArrayOperations:
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_array_get_not_provided_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1618,9 +1637,10 @@ class DictionaryOperations:
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_dictionary_get_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1664,11 +1684,11 @@ class DictionaryOperations:
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -1708,9 +1728,10 @@ class DictionaryOperations:
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_dictionary_get_empty_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1753,11 +1774,11 @@ class DictionaryOperations:
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -1797,9 +1818,10 @@ class DictionaryOperations:
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_dictionary_get_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1838,9 +1860,10 @@ class DictionaryOperations:
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_dictionary_get_not_provided_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1905,9 +1928,10 @@ class InheritanceOperations:
                     "name": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_inheritance_get_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1960,11 +1984,11 @@ class InheritanceOperations:
                     "name": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -2025,9 +2049,10 @@ class PolymorphismOperations:
                     fishtype: fishtype
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_polymorphism_get_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2107,11 +2132,11 @@ class PolymorphismOperations:
                     fishtype: fishtype
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -2150,9 +2175,10 @@ class PolymorphismOperations:
                     fish.type: fish.type
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_polymorphism_get_dot_syntax_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2214,9 +2240,10 @@ class PolymorphismOperations:
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_polymorphism_get_composed_with_discriminator_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2278,9 +2305,10 @@ class PolymorphismOperations:
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_polymorphism_get_composed_without_discriminator_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2332,9 +2360,10 @@ class PolymorphismOperations:
                     fishtype: salmon
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_polymorphism_get_complicated_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2392,11 +2421,11 @@ class PolymorphismOperations:
                     fishtype: salmon
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -2471,11 +2500,11 @@ class PolymorphismOperations:
                     fishtype: salmon
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         _json = complex_body
 
@@ -2555,11 +2584,11 @@ class PolymorphismOperations:
                     fishtype: fishtype
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -2620,9 +2649,10 @@ class PolymorphicrecursiveOperations:
                     fishtype: fishtype
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_polymorphicrecursive_get_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2722,11 +2752,11 @@ class PolymorphicrecursiveOperations:
                     fishtype: fishtype
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -2783,9 +2813,10 @@ class ReadonlypropertyOperations:
                     "size": 0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_readonlyproperty_get_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2827,11 +2858,11 @@ class ReadonlypropertyOperations:
                     "size": 0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = complex_body
 
@@ -2891,9 +2922,10 @@ class FlattencomplexOperations:
                     kind: kind
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_flattencomplex_get_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore

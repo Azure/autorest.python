@@ -119,7 +119,6 @@ class PetOperations:
                     "name": "str"  # Optional. Gets the Pet by id.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
         error_map = {
             401: ClientAuthenticationError,
             409: ResourceExistsError,
@@ -128,6 +127,8 @@ class PetOperations:
             501: HttpResponseError,
         }
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
 
         request = build_pet_get_pet_by_id_request(
             pet_id=pet_id,
@@ -173,7 +174,6 @@ class PetOperations:
                     "actionResponse": "str"  # Optional. action feedback.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -181,6 +181,8 @@ class PetOperations:
             500: HttpResponseError,
         }
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_pet_do_something_request(
             what_action=what_action,
@@ -217,7 +219,6 @@ class PetOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -225,6 +226,8 @@ class PetOperations:
             500: HttpResponseError,
         }
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_pet_has_models_param_request(
             models=models,

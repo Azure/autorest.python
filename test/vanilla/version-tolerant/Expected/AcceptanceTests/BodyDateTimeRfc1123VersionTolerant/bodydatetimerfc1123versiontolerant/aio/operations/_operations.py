@@ -63,9 +63,10 @@ class Datetimerfc1123Operations:
         :rtype: ~datetime.datetime or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[datetime.datetime]]
 
         request = build_datetimerfc1123_get_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -94,9 +95,10 @@ class Datetimerfc1123Operations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
 
         request = build_datetimerfc1123_get_invalid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -125,9 +127,10 @@ class Datetimerfc1123Operations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
 
         request = build_datetimerfc1123_get_overflow_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -156,9 +159,10 @@ class Datetimerfc1123Operations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
 
         request = build_datetimerfc1123_get_underflow_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -191,11 +195,11 @@ class Datetimerfc1123Operations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = datetime_body
 
@@ -225,9 +229,10 @@ class Datetimerfc1123Operations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
 
         request = build_datetimerfc1123_get_utc_lowercase_max_date_time_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -256,9 +261,10 @@ class Datetimerfc1123Operations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
 
         request = build_datetimerfc1123_get_utc_uppercase_max_date_time_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -291,11 +297,11 @@ class Datetimerfc1123Operations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = datetime_body
 
@@ -325,9 +331,10 @@ class Datetimerfc1123Operations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
 
         request = build_datetimerfc1123_get_utc_min_date_time_request()
         request.url = self._client.format_url(request.url)  # type: ignore

@@ -324,9 +324,10 @@ class StringOperations:
         :rtype: str or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
 
         request = build_string_get_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -359,11 +360,11 @@ class StringOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if string_body is not None:
             _json = string_body
@@ -396,9 +397,10 @@ class StringOperations:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         request = build_string_get_empty_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -430,12 +432,12 @@ class StringOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         string_body = kwargs.pop("string_body", "")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_string_put_empty_request(
             content_type=content_type,
@@ -463,9 +465,10 @@ class StringOperations:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         request = build_string_get_mbcs_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -498,7 +501,6 @@ class StringOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -506,6 +508,7 @@ class StringOperations:
         string_body = kwargs.pop(
             "string_body", "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
         )  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_string_put_mbcs_request(
             content_type=content_type,
@@ -535,9 +538,10 @@ class StringOperations:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         request = build_string_get_whitespace_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -572,7 +576,6 @@ class StringOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
@@ -580,6 +583,7 @@ class StringOperations:
         string_body = kwargs.pop(
             "string_body", "    Now is the time for all good men to come to the aid of their country    "
         )  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_string_put_whitespace_request(
             content_type=content_type,
@@ -607,9 +611,10 @@ class StringOperations:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         request = build_string_get_not_provided_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -638,9 +643,10 @@ class StringOperations:
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
 
         request = build_string_get_base64_encoded_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -669,9 +675,10 @@ class StringOperations:
         :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[bytes]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[bytes]
 
         request = build_string_get_base64_url_encoded_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -704,11 +711,11 @@ class StringOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = string_body
 
@@ -738,9 +745,10 @@ class StringOperations:
         :rtype: bytes or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[bytes]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[bytes]]
 
         request = build_string_get_null_base64_url_encoded_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -793,9 +801,10 @@ class EnumOperations:
                 # response body for status code(s): 200
                 response.json() == "str"  # Optional.
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         request = build_enum_get_not_expandable_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -829,11 +838,11 @@ class EnumOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = string_body
 
@@ -869,9 +878,10 @@ class EnumOperations:
                 # response body for status code(s): 200
                 response.json() == "str"  # Optional.
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         request = build_enum_get_referenced_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -905,11 +915,11 @@ class EnumOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = enum_string_body
 
@@ -949,9 +959,10 @@ class EnumOperations:
                     "field1": "str"  # Optional. Sample string.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_enum_get_referenced_constant_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -994,11 +1005,11 @@ class EnumOperations:
                     "field1": "str"  # Optional. Sample string.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = enum_string_body
 

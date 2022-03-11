@@ -57,9 +57,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                     "name": "str"  # Required.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_get_horse_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -99,11 +100,11 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                     "name": "str"  # Required.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         _json = horse
 
@@ -145,9 +146,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                     "name": "str"  # Required.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_get_pet_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -186,11 +188,11 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                     "name": "str"  # Required.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         _json = pet
 
@@ -233,9 +235,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                     "meows": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_get_feline_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -275,11 +278,11 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                     "meows": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         _json = feline
 
@@ -324,9 +327,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                     "name": "str"  # Required.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_get_cat_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -368,11 +372,11 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                     "name": "str"  # Required.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         _json = cat
 
@@ -419,9 +423,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                     "name": "str"  # Required.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_get_kitten_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -466,11 +471,11 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                     "name": "str"  # Required.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[str]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         _json = kitten
 

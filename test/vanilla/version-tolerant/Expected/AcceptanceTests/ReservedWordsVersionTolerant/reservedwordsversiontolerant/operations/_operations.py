@@ -172,9 +172,10 @@ class ImportOperations:
         :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
         request = build_import_builders_operation_one_request(
             parameter1=parameter1,
@@ -209,11 +210,11 @@ class ReservedWordsClientOperationsMixin(MixinABC):
         :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
         _content = content
 
@@ -249,11 +250,11 @@ class ReservedWordsClientOperationsMixin(MixinABC):
         :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
         _json = json
 
@@ -299,11 +300,11 @@ class ReservedWordsClientOperationsMixin(MixinABC):
                     "world": "str"  # Pass in 'world'.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/x-www-form-urlencoded")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
         request = build_operation_with_data_param_request(
             content_type=content_type,
@@ -347,11 +348,11 @@ class ReservedWordsClientOperationsMixin(MixinABC):
                     "files": b'bytes'  # Files to upload. Pass in list of input streams.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
         request = build_operation_with_files_param_request(
             content_type=content_type,
@@ -394,9 +395,10 @@ class ReservedWordsClientOperationsMixin(MixinABC):
         :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
         request = build_operation_with_url_request(
             url=url,

@@ -46,9 +46,10 @@ class ErrorWithSecretsOperationsMixin(MixinABC):
                     "value": "str"  # Required. The secret value.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_create_secret_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -77,9 +78,10 @@ class ErrorWithSecretsOperationsMixin(MixinABC):
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_error_with_secrets_request()
         request.url = self._client.format_url(request.url)  # type: ignore

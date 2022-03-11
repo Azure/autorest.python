@@ -41,13 +41,13 @@ class MultiapiServiceClientOperationsMixin:
         :rtype: ~azure.multiapi.sample.v2.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ModelTwo"]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
 
         api_version = kwargs.pop('api_version', "2.0.0")  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ModelTwo"]
 
         
         request = build_test_one_request(
@@ -57,9 +57,9 @@ class MultiapiServiceClientOperationsMixin:
             template_url=self.test_one.metadata['url'],
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request,
             stream=False,
             **kwargs
@@ -99,13 +99,13 @@ class MultiapiServiceClientOperationsMixin:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
 
         api_version = kwargs.pop('api_version', "2.0.0")  # type: str
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         
         request = build_test_different_calls_request(
@@ -115,9 +115,9 @@ class MultiapiServiceClientOperationsMixin:
             template_url=self.test_different_calls.metadata['url'],
         )
         request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request,
             stream=False,
             **kwargs

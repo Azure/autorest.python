@@ -932,9 +932,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
         request = build_dictionary_get_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -971,9 +972,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
         request = build_dictionary_get_empty_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1014,11 +1016,11 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -1056,9 +1058,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
 
         request = build_dictionary_get_null_value_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1095,9 +1098,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
 
         request = build_dictionary_get_null_key_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1134,9 +1138,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
 
         request = build_dictionary_get_empty_string_key_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1173,9 +1178,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
 
         request = build_dictionary_get_invalid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1212,9 +1218,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
 
         request = build_dictionary_get_boolean_tfft_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1255,11 +1262,11 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -1297,9 +1304,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
 
         request = build_dictionary_get_boolean_invalid_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1336,9 +1344,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
 
         request = build_dictionary_get_boolean_invalid_string_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1375,9 +1384,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
         request = build_dictionary_get_integer_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1418,11 +1428,11 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -1460,9 +1470,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
         request = build_dictionary_get_int_invalid_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1499,9 +1510,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
         request = build_dictionary_get_int_invalid_string_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1538,9 +1550,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
         request = build_dictionary_get_long_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1581,11 +1594,11 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -1623,9 +1636,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
         request = build_dictionary_get_long_invalid_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1662,9 +1676,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
         request = build_dictionary_get_long_invalid_string_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1701,9 +1716,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
 
         request = build_dictionary_get_float_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1744,11 +1760,11 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -1786,9 +1802,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
 
         request = build_dictionary_get_float_invalid_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1825,9 +1842,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
 
         request = build_dictionary_get_float_invalid_string_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1864,9 +1882,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
 
         request = build_dictionary_get_double_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1907,11 +1926,11 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -1949,9 +1968,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
 
         request = build_dictionary_get_double_invalid_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1988,9 +2008,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
 
         request = build_dictionary_get_double_invalid_string_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2027,9 +2048,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
 
         request = build_dictionary_get_string_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2070,11 +2092,11 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -2112,9 +2134,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
 
         request = build_dictionary_get_string_with_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2151,9 +2174,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
 
         request = build_dictionary_get_string_with_invalid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2190,9 +2214,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
 
         request = build_dictionary_get_date_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2233,11 +2258,11 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -2275,9 +2300,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
 
         request = build_dictionary_get_date_invalid_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2314,9 +2340,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
 
         request = build_dictionary_get_date_invalid_chars_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2354,9 +2381,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
 
         request = build_dictionary_get_date_time_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2398,11 +2426,11 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -2440,9 +2468,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
 
         request = build_dictionary_get_date_time_invalid_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2479,9 +2508,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
 
         request = build_dictionary_get_date_time_invalid_chars_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2519,9 +2549,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
 
         request = build_dictionary_get_date_time_rfc1123_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2563,11 +2594,11 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -2605,9 +2636,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "1 day, 0:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.timedelta]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.timedelta]]
 
         request = build_dictionary_get_duration_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2648,11 +2680,11 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "1 day, 0:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -2691,9 +2723,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": bytearray("bytearray", encoding="utf-8")  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytearray]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytearray]]
 
         request = build_dictionary_get_byte_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2735,11 +2768,11 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": bytearray("bytearray", encoding="utf-8")  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -2778,9 +2811,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": bytearray("bytearray", encoding="utf-8")  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytearray]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytearray]]
 
         request = build_dictionary_get_byte_invalid_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2818,9 +2852,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": bytes("bytes", encoding="utf-8")  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytes]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytes]]
 
         request = build_dictionary_get_base64_url_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2860,9 +2895,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, JSONType]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, JSONType]]]
 
         request = build_dictionary_get_complex_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2902,9 +2938,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
 
         request = build_dictionary_get_complex_empty_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2945,9 +2982,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
 
         request = build_dictionary_get_complex_item_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2988,9 +3026,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
 
         request = build_dictionary_get_complex_item_empty_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -3031,9 +3070,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
 
         request = build_dictionary_get_complex_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -3078,11 +3118,11 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -3122,9 +3162,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, List[str]]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, List[str]]]]
 
         request = build_dictionary_get_array_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -3163,9 +3204,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
 
         request = build_dictionary_get_array_empty_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -3204,9 +3246,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
 
         request = build_dictionary_get_array_item_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -3245,9 +3288,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
 
         request = build_dictionary_get_array_item_empty_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -3287,9 +3331,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
 
         request = build_dictionary_get_array_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -3333,11 +3378,11 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -3377,9 +3422,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
 
         request = build_dictionary_get_dictionary_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -3418,9 +3464,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
 
         request = build_dictionary_get_dictionary_empty_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -3460,9 +3507,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
 
         request = build_dictionary_get_dictionary_item_null_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -3502,9 +3550,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
 
         request = build_dictionary_get_dictionary_item_empty_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -3545,9 +3594,10 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
 
         request = build_dictionary_get_dictionary_valid_request()
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -3592,11 +3642,11 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 

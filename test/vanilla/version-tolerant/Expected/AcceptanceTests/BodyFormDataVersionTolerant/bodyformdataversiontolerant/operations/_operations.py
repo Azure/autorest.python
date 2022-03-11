@@ -120,11 +120,11 @@ class FormdataOperations:
                       written here.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
 
         request = build_formdata_upload_file_request(
             content_type=content_type,
@@ -158,11 +158,11 @@ class FormdataOperations:
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
 
         _content = file_content
 
@@ -209,11 +209,11 @@ class FormdataOperations:
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[IO]
 
         request = build_formdata_upload_files_request(
             content_type=content_type,
