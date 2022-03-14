@@ -6,6 +6,11 @@
 
 Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
 """
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import List
 
 
 def patch_sdk():
@@ -17,4 +22,5 @@ def patch_sdk():
     """
 
 
-__all__ = []  # add all objects you want publicly available to users at this package level
+"""Add all objects you want publicly available to users at this package level here"""
+__all__ = []  # type: List[str]
