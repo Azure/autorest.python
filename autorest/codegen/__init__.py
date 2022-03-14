@@ -264,11 +264,6 @@ class CodeGenerator(Plugin):
         code_model.package_dependency = self._build_package_dependency()
         return code_model
 
-    def _get_credential_scopes_temp(self) -> Union[List[str], None]:
-        credential_scopes_temp = self._autorestapi.get_value("credential-scopes")
-        credential_scopes = credential_scopes_temp.split(",") if credential_scopes_temp else None
-        return credential_scopes
-
     def _get_credential_scopes(self) -> Union[List[str], None]:
         credential_scopes_temp = self._autorestapi.get_value("credential-scopes")
         return credential_scopes_temp.split(",") if credential_scopes_temp else None
