@@ -167,11 +167,10 @@ class JinjaSerializer:
 
 
     def _keep_patch_file(self, path_file: Path, env: Environment):
-        # if self._autorestapi.read_file(path_file):
-        #     self._autorestapi.write_file(path_file, self._autorestapi.read_file(path_file))
-        # else:
-        #     self._autorestapi.write_file(path_file, PatchSerializer(env=env, code_model=self.code_model).serialize())
-        self._autorestapi.write_file(path_file, PatchSerializer(env=env, code_model=self.code_model).serialize())
+        if self._autorestapi.read_file(path_file):
+            self._autorestapi.write_file(path_file, self._autorestapi.read_file(path_file))
+        else:
+            self._autorestapi.write_file(path_file, PatchSerializer(env=env, code_model=self.code_model).serialize())
 
     def _serialize_and_write_models_folder(self, env: Environment, namespace_path: Path) -> None:
         # Write the models folder
