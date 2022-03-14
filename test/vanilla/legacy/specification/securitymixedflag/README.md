@@ -13,5 +13,7 @@ basic-setup-py: true
 package-version: 1.0.0b1
 output-artifact: code-model-v4-no-tags
 payload-flattening-threshold: 1
-security: [AADToken, AzureKey]
+add-credentials: true
+credential-scopes: https://test.azure.com/.default
+security: [AzureKey]
 ```

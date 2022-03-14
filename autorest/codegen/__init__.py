@@ -280,22 +280,22 @@ class CodeGenerator(Plugin):
     ):
         credential_schema_policy = credentials_info.get(_Credential.POLICY_TYPE)
         credential_key_header_name = self._autorestapi.get_value('credential-key-header-name')
-        if code_model.options['azure_arm']:
-            credential_scopes = ["https://management.azure.com/.default"]
-        else:
-            credential_scopes = self._get_credential_scopes()
+        credential_scopes = self._get_credential_scopes()
         if hasattr(credential_schema_policy, "credential_scopes"):
             if not credential_scopes:
-                # If add-credential is specified, we still want to add a credential_scopes variable.
-                # Will make it an empty list so we can differentiate between this case and None
-                _LOGGER.warning(
-                    "You have default credential policy %s "
-                    "but not the --credential-scopes flag set while generating non-management plane code. "
-                    "This is not recommend because it forces the customer to pass credential scopes "
-                    "through kwargs if they want to authenticate.",
-                    credential_schema_policy.name()
-                )
-                credential_scopes = []
+                if code_model.options['azure_arm']:
+                    credential_scopes = ["https://management.azure.com/.default"]
+                else:
+                    # If add-credential is specified, we still want to add a credential_scopes variable.
+                    # Will make it an empty list so we can differentiate between this case and None
+                    _LOGGER.warning(
+                        "You have default credential policy %s "
+                        "but not the --credential-scopes flag set while generating non-management plane code. "
+                        "This is not recommend because it forces the customer to pass credential scopes "
+                        "through kwargs if they want to authenticate.",
+                        credential_schema_policy.name()
+                    )
+                    credential_scopes = []
 
             if credential_key_header_name:
                 raise ValueError(
