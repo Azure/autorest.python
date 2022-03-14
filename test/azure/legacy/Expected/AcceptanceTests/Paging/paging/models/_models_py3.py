@@ -6,11 +6,15 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional, Union
+from typing import List, Optional, TYPE_CHECKING, Union
 
 import msrest.serialization
 
 from ._auto_rest_paging_test_service_enums import *
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    import __init__ as _models
 
 
 class CustomParameterGroup(msrest.serialization.Model):
@@ -60,7 +64,9 @@ class OdataProductResult(msrest.serialization.Model):
         "odata_next_link": {"key": "odata\\.nextLink", "type": "str"},
     }
 
-    def __init__(self, *, values: Optional[List["Product"]] = None, odata_next_link: Optional[str] = None, **kwargs):
+    def __init__(
+        self, *, values: Optional[List["_models.Product"]] = None, odata_next_link: Optional[str] = None, **kwargs
+    ):
         """
         :keyword values:
         :paramtype values: list[~paging.models.Product]
@@ -85,7 +91,7 @@ class OperationResult(msrest.serialization.Model):
         "status": {"key": "status", "type": "str"},
     }
 
-    def __init__(self, *, status: Optional[Union[str, "OperationResultStatus"]] = None, **kwargs):
+    def __init__(self, *, status: Optional[Union[str, "_models.OperationResultStatus"]] = None, **kwargs):
         """
         :keyword status: The status of the request. Possible values include: "Succeeded", "Failed",
          "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
@@ -231,7 +237,7 @@ class Product(msrest.serialization.Model):
         "properties": {"key": "properties", "type": "ProductProperties"},
     }
 
-    def __init__(self, *, properties: Optional["ProductProperties"] = None, **kwargs):
+    def __init__(self, *, properties: Optional["_models.ProductProperties"] = None, **kwargs):
         """
         :keyword properties:
         :paramtype properties: ~paging.models.ProductProperties
@@ -280,7 +286,7 @@ class ProductResult(msrest.serialization.Model):
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(self, *, values: Optional[List["Product"]] = None, next_link: Optional[str] = None, **kwargs):
+    def __init__(self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs):
         """
         :keyword values:
         :paramtype values: list[~paging.models.Product]
@@ -306,7 +312,7 @@ class ProductResultValue(msrest.serialization.Model):
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(self, *, value: Optional[List["Product"]] = None, next_link: Optional[str] = None, **kwargs):
+    def __init__(self, *, value: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs):
         """
         :keyword value:
         :paramtype value: list[~paging.models.Product]
@@ -332,7 +338,7 @@ class ProductResultValueWithXMSClientName(msrest.serialization.Model):
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(self, *, indexes: Optional[List["Product"]] = None, next_link: Optional[str] = None, **kwargs):
+    def __init__(self, *, indexes: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs):
         """
         :keyword indexes:
         :paramtype indexes: list[~paging.models.Product]

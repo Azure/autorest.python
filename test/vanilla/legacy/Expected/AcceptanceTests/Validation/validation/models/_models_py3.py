@@ -6,10 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional
+from typing import List, Optional, TYPE_CHECKING
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    import __init__ as _models
 
 
 class ChildProduct(msrest.serialization.Model):
@@ -163,8 +167,8 @@ class Product(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        child: "ChildProduct",
-        const_child: "ConstantProduct",
+        child: "_models.ChildProduct",
+        const_child: "_models.ConstantProduct",
         display_names: Optional[List[str]] = None,
         capacity: Optional[int] = None,
         image: Optional[str] = None,

@@ -6,9 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional
+from typing import List, Optional, TYPE_CHECKING
 
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    import __init__ as _models
 
 
 class Error(msrest.serialization.Model):
@@ -48,7 +52,7 @@ class Product(msrest.serialization.Model):
         "properties": {"key": "properties", "type": "ProductProperties"},
     }
 
-    def __init__(self, *, properties: Optional["ProductProperties"] = None, **kwargs):
+    def __init__(self, *, properties: Optional["_models.ProductProperties"] = None, **kwargs):
         """
         :keyword properties:
         :paramtype properties: ~custombaseurlpaging.models.ProductProperties
@@ -97,7 +101,7 @@ class ProductResult(msrest.serialization.Model):
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(self, *, values: Optional[List["Product"]] = None, next_link: Optional[str] = None, **kwargs):
+    def __init__(self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs):
         """
         :keyword values:
         :paramtype values: list[~custombaseurlpaging.models.Product]

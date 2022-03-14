@@ -7,11 +7,15 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Dict, List, Optional, Union
+from typing import Dict, List, Optional, TYPE_CHECKING, Union
 
 import msrest.serialization
 
 from ._storage_management_client_enums import *
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    import __init__ as _models
 
 
 class Bar(msrest.serialization.Model):
@@ -25,7 +29,7 @@ class Bar(msrest.serialization.Model):
         "recursive_point": {"key": "RecursivePoint", "type": "Endpoints"},
     }
 
-    def __init__(self, *, recursive_point: Optional["Endpoints"] = None, **kwargs):
+    def __init__(self, *, recursive_point: Optional["_models.Endpoints"] = None, **kwargs):
         """
         :keyword recursive_point: Recursive Endpoints.
         :paramtype recursive_point: ~storage.models.Endpoints
@@ -59,7 +63,7 @@ class CheckNameAvailabilityResult(msrest.serialization.Model):
         self,
         *,
         name_available: Optional[bool] = None,
-        reason: Optional[Union[str, "Reason"]] = None,
+        reason: Optional[Union[str, "_models.Reason"]] = None,
         message: Optional[str] = None,
         **kwargs
     ):
@@ -138,8 +142,8 @@ class Endpoints(msrest.serialization.Model):
         blob: Optional[str] = None,
         queue: Optional[str] = None,
         table: Optional[str] = None,
-        dummy_end_point: Optional["Endpoints"] = None,
-        foo_point: Optional["Foo"] = None,
+        dummy_end_point: Optional["_models.Endpoints"] = None,
+        foo_point: Optional["_models.Foo"] = None,
         **kwargs
     ):
         """
@@ -173,7 +177,7 @@ class Foo(msrest.serialization.Model):
         "bar_point": {"key": "Bar\\.Point", "type": "Bar"},
     }
 
-    def __init__(self, *, bar_point: Optional["Bar"] = None, **kwargs):
+    def __init__(self, *, bar_point: Optional["_models.Bar"] = None, **kwargs):
         """
         :keyword bar_point: Bar point.
         :paramtype bar_point: ~storage.models.Bar
@@ -316,17 +320,17 @@ class StorageAccount(Resource):
         *,
         location: str,
         tags: Optional[Dict[str, str]] = None,
-        provisioning_state: Optional[Union[str, "ProvisioningState"]] = None,
-        account_type: Optional[Union[str, "AccountType"]] = None,
-        primary_endpoints: Optional["Endpoints"] = None,
+        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
+        account_type: Optional[Union[str, "_models.AccountType"]] = None,
+        primary_endpoints: Optional["_models.Endpoints"] = None,
         primary_location: Optional[str] = None,
-        status_of_primary: Optional[Union[str, "AccountStatus"]] = None,
+        status_of_primary: Optional[Union[str, "_models.AccountStatus"]] = None,
         last_geo_failover_time: Optional[datetime.datetime] = None,
         secondary_location: Optional[str] = None,
-        status_of_secondary: Optional[Union[str, "AccountStatus"]] = None,
+        status_of_secondary: Optional[Union[str, "_models.AccountStatus"]] = None,
         creation_time: Optional[datetime.datetime] = None,
-        custom_domain: Optional["CustomDomain"] = None,
-        secondary_endpoints: Optional["Endpoints"] = None,
+        custom_domain: Optional["_models.CustomDomain"] = None,
+        secondary_endpoints: Optional["_models.Endpoints"] = None,
         **kwargs
     ):
         """
@@ -460,7 +464,7 @@ class StorageAccountCreateParameters(Resource):
         *,
         location: str,
         tags: Optional[Dict[str, str]] = None,
-        account_type: Optional[Union[str, "AccountType"]] = None,
+        account_type: Optional[Union[str, "_models.AccountType"]] = None,
         **kwargs
     ):
         """
@@ -517,7 +521,9 @@ class StorageAccountListResult(msrest.serialization.Model):
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(self, *, value: Optional[List["StorageAccount"]] = None, next_link: Optional[str] = None, **kwargs):
+    def __init__(
+        self, *, value: Optional[List["_models.StorageAccount"]] = None, next_link: Optional[str] = None, **kwargs
+    ):
         """
         :keyword value: Gets the list of storage accounts and their properties.
         :paramtype value: list[~storage.models.StorageAccount]
@@ -541,7 +547,7 @@ class StorageAccountRegenerateKeyParameters(msrest.serialization.Model):
         "key_name": {"key": "keyName", "type": "str"},
     }
 
-    def __init__(self, *, key_name: Optional[Union[str, "KeyName"]] = None, **kwargs):
+    def __init__(self, *, key_name: Optional[Union[str, "_models.KeyName"]] = None, **kwargs):
         """
         :keyword key_name: Possible values include: "key1", "key2".
         :paramtype key_name: str or ~storage.models.KeyName
@@ -600,8 +606,8 @@ class StorageAccountUpdateParameters(Resource):
         *,
         location: str,
         tags: Optional[Dict[str, str]] = None,
-        account_type: Optional[Union[str, "AccountType"]] = None,
-        custom_domain: Optional["CustomDomain"] = None,
+        account_type: Optional[Union[str, "_models.AccountType"]] = None,
+        custom_domain: Optional["_models.CustomDomain"] = None,
         **kwargs
     ):
         """
@@ -668,10 +674,10 @@ class Usage(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        unit: Optional[Union[str, "UsageUnit"]] = None,
+        unit: Optional[Union[str, "_models.UsageUnit"]] = None,
         current_value: Optional[int] = None,
         limit: Optional[int] = None,
-        name: Optional["UsageName"] = None,
+        name: Optional["_models.UsageName"] = None,
         **kwargs
     ):
         """
@@ -704,7 +710,7 @@ class UsageListResult(msrest.serialization.Model):
         "value": {"key": "value", "type": "[Usage]"},
     }
 
-    def __init__(self, *, value: Optional[List["Usage"]] = None, **kwargs):
+    def __init__(self, *, value: Optional[List["_models.Usage"]] = None, **kwargs):
         """
         :keyword value: Gets or sets the list Storage Resource Usages.
         :paramtype value: list[~storage.models.Usage]

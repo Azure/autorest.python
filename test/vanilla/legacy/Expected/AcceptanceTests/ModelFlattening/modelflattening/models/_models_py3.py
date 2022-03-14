@@ -6,10 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, TYPE_CHECKING
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    import __init__ as _models
 
 
 class BaseProduct(msrest.serialization.Model):
@@ -70,7 +74,7 @@ class Error(msrest.serialization.Model):
         *,
         status: Optional[int] = None,
         message: Optional[str] = None,
-        parent_error: Optional["Error"] = None,
+        parent_error: Optional["_models.Error"] = None,
         **kwargs
     ):
         """
@@ -255,7 +259,7 @@ class FlattenParameterGroup(msrest.serialization.Model):
         *,
         name: str,
         product_id: str,
-        simple_body_product: Optional["SimpleProduct"] = None,
+        simple_body_product: Optional["_models.SimpleProduct"] = None,
         description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
         capacity: Optional[str] = None,
@@ -380,9 +384,9 @@ class ResourceCollection(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        productresource: Optional["FlattenedProduct"] = None,
-        arrayofresources: Optional[List["FlattenedProduct"]] = None,
-        dictionaryofresources: Optional[Dict[str, "FlattenedProduct"]] = None,
+        productresource: Optional["_models.FlattenedProduct"] = None,
+        arrayofresources: Optional[List["_models.FlattenedProduct"]] = None,
+        dictionaryofresources: Optional[Dict[str, "_models.FlattenedProduct"]] = None,
         **kwargs
     ):
         """

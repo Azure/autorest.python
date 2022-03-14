@@ -40,6 +40,7 @@ class ModelBaseSerializer:
             init_args=self.init_args,
             input_documentation_string=ModelBaseSerializer.input_documentation_string,
             variable_documentation_string=ModelBaseSerializer.variable_documentation_string,
+            declare_model=ModelBaseSerializer.declare_model,
         )
 
     def imports(self) -> FileImport:
@@ -61,6 +62,13 @@ class ModelBaseSerializer:
         else:
             properties_to_initialize = model.properties
         return properties_to_initialize
+
+    @staticmethod
+    def declare_model(model: ObjectSchema) -> str:
+        basename = "msrest.serialization.Model"
+        if model.base_models:
+            basename = ", ".join([cast(ObjectSchema, m).name for m in model.base_models])
+        return f"class {model.name}({basename}):"
 
     @staticmethod
     def input_documentation_string(prop: Property) -> List[str]:

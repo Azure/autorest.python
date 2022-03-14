@@ -1,0 +1,16 @@
+{
+  "GetRawModel": 28,
+  "GetHandwrittenModel": 14,
+  "PostRawModel": 11,
+  "PostHandwrittenModel": 4,
+  "GetRawPages": 0,
+  "GetHandwrittenModelPages": 0,
+  "RawLRO": 0,
+  "HandwrittenModelLRO": 0,
+  "LLCAddOptionalInput": 0,
+  "LLCNewBodyType.JSON": 0,
+  "LLCNewBodyType.JPEG": 0,
+  "LLCNewBodyType": 0,
+  "LLCAddNewOperation": 0,
+  "LLCAddNewPath": 0
+}

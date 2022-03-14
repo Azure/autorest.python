@@ -1,12 +1,7 @@
-{% set basename = model.base_models | join(', ', attribute='name') if model.base_models else "" %}
 {# actual template starts here #}
 
 
-{% if basename %}
-class {{ model.name }}({{ basename }}):
-{% else %}
-class {{ model.name }}(msrest.serialization.Model):
-{% endif %}
+{{ declare_model(model) }}
     """{{ model.description }}
     {% if model.discriminator_name %}
 

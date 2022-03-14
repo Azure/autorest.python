@@ -44,10 +44,6 @@ class DictionarySchema(BaseSchema):
         return f"Dict[str, {self.element_type.type_annotation}]"
 
     @property
-    def operation_type_annotation(self) -> str:
-        return f"Dict[str, {self.element_type.operation_type_annotation}]"
-
-    @property
     def docstring_text(self) -> str:
         return f"dict mapping str to {self.element_type.docstring_text}"
 
@@ -100,4 +96,9 @@ class DictionarySchema(BaseSchema):
         file_import = FileImport()
         file_import.add_submodule_import("typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.merge(self.element_type.imports())
+        return file_import
+
+    def model_file_imports(self) -> FileImport:
+        file_import = self.imports()
+        file_import.merge(self.element_type.model_file_imports())
         return file_import

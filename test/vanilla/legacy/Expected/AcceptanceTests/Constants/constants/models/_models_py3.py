@@ -25,7 +25,10 @@ class ModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
     }
 
     def __init__(
-        self, *, parameter: Optional[Union[str, "ModelAsStringNoRequiredOneValueDefaultEnum"]] = "value1", **kwargs
+        self,
+        *,
+        parameter: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultEnum"]] = "value1",
+        **kwargs
     ):
         """
         :keyword parameter: Possible values include: "value1".
@@ -47,7 +50,10 @@ class ModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
     }
 
     def __init__(
-        self, *, parameter: Optional[Union[str, "ModelAsStringNoRequiredOneValueNoDefaultEnum"]] = None, **kwargs
+        self,
+        *,
+        parameter: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultEnum"]] = None,
+        **kwargs
     ):
         """
         :keyword parameter: Possible values include: "value1".
@@ -69,7 +75,10 @@ class ModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
     }
 
     def __init__(
-        self, *, parameter: Optional[Union[str, "ModelAsStringNoRequiredTwoValueDefaultEnum"]] = "value1", **kwargs
+        self,
+        *,
+        parameter: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultEnum"]] = "value1",
+        **kwargs
     ):
         """
         :keyword parameter: Possible values include: "value1", "value2".
@@ -91,7 +100,10 @@ class ModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
     }
 
     def __init__(
-        self, *, parameter: Optional[Union[str, "ModelAsStringNoRequiredTwoValueNoDefaultEnum"]] = None, **kwargs
+        self,
+        *,
+        parameter: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultEnum"]] = None,
+        **kwargs
     ):
         """
         :keyword parameter: Possible values include: "value1", "value2".
@@ -118,7 +130,9 @@ class ModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Union[str, "ModelAsStringRequiredOneValueDefaultEnum"] = "value1", **kwargs):
+    def __init__(
+        self, *, parameter: Union[str, "_models.ModelAsStringRequiredOneValueDefaultEnum"] = "value1", **kwargs
+    ):
         """
         :keyword parameter: Required. Possible values include: "value1".
         :paramtype parameter: str or ~constants.models.ModelAsStringRequiredOneValueDefaultEnum
@@ -144,7 +158,7 @@ class ModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Union[str, "ModelAsStringRequiredOneValueNoDefaultEnum"], **kwargs):
+    def __init__(self, *, parameter: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultEnum"], **kwargs):
         """
         :keyword parameter: Required. Possible values include: "value1".
         :paramtype parameter: str or ~constants.models.ModelAsStringRequiredOneValueNoDefaultEnum
@@ -170,7 +184,9 @@ class ModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Union[str, "ModelAsStringRequiredTwoValueDefaultEnum"] = "value1", **kwargs):
+    def __init__(
+        self, *, parameter: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultEnum"] = "value1", **kwargs
+    ):
         """
         :keyword parameter: Required. Possible values include: "value1", "value2".
         :paramtype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueDefaultEnum
@@ -196,7 +212,7 @@ class ModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Union[str, "ModelAsStringRequiredTwoValueNoDefaultEnum"], **kwargs):
+    def __init__(self, *, parameter: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultEnum"], **kwargs):
         """
         :keyword parameter: Required. Possible values include: "value1", "value2".
         :paramtype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueNoDefaultEnum
@@ -261,7 +277,10 @@ class NoModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
     }
 
     def __init__(
-        self, *, parameter: Optional[Union[str, "NoModelAsStringNoRequiredTwoValueDefaultEnum"]] = "value1", **kwargs
+        self,
+        *,
+        parameter: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultEnum"]] = "value1",
+        **kwargs
     ):
         """
         :keyword parameter: Possible values include: "value1", "value2".
@@ -283,7 +302,10 @@ class NoModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
     }
 
     def __init__(
-        self, *, parameter: Optional[Union[str, "NoModelAsStringNoRequiredTwoValueNoDefaultEnum"]] = None, **kwargs
+        self,
+        *,
+        parameter: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultEnum"]] = None,
+        **kwargs
     ):
         """
         :keyword parameter: Possible values include: "value1", "value2".
@@ -362,7 +384,9 @@ class NoModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Union[str, "NoModelAsStringRequiredTwoValueDefaultEnum"] = "value1", **kwargs):
+    def __init__(
+        self, *, parameter: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultEnum"] = "value1", **kwargs
+    ):
         """
         :keyword parameter: Required. Possible values include: "value1", "value2".
         :paramtype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueDefaultEnum
@@ -388,7 +412,7 @@ class NoModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Union[str, "NoModelAsStringRequiredTwoValueNoDefaultEnum"], **kwargs):
+    def __init__(self, *, parameter: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultEnum"], **kwargs):
         """
         :keyword parameter: Required. Possible values include: "value1", "value2".
         :paramtype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueNoDefaultEnum

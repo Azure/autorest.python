@@ -37,13 +37,6 @@ class ListSchema(BaseSchema):
         return f"List[{self.element_type.type_annotation}]"
 
     @property
-    def operation_type_annotation(self) -> str:
-        if self.element_type.operation_type_annotation == "ET.Element":
-            # this means we're version tolerant XML, we just return the XML element
-            return self.element_type.operation_type_annotation
-        return f"List[{self.element_type.operation_type_annotation}]"
-
-    @property
     def docstring_type(self) -> str:
         if self.element_type.docstring_type == "ET.Element":
             # this means we're version tolerant XML, we just return the XML element
@@ -123,4 +116,9 @@ class ListSchema(BaseSchema):
         if not self.element_type.type_annotation == "ET.Element":
             file_import.add_submodule_import("typing", "List", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.merge(self.element_type.imports())
+        return file_import
+
+    def model_file_imports(self) -> FileImport:
+        file_import = self.imports()
+        file_import.merge(self.element_type.model_file_imports())
         return file_import
