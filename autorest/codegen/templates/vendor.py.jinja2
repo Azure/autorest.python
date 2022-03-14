@@ -1,8 +1,9 @@
+{% import 'keywords.jinja2' as keywords with context %}
 {{ code_model.options['license_header'] }}
 
 {{ imports }}
 
-{% if code_model.need_request_converter %}
+{% if code_model.need_request_converter and not async_mode %}
 def _convert_request(request, files=None):
     data = request.content if not files else None
     request = HttpRequest(method=request.method, url=request.url, headers=request.headers, data=data)
@@ -10,7 +11,7 @@ def _convert_request(request, files=None):
         request.set_formdata_body(files)
     return request
 {% endif %}
-{% if code_model.need_format_url %}
+{% if code_model.need_format_url and not async_mode %}
 
 def _format_url_section(template, **kwargs):
     components = template.split("/")
@@ -23,4 +24,13 @@ def _format_url_section(template, **kwargs):
                 c for c in formatted_components if "{{{}}}".format(key.args[0]) not in c
             ]
             template = "/".join(components)
+{% endif %}
+{% if code_model.need_mixin_abc %}
+
+class MixinABC(ABC):
+    """DO NOT use this class. It is for internal typing use only."""
+    _client: {{ keywords.async_class }}PipelineClient
+    _config: {{ code_model.class_name }}Configuration
+    _serialize: Serializer
+    _deserialize: Deserializer
 {% endif %}

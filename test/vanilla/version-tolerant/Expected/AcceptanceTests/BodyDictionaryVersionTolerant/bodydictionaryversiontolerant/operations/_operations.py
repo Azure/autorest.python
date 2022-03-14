@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Dict, List, Optional, TypeVar, cast
 
 from msrest import Serializer
 
@@ -899,7 +899,7 @@ def build_dictionary_put_dictionary_valid_request(
     return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
 
 
-class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
+class DictionaryOperations:  # pylint: disable=too-many-public-methods
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -910,11 +910,11 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
     """
 
     def __init__(self, *args, **kwargs):
-        args = list(args)
-        self._client = args.pop(0) if args else kwargs.pop("client")
-        self._config = args.pop(0) if args else kwargs.pop("config")
-        self._serialize = args.pop(0) if args else kwargs.pop("serializer")
-        self._deserialize = args.pop(0) if args else kwargs.pop("deserializer")
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_null(self, **kwargs: Any) -> Dict[str, int]:
@@ -932,14 +932,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": 0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_null_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_null_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -954,9 +955,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, int], deserialized)
 
     @distributed_trace
     def get_empty(self, **kwargs: Any) -> Dict[str, int]:
@@ -974,14 +975,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": 0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_empty_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_empty_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -996,9 +998,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, int], deserialized)
 
     @distributed_trace
     def put_empty(  # pylint: disable=inconsistent-return-statements
@@ -1020,11 +1022,11 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -1032,9 +1034,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1062,14 +1064,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_null_value_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_null_value_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1084,9 +1087,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, str], deserialized)
 
     @distributed_trace
     def get_null_key(self, **kwargs: Any) -> Dict[str, str]:
@@ -1104,14 +1107,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_null_key_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_null_key_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1126,9 +1130,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, str], deserialized)
 
     @distributed_trace
     def get_empty_string_key(self, **kwargs: Any) -> Dict[str, str]:
@@ -1146,14 +1150,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_empty_string_key_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_empty_string_key_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1168,9 +1173,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, str], deserialized)
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> Dict[str, str]:
@@ -1188,14 +1193,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_invalid_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_invalid_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1210,9 +1216,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, str], deserialized)
 
     @distributed_trace
     def get_boolean_tfft(self, **kwargs: Any) -> Dict[str, bool]:
@@ -1230,14 +1236,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_boolean_tfft_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_boolean_tfft_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1252,9 +1259,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, bool], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, bool], deserialized)
 
     @distributed_trace
     def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
@@ -1276,11 +1283,11 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -1288,9 +1295,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1318,14 +1325,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_boolean_invalid_null_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_boolean_invalid_null_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1340,9 +1348,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, bool], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, bool], deserialized)
 
     @distributed_trace
     def get_boolean_invalid_string(self, **kwargs: Any) -> Dict[str, bool]:
@@ -1360,14 +1368,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": bool  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_boolean_invalid_string_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bool]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_boolean_invalid_string_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1382,9 +1391,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, bool], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, bool], deserialized)
 
     @distributed_trace
     def get_integer_valid(self, **kwargs: Any) -> Dict[str, int]:
@@ -1402,14 +1411,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": 0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_integer_valid_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_integer_valid_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1424,9 +1434,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, int], deserialized)
 
     @distributed_trace
     def put_integer_valid(  # pylint: disable=inconsistent-return-statements
@@ -1448,11 +1458,11 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": 0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -1460,9 +1470,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1490,14 +1500,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": 0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_int_invalid_null_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_int_invalid_null_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1512,9 +1523,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, int], deserialized)
 
     @distributed_trace
     def get_int_invalid_string(self, **kwargs: Any) -> Dict[str, int]:
@@ -1532,14 +1543,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": 0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_int_invalid_string_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_int_invalid_string_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1554,9 +1566,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, int], deserialized)
 
     @distributed_trace
     def get_long_valid(self, **kwargs: Any) -> Dict[str, int]:
@@ -1574,14 +1586,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_long_valid_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_long_valid_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1596,9 +1609,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, int], deserialized)
 
     @distributed_trace
     def put_long_valid(  # pylint: disable=inconsistent-return-statements
@@ -1620,11 +1633,11 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -1632,9 +1645,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1662,14 +1675,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_long_invalid_null_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_long_invalid_null_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1684,9 +1698,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, int], deserialized)
 
     @distributed_trace
     def get_long_invalid_string(self, **kwargs: Any) -> Dict[str, int]:
@@ -1704,14 +1718,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_long_invalid_string_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_long_invalid_string_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1726,9 +1741,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, int], deserialized)
 
     @distributed_trace
     def get_float_valid(self, **kwargs: Any) -> Dict[str, float]:
@@ -1746,14 +1761,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_float_valid_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_float_valid_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1768,9 +1784,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, float], deserialized)
 
     @distributed_trace
     def put_float_valid(  # pylint: disable=inconsistent-return-statements
@@ -1792,11 +1808,11 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -1804,9 +1820,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1834,14 +1850,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_float_invalid_null_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_float_invalid_null_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1856,9 +1873,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, float], deserialized)
 
     @distributed_trace
     def get_float_invalid_string(self, **kwargs: Any) -> Dict[str, float]:
@@ -1876,14 +1893,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_float_invalid_string_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_float_invalid_string_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1898,9 +1916,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, float], deserialized)
 
     @distributed_trace
     def get_double_valid(self, **kwargs: Any) -> Dict[str, float]:
@@ -1918,14 +1936,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_double_valid_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_double_valid_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -1940,9 +1959,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, float], deserialized)
 
     @distributed_trace
     def put_double_valid(  # pylint: disable=inconsistent-return-statements
@@ -1964,11 +1983,11 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -1976,9 +1995,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2006,14 +2025,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_double_invalid_null_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_double_invalid_null_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2028,9 +2048,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, float], deserialized)
 
     @distributed_trace
     def get_double_invalid_string(self, **kwargs: Any) -> Dict[str, float]:
@@ -2048,14 +2068,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": 0.0  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_double_invalid_string_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, float]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_double_invalid_string_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2070,9 +2091,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, float], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, float], deserialized)
 
     @distributed_trace
     def get_string_valid(self, **kwargs: Any) -> Dict[str, str]:
@@ -2090,14 +2111,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_string_valid_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_string_valid_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2112,9 +2134,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, str], deserialized)
 
     @distributed_trace
     def put_string_valid(  # pylint: disable=inconsistent-return-statements
@@ -2136,11 +2158,11 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -2148,9 +2170,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2178,14 +2200,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_string_with_null_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_string_with_null_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2200,9 +2223,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, str], deserialized)
 
     @distributed_trace
     def get_string_with_invalid(self, **kwargs: Any) -> Dict[str, str]:
@@ -2220,14 +2243,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "str"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_string_with_invalid_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, str]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_string_with_invalid_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2242,9 +2266,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, str], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, str], deserialized)
 
     @distributed_trace
     def get_date_valid(self, **kwargs: Any) -> Dict[str, datetime.date]:
@@ -2262,14 +2286,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_date_valid_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_date_valid_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2284,9 +2309,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, datetime.date], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, datetime.date], deserialized)
 
     @distributed_trace
     def put_date_valid(  # pylint: disable=inconsistent-return-statements
@@ -2308,11 +2333,11 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -2320,9 +2345,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2350,14 +2375,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_date_invalid_null_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_date_invalid_null_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2372,9 +2398,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, datetime.date], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, datetime.date], deserialized)
 
     @distributed_trace
     def get_date_invalid_chars(self, **kwargs: Any) -> Dict[str, datetime.date]:
@@ -2392,14 +2418,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_date_invalid_chars_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.date]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_date_invalid_chars_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2414,9 +2441,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, datetime.date], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, datetime.date], deserialized)
 
     @distributed_trace
     def get_date_time_valid(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
@@ -2435,14 +2462,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_date_time_valid_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_date_time_valid_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2457,9 +2485,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, datetime.datetime], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, datetime.datetime], deserialized)
 
     @distributed_trace
     def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
@@ -2482,11 +2510,11 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -2494,9 +2522,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2524,14 +2552,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_date_time_invalid_null_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_date_time_invalid_null_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2546,9 +2575,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, datetime.datetime], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, datetime.datetime], deserialized)
 
     @distributed_trace
     def get_date_time_invalid_chars(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
@@ -2566,14 +2595,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_date_time_invalid_chars_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_date_time_invalid_chars_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2588,9 +2618,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, datetime.datetime], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, datetime.datetime], deserialized)
 
     @distributed_trace
     def get_date_time_rfc1123_valid(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
@@ -2609,14 +2639,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_date_time_rfc1123_valid_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.datetime]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_date_time_rfc1123_valid_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2631,9 +2662,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, datetime.datetime], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, datetime.datetime], deserialized)
 
     @distributed_trace
     def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
@@ -2656,11 +2687,11 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20 00:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -2668,9 +2699,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2698,14 +2729,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "1 day, 0:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.timedelta]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_duration_valid_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, datetime.timedelta]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_duration_valid_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2720,9 +2752,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, datetime.timedelta], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, datetime.timedelta], deserialized)
 
     @distributed_trace
     def put_duration_valid(  # pylint: disable=inconsistent-return-statements
@@ -2744,11 +2776,11 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": "1 day, 0:00:00"  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -2756,9 +2788,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2787,14 +2819,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": bytearray("bytearray", encoding="utf-8")  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytearray]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_byte_valid_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytearray]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_byte_valid_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2809,9 +2842,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, bytearray], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, bytearray], deserialized)
 
     @distributed_trace
     def put_byte_valid(  # pylint: disable=inconsistent-return-statements
@@ -2834,11 +2867,11 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": bytearray("bytearray", encoding="utf-8")  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -2846,9 +2879,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2877,14 +2910,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": bytearray("bytearray", encoding="utf-8")  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytearray]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_byte_invalid_null_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytearray]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_byte_invalid_null_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2899,9 +2933,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, bytearray], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, bytearray], deserialized)
 
     @distributed_trace
     def get_base64_url(self, **kwargs: Any) -> Dict[str, bytes]:
@@ -2920,14 +2954,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     "str": bytes("bytes", encoding="utf-8")  # Optional.
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytes]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_base64_url_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, bytes]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_base64_url_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2942,9 +2977,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, bytes], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, bytes], deserialized)
 
     @distributed_trace
     def get_complex_null(self, **kwargs: Any) -> Optional[Dict[str, JSONType]]:
@@ -2965,14 +3000,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, JSONType]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_complex_null_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, JSONType]]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_complex_null_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -2987,9 +3023,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Optional[Dict[str, JSONType]], deserialized), {})
 
-        return deserialized
+        return cast(Optional[Dict[str, JSONType]], deserialized)
 
     @distributed_trace
     def get_complex_empty(self, **kwargs: Any) -> Dict[str, JSONType]:
@@ -3010,14 +3046,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_complex_empty_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_complex_empty_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3032,9 +3069,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, JSONType], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, JSONType], deserialized)
 
     @distributed_trace
     def get_complex_item_null(self, **kwargs: Any) -> Dict[str, JSONType]:
@@ -3056,14 +3093,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_complex_item_null_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_complex_item_null_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3078,9 +3116,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, JSONType], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, JSONType], deserialized)
 
     @distributed_trace
     def get_complex_item_empty(self, **kwargs: Any) -> Dict[str, JSONType]:
@@ -3102,14 +3140,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_complex_item_empty_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_complex_item_empty_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3124,9 +3163,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, JSONType], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, JSONType], deserialized)
 
     @distributed_trace
     def get_complex_valid(self, **kwargs: Any) -> Dict[str, JSONType]:
@@ -3148,14 +3187,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_complex_valid_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_complex_valid_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3170,9 +3210,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, JSONType], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, JSONType], deserialized)
 
     @distributed_trace
     def put_complex_valid(  # pylint: disable=inconsistent-return-statements
@@ -3198,11 +3238,11 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -3210,9 +3250,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3242,14 +3282,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, List[str]]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_array_null_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, List[str]]]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_array_null_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3264,9 +3305,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Optional[Dict[str, List[str]]], deserialized), {})
 
-        return deserialized
+        return cast(Optional[Dict[str, List[str]]], deserialized)
 
     @distributed_trace
     def get_array_empty(self, **kwargs: Any) -> Dict[str, List[str]]:
@@ -3286,14 +3327,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_array_empty_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_array_empty_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3308,9 +3350,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, List[str]], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, List[str]], deserialized)
 
     @distributed_trace
     def get_array_item_null(self, **kwargs: Any) -> Dict[str, List[str]]:
@@ -3330,14 +3372,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_array_item_null_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_array_item_null_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3352,9 +3395,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, List[str]], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, List[str]], deserialized)
 
     @distributed_trace
     def get_array_item_empty(self, **kwargs: Any) -> Dict[str, List[str]]:
@@ -3374,14 +3417,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_array_item_empty_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_array_item_empty_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3396,9 +3440,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, List[str]], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, List[str]], deserialized)
 
     @distributed_trace
     def get_array_valid(self, **kwargs: Any) -> Dict[str, List[str]]:
@@ -3419,14 +3463,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_array_valid_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, List[str]]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_array_valid_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3441,9 +3486,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, List[str]], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, List[str]], deserialized)
 
     @distributed_trace
     def put_array_valid(  # pylint: disable=inconsistent-return-statements
@@ -3468,11 +3513,11 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     ]
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -3480,9 +3525,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3512,14 +3557,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_dictionary_null_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_dictionary_null_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3534,9 +3580,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, Dict[str, str]], deserialized)
 
     @distributed_trace
     def get_dictionary_empty(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
@@ -3556,14 +3602,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_dictionary_empty_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_dictionary_empty_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3578,9 +3625,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, Dict[str, str]], deserialized)
 
     @distributed_trace
     def get_dictionary_item_null(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
@@ -3601,14 +3648,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_dictionary_item_null_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_dictionary_item_null_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3623,9 +3671,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, Dict[str, str]], deserialized)
 
     @distributed_trace
     def get_dictionary_item_empty(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
@@ -3646,14 +3694,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_dictionary_item_empty_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_dictionary_item_empty_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3668,9 +3717,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, Dict[str, str]], deserialized)
 
     @distributed_trace
     def get_dictionary_valid(self, **kwargs: Any) -> Dict[str, Dict[str, str]]:
@@ -3692,14 +3741,15 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        request = build_dictionary_get_dictionary_valid_request()
-        request.url = self._client.format_url(request.url)
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, Dict[str, str]]]
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        request = build_dictionary_get_dictionary_valid_request()
+        request.url = self._client.format_url(request.url)  # type: ignore
+
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response
@@ -3714,9 +3764,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(Dict[str, Dict[str, str]], deserialized), {})
 
-        return deserialized
+        return cast(Dict[str, Dict[str, str]], deserialized)
 
     @distributed_trace
     def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
@@ -3742,11 +3792,11 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType[None]
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = array_body
 
@@ -3754,9 +3804,9 @@ class DictionaryOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
         )
-        request.url = self._client.format_url(request.url)
+        request.url = self._client.format_url(request.url)  # type: ignore
 
-        pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
         response = pipeline_response.http_response

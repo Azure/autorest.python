@@ -14,6 +14,10 @@
 
 - Add support for security configurations in the swagger(refer to [doc](https://github.com/Azure/autorest/blob/main/docs/generate/authentication.md) for more info) #1161
 
+**Bug Fixes**
+
+- Make `--version-tolerant` generated code mypy compatible in the `azure-sdk-for-python` repo. Tested only with the `--black` flag #1185
+
 ### 2022-03-08 - 5.14.0
 
 | Library                                                                 | Min Version |
