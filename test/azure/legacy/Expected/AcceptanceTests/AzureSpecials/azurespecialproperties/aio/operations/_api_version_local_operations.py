@@ -22,7 +22,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from ..._vendor import _convert_request
+from ..._vendor import _convert_request, _get_from_dict
 from ...operations._api_version_local_operations import (
     build_get_method_local_null_request,
     build_get_method_local_valid_request,

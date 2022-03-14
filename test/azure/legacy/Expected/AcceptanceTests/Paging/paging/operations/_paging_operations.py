@@ -1827,6 +1827,8 @@ class PagingOperations(object):
                 client_request_id=client_request_id,
                 paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
                 cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
                 **kwargs
             )
         kwargs.pop("error_map", None)

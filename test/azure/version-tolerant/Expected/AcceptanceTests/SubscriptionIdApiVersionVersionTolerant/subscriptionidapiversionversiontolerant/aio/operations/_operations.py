@@ -21,6 +21,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
+from ..._vendor import _get_from_dict
 from ...operations._operations import build_group_get_sample_resource_group_request
 
 T = TypeVar("T")

@@ -115,6 +115,8 @@ class PollingPagingExampleOperationsMixin:
                 product=product,
                 content_type=content_type,
                 cls=lambda x,y,z: x,
+                headers=_headers,
+                params=_params,
                 **kwargs
             )
         kwargs.pop('error_map', None)

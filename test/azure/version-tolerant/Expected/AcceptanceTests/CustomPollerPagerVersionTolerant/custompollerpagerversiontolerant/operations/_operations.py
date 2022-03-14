@@ -1713,6 +1713,8 @@ class PagingOperations:
                 maxresults=maxresults,
                 timeout=timeout,
                 cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
                 **kwargs
             )
         kwargs.pop("error_map", None)

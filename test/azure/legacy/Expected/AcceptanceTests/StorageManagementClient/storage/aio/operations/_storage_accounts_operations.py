@@ -221,6 +221,8 @@ class StorageAccountsOperations:
                 content_type=content_type,
                 api_version=api_version,
                 cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
                 **kwargs
             )
         kwargs.pop("error_map", None)

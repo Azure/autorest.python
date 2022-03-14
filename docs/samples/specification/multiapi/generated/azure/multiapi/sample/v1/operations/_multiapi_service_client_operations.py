@@ -305,6 +305,8 @@ class MultiapiServiceClientOperationsMixin(object):
                 product=product,
                 content_type=content_type,
                 cls=lambda x,y,z: x,
+                headers=_headers,
+                params=_params,
                 **kwargs
             )
         kwargs.pop('error_map', None)
@@ -506,6 +508,8 @@ class MultiapiServiceClientOperationsMixin(object):
                 client_request_id=client_request_id,
                 test_lro_and_paging_options=test_lro_and_paging_options,
                 cls=lambda x,y,z: x,
+                headers=_headers,
+                params=_params,
                 **kwargs
             )
         kwargs.pop('error_map', None)

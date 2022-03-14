@@ -27,7 +27,7 @@ from ..models import (
     SchemaResponse,
     IOSchema,
     ParameterStyle,
-    ParameterLocation,
+    ParameterLocation
 )
 from . import utils
 
@@ -1320,6 +1320,8 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
             for parameter in builder.parameters.method
         ])
         retval.append("        cls=lambda x,y,z: x,")
+        retval.append("        headers=_headers,")
+        retval.append("        params=_params,")
         retval.append("        **kwargs")
         retval.append("    )")
         retval.append("kwargs.pop('error_map', None)")

@@ -21,6 +21,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
+from ..._vendor import _get_from_dict
 from ...operations._operations import (
     build_api_version_default_get_method_global_not_provided_valid_request,
     build_api_version_default_get_method_global_valid_request,

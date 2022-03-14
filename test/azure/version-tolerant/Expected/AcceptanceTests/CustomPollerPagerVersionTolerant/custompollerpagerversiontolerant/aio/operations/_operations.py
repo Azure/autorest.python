@@ -26,6 +26,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 from custompollerpagerdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
 
+from ..._vendor import _get_from_dict
 from ...operations._operations import (
     build_paging_duplicate_params_request,
     build_paging_first_response_empty_request,
@@ -1362,6 +1363,8 @@ class PagingOperations:
                 maxresults=maxresults,
                 timeout=timeout,
                 cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
                 **kwargs
             )
         kwargs.pop("error_map", None)

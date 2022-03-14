@@ -22,7 +22,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from ..._vendor import _convert_request
+from ..._vendor import _convert_request, _get_from_dict
 from ...operations._subscription_in_credentials_operations import (
     build_post_method_global_not_provided_valid_request,
     build_post_method_global_null_request,

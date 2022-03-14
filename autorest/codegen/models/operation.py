@@ -10,7 +10,7 @@ from typing import cast, Dict, List, Any, Optional, Union, Set
 from .base_builder import BaseBuilder, create_parameters
 from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
-from .parameter import Parameter, get_parameter
+from .parameter import Parameter, get_parameter, ParameterLocation
 from .parameter_list import ParameterList, get_parameter_list
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
@@ -228,6 +228,14 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             file_import.add_submodule_import(
                 f"{relative_path}_vendor", "_get_from_dict", ImportType.LOCAL
             )
+        else:
+            for kwarg in self.parameters.kwargs:
+                if kwarg.has_default_value and kwarg.location in [ParameterLocation.Header, ParameterLocation.Query]:
+                    file_import.add_submodule_import(
+                        f"{relative_path}_vendor", "_get_from_dict", ImportType.LOCAL
+                    )
+                    break
+
         if self.code_model.options["version_tolerant"] and (
             self.parameters.has_body or
             any(r for r in self.responses if r.has_body)

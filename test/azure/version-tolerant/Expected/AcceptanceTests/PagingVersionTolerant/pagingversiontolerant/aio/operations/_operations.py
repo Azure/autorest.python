@@ -24,6 +24,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 
+from ..._vendor import _get_from_dict
 from ...operations._operations import (
     build_paging_duplicate_params_request,
     build_paging_first_response_empty_request,
@@ -1359,6 +1360,8 @@ class PagingOperations:
                 maxresults=maxresults,
                 timeout=timeout,
                 cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
                 **kwargs
             )
         kwargs.pop("error_map", None)
