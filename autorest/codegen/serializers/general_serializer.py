@@ -79,9 +79,6 @@ class GeneralSerializer:
 
         if self.code_model.need_mixin_abc:
             file_import.add_submodule_import(
-                "__future__", "annotations", ImportType.STDLIB
-            )
-            file_import.add_submodule_import(
                 "abc",
                 "ABC",
                 ImportType.STDLIB,
