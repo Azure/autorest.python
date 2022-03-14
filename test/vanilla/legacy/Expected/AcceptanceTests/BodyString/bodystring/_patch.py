@@ -12,3 +12,5 @@ def patch_sdk():
     except KeyError:
         models = importlib.import_module("bodystring.models")
     setattr(models, "PatchAddedModel", PatchAddedModel)
+
+__all__ = []

@@ -9,7 +9,7 @@ from ._version import VERSION
 __version__ = VERSION
 {% endif %}
 
-{{ keywords.patch_imports(try_except=True) }}
+{{ keywords.patch_imports() }}
 __all__ = ['{{ code_model.class_name }}']
 {{ keywords.extend_all }}
 

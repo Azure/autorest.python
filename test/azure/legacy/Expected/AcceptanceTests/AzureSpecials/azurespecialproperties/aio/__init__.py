@@ -8,11 +8,8 @@
 
 from ._auto_rest_azure_special_parameters_test_client import AutoRestAzureSpecialParametersTestClient
 
-try:
-    from ._patch import __all__ as _patch_all
-    from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
-except ImportError:
-    _patch_all = []
+from ._patch import __all__ as _patch_all
+from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = ["AutoRestAzureSpecialParametersTestClient"]
