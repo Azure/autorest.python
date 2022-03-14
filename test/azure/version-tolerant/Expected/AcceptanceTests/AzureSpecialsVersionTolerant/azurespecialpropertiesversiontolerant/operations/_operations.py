@@ -42,7 +42,7 @@ def build_xms_client_request_id_get_request(**kwargs: Any) -> HttpRequest:
 def build_xms_client_request_id_param_get_request(*, x_ms_client_request_id: str, **kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/"
@@ -59,7 +59,7 @@ def build_subscription_in_credentials_post_method_global_valid_request(
 ) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"
@@ -80,7 +80,7 @@ def build_subscription_in_credentials_post_method_global_null_request(
 ) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"
@@ -105,7 +105,7 @@ def build_subscription_in_credentials_post_method_global_not_provided_valid_requ
     api_version = kwargs.pop(
         "api_version", case_insensitive_dict(_params).pop("api-version", "2015-07-01-preview")
     )  # type: str
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = (
@@ -131,7 +131,7 @@ def build_subscription_in_credentials_post_path_global_valid_request(
 ) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"
@@ -152,7 +152,7 @@ def build_subscription_in_credentials_post_swagger_global_valid_request(
 ) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"
@@ -171,7 +171,7 @@ def build_subscription_in_credentials_post_swagger_global_valid_request(
 def build_subscription_in_method_post_method_local_valid_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
@@ -190,7 +190,7 @@ def build_subscription_in_method_post_method_local_valid_request(subscription_id
 def build_subscription_in_method_post_method_local_null_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"
@@ -209,7 +209,7 @@ def build_subscription_in_method_post_method_local_null_request(subscription_id:
 def build_subscription_in_method_post_path_local_valid_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
@@ -228,7 +228,7 @@ def build_subscription_in_method_post_path_local_valid_request(subscription_id: 
 def build_subscription_in_method_post_swagger_local_valid_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
@@ -251,7 +251,7 @@ def build_api_version_default_get_method_global_valid_request(**kwargs: Any) -> 
     api_version = kwargs.pop(
         "api_version", case_insensitive_dict(_params).pop("api-version", "2015-07-01-preview")
     )  # type: str
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview"
@@ -272,7 +272,7 @@ def build_api_version_default_get_method_global_not_provided_valid_request(**kwa
     api_version = kwargs.pop(
         "api_version", case_insensitive_dict(_params).pop("api-version", "2015-07-01-preview")
     )  # type: str
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"
@@ -293,7 +293,7 @@ def build_api_version_default_get_path_global_valid_request(**kwargs: Any) -> Ht
     api_version = kwargs.pop(
         "api_version", case_insensitive_dict(_params).pop("api-version", "2015-07-01-preview")
     )  # type: str
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview"
@@ -314,7 +314,7 @@ def build_api_version_default_get_swagger_global_valid_request(**kwargs: Any) ->
     api_version = kwargs.pop(
         "api_version", case_insensitive_dict(_params).pop("api-version", "2015-07-01-preview")
     )  # type: str
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview"
@@ -333,7 +333,7 @@ def build_api_version_local_get_method_local_valid_request(**kwargs: Any) -> Htt
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop("api_version", case_insensitive_dict(_params).pop("api-version", "2.0"))  # type: str
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/method/string/none/query/local/2.0"
@@ -353,7 +353,7 @@ def build_api_version_local_get_method_local_null_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/method/string/none/query/local/null"
@@ -373,7 +373,7 @@ def build_api_version_local_get_path_local_valid_request(**kwargs: Any) -> HttpR
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop("api_version", case_insensitive_dict(_params).pop("api-version", "2.0"))  # type: str
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/path/string/none/query/local/2.0"
@@ -392,7 +392,7 @@ def build_api_version_local_get_swagger_local_valid_request(**kwargs: Any) -> Ht
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop("api_version", case_insensitive_dict(_params).pop("api-version", "2.0"))  # type: str
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/swagger/string/none/query/local/2.0"
@@ -409,7 +409,7 @@ def build_api_version_local_get_swagger_local_valid_request(**kwargs: Any) -> Ht
 def build_skip_url_encoding_get_method_path_valid_request(unencoded_path_param: str, **kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}"
@@ -428,7 +428,7 @@ def build_skip_url_encoding_get_method_path_valid_request(unencoded_path_param: 
 def build_skip_url_encoding_get_path_valid_request(unencoded_path_param: str, **kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}"
@@ -448,7 +448,7 @@ def build_skip_url_encoding_get_swagger_path_valid_request(**kwargs: Any) -> Htt
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     unencoded_path_param = kwargs.pop("unencoded_path_param", "path1/path2/path3")  # type: str
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}"
@@ -468,7 +468,7 @@ def build_skip_url_encoding_get_method_query_valid_request(*, q1: str, **kwargs:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/method/query/valid"
@@ -486,7 +486,7 @@ def build_skip_url_encoding_get_method_query_null_request(*, q1: Optional[str] =
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/method/query/null"
@@ -505,7 +505,7 @@ def build_skip_url_encoding_get_path_query_valid_request(*, q1: str, **kwargs: A
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/path/query/valid"
@@ -524,7 +524,7 @@ def build_skip_url_encoding_get_swagger_query_valid_request(**kwargs: Any) -> Ht
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     q1 = kwargs.pop("q1", case_insensitive_dict(_params).pop("q1", "value1&q2=value2&q3=value3"))  # type: str
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/swagger/query/valid"
@@ -544,7 +544,7 @@ def build_odata_get_with_filter_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/odata/filter"
@@ -566,7 +566,7 @@ def build_odata_get_with_filter_request(
 def build_header_custom_named_request_id_request(*, foo_client_request_id: str, **kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/customNamedRequestId"
@@ -583,7 +583,7 @@ def build_header_custom_named_request_id_param_grouping_request(
 ) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/customNamedRequestIdParamGrouping"
@@ -598,7 +598,7 @@ def build_header_custom_named_request_id_param_grouping_request(
 def build_header_custom_named_request_id_head_request(*, foo_client_request_id: str, **kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/customNamedRequestIdHead"

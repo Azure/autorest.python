@@ -36,7 +36,7 @@ _SERIALIZER.client_side_validation = False
 def build_pet_get_by_pet_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/extensibleenums/pet/{petId}"
@@ -58,7 +58,7 @@ def build_pet_add_pet_request(*, json: JSONType = None, content: Any = None, **k
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/extensibleenums/pet/addPet"

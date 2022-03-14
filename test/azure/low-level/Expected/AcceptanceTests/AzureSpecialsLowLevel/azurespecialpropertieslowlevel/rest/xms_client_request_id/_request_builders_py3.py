@@ -52,7 +52,7 @@ def build_param_get_request(*, x_ms_client_request_id: str, **kwargs: Any) -> Ht
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/"

@@ -44,7 +44,7 @@ def build_test_one_request(
     api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "1.0.0"))  # type: str
     id = kwargs.pop('id')  # type: int
     message = kwargs.pop('message', case_insensitive_dict(_params).pop('message', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/testOneEndpoint")
@@ -74,7 +74,7 @@ def build_test_lro_request_initial(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/lro")
@@ -101,7 +101,7 @@ def build_test_lro_and_paging_request_initial(
     client_request_id = kwargs.pop('client_request_id', case_insensitive_dict(_headers).pop('client-request-id', None))  # type: Optional[str]
     maxresults = kwargs.pop('maxresults', case_insensitive_dict(_headers).pop('maxresults', None))  # type: Optional[int]
     timeout = kwargs.pop('timeout', case_insensitive_dict(_headers).pop('timeout', 30))  # type: Optional[int]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/lroAndPaging")
@@ -132,7 +132,7 @@ def build_test_different_calls_request(
 
     api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "1.0.0"))  # type: str
     greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/testDifferentCalls")

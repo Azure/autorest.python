@@ -44,7 +44,7 @@ def build_operation_with_content_param_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/reservedWords/operation/content")
@@ -69,7 +69,7 @@ def build_operation_with_json_param_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/reservedWords/operation/json")
@@ -94,7 +94,7 @@ def build_operation_with_data_param_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/reservedWords/operation/data")
@@ -119,7 +119,7 @@ def build_operation_with_files_param_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/reservedWords/operation/files")
@@ -147,7 +147,7 @@ def build_operation_with_url_request(
 
     header_parameters = kwargs.pop('header_parameters')  # type: str
     query_parameters = kwargs.pop('query_parameters', case_insensitive_dict(_params).pop('queryParameters', None))  # type: Optional[List[str]]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/reservedWords/{url}")

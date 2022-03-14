@@ -39,7 +39,7 @@ def build_patch_single_request(*, json: JSONType = None, content: Any = None, **
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/mergePatchJson/single"

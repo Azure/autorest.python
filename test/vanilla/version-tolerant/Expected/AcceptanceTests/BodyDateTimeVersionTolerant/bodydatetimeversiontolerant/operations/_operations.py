@@ -35,7 +35,7 @@ _SERIALIZER.client_side_validation = False
 def build_datetime_get_null_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/null"
@@ -49,7 +49,7 @@ def build_datetime_get_null_request(**kwargs: Any) -> HttpRequest:
 def build_datetime_get_invalid_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/invalid"
@@ -63,7 +63,7 @@ def build_datetime_get_invalid_request(**kwargs: Any) -> HttpRequest:
 def build_datetime_get_overflow_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/overflow"
@@ -77,7 +77,7 @@ def build_datetime_get_overflow_request(**kwargs: Any) -> HttpRequest:
 def build_datetime_get_underflow_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/underflow"
@@ -96,7 +96,7 @@ def build_datetime_put_utc_max_date_time_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/utc"
@@ -117,7 +117,7 @@ def build_datetime_put_utc_max_date_time7_digits_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/utc7ms"
@@ -133,7 +133,7 @@ def build_datetime_put_utc_max_date_time7_digits_request(
 def build_datetime_get_utc_lowercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/utc/lowercase"
@@ -147,7 +147,7 @@ def build_datetime_get_utc_lowercase_max_date_time_request(**kwargs: Any) -> Htt
 def build_datetime_get_utc_uppercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/utc/uppercase"
@@ -161,7 +161,7 @@ def build_datetime_get_utc_uppercase_max_date_time_request(**kwargs: Any) -> Htt
 def build_datetime_get_utc_uppercase_max_date_time7_digits_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/utc7ms/uppercase"
@@ -180,7 +180,7 @@ def build_datetime_put_local_positive_offset_max_date_time_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/localpositiveoffset"
@@ -196,7 +196,7 @@ def build_datetime_put_local_positive_offset_max_date_time_request(
 def build_datetime_get_local_positive_offset_lowercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/localpositiveoffset/lowercase"
@@ -210,7 +210,7 @@ def build_datetime_get_local_positive_offset_lowercase_max_date_time_request(**k
 def build_datetime_get_local_positive_offset_uppercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/localpositiveoffset/uppercase"
@@ -229,7 +229,7 @@ def build_datetime_put_local_negative_offset_max_date_time_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/localnegativeoffset"
@@ -245,7 +245,7 @@ def build_datetime_put_local_negative_offset_max_date_time_request(
 def build_datetime_get_local_negative_offset_uppercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/localnegativeoffset/uppercase"
@@ -259,7 +259,7 @@ def build_datetime_get_local_negative_offset_uppercase_max_date_time_request(**k
 def build_datetime_get_local_negative_offset_lowercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/max/localnegativeoffset/lowercase"
@@ -278,7 +278,7 @@ def build_datetime_put_utc_min_date_time_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/min/utc"
@@ -294,7 +294,7 @@ def build_datetime_put_utc_min_date_time_request(
 def build_datetime_get_utc_min_date_time_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/min/utc"
@@ -313,7 +313,7 @@ def build_datetime_put_local_positive_offset_min_date_time_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/min/localpositiveoffset"
@@ -329,7 +329,7 @@ def build_datetime_put_local_positive_offset_min_date_time_request(
 def build_datetime_get_local_positive_offset_min_date_time_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/min/localpositiveoffset"
@@ -348,7 +348,7 @@ def build_datetime_put_local_negative_offset_min_date_time_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/min/localnegativeoffset"
@@ -364,7 +364,7 @@ def build_datetime_put_local_negative_offset_min_date_time_request(
 def build_datetime_get_local_negative_offset_min_date_time_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/min/localnegativeoffset"
@@ -378,7 +378,7 @@ def build_datetime_get_local_negative_offset_min_date_time_request(**kwargs: Any
 def build_datetime_get_local_no_offset_min_date_time_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/datetime/min/localnooffset"

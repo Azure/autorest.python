@@ -224,13 +224,11 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             file_import.add_submodule_import(
                 f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
             )
-        if self.parameters.has_body:
-            file_import.add_submodule_import("azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE)
-        else:
-            for kwarg in self.parameters.kwargs:
-                if kwarg.has_default_value and kwarg.location in [ParameterLocation.Header, ParameterLocation.Query]:
-                    file_import.add_submodule_import("azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE)
-                    break
+
+        for kwarg in self.parameters.kwargs:
+            if kwarg.has_default_value and kwarg.location in [ParameterLocation.Header, ParameterLocation.Query]:
+                file_import.add_submodule_import("azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE)
+                break
 
         if self.code_model.options["version_tolerant"] and (
             self.parameters.has_body or

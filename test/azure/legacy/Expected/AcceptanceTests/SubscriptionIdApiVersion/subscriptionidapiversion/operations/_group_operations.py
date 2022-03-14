@@ -48,7 +48,7 @@ def build_get_sample_resource_group_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2014-04-01-preview"))  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}")

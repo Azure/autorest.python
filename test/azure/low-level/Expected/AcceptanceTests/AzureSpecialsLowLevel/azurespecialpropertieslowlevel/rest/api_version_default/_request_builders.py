@@ -39,7 +39,7 @@ def build_get_method_global_valid_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2015-07-01-preview"))  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview"
@@ -78,7 +78,7 @@ def build_get_method_global_not_provided_valid_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2015-07-01-preview"))  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"
@@ -117,7 +117,7 @@ def build_get_path_global_valid_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2015-07-01-preview"))  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview"
@@ -156,7 +156,7 @@ def build_get_swagger_global_valid_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2015-07-01-preview"))  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview"

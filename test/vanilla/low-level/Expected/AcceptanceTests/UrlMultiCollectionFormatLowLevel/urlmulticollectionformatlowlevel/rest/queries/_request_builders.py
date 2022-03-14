@@ -43,7 +43,7 @@ def build_array_string_multi_null_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     array_query = kwargs.pop('array_query', case_insensitive_dict(_params).pop('arrayQuery', None))  # type: Optional[List[str]]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/array/multi/string/null"
@@ -86,7 +86,7 @@ def build_array_string_multi_empty_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     array_query = kwargs.pop('array_query', case_insensitive_dict(_params).pop('arrayQuery', None))  # type: Optional[List[str]]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/array/multi/string/empty"
@@ -130,7 +130,7 @@ def build_array_string_multi_valid_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     array_query = kwargs.pop('array_query', case_insensitive_dict(_params).pop('arrayQuery', None))  # type: Optional[List[str]]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/array/multi/string/valid"

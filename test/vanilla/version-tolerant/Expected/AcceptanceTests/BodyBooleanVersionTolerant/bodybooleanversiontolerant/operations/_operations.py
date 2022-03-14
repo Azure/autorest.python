@@ -34,7 +34,7 @@ _SERIALIZER.client_side_validation = False
 def build_bool_get_true_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/bool/true"
@@ -52,7 +52,7 @@ def build_bool_put_true_request(**kwargs: Any) -> HttpRequest:
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
     json = kwargs.pop("json", True)  # type: bool
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/bool/true"
@@ -68,7 +68,7 @@ def build_bool_put_true_request(**kwargs: Any) -> HttpRequest:
 def build_bool_get_false_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/bool/false"
@@ -86,7 +86,7 @@ def build_bool_put_false_request(**kwargs: Any) -> HttpRequest:
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
     json = kwargs.pop("json", False)  # type: bool
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/bool/false"
@@ -102,7 +102,7 @@ def build_bool_put_false_request(**kwargs: Any) -> HttpRequest:
 def build_bool_get_null_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/bool/null"
@@ -116,7 +116,7 @@ def build_bool_get_null_request(**kwargs: Any) -> HttpRequest:
 def build_bool_get_invalid_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/bool/invalid"

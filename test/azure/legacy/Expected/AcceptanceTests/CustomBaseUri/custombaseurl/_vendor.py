@@ -14,10 +14,3 @@ def _convert_request(request, files=None):
     if files:
         request.set_formdata_body(files)
     return request
-
-
-def _get_from_dict(param_dict, rest_api_name):
-    try:
-        return next(v for k, v in param_dict.items() if k.lower() == rest_api_name.lower())
-    except StopIteration:
-        return None

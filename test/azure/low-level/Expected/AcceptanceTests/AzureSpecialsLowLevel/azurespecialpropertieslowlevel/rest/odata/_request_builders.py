@@ -48,7 +48,7 @@ def build_get_with_filter_request(
     filter = kwargs.pop('filter', case_insensitive_dict(_params).pop('$filter', None))  # type: Optional[str]
     top = kwargs.pop('top', case_insensitive_dict(_params).pop('$top', None))  # type: Optional[int]
     orderby = kwargs.pop('orderby', case_insensitive_dict(_params).pop('$orderby', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/odata/filter"

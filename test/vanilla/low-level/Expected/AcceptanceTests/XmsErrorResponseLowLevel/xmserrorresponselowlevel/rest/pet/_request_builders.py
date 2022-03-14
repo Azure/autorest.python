@@ -52,7 +52,7 @@ def build_get_pet_by_id_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/errorStatusCodes/Pets/{petId}/GetPet"
@@ -101,7 +101,7 @@ def build_do_something_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/errorStatusCodes/Pets/doSomething/{whatAction}"
@@ -145,7 +145,7 @@ def build_has_models_param_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     models = kwargs.pop('models', case_insensitive_dict(_params).pop('models', "value1"))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/errorStatusCodes/Pets/hasModelsParam"

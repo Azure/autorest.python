@@ -65,7 +65,7 @@ def build_post_required_request(
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
     custom_header = kwargs.pop('custom_header', case_insensitive_dict(_headers).pop('customHeader', None))  # type: Optional[str]
     query = kwargs.pop('query', case_insensitive_dict(_params).pop('query', 30))  # type: Optional[int]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/parameterGrouping/postRequired/{path}"
@@ -119,7 +119,7 @@ def build_post_optional_request(
 
     custom_header = kwargs.pop('custom_header', case_insensitive_dict(_headers).pop('customHeader', None))  # type: Optional[str]
     query = kwargs.pop('query', case_insensitive_dict(_params).pop('query', 30))  # type: Optional[int]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/parameterGrouping/postOptional"
@@ -168,7 +168,7 @@ def build_post_reserved_words_request(
 
     from_parameter = kwargs.pop('from_parameter', case_insensitive_dict(_params).pop('from', None))  # type: Optional[str]
     accept_parameter = kwargs.pop('accept_parameter', case_insensitive_dict(_params).pop('accept', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/parameterGrouping/postReservedWords"
@@ -221,7 +221,7 @@ def build_post_multi_param_groups_request(
     query_one = kwargs.pop('query_one', case_insensitive_dict(_params).pop('query-one', 30))  # type: Optional[int]
     header_two = kwargs.pop('header_two', case_insensitive_dict(_headers).pop('header-two', None))  # type: Optional[str]
     query_two = kwargs.pop('query_two', case_insensitive_dict(_params).pop('query-two', 30))  # type: Optional[int]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/parameterGrouping/postMultipleParameterGroups"
@@ -272,7 +272,7 @@ def build_post_shared_parameter_group_object_request(
 
     header_one = kwargs.pop('header_one', case_insensitive_dict(_headers).pop('header-one', None))  # type: Optional[str]
     query_one = kwargs.pop('query_one', case_insensitive_dict(_params).pop('query-one', 30))  # type: Optional[int]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/parameterGrouping/sharedParameterGroupObject"

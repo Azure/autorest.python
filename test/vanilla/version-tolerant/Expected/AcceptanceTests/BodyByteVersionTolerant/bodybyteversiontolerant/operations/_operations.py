@@ -34,7 +34,7 @@ _SERIALIZER.client_side_validation = False
 def build_byte_get_null_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/byte/null"
@@ -48,7 +48,7 @@ def build_byte_get_null_request(**kwargs: Any) -> HttpRequest:
 def build_byte_get_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/byte/empty"
@@ -62,7 +62,7 @@ def build_byte_get_empty_request(**kwargs: Any) -> HttpRequest:
 def build_byte_get_non_ascii_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/byte/nonAscii"
@@ -79,7 +79,7 @@ def build_byte_put_non_ascii_request(*, json: JSONType = None, content: Any = No
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/byte/nonAscii"
@@ -95,7 +95,7 @@ def build_byte_put_non_ascii_request(*, json: JSONType = None, content: Any = No
 def build_byte_get_invalid_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/byte/invalid"

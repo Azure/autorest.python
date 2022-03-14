@@ -40,7 +40,7 @@ def build_poll_with_parameterized_endpoints_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/lroParameterizedEndpoints"
@@ -77,7 +77,7 @@ def build_poll_with_constant_parameterized_endpoints_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     constant_parameter = kwargs.pop('constant_parameter', "iAmConstant")  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/lroConstantParameterizedEndpoints/{constantParameter}"

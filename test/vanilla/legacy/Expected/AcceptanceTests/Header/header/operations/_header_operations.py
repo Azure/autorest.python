@@ -45,7 +45,7 @@ def build_param_existing_key_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     user_agent_parameter = kwargs.pop('user_agent_parameter')  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/param/existingkey")
@@ -68,7 +68,7 @@ def build_response_existing_key_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/response/existingkey")
@@ -91,7 +91,7 @@ def build_param_protected_key_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type')  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/param/protectedkey")
@@ -114,7 +114,7 @@ def build_response_protected_key_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/response/protectedkey")
@@ -138,7 +138,7 @@ def build_param_integer_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: int
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/param/prim/integer")
@@ -163,7 +163,7 @@ def build_response_integer_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/response/prim/integer")
@@ -188,7 +188,7 @@ def build_param_long_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: int
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/param/prim/long")
@@ -213,7 +213,7 @@ def build_response_long_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/response/prim/long")
@@ -238,7 +238,7 @@ def build_param_float_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: float
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/param/prim/float")
@@ -263,7 +263,7 @@ def build_response_float_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/response/prim/float")
@@ -288,7 +288,7 @@ def build_param_double_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: float
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/param/prim/double")
@@ -313,7 +313,7 @@ def build_response_double_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/response/prim/double")
@@ -338,7 +338,7 @@ def build_param_bool_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: bool
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/param/prim/bool")
@@ -363,7 +363,7 @@ def build_response_bool_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/response/prim/bool")
@@ -388,7 +388,7 @@ def build_param_string_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value', case_insensitive_dict(_headers).pop('value', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/param/prim/string")
@@ -414,7 +414,7 @@ def build_response_string_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/response/prim/string")
@@ -439,7 +439,7 @@ def build_param_date_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: datetime.date
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/param/prim/date")
@@ -464,7 +464,7 @@ def build_response_date_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/response/prim/date")
@@ -489,7 +489,7 @@ def build_param_datetime_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: datetime.datetime
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/param/prim/datetime")
@@ -514,7 +514,7 @@ def build_response_datetime_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/response/prim/datetime")
@@ -539,7 +539,7 @@ def build_param_datetime_rfc1123_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value', case_insensitive_dict(_headers).pop('value', None))  # type: Optional[datetime.datetime]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/param/prim/datetimerfc1123")
@@ -565,7 +565,7 @@ def build_response_datetime_rfc1123_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/response/prim/datetimerfc1123")
@@ -590,7 +590,7 @@ def build_param_duration_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: datetime.timedelta
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/param/prim/duration")
@@ -615,7 +615,7 @@ def build_response_duration_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/response/prim/duration")
@@ -640,7 +640,7 @@ def build_param_byte_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value')  # type: bytearray
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/param/prim/byte")
@@ -665,7 +665,7 @@ def build_response_byte_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/response/prim/byte")
@@ -690,7 +690,7 @@ def build_param_enum_request(
 
     scenario = kwargs.pop('scenario')  # type: str
     value = kwargs.pop('value', case_insensitive_dict(_headers).pop('value', None))  # type: Optional[Union[str, "_models.GreyscaleColors"]]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/param/prim/enum")
@@ -716,7 +716,7 @@ def build_response_enum_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     scenario = kwargs.pop('scenario')  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/response/prim/enum")
@@ -739,7 +739,7 @@ def build_custom_request_id_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")

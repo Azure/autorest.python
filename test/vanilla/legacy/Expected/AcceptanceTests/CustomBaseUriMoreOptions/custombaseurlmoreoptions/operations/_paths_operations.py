@@ -47,7 +47,7 @@ def build_get_empty_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     key_version = kwargs.pop('key_version', case_insensitive_dict(_params).pop('keyVersion', "v1"))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/customuri/{subscriptionId}/{keyName}")

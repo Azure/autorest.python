@@ -34,7 +34,7 @@ _SERIALIZER.client_side_validation = False
 def build_number_get_null_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/null"
@@ -48,7 +48,7 @@ def build_number_get_null_request(**kwargs: Any) -> HttpRequest:
 def build_number_get_invalid_float_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/invalidfloat"
@@ -62,7 +62,7 @@ def build_number_get_invalid_float_request(**kwargs: Any) -> HttpRequest:
 def build_number_get_invalid_double_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/invaliddouble"
@@ -76,7 +76,7 @@ def build_number_get_invalid_double_request(**kwargs: Any) -> HttpRequest:
 def build_number_get_invalid_decimal_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/invaliddecimal"
@@ -93,7 +93,7 @@ def build_number_put_big_float_request(*, json: JSONType = None, content: Any = 
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/big/float/3.402823e+20"
@@ -109,7 +109,7 @@ def build_number_put_big_float_request(*, json: JSONType = None, content: Any = 
 def build_number_get_big_float_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/big/float/3.402823e+20"
@@ -126,7 +126,7 @@ def build_number_put_big_double_request(*, json: JSONType = None, content: Any =
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/big/double/2.5976931e+101"
@@ -142,7 +142,7 @@ def build_number_put_big_double_request(*, json: JSONType = None, content: Any =
 def build_number_get_big_double_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/big/double/2.5976931e+101"
@@ -160,7 +160,7 @@ def build_number_put_big_double_positive_decimal_request(**kwargs: Any) -> HttpR
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
     json = kwargs.pop("json", 99999999.99)  # type: float
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/big/double/99999999.99"
@@ -176,7 +176,7 @@ def build_number_put_big_double_positive_decimal_request(**kwargs: Any) -> HttpR
 def build_number_get_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/big/double/99999999.99"
@@ -194,7 +194,7 @@ def build_number_put_big_double_negative_decimal_request(**kwargs: Any) -> HttpR
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
     json = kwargs.pop("json", -99999999.99)  # type: float
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/big/double/-99999999.99"
@@ -210,7 +210,7 @@ def build_number_put_big_double_negative_decimal_request(**kwargs: Any) -> HttpR
 def build_number_get_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/big/double/-99999999.99"
@@ -227,7 +227,7 @@ def build_number_put_big_decimal_request(*, json: JSONType = None, content: Any 
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/big/decimal/2.5976931e+101"
@@ -243,7 +243,7 @@ def build_number_put_big_decimal_request(*, json: JSONType = None, content: Any 
 def build_number_get_big_decimal_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/big/decimal/2.5976931e+101"
@@ -261,7 +261,7 @@ def build_number_put_big_decimal_positive_decimal_request(**kwargs: Any) -> Http
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
     json = kwargs.pop("json", 99999999.99)  # type: float
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/big/decimal/99999999.99"
@@ -277,7 +277,7 @@ def build_number_put_big_decimal_positive_decimal_request(**kwargs: Any) -> Http
 def build_number_get_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/big/decimal/99999999.99"
@@ -295,7 +295,7 @@ def build_number_put_big_decimal_negative_decimal_request(**kwargs: Any) -> Http
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
     json = kwargs.pop("json", -99999999.99)  # type: float
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/big/decimal/-99999999.99"
@@ -311,7 +311,7 @@ def build_number_put_big_decimal_negative_decimal_request(**kwargs: Any) -> Http
 def build_number_get_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/big/decimal/-99999999.99"
@@ -328,7 +328,7 @@ def build_number_put_small_float_request(*, json: JSONType = None, content: Any 
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/small/float/3.402823e-20"
@@ -344,7 +344,7 @@ def build_number_put_small_float_request(*, json: JSONType = None, content: Any 
 def build_number_get_small_float_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/small/float/3.402823e-20"
@@ -361,7 +361,7 @@ def build_number_put_small_double_request(*, json: JSONType = None, content: Any
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/small/double/2.5976931e-101"
@@ -377,7 +377,7 @@ def build_number_put_small_double_request(*, json: JSONType = None, content: Any
 def build_number_get_small_double_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/small/double/2.5976931e-101"
@@ -394,7 +394,7 @@ def build_number_put_small_decimal_request(*, json: JSONType = None, content: An
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/small/decimal/2.5976931e-101"
@@ -410,7 +410,7 @@ def build_number_put_small_decimal_request(*, json: JSONType = None, content: An
 def build_number_get_small_decimal_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/number/small/decimal/2.5976931e-101"

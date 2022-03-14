@@ -36,7 +36,7 @@ _SERIALIZER.client_side_validation = False
 def build_pet_get_pet_by_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/errorStatusCodes/Pets/{petId}/GetPet"
@@ -55,7 +55,7 @@ def build_pet_get_pet_by_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
 def build_pet_do_something_request(what_action: str, **kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/errorStatusCodes/Pets/doSomething/{whatAction}"
@@ -75,7 +75,7 @@ def build_pet_has_models_param_request(*, models: Optional[str] = "value1", **kw
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/errorStatusCodes/Pets/hasModelsParam"

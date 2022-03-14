@@ -42,7 +42,7 @@ def build_get_method_local_valid_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2.0"))  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/method/string/none/query/local/2.0"
@@ -84,7 +84,7 @@ def build_get_method_local_null_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/method/string/none/query/local/null"
@@ -127,7 +127,7 @@ def build_get_path_local_valid_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2.0"))  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/path/string/none/query/local/2.0"
@@ -170,7 +170,7 @@ def build_get_swagger_local_valid_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2.0"))  # type: str
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/swagger/string/none/query/local/2.0"

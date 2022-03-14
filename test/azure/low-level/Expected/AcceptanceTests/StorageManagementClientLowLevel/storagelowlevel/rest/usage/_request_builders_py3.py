@@ -63,7 +63,7 @@ def build_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     api_version = kwargs.pop(
         "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
     )  # type: str
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json, text/json")
 
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages"

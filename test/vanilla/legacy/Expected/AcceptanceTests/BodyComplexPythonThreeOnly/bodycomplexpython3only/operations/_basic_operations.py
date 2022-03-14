@@ -37,7 +37,7 @@ _SERIALIZER.client_side_validation = False
 def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/basic/valid")
@@ -58,7 +58,7 @@ def build_put_valid_request(*, json: JSONType = None, content: Any = None, **kwa
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/basic/valid")
@@ -77,7 +77,7 @@ def build_put_valid_request(*, json: JSONType = None, content: Any = None, **kwa
 def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/basic/invalid")
@@ -91,7 +91,7 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
 def build_get_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/basic/empty")
@@ -105,7 +105,7 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
 def build_get_null_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/basic/null")
@@ -119,7 +119,7 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
 def build_get_not_provided_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/basic/notprovided")

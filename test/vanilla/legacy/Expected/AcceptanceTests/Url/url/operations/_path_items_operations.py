@@ -49,7 +49,7 @@ def build_get_all_with_values_request(
     path_item_string_query = kwargs.pop('path_item_string_query', case_insensitive_dict(_params).pop('pathItemStringQuery', None))  # type: Optional[str]
     global_string_query = kwargs.pop('global_string_query', case_insensitive_dict(_params).pop('globalStringQuery', None))  # type: Optional[str]
     local_string_query = kwargs.pop('local_string_query', case_insensitive_dict(_params).pop('localStringQuery', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery")  # pylint: disable=line-too-long
@@ -94,7 +94,7 @@ def build_get_global_query_null_request(
     path_item_string_query = kwargs.pop('path_item_string_query', case_insensitive_dict(_params).pop('pathItemStringQuery', None))  # type: Optional[str]
     global_string_query = kwargs.pop('global_string_query', case_insensitive_dict(_params).pop('globalStringQuery', None))  # type: Optional[str]
     local_string_query = kwargs.pop('local_string_query', case_insensitive_dict(_params).pop('localStringQuery', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery")  # pylint: disable=line-too-long
@@ -139,7 +139,7 @@ def build_get_global_and_local_query_null_request(
     path_item_string_query = kwargs.pop('path_item_string_query', case_insensitive_dict(_params).pop('pathItemStringQuery', None))  # type: Optional[str]
     global_string_query = kwargs.pop('global_string_query', case_insensitive_dict(_params).pop('globalStringQuery', None))  # type: Optional[str]
     local_string_query = kwargs.pop('local_string_query', case_insensitive_dict(_params).pop('localStringQuery', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null")  # pylint: disable=line-too-long
@@ -184,7 +184,7 @@ def build_get_local_path_item_query_null_request(
     path_item_string_query = kwargs.pop('path_item_string_query', case_insensitive_dict(_params).pop('pathItemStringQuery', None))  # type: Optional[str]
     global_string_query = kwargs.pop('global_string_query', case_insensitive_dict(_params).pop('globalStringQuery', None))  # type: Optional[str]
     local_string_query = kwargs.pop('local_string_query', case_insensitive_dict(_params).pop('localStringQuery', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null")  # pylint: disable=line-too-long

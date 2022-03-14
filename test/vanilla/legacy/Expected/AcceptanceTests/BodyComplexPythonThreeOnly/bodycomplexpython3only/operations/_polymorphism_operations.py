@@ -37,7 +37,7 @@ _SERIALIZER.client_side_validation = False
 def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/polymorphism/valid")
@@ -54,7 +54,7 @@ def build_put_valid_request(*, json: JSONType = None, content: Any = None, **kwa
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/polymorphism/valid")
@@ -70,7 +70,7 @@ def build_put_valid_request(*, json: JSONType = None, content: Any = None, **kwa
 def build_get_dot_syntax_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/polymorphism/dotsyntax")
@@ -84,7 +84,7 @@ def build_get_dot_syntax_request(**kwargs: Any) -> HttpRequest:
 def build_get_composed_with_discriminator_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/polymorphism/composedWithDiscriminator")
@@ -98,7 +98,7 @@ def build_get_composed_with_discriminator_request(**kwargs: Any) -> HttpRequest:
 def build_get_composed_without_discriminator_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/polymorphism/composedWithoutDiscriminator")
@@ -112,7 +112,7 @@ def build_get_composed_without_discriminator_request(**kwargs: Any) -> HttpReque
 def build_get_complicated_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/polymorphism/complicated")
@@ -129,7 +129,7 @@ def build_put_complicated_request(*, json: JSONType = None, content: Any = None,
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/polymorphism/complicated")
@@ -150,7 +150,7 @@ def build_put_missing_discriminator_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/polymorphism/missingdiscriminator")
@@ -171,7 +171,7 @@ def build_put_valid_missing_required_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/polymorphism/missingrequired/invalid")

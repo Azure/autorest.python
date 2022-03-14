@@ -30,7 +30,7 @@ def build_get_file_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "image/png, application/json")
 
     # Construct URL
     _url = "/files/stream/nonempty"
@@ -55,7 +55,7 @@ def build_get_file_large_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "image/png, application/json")
 
     # Construct URL
     _url = "/files/stream/verylarge"
@@ -80,7 +80,7 @@ def build_get_empty_file_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "image/png, application/json")
 
     # Construct URL
     _url = "/files/stream/empty"

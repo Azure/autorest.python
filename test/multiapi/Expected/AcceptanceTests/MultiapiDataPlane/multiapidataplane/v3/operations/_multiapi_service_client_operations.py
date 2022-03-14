@@ -37,7 +37,7 @@ def build_test_paging_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/paging")
@@ -64,7 +64,7 @@ def build_test_different_calls_request(
     greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
     greeting_in_chinese = kwargs.pop('greeting_in_chinese', case_insensitive_dict(_headers).pop('greetingInChinese', None))  # type: Optional[str]
     greeting_in_french = kwargs.pop('greeting_in_french', case_insensitive_dict(_headers).pop('greetingInFrench', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/testDifferentCalls")

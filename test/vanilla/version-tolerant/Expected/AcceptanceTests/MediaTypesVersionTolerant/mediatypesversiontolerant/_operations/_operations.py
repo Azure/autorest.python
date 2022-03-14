@@ -39,7 +39,7 @@ def build_analyze_body_request(*, json: JSONType = None, content: Any = None, **
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/mediatypes/analyze"
@@ -76,7 +76,7 @@ def build_content_type_with_encoding_request(*, content: Any = None, **kwargs: A
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/mediatypes/contentTypeWithEncoding"
@@ -97,7 +97,7 @@ def build_binary_body_with_two_content_types_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "text/plain")
 
     # Construct URL
     _url = "/mediatypes/binaryBodyTwoContentTypes"
@@ -118,7 +118,7 @@ def build_binary_body_with_three_content_types_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "text/plain")
 
     # Construct URL
     _url = "/mediatypes/binaryBodyThreeContentTypes"
@@ -137,7 +137,7 @@ def build_put_text_and_json_body_request(*, json: JSONType = None, content: Any 
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "text/plain")
 
     # Construct URL
     _url = "/mediatypes/textAndJson"

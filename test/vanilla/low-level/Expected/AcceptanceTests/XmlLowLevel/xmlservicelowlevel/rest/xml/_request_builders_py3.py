@@ -44,7 +44,7 @@ def build_get_complex_type_ref_no_meta_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/complex-type-ref-no-meta"
@@ -110,7 +110,7 @@ def build_get_complex_type_ref_with_meta_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/complex-type-ref-with-meta"
@@ -184,7 +184,7 @@ def build_get_simple_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/simple"
@@ -215,7 +215,7 @@ def build_put_simple_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/simple"
@@ -255,7 +255,7 @@ def build_get_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/wrapped-lists"
@@ -286,7 +286,7 @@ def build_put_wrapped_lists_request(*, content: Any, **kwargs: Any) -> HttpReque
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/wrapped-lists"
@@ -350,7 +350,7 @@ def build_get_empty_list_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/empty-list"
@@ -418,7 +418,7 @@ def build_get_empty_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/empty-wrapped-lists"
@@ -486,7 +486,7 @@ def build_get_root_list_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/root-list"
@@ -554,7 +554,7 @@ def build_get_root_list_single_item_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/root-list-single-item"
@@ -622,7 +622,7 @@ def build_get_empty_root_list_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/empty-root-list"
@@ -688,7 +688,7 @@ def build_get_empty_child_element_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/empty-child-element"
@@ -781,7 +781,7 @@ def build_list_containers_request(**kwargs: Any) -> HttpRequest:
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     comp = kwargs.pop("comp", case_insensitive_dict(_params).pop("comp", "list"))  # type: str
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/"
@@ -902,7 +902,7 @@ def build_get_service_properties_request(**kwargs: Any) -> HttpRequest:
 
     comp = kwargs.pop("comp", case_insensitive_dict(_params).pop("comp", "properties"))  # type: str
     restype = kwargs.pop("restype", case_insensitive_dict(_params).pop("restype", "service"))  # type: str
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/"
@@ -1001,7 +1001,7 @@ def build_get_acls_request(**kwargs: Any) -> HttpRequest:
 
     comp = kwargs.pop("comp", case_insensitive_dict(_params).pop("comp", "acl"))  # type: str
     restype = kwargs.pop("restype", case_insensitive_dict(_params).pop("restype", "container"))  # type: str
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/mycontainer"
@@ -1174,7 +1174,7 @@ def build_list_blobs_request(**kwargs: Any) -> HttpRequest:
 
     comp = kwargs.pop("comp", case_insensitive_dict(_params).pop("comp", "list"))  # type: str
     restype = kwargs.pop("restype", case_insensitive_dict(_params).pop("restype", "container"))  # type: str
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/mycontainer"
@@ -1253,7 +1253,7 @@ def build_json_output_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/xml/jsonoutput"
@@ -1288,7 +1288,7 @@ def build_get_xms_text_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/x-ms-text"
@@ -1321,7 +1321,7 @@ def build_get_bytes_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/bytes"
@@ -1352,7 +1352,7 @@ def build_put_binary_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/bytes"
@@ -1387,7 +1387,7 @@ def build_get_uri_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/url"
@@ -1418,7 +1418,7 @@ def build_put_uri_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/xml")
 
     # Construct URL
     _url = "/xml/url"

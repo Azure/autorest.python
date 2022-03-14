@@ -45,7 +45,7 @@ def build_get_report_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     qualifier = kwargs.pop('qualifier', case_insensitive_dict(_params).pop('qualifier', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/report/azure")
