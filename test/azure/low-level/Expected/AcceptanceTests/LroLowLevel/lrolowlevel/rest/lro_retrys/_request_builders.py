@@ -89,7 +89,7 @@ def build_put201_creating_succeeded200_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = "/lro/retryerror/put/201/creating/succeeded/200"
@@ -172,7 +172,7 @@ def build_put_async_relative_retry_succeeded_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = "/lro/retryerror/putasync/retry/succeeded"
@@ -230,7 +230,7 @@ def build_delete_provisioning202_accepted200_succeeded_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded"
@@ -264,7 +264,7 @@ def build_delete202_retry200_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = "/lro/retryerror/delete/202/retry/200"
@@ -298,7 +298,7 @@ def build_delete_async_relative_retry_succeeded_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = "/lro/retryerror/deleteasync/retry/succeeded"
@@ -360,7 +360,7 @@ def build_post202_retry200_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = "/lro/retryerror/post/202/retry/200"
@@ -425,7 +425,7 @@ def build_post_async_relative_retry_succeeded_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = "/lro/retryerror/postasync/retry/succeeded"

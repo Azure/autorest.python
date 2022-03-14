@@ -31,7 +31,7 @@ def build_custom_named_request_id_request(*, foo_client_request_id: str, **kwarg
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/azurespecials/customNamedRequestId"
@@ -60,7 +60,7 @@ def build_custom_named_request_id_param_grouping_request(*, foo_client_request_i
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/azurespecials/customNamedRequestIdParamGrouping"
@@ -88,7 +88,7 @@ def build_custom_named_request_id_head_request(*, foo_client_request_id: str, **
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/azurespecials/customNamedRequestIdHead"

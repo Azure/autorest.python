@@ -39,7 +39,7 @@ def build_test_four_request(
 
     api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "3.0.0"))  # type: str
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[Union[str, "_models.ContentType"]]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/two/testFourEndpoint")
@@ -69,7 +69,7 @@ def build_test_five_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "3.0.0"))  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/two/testFiveEndpoint")
@@ -132,7 +132,7 @@ class OperationGroupTwoOperations(object):
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {})) or {}
+        error_map.update(kwargs.pop('error_map', {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -201,7 +201,7 @@ class OperationGroupTwoOperations(object):
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {})) or {}
+        error_map.update(kwargs.pop('error_map', {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]

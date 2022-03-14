@@ -44,7 +44,7 @@ def build_post_method_local_valid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}")  # pylint: disable=line-too-long
@@ -72,7 +72,7 @@ def build_post_method_local_null_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}")
@@ -100,7 +100,7 @@ def build_post_path_local_valid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}")  # pylint: disable=line-too-long
@@ -128,7 +128,7 @@ def build_post_swagger_local_valid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}")  # pylint: disable=line-too-long
@@ -187,7 +187,7 @@ class SubscriptionInMethodOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -237,7 +237,7 @@ class SubscriptionInMethodOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -286,7 +286,7 @@ class SubscriptionInMethodOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -336,7 +336,7 @@ class SubscriptionInMethodOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]

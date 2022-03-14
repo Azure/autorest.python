@@ -35,7 +35,7 @@ _SERIALIZER.client_side_validation = False
 def build_datetimerfc1123_get_null_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/datetimerfc1123/null"
@@ -49,7 +49,7 @@ def build_datetimerfc1123_get_null_request(**kwargs: Any) -> HttpRequest:
 def build_datetimerfc1123_get_invalid_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/datetimerfc1123/invalid"
@@ -63,7 +63,7 @@ def build_datetimerfc1123_get_invalid_request(**kwargs: Any) -> HttpRequest:
 def build_datetimerfc1123_get_overflow_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/datetimerfc1123/overflow"
@@ -77,7 +77,7 @@ def build_datetimerfc1123_get_overflow_request(**kwargs: Any) -> HttpRequest:
 def build_datetimerfc1123_get_underflow_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/datetimerfc1123/underflow"
@@ -96,7 +96,7 @@ def build_datetimerfc1123_put_utc_max_date_time_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/datetimerfc1123/max"
@@ -112,7 +112,7 @@ def build_datetimerfc1123_put_utc_max_date_time_request(
 def build_datetimerfc1123_get_utc_lowercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/datetimerfc1123/max/lowercase"
@@ -126,7 +126,7 @@ def build_datetimerfc1123_get_utc_lowercase_max_date_time_request(**kwargs: Any)
 def build_datetimerfc1123_get_utc_uppercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/datetimerfc1123/max/uppercase"
@@ -145,7 +145,7 @@ def build_datetimerfc1123_put_utc_min_date_time_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/datetimerfc1123/min"
@@ -161,7 +161,7 @@ def build_datetimerfc1123_put_utc_min_date_time_request(
 def build_datetimerfc1123_get_utc_min_date_time_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/datetimerfc1123/min"
@@ -198,7 +198,7 @@ class Datetimerfc1123Operations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -239,7 +239,7 @@ class Datetimerfc1123Operations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -280,7 +280,7 @@ class Datetimerfc1123Operations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -321,7 +321,7 @@ class Datetimerfc1123Operations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -366,7 +366,7 @@ class Datetimerfc1123Operations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -407,7 +407,7 @@ class Datetimerfc1123Operations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -448,7 +448,7 @@ class Datetimerfc1123Operations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -493,7 +493,7 @@ class Datetimerfc1123Operations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -534,7 +534,7 @@ class Datetimerfc1123Operations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]

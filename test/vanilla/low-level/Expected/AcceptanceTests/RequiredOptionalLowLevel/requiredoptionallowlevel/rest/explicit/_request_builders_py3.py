@@ -38,7 +38,7 @@ def build_put_optional_binary_body_request(*, content: Any = None, **kwargs: Any
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/explicit/optional/binary-body"
@@ -71,7 +71,7 @@ def build_put_required_binary_body_request(*, content: Any, **kwargs: Any) -> Ht
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/explicit/required/binary-body"
@@ -116,7 +116,7 @@ def build_post_required_integer_parameter_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/requied/integer/parameter"
@@ -160,7 +160,7 @@ def build_post_optional_integer_parameter_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/optional/integer/parameter"
@@ -207,7 +207,7 @@ def build_post_required_integer_property_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/requied/integer/property"
@@ -253,7 +253,7 @@ def build_post_optional_integer_property_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/optional/integer/property"
@@ -283,7 +283,7 @@ def build_post_required_integer_header_request(*, header_parameter: int, **kwarg
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/requied/integer/header"
@@ -311,7 +311,7 @@ def build_post_optional_integer_header_request(*, header_parameter: Optional[int
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/optional/integer/header"
@@ -356,7 +356,7 @@ def build_post_required_string_parameter_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/requied/string/parameter"
@@ -400,7 +400,7 @@ def build_post_optional_string_parameter_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/optional/string/parameter"
@@ -447,7 +447,7 @@ def build_post_required_string_property_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/requied/string/property"
@@ -493,7 +493,7 @@ def build_post_optional_string_property_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/optional/string/property"
@@ -523,7 +523,7 @@ def build_post_required_string_header_request(*, header_parameter: str, **kwargs
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/requied/string/header"
@@ -551,7 +551,7 @@ def build_post_optional_string_header_request(*, body_parameter: Optional[str] =
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/optional/string/header"
@@ -599,7 +599,7 @@ def build_post_required_class_parameter_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/requied/class/parameter"
@@ -646,7 +646,7 @@ def build_post_optional_class_parameter_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/optional/class/parameter"
@@ -696,7 +696,7 @@ def build_post_required_class_property_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/requied/class/property"
@@ -745,7 +745,7 @@ def build_post_optional_class_property_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/optional/class/property"
@@ -792,7 +792,7 @@ def build_post_required_array_parameter_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/requied/array/parameter"
@@ -838,7 +838,7 @@ def build_post_optional_array_parameter_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/optional/array/parameter"
@@ -887,7 +887,7 @@ def build_post_required_array_property_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/requied/array/property"
@@ -935,7 +935,7 @@ def build_post_optional_array_property_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/optional/array/property"
@@ -965,7 +965,7 @@ def build_post_required_array_header_request(*, header_parameter: List[str], **k
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/requied/array/header"
@@ -995,7 +995,7 @@ def build_post_optional_array_header_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/reqopt/optional/array/header"

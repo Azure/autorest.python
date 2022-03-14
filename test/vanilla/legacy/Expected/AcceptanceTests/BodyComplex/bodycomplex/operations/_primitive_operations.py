@@ -43,7 +43,7 @@ def build_get_int_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/integer")
@@ -66,7 +66,7 @@ def build_put_int_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/integer")
@@ -90,7 +90,7 @@ def build_get_long_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/long")
@@ -113,7 +113,7 @@ def build_put_long_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/long")
@@ -137,7 +137,7 @@ def build_get_float_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/float")
@@ -160,7 +160,7 @@ def build_put_float_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/float")
@@ -184,7 +184,7 @@ def build_get_double_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/double")
@@ -207,7 +207,7 @@ def build_put_double_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/double")
@@ -231,7 +231,7 @@ def build_get_bool_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/bool")
@@ -254,7 +254,7 @@ def build_put_bool_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/bool")
@@ -278,7 +278,7 @@ def build_get_string_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/string")
@@ -301,7 +301,7 @@ def build_put_string_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/string")
@@ -325,7 +325,7 @@ def build_get_date_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/date")
@@ -348,7 +348,7 @@ def build_put_date_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/date")
@@ -372,7 +372,7 @@ def build_get_date_time_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/datetime")
@@ -395,7 +395,7 @@ def build_put_date_time_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/datetime")
@@ -419,7 +419,7 @@ def build_get_date_time_rfc1123_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
@@ -442,7 +442,7 @@ def build_put_date_time_rfc1123_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/datetimerfc1123")
@@ -466,7 +466,7 @@ def build_get_duration_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/duration")
@@ -489,7 +489,7 @@ def build_put_duration_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/duration")
@@ -513,7 +513,7 @@ def build_get_byte_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/byte")
@@ -536,7 +536,7 @@ def build_put_byte_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/complex/primitive/byte")
@@ -586,7 +586,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -637,7 +637,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -687,7 +687,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -738,7 +738,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -788,7 +788,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -839,7 +839,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -889,7 +889,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -941,7 +941,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -991,7 +991,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -1042,7 +1042,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -1092,7 +1092,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -1143,7 +1143,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -1193,7 +1193,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -1244,7 +1244,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -1294,7 +1294,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -1345,7 +1345,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -1395,7 +1395,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -1447,7 +1447,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -1497,7 +1497,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -1548,7 +1548,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -1599,7 +1599,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -1650,7 +1650,7 @@ class PrimitiveOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]

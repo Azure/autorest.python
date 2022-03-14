@@ -83,7 +83,7 @@ def build_validation_of_method_parameters_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('apiVersion', "1.0.0"))  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"
@@ -202,7 +202,7 @@ def build_validation_of_body_request(
 
     api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('apiVersion', "1.0.0"))  # type: str
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"
@@ -350,7 +350,7 @@ def build_post_with_constant_in_body_request(
 
     constant_param = kwargs.pop('constant_param', "constant")  # type: str
     content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = "/validation/constantsInPath/{constantParam}/value"

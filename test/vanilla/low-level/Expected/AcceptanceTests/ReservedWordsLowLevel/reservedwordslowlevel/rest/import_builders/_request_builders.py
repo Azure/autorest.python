@@ -42,7 +42,7 @@ def build_operation_one_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     parameter1 = kwargs.pop('parameter1')  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = "/reservedWords/operationGroup/import"

@@ -41,7 +41,7 @@ def build_test_one_request(
     api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2.0.0"))  # type: str
     id = kwargs.pop('id')  # type: int
     message = kwargs.pop('message', case_insensitive_dict(_params).pop('message', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/testOneEndpoint")
@@ -74,7 +74,7 @@ def build_test_different_calls_request(
     api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2.0.0"))  # type: str
     greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
     greeting_in_chinese = kwargs.pop('greeting_in_chinese', case_insensitive_dict(_headers).pop('greetingInChinese', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/testDifferentCalls")
@@ -121,7 +121,7 @@ class MultiapiServiceClientOperationsMixin(object):
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {})) or {}
+        error_map.update(kwargs.pop('error_map', {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -185,7 +185,7 @@ class MultiapiServiceClientOperationsMixin(object):
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {})) or {}
+        error_map.update(kwargs.pop('error_map', {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]

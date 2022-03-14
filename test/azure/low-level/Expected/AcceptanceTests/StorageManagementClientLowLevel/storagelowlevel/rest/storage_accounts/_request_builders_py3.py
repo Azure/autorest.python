@@ -81,7 +81,7 @@ def build_check_name_availability_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json, text/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability"
@@ -239,7 +239,7 @@ def build_create_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json, text/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"  # pylint: disable=line-too-long
@@ -407,7 +407,7 @@ def build_get_properties_request(
     api_version = kwargs.pop(
         "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
     )  # type: str
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json, text/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"  # pylint: disable=line-too-long
@@ -577,7 +577,7 @@ def build_update_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json, text/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"  # pylint: disable=line-too-long
@@ -636,7 +636,7 @@ def build_list_keys_request(
     api_version = kwargs.pop(
         "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
     )  # type: str
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json, text/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys"  # pylint: disable=line-too-long
@@ -765,7 +765,7 @@ def build_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     api_version = kwargs.pop(
         "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
     )  # type: str
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json, text/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts"
@@ -894,7 +894,7 @@ def build_list_by_resource_group_request(resource_group_name: str, subscription_
     api_version = kwargs.pop(
         "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
     )  # type: str
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json, text/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = (
@@ -978,7 +978,7 @@ def build_regenerate_key_request(
     content_type = kwargs.pop(
         "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
     )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json, text/json")
+    accept = case_insensitive_dict(_headers).pop("{param.rest_api_name}", {param.constant_declaration})
 
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey"  # pylint: disable=line-too-long

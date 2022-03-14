@@ -44,7 +44,7 @@ def build_get_pet_by_id_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/errorStatusCodes/Pets/{petId}/GetPet")
@@ -72,7 +72,7 @@ def build_do_something_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/errorStatusCodes/Pets/doSomething/{whatAction}")
@@ -101,7 +101,7 @@ def build_has_models_param_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     models = kwargs.pop('models', case_insensitive_dict(_params).pop('models', "value1"))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/errorStatusCodes/Pets/hasModelsParam")
@@ -166,7 +166,7 @@ class PetOperations(object):
             ),
             501: HttpResponseError,
         }
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -226,7 +226,7 @@ class PetOperations(object):
                 response=response, model=self._deserialize(_models.PetActionError, response)
             ),
         }
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
@@ -287,7 +287,7 @@ class PetOperations(object):
                 response=response, model=self._deserialize(_models.PetActionError, response)
             ),
         }
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]

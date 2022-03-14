@@ -47,7 +47,7 @@ def build_get_with_filter_request(
     filter = kwargs.pop('filter', case_insensitive_dict(_params).pop('$filter', None))  # type: Optional[str]
     top = kwargs.pop('top', case_insensitive_dict(_params).pop('$top', None))  # type: Optional[int]
     orderby = kwargs.pop('orderby', case_insensitive_dict(_params).pop('$orderby', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = case_insensitive_dict(_headers).pop('{param.rest_api_name}', {param.constant_declaration})
 
     # Construct URL
     _url = kwargs.pop("template_url", "/azurespecials/odata/filter")
@@ -115,7 +115,7 @@ class OdataOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {})) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]

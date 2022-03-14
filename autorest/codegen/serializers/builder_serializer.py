@@ -460,7 +460,7 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
             if param.location in [ParameterLocation.Header, ParameterLocation.Query]:
                 kwarg_dict = "headers" if param.location == ParameterLocation.Header else "params"
                 return (f"case_insensitive_dict(_{kwarg_dict}).pop("
-                                    "'{param.rest_api_name}', {param.constant_declaration})")
+                        "'{param.rest_api_name}', {param.constant_declaration})")
             return f"{param.constant_declaration}"
         return [
             f"{p.serialized_name} = {_get_value(p)}"
@@ -1048,7 +1048,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         else:
             retval.append("    401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError")
         retval.append("}")
-        retval.append("error_map.update(kwargs.pop('error_map', {})) or {}")
+        retval.append("error_map.update(kwargs.pop('error_map', {}))")
         return retval
 
     @staticmethod
