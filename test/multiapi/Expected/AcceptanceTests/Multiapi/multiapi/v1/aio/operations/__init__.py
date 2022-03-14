@@ -10,7 +10,7 @@ from ._multiapi_service_client_operations import MultiapiServiceClientOperations
 from ._operation_group_one_operations import OperationGroupOneOperations
 
 from ._patch import __all__ as _patch_all
-from ._patch import *  # pylint: disable=unused-wildcard-import
+from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 __all__ = [
     'MultiapiServiceClientOperationsMixin',

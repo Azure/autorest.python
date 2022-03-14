@@ -50,8 +50,8 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
         model_mode = mode_checks(*args, **kwargs)
         if model_mode:
             if len(args) > 1:
-                args = list(args)
-                args[1] = Input.serialize(args[1])  # pylint: disable=expression-not-assigned
+                args = list(args)  # type: ignore
+                args[1] = Input.serialize(args[1])  # type: ignore  # pylint: disable=expression-not-assigned
             else:
                 kwargs["input"] == Input.serialize(kwargs["input"])  # pylint: disable=expression-not-assigned
         response = super().post_model(*args, **kwargs)
