@@ -86,7 +86,7 @@ azure-sdk
     └───sdk
         └───operations
         │   _operations.py # where the generated operations are
-        |   _patch.py # where we customize the models code
+        |   _patch.py # where we customize the operations code
 ```
 
 ```python
@@ -122,7 +122,7 @@ azure-sdk
     └───sdk
         └───operations
         │   _operations.py # where the generated operations are
-        |   _patch.py # where we customize the models code
+        |   _patch.py # where we customize the operations code
 ```
 
 ```python
@@ -161,7 +161,7 @@ azure-sdk
 └───azure
     └───sdk
         │   _service_client.py # where the generated service client is
-        |   _patch.py # where we customize the models code
+        |   _patch.py # where we customize the client code
         └───operations
         └───models
 ```
@@ -209,7 +209,7 @@ azure-sdk
 └───azure
     └───sdk
         │   _service_client.py # where the generated service client is
-        |   _patch.py # where we customize the models code
+        |   _patch.py # where we customize the client code
         └───operations
         └───models
 ```
