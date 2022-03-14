@@ -10,8 +10,7 @@ from typing import TYPE_CHECKING
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
-
-from ..._vendor import _get_from_dict
+from azure.core.utils import case_insensitive_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -42,7 +41,7 @@ def build_head300_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/http/redirect/300"
@@ -83,7 +82,7 @@ def build_get300_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/http/redirect/300"
@@ -116,7 +115,7 @@ def build_head301_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/http/redirect/301"
@@ -149,7 +148,7 @@ def build_get301_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/http/redirect/301"
@@ -195,8 +194,8 @@ def build_put301_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/http/redirect/301"
@@ -231,7 +230,7 @@ def build_head302_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/http/redirect/302"
@@ -264,7 +263,7 @@ def build_get302_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/http/redirect/302"
@@ -310,8 +309,8 @@ def build_patch302_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/http/redirect/302"
@@ -359,8 +358,8 @@ def build_post303_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/http/redirect/303"
@@ -395,7 +394,7 @@ def build_head307_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/http/redirect/307"
@@ -428,7 +427,7 @@ def build_get307_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/http/redirect/307"
@@ -461,7 +460,7 @@ def build_options307_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/http/redirect/307"
@@ -506,8 +505,8 @@ def build_put307_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/http/redirect/307"
@@ -554,8 +553,8 @@ def build_patch307_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/http/redirect/307"
@@ -602,8 +601,8 @@ def build_post307_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/http/redirect/307"
@@ -650,8 +649,8 @@ def build_delete307_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/http/redirect/307"

@@ -10,8 +10,9 @@ from typing import Any, Dict
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
+from azure.core.utils import case_insensitive_dict
 
-from ..._vendor import _format_url_section, _get_from_dict
+from ..._vendor import _format_url_section
 
 _SERIALIZER = Serializer()
 
@@ -34,7 +35,7 @@ def build_post_method_local_valid_request(subscription_id: str, **kwargs: Any) -
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
@@ -68,7 +69,7 @@ def build_post_method_local_null_request(subscription_id: str, **kwargs: Any) ->
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"
@@ -101,7 +102,7 @@ def build_post_path_local_valid_request(subscription_id: str, **kwargs: Any) -> 
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
@@ -135,7 +136,7 @@ def build_post_swagger_local_valid_request(subscription_id: str, **kwargs: Any) 
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"

@@ -21,6 +21,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
@@ -40,25 +41,26 @@ def build_get_method_global_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = kwargs.pop('api_version', "2015-07-01-preview")  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2015-07-01-preview"))  # type: str
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview")
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -67,25 +69,26 @@ def build_get_method_global_not_provided_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = kwargs.pop('api_version', "2015-07-01-preview")  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2015-07-01-preview"))  # type: str
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview")  # pylint: disable=line-too-long
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -94,25 +97,26 @@ def build_get_path_global_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = kwargs.pop('api_version', "2015-07-01-preview")  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2015-07-01-preview"))  # type: str
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview")
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -121,25 +125,26 @@ def build_get_swagger_global_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    api_version = kwargs.pop('api_version', "2015-07-01-preview")  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2015-07-01-preview"))  # type: str
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview")
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -176,14 +181,21 @@ class ApiVersionDefaultOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-07-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_method_global_valid_request(
             api_version=api_version,
             template_url=self.get_method_global_valid.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -216,14 +228,21 @@ class ApiVersionDefaultOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-07-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_method_global_not_provided_valid_request(
             api_version=api_version,
             template_url=self.get_method_global_not_provided_valid.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -256,14 +275,21 @@ class ApiVersionDefaultOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-07-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_path_global_valid_request(
             api_version=api_version,
             template_url=self.get_path_global_valid.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -296,14 +322,21 @@ class ApiVersionDefaultOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2015-07-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-07-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_swagger_global_valid_request(
             api_version=api_version,
             template_url=self.get_swagger_global_valid.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

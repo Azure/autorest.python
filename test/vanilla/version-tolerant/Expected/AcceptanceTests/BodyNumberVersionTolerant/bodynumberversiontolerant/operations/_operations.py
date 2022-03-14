@@ -21,6 +21,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
 JSONType = Any
@@ -31,335 +32,393 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_number_get_null_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/null"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_number_get_invalid_float_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/invalidfloat"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_number_get_invalid_double_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/invaliddouble"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_number_get_invalid_decimal_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/invaliddecimal"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_number_put_big_float_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/big/float/3.402823e+20"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_number_get_big_float_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/big/float/3.402823e+20"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_number_put_big_double_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/big/double/2.5976931e+101"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_number_get_big_double_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/big/double/2.5976931e+101"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_number_put_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
-    json = kwargs.pop("json", 99999999.99)  # type: float
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    json = kwargs.pop("json", 99999999.99)  # type: float
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/big/double/99999999.99"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_number_get_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/big/double/99999999.99"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_number_put_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
-    json = kwargs.pop("json", -99999999.99)  # type: float
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    json = kwargs.pop("json", -99999999.99)  # type: float
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/big/double/-99999999.99"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_number_get_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/big/double/-99999999.99"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_number_put_big_decimal_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/big/decimal/2.5976931e+101"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_number_get_big_decimal_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/big/decimal/2.5976931e+101"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_number_put_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
-    json = kwargs.pop("json", 99999999.99)  # type: float
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    json = kwargs.pop("json", 99999999.99)  # type: float
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/big/decimal/99999999.99"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_number_get_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/big/decimal/99999999.99"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_number_put_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
-    json = kwargs.pop("json", -99999999.99)  # type: float
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    json = kwargs.pop("json", -99999999.99)  # type: float
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/big/decimal/-99999999.99"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_number_get_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/big/decimal/-99999999.99"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_number_put_small_float_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/small/float/3.402823e-20"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_number_get_small_float_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/small/float/3.402823e-20"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_number_put_small_double_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/small/double/2.5976931e-101"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_number_get_small_double_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/small/double/2.5976931e-101"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_number_put_small_decimal_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/small/decimal/2.5976931e-101"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_number_get_small_decimal_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/number/small/decimal/2.5976931e-101"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 class NumberOperations:  # pylint: disable=too-many-public-methods
@@ -388,11 +447,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[float]]
 
-        request = build_number_get_null_request()
+        request = build_number_get_null_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -423,11 +488,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        request = build_number_get_invalid_float_request()
+        request = build_number_get_invalid_float_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -458,11 +529,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        request = build_number_get_invalid_double_request()
+        request = build_number_get_invalid_double_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -493,11 +570,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        request = build_number_get_invalid_decimal_request()
+        request = build_number_get_invalid_decimal_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -532,9 +615,14 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body
@@ -542,6 +630,8 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request = build_number_put_big_float_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -566,11 +656,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        request = build_number_get_big_float_request()
+        request = build_number_get_big_float_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -605,9 +701,14 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body
@@ -615,6 +716,8 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request = build_number_put_big_double_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -639,11 +742,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        request = build_number_get_big_double_request()
+        request = build_number_get_big_double_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -677,15 +786,22 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         number_body = kwargs.pop("number_body", 99999999.99)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_number_put_big_double_positive_decimal_request(
             content_type=content_type,
             json=number_body,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -710,11 +826,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        request = build_number_get_big_double_positive_decimal_request()
+        request = build_number_get_big_double_positive_decimal_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -748,15 +870,22 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         number_body = kwargs.pop("number_body", -99999999.99)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_number_put_big_double_negative_decimal_request(
             content_type=content_type,
             json=number_body,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -781,11 +910,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        request = build_number_get_big_double_negative_decimal_request()
+        request = build_number_get_big_double_negative_decimal_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -820,9 +955,14 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body
@@ -830,6 +970,8 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request = build_number_put_big_decimal_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -854,11 +996,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        request = build_number_get_big_decimal_request()
+        request = build_number_get_big_decimal_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -892,15 +1040,22 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         number_body = kwargs.pop("number_body", 99999999.99)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_number_put_big_decimal_positive_decimal_request(
             content_type=content_type,
             json=number_body,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -925,11 +1080,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        request = build_number_get_big_decimal_positive_decimal_request()
+        request = build_number_get_big_decimal_positive_decimal_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -963,15 +1124,22 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         number_body = kwargs.pop("number_body", -99999999.99)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_number_put_big_decimal_negative_decimal_request(
             content_type=content_type,
             json=number_body,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -996,11 +1164,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        request = build_number_get_big_decimal_negative_decimal_request()
+        request = build_number_get_big_decimal_negative_decimal_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -1035,9 +1209,14 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body
@@ -1045,6 +1224,8 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request = build_number_put_small_float_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1069,11 +1250,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        request = build_number_get_small_float_request()
+        request = build_number_get_small_float_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -1108,9 +1295,14 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body
@@ -1118,6 +1310,8 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request = build_number_put_small_double_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1142,11 +1336,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        request = build_number_get_small_double_request()
+        request = build_number_get_small_double_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -1181,9 +1381,14 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = number_body
@@ -1191,6 +1396,8 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request = build_number_put_small_decimal_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1215,11 +1422,17 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[float]
 
-        request = build_number_get_small_decimal_request()
+        request = build_number_get_small_decimal_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access

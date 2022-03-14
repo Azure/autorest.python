@@ -21,6 +21,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
 from .._vendor import MixinABC, _format_url_section
 
@@ -33,157 +34,187 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_put_array_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/model-flatten/array"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_get_array_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/model-flatten/array"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_put_wrapped_array_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/model-flatten/wrappedarray"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_get_wrapped_array_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/model-flatten/wrappedarray"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_put_dictionary_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/model-flatten/dictionary"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_get_dictionary_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/model-flatten/dictionary"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_put_resource_collection_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/model-flatten/resourcecollection"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/model-flatten/resourcecollection"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_put_simple_product_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/model-flatten/customFlattening"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_post_flattened_simple_product_request(
     *, json: JSONType = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/model-flatten/customFlattening"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_put_simple_product_with_grouping_request(
     name: str, *, json: JSONType = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/model-flatten/customFlattening/parametergrouping/{name}/"
     path_format_arguments = {
@@ -193,12 +224,11 @@ def build_put_simple_product_with_grouping_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
@@ -232,9 +262,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if resource_array is not None:
@@ -245,6 +280,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         request = build_put_array_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -295,11 +332,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
 
-        request = build_get_array_request()
+        request = build_get_array_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -345,9 +388,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if resource_array is not None:
@@ -358,6 +406,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         request = build_put_wrapped_array_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -395,11 +445,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
 
-        request = build_get_wrapped_array_request()
+        request = build_get_wrapped_array_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -460,9 +516,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if resource_dictionary is not None:
@@ -473,6 +534,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         request = build_put_dictionary_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -523,11 +586,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
 
-        request = build_get_dictionary_request()
+        request = build_get_dictionary_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -634,9 +703,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if resource_complex_object is not None:
@@ -647,6 +721,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         request = build_put_resource_collection_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -742,11 +818,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
-        request = build_get_resource_collection_request()
+        request = build_get_resource_collection_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -818,9 +900,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         if simple_body_product is not None:
@@ -831,6 +918,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         request = build_put_simple_product_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -903,9 +992,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         if simple_body_product is not None:
@@ -916,6 +1010,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         request = build_post_flattened_simple_product_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -992,9 +1088,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         if simple_body_product is not None:
@@ -1006,6 +1107,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             name=name,
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 

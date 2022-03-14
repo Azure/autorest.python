@@ -22,6 +22,7 @@ from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMetho
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
@@ -85,9 +86,14 @@ class StorageAccountsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.CheckNameAvailabilityResult"]
 
         _json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
@@ -98,6 +104,8 @@ class StorageAccountsOperations:
             content_type=content_type,
             json=_json,
             template_url=self.check_name_availability.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -130,9 +138,14 @@ class StorageAccountsOperations:
         **kwargs: Any
     ) -> Optional["_models.StorageAccount"]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.StorageAccount"]]
 
         _json = self._serialize.body(parameters, "StorageAccountCreateParameters")
@@ -145,6 +158,8 @@ class StorageAccountsOperations:
             content_type=content_type,
             json=_json,
             template_url=self._create_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -208,7 +223,12 @@ class StorageAccountsOperations:
         :rtype: ~azure.core.polling.AsyncLROPoller[~storage.models.StorageAccount]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -269,9 +289,14 @@ class StorageAccountsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_delete_request(
@@ -280,6 +305,8 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             api_version=api_version,
             template_url=self.delete.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -318,9 +345,14 @@ class StorageAccountsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
 
         request = build_get_properties_request(
@@ -329,6 +361,8 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             api_version=api_version,
             template_url=self.get_properties.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -387,9 +421,14 @@ class StorageAccountsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
 
         _json = self._serialize.body(parameters, "StorageAccountUpdateParameters")
@@ -402,6 +441,8 @@ class StorageAccountsOperations:
             content_type=content_type,
             json=_json,
             template_url=self.update.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -440,9 +481,14 @@ class StorageAccountsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountKeys"]
 
         request = build_list_keys_request(
@@ -451,6 +497,8 @@ class StorageAccountsOperations:
             subscription_id=self._config.subscription_id,
             api_version=api_version,
             template_url=self.list_keys.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -484,11 +532,16 @@ class StorageAccountsOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~storage.models.StorageAccountListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountListResult"]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -497,6 +550,8 @@ class StorageAccountsOperations:
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
                     template_url=self.list.metadata["url"],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)  # type: ignore
@@ -506,6 +561,8 @@ class StorageAccountsOperations:
                 request = build_list_request(
                     subscription_id=self._config.subscription_id,
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)  # type: ignore
@@ -552,11 +609,16 @@ class StorageAccountsOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~storage.models.StorageAccountListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountListResult"]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -566,6 +628,8 @@ class StorageAccountsOperations:
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
                     template_url=self.list_by_resource_group.metadata["url"],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)  # type: ignore
@@ -576,6 +640,8 @@ class StorageAccountsOperations:
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)  # type: ignore
@@ -636,9 +702,14 @@ class StorageAccountsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountKeys"]
 
         _regenerate_key = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)
@@ -652,6 +723,8 @@ class StorageAccountsOperations:
             content_type=content_type,
             json=_json,
             template_url=self.regenerate_key.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

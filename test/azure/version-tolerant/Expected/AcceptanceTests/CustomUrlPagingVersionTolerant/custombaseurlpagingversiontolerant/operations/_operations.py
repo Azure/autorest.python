@@ -22,8 +22,9 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
-from .._vendor import _format_url_section, _get_from_dict
+from .._vendor import _format_url_section
 
 T = TypeVar("T")
 JSONType = Any
@@ -36,7 +37,7 @@ _SERIALIZER.client_side_validation = False
 def build_paging_get_pages_partial_url_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paging/customurl/partialnextlink"
@@ -50,7 +51,7 @@ def build_paging_get_pages_partial_url_request(**kwargs: Any) -> HttpRequest:
 def build_paging_get_pages_partial_url_operation_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paging/customurl/partialnextlinkop"
@@ -64,7 +65,7 @@ def build_paging_get_pages_partial_url_operation_request(**kwargs: Any) -> HttpR
 def build_paging_get_pages_partial_url_operation_next_request(next_link: str, **kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paging/customurl/{nextLink}"

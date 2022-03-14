@@ -20,6 +20,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 
 from ...operations._operations import (
     build_int_get_invalid_request,
@@ -69,11 +70,17 @@ class IntOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[int]]
 
-        request = build_int_get_null_request()
+        request = build_int_get_null_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -104,11 +111,17 @@ class IntOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[int]
 
-        request = build_int_get_invalid_request()
+        request = build_int_get_invalid_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -139,11 +152,17 @@ class IntOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[int]
 
-        request = build_int_get_overflow_int32_request()
+        request = build_int_get_overflow_int32_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -174,11 +193,17 @@ class IntOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[int]
 
-        request = build_int_get_underflow_int32_request()
+        request = build_int_get_underflow_int32_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -209,11 +234,17 @@ class IntOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[int]
 
-        request = build_int_get_overflow_int64_request()
+        request = build_int_get_overflow_int64_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -244,11 +275,17 @@ class IntOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[int]
 
-        request = build_int_get_underflow_int64_request()
+        request = build_int_get_underflow_int64_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -281,9 +318,14 @@ class IntOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = int_body
@@ -291,6 +333,8 @@ class IntOperations:
         request = build_int_put_max32_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -317,9 +361,14 @@ class IntOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = int_body
@@ -327,6 +376,8 @@ class IntOperations:
         request = build_int_put_max64_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -353,9 +404,14 @@ class IntOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = int_body
@@ -363,6 +419,8 @@ class IntOperations:
         request = build_int_put_min32_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -389,9 +447,14 @@ class IntOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = int_body
@@ -399,6 +462,8 @@ class IntOperations:
         request = build_int_put_min64_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -423,11 +488,17 @@ class IntOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
 
-        request = build_int_get_unix_time_request()
+        request = build_int_get_unix_time_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -462,9 +533,14 @@ class IntOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = int_body
@@ -472,6 +548,8 @@ class IntOperations:
         request = build_int_put_unix_time_date_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -496,11 +574,17 @@ class IntOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[datetime.datetime]
 
-        request = build_int_get_invalid_unix_time_request()
+        request = build_int_get_invalid_unix_time_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -531,11 +615,17 @@ class IntOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[datetime.datetime]]
 
-        request = build_int_get_null_unix_time_request()
+        request = build_int_get_null_unix_time_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access

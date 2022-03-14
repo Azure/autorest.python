@@ -19,6 +19,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._vendor import _convert_request
@@ -47,9 +48,14 @@ class ReservedWordsClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/octet-stream")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
         _content = content
@@ -58,6 +64,8 @@ class ReservedWordsClientOperationsMixin:
             content_type=content_type,
             content=_content,
             template_url=self.operation_with_content_param.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -92,9 +100,14 @@ class ReservedWordsClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
         _json = self._serialize.body(json, "object")
@@ -103,6 +116,8 @@ class ReservedWordsClientOperationsMixin:
             content_type=content_type,
             json=_json,
             template_url=self.operation_with_json_param.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -139,9 +154,14 @@ class ReservedWordsClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/x-www-form-urlencoded")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/x-www-form-urlencoded")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
         # Construct form data
@@ -154,6 +174,8 @@ class ReservedWordsClientOperationsMixin:
             content_type=content_type,
             data=_data,
             template_url=self.operation_with_data_param.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -190,9 +212,14 @@ class ReservedWordsClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
         # Construct form data
@@ -205,6 +232,8 @@ class ReservedWordsClientOperationsMixin:
             content_type=content_type,
             files=_files,
             template_url=self.operation_with_files_param.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request, _files)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -248,7 +277,10 @@ class ReservedWordsClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
@@ -257,6 +289,8 @@ class ReservedWordsClientOperationsMixin:
             header_parameters=header_parameters,
             query_parameters=query_parameters,
             template_url=self.operation_with_url.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

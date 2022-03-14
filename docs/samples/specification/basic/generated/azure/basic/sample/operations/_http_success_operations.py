@@ -109,7 +109,6 @@ class HttpSuccessOperations(object):
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         
@@ -159,7 +158,6 @@ class HttpSuccessOperations(object):
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         
@@ -208,7 +206,6 @@ class HttpSuccessOperations(object):
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
 
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 

@@ -10,8 +10,7 @@ from typing import Any, Dict, Optional, TypeVar
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
-
-from ..._vendor import _get_from_dict
+from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
 JSONType = Any
@@ -34,7 +33,7 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/null"
@@ -71,8 +70,10 @@ def build_put_null_request(*, json: JSONType = None, content: Any = None, **kwar
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/null"
@@ -99,7 +100,7 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/empty"
@@ -127,9 +128,11 @@ def build_put_empty_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
     json = kwargs.pop("json", "")  # type: str
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/empty"
@@ -156,7 +159,7 @@ def build_get_mbcs_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/mbcs"
@@ -185,9 +188,11 @@ def build_put_mbcs_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
     json = kwargs.pop("json", "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€")  # type: str
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/mbcs"
@@ -216,7 +221,7 @@ def build_get_whitespace_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/whitespace"
@@ -247,11 +252,13 @@ def build_put_whitespace_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
     json = kwargs.pop(
         "json", "    Now is the time for all good men to come to the aid of their country    "
     )  # type: str
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/whitespace"
@@ -278,7 +285,7 @@ def build_get_not_provided_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/notProvided"
@@ -303,7 +310,7 @@ def build_get_base64_encoded_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/base64Encoding"
@@ -328,7 +335,7 @@ def build_get_base64_url_encoded_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/base64UrlEncoding"
@@ -365,8 +372,10 @@ def build_put_base64_url_encoded_request(*, json: JSONType = None, content: Any 
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/base64UrlEncoding"
@@ -393,7 +402,7 @@ def build_get_null_base64_url_encoded_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/nullBase64UrlEncoding"

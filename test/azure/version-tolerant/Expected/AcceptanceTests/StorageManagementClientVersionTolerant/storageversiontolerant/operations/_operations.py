@@ -23,6 +23,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
@@ -39,10 +40,17 @@ _SERIALIZER.client_side_validation = False
 def build_storage_accounts_check_name_availability_request(
     subscription_id: str, *, json: JSONType = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
-    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json, text/json"
+    api_version = kwargs.pop(
+        "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+    )  # type: str
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json, text/json")
+
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability"
     path_format_arguments = {
@@ -52,24 +60,14 @@ def build_storage_accounts_check_name_availability_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
-        json=json,
-        content=content,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_storage_accounts_create_request_initial(
@@ -81,10 +79,17 @@ def build_storage_accounts_create_request_initial(
     content: Any = None,
     **kwargs: Any
 ) -> HttpRequest:
-    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json, text/json"
+    api_version = kwargs.pop(
+        "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+    )  # type: str
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json, text/json")
+
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -96,31 +101,24 @@ def build_storage_accounts_create_request_initial(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
-        json=json,
-        content=content,
-        **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_storage_accounts_delete_request(
     resource_group_name: str, account_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
-    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
+    api_version = kwargs.pop(
+        "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+    )  # type: str
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -132,18 +130,22 @@ def build_storage_accounts_delete_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
-    return HttpRequest(method="DELETE", url=_url, params=_query_parameters, **kwargs)
+    return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
 
 
 def build_storage_accounts_get_properties_request(
     resource_group_name: str, account_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
-    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json, text/json"
+    api_version = kwargs.pop(
+        "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+    )  # type: str
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json, text/json")
+
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -155,14 +157,12 @@ def build_storage_accounts_get_properties_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_storage_accounts_update_request(
@@ -174,10 +174,17 @@ def build_storage_accounts_update_request(
     content: Any = None,
     **kwargs: Any
 ) -> HttpRequest:
-    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json, text/json"
+    api_version = kwargs.pop(
+        "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+    )  # type: str
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json, text/json")
+
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -189,32 +196,27 @@ def build_storage_accounts_update_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="PATCH",
-        url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
-        json=json,
-        content=content,
-        **kwargs
-    )
+    return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_storage_accounts_list_keys_request(
     resource_group_name: str, account_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
-    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json, text/json"
+    api_version = kwargs.pop(
+        "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+    )  # type: str
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json, text/json")
+
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -226,20 +228,23 @@ def build_storage_accounts_list_keys_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_storage_accounts_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
-    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json, text/json"
+    api_version = kwargs.pop(
+        "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+    )  # type: str
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json, text/json")
+
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts"
     path_format_arguments = {
@@ -249,22 +254,25 @@ def build_storage_accounts_list_request(subscription_id: str, **kwargs: Any) -> 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_storage_accounts_list_by_resource_group_request(
     resource_group_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
-    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json, text/json"
+    api_version = kwargs.pop(
+        "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+    )  # type: str
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json, text/json")
+
     # Construct URL
     _url = (
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts"
@@ -277,14 +285,12 @@ def build_storage_accounts_list_by_resource_group_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_storage_accounts_regenerate_key_request(
@@ -296,10 +302,17 @@ def build_storage_accounts_regenerate_key_request(
     content: Any = None,
     **kwargs: Any
 ) -> HttpRequest:
-    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json, text/json"
+    api_version = kwargs.pop(
+        "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+    )  # type: str
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json, text/json")
+
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -311,30 +324,25 @@ def build_storage_accounts_regenerate_key_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
-        json=json,
-        content=content,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_usage_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
-    api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json, text/json"
+    api_version = kwargs.pop(
+        "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+    )  # type: str
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json, text/json")
+
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages"
     path_format_arguments = {
@@ -344,14 +352,12 @@ def build_usage_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 class StorageAccountsOperations:
@@ -411,9 +417,14 @@ class StorageAccountsOperations:
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         _json = account_name
@@ -423,6 +434,8 @@ class StorageAccountsOperations:
             api_version=api_version,
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -455,9 +468,14 @@ class StorageAccountsOperations:
         **kwargs: Any
     ) -> Optional[JSONType]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
 
         _json = parameters
@@ -469,6 +487,8 @@ class StorageAccountsOperations:
             api_version=api_version,
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -616,7 +636,12 @@ class StorageAccountsOperations:
                     "type": "str"  # Optional. Resource type.
                 }
         """
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -677,9 +702,14 @@ class StorageAccountsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_storage_accounts_delete_request(
@@ -687,6 +717,8 @@ class StorageAccountsOperations:
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             api_version=api_version,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -789,9 +821,14 @@ class StorageAccountsOperations:
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_storage_accounts_get_properties_request(
@@ -799,6 +836,8 @@ class StorageAccountsOperations:
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             api_version=api_version,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -951,9 +990,14 @@ class StorageAccountsOperations:
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         _json = parameters
@@ -965,6 +1009,8 @@ class StorageAccountsOperations:
             api_version=api_version,
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1009,9 +1055,14 @@ class StorageAccountsOperations:
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_storage_accounts_list_keys_request(
@@ -1019,6 +1070,8 @@ class StorageAccountsOperations:
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             api_version=api_version,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1136,11 +1189,16 @@ class StorageAccountsOperations:
                     ]
                 }
         """
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1148,6 +1206,8 @@ class StorageAccountsOperations:
                 request = build_storage_accounts_list_request(
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1155,6 +1215,8 @@ class StorageAccountsOperations:
 
                 request = build_storage_accounts_list_request(
                     subscription_id=self._config.subscription_id,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
@@ -1280,11 +1342,16 @@ class StorageAccountsOperations:
                     ]
                 }
         """
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1293,6 +1360,8 @@ class StorageAccountsOperations:
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1301,6 +1370,8 @@ class StorageAccountsOperations:
                 request = build_storage_accounts_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
@@ -1371,9 +1442,14 @@ class StorageAccountsOperations:
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         _json = regenerate_key
@@ -1385,6 +1461,8 @@ class StorageAccountsOperations:
             api_version=api_version,
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1458,14 +1536,21 @@ class UsageOperations:
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop(
+            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_usage_list_request(
             subscription_id=self._config.subscription_id,
             api_version=api_version,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 

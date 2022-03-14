@@ -10,8 +10,9 @@ from typing import TYPE_CHECKING
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
+from azure.core.utils import case_insensitive_dict
 
-from ..._vendor import _format_url_section, _get_from_dict
+from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -56,7 +57,7 @@ def build_get_pages_partial_url_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/customurl/partialnextlink"
@@ -105,7 +106,7 @@ def build_get_pages_partial_url_operation_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/customurl/partialnextlinkop"
@@ -157,7 +158,7 @@ def build_get_pages_partial_url_operation_next_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/customurl/{nextLink}"

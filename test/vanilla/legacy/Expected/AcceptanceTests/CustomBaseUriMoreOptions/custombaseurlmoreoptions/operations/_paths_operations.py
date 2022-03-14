@@ -21,9 +21,10 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._vendor import _convert_request, _format_url_section, _get_from_dict
+from .._vendor import _convert_request, _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -45,8 +46,8 @@ def build_get_empty_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    key_version = kwargs.pop('key_version', _get_from_dict(_params, 'keyVersion') or "v1")  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    key_version = kwargs.pop('key_version', case_insensitive_dict(_params).pop('keyVersion', "v1"))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/customuri/{subscriptionId}/{keyName}")

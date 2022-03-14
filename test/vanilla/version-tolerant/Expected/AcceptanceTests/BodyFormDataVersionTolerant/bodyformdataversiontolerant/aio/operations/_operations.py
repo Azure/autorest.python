@@ -19,6 +19,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 
 from ...operations._operations import (
     build_formdata_upload_file_request,
@@ -70,14 +71,21 @@ class FormdataOperations:
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
 
         request = build_formdata_upload_file_request(
             content_type=content_type,
             files=files,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -108,9 +116,14 @@ class FormdataOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/octet-stream")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
 
         _content = file_content
@@ -118,6 +131,8 @@ class FormdataOperations:
         request = build_formdata_upload_file_via_body_request(
             content_type=content_type,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -159,14 +174,21 @@ class FormdataOperations:
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[IO]
 
         request = build_formdata_upload_files_request(
             content_type=content_type,
             files=files,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 

@@ -10,8 +10,7 @@ from typing import TYPE_CHECKING
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
-
-from ..._vendor import _get_from_dict
+from azure.core.utils import case_insensitive_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -39,7 +38,7 @@ def build_get_file_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "image/png, application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "image/png, application/json")
 
     # Construct URL
     _url = "/files/stream/nonempty"
@@ -72,7 +71,7 @@ def build_get_file_large_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "image/png, application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "image/png, application/json")
 
     # Construct URL
     _url = "/files/stream/verylarge"
@@ -105,7 +104,7 @@ def build_get_empty_file_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "image/png, application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "image/png, application/json")
 
     # Construct URL
     _url = "/files/stream/empty"

@@ -10,8 +10,7 @@ from typing import Any, Dict
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
-
-from ..._vendor import _get_from_dict
+from azure.core.utils import case_insensitive_dict
 
 _SERIALIZER = Serializer()
 
@@ -31,8 +30,10 @@ def build_get_method_global_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    api_version = kwargs.pop("api_version", _get_from_dict(_params, "api-version") or "2015-07-01-preview")  # type: str
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    api_version = kwargs.pop(
+        "api_version", case_insensitive_dict(_params).pop("api-version", "2015-07-01-preview")
+    )  # type: str
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview"
@@ -61,8 +62,10 @@ def build_get_method_global_not_provided_valid_request(**kwargs: Any) -> HttpReq
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    api_version = kwargs.pop("api_version", _get_from_dict(_params, "api-version") or "2015-07-01-preview")  # type: str
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    api_version = kwargs.pop(
+        "api_version", case_insensitive_dict(_params).pop("api-version", "2015-07-01-preview")
+    )  # type: str
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"
@@ -91,8 +94,10 @@ def build_get_path_global_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    api_version = kwargs.pop("api_version", _get_from_dict(_params, "api-version") or "2015-07-01-preview")  # type: str
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    api_version = kwargs.pop(
+        "api_version", case_insensitive_dict(_params).pop("api-version", "2015-07-01-preview")
+    )  # type: str
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview"
@@ -121,8 +126,10 @@ def build_get_swagger_global_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    api_version = kwargs.pop("api_version", _get_from_dict(_params, "api-version") or "2015-07-01-preview")  # type: str
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    api_version = kwargs.pop(
+        "api_version", case_insensitive_dict(_params).pop("api-version", "2015-07-01-preview")
+    )  # type: str
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview"

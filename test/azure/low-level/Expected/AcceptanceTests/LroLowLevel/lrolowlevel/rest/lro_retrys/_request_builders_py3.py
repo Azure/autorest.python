@@ -10,8 +10,7 @@ from typing import Any, Dict, Optional, TypeVar
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
-
-from ..._vendor import _get_from_dict
+from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
 JSONType = Any
@@ -83,8 +82,10 @@ def build_put201_creating_succeeded200_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/retryerror/put/201/creating/succeeded/200"
@@ -160,8 +161,10 @@ def build_put_async_relative_retry_succeeded_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/retryerror/putasync/retry/succeeded"
@@ -211,7 +214,7 @@ def build_delete_provisioning202_accepted200_succeeded_request(**kwargs: Any) ->
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded"
@@ -237,7 +240,7 @@ def build_delete202_retry200_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/retryerror/delete/202/retry/200"
@@ -263,7 +266,7 @@ def build_delete_async_relative_retry_succeeded_request(**kwargs: Any) -> HttpRe
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/retryerror/deleteasync/retry/succeeded"
@@ -316,8 +319,10 @@ def build_post202_retry200_request(*, json: JSONType = None, content: Any = None
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/retryerror/post/202/retry/200"
@@ -375,8 +380,10 @@ def build_post_async_relative_retry_succeeded_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/retryerror/postasync/retry/succeeded"

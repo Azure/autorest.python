@@ -21,9 +21,10 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._vendor import _convert_request, _get_from_dict
+from .._vendor import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -42,7 +43,7 @@ def build_get200_model204_no_model_default_error200_valid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/200/A/204/none/default/Error/response/200/valid")
@@ -64,7 +65,7 @@ def build_get200_model204_no_model_default_error204_valid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/200/A/204/none/default/Error/response/204/none")
@@ -86,7 +87,7 @@ def build_get200_model204_no_model_default_error201_invalid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/200/A/204/none/default/Error/response/201/valid")
@@ -108,7 +109,7 @@ def build_get200_model204_no_model_default_error202_none_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/200/A/204/none/default/Error/response/202/none")
@@ -130,7 +131,7 @@ def build_get200_model204_no_model_default_error400_valid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/200/A/204/none/default/Error/response/400/valid")
@@ -152,7 +153,7 @@ def build_get200_model201_model_default_error200_valid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/200/A/201/B/default/Error/response/200/valid")
@@ -174,7 +175,7 @@ def build_get200_model201_model_default_error201_valid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/200/A/201/B/default/Error/response/201/valid")
@@ -196,7 +197,7 @@ def build_get200_model201_model_default_error400_valid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/200/A/201/B/default/Error/response/400/valid")
@@ -218,7 +219,7 @@ def build_get200_model_a201_model_c404_model_d_default_error200_valid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid")
@@ -240,7 +241,7 @@ def build_get200_model_a201_model_c404_model_d_default_error201_valid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid")
@@ -262,7 +263,7 @@ def build_get200_model_a201_model_c404_model_d_default_error404_valid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid")
@@ -284,7 +285,7 @@ def build_get200_model_a201_model_c404_model_d_default_error400_valid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid")
@@ -306,7 +307,7 @@ def build_get202_none204_none_default_error202_none_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/Error/response/202/none")
@@ -328,7 +329,7 @@ def build_get202_none204_none_default_error204_none_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/Error/response/204/none")
@@ -350,7 +351,7 @@ def build_get202_none204_none_default_error400_valid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/Error/response/400/valid")
@@ -428,7 +429,7 @@ def build_get_default_model_a200_valid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/default/A/response/200/valid")
@@ -450,7 +451,7 @@ def build_get_default_model_a200_none_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/default/A/response/200/none")
@@ -472,7 +473,7 @@ def build_get_default_model_a400_valid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/default/A/response/400/valid")
@@ -494,7 +495,7 @@ def build_get_default_model_a400_none_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/default/A/response/400/none")
@@ -572,7 +573,7 @@ def build_get200_model_a200_none_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/200/A/response/200/none")
@@ -594,7 +595,7 @@ def build_get200_model_a200_valid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/200/A/response/200/valid")
@@ -616,7 +617,7 @@ def build_get200_model_a200_invalid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/200/A/response/200/invalid")
@@ -638,7 +639,7 @@ def build_get200_model_a400_none_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/200/A/response/400/none")
@@ -660,7 +661,7 @@ def build_get200_model_a400_valid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/200/A/response/400/valid")
@@ -682,7 +683,7 @@ def build_get200_model_a400_invalid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/200/A/response/400/invalid")
@@ -704,7 +705,7 @@ def build_get200_model_a202_valid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/200/A/response/202/valid")

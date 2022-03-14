@@ -19,9 +19,10 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._vendor import _convert_request, _get_from_dict
+from ..._vendor import _convert_request
 from ...operations._bool_operations import (
     build_get_false_request,
     build_get_invalid_request,
@@ -117,7 +118,7 @@ class BoolOperations:
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         content_type = kwargs.pop(
-            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
         )  # type: Optional[str]
         bool_body = kwargs.pop("bool_body", True)  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -210,7 +211,7 @@ class BoolOperations:
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         content_type = kwargs.pop(
-            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
         )  # type: Optional[str]
         bool_body = kwargs.pop("bool_body", False)  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[None]

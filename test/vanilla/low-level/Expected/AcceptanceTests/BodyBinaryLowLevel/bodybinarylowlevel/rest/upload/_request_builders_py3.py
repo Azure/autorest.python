@@ -10,8 +10,7 @@ from typing import Any, Dict, Optional, TypeVar
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
-
-from ..._vendor import _get_from_dict
+from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
 JSONType = Any
@@ -48,7 +47,9 @@ def build_file_request(*, json: JSONType = None, content: Any = None, **kwargs: 
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
     # Construct URL
     _url = "/binary/file"
 
@@ -76,7 +77,9 @@ def build_binary_request(*, content: Any, **kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
     # Construct URL
     _url = "/binary/octet"
 

@@ -21,9 +21,10 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._vendor import _convert_request, _get_from_dict
+from .._vendor import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -42,7 +43,7 @@ def build_get_true_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/bool/true")
@@ -64,9 +65,9 @@ def build_put_true_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
     json = kwargs.pop('json', True)  # type: bool
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/bool/true")
@@ -91,7 +92,7 @@ def build_get_false_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/bool/false")
@@ -113,9 +114,9 @@ def build_put_false_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
     json = kwargs.pop('json', False)  # type: bool
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/bool/false")
@@ -140,7 +141,7 @@ def build_get_null_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/bool/null")
@@ -162,7 +163,7 @@ def build_get_invalid_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/bool/invalid")
@@ -266,7 +267,7 @@ class BoolOperations(object):
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         content_type = kwargs.pop(
-            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
         )  # type: Optional[str]
         bool_body = kwargs.pop("bool_body", True)  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -365,7 +366,7 @@ class BoolOperations(object):
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         content_type = kwargs.pop(
-            "content_type", _get_from_dict(_headers, "Content-Type") or "application/json"
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
         )  # type: Optional[str]
         bool_body = kwargs.pop("bool_body", False)  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[None]

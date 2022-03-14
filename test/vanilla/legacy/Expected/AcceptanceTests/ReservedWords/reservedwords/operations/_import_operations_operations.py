@@ -21,9 +21,10 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._vendor import _convert_request, _get_from_dict
+from .._vendor import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -44,7 +45,7 @@ def build_operation_one_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     parameter1 = kwargs.pop('parameter1')  # type: str
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/reservedWords/operationGroup/import")

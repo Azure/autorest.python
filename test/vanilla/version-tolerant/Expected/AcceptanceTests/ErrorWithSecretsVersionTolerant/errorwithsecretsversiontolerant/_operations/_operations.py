@@ -21,6 +21,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
 from .._vendor import MixinABC
 
@@ -33,27 +34,31 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_create_secret_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/secrets/:create"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 def build_get_error_with_secrets_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+
     # Construct URL
     _url = "/secrets/error"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 class ErrorWithSecretsOperationsMixin(MixinABC):
@@ -75,11 +80,17 @@ class ErrorWithSecretsOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
-        request = build_create_secret_request()
+        request = build_create_secret_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -110,11 +121,17 @@ class ErrorWithSecretsOperationsMixin(MixinABC):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_get_error_with_secrets_request()
+        request = build_get_error_with_secrets_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access

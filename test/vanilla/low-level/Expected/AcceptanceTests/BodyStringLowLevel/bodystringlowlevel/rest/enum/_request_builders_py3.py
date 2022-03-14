@@ -10,8 +10,7 @@ from typing import Any, Dict, Optional, TypeVar
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
-
-from ..._vendor import _get_from_dict
+from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
 JSONType = Any
@@ -40,7 +39,7 @@ def build_get_not_expandable_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/enum/notExpandable"
@@ -77,8 +76,10 @@ def build_put_not_expandable_request(*, json: JSONType = None, content: Any = No
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/enum/notExpandable"
@@ -111,7 +112,7 @@ def build_get_referenced_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/enum/Referenced"
@@ -148,8 +149,10 @@ def build_put_referenced_request(*, json: JSONType = None, content: Any = None, 
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/enum/Referenced"
@@ -186,7 +189,7 @@ def build_get_referenced_constant_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/enum/ReferencedConstant"
@@ -227,8 +230,10 @@ def build_put_referenced_constant_request(*, json: JSONType = None, content: Any
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/enum/ReferencedConstant"

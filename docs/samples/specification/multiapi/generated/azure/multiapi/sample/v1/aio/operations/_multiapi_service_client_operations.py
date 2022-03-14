@@ -16,11 +16,12 @@ from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMetho
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ... import models as _models
-from ..._vendor import _convert_request, _get_from_dict
+from ..._vendor import _convert_request
 from ...operations._multiapi_service_client_operations import build_test_different_calls_request, build_test_lro_and_paging_request_initial, build_test_lro_request_initial, build_test_one_request
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -50,7 +51,10 @@ class MultiapiServiceClientOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {})) or {}
 
-        api_version = kwargs.pop('api_version', "1.0.0")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "1.0.0"))  # type: str
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         
@@ -96,7 +100,7 @@ class MultiapiServiceClientOperationsMixin:
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', "application/json"))  # type: Optional[str]
         cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Product"]]
 
         if product is not None:
@@ -160,7 +164,10 @@ class MultiapiServiceClientOperationsMixin:
         :rtype: ~azure.core.polling.AsyncLROPoller[~azure.multiapi.sample.v1.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', "application/json"))  # type: Optional[str]
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop(
@@ -220,7 +227,6 @@ class MultiapiServiceClientOperationsMixin:
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
 
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
 
@@ -292,7 +298,6 @@ class MultiapiServiceClientOperationsMixin:
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
 
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
 
@@ -434,7 +439,7 @@ class MultiapiServiceClientOperationsMixin:
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-        api_version = kwargs.pop('api_version', "1.0.0")  # type: str
+        api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "1.0.0"))  # type: str
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         

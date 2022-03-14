@@ -85,9 +85,7 @@ class RequestBuilder(BaseBuilder):
             file_import.add_submodule_import(
                 "typing", "Dict", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
             )
-            file_import.add_submodule_import(
-                f"{relative_path}_vendor", "_get_from_dict", ImportType.LOCAL
-            )
+            file_import.add_submodule_import("azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE)
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )

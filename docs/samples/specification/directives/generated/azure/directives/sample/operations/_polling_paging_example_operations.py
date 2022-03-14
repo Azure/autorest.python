@@ -16,10 +16,11 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.polling import NoPolling, PollingMethod
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 from my.library import CustomDefaultPollingMethod, CustomPager, CustomPoller
 
 from .. import models as _models
-from .._vendor import _convert_request, _get_from_dict
+from .._vendor import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -37,8 +38,8 @@ def build_basic_polling_request_initial(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/basic/polling")
@@ -62,7 +63,7 @@ def build_basic_paging_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/basic/paging")
@@ -94,7 +95,7 @@ class PollingPagingExampleOperationsMixin(object):
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', "application/json"))  # type: Optional[str]
         cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Product"]]
 
         if product is not None:
@@ -158,7 +159,10 @@ class PollingPagingExampleOperationsMixin(object):
         :rtype: ~my.library.CustomPoller[~azure.directives.sample.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', "application/json"))  # type: Optional[str]
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop(
@@ -220,7 +224,6 @@ class PollingPagingExampleOperationsMixin(object):
         """
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
 
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
 

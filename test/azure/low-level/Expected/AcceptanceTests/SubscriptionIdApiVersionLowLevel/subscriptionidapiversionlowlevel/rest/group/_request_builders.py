@@ -10,8 +10,9 @@ from typing import TYPE_CHECKING
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
+from azure.core.utils import case_insensitive_dict
 
-from ..._vendor import _format_url_section, _get_from_dict
+from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -55,8 +56,8 @@ def build_get_sample_resource_group_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    api_version = kwargs.pop('api_version', _get_from_dict(_params, 'api-version') or "2014-04-01-preview")  # type: str
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2014-04-01-preview"))  # type: str
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}"

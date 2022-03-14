@@ -10,8 +10,9 @@ from typing import TYPE_CHECKING
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
+from azure.core.utils import case_insensitive_dict
 
-from .._vendor import _format_url_section, _get_from_dict
+from .._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -45,8 +46,8 @@ def build_operation_with_content_param_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/reservedWords/operation/content"
@@ -93,8 +94,8 @@ def build_operation_with_json_param_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/reservedWords/operation/json"
@@ -144,8 +145,8 @@ def build_operation_with_data_param_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/reservedWords/operation/data"
@@ -196,8 +197,8 @@ def build_operation_with_files_param_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/reservedWords/operation/files"
@@ -244,8 +245,8 @@ def build_operation_with_url_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     header_parameters = kwargs.pop('header_parameters')  # type: str
-    query_parameters = kwargs.pop('query_parameters', _get_from_dict(_params, 'queryParameters') or None)  # type: Optional[List[str]]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    query_parameters = kwargs.pop('query_parameters', case_insensitive_dict(_params).pop('queryParameters', None))  # type: Optional[List[str]]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/reservedWords/{url}"

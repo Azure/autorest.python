@@ -21,6 +21,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._vendor import _convert_request
@@ -40,18 +41,20 @@ def build_head200_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/200")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="HEAD",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -60,18 +63,20 @@ def build_get200_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/200")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -80,18 +85,20 @@ def build_options200_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/200")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="OPTIONS",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -100,22 +107,23 @@ def build_put200_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/200")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -124,22 +132,23 @@ def build_patch200_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/200")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PATCH",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -148,22 +157,23 @@ def build_post200_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/200")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -172,22 +182,23 @@ def build_delete200_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/200")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="DELETE",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -196,22 +207,23 @@ def build_put201_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/201")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -220,22 +232,23 @@ def build_post201_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/201")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -244,22 +257,23 @@ def build_put202_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/202")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -268,22 +282,23 @@ def build_patch202_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/202")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PATCH",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -292,22 +307,23 @@ def build_post202_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/202")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -316,22 +332,23 @@ def build_delete202_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/202")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="DELETE",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -340,18 +357,20 @@ def build_head204_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/204")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="HEAD",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -360,22 +379,23 @@ def build_put204_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/204")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -384,22 +404,23 @@ def build_patch204_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/204")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PATCH",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -408,22 +429,23 @@ def build_post204_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/204")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -432,22 +454,23 @@ def build_delete204_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/204")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="DELETE",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -456,18 +479,20 @@ def build_head404_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/http/success/404")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="HEAD",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -504,12 +529,17 @@ class HttpSuccessOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_head200_request(
             template_url=self.head200.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -542,12 +572,17 @@ class HttpSuccessOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[bool]
 
         request = build_get200_request(
             template_url=self.get200.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -584,12 +619,17 @@ class HttpSuccessOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[bool]
 
         request = build_options200_request(
             template_url=self.options200.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -631,9 +671,14 @@ class HttpSuccessOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -645,6 +690,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=_json,
             template_url=self.put200.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -682,9 +729,14 @@ class HttpSuccessOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -696,6 +748,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=_json,
             template_url=self.patch200.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -733,9 +787,14 @@ class HttpSuccessOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -747,6 +806,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=_json,
             template_url=self.post200.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -784,9 +845,14 @@ class HttpSuccessOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -798,6 +864,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=_json,
             template_url=self.delete200.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -835,9 +903,14 @@ class HttpSuccessOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -849,6 +922,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=_json,
             template_url=self.put201.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -886,9 +961,14 @@ class HttpSuccessOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -900,6 +980,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=_json,
             template_url=self.post201.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -937,9 +1019,14 @@ class HttpSuccessOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -951,6 +1038,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=_json,
             template_url=self.put202.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -988,9 +1077,14 @@ class HttpSuccessOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -1002,6 +1096,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=_json,
             template_url=self.patch202.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1039,9 +1135,14 @@ class HttpSuccessOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -1053,6 +1154,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=_json,
             template_url=self.post202.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1090,9 +1193,14 @@ class HttpSuccessOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -1104,6 +1212,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=_json,
             template_url=self.delete202.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1136,12 +1246,17 @@ class HttpSuccessOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_head204_request(
             template_url=self.head204.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1179,9 +1294,14 @@ class HttpSuccessOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -1193,6 +1313,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=_json,
             template_url=self.put204.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1230,9 +1352,14 @@ class HttpSuccessOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -1244,6 +1371,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=_json,
             template_url=self.patch204.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1281,9 +1410,14 @@ class HttpSuccessOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -1295,6 +1429,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=_json,
             template_url=self.post204.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1332,9 +1468,14 @@ class HttpSuccessOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -1346,6 +1487,8 @@ class HttpSuccessOperations(object):
             content_type=content_type,
             json=_json,
             template_url=self.delete204.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1378,12 +1521,17 @@ class HttpSuccessOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_head404_request(
             template_url=self.head404.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

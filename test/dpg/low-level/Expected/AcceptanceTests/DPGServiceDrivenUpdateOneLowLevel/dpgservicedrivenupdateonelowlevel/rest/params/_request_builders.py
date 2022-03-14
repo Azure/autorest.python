@@ -10,8 +10,7 @@ from typing import TYPE_CHECKING
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
-
-from ..._vendor import _get_from_dict
+from azure.core.utils import case_insensitive_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -46,8 +45,8 @@ def build_head_no_params_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    new_parameter = kwargs.pop('new_parameter', _get_from_dict(_params, 'new_parameter') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    new_parameter = kwargs.pop('new_parameter', case_insensitive_dict(_params).pop('new_parameter', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/serviceDriven/parameters"
@@ -93,8 +92,8 @@ def build_get_required_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     parameter = kwargs.pop('parameter')  # type: str
-    new_parameter = kwargs.pop('new_parameter', _get_from_dict(_params, 'new_parameter') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    new_parameter = kwargs.pop('new_parameter', case_insensitive_dict(_params).pop('new_parameter', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/serviceDriven/parameters"
@@ -142,9 +141,9 @@ def build_put_required_optional_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     required_param = kwargs.pop('required_param')  # type: str
-    optional_param = kwargs.pop('optional_param', _get_from_dict(_params, 'optionalParam') or None)  # type: Optional[str]
-    new_parameter = kwargs.pop('new_parameter', _get_from_dict(_params, 'new_parameter') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    optional_param = kwargs.pop('optional_param', case_insensitive_dict(_params).pop('optionalParam', None))  # type: Optional[str]
+    new_parameter = kwargs.pop('new_parameter', case_insensitive_dict(_params).pop('new_parameter', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/serviceDriven/parameters"
@@ -201,8 +200,8 @@ def build_post_parameters_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/serviceDriven/parameters"
@@ -271,9 +270,9 @@ def build_get_optional_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    optional_param = kwargs.pop('optional_param', _get_from_dict(_params, 'optionalParam') or None)  # type: Optional[str]
-    new_parameter = kwargs.pop('new_parameter', _get_from_dict(_params, 'new_parameter') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    optional_param = kwargs.pop('optional_param', case_insensitive_dict(_params).pop('optionalParam', None))  # type: Optional[str]
+    new_parameter = kwargs.pop('new_parameter', case_insensitive_dict(_params).pop('new_parameter', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/serviceDriven/moreParameters"
@@ -315,7 +314,7 @@ def build_get_new_operation_request(
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/serviceDriven/newPath"

@@ -10,8 +10,7 @@ from typing import TYPE_CHECKING
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
-
-from ..._vendor import _get_from_dict
+from azure.core.utils import case_insensitive_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -42,8 +41,8 @@ def build_get_method_local_valid_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    api_version = kwargs.pop('api_version', _get_from_dict(_params, 'api-version') or "2.0")  # type: str
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2.0"))  # type: str
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/method/string/none/query/local/2.0"
@@ -84,8 +83,8 @@ def build_get_method_local_null_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    api_version = kwargs.pop('api_version', _get_from_dict(_params, 'api-version') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/method/string/none/query/local/null"
@@ -127,8 +126,8 @@ def build_get_path_local_valid_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    api_version = kwargs.pop('api_version', _get_from_dict(_params, 'api-version') or "2.0")  # type: str
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2.0"))  # type: str
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/path/string/none/query/local/2.0"
@@ -170,8 +169,8 @@ def build_get_swagger_local_valid_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    api_version = kwargs.pop('api_version', _get_from_dict(_params, 'api-version') or "2.0")  # type: str
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2.0"))  # type: str
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/apiVersion/swagger/string/none/query/local/2.0"

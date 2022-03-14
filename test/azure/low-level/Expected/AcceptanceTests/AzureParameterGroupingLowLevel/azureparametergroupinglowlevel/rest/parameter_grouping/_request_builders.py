@@ -10,8 +10,9 @@ from typing import TYPE_CHECKING
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
+from azure.core.utils import case_insensitive_dict
 
-from ..._vendor import _format_url_section, _get_from_dict
+from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -61,10 +62,10 @@ def build_post_required_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-    custom_header = kwargs.pop('custom_header', _get_from_dict(_headers, 'customHeader') or None)  # type: Optional[str]
-    query = kwargs.pop('query', _get_from_dict(_params, 'query') or 30)  # type: Optional[int]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    custom_header = kwargs.pop('custom_header', case_insensitive_dict(_headers).pop('customHeader', None))  # type: Optional[str]
+    query = kwargs.pop('query', case_insensitive_dict(_params).pop('query', 30))  # type: Optional[int]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/parameterGrouping/postRequired/{path}"
@@ -116,9 +117,9 @@ def build_post_optional_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    custom_header = kwargs.pop('custom_header', _get_from_dict(_headers, 'customHeader') or None)  # type: Optional[str]
-    query = kwargs.pop('query', _get_from_dict(_params, 'query') or 30)  # type: Optional[int]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    custom_header = kwargs.pop('custom_header', case_insensitive_dict(_headers).pop('customHeader', None))  # type: Optional[str]
+    query = kwargs.pop('query', case_insensitive_dict(_params).pop('query', 30))  # type: Optional[int]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/parameterGrouping/postOptional"
@@ -165,9 +166,9 @@ def build_post_reserved_words_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    from_parameter = kwargs.pop('from_parameter', _get_from_dict(_params, 'from') or None)  # type: Optional[str]
-    accept_parameter = kwargs.pop('accept_parameter', _get_from_dict(_params, 'accept') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    from_parameter = kwargs.pop('from_parameter', case_insensitive_dict(_params).pop('from', None))  # type: Optional[str]
+    accept_parameter = kwargs.pop('accept_parameter', case_insensitive_dict(_params).pop('accept', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/parameterGrouping/postReservedWords"
@@ -216,11 +217,11 @@ def build_post_multi_param_groups_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    header_one = kwargs.pop('header_one', _get_from_dict(_headers, 'header-one') or None)  # type: Optional[str]
-    query_one = kwargs.pop('query_one', _get_from_dict(_params, 'query-one') or 30)  # type: Optional[int]
-    header_two = kwargs.pop('header_two', _get_from_dict(_headers, 'header-two') or None)  # type: Optional[str]
-    query_two = kwargs.pop('query_two', _get_from_dict(_params, 'query-two') or 30)  # type: Optional[int]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    header_one = kwargs.pop('header_one', case_insensitive_dict(_headers).pop('header-one', None))  # type: Optional[str]
+    query_one = kwargs.pop('query_one', case_insensitive_dict(_params).pop('query-one', 30))  # type: Optional[int]
+    header_two = kwargs.pop('header_two', case_insensitive_dict(_headers).pop('header-two', None))  # type: Optional[str]
+    query_two = kwargs.pop('query_two', case_insensitive_dict(_params).pop('query-two', 30))  # type: Optional[int]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/parameterGrouping/postMultipleParameterGroups"
@@ -269,9 +270,9 @@ def build_post_shared_parameter_group_object_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    header_one = kwargs.pop('header_one', _get_from_dict(_headers, 'header-one') or None)  # type: Optional[str]
-    query_one = kwargs.pop('query_one', _get_from_dict(_params, 'query-one') or 30)  # type: Optional[int]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    header_one = kwargs.pop('header_one', case_insensitive_dict(_headers).pop('header-one', None))  # type: Optional[str]
+    query_one = kwargs.pop('query_one', case_insensitive_dict(_params).pop('query-one', 30))  # type: Optional[int]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/parameterGrouping/sharedParameterGroupObject"

@@ -16,10 +16,11 @@ from azure.core.polling import AsyncNoPolling, AsyncPollingMethod
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 
 from ... import models as _models
-from ..._vendor import _convert_request, _get_from_dict
+from ..._vendor import _convert_request
 from ...operations._polling_paging_example_operations import build_basic_paging_request, build_basic_polling_request_initial
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -39,7 +40,8 @@ class PollingPagingExampleOperationsMixin:
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-        content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', "application/json"))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Product"]]
 
         if product is not None:
             _json = self._serialize.body(product, 'Product')
@@ -102,7 +104,10 @@ class PollingPagingExampleOperationsMixin:
         :rtype: ~my.library.aio.AsyncCustomPoller[~azure.directives.sample.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', "application/json"))  # type: Optional[str]
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop(
@@ -163,7 +168,6 @@ class PollingPagingExampleOperationsMixin:
         """
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
 
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
 

@@ -20,9 +20,10 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._vendor import _convert_request, _get_from_dict
+from ..._vendor import _convert_request
 from ...operations._queries_operations import (
     build_array_string_csv_empty_request,
     build_array_string_csv_null_request,
@@ -97,14 +98,19 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        bool_query = kwargs.pop("bool_query", True)  # type: bool
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        bool_query = kwargs.pop("bool_query", case_insensitive_dict(_params).pop("boolQuery", True))  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_boolean_true_request(
             bool_query=bool_query,
             template_url=self.get_boolean_true.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -137,14 +143,19 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        bool_query = kwargs.pop("bool_query", False)  # type: bool
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        bool_query = kwargs.pop("bool_query", case_insensitive_dict(_params).pop("boolQuery", False))  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_boolean_false_request(
             bool_query=bool_query,
             template_url=self.get_boolean_false.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -178,13 +189,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_boolean_null_request(
             bool_query=bool_query,
             template_url=self.get_boolean_null.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -217,14 +233,19 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        int_query = kwargs.pop("int_query", 1000000)  # type: int
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        int_query = kwargs.pop("int_query", case_insensitive_dict(_params).pop("intQuery", 1000000))  # type: int
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_int_one_million_request(
             int_query=int_query,
             template_url=self.get_int_one_million.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -259,14 +280,19 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        int_query = kwargs.pop("int_query", -1000000)  # type: int
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        int_query = kwargs.pop("int_query", case_insensitive_dict(_params).pop("intQuery", -1000000))  # type: int
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_int_negative_one_million_request(
             int_query=int_query,
             template_url=self.get_int_negative_one_million.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -300,13 +326,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_int_null_request(
             int_query=int_query,
             template_url=self.get_int_null.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -339,14 +370,19 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        long_query = kwargs.pop("long_query", 10000000000)  # type: int
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        long_query = kwargs.pop("long_query", case_insensitive_dict(_params).pop("longQuery", 10000000000))  # type: int
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_ten_billion_request(
             long_query=long_query,
             template_url=self.get_ten_billion.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -379,14 +415,21 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        long_query = kwargs.pop("long_query", -10000000000)  # type: int
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        long_query = kwargs.pop(
+            "long_query", case_insensitive_dict(_params).pop("longQuery", -10000000000)
+        )  # type: int
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_negative_ten_billion_request(
             long_query=long_query,
             template_url=self.get_negative_ten_billion.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -420,13 +463,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_long_null_request(
             long_query=long_query,
             template_url=self.get_long_null.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -459,14 +507,21 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        float_query = kwargs.pop("float_query", 103400000000000000000)  # type: float
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        float_query = kwargs.pop(
+            "float_query", case_insensitive_dict(_params).pop("floatQuery", 103400000000000000000)
+        )  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_float_scientific_positive_request(
             float_query=float_query,
             template_url=self.float_scientific_positive.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -499,14 +554,21 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        float_query = kwargs.pop("float_query", -1.034e-20)  # type: float
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        float_query = kwargs.pop(
+            "float_query", case_insensitive_dict(_params).pop("floatQuery", -1.034e-20)
+        )  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_float_scientific_negative_request(
             float_query=float_query,
             template_url=self.float_scientific_negative.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -540,13 +602,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_float_null_request(
             float_query=float_query,
             template_url=self.float_null.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -579,14 +646,21 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        double_query = kwargs.pop("double_query", 9999999.999)  # type: float
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        double_query = kwargs.pop(
+            "double_query", case_insensitive_dict(_params).pop("doubleQuery", 9999999.999)
+        )  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_double_decimal_positive_request(
             double_query=double_query,
             template_url=self.double_decimal_positive.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -619,14 +693,21 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        double_query = kwargs.pop("double_query", -9999999.999)  # type: float
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        double_query = kwargs.pop(
+            "double_query", case_insensitive_dict(_params).pop("doubleQuery", -9999999.999)
+        )  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_double_decimal_negative_request(
             double_query=double_query,
             template_url=self.double_decimal_negative.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -660,13 +741,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_double_null_request(
             double_query=double_query,
             template_url=self.double_null.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -699,14 +785,21 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        string_query = kwargs.pop("string_query", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        string_query = kwargs.pop(
+            "string_query", case_insensitive_dict(_params).pop("stringQuery", "啊齄丂狛狜隣郎隣兀﨩")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_string_unicode_request(
             string_query=string_query,
             template_url=self.string_unicode.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -740,14 +833,21 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        string_query = kwargs.pop("string_query", "begin!*'();:@ &=+$,/?#[]end")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        string_query = kwargs.pop(
+            "string_query", case_insensitive_dict(_params).pop("stringQuery", "begin!*'();:@ &=+$,/?#[]end")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_string_url_encoded_request(
             string_query=string_query,
             template_url=self.string_url_encoded.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -780,14 +880,19 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        string_query = kwargs.pop("string_query", "")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        string_query = kwargs.pop("string_query", case_insensitive_dict(_params).pop("stringQuery", ""))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_string_empty_request(
             string_query=string_query,
             template_url=self.string_empty.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -821,13 +926,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_string_null_request(
             string_query=string_query,
             template_url=self.string_null.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -861,13 +971,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_enum_valid_request(
             enum_query=enum_query,
             template_url=self.enum_valid.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -901,13 +1016,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_enum_null_request(
             enum_query=enum_query,
             template_url=self.enum_null.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -942,13 +1062,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_byte_multi_byte_request(
             byte_query=byte_query,
             template_url=self.byte_multi_byte.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -981,14 +1106,21 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        byte_query = kwargs.pop("byte_query", bytearray("", encoding="utf-8"))  # type: bytearray
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        byte_query = kwargs.pop(
+            "byte_query", case_insensitive_dict(_params).pop("byteQuery", bytearray("", encoding="utf-8"))
+        )  # type: bytearray
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_byte_empty_request(
             byte_query=byte_query,
             template_url=self.byte_empty.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1022,13 +1154,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_byte_null_request(
             byte_query=byte_query,
             template_url=self.byte_null.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1061,14 +1198,21 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        date_query = kwargs.pop("date_query", "2012-01-01")  # type: datetime.date
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        date_query = kwargs.pop(
+            "date_query", case_insensitive_dict(_params).pop("dateQuery", "2012-01-01")
+        )  # type: datetime.date
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_date_valid_request(
             date_query=date_query,
             template_url=self.date_valid.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1102,13 +1246,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_date_null_request(
             date_query=date_query,
             template_url=self.date_null.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1142,14 +1291,21 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        date_time_query = kwargs.pop("date_time_query", "2012-01-01T01:01:01Z")  # type: datetime.datetime
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        date_time_query = kwargs.pop(
+            "date_time_query", case_insensitive_dict(_params).pop("dateTimeQuery", "2012-01-01T01:01:01Z")
+        )  # type: datetime.datetime
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_date_time_valid_request(
             date_time_query=date_time_query,
             template_url=self.date_time_valid.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1183,13 +1339,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_date_time_null_request(
             date_time_query=date_time_query,
             template_url=self.date_time_null.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1225,13 +1386,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_array_string_csv_valid_request(
             array_query=array_query,
             template_url=self.array_string_csv_valid.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1265,13 +1431,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_array_string_csv_null_request(
             array_query=array_query,
             template_url=self.array_string_csv_null.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1306,13 +1477,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_array_string_csv_empty_request(
             array_query=array_query,
             template_url=self.array_string_csv_empty.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1348,13 +1524,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_array_string_no_collection_format_empty_request(
             array_query=array_query,
             template_url=self.array_string_no_collection_format_empty.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1390,13 +1571,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_array_string_ssv_valid_request(
             array_query=array_query,
             template_url=self.array_string_ssv_valid.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1432,13 +1618,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_array_string_tsv_valid_request(
             array_query=array_query,
             template_url=self.array_string_tsv_valid.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1474,13 +1665,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_array_string_pipes_valid_request(
             array_query=array_query,
             template_url=self.array_string_pipes_valid.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

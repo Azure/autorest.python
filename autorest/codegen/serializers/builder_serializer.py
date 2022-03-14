@@ -457,11 +457,11 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
     @staticmethod
     def declare_non_inputtable_constants(builder) -> List[str]:
         def _get_value(param: Parameter):
-            get_from_dict = ""
             if param.location in [ParameterLocation.Header, ParameterLocation.Query]:
                 kwarg_dict = "headers" if param.location == ParameterLocation.Header else "params"
-                get_from_dict = f"_get_from_dict(_{kwarg_dict}, '{param.rest_api_name}') or "
-            return f"{get_from_dict}{param.constant_declaration}"
+                return (f"case_insensitive_dict(_{kwarg_dict}).pop("
+                                    "'{param.rest_api_name}', {param.constant_declaration})")
+            return f"{param.constant_declaration}"
         return [
             f"{p.serialized_name} = {_get_value(p)}"
             for p in builder.parameters.constant
@@ -666,7 +666,13 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         return response_str
 
     def pop_kwargs_from_signature(self, builder) -> List[str]:
-        kwargs = utils.pop_kwargs_from_signature(self._get_kwargs_to_pop(builder))
+        kwargs = utils.pop_kwargs_from_signature(
+            self._get_kwargs_to_pop(builder),
+            check_kwarg_dict=True,
+            pop_headers_kwarg=True,
+            pop_params_kwarg=True,
+        )
+       #  kwargs = utils.pop_kwargs_from_signature(self._get_kwargs_to_pop(builder))
         kwargs.append(f"cls = kwargs.pop('cls', None)  {self.cls_type_annotation(builder)}")
         return kwargs
 
@@ -725,13 +731,13 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
     def _has_data_example_template(self, builder) -> bool:
         return bool(builder.parameters.data_inputs)
 
-    def pop_kwargs_from_signature(self, builder) -> List[str]:
-        return utils.pop_kwargs_from_signature(
-            self._get_kwargs_to_pop(builder),
-            check_kwarg_dict=True,
-            pop_headers_kwarg=True,
-            pop_params_kwarg=True,
-        )
+    # def pop_kwargs_from_signature(self, builder) -> List[str]:
+    #     return utils.pop_kwargs_from_signature(
+    #         self._get_kwargs_to_pop(builder),
+    #         check_kwarg_dict=True,
+    #         pop_headers_kwarg=True,
+    #         pop_params_kwarg=True,
+    #     )
 
     def _serialize_body_call(
         self, builder, body_param: Parameter, send_xml: bool, ser_ctxt: Optional[str], ser_ctxt_name: str

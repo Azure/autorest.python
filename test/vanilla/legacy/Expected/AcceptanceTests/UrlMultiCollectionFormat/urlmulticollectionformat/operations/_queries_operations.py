@@ -21,9 +21,10 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._vendor import _convert_request, _get_from_dict
+from .._vendor import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -43,8 +44,8 @@ def build_array_string_multi_null_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    array_query = kwargs.pop('array_query', _get_from_dict(_params, 'arrayQuery') or None)  # type: Optional[List[str]]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    array_query = kwargs.pop('array_query', case_insensitive_dict(_params).pop('arrayQuery', None))  # type: Optional[List[str]]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/queries/array/multi/string/null")
@@ -72,8 +73,8 @@ def build_array_string_multi_empty_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    array_query = kwargs.pop('array_query', _get_from_dict(_params, 'arrayQuery') or None)  # type: Optional[List[str]]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    array_query = kwargs.pop('array_query', case_insensitive_dict(_params).pop('arrayQuery', None))  # type: Optional[List[str]]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/queries/array/multi/string/empty")
@@ -101,8 +102,8 @@ def build_array_string_multi_valid_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    array_query = kwargs.pop('array_query', _get_from_dict(_params, 'arrayQuery') or None)  # type: Optional[List[str]]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    array_query = kwargs.pop('array_query', case_insensitive_dict(_params).pop('arrayQuery', None))  # type: Optional[List[str]]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/queries/array/multi/string/valid")

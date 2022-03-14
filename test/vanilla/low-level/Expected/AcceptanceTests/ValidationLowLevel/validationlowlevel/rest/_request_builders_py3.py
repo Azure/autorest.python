@@ -10,8 +10,9 @@ from typing import Any, Dict, Optional, TypeVar
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
+from azure.core.utils import case_insensitive_dict
 
-from .._vendor import _format_url_section, _get_from_dict
+from .._vendor import _format_url_section
 
 T = TypeVar("T")
 JSONType = Any
@@ -72,8 +73,8 @@ def build_validation_of_method_parameters_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    api_version = kwargs.pop("api_version", _get_from_dict(_params, "apiVersion") or "1.0.0")  # type: str
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    api_version = kwargs.pop("api_version", case_insensitive_dict(_params).pop("apiVersion", "1.0.0"))  # type: str
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"
@@ -188,9 +189,11 @@ def build_validation_of_body_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    api_version = kwargs.pop("api_version", _get_from_dict(_params, "apiVersion") or "1.0.0")  # type: str
-    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    api_version = kwargs.pop("api_version", case_insensitive_dict(_params).pop("apiVersion", "1.0.0"))  # type: str
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"
@@ -325,8 +328,10 @@ def build_post_with_constant_in_body_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
     constant_param = kwargs.pop("constant_param", "constant")  # type: str
-    content_type = kwargs.pop("content_type", _get_from_dict(_headers, "Content-Type") or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    content_type = kwargs.pop(
+        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
+    )  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/validation/constantsInPath/{constantParam}/value"

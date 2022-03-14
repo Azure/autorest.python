@@ -10,8 +10,7 @@ from typing import Any, Dict, Optional
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
-
-from .._vendor import _get_from_dict
+from azure.core.utils import case_insensitive_dict
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -44,7 +43,7 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/report/azure"

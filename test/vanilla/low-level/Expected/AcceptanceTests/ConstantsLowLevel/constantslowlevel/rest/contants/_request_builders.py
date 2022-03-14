@@ -10,8 +10,9 @@ from typing import TYPE_CHECKING
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
+from azure.core.utils import case_insensitive_dict
 
-from ..._vendor import _format_url_section, _get_from_dict
+from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -43,7 +44,7 @@ def build_put_no_model_as_string_no_required_two_value_no_default_request(
 
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    input = kwargs.pop('input', _get_from_dict(_params, 'input') or None)  # type: Optional[str]
+    input = kwargs.pop('input', case_insensitive_dict(_params).pop('input', None))  # type: Optional[str]
     # Construct URL
     _url = "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault"
 
@@ -80,7 +81,7 @@ def build_put_no_model_as_string_no_required_two_value_default_request(
 
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: Optional[str]
+    input = kwargs.pop('input', case_insensitive_dict(_params).pop('input', "value1"))  # type: Optional[str]
     # Construct URL
     _url = "/constants/putNoModelAsStringNoRequiredTwoValueDefault"
 
@@ -117,7 +118,7 @@ def build_put_no_model_as_string_no_required_one_value_no_default_request(
 
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    input = kwargs.pop('input', _get_from_dict(_params, 'input') or None)  # type: Optional[str]
+    input = kwargs.pop('input', case_insensitive_dict(_params).pop('input', None))  # type: Optional[str]
     # Construct URL
     _url = "/constants/putNoModelAsStringNoRequiredOneValueNoDefault"
 
@@ -154,7 +155,7 @@ def build_put_no_model_as_string_no_required_one_value_default_request(
 
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: Optional[str]
+    input = kwargs.pop('input', case_insensitive_dict(_params).pop('input', "value1"))  # type: Optional[str]
     # Construct URL
     _url = "/constants/putNoModelAsStringNoRequiredOneValueDefault"
 
@@ -227,7 +228,7 @@ def build_put_no_model_as_string_required_two_value_default_request(
 
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: str
+    input = kwargs.pop('input', case_insensitive_dict(_params).pop('input', "value1"))  # type: str
     # Construct URL
     _url = "/constants/putNoModelAsStringRequiredTwoValueDefault"
 
@@ -264,7 +265,7 @@ def build_put_no_model_as_string_required_one_value_no_default_request(
 
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: str
+    input = kwargs.pop('input', case_insensitive_dict(_params).pop('input', "value1"))  # type: str
     # Construct URL
     _url = "/constants/putNoModelAsStringRequiredOneValueNoDefault"
 
@@ -301,7 +302,7 @@ def build_put_no_model_as_string_required_one_value_default_request(
 
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: str
+    input = kwargs.pop('input', case_insensitive_dict(_params).pop('input', "value1"))  # type: str
     # Construct URL
     _url = "/constants/putNoModelAsStringRequiredOneValueDefault"
 
@@ -337,7 +338,7 @@ def build_put_model_as_string_no_required_two_value_no_default_request(
 
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    input = kwargs.pop('input', _get_from_dict(_params, 'input') or None)  # type: Optional[str]
+    input = kwargs.pop('input', case_insensitive_dict(_params).pop('input', None))  # type: Optional[str]
     # Construct URL
     _url = "/constants/putModelAsStringNoRequiredTwoValueNoDefault"
 
@@ -374,7 +375,7 @@ def build_put_model_as_string_no_required_two_value_default_request(
 
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: Optional[str]
+    input = kwargs.pop('input', case_insensitive_dict(_params).pop('input', "value1"))  # type: Optional[str]
     # Construct URL
     _url = "/constants/putModelAsStringNoRequiredTwoValueDefault"
 
@@ -411,7 +412,7 @@ def build_put_model_as_string_no_required_one_value_no_default_request(
 
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    input = kwargs.pop('input', _get_from_dict(_params, 'input') or None)  # type: Optional[str]
+    input = kwargs.pop('input', case_insensitive_dict(_params).pop('input', None))  # type: Optional[str]
     # Construct URL
     _url = "/constants/putModelAsStringNoRequiredOneValueNoDefault"
 
@@ -448,7 +449,7 @@ def build_put_model_as_string_no_required_one_value_default_request(
 
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: Optional[str]
+    input = kwargs.pop('input', case_insensitive_dict(_params).pop('input', "value1"))  # type: Optional[str]
     # Construct URL
     _url = "/constants/putModelAsStringNoRequiredOneValueDefault"
 
@@ -521,7 +522,7 @@ def build_put_model_as_string_required_two_value_default_request(
 
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: str
+    input = kwargs.pop('input', case_insensitive_dict(_params).pop('input', "value1"))  # type: str
     # Construct URL
     _url = "/constants/putModelAsStringRequiredTwoValueDefault"
 
@@ -593,7 +594,7 @@ def build_put_model_as_string_required_one_value_default_request(
 
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    input = kwargs.pop('input', _get_from_dict(_params, 'input') or "value1")  # type: str
+    input = kwargs.pop('input', case_insensitive_dict(_params).pop('input', "value1"))  # type: str
     # Construct URL
     _url = "/constants/putModelAsStringRequiredOneValueDefault"
 
@@ -627,8 +628,8 @@ def build_put_client_constants_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    header_constant = kwargs.pop('header_constant', _get_from_dict(_headers, 'header-constant') or True)  # type: bool
-    query_constant = kwargs.pop('query_constant', _get_from_dict(_params, 'query-constant') or 100)  # type: int
+    header_constant = kwargs.pop('header_constant', case_insensitive_dict(_headers).pop('header-constant', True))  # type: bool
+    query_constant = kwargs.pop('query_constant', case_insensitive_dict(_params).pop('query-constant', 100))  # type: int
     path_constant = kwargs.pop('path_constant', "path")  # type: str
     # Construct URL
     _url = "/constants/clientConstants/{path-constant}"

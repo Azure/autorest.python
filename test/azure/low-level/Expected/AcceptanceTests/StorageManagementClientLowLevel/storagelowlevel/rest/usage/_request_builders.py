@@ -10,8 +10,9 @@ from typing import TYPE_CHECKING
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
+from azure.core.utils import case_insensitive_dict
 
-from ..._vendor import _format_url_section, _get_from_dict
+from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -68,8 +69,8 @@ def build_list_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    api_version = kwargs.pop('api_version', _get_from_dict(_params, 'api-version') or "2015-05-01-preview")  # type: str
-    accept = _get_from_dict(_headers, 'Accept') or "application/json, text/json"
+    api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2015-05-01-preview"))  # type: str
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json, text/json")
 
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages"

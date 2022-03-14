@@ -10,8 +10,7 @@ from typing import Any, Dict
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
-
-from .._vendor import _get_from_dict
+from azure.core.utils import case_insensitive_dict
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -40,7 +39,7 @@ def build_create_secret_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/secrets/:create"
@@ -65,7 +64,7 @@ def build_get_error_with_secrets_request(**kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/secrets/error"

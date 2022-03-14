@@ -21,9 +21,10 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._vendor import _convert_request, _get_from_dict
+from .._vendor import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -42,7 +43,7 @@ def build_get_file_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "image/png, application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "image/png, application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/files/stream/nonempty")
@@ -64,7 +65,7 @@ def build_get_file_large_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "image/png, application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "image/png, application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/files/stream/verylarge")
@@ -86,7 +87,7 @@ def build_get_empty_file_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "image/png, application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "image/png, application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/files/stream/empty")

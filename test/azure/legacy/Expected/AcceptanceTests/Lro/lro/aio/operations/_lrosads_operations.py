@@ -20,6 +20,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
@@ -81,9 +82,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
         if product is not None:
@@ -95,6 +101,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             template_url=self._put_non_retry400_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -142,14 +150,24 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._put_non_retry400_initial(  # type: ignore
-                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+                product=product,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -181,9 +199,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
         if product is not None:
@@ -195,6 +218,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             template_url=self._put_non_retry201_creating400_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -243,14 +268,24 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._put_non_retry201_creating400_initial(  # type: ignore
-                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+                product=product,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -282,9 +317,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
         if product is not None:
@@ -296,6 +336,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             template_url=self._put_non_retry201_creating400_invalid_json_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -344,14 +386,24 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._put_non_retry201_creating400_invalid_json_initial(  # type: ignore
-                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+                product=product,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -383,9 +435,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
         if product is not None:
@@ -397,6 +454,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             template_url=self._put_async_relative_retry400_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -448,14 +507,24 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._put_async_relative_retry400_initial(  # type: ignore
-                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+                product=product,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -494,12 +563,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_delete_non_retry400_request_initial(
             template_url=self._delete_non_retry400_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -540,12 +614,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = await self._delete_non_retry400_initial(cls=lambda x, y, z: x, **kwargs)  # type: ignore
+            raw_result = await self._delete_non_retry400_initial(  # type: ignore
+                cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
+            )
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -573,12 +652,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_delete202_non_retry400_request_initial(
             template_url=self._delete202_non_retry400_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -619,12 +703,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = await self._delete202_non_retry400_initial(cls=lambda x, y, z: x, **kwargs)  # type: ignore
+            raw_result = await self._delete202_non_retry400_initial(  # type: ignore
+                cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
+            )
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -652,12 +741,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_delete_async_relative_retry400_request_initial(
             template_url=self._delete_async_relative_retry400_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -702,13 +796,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._delete_async_relative_retry400_initial(  # type: ignore
-                cls=lambda x, y, z: x, **kwargs
+                cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -737,9 +834,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if product is not None:
@@ -751,6 +853,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             template_url=self._post_non_retry400_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -793,14 +897,24 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._post_non_retry400_initial(  # type: ignore
-                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+                product=product,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -829,9 +943,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if product is not None:
@@ -843,6 +962,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             template_url=self._post202_non_retry400_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -885,14 +1006,24 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._post202_non_retry400_initial(  # type: ignore
-                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+                product=product,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -921,9 +1052,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if product is not None:
@@ -935,6 +1071,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             template_url=self._post_async_relative_retry400_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -981,14 +1119,24 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._post_async_relative_retry400_initial(  # type: ignore
-                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+                product=product,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -1017,9 +1165,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
         if product is not None:
@@ -1031,6 +1184,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             template_url=self._put_error201_no_provisioning_state_payload_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1078,14 +1233,24 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._put_error201_no_provisioning_state_payload_initial(  # type: ignore
-                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+                product=product,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -1117,9 +1282,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
         if product is not None:
@@ -1131,6 +1301,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             template_url=self._put_async_relative_retry_no_status_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1183,14 +1355,24 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._put_async_relative_retry_no_status_initial(  # type: ignore
-                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+                product=product,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -1229,9 +1411,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
         if product is not None:
@@ -1243,6 +1430,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             template_url=self._put_async_relative_retry_no_status_payload_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1295,14 +1484,24 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._put_async_relative_retry_no_status_payload_initial(  # type: ignore
-                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+                product=product,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -1341,12 +1540,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_delete204_succeeded_request_initial(
             template_url=self._delete204_succeeded_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1383,12 +1587,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = await self._delete204_succeeded_initial(cls=lambda x, y, z: x, **kwargs)  # type: ignore
+            raw_result = await self._delete204_succeeded_initial(  # type: ignore
+                cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
+            )
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -1416,12 +1625,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_delete_async_relative_retry_no_status_request_initial(
             template_url=self._delete_async_relative_retry_no_status_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1466,13 +1680,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._delete_async_relative_retry_no_status_initial(  # type: ignore
-                cls=lambda x, y, z: x, **kwargs
+                cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -1501,9 +1718,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if product is not None:
@@ -1515,6 +1737,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             template_url=self._post202_no_location_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1558,14 +1782,24 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._post202_no_location_initial(  # type: ignore
-                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+                product=product,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -1594,9 +1828,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if product is not None:
@@ -1608,6 +1847,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             template_url=self._post_async_relative_retry_no_payload_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1655,14 +1896,24 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._post_async_relative_retry_no_payload_initial(  # type: ignore
-                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+                product=product,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -1691,9 +1942,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> Optional["_models.Product"]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.Product"]]
 
         if product is not None:
@@ -1705,6 +1961,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             template_url=self._put200_invalid_json_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1751,14 +2009,24 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._put200_invalid_json_initial(  # type: ignore
-                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+                product=product,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -1790,9 +2058,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
         if product is not None:
@@ -1804,6 +2077,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             template_url=self._put_async_relative_retry_invalid_header_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1856,14 +2131,24 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._put_async_relative_retry_invalid_header_initial(  # type: ignore
-                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+                product=product,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -1902,9 +2187,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
         if product is not None:
@@ -1916,6 +2206,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             template_url=self._put_async_relative_retry_invalid_json_polling_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1968,14 +2260,24 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._put_async_relative_retry_invalid_json_polling_initial(  # type: ignore
-                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+                product=product,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -2014,12 +2316,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_delete202_retry_invalid_header_request_initial(
             template_url=self._delete202_retry_invalid_header_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2061,13 +2368,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._delete202_retry_invalid_header_initial(  # type: ignore
-                cls=lambda x, y, z: x, **kwargs
+                cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -2096,12 +2406,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_delete_async_relative_retry_invalid_header_request_initial(
             template_url=self._delete_async_relative_retry_invalid_header_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2146,13 +2461,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._delete_async_relative_retry_invalid_header_initial(  # type: ignore
-                cls=lambda x, y, z: x, **kwargs
+                cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -2181,12 +2499,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_delete_async_relative_retry_invalid_json_polling_request_initial(
             template_url=self._delete_async_relative_retry_invalid_json_polling_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2231,13 +2554,16 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._delete_async_relative_retry_invalid_json_polling_initial(  # type: ignore
-                cls=lambda x, y, z: x, **kwargs
+                cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -2266,9 +2592,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if product is not None:
@@ -2280,6 +2611,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             template_url=self._post202_retry_invalid_header_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2323,14 +2656,24 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._post202_retry_invalid_header_initial(  # type: ignore
-                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+                product=product,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -2359,9 +2702,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if product is not None:
@@ -2373,6 +2721,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             template_url=self._post_async_relative_retry_invalid_header_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2420,14 +2770,24 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._post_async_relative_retry_invalid_header_initial(  # type: ignore
-                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+                product=product,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -2456,9 +2816,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if product is not None:
@@ -2470,6 +2835,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             template_url=self._post_async_relative_retry_invalid_json_polling_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2517,14 +2884,24 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop(
+            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._post_async_relative_retry_invalid_json_polling_initial(  # type: ignore
-                product=product, content_type=content_type, cls=lambda x, y, z: x, **kwargs
+                product=product,
+                content_type=content_type,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 

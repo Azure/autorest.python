@@ -21,9 +21,10 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._vendor import _convert_request, _format_url_section, _get_from_dict
+from .._vendor import _convert_request, _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -43,7 +44,7 @@ def build_get_pet_by_id_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/errorStatusCodes/Pets/{petId}/GetPet")
@@ -71,7 +72,7 @@ def build_do_something_request(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/errorStatusCodes/Pets/doSomething/{whatAction}")
@@ -99,8 +100,8 @@ def build_has_models_param_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    models = kwargs.pop('models', _get_from_dict(_params, 'models') or "value1")  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    models = kwargs.pop('models', case_insensitive_dict(_params).pop('models', "value1"))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/errorStatusCodes/Pets/hasModelsParam")

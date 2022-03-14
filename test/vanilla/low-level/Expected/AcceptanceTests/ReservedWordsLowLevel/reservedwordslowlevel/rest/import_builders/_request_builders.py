@@ -10,8 +10,7 @@ from typing import TYPE_CHECKING
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
-
-from ..._vendor import _get_from_dict
+from azure.core.utils import case_insensitive_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -43,7 +42,7 @@ def build_operation_one_request(
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
     parameter1 = kwargs.pop('parameter1')  # type: str
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = "/reservedWords/operationGroup/import"

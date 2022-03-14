@@ -17,11 +17,12 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models as _models
-from .._vendor import _convert_request, _get_from_dict
+from .._vendor import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -40,10 +41,10 @@ def build_test_one_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    api_version = kwargs.pop('api_version', _get_from_dict(_params, 'api-version') or "1.0.0")  # type: str
+    api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "1.0.0"))  # type: str
     id = kwargs.pop('id')  # type: int
-    message = kwargs.pop('message', _get_from_dict(_params, 'message') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    message = kwargs.pop('message', case_insensitive_dict(_params).pop('message', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/testOneEndpoint")
@@ -72,8 +73,8 @@ def build_test_lro_request_initial(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    content_type = kwargs.pop('content_type', _get_from_dict(_headers, 'Content-Type') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/lro")
@@ -97,10 +98,10 @@ def build_test_lro_and_paging_request_initial(
     # type: (...) -> HttpRequest
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    client_request_id = kwargs.pop('client_request_id', _get_from_dict(_headers, 'client-request-id') or None)  # type: Optional[str]
-    maxresults = kwargs.pop('maxresults', _get_from_dict(_headers, 'maxresults') or None)  # type: Optional[int]
-    timeout = kwargs.pop('timeout', _get_from_dict(_headers, 'timeout') or 30)  # type: Optional[int]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    client_request_id = kwargs.pop('client_request_id', case_insensitive_dict(_headers).pop('client-request-id', None))  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', case_insensitive_dict(_headers).pop('maxresults', None))  # type: Optional[int]
+    timeout = kwargs.pop('timeout', case_insensitive_dict(_headers).pop('timeout', 30))  # type: Optional[int]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/lroAndPaging")
@@ -129,9 +130,9 @@ def build_test_different_calls_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    api_version = kwargs.pop('api_version', _get_from_dict(_params, 'api-version') or "1.0.0")  # type: str
+    api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "1.0.0"))  # type: str
     greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/testDifferentCalls")
@@ -181,7 +182,7 @@ class MultiapiServiceClientOperationsMixin(object):
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-        api_version = kwargs.pop('api_version', "1.0.0")  # type: str
+        api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "1.0.0"))  # type: str
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         
@@ -228,7 +229,7 @@ class MultiapiServiceClientOperationsMixin(object):
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
+        content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', "application/json"))  # type: Optional[str]
         cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Product"]]
 
         if product is not None:
@@ -292,7 +293,10 @@ class MultiapiServiceClientOperationsMixin(object):
         :rtype: ~azure.core.polling.LROPoller[~azure.multiapi.sample.v1.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', "application/json"))  # type: Optional[str]
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop(
@@ -353,7 +357,6 @@ class MultiapiServiceClientOperationsMixin(object):
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
 
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
 
@@ -426,7 +429,6 @@ class MultiapiServiceClientOperationsMixin(object):
 
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
-
 
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
 
@@ -569,7 +571,7 @@ class MultiapiServiceClientOperationsMixin(object):
         _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
         _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-        api_version = kwargs.pop('api_version', "1.0.0")  # type: str
+        api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "1.0.0"))  # type: str
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         

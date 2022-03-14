@@ -10,8 +10,9 @@ from typing import Any, Dict, Optional
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
+from azure.core.utils import case_insensitive_dict
 
-from ..._vendor import _format_url_section, _get_from_dict
+from ..._vendor import _format_url_section
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -42,7 +43,7 @@ def build_get_pet_by_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/errorStatusCodes/Pets/{petId}/GetPet"
@@ -82,7 +83,7 @@ def build_do_something_request(what_action: str, **kwargs: Any) -> HttpRequest:
 
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/errorStatusCodes/Pets/doSomething/{whatAction}"
@@ -117,7 +118,7 @@ def build_has_models_param_request(*, models: Optional[str] = "value1", **kwargs
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = _get_from_dict(_headers, "Accept") or "application/json"
+    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
 
     # Construct URL
     _url = "/errorStatusCodes/Pets/hasModelsParam"

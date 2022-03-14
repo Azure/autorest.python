@@ -10,8 +10,9 @@ from typing import Any, Dict, Optional
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
+from azure.core.utils import case_insensitive_dict
 
-from ..._vendor import _format_url_section, _get_from_dict
+from ..._vendor import _format_url_section
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -212,7 +213,7 @@ def build_put_no_model_as_string_required_one_value_no_default_request(**kwargs:
 
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    input = kwargs.pop("input", _get_from_dict(_params, "input") or "value1")  # type: str
+    input = kwargs.pop("input", case_insensitive_dict(_params).pop("input", "value1"))  # type: str
     # Construct URL
     _url = "/constants/putNoModelAsStringRequiredOneValueNoDefault"
 
@@ -241,7 +242,7 @@ def build_put_no_model_as_string_required_one_value_default_request(**kwargs: An
 
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    input = kwargs.pop("input", _get_from_dict(_params, "input") or "value1")  # type: str
+    input = kwargs.pop("input", case_insensitive_dict(_params).pop("input", "value1"))  # type: str
     # Construct URL
     _url = "/constants/putNoModelAsStringRequiredOneValueDefault"
 
@@ -499,8 +500,12 @@ def build_put_client_constants_request(**kwargs: Any) -> HttpRequest:
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    header_constant = kwargs.pop("header_constant", _get_from_dict(_headers, "header-constant") or True)  # type: bool
-    query_constant = kwargs.pop("query_constant", _get_from_dict(_params, "query-constant") or 100)  # type: int
+    header_constant = kwargs.pop(
+        "header_constant", case_insensitive_dict(_headers).pop("header-constant", True)
+    )  # type: bool
+    query_constant = kwargs.pop(
+        "query_constant", case_insensitive_dict(_params).pop("query-constant", 100)
+    )  # type: int
     path_constant = kwargs.pop("path_constant", "path")  # type: str
     # Construct URL
     _url = "/constants/clientConstants/{path-constant}"

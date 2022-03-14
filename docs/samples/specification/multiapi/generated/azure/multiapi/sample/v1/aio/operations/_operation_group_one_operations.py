@@ -13,10 +13,11 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from ..._vendor import _convert_request, _get_from_dict
+from ..._vendor import _convert_request
 from ...operations._operation_group_one_operations import build_test_two_request
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -58,7 +59,10 @@ class OperationGroupOneOperations:
         }
         error_map.update(kwargs.pop('error_map', {})) or {}
 
-        api_version = kwargs.pop('api_version', "1.0.0")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "1.0.0"))  # type: str
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         

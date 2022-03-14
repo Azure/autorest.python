@@ -21,10 +21,11 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
-from .._vendor import _convert_request, _get_from_dict
+from .._vendor import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -43,10 +44,10 @@ def build_get_with_filter_request(
     _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
     _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    filter = kwargs.pop('filter', _get_from_dict(_params, '$filter') or None)  # type: Optional[str]
-    top = kwargs.pop('top', _get_from_dict(_params, '$top') or None)  # type: Optional[int]
-    orderby = kwargs.pop('orderby', _get_from_dict(_params, '$orderby') or None)  # type: Optional[str]
-    accept = _get_from_dict(_headers, 'Accept') or "application/json"
+    filter = kwargs.pop('filter', case_insensitive_dict(_params).pop('$filter', None))  # type: Optional[str]
+    top = kwargs.pop('top', case_insensitive_dict(_params).pop('$top', None))  # type: Optional[int]
+    orderby = kwargs.pop('orderby', case_insensitive_dict(_params).pop('$orderby', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/azurespecials/odata/filter")

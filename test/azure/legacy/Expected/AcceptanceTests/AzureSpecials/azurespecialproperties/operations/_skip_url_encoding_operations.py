@@ -21,6 +21,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
@@ -41,7 +42,10 @@ def build_get_method_path_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}")
     path_format_arguments = {
@@ -51,13 +55,12 @@ def build_get_method_path_valid_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -67,7 +70,10 @@ def build_get_path_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/json"
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}")
     path_format_arguments = {
@@ -77,13 +83,12 @@ def build_get_path_valid_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -92,9 +97,11 @@ def build_get_swagger_path_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    unencoded_path_param = kwargs.pop('unencoded_path_param', "path1/path2/path3")  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    unencoded_path_param = kwargs.pop('unencoded_path_param', "path1/path2/path3")  # type: str
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}")
     path_format_arguments = {
@@ -104,13 +111,12 @@ def build_get_swagger_path_valid_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -119,25 +125,26 @@ def build_get_method_query_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    q1 = kwargs.pop('q1')  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    q1 = kwargs.pop('q1')  # type: str
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/method/query/valid")
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
+    _params['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -146,26 +153,27 @@ def build_get_method_query_null_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    q1 = kwargs.pop('q1', None)  # type: Optional[str]
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    q1 = kwargs.pop('q1', case_insensitive_dict(_params).pop('q1', None))  # type: Optional[str]
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/method/query/null")
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if q1 is not None:
-        _query_parameters['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
+        _params['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -174,25 +182,26 @@ def build_get_path_query_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    q1 = kwargs.pop('q1')  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    q1 = kwargs.pop('q1')  # type: str
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/path/query/valid")
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
+    _params['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -201,25 +210,26 @@ def build_get_swagger_query_valid_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    q1 = kwargs.pop('q1', "value1&q2=value2&q3=value3")  # type: str
+    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
-    accept = "application/json"
+    q1 = kwargs.pop('q1', case_insensitive_dict(_params).pop('q1', "value1&q2=value2&q3=value3"))  # type: str
+    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/azurespecials/skipUrlEncoding/swagger/query/valid")
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
+    _params['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -260,13 +270,18 @@ class SkipUrlEncodingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_method_path_valid_request(
             unencoded_path_param=unencoded_path_param,
             template_url=self.get_method_path_valid.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -303,13 +318,18 @@ class SkipUrlEncodingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_path_valid_request(
             unencoded_path_param=unencoded_path_param,
             template_url=self.get_path_valid.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -346,7 +366,10 @@ class SkipUrlEncodingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         unencoded_path_param = kwargs.pop("unencoded_path_param", "path1/path2/path3")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -354,6 +377,8 @@ class SkipUrlEncodingOperations(object):
         request = build_get_swagger_path_valid_request(
             unencoded_path_param=unencoded_path_param,
             template_url=self.get_swagger_path_valid.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -390,13 +415,18 @@ class SkipUrlEncodingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_method_query_valid_request(
             q1=q1,
             template_url=self.get_method_query_valid.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -433,13 +463,18 @@ class SkipUrlEncodingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_method_query_null_request(
             q1=q1,
             template_url=self.get_method_query_null.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -476,13 +511,18 @@ class SkipUrlEncodingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
+
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_path_query_valid_request(
             q1=q1,
             template_url=self.get_path_query_valid.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -519,14 +559,19 @@ class SkipUrlEncodingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {})) or {}
 
-        q1 = kwargs.pop("q1", "value1&q2=value2&q3=value3")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+
+        q1 = kwargs.pop("q1", case_insensitive_dict(_params).pop("q1", "value1&q2=value2&q3=value3"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_swagger_query_valid_request(
             q1=q1,
             template_url=self.get_swagger_query_valid.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
