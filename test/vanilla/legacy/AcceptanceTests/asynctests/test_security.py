@@ -32,27 +32,29 @@ from securitykeyswagger.aio import AutorestSecurityKey
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline.policies import AzureKeyCredentialPolicy
 from azure.core.pipeline.policies import AsyncBearerTokenCredentialPolicy
-from azure.identity import DefaultAzureCredential
 
 @pytest.mark.asyncio
-async def test_security_key_flag():
-    client = SecurityKeyFlagClient(credential=AzureKeyCredential('000'))
+async def test_security_key_flag(credential):
+    client = SecurityKeyFlagClient(credential=credential)
     assert isinstance(client._config.authentication_policy, AzureKeyCredentialPolicy)
 
 @pytest.mark.asyncio
-async def test_security_aad_flag():
-    client = SecurityAadFlagClient(credential=DefaultAzureCredential())
+async def test_security_aad_flag(credential):
+    client = SecurityAadFlagClient(credential=credential)
     assert isinstance(client._config.authentication_policy, AsyncBearerTokenCredentialPolicy)
 
 @pytest.mark.asyncio
-async def test_security_mixed_flag():
-    client = SecurityMixedFlagClient(credential=DefaultAzureCredential())
+async def test_security_mixed_flag(credential):
+    client = SecurityMixedFlagClient(credential=credential)
     assert isinstance(client._config.authentication_policy, AsyncBearerTokenCredentialPolicy)
 
 @pytest.mark.asyncio
-async def test_security_aad_swagger():
-    client = AutorestSecurityAad(credential=DefaultAzureCredential())
+async def test_security_aad_swagger(credential, authentication_policy):
+    client = AutorestSecurityAad(credential=credential)
     assert isinstance(client._config.authentication_policy, AsyncBearerTokenCredentialPolicy)
+    # the test is temporary and it will be updated later
+    client = AutorestSecurityAad(credential=credential, authentication_policy=authentication_policy)
+    await client.head()
 
 @pytest.mark.asyncio
 async def test_security_key_swagger():

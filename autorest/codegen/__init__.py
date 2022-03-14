@@ -8,6 +8,7 @@ import sys
 from typing import Dict, Any, Set, Union, List, Type
 from pathlib import Path
 import yaml
+from enum import Enum
 
 from .. import Plugin
 from .models.code_model import CodeModel
@@ -23,6 +24,10 @@ from .models.credential_schema import AzureKeyCredentialSchema, TokenCredentialS
 
 _AAD_TOKEN = "AADToken"
 _AZURE_KEY = "AzureKey"
+class _Credential(Enum):
+    SCOPES = "credential_scopes"
+    KEY_HEADER_NAME = "key_header_name"
+    POLICY_TYPE = "policy_type"
 
 def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -> None:
     # Create operations
@@ -42,59 +47,6 @@ def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -
         # LRO operation
         code_model.format_lro_operations()
         code_model.remove_next_operation()
-
-def _validate_code_model_options(options: Dict[str, Any]) -> None:
-
-    if options["builders_visibility"] not in ["public", "hidden", "embedded"]:
-        raise ValueError(
-            "The value of --builders-visibility must be either 'public', 'hidden', "
-            "or 'embedded'"
-        )
-
-    if options["models_mode"] not in ["msrest", "none"]:
-        raise ValueError(
-            "--models-mode can only be 'msrest' or 'none'. "
-            "Pass in 'msrest' if you want msrest models, or "
-            "'none' if you don't want any."
-        )
-
-    if not options["show_operations"] and options["builders_visibility"] == "embedded":
-        raise ValueError(
-            "Can not embed builders without operations. "
-            "Either set --show-operations to True, or change the value of --builders-visibility "
-            "to 'public' or 'hidden'."
-        )
-
-    if not options["show_operations"] and options["add_python3_operation_files"]:
-        raise ValueError(
-            "Can not add typed sync operation files if you are not showing operations. "
-            "If you want typed synced operation files, you have to add flag "
-            "--show-operations"
-        )
-
-    if options["basic_setup_py"] and not options["package_version"]:
-        raise ValueError("--basic-setup-py must be used with --package-version")
-
-    if options["package_mode"] and not options["package_version"]:
-        raise ValueError("--package-mode must be used with --package-version")
-
-    if not options["show_operations"] and options["combine_operation_files"]:
-        raise ValueError(
-            "Can not combine operation files if you are not showing operations. "
-            "If you want operation files, pass in flag --show-operations"
-        )
-
-    if options["package_mode"]:
-        if options["package_mode"] not in ("mgmtplane", "dataplane") and not Path(options["package_mode"]).exists():
-            raise ValueError(
-                "--package-mode can only be 'mgmtplane' or 'dataplane' or directory which contains template files"
-            )
-
-    if options["reformat_next_link"] and options["version_tolerant"]:
-        raise ValueError(
-            "--reformat-next-link can not be true for version tolerant generations. "
-            "Please remove --reformat-next-link from your call for version tolerant generations."
-        )
 
 _LOGGER = logging.getLogger(__name__)
 class CodeGenerator(Plugin):
@@ -139,37 +91,138 @@ class CodeGenerator(Plugin):
             "dependency_msrest": "msrest>=0.6.21",
         }
 
+    def _validate_code_model_options(self, options: Dict[str, Any]) -> None:
+
+        if options["builders_visibility"] not in ["public", "hidden", "embedded"]:
+            raise ValueError(
+                "The value of --builders-visibility must be either 'public', 'hidden', "
+                "or 'embedded'"
+            )
+
+        if options["models_mode"] not in ["msrest", "none"]:
+            raise ValueError(
+                "--models-mode can only be 'msrest' or 'none'. "
+                "Pass in 'msrest' if you want msrest models, or "
+                "'none' if you don't want any."
+            )
+
+        if not options["show_operations"] and options["builders_visibility"] == "embedded":
+            raise ValueError(
+                "Can not embed builders without operations. "
+                "Either set --show-operations to True, or change the value of --builders-visibility "
+                "to 'public' or 'hidden'."
+            )
+
+        if not options["show_operations"] and options["add_python3_operation_files"]:
+            raise ValueError(
+                "Can not add typed sync operation files if you are not showing operations. "
+                "If you want typed synced operation files, you have to add flag "
+                "--show-operations"
+            )
+
+        if options["basic_setup_py"] and not options["package_version"]:
+            raise ValueError("--basic-setup-py must be used with --package-version")
+
+        if options["package_mode"] and not options["package_version"]:
+            raise ValueError("--package-mode must be used with --package-version")
+
+        if not options["show_operations"] and options["combine_operation_files"]:
+            raise ValueError(
+                "Can not combine operation files if you are not showing operations. "
+                "If you want operation files, pass in flag --show-operations"
+            )
+
+        if options["package_mode"]:
+            if options["package_mode"] not in ("mgmtplane", "dataplane") and not Path(options["package_mode"]).exists():
+                raise ValueError(
+                    "--package-mode can only be 'mgmtplane' or 'dataplane' or directory which contains template files"
+                )
+
+        if options["reformat_next_link"] and options["version_tolerant"]:
+            raise ValueError(
+                "--reformat-next-link can not be true for version tolerant generations. "
+                "Please remove --reformat-next-link from your call for version tolerant generations."
+            )
+
+        credential_scopes = self._get_credential_scopes()
+        if credential_scopes and not options["credential"]:
+            raise ValueError("--credential-scopes must be used with the --add-credential flag")
+
+        # check to see if user just passes in --credential-scopes with no value
+        if not credential_scopes and self._autorestapi.get_boolean_value("credential-scopes", False):
+            raise ValueError(
+                "--credential-scopes takes a list of scopes in comma separated format. "
+                "For example: --credential-scopes=https://cognitiveservices.azure.com/.default"
+            )
+
     @staticmethod
-    def _build_security(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    def _build_with_security_definition(credentials_info: Dict[str, Any], yaml_data: Dict[str, Any]):
         security_yaml = yaml_data.get("security", {})
-        security: Dict[str, Any] = dict()
         if security_yaml.get("authenticationRequired"):
             # the key word is "AADToken" and "AzureKey"
-            aad_scopes = set()
-            azure_key = ""
+            credential_scopes = set()
+            key_header_name = ""
             for scheme in security_yaml.get("schemes"):
                 if _AAD_TOKEN == scheme["type"]:
-                    aad_scopes.update(scheme["scopes"])
+                    credential_scopes.update(scheme["scopes"])
                 elif _AZURE_KEY == scheme["type"]:
                     # only accept the last one
-                    azure_key = scheme["headerName"]
-            if aad_scopes:
-                security[_AAD_TOKEN] = list(aad_scopes)
-            if azure_key:
-                security[_AZURE_KEY] = azure_key
-        return security
+                    key_header_name = scheme["headerName"]
+            if credential_scopes and not credentials_info.get(_Credential.SCOPES):
+                credentials_info[_Credential.SCOPES] = list(credential_scopes)
+            if key_header_name and not credentials_info.get(_Credential.KEY_HEADER_NAME):
+                credentials_info[_Credential.KEY_HEADER_NAME] = key_header_name
+        
+        if not credentials_info.get(_Credential.POLICY_TYPE):
+            # AAD has higher priority if both are defined
+            if _Credential.SCOPES in credentials_info:
+                credentials_info[_Credential.POLICY_TYPE] = BearerTokenCredentialPolicy
+            elif _Credential.KEY_HEADER_NAME in credentials_info:
+                credentials_info[_Credential.POLICY_TYPE] = AzureKeyCredentialPolicy
+
+    def _build_with_credential_flags(self, credentials_info: Dict[str, Any], code_model: CodeModel):
+        if not code_model.options["credential"]:
+            return
+
+        credential_schema_policy_name = (
+            self._autorestapi.get_value("credential-default-policy-type") or
+            code_model.default_authentication_policy.name()
+        )
+        credentials_info[_Credential.POLICY_TYPE] = get_credential_schema_policy_type(credential_schema_policy_name)
+        self._update_with_credential_flags(credentials_info, code_model)
+
+    @staticmethod
+    def _build_authentication_policy(credentials_info: Dict[str, Any], code_model: CodeModel):
+        if not credentials_info.get(_Credential.POLICY_TYPE):
+            return
+        
+        code_model.options["credential"] = True
+        if hasattr(credentials_info[_Credential.POLICY_TYPE], "credential_scopes"):
+            code_model.credential_schema_policy = credentials_info[_Credential.POLICY_TYPE](
+                credential=TokenCredentialSchema(async_mode=False),
+                credential_scopes=credentials_info[_Credential.SCOPES],
+            )
+        elif hasattr(credentials_info[_Credential.POLICY_TYPE], "credential_key_header_name"):
+            code_model.credential_schema_policy = credentials_info[_Credential.POLICY_TYPE](
+                credential=AzureKeyCredentialSchema(),
+                credential_key_header_name=credentials_info[_Credential.KEY_HEADER_NAME]  
+            )
+        else:
+            raise ValueError(f"Unknown policy type {credentials_info[_Credential.POLICY_TYPE]}")
+
+    def _handle_authentication_policy(self, yaml_data: Dict[str, Any], code_model: CodeModel) -> str:
+        credential_info = {}
+
+        # keep the order credential flags have higher priority to security definition
+        self._build_with_credential_flags(credential_info, code_model)
+        self._build_with_security_definition(credential_info, yaml_data)
+        self._build_authentication_policy(credential_info, code_model)
 
     def _create_code_model(self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]) -> CodeModel:
         # Create a code model
 
         code_model = CodeModel(options=options)
-        security = self._build_security(yaml_data)
-        if code_model.options['credential']:
-            self._handle_default_authentication_policy(code_model)
-        elif security:
-            code_model.options['credential'] = True
-            self._handle_authentication_policy(code_model, security)
-
+        self._handle_authentication_policy(yaml_data, code_model)
         code_model.module_name = yaml_data["info"]["python_title"]
         code_model.class_name = yaml_data["info"]["pascal_case_title"]
         code_model.description = (
@@ -211,43 +264,38 @@ class CodeGenerator(Plugin):
         code_model.package_dependency = self._build_package_dependency()
         return code_model
 
-    def _get_credential_scopes(self, credential):
+    def _get_credential_scopes_temp(self) -> Union[List[str], None]:
         credential_scopes_temp = self._autorestapi.get_value("credential-scopes")
         credential_scopes = credential_scopes_temp.split(",") if credential_scopes_temp else None
-        if credential_scopes and not credential:
-            raise ValueError("--credential-scopes must be used with the --add-credential flag")
-
-        # check to see if user just passes in --credential-scopes with no value
-        if self._autorestapi.get_boolean_value("credential-scopes", False) and not credential_scopes:
-            raise ValueError(
-                "--credential-scopes takes a list of scopes in comma separated format. "
-                "For example: --credential-scopes=https://cognitiveservices.azure.com/.default"
-            )
         return credential_scopes
 
-    def _initialize_credential_schema_policy(
-        self, code_model: CodeModel, credential_schema_policy: Type[CredentialSchemaPolicy]
-    ) -> CredentialSchemaPolicy:
-        credential_scopes = self._get_credential_scopes(code_model.options['credential'])
-        credential_key_header_name = self._autorestapi.get_value('credential-key-header-name')
-        azure_arm = code_model.options['azure_arm']
-        credential = code_model.options['credential']
+    def _get_credential_scopes(self) -> Union[List[str], None]:
+        credential_scopes_temp = self._autorestapi.get_value("credential-scopes")
+        return credential_scopes_temp.split(",") if credential_scopes_temp else None
 
+    def _update_with_credential_flags(
+        self,
+        credentials_info: Dict[str, Any],
+        code_model: CodeModel
+    ):
+        credential_schema_policy = credentials_info.get(_Credential.POLICY_TYPE)
+        credential_key_header_name = self._autorestapi.get_value('credential-key-header-name')
+        if code_model.options['azure_arm']:
+            credential_scopes = ["https://management.azure.com/.default"]
+        else:
+            credential_scopes = self._get_credential_scopes()
         if hasattr(credential_schema_policy, "credential_scopes"):
             if not credential_scopes:
-                if azure_arm:
-                    credential_scopes = ["https://management.azure.com/.default"]
-                elif credential:
-                    # If add-credential is specified, we still want to add a credential_scopes variable.
-                    # Will make it an empty list so we can differentiate between this case and None
-                    _LOGGER.warning(
-                        "You have default credential policy %s "
-                        "but not the --credential-scopes flag set while generating non-management plane code. "
-                        "This is not recommend because it forces the customer to pass credential scopes "
-                        "through kwargs if they want to authenticate.",
-                        credential_schema_policy.name()
-                    )
-                    credential_scopes = []
+                # If add-credential is specified, we still want to add a credential_scopes variable.
+                # Will make it an empty list so we can differentiate between this case and None
+                _LOGGER.warning(
+                    "You have default credential policy %s "
+                    "but not the --credential-scopes flag set while generating non-management plane code. "
+                    "This is not recommend because it forces the customer to pass credential scopes "
+                    "through kwargs if they want to authenticate.",
+                    credential_schema_policy.name()
+                )
+                credential_scopes = []
 
             if credential_key_header_name:
                 raise ValueError(
@@ -256,56 +304,24 @@ class CodeGenerator(Plugin):
                     "name is tied with AzureKeyCredentialPolicy. Instead, with this policy it is recommend you "
                     "pass in --credential-scopes."
                 )
-            return credential_schema_policy(
-                credential=TokenCredentialSchema(async_mode=False),
-                credential_scopes=credential_scopes,
-            )
-        # currently the only other credential policy is AzureKeyCredentialPolicy
-        if credential_scopes:
-            raise ValueError(
-                "You have passed in credential scopes with default credential policy type "
-                "AzureKeyCredentialPolicy. This is not allowed, since credential scopes is tied with "
-                f"{code_model.default_authentication_policy.name()}. Instead, with this policy you must pass in "
-                "--credential-key-header-name."
-            )
-        if not credential_key_header_name:
-            credential_key_header_name = "api-key"
-            _LOGGER.info(
-                "Defaulting the AzureKeyCredentialPolicy header's name to 'api-key'"
-            )
-        return credential_schema_policy(
-            credential=AzureKeyCredentialSchema(),
-            credential_key_header_name=credential_key_header_name,
-        )
-
-    @staticmethod
-    def _handle_authentication_policy(code_model: CodeModel, security: Dict[str, Any]):
-        credential_scopes = security.get(_AAD_TOKEN, [])
-        azure_key_header = security.get(_AZURE_KEY, "")
-        if credential_scopes:
-            credential_schema_policy: CredentialSchemaPolicy = BearerTokenCredentialPolicy(
-                credential=TokenCredentialSchema(False),
-                credential_scopes=credential_scopes
-            )
-        elif azure_key_header:
-            credential_schema_policy = AzureKeyCredentialPolicy(
-                credential=AzureKeyCredentialSchema(),
-                credential_key_header_name=azure_key_header
-            )
+            
+            credentials_info[_Credential.SCOPES] = credential_scopes
         else:
-            raise ValueError(f'can not find {_AAD_TOKEN} or {_AZURE_KEY} in security definition')
-        code_model.credential_schema_policy = credential_schema_policy
-
-    def _handle_default_authentication_policy(self, code_model: CodeModel):
-        credential_schema_policy_name = (
-            self._autorestapi.get_value("credential-default-policy-type") or
-            code_model.default_authentication_policy.name()
-        )
-        credential_schema_policy_type = get_credential_schema_policy_type(credential_schema_policy_name)
-        credential_schema_policy = self._initialize_credential_schema_policy(
-            code_model, credential_schema_policy_type
-        )
-        code_model.credential_schema_policy = credential_schema_policy
+            # currently the only other credential policy is AzureKeyCredentialPolicy
+            if credential_scopes:
+                raise ValueError(
+                    "You have passed in credential scopes with default credential policy type "
+                    "AzureKeyCredentialPolicy. This is not allowed, since credential scopes is tied with "
+                    f"{code_model.default_authentication_policy.name()}. Instead, with this policy you must pass in "
+                    "--credential-key-header-name."
+                )
+            if not credential_key_header_name:
+                credential_key_header_name = "api-key"
+                _LOGGER.info(
+                    "Defaulting the AzureKeyCredentialPolicy header's name to 'api-key'"
+                )
+            
+            credentials_info[_Credential.KEY_HEADER_NAME] = credential_key_header_name
 
     def _build_code_model_options(self) -> Dict[str, Any]:
         """Build en options dict from the user input while running autorest.
@@ -375,7 +391,7 @@ class CodeGenerator(Plugin):
         else:
             options["builders_visibility"] = options["builders_visibility"].lower()
 
-        _validate_code_model_options(options)
+        self._validate_code_model_options(options)
 
         if options["models_mode"] == "none":
             # switch to falsy value for easier code writing
