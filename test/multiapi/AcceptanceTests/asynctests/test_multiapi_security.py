@@ -26,9 +26,8 @@
 import pytest
 from multiapisecurity.aio import MultiapiServiceClient
 from azure.core.pipeline.policies import AsyncBearerTokenCredentialPolicy
-from azure.identity import DefaultAzureCredential
 
 @pytest.mark.asyncio
-async def test_multiapi_security():
-    async with MultiapiServiceClient(credential=DefaultAzureCredential()) as client:
+async def test_multiapi_security(credential):
+    async with MultiapiServiceClient(credential=credential) as client:
         assert isinstance(client._config.authentication_policy, AsyncBearerTokenCredentialPolicy)
