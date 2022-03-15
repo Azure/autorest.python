@@ -5,5 +5,3 @@
 # license information.
 # --------------------------------------------------------------------------
 from .v1.models import *
-from .v2.models import *
-from .v3.models import *

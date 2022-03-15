@@ -16,18 +16,6 @@ namespace: multiapisecurity.v1
 output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/MultiapiSecurity/multiapisecurity/v1
 ```
 
-``` yaml $(tag) == 'v2'
-input-file: ../../../../node_modules/@microsoft.azure/autorest.testserver/swagger/multiapi-v2.json
-namespace: multiapisecurity.v2
-output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/MultiapiSecurity/multiapisecurity/v2
-```
-
-``` yaml $(tag) == 'v3'
-input-file: ../../../../node_modules/@microsoft.azure/autorest.testserver/swagger/multiapi-v3.json
-namespace: multiapisecurity.v3
-output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/MultiapiSecurity/multiapisecurity/v3
-```
-
 ### Settings
 ``` yaml
 package-name: multiapisecurity
@@ -41,8 +29,6 @@ clear-output-folder: true
 batch:
     - tag: v0
     - tag: v1
-    - tag: v2
-    - tag: v3
     - multiapiscript: true
 ```
 
