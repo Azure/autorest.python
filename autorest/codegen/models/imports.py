@@ -97,13 +97,15 @@ class FileImport:
         self,
         module_name: str,
         import_type: ImportType,
-        typing_section: TypingSection = TypingSection.REGULAR
+        typing_section: TypingSection = TypingSection.REGULAR,
+        alias: Optional[str] = None,
     ) -> None:
         # Implementation detail: a regular import is just a "from" with no from
         self._append_import(ImportModel(
             typing_section=typing_section,
             import_type=import_type,
             module_name=module_name,
+            alias=alias,
         ))
 
     def define_mypy_type(self, type_name: str, type_value: str, async_type_value: Optional[str] = None):

@@ -7,12 +7,16 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Dict, List, Optional, Union
+from typing import Dict, List, Optional, TYPE_CHECKING, Union
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
 from ._auto_rest_swagger_batxml_service_enums import *
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    import __init__ as _models
 
 
 class AccessPolicy(msrest.serialization.Model):
@@ -160,7 +164,7 @@ class Blob(msrest.serialization.Model):
         name: str,
         deleted: bool,
         snapshot: str,
-        properties: "BlobProperties",
+        properties: "_models.BlobProperties",
         metadata: Optional[Dict[str, str]] = None,
         **kwargs
     ):
@@ -325,12 +329,12 @@ class BlobProperties(msrest.serialization.Model):
         content_disposition: Optional[str] = None,
         cache_control: Optional[str] = None,
         blob_sequence_number: Optional[int] = None,
-        blob_type: Optional[Union[str, "BlobType"]] = None,
-        lease_status: Optional[Union[str, "LeaseStatusType"]] = None,
-        lease_state: Optional[Union[str, "LeaseStateType"]] = None,
-        lease_duration: Optional[Union[str, "LeaseDurationType"]] = None,
+        blob_type: Optional[Union[str, "_models.BlobType"]] = None,
+        lease_status: Optional[Union[str, "_models.LeaseStatusType"]] = None,
+        lease_state: Optional[Union[str, "_models.LeaseStateType"]] = None,
+        lease_duration: Optional[Union[str, "_models.LeaseDurationType"]] = None,
         copy_id: Optional[str] = None,
-        copy_status: Optional[Union[str, "CopyStatusType"]] = None,
+        copy_status: Optional[Union[str, "_models.CopyStatusType"]] = None,
         copy_source: Optional[str] = None,
         copy_progress: Optional[str] = None,
         copy_completion_time: Optional[datetime.datetime] = None,
@@ -340,9 +344,9 @@ class BlobProperties(msrest.serialization.Model):
         destination_snapshot: Optional[str] = None,
         deleted_time: Optional[datetime.datetime] = None,
         remaining_retention_days: Optional[int] = None,
-        access_tier: Optional[Union[str, "AccessTier"]] = None,
+        access_tier: Optional[Union[str, "_models.AccessTier"]] = None,
         access_tier_inferred: Optional[bool] = None,
-        archive_status: Optional[Union[str, "ArchiveStatus"]] = None,
+        archive_status: Optional[Union[str, "_models.ArchiveStatus"]] = None,
         **kwargs
     ):
         """
@@ -452,7 +456,11 @@ class Blobs(msrest.serialization.Model):
     }
 
     def __init__(
-        self, *, blob_prefix: Optional[List["BlobPrefix"]] = None, blob: Optional[List["Blob"]] = None, **kwargs
+        self,
+        *,
+        blob_prefix: Optional[List["_models.BlobPrefix"]] = None,
+        blob: Optional[List["_models.Blob"]] = None,
+        **kwargs
     ):
         """
         :keyword blob_prefix:
@@ -531,7 +539,12 @@ class Container(msrest.serialization.Model):
     }
 
     def __init__(
-        self, *, name: str, properties: "ContainerProperties", metadata: Optional[Dict[str, str]] = None, **kwargs
+        self,
+        *,
+        name: str,
+        properties: "_models.ContainerProperties",
+        metadata: Optional[Dict[str, str]] = None,
+        **kwargs
     ):
         """
         :keyword name: Required.
@@ -586,10 +599,10 @@ class ContainerProperties(msrest.serialization.Model):
         *,
         last_modified: datetime.datetime,
         etag: str,
-        lease_status: Optional[Union[str, "LeaseStatusType"]] = None,
-        lease_state: Optional[Union[str, "LeaseStateType"]] = None,
-        lease_duration: Optional[Union[str, "LeaseDurationType"]] = None,
-        public_access: Optional[Union[str, "PublicAccessType"]] = None,
+        lease_status: Optional[Union[str, "_models.LeaseStatusType"]] = None,
+        lease_state: Optional[Union[str, "_models.LeaseStateType"]] = None,
+        lease_duration: Optional[Union[str, "_models.LeaseDurationType"]] = None,
+        public_access: Optional[Union[str, "_models.PublicAccessType"]] = None,
         **kwargs
     ):
         """
@@ -815,7 +828,7 @@ class ListBlobsResponse(msrest.serialization.Model):
         marker: str,
         max_results: int,
         delimiter: str,
-        blobs: "Blobs",
+        blobs: "_models.Blobs",
         next_marker: str,
         service_endpoint: Optional[str] = None,
         **kwargs
@@ -893,7 +906,7 @@ class ListContainersResponse(msrest.serialization.Model):
         max_results: int,
         next_marker: str,
         marker: Optional[str] = None,
-        containers: Optional[List["Container"]] = None,
+        containers: Optional[List["_models.Container"]] = None,
         **kwargs
     ):
         """
@@ -953,7 +966,14 @@ class Logging(msrest.serialization.Model):
     }
 
     def __init__(
-        self, *, version: str, delete: bool, read: bool, write: bool, retention_policy: "RetentionPolicy", **kwargs
+        self,
+        *,
+        version: str,
+        delete: bool,
+        read: bool,
+        write: bool,
+        retention_policy: "_models.RetentionPolicy",
+        **kwargs
     ):
         """
         :keyword version: Required. The version of Storage Analytics to configure.
@@ -1008,7 +1028,7 @@ class Metrics(msrest.serialization.Model):
         enabled: bool,
         version: Optional[str] = None,
         include_apis: Optional[bool] = None,
-        retention_policy: Optional["RetentionPolicy"] = None,
+        retention_policy: Optional["_models.RetentionPolicy"] = None,
         **kwargs
     ):
         """
@@ -1148,7 +1168,7 @@ class RootWithRefAndMeta(msrest.serialization.Model):
     }
 
     def __init__(
-        self, *, ref_to_model: Optional["ComplexTypeWithMeta"] = None, something: Optional[str] = None, **kwargs
+        self, *, ref_to_model: Optional["_models.ComplexTypeWithMeta"] = None, something: Optional[str] = None, **kwargs
     ):
         """
         :keyword ref_to_model: XML will use XMLComplexTypeWithMeta.
@@ -1176,7 +1196,7 @@ class RootWithRefAndNoMeta(msrest.serialization.Model):
     }
 
     def __init__(
-        self, *, ref_to_model: Optional["ComplexTypeNoMeta"] = None, something: Optional[str] = None, **kwargs
+        self, *, ref_to_model: Optional["_models.ComplexTypeNoMeta"] = None, something: Optional[str] = None, **kwargs
     ):
         """
         :keyword ref_to_model: XML will use RefToModel.
@@ -1211,7 +1231,7 @@ class SignedIdentifier(msrest.serialization.Model):
     }
     _xml_map = {"name": "SignedIdentifier"}
 
-    def __init__(self, *, id: str, access_policy: "AccessPolicy", **kwargs):
+    def __init__(self, *, id: str, access_policy: "_models.AccessPolicy", **kwargs):
         """
         :keyword id: Required. a unique id.
         :paramtype id: str
@@ -1285,7 +1305,7 @@ class Slideshow(msrest.serialization.Model):
         title: Optional[str] = None,
         date: Optional[str] = None,
         author: Optional[str] = None,
-        slides: Optional[List["Slide"]] = None,
+        slides: Optional[List["_models.Slide"]] = None,
         **kwargs
     ):
         """
@@ -1338,12 +1358,12 @@ class StorageServiceProperties(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        logging: Optional["Logging"] = None,
-        hour_metrics: Optional["Metrics"] = None,
-        minute_metrics: Optional["Metrics"] = None,
-        cors: Optional[List["CorsRule"]] = None,
+        logging: Optional["_models.Logging"] = None,
+        hour_metrics: Optional["_models.Metrics"] = None,
+        minute_metrics: Optional["_models.Metrics"] = None,
+        cors: Optional[List["_models.CorsRule"]] = None,
         default_service_version: Optional[str] = None,
-        delete_retention_policy: Optional["RetentionPolicy"] = None,
+        delete_retention_policy: Optional["_models.RetentionPolicy"] = None,
         **kwargs
     ):
         """

@@ -95,3 +95,8 @@ class ConstantSchema(BaseSchema):
         file_import = FileImport()
         file_import.merge(self.schema.imports())
         return file_import
+
+    def model_file_imports(self) -> FileImport:
+        file_import = self.imports()
+        file_import.merge(self.schema.model_file_imports())
+        return file_import

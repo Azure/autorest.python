@@ -12,7 +12,8 @@
 
 **New Features**
 
-- Add support for security configurations in the swagger(refer to [doc](https://github.com/Azure/autorest/blob/main/docs/generate/authentication.md) for more info) #1161
+- Add support for security configurations in the swagger. For more information, see https://github.com/Azure/autorest/blob/main/docs/generate/authentication.md #1161
+- Add support for handwritten customizations of generated code. For more information, see https://aka.ms/azsdk/python/dpcodegen/python/customize #1153
 
 **Bug Fixes**
 

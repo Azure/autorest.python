@@ -23,28 +23,12 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-from securityaadflag import SecurityAadFlagClient
-from securitykeyflag import SecurityKeyFlagClient
-from securitymixedflag import SecurityMixedFlagClient
 from securitykeyswagger import AutorestSecurityKey
 from securityaadswagger import AutorestSecurityAad
 
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline.policies import AzureKeyCredentialPolicy
 from azure.core.pipeline.policies import BearerTokenCredentialPolicy
-
-
-def test_security_key_flag(credential):
-    client = SecurityKeyFlagClient(credential=credential)
-    assert isinstance(client._config.authentication_policy, AzureKeyCredentialPolicy)
-
-def test_security_aad_flag(credential):
-    client = SecurityAadFlagClient(credential=credential)
-    assert isinstance(client._config.authentication_policy, BearerTokenCredentialPolicy)
-
-def test_security_mixed_flag(credential):
-    client = SecurityMixedFlagClient(credential=credential)
-    assert isinstance(client._config.authentication_policy, BearerTokenCredentialPolicy)
 
 def test_security_aad_swagger(credential, authentication_policy):
     client = AutorestSecurityAad(credential=credential)

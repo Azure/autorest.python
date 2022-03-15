@@ -71,7 +71,9 @@ _VANILLA_SWAGGER_MAPPINGS = {
 
 _DPG_SWAGGER_MAPPINGS = {
     'DPGServiceDrivenInitial': 'dpg_initial.json',
-    'DPGServiceDrivenUpdateOne': 'dpg_update1.json'
+    'DPGServiceDrivenUpdateOne': 'dpg_update1.json',
+    'DPGCustomizationInitial': 'dpg-customization.json',
+    'DPGCustomizationCustomized': 'dpg-customization.json'
 }
 
 _AZURE_SWAGGER_MAPPINGS = {
@@ -108,11 +110,6 @@ _OVERWRITE_DEFAULT_NAMESPACE = {
     'CustomUrlPaging': 'custombaseurlpaging',
     'AzureSpecials': 'azurespecialproperties',
     'StorageManagementClient': 'storage',
-}
-
-_OVERRIDE_PACKAGE_NAME = {
-    "DPGServiceDrivenInitial": "dpgservicedriveninitial",
-    "DPGServiceDrivenUpdateOne": "dpgservicedrivenupdateone",
 }
 
 _PACKAGES_WITH_CLIENT_SIDE_VALIDATION = [
@@ -194,9 +191,11 @@ def _build_command_line(
     override_flags: Optional[Dict[str, Any]] = None,
     **kwargs,
 ) -> str:
-    if _OVERRIDE_PACKAGE_NAME.get(package_name):
+    if swagger_group == _SwaggerGroup.DPG:
+        # for DPG, we always have to generate multiple packages for swaggers with the same
+        # package name, so we override package names
         override_flags = override_flags or {}
-        override_flags.update({"package-name": _OVERRIDE_PACKAGE_NAME[package_name]})
+        override_flags.update({"package-name": package_name.lower()})
     flags = _build_flags(package_name, swagger_name, debug, swagger_group, override_flags, **kwargs)
     flag_strings = [
         f"--{flag}={value}" for flag, value in flags.items()
@@ -257,7 +256,6 @@ def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
         regenerate_with_python3_operation_files(c, debug)
         regenerate_python3_only(c, debug)
         regenerate_package_mode(c, swagger_group=_SwaggerGroup.VANILLA)
-        regenerate_security(c, debug)
 
 @task
 def regenerate_dpg_low_level_client(c, swagger_name=None, debug=False, **kwargs):
@@ -515,19 +513,6 @@ def regenerate_package_mode(c, debug=False, swagger_group=None):
         f'autorest {readme} --use=. --python-sdks-folder={cwd}/test/' for readme in package_mode
     ]
 
-    _run_autorest(cmds, debug=debug)
-
-@task
-def regenerate_security(c, debug=False):
-    cwd = os.getcwd()
-    security = [
-        'test/vanilla/legacy/specification/securityaadflag/README.md',
-        'test/vanilla/legacy/specification/securitykeyflag/README.md',
-        'test/vanilla/legacy/specification/securitymixedflag/README.md',
-    ]
-    cmds = [
-        f'autorest {readme} --use=. --python-sdks-folder={cwd}/test/' for readme in security
-    ]
     _run_autorest(cmds, debug=debug)
 
 @task

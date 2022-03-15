@@ -1,3 +1,4 @@
+{% import 'keywords.jinja2' as keywords %}
 # coding=utf-8
 {{ code_model.options['license_header'] }}
 {% macro iterate_models_py3() %}
@@ -26,7 +27,7 @@ from ._{{ code_model.module_name }}_enums import (
     {% endfor %}
 )
 {% endif %}
-
+{{ keywords.patch_imports() }}
 __all__ = [
     {% for schema in schemas %}
     '{{ schema }}',
@@ -37,3 +38,5 @@ __all__ = [
     {% endfor %}
 {% endif %}
 ]
+{{ keywords.extend_all }}
+_patch_sdk()

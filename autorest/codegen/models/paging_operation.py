@@ -66,7 +66,7 @@ class PagingOperation(Operation):
         return response
 
     def _find_python_name(self, rest_api_name: str, log_name: str) -> str:
-        response = self._get_response()
+        response = self.responses[0]
         response_schema = cast(ObjectSchema, response.schema)
         if response_schema:
             for prop in response_schema.properties:

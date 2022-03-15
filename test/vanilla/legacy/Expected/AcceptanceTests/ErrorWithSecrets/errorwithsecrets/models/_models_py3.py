@@ -6,12 +6,16 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
 from ._errorwith_secrets_enums import *
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    import __init__ as _models
 
 
 class Error(msrest.serialization.Model):
@@ -53,12 +57,12 @@ class Error(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        code: Union[str, "ErrorCode"],
+        code: Union[str, "_models.ErrorCode"],
         message: str,
         additional_properties: Optional[Dict[str, Any]] = None,
         target: Optional[str] = None,
-        details: Optional[List["Error"]] = None,
-        innererror: Optional["InnerError"] = None,
+        details: Optional[List["_models.Error"]] = None,
+        innererror: Optional["_models.InnerError"] = None,
         **kwargs
     ):
         """
@@ -108,7 +112,7 @@ class ErrorResponse(msrest.serialization.Model):
         "error": {"key": "error", "type": "Error"},
     }
 
-    def __init__(self, *, error: "Error", additional_properties: Optional[Dict[str, Any]] = None, **kwargs):
+    def __init__(self, *, error: "_models.Error", additional_properties: Optional[Dict[str, Any]] = None, **kwargs):
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
@@ -154,10 +158,10 @@ class InnerError(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        code: Union[str, "InnerErrorCode"],
+        code: Union[str, "_models.InnerErrorCode"],
         message: str,
         additional_properties: Optional[Dict[str, Any]] = None,
-        innererror: Optional["InnerError"] = None,
+        innererror: Optional["_models.InnerError"] = None,
         **kwargs
     ):
         """

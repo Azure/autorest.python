@@ -58,12 +58,12 @@ class SchemaResponse(BaseModel):
         return "None"
 
     @property
-    def operation_type_annotation(self) -> str:
+    def type_annotation(self) -> str:
         if not self.schema:
             return "None"
         if self.nullable:
-            return f"Optional[{self.schema.operation_type_annotation}]"
-        return self.schema.operation_type_annotation
+            return f"Optional[{self.schema.type_annotation}]"
+        return self.schema.type_annotation
 
     @property
     def docstring_text(self) -> str:
