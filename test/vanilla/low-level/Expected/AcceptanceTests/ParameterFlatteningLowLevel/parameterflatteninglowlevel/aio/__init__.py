@@ -8,8 +8,11 @@
 
 from ._auto_rest_parameter_flattening import AutoRestParameterFlattening
 
-from ._patch import __all__ as _patch_all
-from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
+try:
+    from ._patch import __all__ as _patch_all
+    from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
+except ImportError:
+    _patch_all = []
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = ["AutoRestParameterFlattening"]
