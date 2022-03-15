@@ -155,7 +155,6 @@ class CodeGenerator(Plugin):
             if key_header_name:
                 credential_info[Credential.KEY_HEADER_NAME] = key_header_name
 
-        # AAD has higher priority if both are defined
         if Credential.SCOPES in credential_info:
             credential_info[Credential.POLICY_TYPE] = BearerTokenCredentialPolicy
         elif Credential.KEY_HEADER_NAME in credential_info:
@@ -184,6 +183,7 @@ class CodeGenerator(Plugin):
         # credential info with security definition will be overridded by credential flags
         self._build_with_security_definition(yaml_data, credential_info)
         self._build_with_credential_flags(code_model, credential_info)
+
         self._build_authentication_policy(code_model, credential_info)
 
     def _create_code_model(self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]) -> CodeModel:
