@@ -92,6 +92,12 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             "Please remove --reformat-next-link from your call for version tolerant generations."
         )
 
+    if options["multiapi"] and options["version_tolerant"]:
+        raise ValueError(
+            "Can not currently generate version tolerant multiapi SDKs. "
+            "We are working on creating a new multiapi SDK for version tolerant and it is not available yet."
+        )
+
 _LOGGER = logging.getLogger(__name__)
 class CodeGenerator(Plugin):
     @staticmethod
