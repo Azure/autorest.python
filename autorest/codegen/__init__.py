@@ -299,7 +299,7 @@ class CodeGenerator(Plugin):
     def _build_with_credential_flags(self, code_model: CodeModel, credential_info: Dict[Any, Any]):
         if not code_model.options["credential"]:
             return
-        
+
         credential_schema_policy_name = (
             self._autorestapi.get_value("credential-default-policy-type") or
             code_model.default_authentication_policy.name()
