@@ -177,8 +177,6 @@ class CodeGenerator(Plugin):
                 credential=AzureKeyCredentialSchema(),
                 credential_key_header_name=credential_info[Credential.KEY_HEADER_NAME]
             )
-        else:
-            raise ValueError(f"Unknown policy type {credential_info[Credential.POLICY_TYPE]}")
 
     def _handle_authentication_policy(self, yaml_data: Dict[str, Any], code_model: CodeModel):
         credential_info: Dict[Any, Any] = dict()
