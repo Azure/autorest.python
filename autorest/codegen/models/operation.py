@@ -10,7 +10,7 @@ from typing import cast, Dict, List, Any, Optional, Union, Set
 from .base_builder import BaseBuilder, create_parameters
 from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
-from .parameter import Parameter, get_parameter, ParameterLocation
+from .parameter import Parameter, get_parameter
 from .parameter_list import ParameterList, get_parameter_list
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema

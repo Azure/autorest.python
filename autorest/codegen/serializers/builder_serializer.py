@@ -459,7 +459,7 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
         def _get_value(param: Parameter):
             if param.location in [ParameterLocation.Header, ParameterLocation.Query]:
                 kwarg_dict = "headers" if param.location == ParameterLocation.Header else "params"
-                return (f"_{kwarg_dict}.pop('{param.rest_api_name}', {param.constant_declaration})")
+                return f"_{kwarg_dict}.pop('{param.rest_api_name}', {param.constant_declaration})"
             return f"{param.constant_declaration}"
         return [
             f"{p.serialized_name} = {_get_value(p)}"
