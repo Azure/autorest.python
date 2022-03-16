@@ -23,7 +23,7 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
     @overload
     async def get_model(self, mode: "Literal['model']", **kwargs: Any) -> Product:
         """Pass in mode='model' to get a handwritten model out"""
-    
+
     @overload
     def get_model(self, mode: str, **kwargs: Any):
         """Pass in other modes"""
