@@ -55,10 +55,12 @@ def build_upload_file_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/octet-stream, application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/octet-stream, application/json")
 
     # Construct URL
     _url = "/formdata/stream/uploadfile"
@@ -94,10 +96,12 @@ def build_upload_file_via_body_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/octet-stream, application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/octet-stream, application/json")
 
     # Construct URL
     _url = "/formdata/stream/uploadfile"
@@ -146,10 +150,12 @@ def build_upload_files_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/octet-stream, application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/octet-stream, application/json")
 
     # Construct URL
     _url = "/formdata/stream/uploadfiles"

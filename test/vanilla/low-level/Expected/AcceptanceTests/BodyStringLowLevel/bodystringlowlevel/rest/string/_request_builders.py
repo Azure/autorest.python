@@ -39,9 +39,11 @@ def build_get_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/string/null"
@@ -84,10 +86,12 @@ def build_put_null_request(
             json = "str"  # Optional.
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/string/null"
@@ -120,9 +124,11 @@ def build_get_empty_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/string/empty"
@@ -156,11 +162,13 @@ def build_put_empty_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     json = kwargs.pop('json', "")  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/string/empty"
@@ -194,9 +202,11 @@ def build_get_mbcs_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/string/mbcs"
@@ -231,11 +241,13 @@ def build_put_mbcs_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     json = kwargs.pop('json', "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€")  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/string/mbcs"
@@ -271,9 +283,11 @@ def build_get_whitespace_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/string/whitespace"
@@ -310,11 +324,13 @@ def build_put_whitespace_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     json = kwargs.pop('json', "    Now is the time for all good men to come to the aid of their country    ")  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/string/whitespace"
@@ -348,9 +364,11 @@ def build_get_not_provided_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/string/notProvided"
@@ -381,9 +399,11 @@ def build_get_base64_encoded_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/string/base64Encoding"
@@ -414,9 +434,11 @@ def build_get_base64_url_encoded_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/string/base64UrlEncoding"
@@ -459,10 +481,12 @@ def build_put_base64_url_encoded_request(
             json = bytes("bytes", encoding="utf-8")  # Optional.
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/string/base64UrlEncoding"
@@ -495,9 +519,11 @@ def build_get_null_base64_url_encoded_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/string/nullBase64UrlEncoding"

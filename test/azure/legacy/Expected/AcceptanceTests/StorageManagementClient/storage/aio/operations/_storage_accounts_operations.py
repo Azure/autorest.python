@@ -88,12 +88,10 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
-        )  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.CheckNameAvailabilityResult"]
 
         _json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
@@ -140,12 +138,10 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
-        )  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.StorageAccount"]]
 
         _json = self._serialize.body(parameters, "StorageAccountCreateParameters")
@@ -223,12 +219,10 @@ class StorageAccountsOperations:
         :rtype: ~azure.core.polling.AsyncLROPoller[~storage.models.StorageAccount]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
-        )  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -291,12 +285,10 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
-        )  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_delete_request(
@@ -347,12 +339,10 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
-        )  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
 
         request = build_get_properties_request(
@@ -423,12 +413,10 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
-        )  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccount"]
 
         _json = self._serialize.body(parameters, "StorageAccountUpdateParameters")
@@ -483,12 +471,10 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
-        )  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountKeys"]
 
         request = build_list_keys_request(
@@ -532,12 +518,10 @@ class StorageAccountsOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~storage.models.StorageAccountListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
-        )  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountListResult"]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -609,12 +593,10 @@ class StorageAccountsOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~storage.models.StorageAccountListResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
-        )  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountListResult"]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -704,12 +686,10 @@ class StorageAccountsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
-        )  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageAccountKeys"]
 
         _regenerate_key = _models.StorageAccountRegenerateKeyParameters(key_name=key_name)

@@ -37,10 +37,10 @@ class PollingPagingExampleOperationsMixin:
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', "application/json"))  # type: Optional[str]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: Optional[str]
         cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Product"]]
 
         if product is not None:
@@ -104,10 +104,10 @@ class PollingPagingExampleOperationsMixin:
         :rtype: ~my.library.aio.AsyncCustomPoller[~azure.directives.sample.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', "application/json"))  # type: Optional[str]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: Optional[str]
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop(
@@ -166,8 +166,8 @@ class PollingPagingExampleOperationsMixin:
         :rtype: ~my.library.aio.AsyncCustomPager[~azure.directives.sample.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
 

@@ -56,11 +56,11 @@ def build_update_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/parameterFlattening/{resourceGroupName}/{availabilitySetName}"
     path_format_arguments = {

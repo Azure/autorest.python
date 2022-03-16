@@ -44,10 +44,12 @@ def build_put200_succeeded_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/put/200/succeeded")
@@ -69,10 +71,12 @@ def build_patch200_succeeded_ignore_headers_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/patch/200/succeeded/ignoreheaders")
@@ -94,10 +98,12 @@ def build_patch201_retry_with_async_header_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/patch/201/retry/onlyAsyncHeader")
@@ -119,10 +125,12 @@ def build_patch202_retry_with_async_and_location_header_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/patch/202/retry/asyncAndLocationHeader")
@@ -144,10 +152,12 @@ def build_put201_succeeded_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/put/201/succeeded")
@@ -169,9 +179,11 @@ def build_post202_list_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/list")
@@ -191,10 +203,12 @@ def build_put200_succeeded_no_state_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/put/200/succeeded/nostate")
@@ -216,10 +230,12 @@ def build_put202_retry200_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/put/202/retry/200")
@@ -241,10 +257,12 @@ def build_put201_creating_succeeded200_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/put/201/creating/succeeded/200")
@@ -266,10 +284,12 @@ def build_put200_updating_succeeded204_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/put/200/updating/succeeded/200")
@@ -291,10 +311,12 @@ def build_put201_creating_failed200_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/put/201/created/failed/200")
@@ -316,10 +338,12 @@ def build_put200_acceptedcanceled200_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/put/200/accepted/canceled/200")
@@ -341,10 +365,12 @@ def build_put_no_header_in_retry_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/put/noheader/202/200")
@@ -366,10 +392,12 @@ def build_put_async_retry_succeeded_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/putasync/retry/succeeded")
@@ -391,10 +419,12 @@ def build_put_async_no_retry_succeeded_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/putasync/noretry/succeeded")
@@ -416,10 +446,12 @@ def build_put_async_retry_failed_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/putasync/retry/failed")
@@ -441,10 +473,12 @@ def build_put_async_no_retrycanceled_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/putasync/noretry/canceled")
@@ -466,10 +500,12 @@ def build_put_async_no_header_in_retry_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/putasync/noheader/201/200")
@@ -491,10 +527,12 @@ def build_put_non_resource_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/putnonresource/202/200")
@@ -516,10 +554,12 @@ def build_put_async_non_resource_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/putnonresourceasync/202/200")
@@ -541,10 +581,12 @@ def build_put_sub_resource_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/putsubresource/202/200")
@@ -566,10 +608,12 @@ def build_put_async_sub_resource_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/putsubresourceasync/202/200")
@@ -591,9 +635,11 @@ def build_delete_provisioning202_accepted200_succeeded_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/delete/provisioning/202/accepted/200/succeeded")
@@ -613,9 +659,11 @@ def build_delete_provisioning202_deleting_failed200_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/delete/provisioning/202/deleting/200/failed")
@@ -635,9 +683,11 @@ def build_delete_provisioning202_deletingcanceled200_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/delete/provisioning/202/deleting/200/canceled")
@@ -657,9 +707,11 @@ def build_delete204_succeeded_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/delete/204/succeeded")
@@ -679,9 +731,11 @@ def build_delete202_retry200_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/delete/202/retry/200")
@@ -701,9 +755,11 @@ def build_delete202_no_retry204_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/delete/202/noretry/204")
@@ -723,9 +779,11 @@ def build_delete_no_header_in_retry_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/delete/noheader")
@@ -745,9 +803,11 @@ def build_delete_async_no_header_in_retry_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/deleteasync/noheader/202/204")
@@ -767,9 +827,11 @@ def build_delete_async_retry_succeeded_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/deleteasync/retry/succeeded")
@@ -789,9 +851,11 @@ def build_delete_async_no_retry_succeeded_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/deleteasync/noretry/succeeded")
@@ -811,9 +875,11 @@ def build_delete_async_retry_failed_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/deleteasync/retry/failed")
@@ -833,9 +899,11 @@ def build_delete_async_retrycanceled_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/deleteasync/retry/canceled")
@@ -855,9 +923,11 @@ def build_post200_with_payload_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/post/payload/200")
@@ -877,10 +947,12 @@ def build_post202_retry200_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/post/202/retry/200")
@@ -902,10 +974,12 @@ def build_post202_no_retry204_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/post/202/noretry/204")
@@ -927,9 +1001,11 @@ def build_post_double_headers_final_location_get_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/LROPostDoubleHeadersFinalLocationGet")
@@ -949,9 +1025,11 @@ def build_post_double_headers_final_azure_header_get_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/LROPostDoubleHeadersFinalAzureHeaderGet")
@@ -971,9 +1049,11 @@ def build_post_double_headers_final_azure_header_get_default_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault")
@@ -993,10 +1073,12 @@ def build_post_async_retry_succeeded_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/postasync/retry/succeeded")
@@ -1018,10 +1100,12 @@ def build_post_async_no_retry_succeeded_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/postasync/noretry/succeeded")
@@ -1043,10 +1127,12 @@ def build_post_async_retry_failed_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/postasync/retry/failed")
@@ -1068,10 +1154,12 @@ def build_post_async_retrycanceled_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/lro/postasync/retry/canceled")
@@ -1117,11 +1205,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.Product"]]
 
@@ -1184,11 +1272,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -1238,11 +1326,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -1308,11 +1396,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -1367,11 +1455,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -1440,11 +1528,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -1496,11 +1584,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -1571,11 +1659,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -1625,11 +1713,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -1690,11 +1778,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -1742,8 +1830,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List["_models.Product"]]]
 
@@ -1803,8 +1891,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[list[~lro.models.Product]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Product"]]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -1849,11 +1937,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -1914,11 +2002,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -1968,11 +2056,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -2034,11 +2122,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -2088,11 +2176,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -2158,11 +2246,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -2212,11 +2300,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -2278,11 +2366,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -2332,11 +2420,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -2402,11 +2490,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -2456,11 +2544,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -2522,11 +2610,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -2576,11 +2664,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -2644,11 +2732,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -2701,11 +2789,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -2774,11 +2862,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -2835,11 +2923,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -2907,11 +2995,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -2967,11 +3055,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -3040,11 +3128,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -3101,11 +3189,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -3173,11 +3261,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -3233,11 +3321,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -3304,11 +3392,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -3363,11 +3451,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Sku"]
 
@@ -3427,11 +3515,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Sku]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Sku"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -3476,11 +3564,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Sku"]
 
@@ -3540,11 +3628,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Sku]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Sku"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -3589,11 +3677,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.SubProduct"]
 
@@ -3654,11 +3742,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.SubProduct]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.SubProduct"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -3708,11 +3796,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.SubProduct"]
 
@@ -3773,11 +3861,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.SubProduct]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.SubProduct"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -3825,8 +3913,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -3885,8 +3973,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -3929,8 +4017,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -3989,8 +4077,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -4033,8 +4121,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -4093,8 +4181,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -4137,8 +4225,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -4183,8 +4271,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -4224,8 +4312,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.Product"]]
 
@@ -4282,8 +4370,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -4326,8 +4414,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.Product"]]
 
@@ -4384,8 +4472,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -4428,8 +4516,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -4479,8 +4567,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -4520,8 +4608,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -4571,8 +4659,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -4612,8 +4700,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -4666,8 +4754,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -4707,8 +4795,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -4761,8 +4849,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -4802,8 +4890,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -4856,8 +4944,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -4897,8 +4985,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -4951,8 +5039,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -4992,8 +5080,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Sku"]
 
@@ -5047,8 +5135,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Sku]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Sku"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -5093,11 +5181,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -5158,11 +5246,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -5209,11 +5297,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -5278,11 +5366,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -5334,8 +5422,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -5386,8 +5474,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -5432,8 +5520,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -5484,8 +5572,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -5530,8 +5618,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
 
@@ -5582,8 +5670,8 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -5628,11 +5716,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.Product"]]
 
@@ -5704,11 +5792,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -5758,11 +5846,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.Product"]]
 
@@ -5834,11 +5922,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -5888,11 +5976,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -5957,11 +6045,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
@@ -6008,11 +6096,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -6077,11 +6165,11 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         :rtype: ~azure.core.polling.LROPoller[None]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]

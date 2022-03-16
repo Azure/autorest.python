@@ -459,8 +459,7 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
         def _get_value(param: Parameter):
             if param.location in [ParameterLocation.Header, ParameterLocation.Query]:
                 kwarg_dict = "headers" if param.location == ParameterLocation.Header else "params"
-                return (f"case_insensitive_dict(_{kwarg_dict}).pop("
-                        f"'{param.rest_api_name}', {param.constant_declaration})")
+                return (f"_{kwarg_dict}.pop('{param.rest_api_name}', {param.constant_declaration})")
             return f"{param.constant_declaration}"
         return [
             f"{p.serialized_name} = {_get_value(p)}"
@@ -520,6 +519,7 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
             check_kwarg_dict=True,
             pop_headers_kwarg=bool(builder.parameters.headers),
             pop_params_kwarg=bool(builder.parameters.query),
+            check_pop_type=True,
         )
 
     def create_http_request(self, builder) -> List[str]:
@@ -672,7 +672,6 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             pop_headers_kwarg=True,
             pop_params_kwarg=True,
         )
-       #  kwargs = utils.pop_kwargs_from_signature(self._get_kwargs_to_pop(builder))
         kwargs.append(f"cls = kwargs.pop('cls', None)  {self.cls_type_annotation(builder)}")
         return kwargs
 
@@ -730,14 +729,6 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
 
     def _has_data_example_template(self, builder) -> bool:
         return bool(builder.parameters.data_inputs)
-
-    # def pop_kwargs_from_signature(self, builder) -> List[str]:
-    #     return utils.pop_kwargs_from_signature(
-    #         self._get_kwargs_to_pop(builder),
-    #         check_kwarg_dict=True,
-    #         pop_headers_kwarg=True,
-    #         pop_params_kwarg=True,
-    #     )
 
     def _serialize_body_call(
         self, builder, body_param: Parameter, send_xml: bool, ser_ctxt: Optional[str], ser_ctxt_name: str

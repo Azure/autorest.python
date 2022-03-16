@@ -47,9 +47,11 @@ def build_get_int_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/integer"
@@ -95,10 +97,12 @@ def build_put_int_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/integer"
@@ -140,9 +144,11 @@ def build_get_long_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/long"
@@ -190,10 +196,12 @@ def build_put_long_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/long"
@@ -235,9 +243,11 @@ def build_get_float_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/float"
@@ -283,10 +293,12 @@ def build_put_float_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/float"
@@ -329,9 +341,11 @@ def build_get_double_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/double"
@@ -380,10 +394,12 @@ def build_put_double_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/double"
@@ -425,9 +441,11 @@ def build_get_bool_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/bool"
@@ -473,10 +491,12 @@ def build_put_bool_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/bool"
@@ -519,9 +539,11 @@ def build_get_string_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/string"
@@ -570,10 +592,12 @@ def build_put_string_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/string"
@@ -615,9 +639,11 @@ def build_get_date_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/date"
@@ -665,10 +691,12 @@ def build_put_date_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/date"
@@ -710,9 +738,11 @@ def build_get_date_time_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/datetime"
@@ -760,10 +790,12 @@ def build_put_date_time_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/datetime"
@@ -805,9 +837,11 @@ def build_get_date_time_rfc1123_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/datetimerfc1123"
@@ -855,10 +889,12 @@ def build_put_date_time_rfc1123_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/datetimerfc1123"
@@ -899,9 +935,11 @@ def build_get_duration_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/duration"
@@ -946,10 +984,12 @@ def build_put_duration_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/duration"
@@ -990,9 +1030,11 @@ def build_get_byte_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/byte"
@@ -1039,10 +1081,12 @@ def build_put_byte_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop('content_type', case_insensitive_dict(_headers).pop('Content-Type', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/complex/primitive/byte"

@@ -28,9 +28,11 @@ def build_get_file_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "image/png, application/json")
+    accept = _headers.pop("Accept", "image/png, application/json")
 
     # Construct URL
     _url = "/files/stream/nonempty"
@@ -53,9 +55,11 @@ def build_get_file_large_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "image/png, application/json")
+    accept = _headers.pop("Accept", "image/png, application/json")
 
     # Construct URL
     _url = "/files/stream/verylarge"
@@ -78,9 +82,11 @@ def build_get_empty_file_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "image/png, application/json")
+    accept = _headers.pop("Accept", "image/png, application/json")
 
     # Construct URL
     _url = "/files/stream/empty"

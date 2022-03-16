@@ -29,9 +29,11 @@ def build_custom_named_request_id_request(*, foo_client_request_id: str, **kwarg
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/customNamedRequestId"
@@ -58,9 +60,11 @@ def build_custom_named_request_id_param_grouping_request(*, foo_client_request_i
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/customNamedRequestIdParamGrouping"
@@ -86,9 +90,11 @@ def build_custom_named_request_id_head_request(*, foo_client_request_id: str, **
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/azurespecials/customNamedRequestIdHead"

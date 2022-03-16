@@ -40,9 +40,11 @@ def build_get_method_path_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}"
@@ -81,9 +83,11 @@ def build_get_path_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}"
@@ -123,10 +127,12 @@ def build_get_swagger_path_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
     unencoded_path_param = kwargs.pop('unencoded_path_param', "path1/path2/path3")  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}"
@@ -164,11 +170,15 @@ def build_get_method_query_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     q1 = kwargs.pop('q1')  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/method/query/valid"
@@ -205,11 +215,15 @@ def build_get_method_query_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    q1 = kwargs.pop('q1', case_insensitive_dict(_params).pop('q1', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    q1 = kwargs.pop('q1', _params.pop('q1', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/method/query/null"
@@ -247,11 +261,15 @@ def build_get_path_query_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     q1 = kwargs.pop('q1')  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/path/query/valid"
@@ -290,11 +308,15 @@ def build_get_swagger_query_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    q1 = kwargs.pop('q1', case_insensitive_dict(_params).pop('q1', "value1&q2=value2&q3=value3"))  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    q1 = kwargs.pop('q1', _params.pop('q1', "value1&q2=value2&q3=value3"))  # type: str
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/swagger/query/valid"

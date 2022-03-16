@@ -32,9 +32,11 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_string_get_null_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/null"
@@ -46,12 +48,12 @@ def build_string_get_null_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_string_put_null_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/null"
@@ -65,9 +67,11 @@ def build_string_put_null_request(*, json: JSONType = None, content: Any = None,
 
 
 def build_string_get_empty_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/empty"
@@ -79,13 +83,13 @@ def build_string_get_empty_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_string_put_empty_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     json = kwargs.pop("json", "")  # type: str
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/empty"
@@ -99,9 +103,11 @@ def build_string_put_empty_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_string_get_mbcs_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/mbcs"
@@ -113,13 +119,13 @@ def build_string_get_mbcs_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_string_put_mbcs_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     json = kwargs.pop("json", "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€")  # type: str
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/mbcs"
@@ -133,9 +139,11 @@ def build_string_put_mbcs_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_string_get_whitespace_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/whitespace"
@@ -147,15 +155,15 @@ def build_string_get_whitespace_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_string_put_whitespace_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     json = kwargs.pop(
         "json", "    Now is the time for all good men to come to the aid of their country    "
     )  # type: str
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/whitespace"
@@ -169,9 +177,11 @@ def build_string_put_whitespace_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_string_get_not_provided_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/notProvided"
@@ -183,9 +193,11 @@ def build_string_get_not_provided_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_string_get_base64_encoded_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/base64Encoding"
@@ -197,9 +209,11 @@ def build_string_get_base64_encoded_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_string_get_base64_url_encoded_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/base64UrlEncoding"
@@ -213,12 +227,12 @@ def build_string_get_base64_url_encoded_request(**kwargs: Any) -> HttpRequest:
 def build_string_put_base64_url_encoded_request(
     *, json: JSONType = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/base64UrlEncoding"
@@ -232,9 +246,11 @@ def build_string_put_base64_url_encoded_request(
 
 
 def build_string_get_null_base64_url_encoded_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/nullBase64UrlEncoding"
@@ -246,9 +262,11 @@ def build_string_get_null_base64_url_encoded_request(**kwargs: Any) -> HttpReque
 
 
 def build_enum_get_not_expandable_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/enum/notExpandable"
@@ -260,12 +278,12 @@ def build_enum_get_not_expandable_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_enum_put_not_expandable_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/enum/notExpandable"
@@ -279,9 +297,11 @@ def build_enum_put_not_expandable_request(*, json: JSONType = None, content: Any
 
 
 def build_enum_get_referenced_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/enum/Referenced"
@@ -293,12 +313,12 @@ def build_enum_get_referenced_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_enum_put_referenced_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/enum/Referenced"
@@ -312,9 +332,11 @@ def build_enum_put_referenced_request(*, json: JSONType = None, content: Any = N
 
 
 def build_enum_get_referenced_constant_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/enum/ReferencedConstant"
@@ -328,12 +350,12 @@ def build_enum_get_referenced_constant_request(**kwargs: Any) -> HttpRequest:
 def build_enum_put_referenced_constant_request(
     *, json: JSONType = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/string/enum/ReferencedConstant"
@@ -374,8 +396,8 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
 
@@ -419,11 +441,11 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -463,8 +485,8 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
@@ -507,11 +529,11 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         string_body = kwargs.pop("string_body", "")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -547,8 +569,8 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
@@ -592,11 +614,11 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         string_body = kwargs.pop(
             "string_body", "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
@@ -636,8 +658,8 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
@@ -683,11 +705,11 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         string_body = kwargs.pop(
             "string_body", "    Now is the time for all good men to come to the aid of their country    "
@@ -725,8 +747,8 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
@@ -766,8 +788,8 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
 
@@ -807,8 +829,8 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[bytes]
 
@@ -852,11 +874,11 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -893,8 +915,8 @@ class StringOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[bytes]]
 
@@ -958,8 +980,8 @@ class EnumOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
@@ -1004,11 +1026,11 @@ class EnumOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1051,8 +1073,8 @@ class EnumOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
@@ -1097,11 +1119,11 @@ class EnumOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1148,8 +1170,8 @@ class EnumOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
@@ -1203,11 +1225,11 @@ class EnumOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         content_type = kwargs.pop(
-            "content_type", case_insensitive_dict(_headers).pop("Content-Type", "application/json")
+            "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 

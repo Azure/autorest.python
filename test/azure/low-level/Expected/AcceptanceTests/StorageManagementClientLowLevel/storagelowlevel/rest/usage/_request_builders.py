@@ -66,11 +66,15 @@ def build_list_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2015-05-01-preview"))  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json, text/json")
+    api_version = kwargs.pop('api_version', _params.pop('api-version', "2015-05-01-preview"))  # type: str
+    accept = _headers.pop('Accept', "application/json, text/json")
 
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages"

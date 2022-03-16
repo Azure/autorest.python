@@ -31,9 +31,11 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/int/null"
@@ -56,9 +58,11 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/int/invalid"
@@ -81,9 +85,11 @@ def build_get_overflow_int32_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/int/overflowint32"
@@ -106,9 +112,11 @@ def build_get_underflow_int32_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/int/underflowint32"
@@ -131,9 +139,11 @@ def build_get_overflow_int64_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/int/overflowint64"
@@ -156,9 +166,11 @@ def build_get_underflow_int64_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/int/underflowint64"
@@ -193,12 +205,12 @@ def build_put_max32_request(*, json: JSONType = None, content: Any = None, **kwa
             json = 0  # Optional.
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/int/max/32"
@@ -235,12 +247,12 @@ def build_put_max64_request(*, json: JSONType = None, content: Any = None, **kwa
             json = 0.0  # Optional.
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/int/max/64"
@@ -277,12 +289,12 @@ def build_put_min32_request(*, json: JSONType = None, content: Any = None, **kwa
             json = 0  # Optional.
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/int/min/32"
@@ -319,12 +331,12 @@ def build_put_min64_request(*, json: JSONType = None, content: Any = None, **kwa
             json = 0.0  # Optional.
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/int/min/64"
@@ -349,9 +361,11 @@ def build_get_unix_time_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/int/unixtime"
@@ -386,12 +400,12 @@ def build_put_unix_time_date_request(*, json: JSONType = None, content: Any = No
             json = "2020-02-20 00:00:00"  # Optional.
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/int/unixtime"
@@ -416,9 +430,11 @@ def build_get_invalid_unix_time_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/int/invalidunixtime"
@@ -441,9 +457,11 @@ def build_get_null_unix_time_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/int/nullunixtime"

@@ -43,11 +43,15 @@ def build_list_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    api_version = kwargs.pop('api_version', case_insensitive_dict(_params).pop('api-version', "2015-05-01-preview"))  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json, text/json")
+    api_version = kwargs.pop('api_version', _params.pop('api-version', "2015-05-01-preview"))  # type: str
+    accept = _headers.pop('Accept', "application/json, text/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages")
@@ -106,12 +110,10 @@ class UsageOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version = kwargs.pop(
-            "api_version", case_insensitive_dict(_params).pop("api-version", "2015-05-01-preview")
-        )  # type: str
+        api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.UsageListResult"]
 
         request = build_list_request(

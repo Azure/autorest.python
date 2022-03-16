@@ -35,9 +35,11 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_paging_get_pages_partial_url_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paging/customurl/partialnextlink"
@@ -49,9 +51,11 @@ def build_paging_get_pages_partial_url_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_paging_get_pages_partial_url_operation_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paging/customurl/partialnextlinkop"
@@ -63,9 +67,11 @@ def build_paging_get_pages_partial_url_operation_request(**kwargs: Any) -> HttpR
 
 
 def build_paging_get_pages_partial_url_operation_next_request(next_link: str, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paging/customurl/{nextLink}"
@@ -125,8 +131,8 @@ class PagingOperations:
                     ]
                 }
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
@@ -214,8 +220,8 @@ class PagingOperations:
                     ]
                 }
         """
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 

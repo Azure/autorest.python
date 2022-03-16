@@ -77,12 +77,12 @@ def build_put200_succeeded_request(*, json: JSONType = None, content: Any = None
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/put/200/succeeded"
@@ -155,12 +155,12 @@ def build_patch200_succeeded_ignore_headers_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/patch/200/succeeded/ignoreheaders"
@@ -232,12 +232,12 @@ def build_patch201_retry_with_async_header_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/patch/201/retry/onlyAsyncHeader"
@@ -310,12 +310,12 @@ def build_patch202_retry_with_async_and_location_header_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/patch/202/retry/asyncAndLocationHeader"
@@ -386,12 +386,12 @@ def build_put201_succeeded_request(*, json: JSONType = None, content: Any = None
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/put/201/succeeded"
@@ -440,9 +440,11 @@ def build_post202_list_request(**kwargs: Any) -> HttpRequest:
             ]
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/list"
@@ -513,12 +515,12 @@ def build_put200_succeeded_no_state_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/put/200/succeeded/nostate"
@@ -590,12 +592,12 @@ def build_put202_retry200_request(*, json: JSONType = None, content: Any = None,
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/put/202/retry/200"
@@ -669,12 +671,12 @@ def build_put201_creating_succeeded200_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/put/201/creating/succeeded/200"
@@ -748,12 +750,12 @@ def build_put200_updating_succeeded204_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/put/200/updating/succeeded/200"
@@ -827,12 +829,12 @@ def build_put201_creating_failed200_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/put/201/created/failed/200"
@@ -906,12 +908,12 @@ def build_put200_acceptedcanceled200_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/put/200/accepted/canceled/200"
@@ -982,12 +984,12 @@ def build_put_no_header_in_retry_request(*, json: JSONType = None, content: Any 
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/put/noheader/202/200"
@@ -1061,12 +1063,12 @@ def build_put_async_retry_succeeded_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/putasync/retry/succeeded"
@@ -1140,12 +1142,12 @@ def build_put_async_no_retry_succeeded_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/putasync/noretry/succeeded"
@@ -1217,12 +1219,12 @@ def build_put_async_retry_failed_request(*, json: JSONType = None, content: Any 
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/putasync/retry/failed"
@@ -1296,12 +1298,12 @@ def build_put_async_no_retrycanceled_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/putasync/noretry/canceled"
@@ -1375,12 +1377,12 @@ def build_put_async_no_header_in_retry_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/putasync/noheader/201/200"
@@ -1426,12 +1428,12 @@ def build_put_non_resource_request(*, json: JSONType = None, content: Any = None
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/putnonresource/202/200"
@@ -1477,12 +1479,12 @@ def build_put_async_non_resource_request(*, json: JSONType = None, content: Any 
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/putnonresourceasync/202/200"
@@ -1538,12 +1540,12 @@ def build_put_sub_resource_request(*, json: JSONType = None, content: Any = None
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/putsubresource/202/200"
@@ -1599,12 +1601,12 @@ def build_put_async_sub_resource_request(*, json: JSONType = None, content: Any 
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/putsubresourceasync/202/200"
@@ -1652,9 +1654,11 @@ def build_delete_provisioning202_accepted200_succeeded_request(**kwargs: Any) ->
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/delete/provisioning/202/accepted/200/succeeded"
@@ -1700,9 +1704,11 @@ def build_delete_provisioning202_deleting_failed200_request(**kwargs: Any) -> Ht
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/delete/provisioning/202/deleting/200/failed"
@@ -1748,9 +1754,11 @@ def build_delete_provisioning202_deletingcanceled200_request(**kwargs: Any) -> H
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/delete/provisioning/202/deleting/200/canceled"
@@ -1773,9 +1781,11 @@ def build_delete204_succeeded_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/delete/204/succeeded"
@@ -1820,9 +1830,11 @@ def build_delete202_retry200_request(**kwargs: Any) -> HttpRequest:
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/delete/202/retry/200"
@@ -1867,9 +1879,11 @@ def build_delete202_no_retry204_request(**kwargs: Any) -> HttpRequest:
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/delete/202/noretry/204"
@@ -1893,9 +1907,11 @@ def build_delete_no_header_in_retry_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/delete/noheader"
@@ -1919,9 +1935,11 @@ def build_delete_async_no_header_in_retry_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/deleteasync/noheader/202/204"
@@ -1945,9 +1963,11 @@ def build_delete_async_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/deleteasync/retry/succeeded"
@@ -1971,9 +1991,11 @@ def build_delete_async_no_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/deleteasync/noretry/succeeded"
@@ -1997,9 +2019,11 @@ def build_delete_async_retry_failed_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/deleteasync/retry/failed"
@@ -2023,9 +2047,11 @@ def build_delete_async_retrycanceled_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/deleteasync/retry/canceled"
@@ -2058,9 +2084,11 @@ def build_post200_with_payload_request(**kwargs: Any) -> HttpRequest:
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/post/payload/200"
@@ -2111,12 +2139,12 @@ def build_post202_retry200_request(*, json: JSONType = None, content: Any = None
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/post/202/retry/200"
@@ -2187,12 +2215,12 @@ def build_post202_no_retry204_request(*, json: JSONType = None, content: Any = N
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/post/202/noretry/204"
@@ -2240,9 +2268,11 @@ def build_post_double_headers_final_location_get_request(**kwargs: Any) -> HttpR
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/LROPostDoubleHeadersFinalLocationGet"
@@ -2288,9 +2318,11 @@ def build_post_double_headers_final_azure_header_get_request(**kwargs: Any) -> H
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/LROPostDoubleHeadersFinalAzureHeaderGet"
@@ -2336,9 +2368,11 @@ def build_post_double_headers_final_azure_header_get_default_request(**kwargs: A
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault"
@@ -2410,12 +2444,12 @@ def build_post_async_retry_succeeded_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/postasync/retry/succeeded"
@@ -2489,12 +2523,12 @@ def build_post_async_no_retry_succeeded_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/postasync/noretry/succeeded"
@@ -2548,12 +2582,12 @@ def build_post_async_retry_failed_request(*, json: JSONType = None, content: Any
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/postasync/retry/failed"
@@ -2607,12 +2641,12 @@ def build_post_async_retrycanceled_request(*, json: JSONType = None, content: An
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    content_type = kwargs.pop(
-        "content_type", case_insensitive_dict(_headers).pop("Content-Type", None)
-    )  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lro/postasync/retry/canceled"

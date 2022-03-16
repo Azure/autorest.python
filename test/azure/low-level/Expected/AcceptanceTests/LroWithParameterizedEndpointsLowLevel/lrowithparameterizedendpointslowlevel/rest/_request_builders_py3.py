@@ -30,9 +30,11 @@ def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpReques
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lroParameterizedEndpoints"
@@ -58,10 +60,12 @@ def build_poll_with_constant_parameterized_endpoints_request(**kwargs: Any) -> H
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
     constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
-    accept = case_insensitive_dict(_headers).pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/lroConstantParameterizedEndpoints/{constantParameter}"

@@ -41,13 +41,17 @@ def build_get_with_filter_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    filter = kwargs.pop('filter', case_insensitive_dict(_params).pop('$filter', None))  # type: Optional[str]
-    top = kwargs.pop('top', case_insensitive_dict(_params).pop('$top', None))  # type: Optional[int]
-    orderby = kwargs.pop('orderby', case_insensitive_dict(_params).pop('$orderby', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    filter = kwargs.pop('filter', _params.pop('$filter', None))  # type: Optional[str]
+    top = kwargs.pop('top', _params.pop('$top', None))  # type: Optional[int]
+    orderby = kwargs.pop('orderby', _params.pop('$orderby', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/azurespecials/odata/filter")
@@ -117,8 +121,8 @@ class OdataOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-        _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 

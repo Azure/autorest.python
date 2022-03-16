@@ -65,10 +65,12 @@ def build_param_get_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
     x_ms_client_request_id = kwargs.pop('x_ms_client_request_id')  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/"

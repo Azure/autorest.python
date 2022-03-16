@@ -54,9 +54,11 @@ def build_get_no_item_name_pages_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/noitemname"
@@ -103,9 +105,11 @@ def build_get_null_next_link_name_pages_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/nullnextlink"
@@ -152,9 +156,11 @@ def build_get_single_pages_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/single"
@@ -202,9 +208,11 @@ def build_first_response_empty_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/firstResponseEmpty/1"
@@ -259,12 +267,14 @@ def build_get_multiple_pages_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    client_request_id = kwargs.pop('client_request_id', case_insensitive_dict(_headers).pop('client-request-id', None))  # type: Optional[str]
-    maxresults = kwargs.pop('maxresults', case_insensitive_dict(_headers).pop('maxresults', None))  # type: Optional[int]
-    timeout = kwargs.pop('timeout', case_insensitive_dict(_headers).pop('timeout', 30))  # type: Optional[int]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    client_request_id = kwargs.pop('client_request_id', _headers.pop('client-request-id', None))  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', _headers.pop('maxresults', None))  # type: Optional[int]
+    timeout = kwargs.pop('timeout', _headers.pop('timeout', 30))  # type: Optional[int]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/multiple"
@@ -325,12 +335,16 @@ def build_get_with_query_params_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    query_constant = kwargs.pop('query_constant', case_insensitive_dict(_params).pop('queryConstant', True))  # type: bool
+    query_constant = kwargs.pop('query_constant', _params.pop('queryConstant', True))  # type: bool
     required_query_parameter = kwargs.pop('required_query_parameter')  # type: int
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/multiple/getWithQueryParams"
@@ -386,11 +400,15 @@ def build_duplicate_params_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    filter = kwargs.pop('filter', case_insensitive_dict(_params).pop('$filter', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    filter = kwargs.pop('filter', _params.pop('$filter', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/multiple/duplicateParams/1"
@@ -445,11 +463,15 @@ def build_next_operation_with_query_params_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    query_constant = kwargs.pop('query_constant', case_insensitive_dict(_params).pop('queryConstant', True))  # type: bool
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    query_constant = kwargs.pop('query_constant', _params.pop('queryConstant', True))  # type: bool
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/multiple/nextOperationWithQueryParams"
@@ -508,12 +530,14 @@ def build_get_odata_multiple_pages_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    client_request_id = kwargs.pop('client_request_id', case_insensitive_dict(_headers).pop('client-request-id', None))  # type: Optional[str]
-    maxresults = kwargs.pop('maxresults', case_insensitive_dict(_headers).pop('maxresults', None))  # type: Optional[int]
-    timeout = kwargs.pop('timeout', case_insensitive_dict(_headers).pop('timeout', 30))  # type: Optional[int]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    client_request_id = kwargs.pop('client_request_id', _headers.pop('client-request-id', None))  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', _headers.pop('maxresults', None))  # type: Optional[int]
+    timeout = kwargs.pop('timeout', _headers.pop('timeout', 30))  # type: Optional[int]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/multiple/odata"
@@ -577,12 +601,14 @@ def build_get_multiple_pages_with_offset_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    client_request_id = kwargs.pop('client_request_id', case_insensitive_dict(_headers).pop('client-request-id', None))  # type: Optional[str]
-    maxresults = kwargs.pop('maxresults', case_insensitive_dict(_headers).pop('maxresults', None))  # type: Optional[int]
-    timeout = kwargs.pop('timeout', case_insensitive_dict(_headers).pop('timeout', 30))  # type: Optional[int]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    client_request_id = kwargs.pop('client_request_id', _headers.pop('client-request-id', None))  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', _headers.pop('maxresults', None))  # type: Optional[int]
+    timeout = kwargs.pop('timeout', _headers.pop('timeout', 30))  # type: Optional[int]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/multiple/withpath/{offset}"
@@ -641,9 +667,11 @@ def build_get_multiple_pages_retry_first_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/multiple/retryfirst"
@@ -691,9 +719,11 @@ def build_get_multiple_pages_retry_second_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/multiple/retrysecond"
@@ -740,9 +770,11 @@ def build_get_single_pages_failure_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/single/failure"
@@ -789,9 +821,11 @@ def build_get_multiple_pages_failure_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/multiple/failure"
@@ -838,9 +872,11 @@ def build_get_multiple_pages_failure_uri_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/multiple/failureuri"
@@ -892,11 +928,15 @@ def build_get_multiple_pages_fragment_next_link_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     api_version = kwargs.pop('api_version')  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/multiple/fragment/{tenant}"
@@ -957,11 +997,15 @@ def build_get_multiple_pages_fragment_with_grouping_next_link_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     api_version = kwargs.pop('api_version')  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/multiple/fragmentwithgrouping/{tenant}"
@@ -1025,12 +1069,14 @@ def build_get_multiple_pages_lro_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    client_request_id = kwargs.pop('client_request_id', case_insensitive_dict(_headers).pop('client-request-id', None))  # type: Optional[str]
-    maxresults = kwargs.pop('maxresults', case_insensitive_dict(_headers).pop('maxresults', None))  # type: Optional[int]
-    timeout = kwargs.pop('timeout', case_insensitive_dict(_headers).pop('timeout', 30))  # type: Optional[int]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    client_request_id = kwargs.pop('client_request_id', _headers.pop('client-request-id', None))  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', _headers.pop('maxresults', None))  # type: Optional[int]
+    timeout = kwargs.pop('timeout', _headers.pop('timeout', 30))  # type: Optional[int]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/multiple/lro"
@@ -1091,11 +1137,15 @@ def build_next_fragment_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     api_version = kwargs.pop('api_version')  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/multiple/fragment/{tenant}/{nextLink}"
@@ -1160,11 +1210,15 @@ def build_next_fragment_with_grouping_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     api_version = kwargs.pop('api_version')  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}"
@@ -1222,9 +1276,11 @@ def build_get_paging_model_with_item_name_with_xms_client_name_request(
             }
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
 
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/paging/itemNameWithXMSClientName"

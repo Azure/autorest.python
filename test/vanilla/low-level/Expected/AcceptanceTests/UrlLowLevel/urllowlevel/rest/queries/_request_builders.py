@@ -39,11 +39,15 @@ def build_get_boolean_true_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    bool_query = kwargs.pop('bool_query', case_insensitive_dict(_params).pop('boolQuery', True))  # type: bool
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    bool_query = kwargs.pop('bool_query', _params.pop('boolQuery', True))  # type: bool
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/bool/true"
@@ -81,11 +85,15 @@ def build_get_boolean_false_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    bool_query = kwargs.pop('bool_query', case_insensitive_dict(_params).pop('boolQuery', False))  # type: bool
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    bool_query = kwargs.pop('bool_query', _params.pop('boolQuery', False))  # type: bool
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/bool/false"
@@ -122,11 +130,15 @@ def build_get_boolean_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    bool_query = kwargs.pop('bool_query', case_insensitive_dict(_params).pop('boolQuery', None))  # type: Optional[bool]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    bool_query = kwargs.pop('bool_query', _params.pop('boolQuery', None))  # type: Optional[bool]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/bool/null"
@@ -165,11 +177,15 @@ def build_get_int_one_million_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    int_query = kwargs.pop('int_query', case_insensitive_dict(_params).pop('intQuery', 1000000))  # type: int
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    int_query = kwargs.pop('int_query', _params.pop('intQuery', 1000000))  # type: int
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/int/1000000"
@@ -207,11 +223,15 @@ def build_get_int_negative_one_million_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    int_query = kwargs.pop('int_query', case_insensitive_dict(_params).pop('intQuery', -1000000))  # type: int
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    int_query = kwargs.pop('int_query', _params.pop('intQuery', -1000000))  # type: int
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/int/-1000000"
@@ -248,11 +268,15 @@ def build_get_int_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    int_query = kwargs.pop('int_query', case_insensitive_dict(_params).pop('intQuery', None))  # type: Optional[int]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    int_query = kwargs.pop('int_query', _params.pop('intQuery', None))  # type: Optional[int]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/int/null"
@@ -291,11 +315,15 @@ def build_get_ten_billion_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    long_query = kwargs.pop('long_query', case_insensitive_dict(_params).pop('longQuery', 10000000000))  # type: int
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    long_query = kwargs.pop('long_query', _params.pop('longQuery', 10000000000))  # type: int
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/long/10000000000"
@@ -333,11 +361,15 @@ def build_get_negative_ten_billion_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    long_query = kwargs.pop('long_query', case_insensitive_dict(_params).pop('longQuery', -10000000000))  # type: int
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    long_query = kwargs.pop('long_query', _params.pop('longQuery', -10000000000))  # type: int
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/long/-10000000000"
@@ -374,11 +406,15 @@ def build_get_long_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    long_query = kwargs.pop('long_query', case_insensitive_dict(_params).pop('longQuery', None))  # type: Optional[int]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    long_query = kwargs.pop('long_query', _params.pop('longQuery', None))  # type: Optional[int]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/long/null"
@@ -417,11 +453,15 @@ def build_float_scientific_positive_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    float_query = kwargs.pop('float_query', case_insensitive_dict(_params).pop('floatQuery', 103400000000000000000))  # type: float
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    float_query = kwargs.pop('float_query', _params.pop('floatQuery', 103400000000000000000))  # type: float
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/float/1.034E+20"
@@ -459,11 +499,15 @@ def build_float_scientific_negative_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    float_query = kwargs.pop('float_query', case_insensitive_dict(_params).pop('floatQuery', -1.034e-20))  # type: float
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    float_query = kwargs.pop('float_query', _params.pop('floatQuery', -1.034e-20))  # type: float
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/float/-1.034E-20"
@@ -500,11 +544,15 @@ def build_float_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    float_query = kwargs.pop('float_query', case_insensitive_dict(_params).pop('floatQuery', None))  # type: Optional[float]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    float_query = kwargs.pop('float_query', _params.pop('floatQuery', None))  # type: Optional[float]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/float/null"
@@ -543,11 +591,15 @@ def build_double_decimal_positive_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    double_query = kwargs.pop('double_query', case_insensitive_dict(_params).pop('doubleQuery', 9999999.999))  # type: float
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    double_query = kwargs.pop('double_query', _params.pop('doubleQuery', 9999999.999))  # type: float
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/double/9999999.999"
@@ -585,11 +637,15 @@ def build_double_decimal_negative_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    double_query = kwargs.pop('double_query', case_insensitive_dict(_params).pop('doubleQuery', -9999999.999))  # type: float
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    double_query = kwargs.pop('double_query', _params.pop('doubleQuery', -9999999.999))  # type: float
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/double/-9999999.999"
@@ -626,11 +682,15 @@ def build_double_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    double_query = kwargs.pop('double_query', case_insensitive_dict(_params).pop('doubleQuery', None))  # type: Optional[float]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    double_query = kwargs.pop('double_query', _params.pop('doubleQuery', None))  # type: Optional[float]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/double/null"
@@ -669,11 +729,15 @@ def build_string_unicode_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    string_query = kwargs.pop('string_query', case_insensitive_dict(_params).pop('stringQuery', "啊齄丂狛狜隣郎隣兀﨩"))  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    string_query = kwargs.pop('string_query', _params.pop('stringQuery', "啊齄丂狛狜隣郎隣兀﨩"))  # type: str
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/string/unicode/"
@@ -712,11 +776,15 @@ def build_string_url_encoded_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    string_query = kwargs.pop('string_query', case_insensitive_dict(_params).pop('stringQuery', "begin!*'();:@ &=+$,/?#[]end"))  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    string_query = kwargs.pop('string_query', _params.pop('stringQuery', "begin!*'();:@ &=+$,/?#[]end"))  # type: str
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"
@@ -754,11 +822,15 @@ def build_string_empty_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    string_query = kwargs.pop('string_query', case_insensitive_dict(_params).pop('stringQuery', ""))  # type: str
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    string_query = kwargs.pop('string_query', _params.pop('stringQuery', ""))  # type: str
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/string/empty"
@@ -795,11 +867,15 @@ def build_string_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    string_query = kwargs.pop('string_query', case_insensitive_dict(_params).pop('stringQuery', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    string_query = kwargs.pop('string_query', _params.pop('stringQuery', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/string/null"
@@ -838,11 +914,15 @@ def build_enum_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    enum_query = kwargs.pop('enum_query', case_insensitive_dict(_params).pop('enumQuery', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    enum_query = kwargs.pop('enum_query', _params.pop('enumQuery', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/enum/green%20color"
@@ -881,11 +961,15 @@ def build_enum_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    enum_query = kwargs.pop('enum_query', case_insensitive_dict(_params).pop('enumQuery', None))  # type: Optional[str]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    enum_query = kwargs.pop('enum_query', _params.pop('enumQuery', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/enum/null"
@@ -924,11 +1008,15 @@ def build_byte_multi_byte_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    byte_query = kwargs.pop('byte_query', case_insensitive_dict(_params).pop('byteQuery', None))  # type: Optional[bytearray]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    byte_query = kwargs.pop('byte_query', _params.pop('byteQuery', None))  # type: Optional[bytearray]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/byte/multibyte"
@@ -967,11 +1055,15 @@ def build_byte_empty_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    byte_query = kwargs.pop('byte_query', case_insensitive_dict(_params).pop('byteQuery', bytearray("", encoding="utf-8")))  # type: bytearray
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    byte_query = kwargs.pop('byte_query', _params.pop('byteQuery', bytearray("", encoding="utf-8")))  # type: bytearray
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/byte/empty"
@@ -1008,11 +1100,15 @@ def build_byte_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    byte_query = kwargs.pop('byte_query', case_insensitive_dict(_params).pop('byteQuery', None))  # type: Optional[bytearray]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    byte_query = kwargs.pop('byte_query', _params.pop('byteQuery', None))  # type: Optional[bytearray]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/byte/null"
@@ -1051,11 +1147,15 @@ def build_date_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    date_query = kwargs.pop('date_query', case_insensitive_dict(_params).pop('dateQuery', "2012-01-01"))  # type: datetime.date
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    date_query = kwargs.pop('date_query', _params.pop('dateQuery', "2012-01-01"))  # type: datetime.date
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/date/2012-01-01"
@@ -1092,11 +1192,15 @@ def build_date_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    date_query = kwargs.pop('date_query', case_insensitive_dict(_params).pop('dateQuery', None))  # type: Optional[datetime.date]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    date_query = kwargs.pop('date_query', _params.pop('dateQuery', None))  # type: Optional[datetime.date]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/date/null"
@@ -1136,11 +1240,15 @@ def build_date_time_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    date_time_query = kwargs.pop('date_time_query', case_insensitive_dict(_params).pop('dateTimeQuery', "2012-01-01T01:01:01Z"))  # type: datetime.datetime
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    date_time_query = kwargs.pop('date_time_query', _params.pop('dateTimeQuery', "2012-01-01T01:01:01Z"))  # type: datetime.datetime
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/datetime/2012-01-01T01%3A01%3A01Z"
@@ -1177,11 +1285,15 @@ def build_date_time_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    date_time_query = kwargs.pop('date_time_query', case_insensitive_dict(_params).pop('dateTimeQuery', None))  # type: Optional[datetime.datetime]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    date_time_query = kwargs.pop('date_time_query', _params.pop('dateTimeQuery', None))  # type: Optional[datetime.datetime]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/datetime/null"
@@ -1221,11 +1333,15 @@ def build_array_string_csv_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    array_query = kwargs.pop('array_query', case_insensitive_dict(_params).pop('arrayQuery', None))  # type: Optional[List[str]]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    array_query = kwargs.pop('array_query', _params.pop('arrayQuery', None))  # type: Optional[List[str]]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/array/csv/string/valid"
@@ -1263,11 +1379,15 @@ def build_array_string_csv_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    array_query = kwargs.pop('array_query', case_insensitive_dict(_params).pop('arrayQuery', None))  # type: Optional[List[str]]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    array_query = kwargs.pop('array_query', _params.pop('arrayQuery', None))  # type: Optional[List[str]]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/array/csv/string/null"
@@ -1306,11 +1426,15 @@ def build_array_string_csv_empty_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    array_query = kwargs.pop('array_query', case_insensitive_dict(_params).pop('arrayQuery', None))  # type: Optional[List[str]]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    array_query = kwargs.pop('array_query', _params.pop('arrayQuery', None))  # type: Optional[List[str]]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/array/csv/string/empty"
@@ -1350,11 +1474,15 @@ def build_array_string_no_collection_format_empty_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    array_query = kwargs.pop('array_query', case_insensitive_dict(_params).pop('arrayQuery', None))  # type: Optional[List[str]]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    array_query = kwargs.pop('array_query', _params.pop('arrayQuery', None))  # type: Optional[List[str]]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/array/none/string/empty"
@@ -1394,11 +1522,15 @@ def build_array_string_ssv_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    array_query = kwargs.pop('array_query', case_insensitive_dict(_params).pop('arrayQuery', None))  # type: Optional[List[str]]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    array_query = kwargs.pop('array_query', _params.pop('arrayQuery', None))  # type: Optional[List[str]]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/array/ssv/string/valid"
@@ -1438,11 +1570,15 @@ def build_array_string_tsv_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    array_query = kwargs.pop('array_query', case_insensitive_dict(_params).pop('arrayQuery', None))  # type: Optional[List[str]]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    array_query = kwargs.pop('array_query', _params.pop('arrayQuery', None))  # type: Optional[List[str]]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/array/tsv/string/valid"
@@ -1482,11 +1618,15 @@ def build_array_string_pipes_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    array_query = kwargs.pop('array_query', case_insensitive_dict(_params).pop('arrayQuery', None))  # type: Optional[List[str]]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    array_query = kwargs.pop('array_query', _params.pop('arrayQuery', None))  # type: Optional[List[str]]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/array/pipes/string/valid"

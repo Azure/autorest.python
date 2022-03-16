@@ -31,6 +31,11 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
     def get_model(self, mode: "Literal['model']", **kwargs: Any) -> Product:
         """Pass in mode='model' to get a handwritten model out"""
 
+    @overload
+    def get_model(self, mode: str, **kwargs: Any):
+        """Pass in other modes"""
+        raise Exception("No Implementation")
+
     def get_model(self, *args, **kwargs: Any) -> Union[JSONType, Product]:
         model_mode = mode_checks(*args, **kwargs)
         response = super().get_model(*args, **kwargs)
@@ -45,6 +50,11 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
     @overload
     def post_model(self, mode: "Literal['model']", input: Input, **kwargs: Any) -> Product:
         """Pass in mode='model' to pass in model"""
+
+    @overload
+    def post_model(self, mode: str, input: Input, **kwargs: Any):
+        """Pass in other modes"""
+        raise Exception("No Implementation")
 
     def post_model(self, *args, **kwargs: Any) -> JSONType:
         model_mode = mode_checks(*args, **kwargs)
@@ -67,6 +77,11 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
     def get_pages(self, mode: "Literal['model']", **kwargs) -> ItemPaged[Product]:
         """Pass in mode='model' to pass for raw json"""
 
+    @overload
+    def get_pages(self, mode: str, **kwargs: Any):
+        """Pass in other modes"""
+        raise Exception("No Implementation")
+
     def get_pages(self, *args, **kwargs):
         model_mode = mode_checks(*args, **kwargs)
         if model_mode:
@@ -80,6 +95,11 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
     @overload
     def begin_lro(self, mode: "Literal['model']", **kwargs) -> LROPoller[LROProduct]:
         """Pass in mode='model' to pass for raw json"""
+
+    @overload
+    def begin_lro(self, mode: str, **kwargs: Any):
+        """Pass in other modes"""
+        raise Exception("No Implementation")
 
     def begin_lro(self, *args, **kwargs: Any):
         model_mode = mode_checks(*args, **kwargs)

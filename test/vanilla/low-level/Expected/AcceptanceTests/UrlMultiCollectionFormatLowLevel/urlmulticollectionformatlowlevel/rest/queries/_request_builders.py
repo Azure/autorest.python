@@ -39,11 +39,15 @@ def build_array_string_multi_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    array_query = kwargs.pop('array_query', case_insensitive_dict(_params).pop('arrayQuery', None))  # type: Optional[List[str]]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    array_query = kwargs.pop('array_query', _params.pop('arrayQuery', None))  # type: Optional[List[str]]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/array/multi/string/null"
@@ -82,11 +86,15 @@ def build_array_string_multi_empty_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    array_query = kwargs.pop('array_query', case_insensitive_dict(_params).pop('arrayQuery', None))  # type: Optional[List[str]]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    array_query = kwargs.pop('array_query', _params.pop('arrayQuery', None))  # type: Optional[List[str]]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/array/multi/string/empty"
@@ -126,11 +134,15 @@ def build_array_string_multi_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    array_query = kwargs.pop('array_query', case_insensitive_dict(_params).pop('arrayQuery', None))  # type: Optional[List[str]]
-    accept = case_insensitive_dict(_headers).pop('Accept', "application/json")
+    array_query = kwargs.pop('array_query', _params.pop('arrayQuery', None))  # type: Optional[List[str]]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/queries/array/multi/string/valid"

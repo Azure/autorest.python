@@ -106,14 +106,23 @@ def pop_kwargs_from_signature(
     kwargs_to_pop: List[Parameter],
     check_kwarg_dict: bool,
     pop_headers_kwarg: bool,
-    pop_params_kwarg: bool
+    pop_params_kwarg: bool,
+    check_pop_type: bool = False,
 ) -> List[str]:
     retval = []
-    pop_kwarg_template = '_{} = kwargs.pop("{}", {{}}) or {{}}  # type: Dict[str, Any]'
+    def append_pop_kwarg(key: str) -> None:
+        # pop_kwarg_template = '_{} = case_insensitive_dict(kwargs.pop("{}", {{}}) or {{}})  # type: Dict[str, Any]'
+        if check_pop_type:
+            retval.append(f'_{key} = kwargs.pop("{key}", {{}}) or {{}}')
+            retval.append(f'if isinstance(_{key}, dict):')
+            retval.append(f'    _{key} = case_insensitive_dict(_{key})')
+        else:
+            retval.append(f'_{key} = case_insensitive_dict(kwargs.pop("{key}", {{}}) or {{}})')
+    # pop_kwarg_template = '_{} = case_insensitive_dict(kwargs.pop("{}", {{}}) or {{}})  # type: Dict[str, Any]'
     if pop_headers_kwarg:
-        retval.append(pop_kwarg_template.format("headers", "headers"))
+        append_pop_kwarg("headers")
     if pop_params_kwarg:
-        retval.append(pop_kwarg_template.format("params", "params"))
+        append_pop_kwarg("params")
     if pop_headers_kwarg or pop_params_kwarg:
         retval.append("")
     for kwarg in kwargs_to_pop:
@@ -121,7 +130,7 @@ def pop_kwargs_from_signature(
             default_value = kwarg.default_value_declaration
             if check_kwarg_dict and (kwarg.location in [ParameterLocation.Header, ParameterLocation.Query]):
                 kwarg_dict = "headers" if kwarg.location == ParameterLocation.Header else "params"
-                default_value = f"case_insensitive_dict(_{kwarg_dict}).pop('{kwarg.rest_api_name}', {default_value})"
+                default_value = f"_{kwarg_dict}.pop('{kwarg.rest_api_name}', {default_value})"
             retval.append(
                 f"{kwarg.serialized_name} = kwargs.pop('{kwarg.serialized_name}', "
                 + f"{default_value})  # type: {kwarg.type_annotation}"

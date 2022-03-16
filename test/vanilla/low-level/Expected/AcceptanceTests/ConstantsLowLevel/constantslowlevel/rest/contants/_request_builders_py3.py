@@ -36,7 +36,9 @@ def build_put_no_model_as_string_no_required_two_value_no_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     # Construct URL
     _url = "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault"
@@ -66,7 +68,9 @@ def build_put_no_model_as_string_no_required_two_value_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     # Construct URL
     _url = "/constants/putNoModelAsStringNoRequiredTwoValueDefault"
@@ -96,7 +100,9 @@ def build_put_no_model_as_string_no_required_one_value_no_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     # Construct URL
     _url = "/constants/putNoModelAsStringNoRequiredOneValueNoDefault"
@@ -126,7 +132,9 @@ def build_put_no_model_as_string_no_required_one_value_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     # Construct URL
     _url = "/constants/putNoModelAsStringNoRequiredOneValueDefault"
@@ -154,7 +162,9 @@ def build_put_no_model_as_string_required_two_value_no_default_request(*, input:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     # Construct URL
     _url = "/constants/putNoModelAsStringRequiredTwoValueNoDefault"
@@ -183,7 +193,9 @@ def build_put_no_model_as_string_required_two_value_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     # Construct URL
     _url = "/constants/putNoModelAsStringRequiredTwoValueDefault"
@@ -211,9 +223,11 @@ def build_put_no_model_as_string_required_one_value_no_default_request(**kwargs:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    input = kwargs.pop("input", case_insensitive_dict(_params).pop("input", "value1"))  # type: str
+    input = kwargs.pop("input", _params.pop("input", "value1"))  # type: str
     # Construct URL
     _url = "/constants/putNoModelAsStringRequiredOneValueNoDefault"
 
@@ -240,9 +254,11 @@ def build_put_no_model_as_string_required_one_value_default_request(**kwargs: An
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    input = kwargs.pop("input", case_insensitive_dict(_params).pop("input", "value1"))  # type: str
+    input = kwargs.pop("input", _params.pop("input", "value1"))  # type: str
     # Construct URL
     _url = "/constants/putNoModelAsStringRequiredOneValueDefault"
 
@@ -270,7 +286,9 @@ def build_put_model_as_string_no_required_two_value_no_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     # Construct URL
     _url = "/constants/putModelAsStringNoRequiredTwoValueNoDefault"
@@ -300,7 +318,9 @@ def build_put_model_as_string_no_required_two_value_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     # Construct URL
     _url = "/constants/putModelAsStringNoRequiredTwoValueDefault"
@@ -330,7 +350,9 @@ def build_put_model_as_string_no_required_one_value_no_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     # Construct URL
     _url = "/constants/putModelAsStringNoRequiredOneValueNoDefault"
@@ -360,7 +382,9 @@ def build_put_model_as_string_no_required_one_value_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     # Construct URL
     _url = "/constants/putModelAsStringNoRequiredOneValueDefault"
@@ -388,7 +412,9 @@ def build_put_model_as_string_required_two_value_no_default_request(*, input: st
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     # Construct URL
     _url = "/constants/putModelAsStringRequiredTwoValueNoDefault"
@@ -417,7 +443,9 @@ def build_put_model_as_string_required_two_value_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     # Construct URL
     _url = "/constants/putModelAsStringRequiredTwoValueDefault"
@@ -444,7 +472,9 @@ def build_put_model_as_string_required_one_value_no_default_request(*, input: st
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     # Construct URL
     _url = "/constants/putModelAsStringRequiredOneValueNoDefault"
@@ -473,7 +503,9 @@ def build_put_model_as_string_required_one_value_default_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
     # Construct URL
     _url = "/constants/putModelAsStringRequiredOneValueDefault"
@@ -497,15 +529,15 @@ def build_put_client_constants_request(**kwargs: Any) -> HttpRequest:
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}  # type: Dict[str, Any]
-    _params = kwargs.pop("params", {}) or {}  # type: Dict[str, Any]
+    _headers = kwargs.pop("headers", {}) or {}
+    if isinstance(_headers, dict):
+        _headers = case_insensitive_dict(_headers)
+    _params = kwargs.pop("params", {}) or {}
+    if isinstance(_params, dict):
+        _params = case_insensitive_dict(_params)
 
-    header_constant = kwargs.pop(
-        "header_constant", case_insensitive_dict(_headers).pop("header-constant", True)
-    )  # type: bool
-    query_constant = kwargs.pop(
-        "query_constant", case_insensitive_dict(_params).pop("query-constant", 100)
-    )  # type: int
+    header_constant = kwargs.pop("header_constant", _headers.pop("header-constant", True))  # type: bool
+    query_constant = kwargs.pop("query_constant", _params.pop("query-constant", 100))  # type: int
     path_constant = kwargs.pop("path_constant", "path")  # type: str
     # Construct URL
     _url = "/constants/clientConstants/{path-constant}"
