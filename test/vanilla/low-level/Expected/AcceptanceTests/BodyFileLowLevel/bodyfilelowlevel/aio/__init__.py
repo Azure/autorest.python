@@ -8,8 +8,11 @@
 
 from ._auto_rest_swagger_bat_file_service import AutoRestSwaggerBATFileService
 
-from ._patch import __all__ as _patch_all
-from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
+try:
+    from ._patch import __all__ as _patch_all
+    from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
+except ImportError:
+    _patch_all = []
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = ["AutoRestSwaggerBATFileService"]
