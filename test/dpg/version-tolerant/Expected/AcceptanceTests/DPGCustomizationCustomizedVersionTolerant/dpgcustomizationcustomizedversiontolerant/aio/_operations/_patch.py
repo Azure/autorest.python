@@ -25,7 +25,7 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
         """Pass in mode='model' to get a handwritten model out"""
 
     @overload
-    def get_model(self, mode: str, **kwargs: Any):
+    async def get_model(self, mode: str, **kwargs: Any):
         """Pass in other modes"""
         raise Exception("No Implementation")
 
@@ -45,7 +45,7 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
         """Pass in mode='model' to pass in model"""
 
     @overload
-    def post_model(self, mode: str, input: Input, **kwargs: Any):
+    async def post_model(self, mode: str, input: Input, **kwargs: Any):
         """Pass in other modes"""
         raise Exception("No Implementation")
 
@@ -90,7 +90,7 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
         """Pass in mode='model' to pass for raw json"""
 
     @overload
-    def begin_lro(self, mode: str, **kwargs: Any):
+    async def begin_lro(self, mode: str, **kwargs: Any):
         """Pass in other modes"""
         raise Exception("No Implementation")
 
