@@ -14,7 +14,7 @@ from azure.core.utils import case_insensitive_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional, TypeVar, Union
+    from typing import Any, Optional, TypeVar, Union
 
     T = TypeVar("T")
     JSONType = Any

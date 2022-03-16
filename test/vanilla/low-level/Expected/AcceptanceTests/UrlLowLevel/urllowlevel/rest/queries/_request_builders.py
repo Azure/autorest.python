@@ -15,7 +15,7 @@ from azure.core.utils import case_insensitive_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, List, Optional
+    from typing import Any, List, Optional
 
 _SERIALIZER = Serializer()
 

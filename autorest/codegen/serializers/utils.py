@@ -111,14 +111,12 @@ def pop_kwargs_from_signature(
 ) -> List[str]:
     retval = []
     def append_pop_kwarg(key: str) -> None:
-        # pop_kwarg_template = '_{} = case_insensitive_dict(kwargs.pop("{}", {{}}) or {{}})  # type: Dict[str, Any]'
         if check_pop_type:
             retval.append(f'_{key} = kwargs.pop("{key}", {{}}) or {{}}')
             retval.append(f'if isinstance(_{key}, dict):')
             retval.append(f'    _{key} = case_insensitive_dict(_{key})')
         else:
             retval.append(f'_{key} = case_insensitive_dict(kwargs.pop("{key}", {{}}) or {{}})')
-    # pop_kwarg_template = '_{} = case_insensitive_dict(kwargs.pop("{}", {{}}) or {{}})  # type: Dict[str, Any]'
     if pop_headers_kwarg:
         append_pop_kwarg("headers")
     if pop_params_kwarg:

@@ -74,25 +74,19 @@ class RequestBuilder(BaseBuilder):
             "HttpRequest",
             ImportType.AZURECORE,
         )
-        relative_path = ".."
-        if not self.code_model.options["builders_visibility"] == "embedded" and self.operation_group_name:
-            relative_path = "..." if self.operation_group_name else ".."
         if self.parameters.path:
+            relative_path = ".."
+            if not self.code_model.options["builders_visibility"] == "embedded" and self.operation_group_name:
+                relative_path = "..." if self.operation_group_name else ".."
             file_import.add_submodule_import(
                 f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
             )
         if self.parameters.headers or self.parameters.query:
-            file_import.add_submodule_import(
-                "typing", "Dict", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
-            )
             file_import.add_submodule_import("azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE)
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
         file_import.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY)
-        if self.parameters.headers or self.parameters.query:
-            file_import.add_submodule_import("typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL)
-            file_import.add_submodule_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if self.parameters.has_body and (
             self.code_model.options["builders_visibility"] != "embedded" or
             self.code_model.options["add_python3_operation_files"]

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any, List, Optional
 
 from msrest import Serializer
 

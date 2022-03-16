@@ -192,6 +192,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         file_import.add_submodule_import("typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_submodule_import("azure.core.pipeline", "PipelineResponse", ImportType.AZURECORE)
         file_import.add_submodule_import("azure.core.rest", "HttpRequest", ImportType.AZURECORE)
+        file_import.add_submodule_import("azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE)
         if async_mode:
             file_import.add_submodule_import("azure.core.pipeline.transport", "AsyncHttpResponse", ImportType.AZURECORE)
         else:
@@ -219,17 +220,11 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                 )
         if self.code_model.options["builders_visibility"] == "embedded" and not async_mode:
             file_import.merge(self.request_builder.imports())
-        relative_path = "..." if async_mode else ".."
         if self.code_model.need_request_converter:
+            relative_path = "..." if async_mode else ".."
             file_import.add_submodule_import(
                 f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
             )
-
-        file_import.add_submodule_import("azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE)
-        # for kwarg in self.parameters.kwargs:
-        #     if kwarg.has_default_value and kwarg.location in [ParameterLocation.Header, ParameterLocation.Query]:
-        #         file_import.add_submodule_import("azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE)
-        #         break
 
         if self.code_model.options["version_tolerant"] and (
             self.parameters.has_body or

@@ -17,7 +17,7 @@ from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, List
+    from typing import Any, List
 
 _SERIALIZER = Serializer()
 
