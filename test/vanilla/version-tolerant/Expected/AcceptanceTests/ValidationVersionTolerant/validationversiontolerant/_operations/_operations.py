@@ -186,7 +186,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
@@ -452,7 +452,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         constant_param = kwargs.pop("constant_param", "constant")  # type: str
         content_type = kwargs.pop(

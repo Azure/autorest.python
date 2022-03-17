@@ -13,7 +13,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
-from azure.core.utils import case_insensitive_dict
 
 from ..._vendor import _convert_request
 from ...operations._http_success_operations import build_head200_request, build_head204_request, build_head404_request

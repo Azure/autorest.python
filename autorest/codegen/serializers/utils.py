@@ -105,8 +105,8 @@ def method_signature_and_response_type_annotation_template(
 
 class PopKwargType(Enum):
     NO = auto()
+    SIMPLE = auto()
     CASE_INSENSITIVE = auto()
-    CASE_INSENSITIVE_IF_HAS_REF = auto()
 
 def pop_kwargs_from_signature(
     kwargs_to_pop: List[Parameter],
@@ -115,17 +115,13 @@ def pop_kwargs_from_signature(
     pop_params_kwarg: PopKwargType,
 ) -> List[str]:
     retval = []
-    def append_pop_kwarg(key: str, location: ParameterLocation, pop_type: PopKwargType) -> None:
-        has_ref = any(kwarg.has_default_value and check_kwarg_dict and kwarg.location == location
-                    for kwarg in kwargs_to_pop)
-        if (PopKwargType.CASE_INSENSITIVE == pop_type or
-            PopKwargType.CASE_INSENSITIVE_IF_HAS_REF == pop_type and has_ref):
+    def append_pop_kwarg(key: str, pop_type: PopKwargType) -> None:
+        if PopKwargType.CASE_INSENSITIVE == pop_type:
             retval.append(f'_{key} = case_insensitive_dict(kwargs.pop("{key}", {{}}) or {{}})')
-        elif PopKwargType.CASE_INSENSITIVE_IF_HAS_REF == pop_type:
+        elif PopKwargType.SIMPLE == pop_type:
             retval.append(f'_{key} = kwargs.pop("{key}", {{}}) or {{}}')
-            
-    append_pop_kwarg("headers", ParameterLocation.Header, pop_headers_kwarg)
-    append_pop_kwarg("params", ParameterLocation.Query, pop_params_kwarg)
+    append_pop_kwarg("headers", pop_headers_kwarg)
+    append_pop_kwarg("params", pop_params_kwarg)
     if pop_headers_kwarg != PopKwargType.NO or pop_params_kwarg != PopKwargType.NO:
         retval.append("")
     for kwarg in kwargs_to_pop:

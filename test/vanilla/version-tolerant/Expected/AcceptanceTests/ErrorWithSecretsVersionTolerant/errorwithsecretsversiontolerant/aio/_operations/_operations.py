@@ -19,7 +19,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
-from azure.core.utils import case_insensitive_dict
 
 from ..._operations._operations import build_create_secret_request, build_get_error_with_secrets_request
 from .._vendor import MixinABC

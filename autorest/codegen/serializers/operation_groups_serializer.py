@@ -43,6 +43,7 @@ class OperationGroupsSerializer:
         for operation_group in operation_groups:
             imports.merge(operation_group.imports(
                 async_mode=self.async_mode,
+                is_python3_file=self.is_python3_file,
             ))
 
         template = self.env.get_or_select_template("operation_groups_container.py.jinja2")
