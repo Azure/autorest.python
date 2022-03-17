@@ -22,12 +22,6 @@ class CustomizePlugin(Plugin):
             output_folder_uri = output_folder_uri[3:]
         self.output_folder = Path(output_folder_uri)
 
-        self.namespace_path = (
-            Path(".")
-            if self._autorestapi.get_value("no_namespace_folders")
-            else Path(*(self._autorestapi.get_value("namespace").split(".")))
-        )
-
     def process(self) -> bool:
         folders = [f for f in self.output_folder.glob('**/*') if f.is_dir()]
         # # if there's a models folder, fix imports for customized models
