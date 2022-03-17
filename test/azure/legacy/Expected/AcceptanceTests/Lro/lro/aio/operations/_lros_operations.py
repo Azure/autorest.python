@@ -100,7 +100,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> Optional["_models.Product"]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -216,7 +216,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -340,7 +340,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -465,7 +465,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -589,7 +589,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -701,7 +701,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _post202_list_initial(self, **kwargs: Any) -> Optional[List["_models.Product"]]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -802,7 +802,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -916,7 +916,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1031,7 +1031,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1150,7 +1150,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1265,7 +1265,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1384,7 +1384,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1499,7 +1499,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1619,7 +1619,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1748,7 +1748,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1875,7 +1875,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -2004,7 +2004,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -2131,7 +2131,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -2254,7 +2254,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _put_non_resource_initial(self, sku: Optional["_models.Sku"] = None, **kwargs: Any) -> "_models.Sku":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -2361,7 +2361,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, sku: Optional["_models.Sku"] = None, **kwargs: Any
     ) -> "_models.Sku":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -2468,7 +2468,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, provisioning_state: Optional[str] = None, **kwargs: Any
     ) -> "_models.SubProduct":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -2582,7 +2582,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, provisioning_state: Optional[str] = None, **kwargs: Any
     ) -> "_models.SubProduct":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -2694,7 +2694,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _delete_provisioning202_accepted200_succeeded_initial(self, **kwargs: Any) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -2795,7 +2795,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _delete_provisioning202_deleting_failed200_initial(self, **kwargs: Any) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -2894,7 +2894,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _delete_provisioning202_deletingcanceled200_initial(self, **kwargs: Any) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -2997,7 +2997,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -3080,7 +3080,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _delete202_retry200_initial(self, **kwargs: Any) -> Optional["_models.Product"]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -3177,7 +3177,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _delete202_no_retry204_initial(self, **kwargs: Any) -> Optional["_models.Product"]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -3276,7 +3276,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -3366,7 +3366,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -3456,7 +3456,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -3549,7 +3549,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -3642,7 +3642,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -3735,7 +3735,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -3826,7 +3826,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _post200_with_payload_initial(self, **kwargs: Any) -> "_models.Sku":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -3921,7 +3921,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -4031,7 +4031,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -4151,7 +4151,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _post_double_headers_final_location_get_initial(self, **kwargs: Any) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -4244,7 +4244,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _post_double_headers_final_azure_header_get_initial(self, **kwargs: Any) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -4340,7 +4340,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     async def _post_double_headers_final_azure_header_get_default_initial(self, **kwargs: Any) -> "_models.Product":
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -4435,7 +4435,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> Optional["_models.Product"]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -4560,7 +4560,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> Optional["_models.Product"]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -4685,7 +4685,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -4799,7 +4799,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional["_models.Product"] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}

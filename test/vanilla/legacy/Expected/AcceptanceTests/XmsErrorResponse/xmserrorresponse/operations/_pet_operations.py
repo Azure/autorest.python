@@ -166,7 +166,7 @@ class PetOperations(object):
             ),
             501: HttpResponseError,
         }
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -226,7 +226,7 @@ class PetOperations(object):
                 response=response, model=self._deserialize(_models.PetActionError, response)
             ),
         }
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -287,7 +287,7 @@ class PetOperations(object):
                 response=response, model=self._deserialize(_models.PetActionError, response)
             ),
         }
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

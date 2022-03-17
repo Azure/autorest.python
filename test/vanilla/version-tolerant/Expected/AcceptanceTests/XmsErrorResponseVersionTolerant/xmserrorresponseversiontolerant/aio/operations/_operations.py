@@ -75,7 +75,7 @@ class PetOperations:
             404: lambda response: ResourceNotFoundError(response=response),
             501: HttpResponseError,
         }
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -134,7 +134,7 @@ class PetOperations:
             409: ResourceExistsError,
             500: HttpResponseError,
         }
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -187,7 +187,7 @@ class PetOperations:
             409: ResourceExistsError,
             500: HttpResponseError,
         }
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

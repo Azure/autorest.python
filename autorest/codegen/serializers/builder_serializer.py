@@ -1040,7 +1040,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         else:
             retval.append("    401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError")
         retval.append("}")
-        retval.append("error_map.update(kwargs.pop('error_map', {}))")
+        retval.append("error_map.update(kwargs.pop('error_map', {}) or {})")
         return retval
 
     @staticmethod
