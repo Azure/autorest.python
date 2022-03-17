@@ -147,11 +147,11 @@ class CodeGenerator(Plugin):
         security_yaml = yaml_data.get("security", {})
         if security_yaml.get("authenticationRequired"):
             for scheme in security_yaml.get("schemes"):
-                if credential_model.aad_type == scheme["type"]:
-                    credential_model.credential_scopes.update(scheme["scopes"])
-                elif credential_model.key_type == scheme["type"]:
+                if credential_model.aad_type() == scheme["type"]:
+                    credential_model.credential_scopes.extend(scheme["scopes"])
+                elif credential_model.key_type() == scheme["type"]:
                     # only accept the last one
-                    credential_model.key_header_name = scheme["headerName"]
+                    credential_model.key_header_name = scheme["name"]
 
         if credential_model.credential_scopes:
             credential_model.policy_type = BearerTokenCredentialPolicy
@@ -165,7 +165,7 @@ class CodeGenerator(Plugin):
             credential_model.build_authentication_policy()
             code_model.credential_model = credential_model
 
-    def _handle_authentication_policy(self, yaml_data: Dict[str, Any], code_model: CodeModel):
+    def _handle_credential_model(self, yaml_data: Dict[str, Any], code_model: CodeModel):
         credential_model = CredentialModel(code_model.options["azure_arm"])
 
         # credential info with security definition will be overridded by credential flags
@@ -178,7 +178,7 @@ class CodeGenerator(Plugin):
         # Create a code model
 
         code_model = CodeModel(options=options)
-        self._handle_authentication_policy(yaml_data, code_model)
+        self._handle_credential_model(yaml_data, code_model)
         code_model.module_name = yaml_data["info"]["python_title"]
         code_model.class_name = yaml_data["info"]["pascal_case_title"]
         code_model.description = (

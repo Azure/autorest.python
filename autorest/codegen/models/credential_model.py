@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Set, Optional, Type
+from typing import List, Optional, Type
 from .credential_schema_policy import CredentialSchemaPolicy, BearerTokenCredentialPolicy
 from .credential_schema_policy import ARMChallengeAuthenticationPolicy
 from .credential_schema import TokenCredentialSchema, AzureKeyCredentialSchema
@@ -18,7 +18,7 @@ class CredentialModel:
         azure_arm: bool
     ) -> None:
         self.azure_arm: bool = azure_arm
-        self.credential_scopes: Set[str] = set()
+        self.credential_scopes: List[str] = []
         self.key_header_name: str = ""
         self.policy_type: Optional[Type[CredentialSchemaPolicy]] = None
         self._credential_schema_policy: Optional[CredentialSchemaPolicy] = None
@@ -29,7 +29,7 @@ class CredentialModel:
 
     @staticmethod
     def key_type() -> str:
-        return "key"
+        return "Key"
 
     @property
     def default_authentication_policy(self) -> Type[CredentialSchemaPolicy]:
@@ -46,7 +46,7 @@ class CredentialModel:
         if hasattr(self.policy_type, "credential_scopes"):
             self._credential_schema_policy = self.policy_type( # pylint: disable=not-callable
                 credential=TokenCredentialSchema(async_mode=False),
-                credential_scopes=list(self.credential_scopes),
+                credential_scopes=list(set(self.credential_scopes)),
             )
         elif hasattr(self.policy_type, "credential_key_header_name"):
             self._credential_schema_policy = self.policy_type( # pylint: disable=not-callable
