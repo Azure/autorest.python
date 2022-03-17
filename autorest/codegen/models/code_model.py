@@ -368,7 +368,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     def need_request_converter(self) -> bool:
         return (
             self.options["show_operations"] and
-            self.rest.request_builders and
+            bool(self.rest.request_builders) and
             not self.options["version_tolerant"]
         )
 
