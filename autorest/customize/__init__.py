@@ -4,6 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import List
+import importlib.util
+import sys
 from pathlib import Path
 import os
 
@@ -28,17 +30,41 @@ class CustomizePlugin(Plugin):
 
     def process(self) -> bool:
         folders = [f for f in self.output_folder.glob('**/*') if f.is_dir()]
+        # # if there's a models folder, fix imports for customized models
+        # spec = importlib.util.spec_from_file_location("generated", '/Users/isabellacai/Desktop/github_repos/autorest.python/test/dpg/version-tolerant/Expected/AcceptanceTests/DPGTestCustomizationPluginVersionTolerant/dpgtestcustomizationpluginversiontolerant/models/')
+        # my_mod = importlib.util.module_from_spec(spec)
+        # spec.loader.exec_module(my_mod)
 
-        # if there's a models folder, fix imports for customized models
+        # will always have the root
+        self.fix_imports_in_init("_dpg_client", folders[0])
         try:
-            models_folder = next(f for f in folders if f.stem == "models")
-            self.fix_imports_in_init(models_folder)
+            aio_folder = next(f for f in folders if f.stem == "aio")
+            self.fix_imports_in_init("_dpg_client", aio_folder)
         except StopIteration:
             pass
 
-    def fix_imports_in_init(self, folder_path: Path) -> None:
-        customized_objects = self.get_customized_objects(folder_path)
+        try:
+            models_folder = next(f for f in folders if f.stem == "models")
+            self.fix_imports_in_init("_models_py3", models_folder)
+        except StopIteration:
+            pass
+        operations_folders = [f for f in folders if f.stem in ["operations", "_operations"]]
+        for operations_folder in operations_folders:
+            self.fix_imports_in_init("_operations", operations_folder)
+        return True
+
+    def fix_imports_in_init(self, generated_file_name: str, folder_path: Path) -> None:
+        file = (folder_path / "__init__.py").relative_to(self.output_folder)
+        file_content = self._autorestapi.read_file(file)
+        for obj in self.get_customized_objects(folder_path):
+            file_content = file_content.replace(f"from .{generated_file_name} import {obj}\n", f"from ._patch import {obj}\n")
+        self._autorestapi.write_file(file, file_content)
 
     def get_customized_objects(self, folder_path: Path) -> List[str]:
         """Get the list of customized models from the patch file"""
-        a = "b"
+        return ["Product", "AddedModel", "DPGClientOperationsMixin", "DPGClient"]
+        # imported_folder = self.import_module_from_folder()
+        # return imported_folder.__all__
+
+    def import_module_from_folder(self, folder_path: Path):
+        pass

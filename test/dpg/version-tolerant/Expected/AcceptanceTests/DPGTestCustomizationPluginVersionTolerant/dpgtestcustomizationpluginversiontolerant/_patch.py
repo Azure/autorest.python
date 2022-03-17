@@ -10,12 +10,13 @@ from typing import List
 from ._dpg_client import DPGClient as DPGClientGenerated
 from .models import AddedModel
 
-class DPGClient(DPGClientGenerated):
 
+class DPGClient(DPGClientGenerated):
     def added_operation(self) -> AddedModel:
         return super().added_operation()
 
-__all__: List[str] = []  # Add all objects you want publicly available to users at this package level
+
+__all__: List[str] = ["DPGClient"]  # Add all objects you want publicly available to users at this package level
 
 
 def patch_sdk():

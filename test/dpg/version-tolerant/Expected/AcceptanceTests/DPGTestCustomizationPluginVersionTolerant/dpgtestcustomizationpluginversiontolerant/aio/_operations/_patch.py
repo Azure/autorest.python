@@ -10,8 +10,8 @@ from typing import List
 from ...models import Product, AddedModel
 from ._operations import DPGClientOperationsMixin as DPGClientOperationsMixinGenerated
 
-class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
 
+class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
     async def get_model(self, **kwargs) -> Product:
         response = await super().get_model(**kwargs)
 
@@ -23,7 +23,10 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
     def added_operation(self) -> AddedModel:
         return AddedModel()
 
-__all__: List[str] = ["DPGClientOperationsMixin"]  # Add all objects you want publicly available to users at this package level
+
+__all__: List[str] = [
+    "DPGClientOperationsMixin"
+]  # Add all objects you want publicly available to users at this package level
 
 
 def patch_sdk():

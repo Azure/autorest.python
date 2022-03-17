@@ -8,7 +8,7 @@
 
 from ._models_py3 import Input
 from ._models_py3 import LROProduct
-from ._models_py3 import Product
+from ._patch import Product
 from ._models_py3 import ProductResult
 
 

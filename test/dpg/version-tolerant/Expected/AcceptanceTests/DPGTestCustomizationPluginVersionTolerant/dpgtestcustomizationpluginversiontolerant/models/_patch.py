@@ -9,19 +9,23 @@ Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python
 from typing import List
 from ._models_py3 import Product as ProductGenerated
 
-class Product(ProductGenerated):
 
+class Product(ProductGenerated):
     @property
     def added_in_customization(self):
         return "bonjour!"
 
-class AddedModel:
 
+class AddedModel:
     @property
     def added_model_property(self):
         return "Added!"
 
-__all__: List[str] = ["Product", "AddedModel"]  # Add all objects you want publicly available to users at this package level
+
+__all__: List[str] = [
+    "Product",
+    "AddedModel",
+]  # Add all objects you want publicly available to users at this package level
 
 
 def patch_sdk():
