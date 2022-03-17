@@ -34,12 +34,8 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -57,12 +53,8 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
 
 
 def build_get_optional_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -103,8 +95,8 @@ class AutoRestReportServiceOperationsMixin(MixinABC):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 
@@ -157,8 +149,8 @@ class AutoRestReportServiceOperationsMixin(MixinABC):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, int]]
 

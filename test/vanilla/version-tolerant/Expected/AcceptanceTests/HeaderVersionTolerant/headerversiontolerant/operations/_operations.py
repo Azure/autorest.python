@@ -32,9 +32,7 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_header_param_existing_key_request(*, user_agent_parameter: str, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -49,9 +47,7 @@ def build_header_param_existing_key_request(*, user_agent_parameter: str, **kwar
 
 
 def build_header_response_existing_key_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -65,9 +61,7 @@ def build_header_response_existing_key_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_header_param_protected_key_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type")  # type: str
     accept = _headers.pop("Accept", "application/json")
@@ -83,9 +77,7 @@ def build_header_param_protected_key_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_header_response_protected_key_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -99,9 +91,7 @@ def build_header_response_protected_key_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_header_param_integer_request(*, scenario: str, value: int, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -117,9 +107,7 @@ def build_header_param_integer_request(*, scenario: str, value: int, **kwargs: A
 
 
 def build_header_response_integer_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -134,9 +122,7 @@ def build_header_response_integer_request(*, scenario: str, **kwargs: Any) -> Ht
 
 
 def build_header_param_long_request(*, scenario: str, value: int, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -152,9 +138,7 @@ def build_header_param_long_request(*, scenario: str, value: int, **kwargs: Any)
 
 
 def build_header_response_long_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -169,9 +153,7 @@ def build_header_response_long_request(*, scenario: str, **kwargs: Any) -> HttpR
 
 
 def build_header_param_float_request(*, scenario: str, value: float, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -187,9 +169,7 @@ def build_header_param_float_request(*, scenario: str, value: float, **kwargs: A
 
 
 def build_header_response_float_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -204,9 +184,7 @@ def build_header_response_float_request(*, scenario: str, **kwargs: Any) -> Http
 
 
 def build_header_param_double_request(*, scenario: str, value: float, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -222,9 +200,7 @@ def build_header_param_double_request(*, scenario: str, value: float, **kwargs: 
 
 
 def build_header_response_double_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -239,9 +215,7 @@ def build_header_response_double_request(*, scenario: str, **kwargs: Any) -> Htt
 
 
 def build_header_param_bool_request(*, scenario: str, value: bool, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -257,9 +231,7 @@ def build_header_param_bool_request(*, scenario: str, value: bool, **kwargs: Any
 
 
 def build_header_response_bool_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -274,9 +246,7 @@ def build_header_response_bool_request(*, scenario: str, **kwargs: Any) -> HttpR
 
 
 def build_header_param_string_request(*, scenario: str, value: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -293,9 +263,7 @@ def build_header_param_string_request(*, scenario: str, value: Optional[str] = N
 
 
 def build_header_response_string_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -310,9 +278,7 @@ def build_header_response_string_request(*, scenario: str, **kwargs: Any) -> Htt
 
 
 def build_header_param_date_request(*, scenario: str, value: datetime.date, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -328,9 +294,7 @@ def build_header_param_date_request(*, scenario: str, value: datetime.date, **kw
 
 
 def build_header_response_date_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -345,9 +309,7 @@ def build_header_response_date_request(*, scenario: str, **kwargs: Any) -> HttpR
 
 
 def build_header_param_datetime_request(*, scenario: str, value: datetime.datetime, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -363,9 +325,7 @@ def build_header_param_datetime_request(*, scenario: str, value: datetime.dateti
 
 
 def build_header_response_datetime_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -382,9 +342,7 @@ def build_header_response_datetime_request(*, scenario: str, **kwargs: Any) -> H
 def build_header_param_datetime_rfc1123_request(
     *, scenario: str, value: Optional[datetime.datetime] = None, **kwargs: Any
 ) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -401,9 +359,7 @@ def build_header_param_datetime_rfc1123_request(
 
 
 def build_header_response_datetime_rfc1123_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -418,9 +374,7 @@ def build_header_response_datetime_rfc1123_request(*, scenario: str, **kwargs: A
 
 
 def build_header_param_duration_request(*, scenario: str, value: datetime.timedelta, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -436,9 +390,7 @@ def build_header_param_duration_request(*, scenario: str, value: datetime.timede
 
 
 def build_header_response_duration_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -453,9 +405,7 @@ def build_header_response_duration_request(*, scenario: str, **kwargs: Any) -> H
 
 
 def build_header_param_byte_request(*, scenario: str, value: bytearray, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -471,9 +421,7 @@ def build_header_param_byte_request(*, scenario: str, value: bytearray, **kwargs
 
 
 def build_header_response_byte_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -488,9 +436,7 @@ def build_header_response_byte_request(*, scenario: str, **kwargs: Any) -> HttpR
 
 
 def build_header_param_enum_request(*, scenario: str, value: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -507,9 +453,7 @@ def build_header_param_enum_request(*, scenario: str, value: Optional[str] = Non
 
 
 def build_header_response_enum_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -524,9 +468,7 @@ def build_header_response_enum_request(*, scenario: str, **kwargs: Any) -> HttpR
 
 
 def build_header_custom_request_id_request(**kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -571,8 +513,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -606,8 +548,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -643,8 +585,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop("content_type")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -679,8 +621,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -723,8 +665,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -763,8 +705,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -808,8 +750,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -846,8 +788,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -891,8 +833,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -929,8 +871,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -974,8 +916,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1014,8 +956,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1059,8 +1001,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1097,8 +1039,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1144,8 +1086,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1185,8 +1127,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1230,8 +1172,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1268,8 +1210,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1314,8 +1256,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1354,8 +1296,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1400,8 +1342,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1441,8 +1383,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1485,8 +1427,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1525,8 +1467,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1569,8 +1511,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1607,8 +1549,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1654,8 +1596,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1693,8 +1635,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1732,8 +1674,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 

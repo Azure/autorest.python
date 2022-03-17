@@ -34,9 +34,7 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_pet_get_pet_by_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -55,9 +53,7 @@ def build_pet_get_pet_by_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
 
 
 def build_pet_do_something_request(what_action: str, **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -76,12 +72,8 @@ def build_pet_do_something_request(what_action: str, **kwargs: Any) -> HttpReque
 
 
 def build_pet_has_models_param_request(*, models: Optional[str] = "value1", **kwargs: Any) -> HttpRequest:
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -143,8 +135,8 @@ class PetOperations:
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
 
@@ -202,8 +194,8 @@ class PetOperations:
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
@@ -255,8 +247,8 @@ class PetOperations:
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 

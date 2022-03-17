@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from enum import Enum, auto
 from typing import List
 from ..models import ParameterStyle, ListSchema, Parameter, ParameterLocation
 
@@ -102,26 +103,30 @@ def method_signature_and_response_type_annotation_template(
         return f"{method_signature} -> {response_type_annotation}:"
     return f"{method_signature}:\n    # type: (...) -> {response_type_annotation}"
 
+class PopKwargType(Enum):
+    NO = auto()
+    CASE_INSENSITIVE = auto()
+    CASE_INSENSITIVE_IF_HAS_REF = auto()
+
 def pop_kwargs_from_signature(
     kwargs_to_pop: List[Parameter],
     check_kwarg_dict: bool,
-    pop_headers_kwarg: bool,
-    pop_params_kwarg: bool,
-    check_pop_type: bool = False,
+    pop_headers_kwarg: PopKwargType,
+    pop_params_kwarg: PopKwargType,
 ) -> List[str]:
     retval = []
-    def append_pop_kwarg(key: str) -> None:
-        if check_pop_type:
-            retval.append(f'_{key} = kwargs.pop("{key}", {{}}) or {{}}')
-            retval.append(f'if isinstance(_{key}, dict):')
-            retval.append(f'    _{key} = case_insensitive_dict(_{key})')
-        else:
+    def append_pop_kwarg(key: str, location: ParameterLocation, pop_type: PopKwargType) -> None:
+        has_ref = any(kwarg.has_default_value and check_kwarg_dict and kwarg.location == location
+                    for kwarg in kwargs_to_pop)
+        if (PopKwargType.CASE_INSENSITIVE == pop_type or
+            PopKwargType.CASE_INSENSITIVE_IF_HAS_REF == pop_type and has_ref):
             retval.append(f'_{key} = case_insensitive_dict(kwargs.pop("{key}", {{}}) or {{}})')
-    if pop_headers_kwarg:
-        append_pop_kwarg("headers")
-    if pop_params_kwarg:
-        append_pop_kwarg("params")
-    if pop_headers_kwarg or pop_params_kwarg:
+        elif PopKwargType.CASE_INSENSITIVE_IF_HAS_REF == pop_type:
+            retval.append(f'_{key} = kwargs.pop("{key}", {{}}) or {{}}')
+            
+    append_pop_kwarg("headers", ParameterLocation.Header, pop_headers_kwarg)
+    append_pop_kwarg("params", ParameterLocation.Query, pop_params_kwarg)
+    if pop_headers_kwarg != PopKwargType.NO or pop_params_kwarg != PopKwargType.NO:
         retval.append("")
     for kwarg in kwargs_to_pop:
         if kwarg.has_default_value:

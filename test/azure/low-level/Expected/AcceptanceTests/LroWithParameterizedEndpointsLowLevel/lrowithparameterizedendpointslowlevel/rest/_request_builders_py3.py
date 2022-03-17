@@ -30,9 +30,7 @@ def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpReques
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
@@ -60,9 +58,7 @@ def build_poll_with_constant_parameterized_endpoints_request(**kwargs: Any) -> H
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
     accept = _headers.pop("Accept", "application/json")

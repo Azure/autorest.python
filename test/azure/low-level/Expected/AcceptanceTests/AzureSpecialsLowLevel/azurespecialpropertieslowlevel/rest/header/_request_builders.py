@@ -37,9 +37,7 @@ def build_custom_named_request_id_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     foo_client_request_id = kwargs.pop('foo_client_request_id')  # type: str
     accept = _headers.pop('Accept', "application/json")
@@ -77,9 +75,7 @@ def build_custom_named_request_id_param_grouping_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     foo_client_request_id = kwargs.pop('foo_client_request_id')  # type: str
     accept = _headers.pop('Accept', "application/json")
@@ -116,9 +112,7 @@ def build_custom_named_request_id_head_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     foo_client_request_id = kwargs.pop('foo_client_request_id')  # type: str
     accept = _headers.pop('Accept', "application/json")

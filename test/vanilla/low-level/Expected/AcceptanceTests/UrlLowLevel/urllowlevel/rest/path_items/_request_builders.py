@@ -55,12 +55,8 @@ def build_get_all_with_values_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     path_item_string_query = kwargs.pop('path_item_string_query', _params.pop('pathItemStringQuery', None))  # type: Optional[str]
     global_string_query = kwargs.pop('global_string_query', _params.pop('globalStringQuery', None))  # type: Optional[str]
@@ -130,12 +126,8 @@ def build_get_global_query_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     path_item_string_query = kwargs.pop('path_item_string_query', _params.pop('pathItemStringQuery', None))  # type: Optional[str]
     global_string_query = kwargs.pop('global_string_query', _params.pop('globalStringQuery', None))  # type: Optional[str]
@@ -205,12 +197,8 @@ def build_get_global_and_local_query_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     path_item_string_query = kwargs.pop('path_item_string_query', _params.pop('pathItemStringQuery', None))  # type: Optional[str]
     global_string_query = kwargs.pop('global_string_query', _params.pop('globalStringQuery', None))  # type: Optional[str]
@@ -279,12 +267,8 @@ def build_get_local_path_item_query_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     path_item_string_query = kwargs.pop('path_item_string_query', _params.pop('pathItemStringQuery', None))  # type: Optional[str]
     global_string_query = kwargs.pop('global_string_query', _params.pop('globalStringQuery', None))  # type: Optional[str]

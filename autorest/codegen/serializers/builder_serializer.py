@@ -517,9 +517,10 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
         return utils.pop_kwargs_from_signature(
             self._get_kwargs_to_pop(builder),
             check_kwarg_dict=True,
-            pop_headers_kwarg=bool(builder.parameters.headers),
-            pop_params_kwarg=bool(builder.parameters.query),
-            check_pop_type=True,
+            pop_headers_kwarg=utils.PopKwargType.CASE_INSENSITIVE if bool(builder.parameters.headers)
+                                else utils.PopKwargType.NO,
+            pop_params_kwarg=utils.PopKwargType.CASE_INSENSITIVE if bool(builder.parameters.query)
+                                else utils.PopKwargType.NO,
         )
 
     def create_http_request(self, builder) -> List[str]:
@@ -669,8 +670,8 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         kwargs = utils.pop_kwargs_from_signature(
             self._get_kwargs_to_pop(builder),
             check_kwarg_dict=True,
-            pop_headers_kwarg=True,
-            pop_params_kwarg=True,
+            pop_headers_kwarg=utils.PopKwargType.CASE_INSENSITIVE_IF_HAS_REF,
+            pop_params_kwarg=utils.PopKwargType.CASE_INSENSITIVE_IF_HAS_REF,
         )
         kwargs.append(f"cls = kwargs.pop('cls', None)  {self.cls_type_annotation(builder)}")
         return kwargs

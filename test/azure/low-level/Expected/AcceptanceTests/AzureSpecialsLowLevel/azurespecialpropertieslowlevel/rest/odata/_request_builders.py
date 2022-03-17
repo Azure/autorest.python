@@ -42,12 +42,8 @@ def build_get_with_filter_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     filter = kwargs.pop('filter', _params.pop('$filter', None))  # type: Optional[str]
     top = kwargs.pop('top', _params.pop('$top', None))  # type: Optional[int]

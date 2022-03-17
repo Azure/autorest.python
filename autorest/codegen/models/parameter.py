@@ -99,7 +99,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         self.body_kwargs: List[Parameter] = []
         self.is_body_kwarg = False
         self.need_import = True
-        self.is_kwarg = (self.rest_api_name == "Content-Type" or (self.constant and self.rest_api_name != "Accept"))
+        self.is_kwarg = (self.rest_api_name == "Content-Type" or (self.constant and self.inputtable_by_user))
 
     def __hash__(self) -> int:
         return hash(self.serialized_name)
@@ -189,6 +189,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     @property
     def in_method_signature(self) -> bool:
         return not(
+            # if not inputtable, don't put in signature
             not self.inputtable_by_user
             # If i'm not in the method code, no point in being in signature
             or not self.in_method_code

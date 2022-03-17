@@ -41,9 +41,7 @@ def build_put_no_model_as_string_no_required_two_value_no_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input = kwargs.pop('input', _params.pop('input', None))  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
     # Construct URL
@@ -65,9 +63,7 @@ def build_put_no_model_as_string_no_required_two_value_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input = kwargs.pop('input', _params.pop('input', "value1"))  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
     # Construct URL
@@ -89,9 +85,7 @@ def build_put_no_model_as_string_no_required_one_value_no_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input = kwargs.pop('input', _params.pop('input', "value1"))  # type: Optional[str]
     # Construct URL
@@ -113,9 +107,7 @@ def build_put_no_model_as_string_no_required_one_value_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input = kwargs.pop('input', _params.pop('input', "value1"))  # type: Optional[str]
     # Construct URL
@@ -137,9 +129,7 @@ def build_put_no_model_as_string_required_two_value_no_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input = kwargs.pop('input')  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"]
     # Construct URL
@@ -160,9 +150,7 @@ def build_put_no_model_as_string_required_two_value_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input = kwargs.pop('input', _params.pop('input', "value1"))  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultOpEnum"]
     # Construct URL
@@ -183,9 +171,7 @@ def build_put_no_model_as_string_required_one_value_no_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input = kwargs.pop('input', _params.pop('input', "value1"))  # type: str
     # Construct URL
@@ -206,9 +192,7 @@ def build_put_no_model_as_string_required_one_value_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input = kwargs.pop('input', _params.pop('input', "value1"))  # type: str
     # Construct URL
@@ -229,9 +213,7 @@ def build_put_model_as_string_no_required_two_value_no_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input = kwargs.pop('input', _params.pop('input', None))  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum"]]
     # Construct URL
@@ -253,9 +235,7 @@ def build_put_model_as_string_no_required_two_value_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input = kwargs.pop('input', _params.pop('input', "value1"))  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
     # Construct URL
@@ -277,9 +257,7 @@ def build_put_model_as_string_no_required_one_value_no_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input = kwargs.pop('input', _params.pop('input', None))  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum"]]
     # Construct URL
@@ -301,9 +279,7 @@ def build_put_model_as_string_no_required_one_value_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input = kwargs.pop('input', _params.pop('input', "value1"))  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]]
     # Construct URL
@@ -325,9 +301,7 @@ def build_put_model_as_string_required_two_value_no_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input = kwargs.pop('input')  # type: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"]
     # Construct URL
@@ -348,9 +322,7 @@ def build_put_model_as_string_required_two_value_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input = kwargs.pop('input', _params.pop('input', "value1"))  # type: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultOpEnum"]
     # Construct URL
@@ -371,9 +343,7 @@ def build_put_model_as_string_required_one_value_no_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input = kwargs.pop('input')  # type: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"]
     # Construct URL
@@ -394,9 +364,7 @@ def build_put_model_as_string_required_one_value_default_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input = kwargs.pop('input', _params.pop('input', "value1"))  # type: Union[str, "_models.ModelAsStringRequiredOneValueDefaultOpEnum"]
     # Construct URL
@@ -417,12 +385,8 @@ def build_put_client_constants_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = kwargs.pop("headers", {}) or {}
-    if isinstance(_headers, dict):
-        _headers = case_insensitive_dict(_headers)
-    _params = kwargs.pop("params", {}) or {}
-    if isinstance(_params, dict):
-        _params = case_insensitive_dict(_params)
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     header_constant = kwargs.pop('header_constant', _headers.pop('header-constant', True))  # type: bool
     query_constant = kwargs.pop('query_constant', _params.pop('query-constant', 100))  # type: int
@@ -490,8 +454,8 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -539,8 +503,8 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -588,8 +552,8 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -637,8 +601,8 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -686,8 +650,8 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -735,8 +699,8 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -783,7 +747,7 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         input = kwargs.pop("input", _params.pop("input", "value1"))  # type: str
@@ -832,7 +796,7 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         input = kwargs.pop("input", _params.pop("input", "value1"))  # type: str
@@ -882,8 +846,8 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -931,8 +895,8 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -980,8 +944,8 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1029,8 +993,8 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1078,8 +1042,8 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1127,8 +1091,8 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1176,8 +1140,8 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1225,8 +1189,8 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -1269,8 +1233,8 @@ class ContantsOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
