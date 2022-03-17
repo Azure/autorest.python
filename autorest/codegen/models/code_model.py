@@ -366,7 +366,11 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
 
     @property
     def need_request_converter(self) -> bool:
-        return self.options["show_operations"] and not self.options["version_tolerant"]
+        return (
+            self.options["show_operations"] and
+            self.rest.request_builders and
+            not self.options["version_tolerant"]
+        )
 
     @property
     def need_format_url(self) -> bool:
