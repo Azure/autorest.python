@@ -356,14 +356,9 @@ class JinjaSerializer:
     ) -> None:
         general_serializer = GeneralSerializer(code_model=self.code_model, env=env, async_mode=False)
 
-        if self.code_model.rest.request_builders:
-            self._autorestapi.write_file(
-                namespace_path / Path("__init__.py"), general_serializer.serialize_init_file()
-            )
-        else:
-            self._autorestapi.write_file(
-                namespace_path / Path("__init__.py"), general_serializer.serialize_pkgutil_init_file()
-            )
+        self._autorestapi.write_file(
+            namespace_path / Path("__init__.py"), general_serializer.serialize_init_file()
+        )
         p = namespace_path.parent
         while p != Path("."):
             # write pkgutil init file
