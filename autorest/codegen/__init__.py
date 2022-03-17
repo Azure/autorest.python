@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import logging
 import sys
-from typing import Dict, Any, Set, List, Union
+from typing import Dict, Any, Set, List, Union, Type
 from pathlib import Path
 import yaml
 
@@ -17,10 +17,9 @@ from .models.parameter import Parameter
 from .models.parameter_list import GlobalParameterList
 from .models.rest import Rest
 from .serializers import JinjaSerializer
-from .models.credential_schema_policy import get_credential_schema_policy_type
+from .models.credential_schema_policy import CredentialSchemaPolicy, get_credential_schema_policy_type
 from .models.credential_schema_policy import BearerTokenCredentialPolicy, AzureKeyCredentialPolicy
-from .models.credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
-from .models.credential_info import CredentialInfo
+from .models.credential_model import CredentialModel
 
 def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -> None:
     # Create operations
@@ -144,53 +143,38 @@ class CodeGenerator(Plugin):
         }
 
     @staticmethod
-    def _build_with_security_definition(yaml_data: Dict[str, Any], credential_info: Dict[Any, Any]):
+    def _build_with_security_definition(yaml_data: Dict[str, Any], credential_model: CredentialModel):
         security_yaml = yaml_data.get("security", {})
         if security_yaml.get("authenticationRequired"):
-            # the key word is "AADToken" and "AzureKey"
-            credential_scopes = set()
-            key_header_name = ""
             for scheme in security_yaml.get("schemes"):
-                if CredentialInfo.AAD_TOKEN == scheme["type"]:
-                    credential_scopes.update(scheme["scopes"])
-                elif CredentialInfo.AZURE_KEY == scheme["type"]:
+                if credential_model.aad_type == scheme["type"]:
+                    credential_model.credential_scopes.update(scheme["scopes"])
+                elif credential_model.key_type == scheme["type"]:
                     # only accept the last one
-                    key_header_name = scheme["headerName"]
-            if credential_scopes:
-                credential_info[CredentialInfo.SCOPES] = list(credential_scopes)
-            if key_header_name:
-                credential_info[CredentialInfo.KEY_HEADER_NAME] = key_header_name
+                    credential_model.key_header_name = scheme["headerName"]
 
-        if CredentialInfo.SCOPES in credential_info:
-            credential_info[CredentialInfo.POLICY_TYPE] = BearerTokenCredentialPolicy
-        elif CredentialInfo.KEY_HEADER_NAME in credential_info:
-            credential_info[CredentialInfo.POLICY_TYPE] = AzureKeyCredentialPolicy
+        if credential_model.credential_scopes:
+            credential_model.policy_type = BearerTokenCredentialPolicy
+        elif credential_model.key_header_name:
+            credential_model.policy_type = AzureKeyCredentialPolicy
 
     @staticmethod
-    def _build_authentication_policy(code_model: CodeModel, credential_info: Dict[Any, Any]):
-        if not credential_info.get(CredentialInfo.POLICY_TYPE):
+    def _build_credential_model(code_model: CodeModel, credential_model: CredentialModel):
+        if not credential_model.policy_type:
             return
 
         code_model.options["credential"] = True
-        if hasattr(credential_info[CredentialInfo.POLICY_TYPE], "credential_scopes"):
-            code_model.credential_schema_policy = credential_info[CredentialInfo.POLICY_TYPE](
-                credential=TokenCredentialSchema(async_mode=False),
-                credential_scopes=credential_info[CredentialInfo.SCOPES],
-            )
-        elif hasattr(credential_info[CredentialInfo.POLICY_TYPE], "credential_key_header_name"):
-            code_model.credential_schema_policy = credential_info[CredentialInfo.POLICY_TYPE](
-                credential=AzureKeyCredentialSchema(),
-                credential_key_header_name=credential_info[CredentialInfo.KEY_HEADER_NAME]
-            )
+        credential_model.build_authentication_policy()
+        code_model.credential_model = credential_model
 
     def _handle_authentication_policy(self, yaml_data: Dict[str, Any], code_model: CodeModel):
-        credential_info: Dict[Any, Any] = dict()
+        credential_model = CredentialModel(code_model.options["azure_arm"])
 
         # credential info with security definition will be overridded by credential flags
-        self._build_with_security_definition(yaml_data, credential_info)
-        self._build_with_credential_flags(code_model, credential_info)
+        self._build_with_security_definition(yaml_data, credential_model)
+        self._build_with_credential_flags(code_model, credential_model)
 
-        self._build_authentication_policy(code_model, credential_info)
+        self._build_credential_model(code_model, credential_model)
 
     def _create_code_model(self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]) -> CodeModel:
         # Create a code model
@@ -253,9 +237,12 @@ class CodeGenerator(Plugin):
         return credential_scopes
 
     def _update_with_credential_flags(
-        self, code_model: CodeModel, credential_info: Dict[Any, Any]
+        self,
+        code_model: CodeModel,
+        credential_schema_policy: Type[CredentialSchemaPolicy],
+        credential_model: CredentialModel
     ):
-        credential_schema_policy = credential_info[CredentialInfo.POLICY_TYPE]
+        credential_model.policy_type = credential_schema_policy
         credential_scopes = self._get_credential_scopes(code_model.options['credential'])
         credential_key_header_name = self._autorestapi.get_value('credential-key-header-name')
         azure_arm = code_model.options['azure_arm']
@@ -284,15 +271,15 @@ class CodeGenerator(Plugin):
                     "name is tied with AzureKeyCredentialPolicy. Instead, with this policy it is recommend you "
                     "pass in --credential-scopes."
                 )
-            credential_info[CredentialInfo.SCOPES] = credential_scopes
+            credential_model.credential_scopes = credential_scopes
         else:
             # currently the only other credential policy is AzureKeyCredentialPolicy
             if credential_scopes:
                 raise ValueError(
                     "You have passed in credential scopes with default credential policy type "
                     "AzureKeyCredentialPolicy. This is not allowed, since credential scopes is tied with "
-                    f"{code_model.default_authentication_policy.name()}. Instead, with this policy you must pass in "
-                    "--credential-key-header-name."
+                    f"{credential_model.default_authentication_policy.name()}. Instead, with this policy "
+                    "you must pass in --credential-key-header-name."
                 )
             if not credential_key_header_name:
                 credential_key_header_name = "api-key"
@@ -300,19 +287,19 @@ class CodeGenerator(Plugin):
                     "Defaulting the AzureKeyCredentialPolicy header's name to 'api-key'"
                 )
 
-            credential_info[CredentialInfo.KEY_HEADER_NAME] = credential_key_header_name
+            credential_model.key_header_name = credential_key_header_name
 
-    def _build_with_credential_flags(self, code_model: CodeModel, credential_info: Dict[Any, Any]):
+    def _build_with_credential_flags(self, code_model: CodeModel, credential_model: CredentialModel):
         if not code_model.options["credential"]:
             return
 
         credential_schema_policy_name = (
             self._autorestapi.get_value("credential-default-policy-type") or
-            code_model.default_authentication_policy.name()
+            credential_model.default_authentication_policy.name()
         )
-        credential_info[CredentialInfo.POLICY_TYPE] = get_credential_schema_policy_type(credential_schema_policy_name)
+        credential_schema_policy_type = get_credential_schema_policy_type(credential_schema_policy_name)
         self._update_with_credential_flags(
-            code_model, credential_info
+            code_model, credential_schema_policy_type, credential_model
         )
 
     def _build_code_model_options(self) -> Dict[str, Any]:

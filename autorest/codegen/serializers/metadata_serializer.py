@@ -145,7 +145,7 @@ class MetadataSerializer:
         async_global_parameters = self.code_model.global_parameters
         if (
             self.code_model.options['credential'] and
-            isinstance(self.code_model.credential_schema_policy.credential, TokenCredentialSchema)
+            isinstance(self.code_model.credential_model.credential_schema_policy.credential, TokenCredentialSchema)
         ):
             # this ensures that the TokenCredentialSchema showing up in the list of code model's global parameters
             # is sync. This way we only have to make a copy for an async_credential

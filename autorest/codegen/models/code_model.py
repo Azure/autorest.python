@@ -5,12 +5,9 @@
 # --------------------------------------------------------------------------
 from itertools import chain
 import logging
-from typing import cast, List, Dict, Optional, Any, Set, Type
+from typing import cast, List, Dict, Optional, Any, Set
 
 from .base_schema import BaseSchema
-from .credential_schema_policy import (
-    ARMChallengeAuthenticationPolicy, BearerTokenCredentialPolicy, CredentialSchemaPolicy
-)
 from .enum_schema import EnumSchema
 from .object_schema import ObjectSchema
 from .operation_group import OperationGroup
@@ -25,7 +22,7 @@ from .property import Property
 from .primitive_schemas import IOSchema
 from .request_builder import RequestBuilder
 from .rest import Rest
-
+from .credential_model import CredentialModel
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -53,6 +50,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     :type operation_groups: list[~autorest.models.OperationGroup]
     :param package_dependency: All the dependencies needed in setup.py
     :type package_dependency: Dict[str, str]
+    :param credential_model: The class contains all the credential info
+    :type credential_model: CredentialMode
     """
 
     def __init__(
@@ -77,8 +76,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         self.service_client: Client = Client(self, params)
         self._rest: Optional[Rest] = None
         self.request_builder_ids: Dict[int, RequestBuilder] = {}
-        self._credential_schema_policy: Optional[CredentialSchemaPolicy] = None
         self.package_dependency: Dict[str, str] = {}
+        self._credential_model: Optional[CredentialModel] = None
 
     @property
     def global_parameters(self) -> GlobalParameterList:
@@ -211,18 +210,14 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         return self.schemas or self.enums
 
     @property
-    def default_authentication_policy(self) -> Type[CredentialSchemaPolicy]:
-        return ARMChallengeAuthenticationPolicy if self.options['azure_arm'] else BearerTokenCredentialPolicy
+    def credential_model(self) -> CredentialModel:
+        if not self._credential_model:
+            raise ValueError("You want to find the Credential Model, but have not given a value")
+        return self._credential_model
 
-    @property
-    def credential_schema_policy(self) -> CredentialSchemaPolicy:
-        if not self._credential_schema_policy:
-            raise ValueError("You want to find the Credential Schema Policy, but have not given a value")
-        return self._credential_schema_policy
-
-    @credential_schema_policy.setter
-    def credential_schema_policy(self, val: CredentialSchemaPolicy) -> None:
-        self._credential_schema_policy = val
+    @credential_model.setter
+    def credential_model(self, val: CredentialModel) -> None:
+        self._credential_model = val
 
     @staticmethod
     def _add_properties_from_inheritance_helper(schema, properties) -> List[Property]:

@@ -50,7 +50,7 @@ class GeneralSerializer:
 
         if (
             self.code_model.options['credential'] and
-            isinstance(self.code_model.credential_schema_policy.credential, TokenCredentialSchema)
+            isinstance(self.code_model.credential_model.credential_schema_policy.credential, TokenCredentialSchema)
         ):
             self._correct_credential_parameter()
 
@@ -116,7 +116,7 @@ class GeneralSerializer:
 
         if (
             self.code_model.options['credential'] and
-            isinstance(self.code_model.credential_schema_policy.credential, TokenCredentialSchema)
+            isinstance(self.code_model.credential_model.credential_schema_policy.credential, TokenCredentialSchema)
         ):
             self._correct_credential_parameter()
 
