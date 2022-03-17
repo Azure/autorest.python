@@ -43,16 +43,13 @@ class CredentialModel:
         return self._credential_schema_policy
 
     def build_authentication_policy(self):
-        if self.credential_scopes:
+        if hasattr(self.policy_type, "credential_scopes"):
             self._credential_schema_policy = self.policy_type( # pylint: disable=not-callable
                 credential=TokenCredentialSchema(async_mode=False),
                 credential_scopes=list(self.credential_scopes),
             )
-        elif self.key_header_name:
+        elif hasattr(self.policy_type, "credential_key_header_name"):
             self._credential_schema_policy = self.policy_type( # pylint: disable=not-callable
                 credential=AzureKeyCredentialSchema(),
                 credential_key_header_name=self.key_header_name
             )
-        else:
-            raise ValueError(
-                "fail to build since both credential scopes and key header name are None")

@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import logging
 import sys
-from typing import Dict, Any, Set, List, Union, Type
+from typing import Dict, Any, Set, Union, List, Type
 from pathlib import Path
 import yaml
 
@@ -160,12 +160,10 @@ class CodeGenerator(Plugin):
 
     @staticmethod
     def _build_credential_model(code_model: CodeModel, credential_model: CredentialModel):
-        if not credential_model.policy_type:
-            return
-
-        code_model.options["credential"] = True
-        credential_model.build_authentication_policy()
-        code_model.credential_model = credential_model
+        if credential_model.policy_type:
+            code_model.options["credential"] = True
+            credential_model.build_authentication_policy()
+            code_model.credential_model = credential_model
 
     def _handle_authentication_policy(self, yaml_data: Dict[str, Any], code_model: CodeModel):
         credential_model = CredentialModel(code_model.options["azure_arm"])
