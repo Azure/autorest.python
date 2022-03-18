@@ -2508,7 +2508,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         bool_query = kwargs.pop("bool_query", _params.pop("boolQuery", True))  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2547,7 +2547,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         bool_query = kwargs.pop("bool_query", _params.pop("boolQuery", False))  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2625,7 +2625,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         int_query = kwargs.pop("int_query", _params.pop("intQuery", 1000000))  # type: int
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2664,7 +2664,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         int_query = kwargs.pop("int_query", _params.pop("intQuery", -1000000))  # type: int
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2742,7 +2742,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         long_query = kwargs.pop("long_query", _params.pop("longQuery", 10000000000))  # type: int
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2781,7 +2781,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         long_query = kwargs.pop("long_query", _params.pop("longQuery", -10000000000))  # type: int
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2859,7 +2859,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         float_query = kwargs.pop("float_query", _params.pop("floatQuery", 103400000000000000000))  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2898,7 +2898,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         float_query = kwargs.pop("float_query", _params.pop("floatQuery", -1.034e-20))  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -2976,7 +2976,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         double_query = kwargs.pop("double_query", _params.pop("doubleQuery", 9999999.999))  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -3015,7 +3015,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         double_query = kwargs.pop("double_query", _params.pop("doubleQuery", -9999999.999))  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -3093,7 +3093,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         string_query = kwargs.pop("string_query", _params.pop("stringQuery", "啊齄丂狛狜隣郎隣兀﨩"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -3133,7 +3133,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         string_query = kwargs.pop(
             "string_query", _params.pop("stringQuery", "begin!*'();:@ &=+$,/?#[]end")
@@ -3174,7 +3174,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         string_query = kwargs.pop("string_query", _params.pop("stringQuery", ""))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -3372,7 +3372,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         byte_query = kwargs.pop(
             "byte_query", _params.pop("byteQuery", bytearray("", encoding="utf-8"))
@@ -3452,7 +3452,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         date_query = kwargs.pop("date_query", _params.pop("dateQuery", "2012-01-01"))  # type: datetime.date
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -3531,7 +3531,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         date_time_query = kwargs.pop(
             "date_time_query", _params.pop("dateTimeQuery", "2012-01-01T01:01:01Z")

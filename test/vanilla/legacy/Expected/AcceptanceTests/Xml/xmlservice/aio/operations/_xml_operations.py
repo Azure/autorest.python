@@ -143,7 +143,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/xml")
@@ -236,7 +236,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/xml")
@@ -330,7 +330,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/xml")
@@ -424,7 +424,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/xml")
@@ -560,7 +560,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/xml")
@@ -653,7 +653,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/xml")
@@ -746,7 +746,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/xml")
@@ -840,7 +840,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/xml")
@@ -934,7 +934,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/xml")
@@ -1028,7 +1028,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/xml")
@@ -1077,7 +1077,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType["_models.ListContainersResponse"]
@@ -1128,7 +1128,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
         restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
@@ -1241,7 +1241,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
         restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
@@ -1357,7 +1357,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
         restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
@@ -1409,7 +1409,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
@@ -1591,7 +1591,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/xml")
@@ -1687,7 +1687,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/xml")

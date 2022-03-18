@@ -257,7 +257,7 @@ class SubscriptionInCredentialsOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -565,7 +565,7 @@ class ApiVersionDefaultOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -603,7 +603,7 @@ class ApiVersionDefaultOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -639,7 +639,7 @@ class ApiVersionDefaultOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -675,7 +675,7 @@ class ApiVersionDefaultOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -732,7 +732,7 @@ class ApiVersionLocalOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -811,7 +811,7 @@ class ApiVersionLocalOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -851,7 +851,7 @@ class ApiVersionLocalOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2.0"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -1144,7 +1144,7 @@ class SkipUrlEncodingOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         q1 = kwargs.pop("q1", _params.pop("q1", "value1&q2=value2&q3=value3"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]

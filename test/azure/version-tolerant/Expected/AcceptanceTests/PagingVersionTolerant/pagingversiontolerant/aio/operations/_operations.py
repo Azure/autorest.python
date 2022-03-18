@@ -496,7 +496,7 @@ class PagingOperations:
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         query_constant = kwargs.pop("query_constant", _params.pop("queryConstant", True))  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]

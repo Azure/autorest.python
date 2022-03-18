@@ -122,7 +122,7 @@ class StringOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
@@ -210,7 +210,7 @@ class StringOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
@@ -295,7 +295,7 @@ class StringOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
@@ -386,7 +386,7 @@ class StringOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
@@ -555,7 +555,7 @@ class StringOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
@@ -707,7 +707,7 @@ class EnumOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
@@ -800,7 +800,7 @@ class EnumOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
@@ -906,7 +906,7 @@ class EnumOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
