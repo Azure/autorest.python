@@ -256,8 +256,8 @@ def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
         regenerate_with_python3_operation_files(c, debug)
         regenerate_python3_only(c, debug)
         regenerate_package_mode(c, swagger_group=_SwaggerGroup.VANILLA)
-        regenerate_security_aad_vanilla_legacy(c, debug)
-        regenerate_security_key_vanilla_legacy(c, debug)
+        # regenerate_security_aad_vanilla_legacy(c, debug)
+        # regenerate_security_key_vanilla_legacy(c, debug)
 
 @task
 def regenerate_dpg_low_level_client(c, swagger_name=None, debug=False, **kwargs):
@@ -329,7 +329,7 @@ def regenerate_azure_arm_legacy(c, swagger_name=None, debug=False, **kwargs):
     _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, **kwargs)
     if not swagger_name:
         regenerate_credential_default_policy(c, debug)
-        regenerate_security_azure_arm_legacy(c, debug)
+        # regenerate_security_azure_arm_legacy(c, debug)
 
 @task
 def regenerate_azure_arm_low_level_client(c, swagger_name=None, debug=False, **kwargs):
