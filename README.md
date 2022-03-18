@@ -23,10 +23,6 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 #### Python code gen
 
-```yaml $(post-process)
-allow-no-input: true
-```
-
 ```yaml !$(low-level-client) && !$(version-tolerant)
 modelerfour:
   group-parameters: true
@@ -34,13 +30,13 @@ modelerfour:
   flatten-payloads: true
 ```
 
-```yaml !$(multiapiscript)
+```yaml !$(multiapiscript) && !$(postprocess)
 pass-thru:
   - model-deduplicator
   - subset-reducer
-version: ~3.6.2
+version: "https://tinyurl.com/y85ozsj8"
 use-extension:
-  "@autorest/modelerfour": ~4.19.1
+  "@autorest/modelerfour": "https://tinyurl.com/ybnbz924"
 modelerfour:
   resolve-schema-name-collisons: true
   always-create-content-type-parameter: true
@@ -131,7 +127,7 @@ output-artifact: python-files
 
 # Post-process customized code for mypy pipeline
 
-```yaml $(post-process)
+```yaml $(postprocess)
 pipeline:
   python/postprocess:
     scope: postprocess

@@ -25,7 +25,11 @@ class PostProcessPlugin(Plugin):
     def process(self) -> bool:
         folders = [f for f in self.output_folder.glob('**/*') if f.is_dir()]
         # # if there's a models folder, fix imports for customized models
-        # spec = importlib.util.spec_from_file_location("generated", '/Users/isabellacai/Desktop/github_repos/autorest.python/test/dpg/version-tolerant/Expected/AcceptanceTests/DPGTestCustomizationPluginVersionTolerant/dpgtestcustomizationpluginversiontolerant/models/')
+        # spec = importlib.util.spec_from_file_location("generated", '/Users/isabellacai/Desktop/github_repos/autorest.python/test/dpg/version-tolerant/Expected/AcceptanceTests/DPGTestPostProcessPluginVersionTolerant/dpgtestpostprocesspluginversiontolerant/models/_models_py3.py')
+        # my_mod = importlib.util.module_from_spec(spec)
+        # spec.loader.exec_module(my_mod)
+
+        # spec = importlib.util.spec_from_file_location("patch", '/Users/isabellacai/Desktop/github_repos/autorest.python/test/dpg/version-tolerant/Expected/AcceptanceTests/DPGTestPostProcessPluginVersionTolerant/dpgtestpostprocesspluginversiontolerant/models/_patch.py')
         # my_mod = importlib.util.module_from_spec(spec)
         # spec.loader.exec_module(my_mod)
 

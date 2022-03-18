@@ -267,8 +267,10 @@ def _regenerate(
         cmds.append(command_line)
         if kwargs.get("version_tolerant"):
             config = _get_config(swagger_group, package_name, **kwargs)
-            post_process_cmd = f"autorest --use={AUTOREST_DIR} --post-process --output-folder={config.output_folder}"
-            print(Fore.YELLOW + f'Queuing up post process command: {command_line}')
+            post_process_cmd = f"autorest --use={AUTOREST_DIR} --postprocess --output-folder={config.output_folder}"
+            if debug:
+                post_process_cmd += " --python.debugger"
+            print(Fore.YELLOW + f'Queuing up post process command: {post_process_cmd}')
             post_process_cmds.append(post_process_cmd)
     _run_autorest(cmds, debug=debug)
     _run_autorest(post_process_cmds, debug=debug)
