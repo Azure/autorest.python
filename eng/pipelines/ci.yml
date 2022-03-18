@@ -28,6 +28,8 @@ parameters:
       service: storage
     - name: azure-storage-file-share
       service: storage
+    - name: azure-ai-language-questionanswering
+      service: cognitivelanguage
 
 jobs:
   - job: "AutoRest_Python_CI"
