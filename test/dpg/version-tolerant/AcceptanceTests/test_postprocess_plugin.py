@@ -32,5 +32,3 @@ def test_added_property():
 def test_added_model():
     added_model = models.AddedModel()
     assert added_model.added_model_property == "Added!"
-
-

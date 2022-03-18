@@ -83,7 +83,7 @@ _DPG_SWAGGER_MAPPINGS = {
 }
 
 _FILE_SPECIFIC_OVERLOAD_FLAGS = {
-    'DPGTestCustomizationPlugin': {
+    'DPGTestPostProcessPlugin': {
         "models-mode": "msrest",
     }
 }

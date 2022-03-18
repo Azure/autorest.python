@@ -6,25 +6,25 @@
 
 Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
 """
-from typing import List, Any
-from ..models import Product
-from ._operations import DPGClientOperationsMixin as DPGClientOperationsMixinGenerated
+from typing import List
+from ._models_py3 import Product as ProductGenerated
 
 
-class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
-    def get_model(self, mode: str, **kwargs: Any) -> Product:
-        product = super().get_model(mode, **kwargs)
-        if product.added_in_customization != "bonjour!":
-            raise ValueError("Should have added customization")
-        return product
+class Product(ProductGenerated):
+    @property
+    def added_in_customization(self):
+        return "bonjour!"
 
-    @staticmethod
-    def added_method() -> str:
+
+class AddedModel:
+    @property
+    def added_model_property(self):
         return "Added!"
 
 
 __all__: List[str] = [
-    "DPGClientOperationsMixin"
+    "Product",
+    "AddedModel",
 ]  # Add all objects you want publicly available to users at this package level
 
 

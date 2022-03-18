@@ -7,19 +7,16 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, TYPE_CHECKING
+from typing import Any
 
 from msrest import Deserializer, Serializer
 
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
+from . import models
 from ._configuration import DPGClientConfiguration
 from ._operations import DPGClientOperationsMixin
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Dict
 
 
 class DPGClient(DPGClientOperationsMixin):
@@ -36,8 +33,9 @@ class DPGClient(DPGClientOperationsMixin):
         self._config = DPGClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
-        self._serialize = Serializer()
-        self._deserialize = Deserializer()
+        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
+        self._serialize = Serializer(client_models)
+        self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
