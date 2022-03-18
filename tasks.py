@@ -21,9 +21,9 @@ class _SwaggerGroup(str, Enum):
     DPG = "dpg"
 
 class _Generator(Enum):
-    LEGACY = auto()
-    VERSION_TOLERANT = auto()
-    LOW_LEVEL_CLIENT = auto()
+    LEGACY = "legacy"
+    VERSION_TOLERANT = "version_tolerant"
+    LOW_LEVEL_CLIENT = "low_level_client"
 
 _VANILLA_SWAGGER_MAPPINGS = {
     'AdditionalProperties': 'additionalProperties.json',
