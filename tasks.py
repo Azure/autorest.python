@@ -71,7 +71,14 @@ _DPG_SWAGGER_MAPPINGS = {
     'DPGServiceDrivenInitial': 'dpg_initial.json',
     'DPGServiceDrivenUpdateOne': 'dpg_update1.json',
     'DPGCustomizationInitial': 'dpg-customization.json',
-    'DPGCustomizationCustomized': 'dpg-customization.json'
+    'DPGCustomizationCustomized': 'dpg-customization.json',
+    'DPGTestPostProcessPlugin': 'dpg-customization.json',
+}
+
+_FILE_SPECIFIC_OVERLOAD_FLAGS = {
+    'DPGTestPostProcessPlugin': {
+        "models-mode": "msrest",
+    }
 }
 
 _AZURE_SWAGGER_MAPPINGS = {
@@ -130,7 +137,8 @@ def _build_flags(
 ) -> Dict[str, Any]:
     autorest_dir = os.path.dirname(__file__)
     testserver_dir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
-
+    override_flags = override_flags or {}
+    override_flags.update(_FILE_SPECIFIC_OVERLOAD_FLAGS.get(package_name, {}))
     if swagger_group == _SwaggerGroup.VANILLA:
         generation_section = "vanilla"
     elif swagger_group == _SwaggerGroup.DPG:
@@ -144,18 +152,15 @@ def _build_flags(
     if low_level_client:
         package_name += "LowLevel"
         generation_section += "/low-level"
-        override_flags = override_flags or {}
         override_flags["low-level-client"] = True
         namespace += "lowlevel"
     elif version_tolerant:
         package_name += "VersionTolerant"
         generation_section += "/version-tolerant"
-        override_flags = override_flags or {}
         override_flags["version-tolerant"] = True
         namespace += "versiontolerant"
     else:
         generation_section += "/legacy"
-        override_flags = override_flags or {}
         override_flags["payload-flattening-threshold"] = 1
         override_flags["reformat-next-link"] = False
 
