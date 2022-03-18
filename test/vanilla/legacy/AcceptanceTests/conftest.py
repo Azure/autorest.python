@@ -34,7 +34,8 @@ from unittest import TestLoader, TextTestRunner
 
 from os.path import dirname, pardir, join, realpath
 
-from azure.core.pipeline.policies import SansIOHTTPPolicy
+from azure.core.pipeline.policies import SansIOHTTPPolicy, BearerTokenCredentialPolicy
+from azure.core.pipeline.policies import AsyncBearerTokenCredentialPolicy
 
 import pytest
 
@@ -98,3 +99,19 @@ def credential():
 def authentication_policy():
     from azure.core.pipeline.policies import SansIOHTTPPolicy
     return SansIOHTTPPolicy()
+
+class AuthenticationPolicyToken(BearerTokenCredentialPolicy):
+
+    def on_request(self, request):
+        # the header value shall keep same with https://github.com/Azure/autorest.testserver/tree/main/src/test-routes/security.ts
+        self._update_headers(request.http_request.headers, "AADTOKEN")
+
+    @staticmethod
+    def _enforce_https(request):
+        pass
+
+class AsyncAuthenticationPolicyToken(AsyncBearerTokenCredentialPolicy):
+
+    async def on_request(self, request):
+        # the header value shall keep same with https://github.com/Azure/autorest.testserver/tree/main/src/test-routes/security.ts
+        request.http_request.headers["Authorization"] = "Bearer AADTOKEN"
