@@ -307,8 +307,6 @@ def regenerate_vanilla_version_tolerant(c, swagger_name=None, debug=False, **kwa
         version_tolerant=True,
         **kwargs
     )
-    if not swagger_name:
-        regenerate_python3_only(c, debug, version_tolerant=True)
 
 @task
 def regenerate_azure_legacy(c, swagger_name=None, debug=False, **kwargs):
@@ -564,11 +562,11 @@ def regenerate_with_python3_operation_files(c, debug=False):
     _regenerate(mapping, debug, swagger_group=_SwaggerGroup.VANILLA, override_flags=override_flags)
 
 @task
-def regenerate_python3_only(c, debug=False, version_tolerant=False):
+def regenerate_python3_only(c, debug=False):
     mapping = {'BodyComplexPythonThreeOnly': 'body-complex.json'}
     override_flags = {
         "python3-only": True,
         "namespace": "bodycomplexpython3only",
         "package-name": "bodycomplexpython3only",
     }
-    _regenerate(mapping, debug, swagger_group=_SwaggerGroup.VANILLA, override_flags=override_flags, version_tolerant=version_tolerant)
+    _regenerate(mapping, debug, swagger_group=_SwaggerGroup.VANILLA, override_flags=override_flags)
