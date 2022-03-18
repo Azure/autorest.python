@@ -23,14 +23,6 @@ class CredentialModel:
         self.policy_type: Optional[Type[CredentialSchemaPolicy]] = None
         self._credential_schema_policy: Optional[CredentialSchemaPolicy] = None
 
-    @staticmethod
-    def aad_type() -> str:
-        return "OAuth2"
-
-    @staticmethod
-    def key_type() -> str:
-        return "Key"
-
     @property
     def default_authentication_policy(self) -> Type[CredentialSchemaPolicy]:
         return ARMChallengeAuthenticationPolicy if self.azure_arm else BearerTokenCredentialPolicy

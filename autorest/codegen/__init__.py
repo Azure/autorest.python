@@ -21,6 +21,9 @@ from .models.credential_schema_policy import CredentialSchemaPolicy, get_credent
 from .models.credential_schema_policy import BearerTokenCredentialPolicy, AzureKeyCredentialPolicy
 from .models.credential_model import CredentialModel
 
+_AAD_TYPE = "OAuth2"
+_KEY_TYPE = "Key"
+
 def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -> None:
     # Create operations
     if code_model.options["show_operations"] and yaml_data.get("operationGroups"):
@@ -147,9 +150,9 @@ class CodeGenerator(Plugin):
         security_yaml = yaml_data.get("security", {})
         if security_yaml.get("authenticationRequired"):
             for scheme in security_yaml.get("schemes"):
-                if credential_model.aad_type() == scheme["type"]:
+                if _AAD_TYPE == scheme["type"]:
                     credential_model.credential_scopes.extend(scheme["scopes"])
-                elif credential_model.key_type() == scheme["type"]:
+                elif _KEY_TYPE == scheme["type"]:
                     # only accept the last one
                     credential_model.key_header_name = scheme["name"]
 
