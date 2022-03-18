@@ -256,6 +256,8 @@ def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
         regenerate_with_python3_operation_files(c, debug)
         regenerate_python3_only(c, debug)
         regenerate_package_mode(c, swagger_group=_SwaggerGroup.VANILLA)
+        regenerate_security_aad_vanilla_legacy(c, debug)
+        regenerate_security_key_vanilla_legacy(c, debug)
 
 @task
 def regenerate_dpg_low_level_client(c, swagger_name=None, debug=False, **kwargs):
@@ -327,6 +329,7 @@ def regenerate_azure_arm_legacy(c, swagger_name=None, debug=False, **kwargs):
     _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, **kwargs)
     if not swagger_name:
         regenerate_credential_default_policy(c, debug)
+        regenerate_security_azure_arm_legacy(c, debug)
 
 @task
 def regenerate_azure_arm_low_level_client(c, swagger_name=None, debug=False, **kwargs):
@@ -567,5 +570,38 @@ def regenerate_python3_only(c, debug=False):
         "python3-only": True,
         "namespace": "bodycomplexpython3only",
         "package-name": "bodycomplexpython3only",
+    }
+    _regenerate(mapping, debug, swagger_group=_SwaggerGroup.VANILLA, override_flags=override_flags)
+
+@task
+def regenerate_security(c, debug=False):
+    regenerate_security_azure_arm_legacy(c, debug=debug)
+    regenerate_security_aad_vanilla_legacy(c, debug=debug)
+    regenerate_security_key_vanilla_legacy(c, debug=debug)
+
+@task
+def regenerate_security_azure_arm_legacy(c, debug=False):
+    mapping = {
+        'SecurityAadSwagger': 'security-aad.json',
+        'SecurityKeySwagger': 'security-key.json',
+    }
+    _regenerate(mapping, debug, swagger_group=_SwaggerGroup.AZURE_ARM)
+
+@task
+def regenerate_security_aad_vanilla_legacy(c, debug=False):
+    mapping = {'SecurityAadSwaggerCredentialFlag': 'security-aad.json'}
+    override_flags = {
+        "add-credential": True,
+        "credential-default-policy-type": "AzureKeyCredentialPolicy",
+        "title": "SecurityAadSwaggerCredentialFlag",
+    }
+    _regenerate(mapping, debug, swagger_group=_SwaggerGroup.VANILLA, override_flags=override_flags)
+
+@task
+def regenerate_security_key_vanilla_legacy(c, debug=False):
+    mapping = {'SecurityKeySwaggerCredentialFlag': 'security-key.json'}
+    override_flags = {
+        "add-credential": True,
+        "title": "SecurityKeySwaggerCredentialFlag",
     }
     _regenerate(mapping, debug, swagger_group=_SwaggerGroup.VANILLA, override_flags=override_flags)

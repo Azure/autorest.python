@@ -23,6 +23,8 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+from securitykeyswaggercredentialflag import SecurityKeySwaggerCredentialFlag
+from securityaadswaggercredentialflag import SecurityAadSwaggerCredentialFlag
 from securitykeyswagger import AutorestSecurityKey
 from securityaadswagger import AutorestSecurityAad
 
@@ -42,3 +44,14 @@ def test_security_key_swagger():
     client = AutorestSecurityKey(credential=AzureKeyCredential('123456789'))
     assert isinstance(client._config.authentication_policy, AzureKeyCredentialPolicy)
     client.head()
+
+def test_security_aad_swagger_cred_flag(credential):
+    client = SecurityAadSwaggerCredentialFlag(credential=credential)
+    assert isinstance(client._config.authentication_policy, AzureKeyCredentialPolicy)
+
+def test_security_key_swagger_cred_flag(credential):
+    client = SecurityKeySwaggerCredentialFlag(
+        credential=credential,
+        credential_scopes=['https://fake.azure.com/.default']
+    )
+    assert isinstance(client._config.authentication_policy, BearerTokenCredentialPolicy)

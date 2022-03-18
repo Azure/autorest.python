@@ -24,6 +24,8 @@
 #
 # --------------------------------------------------------------------------
 import pytest
+from securitykeyswaggercredentialflag.aio import SecurityKeySwaggerCredentialFlag
+from securityaadswaggercredentialflag.aio import SecurityAadSwaggerCredentialFlag
 from securityaadswagger.aio import AutorestSecurityAad
 from securitykeyswagger.aio import AutorestSecurityKey
 from azure.core.credentials import AzureKeyCredential
@@ -44,3 +46,16 @@ async def test_security_key_swagger():
     client = AutorestSecurityKey(credential=AzureKeyCredential('123456789'))
     assert isinstance(client._config.authentication_policy, AzureKeyCredentialPolicy)
     await client.head()
+
+@pytest.mark.asyncio
+async def test_security_aad_swagger_cred_flag(credential):
+    client = SecurityAadSwaggerCredentialFlag(credential=credential)
+    assert isinstance(client._config.authentication_policy, AzureKeyCredentialPolicy)
+
+@pytest.mark.asyncio
+async def test_security_key_swagger_cred_flag(credential):
+    client = SecurityKeySwaggerCredentialFlag(
+        credential=credential,
+        credential_scopes=['https://fake.azure.com/.default']
+    )
+    assert isinstance(client._config.authentication_policy, AsyncBearerTokenCredentialPolicy)

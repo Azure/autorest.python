@@ -54,3 +54,5 @@ azure-core==1.20.1
 -e ./Expected/AcceptanceTests/PackageModeDataPlane
 -e ./Expected/AcceptanceTests/SecurityAadSwagger
 -e ./Expected/AcceptanceTests/SecurityKeySwagger
+-e ./Expected/AcceptanceTests/SecurityAadSwaggerCredentialFlag
+-e ./Expected/AcceptanceTests/SecurityKeySwaggerCredentialFlag
