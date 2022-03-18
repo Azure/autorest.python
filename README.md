@@ -23,6 +23,10 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 #### Python code gen
 
+```yaml $(post-process)
+allow-no-input: true
+```
+
 ```yaml !$(low-level-client) && !$(version-tolerant)
 modelerfour:
   group-parameters: true
