@@ -72,7 +72,7 @@ _DPG_SWAGGER_MAPPINGS = {
     'DPGServiceDrivenUpdateOne': 'dpg_update1.json',
     'DPGCustomizationInitial': 'dpg-customization.json',
     'DPGCustomizationCustomized': 'dpg-customization.json',
-    'DPGTestCustomizationPlugin': 'dpg-customization.json'
+    'DPGTestPostProcessPlugin': 'dpg-customization.json'
 }
 
 _FILE_SPECIFIC_OVERLOAD_FLAGS = {

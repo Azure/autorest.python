@@ -24,7 +24,6 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models
 from ..._operations._operations import (
     build_get_model_request,
     build_get_pages_request,
@@ -40,7 +39,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class DPGClientOperationsMixin(MixinABC):
     @distributed_trace_async
-    async def get_model(self, mode: str, **kwargs: Any) -> "_models.Product":
+    async def get_model(self, mode: str, **kwargs: Any) -> JSONType:
         """Get models that you will either return to end users as a raw body, or with a model added during
         grow up.
 
@@ -48,14 +47,22 @@ class DPGClientOperationsMixin(MixinABC):
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
          before returning to users.
         :type mode: str
-        :return: Product
-        :rtype: ~dpgtestcustomizationpluginversiontolerant.models.Product
+        :return: JSON object
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "received": "str"  # Required. Possible values include: "raw", "model".
+                }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_get_model_request(
             mode=mode,
@@ -71,15 +78,18 @@ class DPGClientOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Product", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace_async
-    async def post_model(self, mode: str, input: "_models.Input", **kwargs: Any) -> "_models.Product":
+    async def post_model(self, mode: str, input: JSONType, **kwargs: Any) -> JSONType:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -88,18 +98,31 @@ class DPGClientOperationsMixin(MixinABC):
          before returning to users.
         :type mode: str
         :param input: Please put {'hello': 'world!'}.
-        :type input: ~dpgtestcustomizationpluginversiontolerant.models.Input
-        :return: Product
-        :rtype: ~dpgtestcustomizationpluginversiontolerant.models.Product
+        :type input: JSONType
+        :return: JSON object
+        :rtype: JSONType
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "hello": "str"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "received": "str"  # Required. Possible values include: "raw", "model".
+                }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
-        _json = self._serialize.body(input, "Input")
+        _json = input
 
         request = build_post_model_request(
             mode=mode,
@@ -117,15 +140,18 @@ class DPGClientOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("Product", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace
-    def get_pages(self, mode: str, **kwargs: Any) -> AsyncIterable["_models.ProductResult"]:
+    def get_pages(self, mode: str, **kwargs: Any) -> AsyncIterable[JSONType]:
         """Get pages that you will either return to users in pages of raw bodies, or pages of models
         following growup.
 
@@ -133,12 +159,25 @@ class DPGClientOperationsMixin(MixinABC):
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
          before returning to users.
         :type mode: str
-        :return: An iterator like instance of ProductResult
-        :rtype:
-         ~azure.core.async_paging.AsyncItemPaged[~dpgtestcustomizationpluginversiontolerant.models.ProductResult]
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "nextLink": "str",  # Optional.
+                    "values": [
+                        {
+                            "received": "str"  # Required. Possible values include:
+                              "raw", "model".
+                        }
+                    ]
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -161,11 +200,11 @@ class DPGClientOperationsMixin(MixinABC):
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ProductResult", pipeline_response)
-            list_of_elem = deserialized.values
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = deserialized["values"]
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link or None, AsyncList(list_of_elem)
+            return deserialized.get("nextLink", None), AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -183,11 +222,11 @@ class DPGClientOperationsMixin(MixinABC):
 
         return AsyncItemPaged(get_next, extract_data)
 
-    async def _lro_initial(self, mode: str, **kwargs: Any) -> "_models.LROProduct":
+    async def _lro_initial(self, mode: str, **kwargs: Any) -> JSONType:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.LROProduct"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_lro_request_initial(
             mode=mode,
@@ -203,15 +242,18 @@ class DPGClientOperationsMixin(MixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("LROProduct", pipeline_response)
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, cast(JSONType, deserialized), {})
 
-        return deserialized
+        return cast(JSONType, deserialized)
 
     @distributed_trace_async
-    async def begin_lro(self, mode: str, **kwargs: Any) -> AsyncLROPoller["_models.LROProduct"]:
+    async def begin_lro(self, mode: str, **kwargs: Any) -> AsyncLROPoller[JSONType]:
         """Long running put request that will either return to end users a final payload of a raw body, or
         a final payload of a model after the SDK has grown up.
 
@@ -226,12 +268,20 @@ class DPGClientOperationsMixin(MixinABC):
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns LROProduct
-        :rtype:
-         ~azure.core.polling.AsyncLROPoller[~dpgtestcustomizationpluginversiontolerant.models.LROProduct]
+        :return: An instance of AsyncLROPoller that returns JSON object
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSONType]
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "provisioningState": "str",  # Required.
+                    "received": "str"  # Required. Possible values include: "raw", "model".
+                }
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.LROProduct"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -241,7 +291,10 @@ class DPGClientOperationsMixin(MixinABC):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = self._deserialize("LROProduct", pipeline_response)
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
             if cls:
                 return cls(pipeline_response, deserialized, {})
             return deserialized

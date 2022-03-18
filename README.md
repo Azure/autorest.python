@@ -37,7 +37,6 @@ pass-thru:
 version: ~3.6.2
 use-extension:
   "@autorest/modelerfour": ~4.19.1
-customize: true
 modelerfour:
   resolve-schema-name-collisons: true
   always-create-content-type-parameter: true
@@ -106,33 +105,13 @@ scope-multiapiscript/emitter:
 output-artifact: python-files
 ```
 
-# Post-process customized code for mypy pipeline
-
-```yaml $(customize)
-pipeline:
-  python/customize:
-    scope: customize
-    input: python/codegen
-    output-artifact: python-files
-
-  python/customize/emitter:
-    input: customize
-    scope: scope-customize/emitter
-
-scope-customize/emitter:
-  input-artifact: python-files
-  output-uri-expr: $key
-
-output-artifact: python-files
-```
-
 # Black script pipeline
 
 ```yaml $(black)
 pipeline:
   python/black:
     scope: black
-    input: python/customize
+    input: python/codegen
     output-artifact: python-files
 
   python/black/emitter:
@@ -140,6 +119,25 @@ pipeline:
     scope: scope-black/emitter
 
 scope-black/emitter:
+  input-artifact: python-files
+  output-uri-expr: $key
+
+output-artifact: python-files
+```
+
+# Post-process customized code for mypy pipeline
+
+```yaml $(post-process)
+pipeline:
+  python/postprocess:
+    scope: postprocess
+    output-artifact: python-files
+
+  python/postprocess/emitter:
+    input: postprocess
+    scope: scope-postprocess/emitter
+
+scope-postprocess/emitter:
   input-artifact: python-files
   output-uri-expr: $key
 

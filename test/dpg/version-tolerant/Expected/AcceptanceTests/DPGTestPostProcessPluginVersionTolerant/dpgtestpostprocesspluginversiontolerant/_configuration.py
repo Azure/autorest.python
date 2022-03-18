@@ -24,7 +24,7 @@ class DPGClientConfiguration(Configuration):  # pylint: disable=too-many-instanc
     def __init__(self, **kwargs: Any) -> None:
         super(DPGClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "dpgtestcustomizationplugin/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "dpgtestpostprocessplugin/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(

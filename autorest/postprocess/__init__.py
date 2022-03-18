@@ -11,7 +11,7 @@ import os
 
 from .. import Plugin
 
-class CustomizePlugin(Plugin):
+class PostProcessPlugin(Plugin):
 
     def __init__(self, autorestapi):
         super().__init__(autorestapi)

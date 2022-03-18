@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "dpgtestcustomizationplugin"
+PACKAGE_NAME = "dpgtestpostprocessplugin"
 version = "0.1.0"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="dpgtestcustomizationplugin",
+    description="dpgtestpostprocessplugin",
     author_email="",
     url="",
     keywords="azure, azure sdk",
