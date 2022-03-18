@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import copy
 import itertools
 from multiprocessing import Pool
 import os
@@ -295,11 +296,12 @@ def _prepare_mapping_and_regenerate(c, mapping, swagger_group, swagger_name=None
         generator = _Generator.VERSION_TOLERANT
     else:
         generator = _Generator.LEGACY
-    mapping.update(_GENERATOR_SPECIFIC_TESTS.get(generator, {}).get(swagger_group, {}))
+    mapping_copy = copy.copy(mapping)
+    mapping_copy.update(_GENERATOR_SPECIFIC_TESTS.get(generator, {}).get(swagger_group, {}))
     if swagger_name:
-        prepared_mapping = {k: v for k, v in mapping.items() if swagger_name.lower() in k.lower()}
+        prepared_mapping = {k: v for k, v in mapping_copy.items() if swagger_name.lower() in k.lower()}
     else:
-        prepared_mapping = mapping
+        prepared_mapping = mapping_copy
     _regenerate(prepared_mapping, debug, swagger_group=swagger_group, **kwargs)
 
 @task
