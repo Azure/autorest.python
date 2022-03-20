@@ -61,7 +61,7 @@ def build_test_different_calls_request(
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version = kwargs.pop('api_version', _params.pop('api-version', "3.0.0"))  # type: str
-    greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
+    greeting_in_english = kwargs.pop('greeting_in_english') if 'greeting_in_english' in kwargs else _headers.pop('greetingInEnglish')  # type: str
     greeting_in_chinese = kwargs.pop('greeting_in_chinese', _headers.pop('greetingInChinese', None))  # type: Optional[str]
     greeting_in_french = kwargs.pop('greeting_in_french', _headers.pop('greetingInFrench', None))  # type: Optional[str]
     accept = _headers.pop('Accept', "application/json")

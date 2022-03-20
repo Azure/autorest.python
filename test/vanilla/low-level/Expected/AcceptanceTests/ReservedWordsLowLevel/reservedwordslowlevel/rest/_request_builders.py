@@ -244,7 +244,7 @@ def build_operation_with_url_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    header_parameters = kwargs.pop('header_parameters')  # type: str
+    header_parameters = kwargs.pop('header_parameters') if 'header_parameters' in kwargs else _headers.pop('headerParameters')  # type: str
     query_parameters = kwargs.pop('query_parameters', _params.pop('queryParameters', None))  # type: Optional[List[str]]
     accept = _headers.pop('Accept', "application/json")
 

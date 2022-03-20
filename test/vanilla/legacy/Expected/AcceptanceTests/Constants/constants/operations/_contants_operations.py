@@ -131,7 +131,7 @@ def build_put_no_model_as_string_required_two_value_no_default_request(
     # type: (...) -> HttpRequest
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input')  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"]
+    input = kwargs.pop('input') if 'input' in kwargs else _params.pop('input')  # type: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum"]
     # Construct URL
     _url = kwargs.pop("template_url", "/constants/putNoModelAsStringRequiredTwoValueNoDefault")
 
@@ -303,7 +303,7 @@ def build_put_model_as_string_required_two_value_no_default_request(
     # type: (...) -> HttpRequest
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input')  # type: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"]
+    input = kwargs.pop('input') if 'input' in kwargs else _params.pop('input')  # type: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultOpEnum"]
     # Construct URL
     _url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredTwoValueNoDefault")
 
@@ -345,7 +345,7 @@ def build_put_model_as_string_required_one_value_no_default_request(
     # type: (...) -> HttpRequest
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input')  # type: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"]
+    input = kwargs.pop('input') if 'input' in kwargs else _params.pop('input')  # type: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultOpEnum"]
     # Construct URL
     _url = kwargs.pop("template_url", "/constants/putModelAsStringRequiredOneValueNoDefault")
 

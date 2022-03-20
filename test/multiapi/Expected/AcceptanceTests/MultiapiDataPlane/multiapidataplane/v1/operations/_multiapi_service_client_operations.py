@@ -41,7 +41,7 @@ def build_test_one_request(
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version = kwargs.pop('api_version', _params.pop('api-version', "1.0.0"))  # type: str
-    id = kwargs.pop('id')  # type: int
+    id = kwargs.pop('id') if 'id' in kwargs else _params.pop('id')  # type: int
     message = kwargs.pop('message', _params.pop('message', None))  # type: Optional[str]
     accept = _headers.pop('Accept', "application/json")
 
@@ -130,7 +130,7 @@ def build_test_different_calls_request(
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version = kwargs.pop('api_version', _params.pop('api-version', "1.0.0"))  # type: str
-    greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
+    greeting_in_english = kwargs.pop('greeting_in_english') if 'greeting_in_english' in kwargs else _headers.pop('greetingInEnglish')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

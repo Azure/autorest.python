@@ -39,7 +39,7 @@ def build_custom_named_request_id_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    foo_client_request_id = kwargs.pop('foo_client_request_id')  # type: str
+    foo_client_request_id = kwargs.pop('foo_client_request_id') if 'foo_client_request_id' in kwargs else _headers.pop('foo-client-request-id')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -77,7 +77,7 @@ def build_custom_named_request_id_param_grouping_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    foo_client_request_id = kwargs.pop('foo_client_request_id')  # type: str
+    foo_client_request_id = kwargs.pop('foo_client_request_id') if 'foo_client_request_id' in kwargs else _headers.pop('foo-client-request-id')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -114,7 +114,7 @@ def build_custom_named_request_id_head_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    foo_client_request_id = kwargs.pop('foo_client_request_id')  # type: str
+    foo_client_request_id = kwargs.pop('foo_client_request_id') if 'foo_client_request_id' in kwargs else _headers.pop('foo-client-request-id')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

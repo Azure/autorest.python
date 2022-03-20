@@ -203,7 +203,7 @@ def build_get_required_global_query_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    required_global_query = kwargs.pop('required_global_query')  # type: str
+    required_global_query = kwargs.pop('required_global_query') if 'required_global_query' in kwargs else _params.pop('required-global-query')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

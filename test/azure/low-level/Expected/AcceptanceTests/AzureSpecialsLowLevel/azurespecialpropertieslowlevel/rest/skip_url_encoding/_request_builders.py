@@ -167,7 +167,7 @@ def build_get_method_query_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    q1 = kwargs.pop('q1')  # type: str
+    q1 = kwargs.pop('q1') if 'q1' in kwargs else _params.pop('q1')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -250,7 +250,7 @@ def build_get_path_query_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    q1 = kwargs.pop('q1')  # type: str
+    q1 = kwargs.pop('q1') if 'q1' in kwargs else _params.pop('q1')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

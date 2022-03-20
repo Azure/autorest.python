@@ -44,7 +44,7 @@ def build_param_existing_key_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    user_agent_parameter = kwargs.pop('user_agent_parameter')  # type: str
+    user_agent_parameter = kwargs.pop('user_agent_parameter') if 'user_agent_parameter' in kwargs else _headers.pop('User-Agent')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -90,7 +90,7 @@ def build_param_protected_key_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type')  # type: str
+    content_type = kwargs.pop('content_type') if 'content_type' in kwargs else _headers.pop('Content-Type')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -136,8 +136,8 @@ def build_param_integer_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
-    value = kwargs.pop('value')  # type: int
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
+    value = kwargs.pop('value') if 'value' in kwargs else _headers.pop('value')  # type: int
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -162,7 +162,7 @@ def build_response_integer_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -186,8 +186,8 @@ def build_param_long_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
-    value = kwargs.pop('value')  # type: int
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
+    value = kwargs.pop('value') if 'value' in kwargs else _headers.pop('value')  # type: int
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -212,7 +212,7 @@ def build_response_long_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -236,8 +236,8 @@ def build_param_float_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
-    value = kwargs.pop('value')  # type: float
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
+    value = kwargs.pop('value') if 'value' in kwargs else _headers.pop('value')  # type: float
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -262,7 +262,7 @@ def build_response_float_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -286,8 +286,8 @@ def build_param_double_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
-    value = kwargs.pop('value')  # type: float
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
+    value = kwargs.pop('value') if 'value' in kwargs else _headers.pop('value')  # type: float
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -312,7 +312,7 @@ def build_response_double_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -336,8 +336,8 @@ def build_param_bool_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
-    value = kwargs.pop('value')  # type: bool
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
+    value = kwargs.pop('value') if 'value' in kwargs else _headers.pop('value')  # type: bool
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -362,7 +362,7 @@ def build_response_bool_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -386,7 +386,7 @@ def build_param_string_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
     value = kwargs.pop('value', _headers.pop('value', None))  # type: Optional[str]
     accept = _headers.pop('Accept', "application/json")
 
@@ -413,7 +413,7 @@ def build_response_string_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -437,8 +437,8 @@ def build_param_date_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
-    value = kwargs.pop('value')  # type: datetime.date
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
+    value = kwargs.pop('value') if 'value' in kwargs else _headers.pop('value')  # type: datetime.date
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -463,7 +463,7 @@ def build_response_date_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -487,8 +487,8 @@ def build_param_datetime_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
-    value = kwargs.pop('value')  # type: datetime.datetime
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
+    value = kwargs.pop('value') if 'value' in kwargs else _headers.pop('value')  # type: datetime.datetime
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -513,7 +513,7 @@ def build_response_datetime_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -537,7 +537,7 @@ def build_param_datetime_rfc1123_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
     value = kwargs.pop('value', _headers.pop('value', None))  # type: Optional[datetime.datetime]
     accept = _headers.pop('Accept', "application/json")
 
@@ -564,7 +564,7 @@ def build_response_datetime_rfc1123_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -588,8 +588,8 @@ def build_param_duration_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
-    value = kwargs.pop('value')  # type: datetime.timedelta
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
+    value = kwargs.pop('value') if 'value' in kwargs else _headers.pop('value')  # type: datetime.timedelta
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -614,7 +614,7 @@ def build_response_duration_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -638,8 +638,8 @@ def build_param_byte_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
-    value = kwargs.pop('value')  # type: bytearray
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
+    value = kwargs.pop('value') if 'value' in kwargs else _headers.pop('value')  # type: bytearray
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -664,7 +664,7 @@ def build_response_byte_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -688,7 +688,7 @@ def build_param_enum_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
     value = kwargs.pop('value', _headers.pop('value', None))  # type: Optional[Union[str, "_models.GreyscaleColors"]]
     accept = _headers.pop('Accept', "application/json")
 
@@ -715,7 +715,7 @@ def build_response_enum_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    scenario = kwargs.pop('scenario')  # type: str
+    scenario = kwargs.pop('scenario') if 'scenario' in kwargs else _headers.pop('scenario')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -883,10 +883,12 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type")  # type: str
+        content_type = (
+            kwargs.pop("content_type") if "content_type" in kwargs else _headers.pop("Content-Type")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_param_protected_key_request(
