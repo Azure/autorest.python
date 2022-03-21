@@ -33,14 +33,9 @@ from azure.core.pipeline.policies import AzureKeyCredentialPolicy
 from azure.core.pipeline.policies import AsyncBearerTokenCredentialPolicy
 
 @pytest.mark.asyncio
-async def test_security_aad_swagger(credential, authentication_policy):
-    from ..conftest import AsyncAuthenticationPolicyToken
-    client = AutorestSecurityAad(credential=credential)
+async def test_security_aad_swagger(credential_async):
+    client = AutorestSecurityAad(credential=credential_async, enforce_https=False)
     assert isinstance(client._config.authentication_policy, AsyncBearerTokenCredentialPolicy)
-    client = AutorestSecurityAad(
-        credential=credential,
-        authentication_policy=AsyncAuthenticationPolicyToken(credential=credential, scopes=client._config.credential_scopes)
-    )
     await client.head()
 
 @pytest.mark.asyncio

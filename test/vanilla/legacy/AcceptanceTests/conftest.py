@@ -36,6 +36,7 @@ from os.path import dirname, pardir, join, realpath
 
 from azure.core.pipeline.policies import SansIOHTTPPolicy, BearerTokenCredentialPolicy
 from azure.core.pipeline.policies import AsyncBearerTokenCredentialPolicy
+from azure.core.credentials import AccessToken
 
 import pytest
 
@@ -92,7 +93,8 @@ def credential():
     will bypass it.
     """
     class FakeCredential:
-        pass
+        def get_token(self, *scopes) -> AccessToken:
+            return AccessToken(token=''.join(scopes), expires_on=1800)
     return FakeCredential()
 
 @pytest.fixture()
@@ -100,18 +102,12 @@ def authentication_policy():
     from azure.core.pipeline.policies import SansIOHTTPPolicy
     return SansIOHTTPPolicy()
 
-class AuthenticationPolicyToken(BearerTokenCredentialPolicy):
-
-    def on_request(self, request):
-        # the header value shall keep same with https://github.com/Azure/autorest.testserver/tree/main/src/test-routes/security.ts
-        self._update_headers(request.http_request.headers, "AADTOKEN")
-
-    @staticmethod
-    def _enforce_https(request):
-        pass
-
-class AsyncAuthenticationPolicyToken(AsyncBearerTokenCredentialPolicy):
-
-    async def on_request(self, request):
-        # the header value shall keep same with https://github.com/Azure/autorest.testserver/tree/main/src/test-routes/security.ts
-        request.http_request.headers["Authorization"] = "Bearer AADTOKEN"
+@pytest.fixture()
+def credential_async():
+    """I actually don't need anything, since the authentication policy
+    will bypass it.
+    """
+    class FakeCredentialAsync:
+        async def get_token(self, *scopes) -> AccessToken:
+            return AccessToken(token=''.join(scopes), expires_on=1800)
+    return FakeCredentialAsync()

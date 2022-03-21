@@ -33,13 +33,8 @@ from azure.core.pipeline.policies import AzureKeyCredentialPolicy
 from azure.core.pipeline.policies import BearerTokenCredentialPolicy
 
 def test_security_aad_swagger(credential):
-    from .conftest import AuthenticationPolicyToken
-    client = AutorestSecurityAad(credential=credential)
+    client = AutorestSecurityAad(credential=credential, enforce_https=False)
     assert isinstance(client._config.authentication_policy, BearerTokenCredentialPolicy)
-    client = AutorestSecurityAad(
-        credential=credential,
-        authentication_policy=AuthenticationPolicyToken(credential=credential, scopes=client._config.credential_scopes)
-    )
     client.head()
 
 def test_security_key_swagger():
