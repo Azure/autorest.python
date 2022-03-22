@@ -40,7 +40,8 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         return self.name
 
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
-        return f'"_models.{self.name}"'
+        retval = f"_models.{self.name}"
+        return retval if is_operation_file else f'"{retval}"'
 
     @property
     def docstring_type(self) -> str:

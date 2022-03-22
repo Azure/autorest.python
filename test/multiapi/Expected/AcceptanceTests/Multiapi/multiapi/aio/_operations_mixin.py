@@ -19,9 +19,9 @@ class MultiapiServiceClientOperationsMixin(object):
 
     async def begin_test_lro(
         self,
-        product: Optional["_models.Product"] = None,
+        product: Optional[_models.Product] = None,
         **kwargs: Any
-    ) -> AsyncLROPoller["_models.Product"]:
+    ) -> AsyncLROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put. Default value is None.
@@ -55,9 +55,9 @@ class MultiapiServiceClientOperationsMixin(object):
     async def begin_test_lro_and_paging(
         self,
         client_request_id: Optional[str] = None,
-        test_lro_and_paging_options: Optional["_models.TestLroAndPagingOptions"] = None,
+        test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,
         **kwargs: Any
-    ) -> AsyncLROPoller[AsyncItemPaged["_models.PagingResult"]]:
+    ) -> AsyncLROPoller[AsyncItemPaged[_models.PagingResult]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:  Default value is None.
@@ -163,7 +163,7 @@ class MultiapiServiceClientOperationsMixin(object):
     def test_paging(
         self,
         **kwargs: Any
-    ) -> AsyncIterable["_models.PagingResult"]:
+    ) -> AsyncIterable[_models.PagingResult]:
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

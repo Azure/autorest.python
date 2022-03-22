@@ -79,17 +79,17 @@ class PollingPagingExampleOperationsMixin(object):
 
     def _basic_polling_initial(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        product=None,  # type: Optional[_models.Product]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["_models.Product"]
+        # type: (...) -> Optional[_models.Product]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
 
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[_models.Product]]
 
         if product is not None:
             _json = self._serialize.body(product, 'Product')
@@ -130,10 +130,10 @@ class PollingPagingExampleOperationsMixin(object):
     @distributed_trace
     def begin_basic_polling(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        product=None,  # type: Optional[_models.Product]
         **kwargs  # type: Any
     ):
-        # type: (...) -> CustomPoller["_models.Product"]
+        # type: (...) -> CustomPoller[_models.Product]
         """A simple polling operation.
 
         :param product: Product to put. Default value is None.
@@ -151,7 +151,7 @@ class PollingPagingExampleOperationsMixin(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.Product]
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop(
             'polling_interval',
@@ -200,7 +200,7 @@ class PollingPagingExampleOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.ProductResult"]
+        # type: (...) -> Iterable[_models.ProductResult]
         """A simple paging operation.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -208,7 +208,7 @@ class PollingPagingExampleOperationsMixin(object):
         :rtype: ~my.library.CustomPager[~azure.directives.sample.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResult]
 
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError

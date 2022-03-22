@@ -81,7 +81,7 @@ class ErrorWithSecretsOperationsMixin(object):
     def create_secret(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.SecretResponse"
+        # type: (...) -> _models.SecretResponse
         """Creates a secret.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -92,7 +92,7 @@ class ErrorWithSecretsOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.SecretResponse"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.SecretResponse]
 
         request = build_create_secret_request(
             template_url=self.create_secret.metadata["url"],

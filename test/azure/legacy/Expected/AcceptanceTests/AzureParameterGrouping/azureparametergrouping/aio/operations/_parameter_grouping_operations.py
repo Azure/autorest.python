@@ -56,7 +56,7 @@ class ParameterGroupingOperations:
     @distributed_trace_async
     async def post_required(  # pylint: disable=inconsistent-return-statements
         self,
-        parameter_grouping_post_required_parameters: "_models.ParameterGroupingPostRequiredParameters",
+        parameter_grouping_post_required_parameters: _models.ParameterGroupingPostRequiredParameters,
         **kwargs: Any
     ) -> None:
         """Post a bunch of required parameters grouped.
@@ -115,7 +115,7 @@ class ParameterGroupingOperations:
     @distributed_trace_async
     async def post_optional(  # pylint: disable=inconsistent-return-statements
         self,
-        parameter_grouping_post_optional_parameters: Optional["_models.ParameterGroupingPostOptionalParameters"] = None,
+        parameter_grouping_post_optional_parameters: Optional[_models.ParameterGroupingPostOptionalParameters] = None,
         **kwargs: Any
     ) -> None:
         """Post a bunch of optional parameters grouped.
@@ -166,7 +166,7 @@ class ParameterGroupingOperations:
     async def post_reserved_words(  # pylint: disable=inconsistent-return-statements
         self,
         parameter_grouping_post_reserved_words_parameters: Optional[
-            "_models.ParameterGroupingPostReservedWordsParameters"
+            _models.ParameterGroupingPostReservedWordsParameters
         ] = None,
         **kwargs: Any
     ) -> None:
@@ -218,9 +218,9 @@ class ParameterGroupingOperations:
     @distributed_trace_async
     async def post_multi_param_groups(  # pylint: disable=inconsistent-return-statements
         self,
-        first_parameter_group: Optional["_models.FirstParameterGroup"] = None,
+        first_parameter_group: Optional[_models.FirstParameterGroup] = None,
         parameter_grouping_post_multi_param_groups_second_param_group: Optional[
-            "_models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"
+            _models.ParameterGroupingPostMultiParamGroupsSecondParamGroup
         ] = None,
         **kwargs: Any
     ) -> None:
@@ -280,7 +280,7 @@ class ParameterGroupingOperations:
 
     @distributed_trace_async
     async def post_shared_parameter_group_object(  # pylint: disable=inconsistent-return-statements
-        self, first_parameter_group: Optional["_models.FirstParameterGroup"] = None, **kwargs: Any
+        self, first_parameter_group: Optional[_models.FirstParameterGroup] = None, **kwargs: Any
     ) -> None:
         """Post parameters with a shared parameter group object.
 

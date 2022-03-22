@@ -97,7 +97,7 @@ class GroupOperations(object):
         resource_group_name,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.SampleResourceGroup"
+        # type: (...) -> _models.SampleResourceGroup
         """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
         :param resource_group_name: Resource Group name 'testgroup101'.
@@ -111,7 +111,7 @@ class GroupOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2014-04-01-preview")  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.SampleResourceGroup"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.SampleResourceGroup]
 
         request = build_get_sample_resource_group_request(
             subscription_id=self._config.subscription_id,
