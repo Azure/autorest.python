@@ -93,7 +93,7 @@
   "getByteEmpty": 0,
   "getByteNonAscii": 0,
   "getByteInvalid": 0,
-  "ConstantClientProperties": 0,
+  "ConstantClientProperties": 3,
   "ErrorWithSecrets": 0,
   "RequestWithSecrets": 0,
   "HttpSuccess200Head": 0,
