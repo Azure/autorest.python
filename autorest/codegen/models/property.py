@@ -149,11 +149,10 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             return self.schema.get_declaration(self.client_default_value)
         return self.schema.default_value_declaration
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:
         if self.required:
-            return self.schema.type_annotation
-        return f"Optional[{self.schema.type_annotation}]"
+            return self.schema.type_annotation(is_operation_file=is_operation_file)
+        return f"Optional[{self.schema.type_annotation(is_operation_file=is_operation_file)}]"
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         kwargs["optional"] = not self.required

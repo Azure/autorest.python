@@ -90,8 +90,7 @@ class BaseSchema(BaseModel, ABC):
         """
         ...
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:
         """The python type used for type annotation
 
         Special case for enum, for instance: Union[str, "EnumName"]

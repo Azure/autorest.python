@@ -80,14 +80,13 @@ class EnumSchema(BaseSchema):
         """
         return self.enum_type.serialization_type
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:
         """The python type used for type annotation
 
         :return: The type annotation for this schema
         :rtype: str
         """
-        return f'Union[{self.enum_type.type_annotation}, "_models.{self.name}"]'
+        return f'Union[{self.enum_type.type_annotation(is_operation_file=is_operation_file)}, "_models.{self.name}"]'
 
     def get_declaration(self, value: Any) -> str:
         return self.enum_type.get_declaration(value)
@@ -100,7 +99,7 @@ class EnumSchema(BaseSchema):
     def docstring_type(self) -> str:
         """The python type used for RST syntax input and type annotation.
         """
-        return f"{self.enum_type.type_annotation} or ~{self.namespace}.models.{self.name}"
+        return f"{self.enum_type.type_annotation()} or ~{self.namespace}.models.{self.name}"
 
     @staticmethod
     def _get_enum_values(yaml_data: List[Dict[str, Any]]) -> List["EnumValue"]:
@@ -181,18 +180,17 @@ class HiddenModelEnumSchema(EnumSchema):
         file_import.merge(self.enum_type.imports())
         return file_import
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:
         """The python type used for type annotation
 
         :return: The type annotation for this schema
         :rtype: str
         """
-        return self.enum_type.type_annotation
+        return self.enum_type.type_annotation(is_operation_file=is_operation_file)
 
     @property
     def docstring_text(self) -> str:
-        return f"{self.enum_type.type_annotation}. {self.extra_description_information}"
+        return f"{self.enum_type.type_annotation()}. {self.extra_description_information}"
 
     @property
     def extra_description_information(self):
@@ -214,7 +212,7 @@ class HiddenModelEnumSchema(EnumSchema):
     def docstring_type(self) -> str:
         """The python type used for RST syntax input and type annotation.
         """
-        return self.enum_type.type_annotation
+        return self.enum_type.type_annotation()
 
 def get_enum_schema(code_model) -> Type[EnumSchema]:
     if code_model.options["models_mode"]:

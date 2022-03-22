@@ -38,8 +38,7 @@ class AzureKeyCredentialSchema(CredentialSchema):
     def serialization_type(self) -> str:
         return "~azure.core.credentials.AzureKeyCredential"
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:
         return "AzureKeyCredential"
 
     def imports(self) -> FileImport:
@@ -66,8 +65,7 @@ class TokenCredentialSchema(CredentialSchema):
             return self.async_type
         return self.sync_type
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:
         if self.async_mode:
             return '"AsyncTokenCredential"'
         return '"TokenCredential"'
