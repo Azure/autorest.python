@@ -90,6 +90,7 @@ class BaseSchema(BaseModel, ABC):
         """
         ...
 
+    @abstractmethod
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
         """The python type used for type annotation
 

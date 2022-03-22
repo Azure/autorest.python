@@ -223,7 +223,7 @@ class HiddenModelObjectSchema(ObjectSchema):
     def serialization_type(self) -> str:
         return "object"
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
         if self.xml_metadata:
             return "ET.Element"
         return "JSONType"
