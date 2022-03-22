@@ -93,7 +93,7 @@ class UsageOperations(object):
     def list(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.UsageListResult"
+        # type: (...) -> _models.UsageListResult
         """Gets the current usage count and the limit for the resources under the subscription.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -105,7 +105,7 @@ class UsageOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2015-05-01-preview")  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.UsageListResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.UsageListResult]
 
         request = build_list_request(
             subscription_id=self._config.subscription_id,

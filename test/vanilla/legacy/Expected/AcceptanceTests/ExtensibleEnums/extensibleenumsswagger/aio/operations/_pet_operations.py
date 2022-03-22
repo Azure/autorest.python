@@ -48,7 +48,7 @@ class PetOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> "_models.Pet":
+    async def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> _models.Pet:
         """get pet by id.
 
         :param pet_id: Pet id.
@@ -61,7 +61,7 @@ class PetOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Pet"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Pet]
 
         request = build_get_by_pet_id_request(
             pet_id=pet_id,
@@ -89,7 +89,7 @@ class PetOperations:
     get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
 
     @distributed_trace_async
-    async def add_pet(self, pet_param: Optional["_models.Pet"] = None, **kwargs: Any) -> "_models.Pet":
+    async def add_pet(self, pet_param: Optional[_models.Pet] = None, **kwargs: Any) -> _models.Pet:
         """add pet.
 
         :param pet_param: pet param. Default value is None.
@@ -103,7 +103,7 @@ class PetOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Pet"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Pet]
 
         if pet_param is not None:
             _json = self._serialize.body(pet_param, "Pet")

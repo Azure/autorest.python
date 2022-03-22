@@ -7,11 +7,10 @@
 # --------------------------------------------------------------------------
 
 from enum import Enum
-from six import with_metaclass
 from azure.core import CaseInsensitiveEnumMeta
 
 
-class Colors(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class Colors(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Referenced Color Enum Description."""
 
     RED_COLOR = "red color"

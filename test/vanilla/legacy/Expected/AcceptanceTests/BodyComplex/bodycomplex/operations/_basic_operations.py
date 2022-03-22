@@ -188,7 +188,7 @@ class BasicOperations(object):
     def get_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Basic"
+        # type: (...) -> _models.Basic
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -199,7 +199,7 @@ class BasicOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Basic]
 
         request = build_get_valid_request(
             template_url=self.get_valid.metadata["url"],
@@ -229,7 +229,7 @@ class BasicOperations(object):
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self,
-        complex_body,  # type: "_models.Basic"
+        complex_body,  # type: _models.Basic
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -279,7 +279,7 @@ class BasicOperations(object):
     def get_invalid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Basic"
+        # type: (...) -> _models.Basic
         """Get a basic complex type that is invalid for the local strong type.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -290,7 +290,7 @@ class BasicOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Basic]
 
         request = build_get_invalid_request(
             template_url=self.get_invalid.metadata["url"],
@@ -321,7 +321,7 @@ class BasicOperations(object):
     def get_empty(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Basic"
+        # type: (...) -> _models.Basic
         """Get a basic complex type that is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -332,7 +332,7 @@ class BasicOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Basic]
 
         request = build_get_empty_request(
             template_url=self.get_empty.metadata["url"],
@@ -363,7 +363,7 @@ class BasicOperations(object):
     def get_null(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Basic"
+        # type: (...) -> _models.Basic
         """Get a basic complex type whose properties are null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -374,7 +374,7 @@ class BasicOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Basic]
 
         request = build_get_null_request(
             template_url=self.get_null.metadata["url"],
@@ -405,7 +405,7 @@ class BasicOperations(object):
     def get_not_provided(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Basic"
+        # type: (...) -> _models.Basic
         """Get a basic complex type while the server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -416,7 +416,7 @@ class BasicOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Basic]
 
         request = build_get_not_provided_request(
             template_url=self.get_not_provided.metadata["url"],

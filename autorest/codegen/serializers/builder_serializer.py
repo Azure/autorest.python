@@ -644,7 +644,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             return "bool"
         response_body_annotations: OrderedSet[str] = {}
         for response in [r for r in builder.responses if r.has_body]:
-            response_body_annotations[response.type_annotation] = None
+            response_body_annotations[response.type_annotation(is_operation_file=True)] = None
         response_str = ", ".join(response_body_annotations.keys()) or "None"
         if len(response_body_annotations) > 1:
             response_str = f"Union[{response_str}]"
@@ -1346,7 +1346,8 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
         if builder.lro_response:
             if builder.lro_response.has_headers:
                 retval.append("    response_headers = {}")
-            retval.append("    response = pipeline_response.http_response")
+            if not self.code_model.options["models_mode"] or builder.lro_response.has_headers:
+                retval.append("    response = pipeline_response.http_response")
             retval.extend([
                 f"    {line}"
                 for line in self.response_headers_and_deserialization(builder.lro_response)

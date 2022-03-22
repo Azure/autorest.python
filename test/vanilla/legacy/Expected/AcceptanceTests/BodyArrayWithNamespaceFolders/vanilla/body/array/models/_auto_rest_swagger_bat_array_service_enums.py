@@ -7,25 +7,24 @@
 # --------------------------------------------------------------------------
 
 from enum import Enum
-from six import with_metaclass
 from azure.core import CaseInsensitiveEnumMeta
 
 
-class Enum0(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class Enum0(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     FOO1 = "foo1"
     FOO2 = "foo2"
     FOO3 = "foo3"
 
 
-class Enum1(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class Enum1(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     FOO1 = "foo1"
     FOO2 = "foo2"
     FOO3 = "foo3"
 
 
-class FooEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class FooEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     FOO1 = "foo1"
     FOO2 = "foo2"

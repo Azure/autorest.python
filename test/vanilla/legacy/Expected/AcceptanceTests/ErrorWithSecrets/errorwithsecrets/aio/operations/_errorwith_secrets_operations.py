@@ -33,7 +33,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class ErrorWithSecretsOperationsMixin:
     @distributed_trace_async
-    async def create_secret(self, **kwargs: Any) -> "_models.SecretResponse":
+    async def create_secret(self, **kwargs: Any) -> _models.SecretResponse:
         """Creates a secret.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -44,7 +44,7 @@ class ErrorWithSecretsOperationsMixin:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.SecretResponse"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.SecretResponse]
 
         request = build_create_secret_request(
             template_url=self.create_secret.metadata["url"],

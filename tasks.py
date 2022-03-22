@@ -74,8 +74,8 @@ _VANILLA_SWAGGER_MAPPINGS = {
 }
 
 _DPG_SWAGGER_MAPPINGS = {
-    'DPGServiceDrivenInitial': 'dpg_initial.json',
-    'DPGServiceDrivenUpdateOne': 'dpg_update1.json',
+    'DPGServiceDrivenInitial': 'dpg-initial.json',
+    'DPGServiceDrivenUpdateOne': 'dpg-update1.json',
     'DPGCustomizationInitial': 'dpg-customization.json',
     'DPGCustomizationCustomized': 'dpg-customization.json',
 }
@@ -94,13 +94,13 @@ _GENERATOR_SPECIFIC_TESTS = {
     },
     _Generator.VERSION_TOLERANT: {
         _SwaggerGroup.DPG: {
-            'DPGTestPostProcessPlugin': 'dpg-customization.json',
+            'DPGTestModels': 'dpg-customization.json',
         }
     },
 }
 
 _PACKAGE_NAME_TO_OVERRIDE_FLAGS: Dict[str, Dict[str, Union[bool, str]]] = {
-    'DPGTestPostProcessPlugin': {
+    'DPGTestModels': {
         "models-mode": "msrest",
     },
     'BodyComplexPythonThreeOnly': {
@@ -121,7 +121,7 @@ _PACKAGE_NAME_TO_OVERRIDE_FLAGS: Dict[str, Dict[str, Union[bool, str]]] = {
     },
     "BodyArrayWithPythonThreeOperationFiles": {
         "add-python3-operation-files": True
-    }
+    },
 }
 
 _AZURE_SWAGGER_MAPPINGS = {
@@ -336,7 +336,7 @@ def regenerate_vanilla_low_level_client(c, swagger_name=None, debug=False, **kwa
 
 @task
 def regenerate_dpg_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(
+    _prepare_mapping_and_regenerate(
         c,
         _DPG_SWAGGER_MAPPINGS,
         _SwaggerGroup.DPG,
@@ -345,6 +345,8 @@ def regenerate_dpg_version_tolerant(c, swagger_name=None, debug=False, **kwargs)
         version_tolerant=True,
         **kwargs
     )
+    if not swagger_name:
+        regenerate_version_tolerant_with_models(c, debug)
 
 @task
 def regenerate_vanilla_version_tolerant(c, swagger_name=None, debug=False, **kwargs):

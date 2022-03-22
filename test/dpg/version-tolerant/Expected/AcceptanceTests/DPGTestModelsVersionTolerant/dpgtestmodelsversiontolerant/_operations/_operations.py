@@ -110,7 +110,7 @@ def build_lro_request_initial(mode: str, **kwargs: Any) -> HttpRequest:
 
 class DPGClientOperationsMixin(MixinABC):
     @distributed_trace
-    def get_model(self, mode: str, **kwargs: Any) -> "_models.Product":
+    def get_model(self, mode: str, **kwargs: Any) -> _models.Product:
         """Get models that you will either return to end users as a raw body, or with a model added during
         grow up.
 
@@ -119,13 +119,13 @@ class DPGClientOperationsMixin(MixinABC):
          before returning to users.
         :type mode: str
         :return: Product
-        :rtype: ~dpgtestpostprocesspluginversiontolerant.models.Product
+        :rtype: ~dpgtestmodelsversiontolerant.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         request = build_get_model_request(
             mode=mode,
@@ -149,7 +149,7 @@ class DPGClientOperationsMixin(MixinABC):
         return deserialized
 
     @distributed_trace
-    def post_model(self, mode: str, input: "_models.Input", **kwargs: Any) -> "_models.Product":
+    def post_model(self, mode: str, input: _models.Input, **kwargs: Any) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -158,16 +158,16 @@ class DPGClientOperationsMixin(MixinABC):
          before returning to users.
         :type mode: str
         :param input: Please put {'hello': 'world!'}.
-        :type input: ~dpgtestpostprocesspluginversiontolerant.models.Input
+        :type input: ~dpgtestmodelsversiontolerant.models.Input
         :return: Product
-        :rtype: ~dpgtestpostprocesspluginversiontolerant.models.Product
+        :rtype: ~dpgtestmodelsversiontolerant.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         _json = self._serialize.body(input, "Input")
 
@@ -195,7 +195,7 @@ class DPGClientOperationsMixin(MixinABC):
         return deserialized
 
     @distributed_trace
-    def get_pages(self, mode: str, **kwargs: Any) -> Iterable["_models.ProductResult"]:
+    def get_pages(self, mode: str, **kwargs: Any) -> Iterable[_models.ProductResult]:
         """Get pages that you will either return to users in pages of raw bodies, or pages of models
         following growup.
 
@@ -204,11 +204,10 @@ class DPGClientOperationsMixin(MixinABC):
          before returning to users.
         :type mode: str
         :return: An iterator like instance of ProductResult
-        :rtype:
-         ~azure.core.paging.ItemPaged[~dpgtestpostprocesspluginversiontolerant.models.ProductResult]
+        :rtype: ~azure.core.paging.ItemPaged[~dpgtestmodelsversiontolerant.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -253,11 +252,11 @@ class DPGClientOperationsMixin(MixinABC):
 
         return ItemPaged(get_next, extract_data)
 
-    def _lro_initial(self, mode: str, **kwargs: Any) -> "_models.LROProduct":
+    def _lro_initial(self, mode: str, **kwargs: Any) -> _models.LROProduct:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.LROProduct"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.LROProduct]
 
         request = build_lro_request_initial(
             mode=mode,
@@ -281,7 +280,7 @@ class DPGClientOperationsMixin(MixinABC):
         return deserialized
 
     @distributed_trace
-    def begin_lro(self, mode: str, **kwargs: Any) -> LROPoller["_models.LROProduct"]:
+    def begin_lro(self, mode: str, **kwargs: Any) -> LROPoller[_models.LROProduct]:
         """Long running put request that will either return to end users a final payload of a raw body, or
         a final payload of a model after the SDK has grown up.
 
@@ -297,11 +296,10 @@ class DPGClientOperationsMixin(MixinABC):
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of LROPoller that returns LROProduct
-        :rtype:
-         ~azure.core.polling.LROPoller[~dpgtestpostprocesspluginversiontolerant.models.LROProduct]
+        :rtype: ~azure.core.polling.LROPoller[~dpgtestmodelsversiontolerant.models.LROProduct]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.LROProduct"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.LROProduct]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -310,7 +308,6 @@ class DPGClientOperationsMixin(MixinABC):
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("LROProduct", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})

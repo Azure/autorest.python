@@ -2016,7 +2016,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     get_base64_url.metadata = {"url": "/dictionary/prim/base64url/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_null(self, **kwargs: Any) -> Optional[Dict[str, "_models.Widget"]]:
+    async def get_complex_null(self, **kwargs: Any) -> Optional[Dict[str, _models.Widget]]:
         """Get dictionary of complex type null value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2027,7 +2027,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, "_models.Widget"]]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, _models.Widget]]]
 
         request = build_get_complex_null_request(
             template_url=self.get_complex_null.metadata["url"],
@@ -2055,7 +2055,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     get_complex_null.metadata = {"url": "/dictionary/complex/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_empty(self, **kwargs: Any) -> Dict[str, "_models.Widget"]:
+    async def get_complex_empty(self, **kwargs: Any) -> Dict[str, _models.Widget]:
         """Get empty dictionary of complex type {}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2066,7 +2066,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, "_models.Widget"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, _models.Widget]]
 
         request = build_get_complex_empty_request(
             template_url=self.get_complex_empty.metadata["url"],
@@ -2094,7 +2094,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     get_complex_empty.metadata = {"url": "/dictionary/complex/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_item_null(self, **kwargs: Any) -> Dict[str, "_models.Widget"]:
+    async def get_complex_item_null(self, **kwargs: Any) -> Dict[str, _models.Widget]:
         """Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null,
         "2": {"integer": 5, "string": "6"}}.
 
@@ -2106,7 +2106,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, "_models.Widget"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, _models.Widget]]
 
         request = build_get_complex_item_null_request(
             template_url=self.get_complex_item_null.metadata["url"],
@@ -2134,7 +2134,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     get_complex_item_null.metadata = {"url": "/dictionary/complex/itemnull"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_item_empty(self, **kwargs: Any) -> Dict[str, "_models.Widget"]:
+    async def get_complex_item_empty(self, **kwargs: Any) -> Dict[str, _models.Widget]:
         """Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {},
         "2": {"integer": 5, "string": "6"}}.
 
@@ -2146,7 +2146,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, "_models.Widget"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, _models.Widget]]
 
         request = build_get_complex_item_empty_request(
             template_url=self.get_complex_item_empty.metadata["url"],
@@ -2174,7 +2174,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     get_complex_item_empty.metadata = {"url": "/dictionary/complex/itemempty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_valid(self, **kwargs: Any) -> Dict[str, "_models.Widget"]:
+    async def get_complex_valid(self, **kwargs: Any) -> Dict[str, _models.Widget]:
         """Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3,
         "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
@@ -2186,7 +2186,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, "_models.Widget"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, _models.Widget]]
 
         request = build_get_complex_valid_request(
             template_url=self.get_complex_valid.metadata["url"],
@@ -2215,7 +2215,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_complex_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Dict[str, "_models.Widget"], **kwargs: Any
+        self, array_body: Dict[str, _models.Widget], **kwargs: Any
     ) -> None:
         """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
         {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.

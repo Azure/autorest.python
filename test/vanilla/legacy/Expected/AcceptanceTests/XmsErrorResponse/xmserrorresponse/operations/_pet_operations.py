@@ -141,7 +141,7 @@ class PetOperations(object):
         pet_id,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["_models.Pet"]
+        # type: (...) -> Optional[_models.Pet]
         """Gets pets by id.
 
         :param pet_id: pet id.
@@ -162,7 +162,7 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.Pet"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[_models.Pet]]
 
         request = build_get_pet_by_id_request(
             pet_id=pet_id,
@@ -197,7 +197,7 @@ class PetOperations(object):
         what_action,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.PetAction"
+        # type: (...) -> _models.PetAction
         """Asks pet to do something.
 
         :param what_action: what action the pet should do.
@@ -217,7 +217,7 @@ class PetOperations(object):
         }
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAction"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAction]
 
         request = build_do_something_request(
             what_action=what_action,

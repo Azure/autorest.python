@@ -39,8 +39,7 @@ class PrimitiveSchema(BaseSchema):
     def docstring_type(self) -> str:
         return self._to_python_type()
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
         return self.docstring_type
 
     @property
@@ -102,8 +101,7 @@ class IOSchema(PrimitiveSchema):
     def docstring_type(self) -> str:
         return self.type
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
         return self.docstring_type
 
     @property
@@ -128,8 +126,7 @@ class AnySchema(PrimitiveSchema):
     def docstring_type(self) -> str:
         return "any"
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
         return "Any"
 
     @property
@@ -147,8 +144,7 @@ class JSONSchema(AnySchema):
     def docstring_type(self) -> str:
         return "JSONType"
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
         return "JSONType"
 
 
@@ -206,8 +202,7 @@ class NumberSchema(PrimitiveSchema):
             return "int"
         return "float"
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
         python_type = self.docstring_type
         if python_type == "long":
             return "int"
@@ -269,10 +264,9 @@ class DatetimeSchema(PrimitiveSchema):
 
     @property
     def docstring_type(self) -> str:
-        return "~" + self.type_annotation
+        return "~" + self.type_annotation()
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
         return "datetime.datetime"
 
     @property
@@ -301,10 +295,9 @@ class TimeSchema(PrimitiveSchema):
 
     @property
     def docstring_type(self) -> str:
-        return "~" + self.type_annotation
+        return "~" + self.type_annotation()
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
         return "datetime.time"
 
     @property
@@ -334,10 +327,9 @@ class UnixTimeSchema(PrimitiveSchema):
 
     @property
     def docstring_type(self) -> str:
-        return "~" + self.type_annotation
+        return "~" + self.type_annotation()
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
         return "datetime.datetime"
 
     @property
@@ -367,10 +359,9 @@ class DateSchema(PrimitiveSchema):
 
     @property
     def docstring_type(self) -> str:
-        return "~" + self.type_annotation
+        return "~" + self.type_annotation()
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
         return "datetime.date"
 
     @property
@@ -400,10 +391,9 @@ class DurationSchema(PrimitiveSchema):
 
     @property
     def docstring_type(self) -> str:
-        return "~" + self.type_annotation
+        return "~" + self.type_annotation()
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
         return "datetime.timedelta"
 
     @property

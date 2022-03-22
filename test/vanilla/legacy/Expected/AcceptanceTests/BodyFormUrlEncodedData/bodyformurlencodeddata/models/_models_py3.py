@@ -10,8 +10,6 @@ from typing import Optional, Union
 
 import msrest.serialization
 
-from ._body_forms_data_url_encoded_enums import *
-
 
 class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(
     msrest.serialization.Model

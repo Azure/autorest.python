@@ -81,7 +81,7 @@ class ReadonlypropertyOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get_valid(self, **kwargs: Any) -> "_models.ReadonlyObj":
+    def get_valid(self, **kwargs: Any) -> _models.ReadonlyObj:
         """Get complex types that have readonly properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -92,7 +92,7 @@ class ReadonlypropertyOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ReadonlyObj"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ReadonlyObj]
 
         request = build_get_valid_request(
             template_url=self.get_valid.metadata["url"],

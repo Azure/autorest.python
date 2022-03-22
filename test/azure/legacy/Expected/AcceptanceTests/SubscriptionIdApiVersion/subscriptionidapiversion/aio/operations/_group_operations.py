@@ -49,7 +49,7 @@ class GroupOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_sample_resource_group(self, resource_group_name: str, **kwargs: Any) -> "_models.SampleResourceGroup":
+    async def get_sample_resource_group(self, resource_group_name: str, **kwargs: Any) -> _models.SampleResourceGroup:
         """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
         :param resource_group_name: Resource Group name 'testgroup101'.
@@ -63,7 +63,7 @@ class GroupOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "2014-04-01-preview")  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.SampleResourceGroup"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.SampleResourceGroup]
 
         request = build_get_sample_resource_group_request(
             subscription_id=self._config.subscription_id,
