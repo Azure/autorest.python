@@ -1346,7 +1346,8 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
         if builder.lro_response:
             if builder.lro_response.has_headers:
                 retval.append("    response_headers = {}")
-            retval.append("    response = pipeline_response.http_response")
+            if not self.code_model.options["models_mode"] or builder.lro_response.has_headers:
+                retval.append("    response = pipeline_response.http_response")
             retval.extend([
                 f"    {line}"
                 for line in self.response_headers_and_deserialization(builder.lro_response)

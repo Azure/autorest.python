@@ -1127,7 +1127,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -1349,7 +1348,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -1463,7 +1461,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -1565,7 +1562,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -1660,7 +1656,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("[Product]", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -1762,7 +1757,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -1865,7 +1859,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -1972,7 +1965,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -2075,7 +2067,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -2182,7 +2173,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -2285,7 +2275,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -3071,7 +3060,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Sku", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -3172,7 +3160,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Sku", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -3274,7 +3261,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("SubProduct", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -3376,7 +3362,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("SubProduct", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -3472,7 +3457,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -3568,7 +3552,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -3664,7 +3647,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -3833,7 +3815,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -3925,7 +3906,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -4518,7 +4498,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Sku", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -4815,7 +4794,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -4905,7 +4883,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -4995,7 +4972,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -5108,7 +5084,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -5221,7 +5196,6 @@ class LROsOperations(object):  # pylint: disable=too-many-public-methods
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
