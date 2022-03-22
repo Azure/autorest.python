@@ -570,6 +570,6 @@ def regenerate_python3_only(c, debug=False):
 
 @task
 def regenerate_version_tolerant_with_models(c, debug=False):
-    mapping = {'DPGTestPostProcessPlugin': 'dpg-customization.json'}
+    mapping = {'DPGTestModels': 'dpg-customization.json'}
     override_flags = {"models-mode": "msrest"}
     _regenerate(mapping, debug, swagger_group=_SwaggerGroup.DPG, override_flags=override_flags, version_tolerant=True)
