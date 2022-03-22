@@ -24,6 +24,11 @@
 #
 # --------------------------------------------------------------------------
 from bodycomplexlowlevel.rest import basic
+from constantslowlevel.rest.contants._request_builders_py3 import build_put_no_model_as_string_required_two_value_no_default_request
+from headerlowlevel.rest.header._request_builders_py3 import build_param_protected_key_request
+from urllib.parse import urlparse
+from urllib.parse import parse_qs
+import pytest
 try:
     from urlparse import urlparse  # type: ignore
 except ImportError:
@@ -77,3 +82,23 @@ def test_query_case_insensitive():
 def test_query_kwarg_and_header():
     request = basic.build_put_valid_request(params={"api-version": "shouldn't-be-me"}, api_version="2021-10-01")
     assert urlparse(request.url).query == "api-version=2021-10-01"
+
+def test_build_query_kwarg_with_no_default():
+    request = build_put_no_model_as_string_required_two_value_no_default_request(input="foo", 
+                params={"input": "bar"})
+    parsed_url = urlparse(request.url)
+    assert parse_qs(parsed_url.query)['input'][0] == "foo"
+
+    with pytest.raises(TypeError) as ex:
+        build_put_no_model_as_string_required_two_value_no_default_request(params={"input": "bar"})
+
+def test_build_header_kwarg_with_no_default():
+    request = build_param_protected_key_request(content_type="foo", 
+                headers={"Content-Type": "bar"})
+    assert request.headers["Content-Type"] == "foo"
+
+    request = build_param_protected_key_request(headers={"Content-Type": "bar"})
+    assert request.headers["Content-Type"] == "bar"
+
+    with pytest.raises(KeyError) as ex:
+        build_param_protected_key_request()
