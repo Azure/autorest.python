@@ -151,10 +151,12 @@ class CodeGenerator(Plugin):
         if security_yaml.get("authenticationRequired"):
             for scheme in security_yaml.get("schemes"):
                 if _AAD_TYPE == scheme["type"]:
-                    credential_model.credential_scopes.extend(scheme["scopes"])
+                    credential_model.credential_scopes.update(scheme["scopes"])
                 elif _KEY_TYPE == scheme["type"]:
                     # only accept the last one
                     credential_model.key_header_name = scheme["name"]
+            # modelerfour==4.23.0 also put 'user_impersonation' in output
+            credential_model.credential_scopes.discard('user_impersonation')
 
         if credential_model.credential_scopes:
             credential_model.policy_type = BearerTokenCredentialPolicy
@@ -272,7 +274,7 @@ class CodeGenerator(Plugin):
                     "name is tied with AzureKeyCredentialPolicy. Instead, with this policy it is recommend you "
                     "pass in --credential-scopes."
                 )
-            credential_model.credential_scopes = credential_scopes
+            credential_model.credential_scopes = set(credential_scopes)
         else:
             # currently the only other credential policy is AzureKeyCredentialPolicy
             if credential_scopes:

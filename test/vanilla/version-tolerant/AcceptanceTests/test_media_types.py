@@ -66,7 +66,7 @@ def test_binary_body_two_content_types(client):
 
 def test_binary_body_three_content_types(client):
     json_input = {"hello":"world"}
-    client.binary_body_with_three_content_types(json_input)
+    client.binary_body_with_three_content_types(json_input, content_type="application/json")
 
     content = b"hello, world"
     client.binary_body_with_three_content_types(content, content_type="application/octet-stream")

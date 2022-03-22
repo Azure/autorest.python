@@ -23,28 +23,28 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+from urllib import response
 import pytest
 from constantslowlevel import AutoRestSwaggerConstantService
 from constantslowlevel.rest import contants
 
-@pytest.fixture
-def client():
-    with AutoRestSwaggerConstantService() as client:
-        yield client
+def test_put_client_constants():
+    with AutoRestSwaggerConstantService(
+        header_constant=True,
+        query_constant=100,
+        path_constant="path"
+    ) as client:
+        assert client._config.header_constant == True
+        assert client._config.query_constant == 100
+        assert client._config.path_constant == "path"
 
-@pytest.fixture
-def send_request(client, base_send_request):
-    def _send_request(request):
-        return base_send_request(client, request)
-    return _send_request
-
-def test_put_client_constants(client, send_request):
-    assert client._config.header_constant == True
-    assert client._config.query_constant == 100
-    assert client._config.path_constant == "path"
-
-    request = contants.build_put_client_constants_request()
-    send_request(request)
+        request = contants.build_put_client_constants_request(
+            header_constant=True,
+            query_constant=100,
+            path_constant="path"
+        )
+        response = client.send_request(request)
+        response.raise_for_status()
 
 def test_put_client_constants_override():
     with AutoRestSwaggerConstantService(
