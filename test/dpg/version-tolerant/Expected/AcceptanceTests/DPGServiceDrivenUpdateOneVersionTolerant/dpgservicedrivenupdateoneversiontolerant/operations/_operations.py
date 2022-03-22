@@ -301,19 +301,27 @@ class ParamsOperations:
 
     @distributed_trace
     def post_parameters(
-        self, parameter: Union[IO, JSONType], *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, parameter: Union[JSONType, IO], *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> Any:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
          url: "http://example.org/myimage.jpeg" }.
-        :type parameter: IO or JSONType
+        :type parameter: JSONType or IO
         :keyword content_type: Media type of the body sent to the API. Possible values are:
-         "image/jpeg" or "application/json". Default value is "application/json".
+         "application/json" or "image/jpeg". Default value is "application/json".
         :paramtype content_type: str
         :return: any
         :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                parameter = {
+                    "url": "str"  # Required.
+                }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
@@ -326,11 +334,11 @@ class ParamsOperations:
         if content_type.split(";")[0] in ["application/json"]:
             _json = parameter
         elif content_type.split(";")[0] in ["image/jpeg"]:
-            _content = parameter
+            _json = parameter
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
-                "['image/jpeg', 'application/json']".format(content_type)
+                "['application/json', 'image/jpeg']".format(content_type)
             )
 
         request = build_params_post_parameters_request(

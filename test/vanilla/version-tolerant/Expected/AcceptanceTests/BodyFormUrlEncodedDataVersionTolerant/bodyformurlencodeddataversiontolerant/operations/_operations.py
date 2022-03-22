@@ -165,8 +165,7 @@ class FormdataurlencodedOperations:
                     "access_token": "str",  # AAD access token, mandatory when grant_type is
                       access_token_refresh_token or access_token.
                     "grant_type": "access_token",  # Default value is "access_token". Constant
-                      part of a formdata body. Default value is "access_token". Note that overriding
-                      this default value may result in unsupported behavior.
+                      part of a formdata body. "access_token"
                     "service": "str"  # Indicates the name of your Azure container registry.
                 }
         """

@@ -539,7 +539,8 @@ def build_put_simple_product_request(*, json: JSONType = None, content: Any = No
                   Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
                     "max_product_capacity": "Large",  # Default value is "Large".
-                      Capacity of product. For example, 4 people. Has constant value: "Large".
+                      Required. Capacity of product. For example, 4 people. Possible values
+                      include: "Large".
                     "max_product_display_name": "str",  # Required. Display name of
                       product.
                     "max_product_image": {
@@ -557,7 +558,8 @@ def build_put_simple_product_request(*, json: JSONType = None, content: Any = No
                   Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
                     "max_product_capacity": "Large",  # Default value is "Large".
-                      Capacity of product. For example, 4 people. Has constant value: "Large".
+                      Required. Capacity of product. For example, 4 people. Possible values
+                      include: "Large".
                     "max_product_display_name": "str",  # Required. Display name of
                       product.
                     "max_product_image": {
@@ -613,7 +615,8 @@ def build_post_flattened_simple_product_request(
                   Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
                     "max_product_capacity": "Large",  # Default value is "Large".
-                      Capacity of product. For example, 4 people. Has constant value: "Large".
+                      Required. Capacity of product. For example, 4 people. Possible values
+                      include: "Large".
                     "max_product_display_name": "str",  # Required. Display name of
                       product.
                     "max_product_image": {
@@ -631,7 +634,8 @@ def build_post_flattened_simple_product_request(
                   Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
                     "max_product_capacity": "Large",  # Default value is "Large".
-                      Capacity of product. For example, 4 people. Has constant value: "Large".
+                      Required. Capacity of product. For example, 4 people. Possible values
+                      include: "Large".
                     "max_product_display_name": "str",  # Required. Display name of
                       product.
                     "max_product_image": {
@@ -689,7 +693,8 @@ def build_put_simple_product_with_grouping_request(
                   Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
                     "max_product_capacity": "Large",  # Default value is "Large".
-                      Capacity of product. For example, 4 people. Has constant value: "Large".
+                      Required. Capacity of product. For example, 4 people. Possible values
+                      include: "Large".
                     "max_product_display_name": "str",  # Required. Display name of
                       product.
                     "max_product_image": {
@@ -707,7 +712,8 @@ def build_put_simple_product_with_grouping_request(
                   Francisco will have a different product_id than uberX in Los Angeles.
                 "details": {
                     "max_product_capacity": "Large",  # Default value is "Large".
-                      Capacity of product. For example, 4 people. Has constant value: "Large".
+                      Required. Capacity of product. For example, 4 people. Possible values
+                      include: "Large".
                     "max_product_display_name": "str",  # Required. Display name of
                       product.
                     "max_product_image": {

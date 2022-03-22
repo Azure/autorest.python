@@ -753,9 +753,9 @@ class ContantsOperations:
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_put_client_constants_request(
+            path_constant=self._config.path_constant,
             header_constant=self._config.header_constant,
             query_constant=self._config.query_constant,
-            path_constant=self._config.path_constant,
             template_url=self.put_client_constants.metadata["url"],
         )
         request = _convert_request(request)

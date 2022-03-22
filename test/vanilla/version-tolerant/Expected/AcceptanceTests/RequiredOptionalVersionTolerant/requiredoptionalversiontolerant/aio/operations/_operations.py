@@ -197,10 +197,7 @@ class ImplicitOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if body_parameter is not None:
-            _json = body_parameter
-        else:
-            _json = None
+        _json = body_parameter
 
         request = build_implicit_put_optional_body_request(
             content_type=content_type,
@@ -744,10 +741,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if body_parameter is not None:
-            _json = body_parameter
-        else:
-            _json = None
+        _json = body_parameter
 
         request = build_explicit_post_optional_string_parameter_request(
             content_type=content_type,

@@ -13,7 +13,7 @@ from azure.core.rest import HttpRequest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional, TypeVar, Union
+    from typing import Any, Dict, IO, Optional, TypeVar, Union
 
     T = TypeVar("T")
     JSONType = Any
@@ -181,7 +181,7 @@ def build_post_parameters_request(
      JSON entry is { url: "http://example.org/myimage.jpeg" }. Default value is None.
     :paramtype content: any
     :keyword content_type: Media type of the body sent to the API. Possible values are:
-     "image/jpeg" or "application/json". Default value is None.
+     "application/json" or "image/jpeg". Default value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -191,7 +191,9 @@ def build_post_parameters_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = b'bytes'  # Optional.
+            json = {
+                "url": "str"  # Required.
+            }
     """
 
     content_type = kwargs.pop('content_type', None)  # type: Optional[str]

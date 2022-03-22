@@ -11,6 +11,21 @@ from six import with_metaclass
 from azure.core import CaseInsensitiveEnumMeta
 
 
+class Enum10(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+
+    PATH = "path"
+
+
+class Enum8(with_metaclass(CaseInsensitiveEnumMeta, bool, Enum)):
+
+    TRUE = True
+
+
+class Enum9(with_metaclass(CaseInsensitiveEnumMeta, int, Enum)):
+
+    ONE_HUNDRED = 100
+
+
 class ModelAsStringNoRequiredOneValueDefaultEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
 
     VALUE1 = "value1"

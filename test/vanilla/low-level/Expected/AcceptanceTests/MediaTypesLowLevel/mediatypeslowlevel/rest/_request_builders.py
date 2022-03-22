@@ -277,7 +277,7 @@ def build_put_text_and_json_body_request(
      a byte iterator, or stream input). The payload body. Default value is None.
     :paramtype content: any
     :keyword content_type: Media type of the body sent to the API. Possible values are:
-     "text/plain" or "application/json". Default value is None.
+     "application/json" or "text/plain". Default value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.

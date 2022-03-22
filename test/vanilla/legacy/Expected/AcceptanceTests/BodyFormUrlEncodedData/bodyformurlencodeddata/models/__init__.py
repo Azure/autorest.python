@@ -20,6 +20,7 @@ except (SyntaxError, ImportError):
 from ._body_forms_data_url_encoded_enums import (
     PetFood,
     PetType,
+    PostContentSchemaGrantType,
 )
 from ._patch import __all__ as _patch_all
 from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
@@ -30,6 +31,7 @@ __all__ = [
     "PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema",
     "PetFood",
     "PetType",
+    "PostContentSchemaGrantType",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

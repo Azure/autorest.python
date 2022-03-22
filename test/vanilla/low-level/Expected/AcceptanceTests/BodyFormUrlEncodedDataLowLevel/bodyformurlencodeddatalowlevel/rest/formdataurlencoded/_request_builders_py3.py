@@ -88,11 +88,10 @@ def build_partial_constant_body_request(
     into your code flow.
 
     :keyword data: Pass in dictionary that contains form data to include in the body of the
-     request. Indicates the name of your Azure container registry. Default value is None.
+     request. Constant part of a formdata body. Default value is None.
     :paramtype data: dict[str, any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Indicates the name of your Azure container registry. Default
-     value is None.
+     a byte iterator, or stream input). Constant part of a formdata body. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -107,8 +106,7 @@ def build_partial_constant_body_request(
                 "access_token": "str",  # AAD access token, mandatory when grant_type is
                   access_token_refresh_token or access_token.
                 "grant_type": "access_token",  # Default value is "access_token". Constant
-                  part of a formdata body. Default value is "access_token". Note that overriding
-                  this default value may result in unsupported behavior.
+                  part of a formdata body. "access_token"
                 "service": "str"  # Indicates the name of your Azure container registry.
             }
     """

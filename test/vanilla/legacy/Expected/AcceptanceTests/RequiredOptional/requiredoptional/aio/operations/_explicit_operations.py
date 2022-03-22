@@ -447,11 +447,11 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(body_parameter, "str")
+        _content = body_parameter
 
         request = build_post_required_string_parameter_request(
             content_type=content_type,
-            json=_json,
+            content=_content,
             template_url=self.post_required_string_parameter.metadata["url"],
         )
         request = _convert_request(request)
@@ -491,14 +491,11 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if body_parameter is not None:
-            _json = self._serialize.body(body_parameter, "str")
-        else:
-            _json = None
+        _content = body_parameter
 
         request = build_post_optional_string_parameter_request(
             content_type=content_type,
-            json=_json,
+            content=_content,
             template_url=self.post_optional_string_parameter.metadata["url"],
         )
         request = _convert_request(request)

@@ -74,12 +74,11 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
 ):
     """PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
-
     All required parameters must be populated in order to send to Azure.
 
-    :ivar grant_type: Constant part of a formdata body. Has constant value: "access_token".
-    :vartype grant_type: str
+    :ivar grant_type: Required. Constant part of a formdata body. Possible values include:
+     "access_token".
+    :vartype grant_type: str or ~bodyformurlencodeddata.models.PostContentSchemaGrantType
     :ivar service: Required. Indicates the name of your Azure container registry.
     :vartype service: str
     :ivar aad_access_token: Required. AAD access token, mandatory when grant_type is
@@ -88,7 +87,7 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
     """
 
     _validation = {
-        "grant_type": {"required": True, "constant": True},
+        "grant_type": {"required": True},
         "service": {"required": True},
         "aad_access_token": {"required": True},
     }
@@ -99,10 +98,11 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
         "aad_access_token": {"key": "access_token", "type": "str"},
     }
 
-    grant_type = "access_token"
-
     def __init__(self, **kwargs):
         """
+        :keyword grant_type: Required. Constant part of a formdata body. Possible values include:
+         "access_token".
+        :paramtype grant_type: str or ~bodyformurlencodeddata.models.PostContentSchemaGrantType
         :keyword service: Required. Indicates the name of your Azure container registry.
         :paramtype service: str
         :keyword aad_access_token: Required. AAD access token, mandatory when grant_type is
@@ -113,5 +113,6 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
             PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema,
             self,
         ).__init__(**kwargs)
+        self.grant_type = kwargs["grant_type"]
         self.service = kwargs["service"]
         self.aad_access_token = kwargs["aad_access_token"]

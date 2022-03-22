@@ -42,6 +42,9 @@ except (SyntaxError, ImportError):
     from ._models import NoModelAsStringRequiredTwoValueNoDefault  # type: ignore
 
 from ._auto_rest_swagger_constant_service_enums import (
+    Enum10,
+    Enum8,
+    Enum9,
     ModelAsStringNoRequiredOneValueDefaultEnum,
     ModelAsStringNoRequiredOneValueDefaultOpEnum,
     ModelAsStringNoRequiredOneValueNoDefaultEnum,
@@ -88,6 +91,9 @@ __all__ = [
     "NoModelAsStringRequiredOneValueNoDefault",
     "NoModelAsStringRequiredTwoValueDefault",
     "NoModelAsStringRequiredTwoValueNoDefault",
+    "Enum10",
+    "Enum8",
+    "Enum9",
     "ModelAsStringNoRequiredOneValueDefaultEnum",
     "ModelAsStringNoRequiredOneValueDefaultOpEnum",
     "ModelAsStringNoRequiredOneValueNoDefaultEnum",

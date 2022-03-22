@@ -281,17 +281,16 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
     @distributed_trace_async
     async def binary_body_with_three_content_types(
-        self, message: Union[IO, str], *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, message: Union[IO, JSONType], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> str:
         """Binary body with three content types. Pass in string 'hello, world' with content type
         'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
         'application/octet-stream'.
 
         :param message: The payload body.
-        :type message: IO or str
+        :type message: IO or JSONType
         :keyword content_type: Media type of the body sent to the API. Possible values are:
-         "application/json", "application/octet-stream", and "text/plain". Default value is
-         "application/json".
+         "application/json", "application/octet-stream", and "text/plain". Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -342,15 +341,13 @@ class MediaTypesClientOperationsMixin(MixinABC):
         return cast(str, deserialized)
 
     @distributed_trace_async
-    async def put_text_and_json_body(
-        self, message: Union[str, str], *, content_type: Optional[str] = "application/json", **kwargs: Any
-    ) -> str:
+    async def put_text_and_json_body(self, message: str, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
         """Body that's either text/plain or application/json.
 
         :param message: The payload body.
-        :type message: str or str
+        :type message: str
         :keyword content_type: Media type of the body sent to the API. Possible values are:
-         "text/plain" or "application/json". Default value is "application/json".
+         "application/json" or "text/plain". Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -371,7 +368,7 @@ class MediaTypesClientOperationsMixin(MixinABC):
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
-                "['text/plain', 'application/json']".format(content_type)
+                "['application/json', 'text/plain']".format(content_type)
             )
 
         request = build_put_text_and_json_body_request(

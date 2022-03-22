@@ -195,14 +195,11 @@ class ImplicitOperations:
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if body_parameter is not None:
-            _json = self._serialize.body(body_parameter, "str")
-        else:
-            _json = None
+        _content = body_parameter
 
         request = build_put_optional_body_request(
             content_type=content_type,
-            json=_json,
+            content=_content,
             template_url=self.put_optional_body.metadata["url"],
         )
         request = _convert_request(request)
