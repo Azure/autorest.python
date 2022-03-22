@@ -345,8 +345,6 @@ def regenerate_dpg_version_tolerant(c, swagger_name=None, debug=False, **kwargs)
         version_tolerant=True,
         **kwargs
     )
-    if not swagger_name:
-        regenerate_version_tolerant_with_models(c, debug)
 
 @task
 def regenerate_vanilla_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
