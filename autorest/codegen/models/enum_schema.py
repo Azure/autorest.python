@@ -173,12 +173,6 @@ class EnumSchema(BaseSchema):
         file_import.merge(self.enum_type.imports())
         return file_import
 
-    def model_file_imports(self) -> FileImport:
-        imports = self.imports()
-        # we import every enum since we can get extremely long imports
-        # if we import my name
-        imports.add_submodule_import("." + self.enum_file_name, "*", ImportType.LOCAL)
-        return imports
 
 class HiddenModelEnumSchema(EnumSchema):
 

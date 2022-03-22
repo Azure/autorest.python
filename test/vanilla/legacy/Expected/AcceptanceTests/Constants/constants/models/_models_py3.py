@@ -10,8 +10,6 @@ from typing import Optional, Union
 
 import msrest.serialization
 
-from ._auto_rest_swagger_constant_service_enums import *
-
 
 class ModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
     """ModelAsStringNoRequiredOneValueDefault.
