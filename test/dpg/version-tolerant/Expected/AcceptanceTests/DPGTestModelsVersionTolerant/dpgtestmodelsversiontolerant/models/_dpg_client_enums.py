@@ -7,11 +7,10 @@
 # --------------------------------------------------------------------------
 
 from enum import Enum
-from six import with_metaclass
 from azure.core import CaseInsensitiveEnumMeta
 
 
-class ProductReceived(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class ProductReceived(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     RAW = "raw"
     MODEL = "model"

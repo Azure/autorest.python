@@ -7,11 +7,10 @@
 # --------------------------------------------------------------------------
 
 from enum import Enum
-from six import with_metaclass
 from azure.core import CaseInsensitiveEnumMeta
 
 
-class OperationResultStatus(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class OperationResultStatus(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """The status of the request"""
 
     SUCCEEDED = "Succeeded"
@@ -27,7 +26,7 @@ class OperationResultStatus(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     OK = "OK"
 
 
-class ProductPropertiesProvisioningStateValues(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class ProductPropertiesProvisioningStateValues(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     SUCCEEDED = "Succeeded"
     FAILED = "Failed"
@@ -42,7 +41,7 @@ class ProductPropertiesProvisioningStateValues(with_metaclass(CaseInsensitiveEnu
     OK = "OK"
 
 
-class SubProductPropertiesProvisioningStateValues(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class SubProductPropertiesProvisioningStateValues(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     SUCCEEDED = "Succeeded"
     FAILED = "Failed"
