@@ -68,8 +68,8 @@ _VANILLA_SWAGGER_MAPPINGS = {
 }
 
 _DPG_SWAGGER_MAPPINGS = {
-    'DPGServiceDrivenInitial': 'dpg_initial.json',
-    'DPGServiceDrivenUpdateOne': 'dpg_update1.json',
+    'DPGServiceDrivenInitial': 'dpg-initial.json',
+    'DPGServiceDrivenUpdateOne': 'dpg-update1.json',
     'DPGCustomizationInitial': 'dpg-customization.json',
     'DPGCustomizationCustomized': 'dpg-customization.json'
 }
