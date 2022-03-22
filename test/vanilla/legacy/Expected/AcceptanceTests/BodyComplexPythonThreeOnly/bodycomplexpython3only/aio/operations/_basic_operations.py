@@ -55,7 +55,7 @@ class BasicOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> "_models.Basic":
+    async def get_valid(self, **kwargs: Any) -> _models.Basic:
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -66,7 +66,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Basic]
 
         request = build_get_valid_request(
             template_url=self.get_valid.metadata["url"],
@@ -95,7 +95,7 @@ class BasicOperations:
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: "_models.Basic", **kwargs: Any
+        self, complex_body: _models.Basic, **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
@@ -140,7 +140,7 @@ class BasicOperations:
     put_valid.metadata = {"url": "/complex/basic/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs: Any) -> "_models.Basic":
+    async def get_invalid(self, **kwargs: Any) -> _models.Basic:
         """Get a basic complex type that is invalid for the local strong type.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -151,7 +151,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Basic]
 
         request = build_get_invalid_request(
             template_url=self.get_invalid.metadata["url"],
@@ -179,7 +179,7 @@ class BasicOperations:
     get_invalid.metadata = {"url": "/complex/basic/invalid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs: Any) -> "_models.Basic":
+    async def get_empty(self, **kwargs: Any) -> _models.Basic:
         """Get a basic complex type that is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -190,7 +190,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Basic]
 
         request = build_get_empty_request(
             template_url=self.get_empty.metadata["url"],
@@ -218,7 +218,7 @@ class BasicOperations:
     get_empty.metadata = {"url": "/complex/basic/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null(self, **kwargs: Any) -> "_models.Basic":
+    async def get_null(self, **kwargs: Any) -> _models.Basic:
         """Get a basic complex type whose properties are null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -229,7 +229,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Basic]
 
         request = build_get_null_request(
             template_url=self.get_null.metadata["url"],
@@ -257,7 +257,7 @@ class BasicOperations:
     get_null.metadata = {"url": "/complex/basic/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_not_provided(self, **kwargs: Any) -> "_models.Basic":
+    async def get_not_provided(self, **kwargs: Any) -> _models.Basic:
         """Get a basic complex type while the server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -268,7 +268,7 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Basic"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Basic]
 
         request = build_get_not_provided_request(
             template_url=self.get_not_provided.metadata["url"],

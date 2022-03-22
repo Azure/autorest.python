@@ -173,7 +173,7 @@ class HeaderOperations(object):
     @distributed_trace
     def custom_named_request_id_param_grouping(  # pylint: disable=inconsistent-return-statements
         self,
-        header_custom_named_request_id_param_grouping_parameters,  # type: "_models.HeaderCustomNamedRequestIdParamGroupingParameters"
+        header_custom_named_request_id_param_grouping_parameters,  # type: _models.HeaderCustomNamedRequestIdParamGroupingParameters
         **kwargs  # type: Any
     ):
         # type: (...) -> None

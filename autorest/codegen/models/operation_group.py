@@ -54,6 +54,7 @@ class OperationGroup(BaseModel):
         file_import = FileImport()
         for operation in self.operations:
             file_import.merge(operation.imports_for_multiapi(async_mode))
+        file_import.add_submodule_import(".." if async_mode else ".", "models", ImportType.LOCAL, alias="_models")
         return file_import
 
     def imports(self, async_mode: bool) -> FileImport:

@@ -109,10 +109,10 @@ class OperationGroupOneOperations(object):
     @distributed_trace
     def test_two(
         self,
-        parameter_one=None,  # type: Optional["_models.ModelTwo"]
+        parameter_one=None,  # type: Optional[_models.ModelTwo]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.ModelTwo"
+        # type: (...) -> _models.ModelTwo
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
 
         :param parameter_one: A ModelTwo parameter. Default value is None.
@@ -129,7 +129,7 @@ class OperationGroupOneOperations(object):
 
         api_version = kwargs.pop('api_version', "2.0.0")  # type: str
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ModelTwo"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ModelTwo]
 
         if parameter_one is not None:
             _json = self._serialize.body(parameter_one, 'ModelTwo')

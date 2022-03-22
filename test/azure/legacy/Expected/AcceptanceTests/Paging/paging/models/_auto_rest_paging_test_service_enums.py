@@ -7,11 +7,10 @@
 # --------------------------------------------------------------------------
 
 from enum import Enum
-from six import with_metaclass
 from azure.core import CaseInsensitiveEnumMeta
 
 
-class OperationResultStatus(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class OperationResultStatus(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """The status of the request"""
 
     SUCCEEDED = "Succeeded"

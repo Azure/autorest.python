@@ -281,7 +281,7 @@ def regenerate_vanilla_low_level_client(c, swagger_name=None, debug=False, **kwa
 
 @task
 def regenerate_dpg_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(
+    _prepare_mapping_and_regenerate(
         c,
         _DPG_SWAGGER_MAPPINGS,
         _SwaggerGroup.DPG,
@@ -290,6 +290,8 @@ def regenerate_dpg_version_tolerant(c, swagger_name=None, debug=False, **kwargs)
         version_tolerant=True,
         **kwargs
     )
+    if not swagger_name:
+        regenerate_version_tolerant_with_models(c, debug)
 
 @task
 def regenerate_vanilla_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
@@ -565,3 +567,9 @@ def regenerate_python3_only(c, debug=False):
         "package-name": "bodycomplexpython3only",
     }
     _regenerate(mapping, debug, swagger_group=_SwaggerGroup.VANILLA, override_flags=override_flags)
+
+@task
+def regenerate_version_tolerant_with_models(c, debug=False):
+    mapping = {'DPGTestModels': 'dpg-customization.json'}
+    override_flags = {"models-mode": "msrest"}
+    _regenerate(mapping, debug, swagger_group=_SwaggerGroup.DPG, override_flags=override_flags, version_tolerant=True)

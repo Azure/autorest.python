@@ -60,9 +60,8 @@ class ConstantSchema(BaseSchema):
         """
         return self.schema.docstring_type
 
-    @property
-    def type_annotation(self) -> str:
-        return self.schema.type_annotation
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:
+        return self.schema.type_annotation(is_operation_file=is_operation_file)
 
     @classmethod
     def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "ConstantSchema":

@@ -83,16 +83,16 @@ class MultiapiServiceClientOperationsMixin:
 
     async def _test_lro_initial(
         self,
-        product: Optional["_models.Product"] = None,
+        product: Optional[_models.Product] = None,
         **kwargs: Any
-    ) -> Optional["_models.Product"]:
+    ) -> Optional[_models.Product]:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
 
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[_models.Product]]
 
         if product is not None:
             _json = self._serialize.body(product, 'Product')
@@ -133,9 +133,9 @@ class MultiapiServiceClientOperationsMixin:
     @distributed_trace_async
     async def begin_test_lro(
         self,
-        product: Optional["_models.Product"] = None,
+        product: Optional[_models.Product] = None,
         **kwargs: Any
-    ) -> AsyncLROPoller["_models.Product"]:
+    ) -> AsyncLROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put. Default value is None.
@@ -154,7 +154,7 @@ class MultiapiServiceClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.Product]
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop(
             'polling_interval',
@@ -171,7 +171,6 @@ class MultiapiServiceClientOperationsMixin:
         kwargs.pop('error_map', None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize('Product', pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -201,15 +200,15 @@ class MultiapiServiceClientOperationsMixin:
     async def _test_lro_and_paging_initial(
         self,
         client_request_id: Optional[str] = None,
-        test_lro_and_paging_options: Optional["_models.TestLroAndPagingOptions"] = None,
+        test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,
         **kwargs: Any
-    ) -> "_models.PagingResult":
+    ) -> _models.PagingResult:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
 
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.PagingResult]
 
         _maxresults = None
         _timeout = None
@@ -251,9 +250,9 @@ class MultiapiServiceClientOperationsMixin:
     async def begin_test_lro_and_paging(
         self,
         client_request_id: Optional[str] = None,
-        test_lro_and_paging_options: Optional["_models.TestLroAndPagingOptions"] = None,
+        test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,
         **kwargs: Any
-    ) -> AsyncLROPoller[AsyncItemPaged["_models.PagingResult"]]:
+    ) -> AsyncLROPoller[AsyncItemPaged[_models.PagingResult]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:  Default value is None.
@@ -276,7 +275,7 @@ class MultiapiServiceClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.PagingResult]
 
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError

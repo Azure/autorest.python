@@ -29,7 +29,7 @@ class MultiapiServiceClientOperationsMixin:
         id: int,
         message: Optional[str] = None,
         **kwargs: Any
-    ) -> "_models.ModelTwo":
+    ) -> _models.ModelTwo:
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
 
         :param id: An int parameter.
@@ -47,7 +47,7 @@ class MultiapiServiceClientOperationsMixin:
         error_map.update(kwargs.pop('error_map', {}))
 
         api_version = kwargs.pop('api_version', "2.0.0")  # type: str
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ModelTwo"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ModelTwo]
 
         
         request = build_test_one_request(

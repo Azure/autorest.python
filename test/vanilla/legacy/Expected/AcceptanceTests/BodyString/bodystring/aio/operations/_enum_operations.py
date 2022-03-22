@@ -221,7 +221,7 @@ class EnumOperations:
     put_referenced.metadata = {"url": "/string/enum/Referenced"}  # type: ignore
 
     @distributed_trace_async
-    async def get_referenced_constant(self, **kwargs: Any) -> "_models.RefColorConstant":
+    async def get_referenced_constant(self, **kwargs: Any) -> _models.RefColorConstant:
         """Get value 'green-color' from the constant.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -232,7 +232,7 @@ class EnumOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.RefColorConstant"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.RefColorConstant]
 
         request = build_get_referenced_constant_request(
             template_url=self.get_referenced_constant.metadata["url"],

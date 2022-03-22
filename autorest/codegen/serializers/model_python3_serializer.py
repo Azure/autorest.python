@@ -46,11 +46,11 @@ class ModelPython3Serializer(ModelBaseSerializer):
         return ", ".join(properties_to_pass_to_super)
 
     def required_property_no_default_init(self, prop: Property) -> str:
-        return f"{prop.name}: {prop.type_annotation}"
+        return f"{prop.name}: {prop.type_annotation()}"
 
     def optional_property_init(self, prop: Property) -> str:
         default = prop.default_value_declaration
-        return f"{prop.name}: {prop.type_annotation} = {default}"
+        return f"{prop.name}: {prop.type_annotation()} = {default}"
 
     def initialize_standard_arg(self, prop: Property) -> str:
         return f"self.{prop.name} = {prop.name}"

@@ -294,7 +294,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_array(  # pylint: disable=inconsistent-return-statements
         self,
-        resource_array=None,  # type: Optional[List["_models.Resource"]]
+        resource_array=None,  # type: Optional[List[_models.Resource]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -345,7 +345,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def get_array(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> List["_models.FlattenedProduct"]
+        # type: (...) -> List[_models.FlattenedProduct]
         """Get External Resource as an Array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -356,7 +356,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.FlattenedProduct"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.FlattenedProduct]]
 
         request = build_get_array_request(
             template_url=self.get_array.metadata["url"],
@@ -386,7 +386,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
         self,
-        resource_array=None,  # type: Optional[List["_models.WrappedProduct"]]
+        resource_array=None,  # type: Optional[List[_models.WrappedProduct]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -438,7 +438,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def get_wrapped_array(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> List["_models.ProductWrapper"]
+        # type: (...) -> List[_models.ProductWrapper]
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
@@ -450,7 +450,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.ProductWrapper"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.ProductWrapper]]
 
         request = build_get_wrapped_array_request(
             template_url=self.get_wrapped_array.metadata["url"],
@@ -480,7 +480,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_dictionary(  # pylint: disable=inconsistent-return-statements
         self,
-        resource_dictionary=None,  # type: Optional[Dict[str, "_models.FlattenedProduct"]]
+        resource_dictionary=None,  # type: Optional[Dict[str, _models.FlattenedProduct]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -531,7 +531,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def get_dictionary(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> Dict[str, "_models.FlattenedProduct"]
+        # type: (...) -> Dict[str, _models.FlattenedProduct]
         """Get External Resource as a Dictionary.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -542,7 +542,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, "_models.FlattenedProduct"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, _models.FlattenedProduct]]
 
         request = build_get_dictionary_request(
             template_url=self.get_dictionary.metadata["url"],
@@ -572,7 +572,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_resource_collection(  # pylint: disable=inconsistent-return-statements
         self,
-        resource_complex_object=None,  # type: Optional["_models.ResourceCollection"]
+        resource_complex_object=None,  # type: Optional[_models.ResourceCollection]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -624,7 +624,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def get_resource_collection(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.ResourceCollection"
+        # type: (...) -> _models.ResourceCollection
         """Get External Resource as a ResourceCollection.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -635,7 +635,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ResourceCollection"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ResourceCollection]
 
         request = build_get_resource_collection_request(
             template_url=self.get_resource_collection.metadata["url"],
@@ -665,10 +665,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_simple_product(
         self,
-        simple_body_product=None,  # type: Optional["_models.SimpleProduct"]
+        simple_body_product=None,  # type: Optional[_models.SimpleProduct]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.SimpleProduct"
+        # type: (...) -> _models.SimpleProduct
         """Put Simple Product with client flattening true on the model.
 
         :param simple_body_product: Simple body product to put. Default value is None.
@@ -682,7 +682,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.SimpleProduct"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.SimpleProduct]
 
         if simple_body_product is not None:
             _json = self._serialize.body(simple_body_product, "SimpleProduct")
@@ -727,7 +727,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         odata_value=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.SimpleProduct"
+        # type: (...) -> _models.SimpleProduct
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         :param product_id: Unique identifier representing a specific product for a given latitude &
@@ -754,7 +754,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.SimpleProduct"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.SimpleProduct]
 
         _simple_body_product = _models.SimpleProduct(
             product_id=product_id,
@@ -799,10 +799,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_simple_product_with_grouping(
         self,
-        flatten_parameter_group,  # type: "_models.FlattenParameterGroup"
+        flatten_parameter_group,  # type: _models.FlattenParameterGroup
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.SimpleProduct"
+        # type: (...) -> _models.SimpleProduct
         """Put Simple Product with client flattening true on the model.
 
         :param flatten_parameter_group: Parameter group.
@@ -816,7 +816,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.SimpleProduct"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.SimpleProduct]
 
         _name = None
         _simple_body_product = None
