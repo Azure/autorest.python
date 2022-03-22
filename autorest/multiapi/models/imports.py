@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from enum import Enum
-from typing import Dict, Optional, Set, Union, Tuple, List
+from typing import Dict, Optional, Set, Union, Tuple
 
 
 class ImportType(str, Enum):
