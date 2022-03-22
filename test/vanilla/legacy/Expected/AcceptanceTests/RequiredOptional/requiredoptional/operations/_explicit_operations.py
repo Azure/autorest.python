@@ -1294,7 +1294,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
         self,
-        body_parameter,  # type: "_models.Product"
+        body_parameter,  # type: _models.Product
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1342,7 +1342,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
         self,
-        body_parameter=None,  # type: Optional["_models.Product"]
+        body_parameter=None,  # type: Optional[_models.Product]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1392,7 +1392,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def post_required_class_property(  # pylint: disable=inconsistent-return-statements
         self,
-        value,  # type: "_models.Product"
+        value,  # type: _models.Product
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1441,7 +1441,7 @@ class ExplicitOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
         self,
-        value=None,  # type: Optional["_models.Product"]
+        value=None,  # type: Optional[_models.Product]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

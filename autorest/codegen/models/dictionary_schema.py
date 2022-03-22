@@ -34,14 +34,13 @@ class DictionarySchema(BaseSchema):
         """
         return f"{{{self.element_type.serialization_type}}}"
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:
         """The python type used for type annotation
 
         :return: The type annotation for this schema
         :rtype: str
         """
-        return f"Dict[str, {self.element_type.type_annotation}]"
+        return f"Dict[str, {self.element_type.type_annotation(is_operation_file=is_operation_file)}]"
 
     @property
     def docstring_text(self) -> str:

@@ -10,8 +10,6 @@ from typing import Dict, Optional, TYPE_CHECKING, Union
 
 import msrest.serialization
 
-from ._auto_rest_long_running_operation_test_service_enums import *
-
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     import __init__ as _models

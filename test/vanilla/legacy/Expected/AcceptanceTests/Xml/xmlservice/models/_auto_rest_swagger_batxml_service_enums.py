@@ -7,11 +7,10 @@
 # --------------------------------------------------------------------------
 
 from enum import Enum
-from six import with_metaclass
 from azure.core import CaseInsensitiveEnumMeta
 
 
-class AccessTier(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class AccessTier(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     P4 = "P4"
     P6 = "P6"
@@ -25,20 +24,20 @@ class AccessTier(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     ARCHIVE = "Archive"
 
 
-class ArchiveStatus(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class ArchiveStatus(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     REHYDRATE_PENDING_TO_HOT = "rehydrate-pending-to-hot"
     REHYDRATE_PENDING_TO_COOL = "rehydrate-pending-to-cool"
 
 
-class BlobType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class BlobType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     BLOCK_BLOB = "BlockBlob"
     PAGE_BLOB = "PageBlob"
     APPEND_BLOB = "AppendBlob"
 
 
-class CopyStatusType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class CopyStatusType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     PENDING = "pending"
     SUCCESS = "success"
@@ -46,13 +45,13 @@ class CopyStatusType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     FAILED = "failed"
 
 
-class LeaseDurationType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class LeaseDurationType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     INFINITE = "infinite"
     FIXED = "fixed"
 
 
-class LeaseStateType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class LeaseStateType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     AVAILABLE = "available"
     LEASED = "leased"
@@ -61,13 +60,13 @@ class LeaseStateType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     BROKEN = "broken"
 
 
-class LeaseStatusType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class LeaseStatusType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     LOCKED = "locked"
     UNLOCKED = "unlocked"
 
 
-class PublicAccessType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class PublicAccessType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     CONTAINER = "container"
     BLOB = "blob"

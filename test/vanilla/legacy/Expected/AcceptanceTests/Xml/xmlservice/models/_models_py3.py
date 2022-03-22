@@ -12,8 +12,6 @@ from typing import Dict, List, Optional, TYPE_CHECKING, Union
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
-from ._auto_rest_swagger_batxml_service_enums import *
-
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     import __init__ as _models

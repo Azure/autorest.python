@@ -29,12 +29,11 @@ class ListSchema(BaseSchema):
     def serialization_type(self) -> str:
         return f"[{self.element_type.serialization_type}]"
 
-    @property
-    def type_annotation(self) -> str:
-        if self.element_type.type_annotation == "ET.Element":
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:
+        if self.element_type.type_annotation() == "ET.Element":
             # this means we're version tolerant XML, we just return the XML element
-            return self.element_type.type_annotation
-        return f"List[{self.element_type.type_annotation}]"
+            return self.element_type.type_annotation(is_operation_file=is_operation_file)
+        return f"List[{self.element_type.type_annotation(is_operation_file=is_operation_file)}]"
 
     @property
     def docstring_type(self) -> str:
@@ -113,7 +112,7 @@ class ListSchema(BaseSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        if not self.element_type.type_annotation == "ET.Element":
+        if not self.element_type.type_annotation(is_operation_file=True) == "ET.Element":
             file_import.add_submodule_import("typing", "List", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.merge(self.element_type.imports())
         return file_import

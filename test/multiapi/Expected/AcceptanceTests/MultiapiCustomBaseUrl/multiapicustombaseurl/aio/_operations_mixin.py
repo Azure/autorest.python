@@ -11,6 +11,8 @@
 from msrest import Serializer, Deserializer
 from typing import Any
 
+from .. import models as _models
+
 
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
 

@@ -111,7 +111,7 @@ class PetOperations(object):
         pet_id,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Pet"
+        # type: (...) -> _models.Pet
         """get pet by id.
 
         :param pet_id: Pet id.
@@ -124,7 +124,7 @@ class PetOperations(object):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Pet"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Pet]
 
         request = build_get_by_pet_id_request(
             pet_id=pet_id,
@@ -154,10 +154,10 @@ class PetOperations(object):
     @distributed_trace
     def add_pet(
         self,
-        pet_param=None,  # type: Optional["_models.Pet"]
+        pet_param=None,  # type: Optional[_models.Pet]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Pet"
+        # type: (...) -> _models.Pet
         """add pet.
 
         :param pet_param: pet param. Default value is None.
@@ -171,7 +171,7 @@ class PetOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Pet"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Pet]
 
         if pet_param is not None:
             _json = self._serialize.body(pet_param, "Pet")
