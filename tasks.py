@@ -3,10 +3,11 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import copy
 import itertools
 from multiprocessing import Pool
 import os
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union
 from enum import Enum, auto
 from colorama import init, Fore
 from invoke import task, run
@@ -19,6 +20,11 @@ class _SwaggerGroup(str, Enum):
     AZURE = "azure"
     AZURE_ARM = "azure-arm"
     DPG = "dpg"
+
+class _Generator(Enum):
+    LEGACY = "legacy"
+    VERSION_TOLERANT = "version_tolerant"
+    LOW_LEVEL_CLIENT = "low_level_client"
 
 _VANILLA_SWAGGER_MAPPINGS = {
     'AdditionalProperties': 'additionalProperties.json',
@@ -68,17 +74,54 @@ _VANILLA_SWAGGER_MAPPINGS = {
 }
 
 _DPG_SWAGGER_MAPPINGS = {
-    'DPGServiceDrivenInitial': 'dpg_initial.json',
-    'DPGServiceDrivenUpdateOne': 'dpg_update1.json',
+    'DPGServiceDrivenInitial': 'dpg-initial.json',
+    'DPGServiceDrivenUpdateOne': 'dpg-update1.json',
     'DPGCustomizationInitial': 'dpg-customization.json',
     'DPGCustomizationCustomized': 'dpg-customization.json',
-    'DPGTestPostProcessPlugin': 'dpg-customization.json',
 }
 
-_FILE_SPECIFIC_OVERLOAD_FLAGS = {
-    'DPGTestPostProcessPlugin': {
+_GENERATOR_SPECIFIC_TESTS = {
+    _Generator.LEGACY: {
+        _SwaggerGroup.VANILLA: {
+            "BodyComplexPythonThreeOnly": "body-complex.json",
+            'BodyArrayWithNamespaceFolders': 'body-array.json',
+            'BodyByteWithPackageName': 'body-byte.json',
+            'BodyArrayWithPythonThreeOperationFiles': 'body-array.json'
+        },
+        _SwaggerGroup.AZURE_ARM: {
+            'HeadWithAzureKeyCredentialPolicy': 'head.json',
+        }
+    },
+    _Generator.VERSION_TOLERANT: {
+        _SwaggerGroup.DPG: {
+            'DPGTestModels': 'dpg-customization.json',
+        }
+    },
+}
+
+_PACKAGE_NAME_TO_OVERRIDE_FLAGS: Dict[str, Dict[str, Union[bool, str]]] = {
+    'DPGTestModels': {
         "models-mode": "msrest",
-    }
+    },
+    'BodyComplexPythonThreeOnly': {
+        "python3-only": True,
+        "namespace": "bodycomplexpython3only",
+        "package-name": "bodycomplexpython3only",
+    },
+    'BodyArrayWithNamespaceFolders': {
+        "namespace": "vanilla.body.array"
+    },
+    "BodyByteWithPackageName": {
+        "package-name": "package-name",
+        "override-client-name": "class_name"
+    },
+    "HeadWithAzureKeyCredentialPolicy": {
+        "credential-default-policy-type": "AzureKeyCredentialPolicy",
+        "credential-key-header-name": "Authorization"
+    },
+    "BodyArrayWithPythonThreeOperationFiles": {
+        "add-python3-operation-files": True
+    },
 }
 
 _AZURE_SWAGGER_MAPPINGS = {
@@ -138,7 +181,7 @@ def _build_flags(
     autorest_dir = os.path.dirname(__file__)
     testserver_dir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
     override_flags = override_flags or {}
-    override_flags.update(_FILE_SPECIFIC_OVERLOAD_FLAGS.get(package_name, {}))
+    override_flags.update(_PACKAGE_NAME_TO_OVERRIDE_FLAGS.get(package_name, {}))
     if swagger_group == _SwaggerGroup.VANILLA:
         generation_section = "vanilla"
     elif swagger_group == _SwaggerGroup.DPG:
@@ -244,20 +287,24 @@ def _regenerate(
     _run_autorest(cmds, debug=debug)
 
 def _prepare_mapping_and_regenerate(c, mapping, swagger_group, swagger_name=None, debug=False, **kwargs):
-    if swagger_name:
-        prepared_mapping = {k: v for k, v in mapping.items() if swagger_name.lower() in k.lower()}
+    if kwargs.get("low_level_client", False):
+        generator = _Generator.LOW_LEVEL_CLIENT
+    elif kwargs.get("version_tolerant", False):
+        generator = _Generator.VERSION_TOLERANT
     else:
-        prepared_mapping = mapping
+        generator = _Generator.LEGACY
+    mapping_copy = copy.copy(mapping)
+    mapping_copy.update(_GENERATOR_SPECIFIC_TESTS.get(generator, {}).get(swagger_group, {}))
+    if swagger_name:
+        prepared_mapping = {k: v for k, v in mapping_copy.items() if swagger_name.lower() in k.lower()}
+    else:
+        prepared_mapping = mapping_copy
     _regenerate(prepared_mapping, debug, swagger_group=swagger_group, **kwargs)
 
 @task
 def regenerate_vanilla_legacy(c, swagger_name=None, debug=False, **kwargs):
     _prepare_mapping_and_regenerate(c, _VANILLA_SWAGGER_MAPPINGS, _SwaggerGroup.VANILLA, swagger_name, debug, **kwargs)
     if not swagger_name:
-        regenerate_namespace_folders_test(c, debug)
-        regenerate_package_name_setup_py(c, debug)
-        regenerate_with_python3_operation_files(c, debug)
-        regenerate_python3_only(c, debug)
         regenerate_package_mode(c, swagger_group=_SwaggerGroup.VANILLA)
 
 @task
@@ -286,7 +333,7 @@ def regenerate_vanilla_low_level_client(c, swagger_name=None, debug=False, **kwa
 
 @task
 def regenerate_dpg_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
-    return _prepare_mapping_and_regenerate(
+    _prepare_mapping_and_regenerate(
         c,
         _DPG_SWAGGER_MAPPINGS,
         _SwaggerGroup.DPG,
@@ -328,8 +375,6 @@ def regenerate_azure_version_tolerant(c, swagger_name=None, debug=False, **kwarg
 @task
 def regenerate_azure_arm_legacy(c, swagger_name=None, debug=False, **kwargs):
     _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, **kwargs)
-    if not swagger_name:
-        regenerate_credential_default_policy(c, debug)
 
 @task
 def regenerate_azure_arm_low_level_client(c, swagger_name=None, debug=False, **kwargs):
@@ -338,32 +383,6 @@ def regenerate_azure_arm_low_level_client(c, swagger_name=None, debug=False, **k
 @task
 def regenerate_azure_arm_version_tolerant(c, swagger_name=None, debug=False, **kwargs):
     return _prepare_mapping_and_regenerate(c, _AZURE_ARM_SWAGGER_MAPPINGS, _SwaggerGroup.AZURE_ARM, swagger_name, debug, version_tolerant=True, **kwargs)
-
-@task
-def regenerate_namespace_folders_test(c, debug=False):
-    # regenerate a swagger (randomly chose BodyArray) to have a namespace length > 1
-    # to test pkgutil logic
-    mapping = {'BodyArrayWithNamespaceFolders': 'body-array.json'}
-    override_flags = {"namespace": "vanilla.body.array"}
-    _regenerate(mapping, debug, swagger_group=_SwaggerGroup.VANILLA, override_flags=override_flags)
-
-@task
-def regenerate_credential_default_policy(c, debug=False):
-    mapping = {'HeadWithAzureKeyCredentialPolicy': 'head.json'}
-    override_flags = {
-        "credential-default-policy-type": "AzureKeyCredentialPolicy",
-        "credential-key-header-name": "Authorization"
-    }
-    _regenerate(mapping, debug, swagger_group=_SwaggerGroup.AZURE_ARM, override_flags=override_flags)
-
-@task
-def regenerate_package_name_setup_py(c, debug=False):
-    mapping = {'BodyByteWithPackageName': 'body-byte.json'}
-    override_flags = {
-        "package-name": "package-name",
-        "override-client-name": "class_name"
-    }
-    _regenerate(mapping, debug, swagger_group=_SwaggerGroup.VANILLA, override_flags=override_flags)
 
 @task
 def regenerate_legacy(c, swagger_name=None, debug=False):
@@ -554,19 +573,3 @@ def regenerate_samples(c, debug=False):
             cmd += " ".join(flag_strings)
         cmds.append(cmd)
     _run_autorest(cmds, debug)
-
-@task
-def regenerate_with_python3_operation_files(c, debug=False):
-    mapping = {'BodyArrayWithPythonThreeOperationFiles': 'body-array.json'}
-    override_flags = {"add-python3-operation-files": True}
-    _regenerate(mapping, debug, swagger_group=_SwaggerGroup.VANILLA, override_flags=override_flags)
-
-@task
-def regenerate_python3_only(c, debug=False):
-    mapping = {'BodyComplexPythonThreeOnly': 'body-complex.json'}
-    override_flags = {
-        "python3-only": True,
-        "namespace": "bodycomplexpython3only",
-        "package-name": "bodycomplexpython3only",
-    }
-    _regenerate(mapping, debug, swagger_group=_SwaggerGroup.VANILLA, override_flags=override_flags)

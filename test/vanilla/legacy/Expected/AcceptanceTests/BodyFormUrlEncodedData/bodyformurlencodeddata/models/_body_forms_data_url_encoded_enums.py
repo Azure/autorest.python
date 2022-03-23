@@ -7,11 +7,10 @@
 # --------------------------------------------------------------------------
 
 from enum import Enum
-from six import with_metaclass
 from azure.core import CaseInsensitiveEnumMeta
 
 
-class PetFood(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class PetFood(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Can take a value of meat, or fish, or plant"""
 
     MEAT = "meat"
@@ -19,7 +18,7 @@ class PetFood(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     PLANT = "plant"
 
 
-class PetType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class PetType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Can take a value of dog, or cat, or fish"""
 
     DOG = "dog"

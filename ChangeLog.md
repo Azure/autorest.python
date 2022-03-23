@@ -6,19 +6,21 @@
 | ----------------------------------------------------------------------- | ----------- |
 | `@autorest/core`                                                        | `3.6.2`     |
 | `@autorest/modelerfour`                                                 | `4.19.1`    |
-| `azure-core` dep of generated code                                      | `1.20.1`    |
+| `azure-core` dep of generated code                                      | `1.23.0`    |
 | `msrest` dep of generated code                                          | `0.6.21`    |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
 **New Features**
 
 - Add support for handwritten customizations of generated code. For more information, see https://aka.ms/azsdk/python/dpcodegen/python/customize #1153
+- Allow `header` and `params` as kwargs in operation and request-build function to hand over REST Header and Query parameters case insensitively #1183
 
 **Bug Fixes**
 
 - Make `--version-tolerant` generated code mypy compatible in the `azure-sdk-for-python` repo. Tested only with the `--black` flag #1185
 - Remove unnecessary vendored code in the `_vendor` file if the SDK has no operations #1196
 - Fix the generation of the root `__init__` files for packages with only models #1195
+- Add pylint and mypy support for `--version-tolerant` generations with `--models-mode=msrest` #1202
 
 ### 2022-03-08 - 5.14.0
 

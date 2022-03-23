@@ -110,12 +110,6 @@ def _serialize_files_and_data_body(builder, param_name: str) -> List[str]:
     retval.append("}")
     return retval
 
-def _pop_parameters_kwarg(
-    function_name: str,
-    kwarg_name: str,
-) -> str:
-    return f'_{function_name}_parameters = kwargs.pop("{kwarg_name}", {{}})  # type: Dict[str, Any]'
-
 def _serialize_grouped_body(builder) -> List[str]:
     retval: List[str] = []
     for grouped_parameter in builder.parameters.grouped:
@@ -411,10 +405,11 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
         ...
 
     def _serialize_parameter(
-        self, param: Parameter, function_name: str
+        self, param: Parameter, kwarg_name: str
     ) -> List[str]:
-        set_parameter = "_{}_parameters['{}'] = {}".format(
-            function_name,
+        function_name = "header" if kwarg_name == "headers" else "query"
+        set_parameter = "_{}['{}'] = {}".format(
+            kwarg_name,
             param.rest_api_name,
             utils.build_serialize_data_call(param, function_name, self.serializer_name)
         )
@@ -433,10 +428,6 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
             template.append("# response body for status code(s): {}".format(", ".join(status_codes)))
             template.extend(f"response.json() == {response_body}".splitlines())
         return template
-
-
-    def pop_kwargs_from_signature(self, builder) -> List[str]:
-        return utils.pop_kwargs_from_signature(self._get_kwargs_to_pop(builder))
 
     def serialize_path(self, builder) -> List[str]:
         return utils.serialize_path(builder.parameters.path, self.serializer_name)
@@ -462,6 +453,21 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
     @property
     def serializer_name(self) -> str:
         return "_SERIALIZER"
+
+    @staticmethod
+    def declare_non_inputtable_constants(builder) -> List[str]:
+        def _get_value(param: Parameter):
+            if param.location in [ParameterLocation.Header, ParameterLocation.Query]:
+                kwarg_dict = "headers" if param.location == ParameterLocation.Header else "params"
+                return f"_{kwarg_dict}.pop('{param.rest_api_name}', {param.constant_declaration})"
+            return f"{param.constant_declaration}"
+        return [
+            f"{p.serialized_name} = {_get_value(p)}"
+            for p in builder.parameters.constant
+            if p.original_parameter is None and
+            p.in_method_code and
+            not p.in_method_signature
+        ]
 
     def want_example_template(self, builder) -> bool:
         if self.code_model.options["builders_visibility"] != "public":
@@ -507,14 +513,24 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
     def _body_params_to_pass_to_request_creation(self, builder) -> List[str]:
         ...
 
+    def pop_kwargs_from_signature(self, builder) -> List[str]:
+        return utils.pop_kwargs_from_signature(
+            self._get_kwargs_to_pop(builder),
+            check_kwarg_dict=True,
+            pop_headers_kwarg=utils.PopKwargType.CASE_INSENSITIVE if bool(builder.parameters.headers)
+                                else utils.PopKwargType.NO,
+            pop_params_kwarg=utils.PopKwargType.CASE_INSENSITIVE if bool(builder.parameters.query)
+                                else utils.PopKwargType.NO,
+        )
+
     def create_http_request(self, builder) -> List[str]:
         retval = ["return HttpRequest("]
         retval.append(f'    method="{builder.method}",')
         retval.append("    url=_url,")
         if builder.parameters.query:
-            retval.append("    params=_query_parameters,")
+            retval.append("    params=_params,")
         if builder.parameters.headers:
-            retval.append("    headers=_header_parameters,")
+            retval.append("    headers=_headers,")
         if builder.parameters.has_body:
             retval.extend([
                 f"    {body_kwarg}={body_kwarg},"
@@ -526,21 +542,19 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
 
     def serialize_headers(self, builder) -> List[str]:
         retval = ["# Construct headers"]
-        retval.append(_pop_parameters_kwarg("header", "headers"))
         for parameter in builder.parameters.headers:
             retval.extend(self._serialize_parameter(
                 parameter,
-                function_name="header",
+                kwarg_name="headers",
             ))
         return retval
 
     def serialize_query(self, builder) -> List[str]:
         retval = ["# Construct parameters"]
-        retval.append(_pop_parameters_kwarg("query", "params"))
         for parameter in builder.parameters.query:
             retval.extend(self._serialize_parameter(
                 parameter,
-                function_name="query",
+                kwarg_name="params",
             ))
         return retval
 
@@ -644,7 +658,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             return "bool"
         response_body_annotations: OrderedSet[str] = {}
         for response in [r for r in builder.responses if r.has_body]:
-            response_body_annotations[response.type_annotation] = None
+            response_body_annotations[response.type_annotation(is_operation_file=True)] = None
         response_str = ", ".join(response_body_annotations.keys()) or "None"
         if len(response_body_annotations) > 1:
             response_str = f"Union[{response_str}]"
@@ -653,7 +667,15 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         return response_str
 
     def pop_kwargs_from_signature(self, builder) -> List[str]:
-        kwargs = utils.pop_kwargs_from_signature(self._get_kwargs_to_pop(builder))
+        kwargs_to_pop = self._get_kwargs_to_pop(builder)
+        kwargs = utils.pop_kwargs_from_signature(
+            kwargs_to_pop,
+            check_kwarg_dict=True,
+            pop_headers_kwarg=utils.PopKwargType.CASE_INSENSITIVE if builder.has_kwargs_to_pop_with_default(
+                kwargs_to_pop, ParameterLocation.Header) else utils.PopKwargType.SIMPLE,
+            pop_params_kwarg=utils.PopKwargType.CASE_INSENSITIVE if builder.has_kwargs_to_pop_with_default(
+                kwargs_to_pop, ParameterLocation.Query) else utils.PopKwargType.SIMPLE,
+        )
         kwargs.append(f"cls = kwargs.pop('cls', None)  {self.cls_type_annotation(builder)}")
         return kwargs
 
@@ -860,6 +882,8 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         if not self.code_model.options["version_tolerant"]:
             template_url = template_url or f"self.{builder.name}.metadata['url']"
             retval.append(f"    template_url={template_url},")
+        retval.append('    headers=_headers,')
+        retval.append('    params=_params,')
         retval.append(f")")
         if not self.code_model.options["version_tolerant"]:
             pass_files = ""
@@ -1019,7 +1043,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         else:
             retval.append("    401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError")
         retval.append("}")
-        retval.append("error_map.update(kwargs.pop('error_map', {}))")
+        retval.append("error_map.update(kwargs.pop('error_map', {}) or {})")
         return retval
 
     @staticmethod
@@ -1297,6 +1321,8 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
             for parameter in builder.parameters.method
         ])
         retval.append("        cls=lambda x,y,z: x,")
+        retval.append("        headers=_headers,")
+        retval.append("        params=_params,")
         retval.append("        **kwargs")
         retval.append("    )")
         retval.append("kwargs.pop('error_map', None)")
@@ -1346,7 +1372,8 @@ class _LROOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disable=
         if builder.lro_response:
             if builder.lro_response.has_headers:
                 retval.append("    response_headers = {}")
-            retval.append("    response = pipeline_response.http_response")
+            if not self.code_model.options["models_mode"] or builder.lro_response.has_headers:
+                retval.append("    response = pipeline_response.http_response")
             retval.extend([
                 f"    {line}"
                 for line in self.response_headers_and_deserialization(builder.lro_response)

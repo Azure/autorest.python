@@ -3,8 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from enum import Enum, auto
 from typing import List
-from ..models import ParameterStyle, ListSchema, Parameter
+from ..models import ParameterStyle, ListSchema, Parameter, ParameterLocation
 
 
 def serialize_method(
@@ -102,16 +103,40 @@ def method_signature_and_response_type_annotation_template(
         return f"{method_signature} -> {response_type_annotation}:"
     return f"{method_signature}:\n    # type: (...) -> {response_type_annotation}"
 
-def pop_kwargs_from_signature(kwargs_to_pop: List[Parameter]) -> List[str]:
+class PopKwargType(Enum):
+    NO = auto()
+    SIMPLE = auto()
+    CASE_INSENSITIVE = auto()
+
+def pop_kwargs_from_signature(
+    kwargs_to_pop: List[Parameter],
+    check_kwarg_dict: bool,
+    pop_headers_kwarg: PopKwargType,
+    pop_params_kwarg: PopKwargType,
+) -> List[str]:
     retval = []
+    def append_pop_kwarg(key: str, pop_type: PopKwargType) -> None:
+        if PopKwargType.CASE_INSENSITIVE == pop_type:
+            retval.append(f'_{key} = case_insensitive_dict(kwargs.pop("{key}", {{}}) or {{}})')
+        elif PopKwargType.SIMPLE == pop_type:
+            retval.append(f'_{key} = kwargs.pop("{key}", {{}}) or {{}}')
+    append_pop_kwarg("headers", pop_headers_kwarg)
+    append_pop_kwarg("params", pop_params_kwarg)
+    if pop_headers_kwarg != PopKwargType.NO or pop_params_kwarg != PopKwargType.NO:
+        retval.append("")
     for kwarg in kwargs_to_pop:
         if kwarg.has_default_value:
+            default_value = kwarg.default_value_declaration
+            if check_kwarg_dict and (kwarg.location in [ParameterLocation.Header, ParameterLocation.Query]):
+                kwarg_dict = "headers" if kwarg.location == ParameterLocation.Header else "params"
+                default_value = f"_{kwarg_dict}.pop('{kwarg.rest_api_name}', {default_value})"
             retval.append(
                 f"{kwarg.serialized_name} = kwargs.pop('{kwarg.serialized_name}', "
-                + f"{kwarg.default_value_declaration})  # type: {kwarg.type_annotation}"
+                + f"{default_value})  # type: {kwarg.type_annotation(is_operation_file=True)}"
             )
         else:
+            type_annot = kwarg.type_annotation(is_operation_file=True)
             retval.append(
-                f"{kwarg.serialized_name} = kwargs.pop('{kwarg.serialized_name}')  # type: {kwarg.type_annotation}"
+                f"{kwarg.serialized_name} = kwargs.pop('{kwarg.serialized_name}')  # type: {type_annot}"
             )
     return retval

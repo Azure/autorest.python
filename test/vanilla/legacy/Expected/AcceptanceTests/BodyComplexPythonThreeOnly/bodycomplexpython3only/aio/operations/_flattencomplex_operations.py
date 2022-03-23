@@ -48,7 +48,7 @@ class FlattencomplexOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> "_models.MyBaseType":
+    async def get_valid(self, **kwargs: Any) -> _models.MyBaseType:
         """get_valid.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -57,12 +57,17 @@ class FlattencomplexOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.MyBaseType"]
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.MyBaseType]
 
         request = build_get_valid_request(
             template_url=self.get_valid.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

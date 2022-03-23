@@ -7,11 +7,10 @@
 # --------------------------------------------------------------------------
 
 from enum import Enum
-from six import with_metaclass
 from azure.core import CaseInsensitiveEnumMeta
 
 
-class AccountStatus(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class AccountStatus(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Gets the status indicating whether the primary location of the storage account is available or
     unavailable.
     """
@@ -20,7 +19,7 @@ class AccountStatus(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     UNAVAILABLE = "Unavailable"
 
 
-class AccountType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class AccountType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Gets or sets the account type."""
 
     STANDARD_LRS = "Standard_LRS"
@@ -30,13 +29,13 @@ class AccountType(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     PREMIUM_LRS = "Premium_LRS"
 
 
-class KeyName(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class KeyName(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     KEY1 = "key1"
     KEY2 = "key2"
 
 
-class ProvisioningState(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class ProvisioningState(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Gets the status of the storage account at the time the operation was called."""
 
     CREATING = "Creating"
@@ -44,7 +43,7 @@ class ProvisioningState(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     SUCCEEDED = "Succeeded"
 
 
-class Reason(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class Reason(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Gets the reason that a storage account name could not be used. The Reason element is only
     returned if NameAvailable is false.
     """
@@ -53,7 +52,7 @@ class Reason(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
     ALREADY_EXISTS = "AlreadyExists"
 
 
-class UsageUnit(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class UsageUnit(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Gets the unit of measurement."""
 
     COUNT = "Count"

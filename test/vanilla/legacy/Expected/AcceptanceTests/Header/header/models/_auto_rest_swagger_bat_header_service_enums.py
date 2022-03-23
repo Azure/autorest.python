@@ -7,11 +7,10 @@
 # --------------------------------------------------------------------------
 
 from enum import Enum
-from six import with_metaclass
 from azure.core import CaseInsensitiveEnumMeta
 
 
-class GreyscaleColors(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class GreyscaleColors(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     WHITE = "White"
     BLACK = "black"

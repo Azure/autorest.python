@@ -11,6 +11,9 @@ class CredentialSchema(BaseSchema):
     def __init__(self) -> None:  # pylint: disable=super-init-not-called
         self.default_value = None
 
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:
+        raise ValueError("Children classes should set their own type annotation")
+
     @property
     def docstring_type(self) -> str:
         return self.serialization_type
@@ -38,8 +41,7 @@ class AzureKeyCredentialSchema(CredentialSchema):
     def serialization_type(self) -> str:
         return "~azure.core.credentials.AzureKeyCredential"
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
         return "AzureKeyCredential"
 
     def imports(self) -> FileImport:
@@ -66,8 +68,7 @@ class TokenCredentialSchema(CredentialSchema):
             return self.async_type
         return self.sync_type
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
         if self.async_mode:
             return '"AsyncTokenCredential"'
         return '"TokenCredential"'

@@ -19,6 +19,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._vendor import _convert_request
@@ -43,7 +44,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
     async def put_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[List["_models.Resource"]] = None, **kwargs: Any
+        self, resource_array: Optional[List[_models.Resource]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as an Array.
 
@@ -55,9 +56,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if resource_array is not None:
@@ -69,6 +75,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             content_type=content_type,
             json=_json,
             template_url=self.put_array.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -89,7 +97,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     put_array.metadata = {"url": "/model-flatten/array"}  # type: ignore
 
     @distributed_trace_async
-    async def get_array(self, **kwargs: Any) -> List["_models.FlattenedProduct"]:
+    async def get_array(self, **kwargs: Any) -> List[_models.FlattenedProduct]:
         """Get External Resource as an Array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -98,12 +106,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.FlattenedProduct"]]
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.FlattenedProduct]]
 
         request = build_get_array_request(
             template_url=self.get_array.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -129,7 +142,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     @distributed_trace_async
     async def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[List["_models.WrappedProduct"]] = None, **kwargs: Any
+        self, resource_array: Optional[List[_models.WrappedProduct]] = None, **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
@@ -142,9 +155,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if resource_array is not None:
@@ -156,6 +174,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             content_type=content_type,
             json=_json,
             template_url=self.put_wrapped_array.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -176,7 +196,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     put_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}  # type: ignore
 
     @distributed_trace_async
-    async def get_wrapped_array(self, **kwargs: Any) -> List["_models.ProductWrapper"]:
+    async def get_wrapped_array(self, **kwargs: Any) -> List[_models.ProductWrapper]:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
@@ -186,12 +206,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.ProductWrapper"]]
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.ProductWrapper]]
 
         request = build_get_wrapped_array_request(
             template_url=self.get_wrapped_array.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -217,7 +242,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     @distributed_trace_async
     async def put_dictionary(  # pylint: disable=inconsistent-return-statements
-        self, resource_dictionary: Optional[Dict[str, "_models.FlattenedProduct"]] = None, **kwargs: Any
+        self, resource_dictionary: Optional[Dict[str, _models.FlattenedProduct]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
 
@@ -229,9 +254,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if resource_dictionary is not None:
@@ -243,6 +273,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             content_type=content_type,
             json=_json,
             template_url=self.put_dictionary.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -263,7 +295,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     put_dictionary.metadata = {"url": "/model-flatten/dictionary"}  # type: ignore
 
     @distributed_trace_async
-    async def get_dictionary(self, **kwargs: Any) -> Dict[str, "_models.FlattenedProduct"]:
+    async def get_dictionary(self, **kwargs: Any) -> Dict[str, _models.FlattenedProduct]:
         """Get External Resource as a Dictionary.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -272,12 +304,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, "_models.FlattenedProduct"]]
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, _models.FlattenedProduct]]
 
         request = build_get_dictionary_request(
             template_url=self.get_dictionary.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -303,7 +340,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     @distributed_trace_async
     async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
-        self, resource_complex_object: Optional["_models.ResourceCollection"] = None, **kwargs: Any
+        self, resource_complex_object: Optional[_models.ResourceCollection] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
@@ -316,9 +353,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if resource_complex_object is not None:
@@ -330,6 +372,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             content_type=content_type,
             json=_json,
             template_url=self.put_resource_collection.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -350,7 +394,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     put_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}  # type: ignore
 
     @distributed_trace_async
-    async def get_resource_collection(self, **kwargs: Any) -> "_models.ResourceCollection":
+    async def get_resource_collection(self, **kwargs: Any) -> _models.ResourceCollection:
         """Get External Resource as a ResourceCollection.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -359,12 +403,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ResourceCollection"]
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ResourceCollection]
 
         request = build_get_resource_collection_request(
             template_url=self.get_resource_collection.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -390,8 +439,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     @distributed_trace_async
     async def put_simple_product(
-        self, simple_body_product: Optional["_models.SimpleProduct"] = None, **kwargs: Any
-    ) -> "_models.SimpleProduct":
+        self, simple_body_product: Optional[_models.SimpleProduct] = None, **kwargs: Any
+    ) -> _models.SimpleProduct:
         """Put Simple Product with client flattening true on the model.
 
         :param simple_body_product: Simple body product to put. Default value is None.
@@ -402,10 +451,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.SimpleProduct"]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.SimpleProduct]
 
         if simple_body_product is not None:
             _json = self._serialize.body(simple_body_product, "SimpleProduct")
@@ -416,6 +470,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             content_type=content_type,
             json=_json,
             template_url=self.put_simple_product.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -449,7 +505,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
         **kwargs: Any
-    ) -> "_models.SimpleProduct":
+    ) -> _models.SimpleProduct:
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         :param product_id: Unique identifier representing a specific product for a given latitude &
@@ -473,10 +529,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.SimpleProduct"]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.SimpleProduct]
 
         _simple_body_product = _models.SimpleProduct(
             product_id=product_id,
@@ -495,6 +556,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             content_type=content_type,
             json=_json,
             template_url=self.post_flattened_simple_product.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -520,8 +583,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     @distributed_trace_async
     async def put_simple_product_with_grouping(
-        self, flatten_parameter_group: "_models.FlattenParameterGroup", **kwargs: Any
-    ) -> "_models.SimpleProduct":
+        self, flatten_parameter_group: _models.FlattenParameterGroup, **kwargs: Any
+    ) -> _models.SimpleProduct:
         """Put Simple Product with client flattening true on the model.
 
         :param flatten_parameter_group: Parameter group.
@@ -532,10 +595,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.SimpleProduct"]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.SimpleProduct]
 
         _name = None
         _simple_body_product = None
@@ -572,6 +640,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             content_type=content_type,
             json=_json,
             template_url=self.put_simple_product_with_grouping.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

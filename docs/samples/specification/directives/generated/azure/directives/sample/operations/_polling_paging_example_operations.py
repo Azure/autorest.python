@@ -16,6 +16,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.polling import NoPolling, PollingMethod
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 from my.library import CustomDefaultPollingMethod, CustomPager, CustomPoller
 
 from .. import models as _models
@@ -35,22 +36,23 @@ def build_basic_polling_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/basic/polling")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -59,18 +61,20 @@ def build_basic_paging_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/basic/paging")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -79,17 +83,20 @@ class PollingPagingExampleOperationsMixin(object):
 
     def _basic_polling_initial(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        product=None,  # type: Optional[_models.Product]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["_models.Product"]
+        # type: (...) -> Optional[_models.Product]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
-        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Product"]]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[_models.Product]]
 
         if product is not None:
             _json = self._serialize.body(product, 'Product')
@@ -100,6 +107,8 @@ class PollingPagingExampleOperationsMixin(object):
             content_type=content_type,
             json=_json,
             template_url=self._basic_polling_initial.metadata['url'],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -130,10 +139,10 @@ class PollingPagingExampleOperationsMixin(object):
     @distributed_trace
     def begin_basic_polling(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        product=None,  # type: Optional[_models.Product]
         **kwargs  # type: Any
     ):
-        # type: (...) -> CustomPoller["_models.Product"]
+        # type: (...) -> CustomPoller[_models.Product]
         """A simple polling operation.
 
         :param product: Product to put. Default value is None.
@@ -150,8 +159,11 @@ class PollingPagingExampleOperationsMixin(object):
         :rtype: ~my.library.CustomPoller[~azure.directives.sample.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.Product]
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop(
             'polling_interval',
@@ -163,12 +175,13 @@ class PollingPagingExampleOperationsMixin(object):
                 product=product,
                 content_type=content_type,
                 cls=lambda x,y,z: x,
+                headers=_headers,
+                params=_params,
                 **kwargs
             )
         kwargs.pop('error_map', None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize('Product', pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -200,7 +213,7 @@ class PollingPagingExampleOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.ProductResult"]
+        # type: (...) -> Iterable[_models.ProductResult]
         """A simple paging operation.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -208,17 +221,22 @@ class PollingPagingExampleOperationsMixin(object):
         :rtype: ~my.library.CustomPager[~azure.directives.sample.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResult]
 
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {}) or {})
         def prepare_request(next_link=None):
             if not next_link:
                 
                 request = build_basic_paging_request(
                     template_url=self.basic_paging.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)  # type: ignore
@@ -227,6 +245,8 @@ class PollingPagingExampleOperationsMixin(object):
                 
                 request = build_basic_paging_request(
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)  # type: ignore

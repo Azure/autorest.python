@@ -99,7 +99,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         self.body_kwargs: List[Parameter] = []
         self.is_body_kwarg = False
         self.need_import = True
-        self.is_kwarg = (self.rest_api_name == "Content-Type" or (self.constant and self.rest_api_name != "Accept"))
+        self.is_kwarg = (self.rest_api_name == "Content-Type" or (self.constant and self.inputtable_by_user))
 
     def __hash__(self) -> int:
         return hash(self.serialized_name)
@@ -176,6 +176,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         return self.location == ParameterLocation.Body
 
     @property
+    def inputtable_by_user(self) -> bool:
+        return self.rest_api_name != "Accept"
+
+    @property
     def pre_semicolon_content_types(self) -> List[str]:
         """Splits on semicolon of media types and returns the first half.
         I.e. ["text/plain; charset=UTF-8"] -> ["text/plain"]
@@ -185,8 +189,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     @property
     def in_method_signature(self) -> bool:
         return not(
-            # don't put accept in signature
-            self.rest_api_name == "Accept"
+            # if not inputtable, don't put in signature
+            not self.inputtable_by_user
             # If i'm not in the method code, no point in being in signature
             or not self.in_method_code
             # If I'm grouped, my grouper will be on signature, not me
@@ -225,7 +229,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         ) and isinstance(self.schema, IOSchema)
 
     def _default_value(self) -> Tuple[Optional[Any], str, str]:
-        type_annot = self.multiple_content_types_type_annot or self.schema.type_annotation
+        type_annot = self.multiple_content_types_type_annot or self.schema.type_annotation(is_operation_file=True)
         if self._is_io_json:
             type_annot = f"Union[{type_annot}, JSONType]"
         any_types = ["Any", "JSONType"]
@@ -277,8 +281,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     def default_value_declaration(self) -> Optional[Any]:
         return self._default_value()[1]
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
         return self._default_value()[2]
 
     @property
@@ -297,13 +300,14 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         return self.default_value is not None or not self.required
 
     def method_signature(self, is_python3_file: bool) -> str:
+        type_annot = self.type_annotation(is_operation_file=True)
         if is_python3_file:
             if self.has_default_value:
-                return f"{self.serialized_name}: {self.type_annotation} = {self.default_value_declaration},"
-            return f"{self.serialized_name}: {self.type_annotation},"
+                return f"{self.serialized_name}: {type_annot} = {self.default_value_declaration},"
+            return f"{self.serialized_name}: {type_annot},"
         if self.has_default_value:
-            return f"{self.serialized_name}={self.default_value_declaration},  # type: {self.type_annotation}"
-        return f"{self.serialized_name},  # type: {self.type_annotation}"
+            return f"{self.serialized_name}={self.default_value_declaration},  # type: {type_annot}"
+        return f"{self.serialized_name},  # type: {type_annot}"
 
     @property
     def full_serialized_name(self) -> str:
