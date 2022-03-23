@@ -19,6 +19,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 
 from ..._operations._operations import (
     build_get_cat_request,
@@ -58,11 +59,17 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
-        request = build_get_horse_request()
+        request = build_get_horse_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -104,9 +111,14 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         _json = horse
@@ -114,6 +126,8 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         request = build_put_horse_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -153,11 +167,17 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
-        request = build_get_pet_request()
+        request = build_get_pet_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -198,9 +218,14 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         _json = pet
@@ -208,6 +233,8 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         request = build_put_pet_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -248,11 +275,17 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
-        request = build_get_feline_request()
+        request = build_get_feline_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -294,9 +327,14 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         _json = feline
@@ -304,6 +342,8 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         request = build_put_feline_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -346,11 +386,17 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
-        request = build_get_cat_request()
+        request = build_get_cat_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -394,9 +440,14 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         _json = cat
@@ -404,6 +455,8 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         request = build_put_cat_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -448,11 +501,17 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
-        request = build_get_kitten_request()
+        request = build_get_kitten_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -499,9 +558,14 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         _json = kitten
@@ -509,6 +573,8 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         request = build_put_kitten_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 

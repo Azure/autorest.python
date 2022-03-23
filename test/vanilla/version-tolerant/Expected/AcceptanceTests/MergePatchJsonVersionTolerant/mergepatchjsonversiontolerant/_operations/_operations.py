@@ -21,6 +21,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
 from .._vendor import MixinABC
 
@@ -33,19 +34,20 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_patch_single_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/mergePatchJson/single"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PATCH", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 class MergePatchJsonClientOperationsMixin(MixinABC):
@@ -60,9 +62,14 @@ class MergePatchJsonClientOperationsMixin(MixinABC):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/merge-patch+json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/merge-patch+json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = body
@@ -70,6 +77,8 @@ class MergePatchJsonClientOperationsMixin(MixinABC):
         request = build_patch_single_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 

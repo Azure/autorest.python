@@ -21,6 +21,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
 from .._vendor import _convert_request
 
@@ -39,20 +40,20 @@ def build_file_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = kwargs.pop("template_url", "/binary/file")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="POST",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -61,20 +62,20 @@ def build_binary_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = kwargs.pop("template_url", "/binary/octet")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -113,9 +114,14 @@ class UploadOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = file_param
@@ -124,6 +130,8 @@ class UploadOperations(object):
             content_type=content_type,
             content=_content,
             template_url=self.file.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -159,9 +167,14 @@ class UploadOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/octet-stream")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/octet-stream")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = file_param
@@ -170,6 +183,8 @@ class UploadOperations(object):
             content_type=content_type,
             content=_content,
             template_url=self.binary.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

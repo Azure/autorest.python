@@ -22,6 +22,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
 from .._vendor import _format_url_section
 
@@ -32,9 +33,11 @@ _SERIALIZER = Serializer()
 
 
 def build_paths_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
-    bool_path = kwargs.pop("bool_path", True)  # type: bool
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    bool_path = kwargs.pop("bool_path", True)  # type: bool
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/bool/true/{boolPath}"
     path_format_arguments = {
@@ -44,16 +47,17 @@ def build_paths_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
-    bool_path = kwargs.pop("bool_path", False)  # type: bool
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    bool_path = kwargs.pop("bool_path", False)  # type: bool
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/bool/false/{boolPath}"
     path_format_arguments = {
@@ -63,16 +67,17 @@ def build_paths_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
-    int_path = kwargs.pop("int_path", 1000000)  # type: int
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    int_path = kwargs.pop("int_path", 1000000)  # type: int
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/int/1000000/{intPath}"
     path_format_arguments = {
@@ -82,16 +87,17 @@ def build_paths_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
-    int_path = kwargs.pop("int_path", -1000000)  # type: int
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    int_path = kwargs.pop("int_path", -1000000)  # type: int
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/int/-1000000/{intPath}"
     path_format_arguments = {
@@ -101,16 +107,17 @@ def build_paths_get_int_negative_one_million_request(**kwargs: Any) -> HttpReque
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
-    long_path = kwargs.pop("long_path", 10000000000)  # type: int
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    long_path = kwargs.pop("long_path", 10000000000)  # type: int
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/long/10000000000/{longPath}"
     path_format_arguments = {
@@ -120,16 +127,17 @@ def build_paths_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
-    long_path = kwargs.pop("long_path", -10000000000)  # type: int
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    long_path = kwargs.pop("long_path", -10000000000)  # type: int
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/long/-10000000000/{longPath}"
     path_format_arguments = {
@@ -139,16 +147,17 @@ def build_paths_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
-    float_path = kwargs.pop("float_path", 103400000000000000000)  # type: float
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    float_path = kwargs.pop("float_path", 103400000000000000000)  # type: float
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/float/1.034E+20/{floatPath}"
     path_format_arguments = {
@@ -158,16 +167,17 @@ def build_paths_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
-    float_path = kwargs.pop("float_path", -1.034e-20)  # type: float
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    float_path = kwargs.pop("float_path", -1.034e-20)  # type: float
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/float/-1.034E-20/{floatPath}"
     path_format_arguments = {
@@ -177,16 +187,17 @@ def build_paths_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
-    double_path = kwargs.pop("double_path", 9999999.999)  # type: float
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    double_path = kwargs.pop("double_path", 9999999.999)  # type: float
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/double/9999999.999/{doublePath}"
     path_format_arguments = {
@@ -196,16 +207,17 @@ def build_paths_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
-    double_path = kwargs.pop("double_path", -9999999.999)  # type: float
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    double_path = kwargs.pop("double_path", -9999999.999)  # type: float
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/double/-9999999.999/{doublePath}"
     path_format_arguments = {
@@ -215,16 +227,17 @@ def build_paths_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_string_unicode_request(**kwargs: Any) -> HttpRequest:
-    string_path = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    string_path = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/string/unicode/{stringPath}"
     path_format_arguments = {
@@ -234,16 +247,17 @@ def build_paths_string_unicode_request(**kwargs: Any) -> HttpRequest:
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
-    string_path = kwargs.pop("string_path", "begin!*'();:@ &=+$,/?#[]end")  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    string_path = kwargs.pop("string_path", "begin!*'();:@ &=+$,/?#[]end")  # type: str
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}"
     path_format_arguments = {
@@ -253,16 +267,17 @@ def build_paths_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_string_url_non_encoded_request(**kwargs: Any) -> HttpRequest:
-    string_path = kwargs.pop("string_path", "begin!*'();:@&=+$,end")  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    string_path = kwargs.pop("string_path", "begin!*'();:@&=+$,end")  # type: str
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/string/begin!*'();:@&=+$,end/{stringPath}"
     path_format_arguments = {
@@ -272,16 +287,17 @@ def build_paths_string_url_non_encoded_request(**kwargs: Any) -> HttpRequest:
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_string_empty_request(**kwargs: Any) -> HttpRequest:
-    string_path = kwargs.pop("string_path", "")  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    string_path = kwargs.pop("string_path", "")  # type: str
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/string/empty/{stringPath}"
     path_format_arguments = {
@@ -291,14 +307,16 @@ def build_paths_string_empty_request(**kwargs: Any) -> HttpRequest:
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_string_null_request(string_path: str, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/string/null/{stringPath}"
     path_format_arguments = {
@@ -308,14 +326,16 @@ def build_paths_string_null_request(string_path: str, **kwargs: Any) -> HttpRequ
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_enum_valid_request(enum_path: str, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/enum/green%20color/{enumPath}"
     path_format_arguments = {
@@ -325,14 +345,16 @@ def build_paths_enum_valid_request(enum_path: str, **kwargs: Any) -> HttpRequest
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_enum_null_request(enum_path: str, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/string/null/{enumPath}"
     path_format_arguments = {
@@ -342,14 +364,16 @@ def build_paths_enum_null_request(enum_path: str, **kwargs: Any) -> HttpRequest:
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_byte_multi_byte_request(byte_path: bytearray, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/byte/multibyte/{bytePath}"
     path_format_arguments = {
@@ -359,16 +383,17 @@ def build_paths_byte_multi_byte_request(byte_path: bytearray, **kwargs: Any) -> 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_byte_empty_request(**kwargs: Any) -> HttpRequest:
-    byte_path = kwargs.pop("byte_path", bytearray("", encoding="utf-8"))  # type: bytearray
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    byte_path = kwargs.pop("byte_path", bytearray("", encoding="utf-8"))  # type: bytearray
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/byte/empty/{bytePath}"
     path_format_arguments = {
@@ -378,14 +403,16 @@ def build_paths_byte_empty_request(**kwargs: Any) -> HttpRequest:
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_byte_null_request(byte_path: bytearray, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/byte/null/{bytePath}"
     path_format_arguments = {
@@ -395,16 +422,17 @@ def build_paths_byte_null_request(byte_path: bytearray, **kwargs: Any) -> HttpRe
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_date_valid_request(**kwargs: Any) -> HttpRequest:
-    date_path = kwargs.pop("date_path", "2012-01-01")  # type: datetime.date
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    date_path = kwargs.pop("date_path", "2012-01-01")  # type: datetime.date
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/date/2012-01-01/{datePath}"
     path_format_arguments = {
@@ -414,14 +442,16 @@ def build_paths_date_valid_request(**kwargs: Any) -> HttpRequest:
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_date_null_request(date_path: datetime.date, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/date/null/{datePath}"
     path_format_arguments = {
@@ -431,16 +461,17 @@ def build_paths_date_null_request(date_path: datetime.date, **kwargs: Any) -> Ht
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_date_time_valid_request(**kwargs: Any) -> HttpRequest:
-    date_time_path = kwargs.pop("date_time_path", "2012-01-01T01:01:01Z")  # type: datetime.datetime
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    date_time_path = kwargs.pop("date_time_path", "2012-01-01T01:01:01Z")  # type: datetime.datetime
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}"
     path_format_arguments = {
@@ -450,14 +481,16 @@ def build_paths_date_time_valid_request(**kwargs: Any) -> HttpRequest:
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_date_time_null_request(date_time_path: datetime.datetime, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/datetime/null/{dateTimePath}"
     path_format_arguments = {
@@ -467,14 +500,16 @@ def build_paths_date_time_null_request(date_time_path: datetime.datetime, **kwar
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_base64_url_request(base64_url_path: bytes, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/string/bG9yZW0/{base64UrlPath}"
     path_format_arguments = {
@@ -484,14 +519,16 @@ def build_paths_base64_url_request(base64_url_path: bytes, **kwargs: Any) -> Htt
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_array_csv_in_path_request(array_path: List[str], **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = (
         "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}"
@@ -503,14 +540,16 @@ def build_paths_array_csv_in_path_request(array_path: List[str], **kwargs: Any) 
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_paths_unix_time_url_request(unix_time_url_path: datetime.datetime, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/paths/int/1460505600/{unixTimeUrlPath}"
     path_format_arguments = {
@@ -520,637 +559,692 @@ def build_paths_unix_time_url_request(unix_time_url_path: datetime.datetime, **k
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_queries_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
-    bool_query = kwargs.pop("bool_query", True)  # type: bool
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    bool_query = kwargs.pop("bool_query", _params.pop("boolQuery", True))  # type: bool
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/bool/true"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
+    _params["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
-    bool_query = kwargs.pop("bool_query", False)  # type: bool
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    bool_query = kwargs.pop("bool_query", _params.pop("boolQuery", False))  # type: bool
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/bool/false"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
+    _params["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_get_boolean_null_request(*, bool_query: Optional[bool] = None, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/bool/null"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if bool_query is not None:
-        _query_parameters["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
+        _params["boolQuery"] = _SERIALIZER.query("bool_query", bool_query, "bool")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
-    int_query = kwargs.pop("int_query", 1000000)  # type: int
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    int_query = kwargs.pop("int_query", _params.pop("intQuery", 1000000))  # type: int
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/int/1000000"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
+    _params["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
-    int_query = kwargs.pop("int_query", -1000000)  # type: int
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    int_query = kwargs.pop("int_query", _params.pop("intQuery", -1000000))  # type: int
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/int/-1000000"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
+    _params["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_get_int_null_request(*, int_query: Optional[int] = None, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/int/null"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if int_query is not None:
-        _query_parameters["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
+        _params["intQuery"] = _SERIALIZER.query("int_query", int_query, "int")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
-    long_query = kwargs.pop("long_query", 10000000000)  # type: int
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    long_query = kwargs.pop("long_query", _params.pop("longQuery", 10000000000))  # type: int
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/long/10000000000"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
+    _params["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
-    long_query = kwargs.pop("long_query", -10000000000)  # type: int
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    long_query = kwargs.pop("long_query", _params.pop("longQuery", -10000000000))  # type: int
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/long/-10000000000"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
+    _params["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_get_long_null_request(*, long_query: Optional[int] = None, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/long/null"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if long_query is not None:
-        _query_parameters["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
+        _params["longQuery"] = _SERIALIZER.query("long_query", long_query, "long")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
-    float_query = kwargs.pop("float_query", 103400000000000000000)  # type: float
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    float_query = kwargs.pop("float_query", _params.pop("floatQuery", 103400000000000000000))  # type: float
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/float/1.034E+20"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
+    _params["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
-    float_query = kwargs.pop("float_query", -1.034e-20)  # type: float
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    float_query = kwargs.pop("float_query", _params.pop("floatQuery", -1.034e-20))  # type: float
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/float/-1.034E-20"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
+    _params["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_float_null_request(*, float_query: Optional[float] = None, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/float/null"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if float_query is not None:
-        _query_parameters["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
+        _params["floatQuery"] = _SERIALIZER.query("float_query", float_query, "float")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
-    double_query = kwargs.pop("double_query", 9999999.999)  # type: float
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    double_query = kwargs.pop("double_query", _params.pop("doubleQuery", 9999999.999))  # type: float
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/double/9999999.999"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
+    _params["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
-    double_query = kwargs.pop("double_query", -9999999.999)  # type: float
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    double_query = kwargs.pop("double_query", _params.pop("doubleQuery", -9999999.999))  # type: float
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/double/-9999999.999"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
+    _params["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_double_null_request(*, double_query: Optional[float] = None, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/double/null"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if double_query is not None:
-        _query_parameters["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
+        _params["doubleQuery"] = _SERIALIZER.query("double_query", double_query, "float")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_string_unicode_request(**kwargs: Any) -> HttpRequest:
-    string_query = kwargs.pop("string_query", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    string_query = kwargs.pop("string_query", _params.pop("stringQuery", "啊齄丂狛狜隣郎隣兀﨩"))  # type: str
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/string/unicode/"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
+    _params["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
-    string_query = kwargs.pop("string_query", "begin!*'();:@ &=+$,/?#[]end")  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    string_query = kwargs.pop("string_query", _params.pop("stringQuery", "begin!*'();:@ &=+$,/?#[]end"))  # type: str
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
+    _params["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_string_empty_request(**kwargs: Any) -> HttpRequest:
-    string_query = kwargs.pop("string_query", "")  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    string_query = kwargs.pop("string_query", _params.pop("stringQuery", ""))  # type: str
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/string/empty"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
+    _params["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_string_null_request(*, string_query: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/string/null"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if string_query is not None:
-        _query_parameters["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
+        _params["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_enum_valid_request(*, enum_query: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/enum/green%20color"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if enum_query is not None:
-        _query_parameters["enumQuery"] = _SERIALIZER.query("enum_query", enum_query, "str")
+        _params["enumQuery"] = _SERIALIZER.query("enum_query", enum_query, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_enum_null_request(*, enum_query: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/enum/null"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if enum_query is not None:
-        _query_parameters["enumQuery"] = _SERIALIZER.query("enum_query", enum_query, "str")
+        _params["enumQuery"] = _SERIALIZER.query("enum_query", enum_query, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_byte_multi_byte_request(*, byte_query: Optional[bytearray] = None, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/byte/multibyte"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if byte_query is not None:
-        _query_parameters["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
+        _params["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_byte_empty_request(**kwargs: Any) -> HttpRequest:
-    byte_query = kwargs.pop("byte_query", bytearray("", encoding="utf-8"))  # type: bytearray
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    byte_query = kwargs.pop("byte_query", _params.pop("byteQuery", bytearray("", encoding="utf-8")))  # type: bytearray
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/byte/empty"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
+    _params["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_byte_null_request(*, byte_query: Optional[bytearray] = None, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/byte/null"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if byte_query is not None:
-        _query_parameters["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
+        _params["byteQuery"] = _SERIALIZER.query("byte_query", byte_query, "bytearray")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_date_valid_request(**kwargs: Any) -> HttpRequest:
-    date_query = kwargs.pop("date_query", "2012-01-01")  # type: datetime.date
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    date_query = kwargs.pop("date_query", _params.pop("dateQuery", "2012-01-01"))  # type: datetime.date
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/date/2012-01-01"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["dateQuery"] = _SERIALIZER.query("date_query", date_query, "date")
+    _params["dateQuery"] = _SERIALIZER.query("date_query", date_query, "date")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_date_null_request(*, date_query: Optional[datetime.date] = None, **kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/date/null"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if date_query is not None:
-        _query_parameters["dateQuery"] = _SERIALIZER.query("date_query", date_query, "date")
+        _params["dateQuery"] = _SERIALIZER.query("date_query", date_query, "date")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_date_time_valid_request(**kwargs: Any) -> HttpRequest:
-    date_time_query = kwargs.pop("date_time_query", "2012-01-01T01:01:01Z")  # type: datetime.datetime
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    date_time_query = kwargs.pop(
+        "date_time_query", _params.pop("dateTimeQuery", "2012-01-01T01:01:01Z")
+    )  # type: datetime.datetime
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/datetime/2012-01-01T01%3A01%3A01Z"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["dateTimeQuery"] = _SERIALIZER.query("date_time_query", date_time_query, "iso-8601")
+    _params["dateTimeQuery"] = _SERIALIZER.query("date_time_query", date_time_query, "iso-8601")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_date_time_null_request(
     *, date_time_query: Optional[datetime.datetime] = None, **kwargs: Any
 ) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/datetime/null"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if date_time_query is not None:
-        _query_parameters["dateTimeQuery"] = _SERIALIZER.query("date_time_query", date_time_query, "iso-8601")
+        _params["dateTimeQuery"] = _SERIALIZER.query("date_time_query", date_time_query, "iso-8601")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_array_string_csv_valid_request(
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/array/csv/string/valid"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        _query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+        _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_array_string_csv_null_request(
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/array/csv/string/null"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        _query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+        _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_array_string_csv_empty_request(
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/array/csv/string/empty"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        _query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+        _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_array_string_no_collection_format_empty_request(
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/array/none/string/empty"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        _query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
+        _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=",")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_array_string_ssv_valid_request(
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/array/ssv/string/valid"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        _query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=" ")
+        _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div=" ")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_array_string_tsv_valid_request(
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/array/tsv/string/valid"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        _query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div="	")
+        _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div="	")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_queries_array_string_pipes_valid_request(
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/queries/array/pipes/string/valid"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if array_query is not None:
-        _query_parameters["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div="|")
+        _params["arrayQuery"] = _SERIALIZER.query("array_query", array_query, "[str]", div="|")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_path_items_get_all_with_values_request(
@@ -1163,7 +1257,11 @@ def build_path_items_get_all_with_values_request(
     local_string_query: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -1175,21 +1273,17 @@ def build_path_items_get_all_with_values_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if path_item_string_query is not None:
-        _query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
-            "path_item_string_query", path_item_string_query, "str"
-        )
+        _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
     if global_string_query is not None:
-        _query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
+        _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
-        _query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
+        _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_path_items_get_global_query_null_request(
@@ -1202,7 +1296,11 @@ def build_path_items_get_global_query_null_request(
     local_string_query: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -1214,21 +1312,17 @@ def build_path_items_get_global_query_null_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if path_item_string_query is not None:
-        _query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
-            "path_item_string_query", path_item_string_query, "str"
-        )
+        _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
     if global_string_query is not None:
-        _query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
+        _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
-        _query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
+        _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_path_items_get_global_and_local_query_null_request(
@@ -1241,7 +1335,11 @@ def build_path_items_get_global_and_local_query_null_request(
     local_string_query: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -1253,21 +1351,17 @@ def build_path_items_get_global_and_local_query_null_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if path_item_string_query is not None:
-        _query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
-            "path_item_string_query", path_item_string_query, "str"
-        )
+        _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
     if global_string_query is not None:
-        _query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
+        _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
-        _query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
+        _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_path_items_get_local_path_item_query_null_request(
@@ -1280,7 +1374,11 @@ def build_path_items_get_local_path_item_query_null_request(
     local_string_query: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -1292,21 +1390,17 @@ def build_path_items_get_local_path_item_query_null_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if path_item_string_query is not None:
-        _query_parameters["pathItemStringQuery"] = _SERIALIZER.query(
-            "path_item_string_query", path_item_string_query, "str"
-        )
+        _params["pathItemStringQuery"] = _SERIALIZER.query("path_item_string_query", path_item_string_query, "str")
     if global_string_query is not None:
-        _query_parameters["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
+        _params["globalStringQuery"] = _SERIALIZER.query("global_string_query", global_string_query, "str")
     if local_string_query is not None:
-        _query_parameters["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
+        _params["localStringQuery"] = _SERIALIZER.query("local_string_query", local_string_query, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 class PathsOperations:  # pylint: disable=too-many-public-methods
@@ -1338,13 +1432,18 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         bool_path = kwargs.pop("bool_path", True)  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_get_boolean_true_request(
             bool_path=bool_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1372,13 +1471,18 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         bool_path = kwargs.pop("bool_path", False)  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_get_boolean_false_request(
             bool_path=bool_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1406,13 +1510,18 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         int_path = kwargs.pop("int_path", 1000000)  # type: int
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_get_int_one_million_request(
             int_path=int_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1440,13 +1549,18 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         int_path = kwargs.pop("int_path", -1000000)  # type: int
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_get_int_negative_one_million_request(
             int_path=int_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1474,13 +1588,18 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         long_path = kwargs.pop("long_path", 10000000000)  # type: int
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_get_ten_billion_request(
             long_path=long_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1508,13 +1627,18 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         long_path = kwargs.pop("long_path", -10000000000)  # type: int
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_get_negative_ten_billion_request(
             long_path=long_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1542,13 +1666,18 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         float_path = kwargs.pop("float_path", 103400000000000000000)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_float_scientific_positive_request(
             float_path=float_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1576,13 +1705,18 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         float_path = kwargs.pop("float_path", -1.034e-20)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_float_scientific_negative_request(
             float_path=float_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1610,13 +1744,18 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         double_path = kwargs.pop("double_path", 9999999.999)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_double_decimal_positive_request(
             double_path=double_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1644,13 +1783,18 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         double_path = kwargs.pop("double_path", -9999999.999)  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_double_decimal_negative_request(
             double_path=double_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1678,13 +1822,18 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         string_path = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_string_unicode_request(
             string_path=string_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1713,13 +1862,18 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         string_path = kwargs.pop("string_path", "begin!*'();:@ &=+$,/?#[]end")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_string_url_encoded_request(
             string_path=string_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1750,13 +1904,18 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         string_path = kwargs.pop("string_path", "begin!*'();:@&=+$,end")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_string_url_non_encoded_request(
             string_path=string_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1784,13 +1943,18 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         string_path = kwargs.pop("string_path", "")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_string_empty_request(
             string_path=string_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1817,12 +1981,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_string_null_request(
             string_path=string_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1850,12 +2019,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_enum_valid_request(
             enum_path=enum_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1883,12 +2057,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_enum_null_request(
             enum_path=enum_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1917,12 +2096,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_byte_multi_byte_request(
             byte_path=byte_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1950,13 +2134,18 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         byte_path = kwargs.pop("byte_path", bytearray("", encoding="utf-8"))  # type: bytearray
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_byte_empty_request(
             byte_path=byte_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1983,12 +2172,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_byte_null_request(
             byte_path=byte_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2016,13 +2210,18 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         date_path = kwargs.pop("date_path", "2012-01-01")  # type: datetime.date
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_date_valid_request(
             date_path=date_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2052,12 +2251,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_date_null_request(
             date_path=date_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2086,13 +2290,18 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         date_time_path = kwargs.pop("date_time_path", "2012-01-01T01:01:01Z")  # type: datetime.datetime
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_date_time_valid_request(
             date_time_path=date_time_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2121,12 +2330,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_date_time_null_request(
             date_time_path=date_time_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2155,12 +2369,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_base64_url_request(
             base64_url_path=base64_url_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2191,12 +2410,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_array_csv_in_path_request(
             array_path=array_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2225,12 +2449,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_unix_time_url_request(
             unix_time_url_path=unix_time_url_path,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2276,13 +2505,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        bool_query = kwargs.pop("bool_query", True)  # type: bool
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        bool_query = kwargs.pop("bool_query", _params.pop("boolQuery", True))  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_boolean_true_request(
             bool_query=bool_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2310,13 +2544,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        bool_query = kwargs.pop("bool_query", False)  # type: bool
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        bool_query = kwargs.pop("bool_query", _params.pop("boolQuery", False))  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_boolean_false_request(
             bool_query=bool_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2345,12 +2584,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_boolean_null_request(
             bool_query=bool_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2378,13 +2622,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        int_query = kwargs.pop("int_query", 1000000)  # type: int
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        int_query = kwargs.pop("int_query", _params.pop("intQuery", 1000000))  # type: int
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_int_one_million_request(
             int_query=int_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2412,13 +2661,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        int_query = kwargs.pop("int_query", -1000000)  # type: int
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        int_query = kwargs.pop("int_query", _params.pop("intQuery", -1000000))  # type: int
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_int_negative_one_million_request(
             int_query=int_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2447,12 +2701,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_int_null_request(
             int_query=int_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2480,13 +2739,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        long_query = kwargs.pop("long_query", 10000000000)  # type: int
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        long_query = kwargs.pop("long_query", _params.pop("longQuery", 10000000000))  # type: int
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_ten_billion_request(
             long_query=long_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2514,13 +2778,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        long_query = kwargs.pop("long_query", -10000000000)  # type: int
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        long_query = kwargs.pop("long_query", _params.pop("longQuery", -10000000000))  # type: int
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_negative_ten_billion_request(
             long_query=long_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2549,12 +2818,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_get_long_null_request(
             long_query=long_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2582,13 +2856,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        float_query = kwargs.pop("float_query", 103400000000000000000)  # type: float
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        float_query = kwargs.pop("float_query", _params.pop("floatQuery", 103400000000000000000))  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_float_scientific_positive_request(
             float_query=float_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2616,13 +2895,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        float_query = kwargs.pop("float_query", -1.034e-20)  # type: float
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        float_query = kwargs.pop("float_query", _params.pop("floatQuery", -1.034e-20))  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_float_scientific_negative_request(
             float_query=float_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2651,12 +2935,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_float_null_request(
             float_query=float_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2684,13 +2973,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        double_query = kwargs.pop("double_query", 9999999.999)  # type: float
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        double_query = kwargs.pop("double_query", _params.pop("doubleQuery", 9999999.999))  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_double_decimal_positive_request(
             double_query=double_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2718,13 +3012,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        double_query = kwargs.pop("double_query", -9999999.999)  # type: float
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        double_query = kwargs.pop("double_query", _params.pop("doubleQuery", -9999999.999))  # type: float
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_double_decimal_negative_request(
             double_query=double_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2753,12 +3052,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_double_null_request(
             double_query=double_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2786,13 +3090,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        string_query = kwargs.pop("string_query", "啊齄丂狛狜隣郎隣兀﨩")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        string_query = kwargs.pop("string_query", _params.pop("stringQuery", "啊齄丂狛狜隣郎隣兀﨩"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_string_unicode_request(
             string_query=string_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2821,13 +3130,20 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        string_query = kwargs.pop("string_query", "begin!*'();:@ &=+$,/?#[]end")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        string_query = kwargs.pop(
+            "string_query", _params.pop("stringQuery", "begin!*'();:@ &=+$,/?#[]end")
+        )  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_string_url_encoded_request(
             string_query=string_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2855,13 +3171,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        string_query = kwargs.pop("string_query", "")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        string_query = kwargs.pop("string_query", _params.pop("stringQuery", ""))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_string_empty_request(
             string_query=string_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2890,12 +3211,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_string_null_request(
             string_query=string_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2925,12 +3251,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_enum_valid_request(
             enum_query=enum_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2960,12 +3291,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_enum_null_request(
             enum_query=enum_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2995,12 +3331,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_byte_multi_byte_request(
             byte_query=byte_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -3028,13 +3369,20 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        byte_query = kwargs.pop("byte_query", bytearray("", encoding="utf-8"))  # type: bytearray
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        byte_query = kwargs.pop(
+            "byte_query", _params.pop("byteQuery", bytearray("", encoding="utf-8"))
+        )  # type: bytearray
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_byte_empty_request(
             byte_query=byte_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -3063,12 +3411,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_byte_null_request(
             byte_query=byte_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -3096,13 +3449,18 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        date_query = kwargs.pop("date_query", "2012-01-01")  # type: datetime.date
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        date_query = kwargs.pop("date_query", _params.pop("dateQuery", "2012-01-01"))  # type: datetime.date
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_date_valid_request(
             date_query=date_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -3131,12 +3489,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_date_null_request(
             date_query=date_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -3165,13 +3528,20 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        date_time_query = kwargs.pop("date_time_query", "2012-01-01T01:01:01Z")  # type: datetime.datetime
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        date_time_query = kwargs.pop(
+            "date_time_query", _params.pop("dateTimeQuery", "2012-01-01T01:01:01Z")
+        )  # type: datetime.datetime
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_date_time_valid_request(
             date_time_query=date_time_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -3200,12 +3570,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_date_time_null_request(
             date_time_query=date_time_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -3236,12 +3611,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_array_string_csv_valid_request(
             array_query=array_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -3270,12 +3650,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_array_string_csv_null_request(
             array_query=array_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -3305,12 +3690,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_array_string_csv_empty_request(
             array_query=array_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -3341,12 +3731,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_array_string_no_collection_format_empty_request(
             array_query=array_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -3377,12 +3772,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_array_string_ssv_valid_request(
             array_query=array_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -3413,12 +3813,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_array_string_tsv_valid_request(
             array_query=array_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -3449,12 +3854,17 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_array_string_pipes_valid_request(
             array_query=array_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -3516,7 +3926,10 @@ class PathItemsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -3527,6 +3940,8 @@ class PathItemsOperations:
             path_item_string_query=path_item_string_query,
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -3570,7 +3985,10 @@ class PathItemsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -3581,6 +3999,8 @@ class PathItemsOperations:
             path_item_string_query=path_item_string_query,
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -3624,7 +4044,10 @@ class PathItemsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -3635,6 +4058,8 @@ class PathItemsOperations:
             path_item_string_query=path_item_string_query,
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -3677,7 +4102,10 @@ class PathItemsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -3688,6 +4116,8 @@ class PathItemsOperations:
             path_item_string_query=path_item_string_query,
             global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 

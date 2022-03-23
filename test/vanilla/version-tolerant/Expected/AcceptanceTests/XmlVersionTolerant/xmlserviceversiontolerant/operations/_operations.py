@@ -22,6 +22,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
 JSONType = Any
@@ -32,111 +33,121 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_xml_get_complex_type_ref_no_meta_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/complex-type-ref-no-meta"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_xml_put_complex_type_ref_no_meta_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/complex-type-ref-no-meta"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_xml_get_complex_type_ref_with_meta_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/complex-type-ref-with-meta"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_xml_put_complex_type_ref_with_meta_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/complex-type-ref-with-meta"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_xml_get_simple_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/simple"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_xml_put_simple_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/xml"
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/simple"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_xml_get_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/wrapped-lists"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_xml_put_wrapped_lists_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/xml"
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/wrapped-lists"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_xml_get_headers_request(**kwargs: Any) -> HttpRequest:
@@ -147,377 +158,399 @@ def build_xml_get_headers_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_xml_get_empty_list_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/empty-list"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_xml_put_empty_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/empty-list"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_xml_get_empty_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/empty-wrapped-lists"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_xml_put_empty_wrapped_lists_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/empty-wrapped-lists"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_xml_get_root_list_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/root-list"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_xml_put_root_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/root-list"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_xml_get_root_list_single_item_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/root-list-single-item"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_xml_put_root_list_single_item_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/root-list-single-item"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_xml_get_empty_root_list_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/empty-root-list"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_xml_put_empty_root_list_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/empty-root-list"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_xml_get_empty_child_element_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/empty-child-element"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_xml_put_empty_child_element_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/empty-child-element"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_xml_list_containers_request(**kwargs: Any) -> HttpRequest:
-    comp = kwargs.pop("comp", "list")  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/xml"
+    comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["comp"] = _SERIALIZER.query("comp", comp, "str")
+    _params["comp"] = _SERIALIZER.query("comp", comp, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_xml_get_service_properties_request(**kwargs: Any) -> HttpRequest:
-    comp = kwargs.pop("comp", "properties")  # type: str
-    restype = kwargs.pop("restype", "service")  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/xml"
+    comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
+    restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["comp"] = _SERIALIZER.query("comp", comp, "str")
-    _query_parameters["restype"] = _SERIALIZER.query("restype", restype, "str")
+    _params["comp"] = _SERIALIZER.query("comp", comp, "str")
+    _params["restype"] = _SERIALIZER.query("restype", restype, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_xml_put_service_properties_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    comp = kwargs.pop("comp", "properties")  # type: str
-    restype = kwargs.pop("restype", "service")  # type: str
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
+    restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["comp"] = _SERIALIZER.query("comp", comp, "str")
-    _query_parameters["restype"] = _SERIALIZER.query("restype", restype, "str")
+    _params["comp"] = _SERIALIZER.query("comp", comp, "str")
+    _params["restype"] = _SERIALIZER.query("restype", restype, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT", url=_url, params=_query_parameters, headers=_header_parameters, content=content, **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, content=content, **kwargs)
 
 
 def build_xml_get_acls_request(**kwargs: Any) -> HttpRequest:
-    comp = kwargs.pop("comp", "acl")  # type: str
-    restype = kwargs.pop("restype", "container")  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/xml"
+    comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
+    restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/mycontainer"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["comp"] = _SERIALIZER.query("comp", comp, "str")
-    _query_parameters["restype"] = _SERIALIZER.query("restype", restype, "str")
+    _params["comp"] = _SERIALIZER.query("comp", comp, "str")
+    _params["restype"] = _SERIALIZER.query("restype", restype, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_xml_put_acls_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    comp = kwargs.pop("comp", "acl")  # type: str
-    restype = kwargs.pop("restype", "container")  # type: str
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
+    restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/mycontainer"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["comp"] = _SERIALIZER.query("comp", comp, "str")
-    _query_parameters["restype"] = _SERIALIZER.query("restype", restype, "str")
+    _params["comp"] = _SERIALIZER.query("comp", comp, "str")
+    _params["restype"] = _SERIALIZER.query("restype", restype, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(
-        method="PUT", url=_url, params=_query_parameters, headers=_header_parameters, content=content, **kwargs
-    )
+    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, content=content, **kwargs)
 
 
 def build_xml_list_blobs_request(**kwargs: Any) -> HttpRequest:
-    comp = kwargs.pop("comp", "list")  # type: str
-    restype = kwargs.pop("restype", "container")  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/xml"
+    comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
+    restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/mycontainer"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters["comp"] = _SERIALIZER.query("comp", comp, "str")
-    _query_parameters["restype"] = _SERIALIZER.query("restype", restype, "str")
+    _params["comp"] = _SERIALIZER.query("comp", comp, "str")
+    _params["restype"] = _SERIALIZER.query("restype", restype, "str")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_query_parameters, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_xml_json_input_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/jsoninput"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_xml_json_output_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/xml/jsonoutput"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_xml_get_xms_text_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/x-ms-text"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_xml_get_bytes_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/bytes"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_xml_put_binary_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/xml"
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/bytes"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_xml_get_uri_request(**kwargs: Any) -> HttpRequest:
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/url"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_header_parameters, **kwargs)
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_xml_put_uri_request(*, content: Any, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/xml"
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/xml")
+
     # Construct URL
     _url = "/xml/url"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_header_parameters, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 class XmlOperations:  # pylint: disable=too-many-public-methods
@@ -557,11 +590,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
-        request = build_xml_get_complex_type_ref_no_meta_request()
+        request = build_xml_get_complex_type_ref_no_meta_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -607,9 +646,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/xml")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = model
@@ -617,6 +661,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_xml_put_complex_type_ref_no_meta_request(
             content_type=content_type,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -652,11 +698,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
-        request = build_xml_get_complex_type_ref_with_meta_request()
+        request = build_xml_get_complex_type_ref_with_meta_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -702,9 +754,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/xml")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = model
@@ -712,6 +769,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_xml_put_complex_type_ref_with_meta_request(
             content_type=content_type,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -755,11 +814,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
-        request = build_xml_get_simple_request()
+        request = build_xml_get_simple_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -813,9 +878,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/xml")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = slideshow
@@ -823,6 +893,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_xml_put_simple_request(
             content_type=content_type,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -860,11 +932,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
-        request = build_xml_get_wrapped_lists_request()
+        request = build_xml_get_wrapped_lists_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -912,9 +990,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/xml")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = wrapped_lists
@@ -922,6 +1005,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_xml_put_wrapped_lists_request(
             content_type=content_type,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -946,11 +1031,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_xml_get_headers_request()
+        request = build_xml_get_headers_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -996,11 +1087,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
-        request = build_xml_get_empty_list_request()
+        request = build_xml_get_empty_list_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -1054,9 +1151,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/xml")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = slideshow
@@ -1064,6 +1166,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_xml_put_empty_list_request(
             content_type=content_type,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1101,11 +1205,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
-        request = build_xml_get_empty_wrapped_lists_request()
+        request = build_xml_get_empty_wrapped_lists_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -1153,9 +1263,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/xml")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = apple_barrel
@@ -1163,6 +1278,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_xml_put_empty_wrapped_lists_request(
             content_type=content_type,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1200,11 +1317,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
-        request = build_xml_get_root_list_request()
+        request = build_xml_get_root_list_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -1252,9 +1375,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/xml")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = bananas
@@ -1262,6 +1390,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_xml_put_root_list_request(
             content_type=content_type,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1299,11 +1429,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
-        request = build_xml_get_root_list_single_item_request()
+        request = build_xml_get_root_list_single_item_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -1351,9 +1487,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/xml")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = bananas
@@ -1361,6 +1502,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_xml_put_root_list_single_item_request(
             content_type=content_type,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1398,11 +1541,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
-        request = build_xml_get_empty_root_list_request()
+        request = build_xml_get_empty_root_list_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -1450,9 +1599,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/xml")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = bananas
@@ -1460,6 +1614,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_xml_put_empty_root_list_request(
             content_type=content_type,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1495,11 +1651,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
-        request = build_xml_get_empty_child_element_request()
+        request = build_xml_get_empty_child_element_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -1545,9 +1707,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/xml")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = banana
@@ -1555,6 +1722,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_xml_put_empty_child_element_request(
             content_type=content_type,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1615,13 +1784,18 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        comp = kwargs.pop("comp", "list")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
         request = build_xml_list_containers_request(
             comp=comp,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1743,15 +1917,20 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        comp = kwargs.pop("comp", "properties")  # type: str
-        restype = kwargs.pop("restype", "service")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
+        restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         request = build_xml_get_service_properties_request(
             comp=comp,
             restype=restype,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1877,11 +2056,16 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        comp = kwargs.pop("comp", "properties")  # type: str
-        restype = kwargs.pop("restype", "service")  # type: str
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
+        restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/xml")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = properties
@@ -1891,6 +2075,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             restype=restype,
             content_type=content_type,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -1939,15 +2125,20 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        comp = kwargs.pop("comp", "acl")  # type: str
-        restype = kwargs.pop("restype", "container")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
+        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
         request = build_xml_get_acls_request(
             comp=comp,
             restype=restype,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2005,11 +2196,16 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        comp = kwargs.pop("comp", "acl")  # type: str
-        restype = kwargs.pop("restype", "container")  # type: str
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
+        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/xml")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = properties
@@ -2019,6 +2215,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             restype=restype,
             content_type=content_type,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2141,15 +2339,20 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        comp = kwargs.pop("comp", "list")  # type: str
-        restype = kwargs.pop("restype", "container")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
+        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
         request = build_xml_list_blobs_request(
             comp=comp,
             restype=restype,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2192,9 +2395,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = properties
@@ -2202,6 +2410,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_xml_json_input_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2234,11 +2444,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
-        request = build_xml_json_output_request()
+        request = build_xml_json_output_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -2279,11 +2495,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[ET.Element]
 
-        request = build_xml_get_xms_text_request()
+        request = build_xml_get_xms_text_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -2322,11 +2544,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
-        request = build_xml_get_bytes_request()
+        request = build_xml_get_bytes_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -2367,9 +2595,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/xml")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = slideshow
@@ -2377,6 +2610,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_xml_put_binary_request(
             content_type=content_type,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -2409,11 +2644,17 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
-        request = build_xml_get_uri_request()
+        request = build_xml_get_uri_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -2454,9 +2695,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/xml")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = model
@@ -2464,6 +2710,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_xml_put_uri_request(
             content_type=content_type,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 

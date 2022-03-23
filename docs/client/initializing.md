@@ -22,7 +22,7 @@ The following are core libraries your generated code depend on, and the minimum 
 
 | Library                                      | Description                                                                                                                                                        | Min Version |
 | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| [`azure-core`][azure_core_library]           | The most important library to have installed. It provides shared exceptions and modules for all the Python SDK client libraries.                                   | 1.20.1       |
+| [`azure-core`][azure_core_library]           | The most important library to have installed. It provides shared exceptions and modules for all the Python SDK client libraries.                                   | 1.23.0       |
 | [`msrest`][msrest_library]                   | Library mainly used for serializing and deserializing objects                                                                                                      | 0.6.21      |
 | [`azure-mgmt-core`][azure_mgmt_core_library] | Required if you're generating mgmt plane code (see `--azure-arm` flag in our [flag index][flag_index]. Provides mgmt plane specific shared exceptions and modules. | 1.2.1       |
 
