@@ -37,7 +37,7 @@ class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
     async def validation_of_method_parameters(
         self, resource_group_name: str, id: int, **kwargs: Any
-    ) -> "_models.Product":
+    ) -> _models.Product:
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -53,7 +53,7 @@ class AutoRestValidationTestOperationsMixin:
         error_map.update(kwargs.pop("error_map", {}))
 
         api_version = kwargs.pop("api_version", "1.0.0")  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         request = build_validation_of_method_parameters_request(
             subscription_id=self._config.subscription_id,
@@ -86,8 +86,8 @@ class AutoRestValidationTestOperationsMixin:
 
     @distributed_trace_async
     async def validation_of_body(
-        self, resource_group_name: str, id: int, body: Optional["_models.Product"] = None, **kwargs: Any
-    ) -> "_models.Product":
+        self, resource_group_name: str, id: int, body: Optional[_models.Product] = None, **kwargs: Any
+    ) -> _models.Product:
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -106,7 +106,7 @@ class AutoRestValidationTestOperationsMixin:
 
         api_version = kwargs.pop("api_version", "1.0.0")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         if body is not None:
             _json = self._serialize.body(body, "Product")
@@ -185,8 +185,8 @@ class AutoRestValidationTestOperationsMixin:
 
     @distributed_trace_async
     async def post_with_constant_in_body(
-        self, body: Optional["_models.Product"] = None, **kwargs: Any
-    ) -> "_models.Product":
+        self, body: Optional[_models.Product] = None, **kwargs: Any
+    ) -> _models.Product:
         """post_with_constant_in_body.
 
         :param body:  Default value is None.
@@ -204,7 +204,7 @@ class AutoRestValidationTestOperationsMixin:
 
         constant_param = kwargs.pop("constant_param", "constant")  # type: str
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         if body is not None:
             _json = self._serialize.body(body, "Product")

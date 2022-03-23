@@ -23,18 +23,19 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+import pytest
 from constants import AutoRestSwaggerConstantService
 
-def test_put_client_constants():
-    with AutoRestSwaggerConstantService(
-        header_constant=True,
-        query_constant=100,
-        path_constant="path"
-    ) as client:
-        client.contants.put_client_constants()
-        assert client._config.header_constant == True
-        assert client._config.query_constant == 100
-        assert client._config.path_constant == "path"
+@pytest.fixture
+def client():
+    with AutoRestSwaggerConstantService(base_url="http://localhost:3000") as client:
+        yield client
+
+def test_put_client_constants(client):
+    client.contants.put_client_constants()
+    assert client._config.header_constant == True
+    assert client._config.query_constant == 100
+    assert client._config.path_constant == "path"
 
 def test_put_client_constants_override():
     with AutoRestSwaggerConstantService(

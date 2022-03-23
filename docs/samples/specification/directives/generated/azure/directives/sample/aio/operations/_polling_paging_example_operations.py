@@ -28,16 +28,16 @@ class PollingPagingExampleOperationsMixin:
 
     async def _basic_polling_initial(
         self,
-        product: Optional["_models.Product"] = None,
+        product: Optional[_models.Product] = None,
         **kwargs: Any
-    ) -> Optional["_models.Product"]:
+    ) -> Optional[_models.Product]:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
         error_map.update(kwargs.pop('error_map', {}))
 
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[_models.Product]]
 
         if product is not None:
             _json = self._serialize.body(product, 'Product')
@@ -78,9 +78,9 @@ class PollingPagingExampleOperationsMixin:
     @distributed_trace_async
     async def begin_basic_polling(
         self,
-        product: Optional["_models.Product"] = None,
+        product: Optional[_models.Product] = None,
         **kwargs: Any
-    ) -> AsyncCustomPoller["_models.Product"]:
+    ) -> AsyncCustomPoller[_models.Product]:
         """A simple polling operation.
 
         :param product: Product to put. Default value is None.
@@ -99,7 +99,7 @@ class PollingPagingExampleOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.Product]
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop(
             'polling_interval',
@@ -116,7 +116,6 @@ class PollingPagingExampleOperationsMixin:
         kwargs.pop('error_map', None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize('Product', pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -147,7 +146,7 @@ class PollingPagingExampleOperationsMixin:
     def basic_paging(
         self,
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProductResult"]:
+    ) -> AsyncIterable[_models.ProductResult]:
         """A simple paging operation.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -155,7 +154,7 @@ class PollingPagingExampleOperationsMixin:
         :rtype: ~my.library.aio.AsyncCustomPager[~azure.directives.sample.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResult]
 
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError

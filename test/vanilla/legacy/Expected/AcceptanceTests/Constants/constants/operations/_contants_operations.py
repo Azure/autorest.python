@@ -381,12 +381,12 @@ def build_put_model_as_string_required_one_value_default_request(
 
 
 def build_put_client_constants_request(
-    path_constant,  # type: Union[str, "_models.Enum10"]
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    header_constant = kwargs.pop('header_constant')  # type: Union[bool, "_models.Enum8"]
-    query_constant = kwargs.pop('query_constant')  # type: Union[int, "_models.Enum9"]
+    header_constant = kwargs.pop('header_constant', True)  # type: bool
+    query_constant = kwargs.pop('query_constant', 100)  # type: int
+    path_constant = kwargs.pop('path_constant', "path")  # type: str
 
     # Construct URL
     _url = kwargs.pop("template_url", "/constants/clientConstants/{path-constant}")
@@ -1155,9 +1155,9 @@ class ContantsOperations(object):
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_put_client_constants_request(
-            path_constant=self._config.path_constant,
             header_constant=self._config.header_constant,
             query_constant=self._config.query_constant,
+            path_constant=self._config.path_constant,
             template_url=self.put_client_constants.metadata["url"],
         )
         request = _convert_request(request)

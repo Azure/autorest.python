@@ -27,24 +27,25 @@ import pytest
 from constantslowlevel.aio import AutoRestSwaggerConstantService
 from constantslowlevel.rest import contants
 
-@pytest.mark.asyncio
-async def test_put_client_constants():
-    async with AutoRestSwaggerConstantService(
-        header_constant=True,
-        query_constant=100,
-        path_constant="path"
-    ) as client:
-        assert client._config.header_constant == True
-        assert client._config.query_constant == 100
-        assert client._config.path_constant == "path"
+@pytest.fixture
+async def client():
+    async with AutoRestSwaggerConstantService() as client:
+        yield client
 
-        request = contants.build_put_client_constants_request(
-            header_constant=True,
-            query_constant=100,
-            path_constant="path"
-        )
-        response = await client.send_request(request)
-        response.raise_for_status()
+@pytest.fixture
+def send_request(client, base_send_request):
+    async def _send_request(request):
+        return await base_send_request(client, request)
+    return _send_request
+
+@pytest.mark.asyncio
+async def test_put_client_constants(client, send_request):
+    assert client._config.header_constant == True
+    assert client._config.query_constant == 100
+    assert client._config.path_constant == "path"
+
+    request = contants.build_put_client_constants_request()
+    await send_request(request)
 
 @pytest.mark.asyncio
 async def test_put_client_constants_override():

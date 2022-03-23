@@ -54,7 +54,7 @@ class ArrayOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> "_models.ArrayWrapper":
+    async def get_valid(self, **kwargs: Any) -> _models.ArrayWrapper:
         """Get complex types with array property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -65,7 +65,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ArrayWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ArrayWrapper]
 
         request = build_get_valid_request(
             template_url=self.get_valid.metadata["url"],
@@ -138,7 +138,7 @@ class ArrayOperations:
     put_valid.metadata = {"url": "/complex/array/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs: Any) -> "_models.ArrayWrapper":
+    async def get_empty(self, **kwargs: Any) -> _models.ArrayWrapper:
         """Get complex types with array property which is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -149,7 +149,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ArrayWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ArrayWrapper]
 
         request = build_get_empty_request(
             template_url=self.get_empty.metadata["url"],
@@ -222,7 +222,7 @@ class ArrayOperations:
     put_empty.metadata = {"url": "/complex/array/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_not_provided(self, **kwargs: Any) -> "_models.ArrayWrapper":
+    async def get_not_provided(self, **kwargs: Any) -> _models.ArrayWrapper:
         """Get complex types with array property while server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -233,7 +233,7 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ArrayWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ArrayWrapper]
 
         request = build_get_not_provided_request(
             template_url=self.get_not_provided.metadata["url"],

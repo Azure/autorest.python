@@ -182,7 +182,7 @@ class MediaTypesClientOperationsMixin(object):
     @distributed_trace
     def analyze_body(
         self,
-        input=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
+        input=None,  # type: Optional[Union[IO, _models.SourcePath]]
         **kwargs  # type: Any
     ):
         # type: (...) -> str
@@ -251,7 +251,7 @@ class MediaTypesClientOperationsMixin(object):
     @distributed_trace
     def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
         self,
-        input=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
+        input=None,  # type: Optional[Union[IO, _models.SourcePath]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

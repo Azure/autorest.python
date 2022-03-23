@@ -165,7 +165,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("str", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -286,7 +285,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize("str", pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})

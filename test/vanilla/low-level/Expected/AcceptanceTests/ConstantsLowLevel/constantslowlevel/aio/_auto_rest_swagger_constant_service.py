@@ -24,31 +24,24 @@ if TYPE_CHECKING:
 class AutoRestSwaggerConstantService:
     """Test Infrastructure for AutoRest Swagger Constant.
 
-    :param header_constant: Constant header property on the client that is a required parameter for
-     operation 'constants_putClientConstants'. True
-    :type header_constant: bool
-    :param query_constant: Constant query property on the client that is a required parameter for
-     operation 'constants_putClientConstants'. 100
-    :type query_constant: int
-    :param path_constant: Constant path property on the client that is a required parameter for
-     operation 'constants_putClientConstants'. "path"
-    :type path_constant: str
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
+    :keyword header_constant: Constant header property on the client that is a required parameter
+     for operation 'constants_putClientConstants'. Default value is True. Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype header_constant: bool
+    :keyword query_constant: Constant query property on the client that is a required parameter for
+     operation 'constants_putClientConstants'. Default value is 100. Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype query_constant: int
+    :keyword path_constant: Constant path property on the client that is a required parameter for
+     operation 'constants_putClientConstants'. Default value is "path". Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype path_constant: str
     """
 
-    def __init__(
-        self,
-        header_constant: bool,
-        query_constant: int,
-        path_constant: str,
-        *,
-        endpoint: str = "http://localhost:3000",
-        **kwargs: Any
-    ) -> None:
-        self._config = AutoRestSwaggerConstantServiceConfiguration(
-            header_constant=header_constant, query_constant=query_constant, path_constant=path_constant, **kwargs
-        )
+    def __init__(self, *, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
+        self._config = AutoRestSwaggerConstantServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()

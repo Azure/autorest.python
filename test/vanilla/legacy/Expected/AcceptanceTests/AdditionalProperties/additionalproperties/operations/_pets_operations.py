@@ -202,10 +202,10 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_true(
         self,
-        create_parameters,  # type: "_models.PetAPTrue"
+        create_parameters,  # type: _models.PetAPTrue
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.PetAPTrue"
+        # type: (...) -> _models.PetAPTrue
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -219,7 +219,7 @@ class PetsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPTrue"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPTrue]
 
         _json = self._serialize.body(create_parameters, "PetAPTrue")
 
@@ -253,10 +253,10 @@ class PetsOperations(object):
     @distributed_trace
     def create_cat_ap_true(
         self,
-        create_parameters,  # type: "_models.CatAPTrue"
+        create_parameters,  # type: _models.CatAPTrue
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.CatAPTrue"
+        # type: (...) -> _models.CatAPTrue
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters:
@@ -270,7 +270,7 @@ class PetsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.CatAPTrue"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.CatAPTrue]
 
         _json = self._serialize.body(create_parameters, "CatAPTrue")
 
@@ -304,10 +304,10 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_object(
         self,
-        create_parameters,  # type: "_models.PetAPObject"
+        create_parameters,  # type: _models.PetAPObject
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.PetAPObject"
+        # type: (...) -> _models.PetAPObject
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -321,7 +321,7 @@ class PetsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPObject"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPObject]
 
         _json = self._serialize.body(create_parameters, "PetAPObject")
 
@@ -355,10 +355,10 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_string(
         self,
-        create_parameters,  # type: "_models.PetAPString"
+        create_parameters,  # type: _models.PetAPString
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.PetAPString"
+        # type: (...) -> _models.PetAPString
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -372,7 +372,7 @@ class PetsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPString"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPString]
 
         _json = self._serialize.body(create_parameters, "PetAPString")
 
@@ -406,10 +406,10 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_in_properties(
         self,
-        create_parameters,  # type: "_models.PetAPInProperties"
+        create_parameters,  # type: _models.PetAPInProperties
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.PetAPInProperties"
+        # type: (...) -> _models.PetAPInProperties
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -423,7 +423,7 @@ class PetsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPInProperties"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPInProperties]
 
         _json = self._serialize.body(create_parameters, "PetAPInProperties")
 
@@ -457,10 +457,10 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_in_properties_with_ap_string(
         self,
-        create_parameters,  # type: "_models.PetAPInPropertiesWithAPString"
+        create_parameters,  # type: _models.PetAPInPropertiesWithAPString
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.PetAPInPropertiesWithAPString"
+        # type: (...) -> _models.PetAPInPropertiesWithAPString
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -474,7 +474,7 @@ class PetsOperations(object):
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPInPropertiesWithAPString"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPInPropertiesWithAPString]
 
         _json = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
 

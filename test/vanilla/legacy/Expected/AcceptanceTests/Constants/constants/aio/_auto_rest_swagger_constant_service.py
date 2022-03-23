@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Union
+from typing import Any, Awaitable
 
 from msrest import Deserializer, Serializer
 
@@ -24,30 +24,24 @@ class AutoRestSwaggerConstantService:
 
     :ivar contants: ContantsOperations operations
     :vartype contants: constants.aio.operations.ContantsOperations
-    :param header_constant: Constant header property on the client that is a required parameter for
-     operation 'constants_putClientConstants'.
-    :type header_constant: bool or ~constants.models.Enum8
-    :param query_constant: Constant query property on the client that is a required parameter for
-     operation 'constants_putClientConstants'.
-    :type query_constant: int or ~constants.models.Enum9
-    :param path_constant: Constant path property on the client that is a required parameter for
-     operation 'constants_putClientConstants'.
-    :type path_constant: str or ~constants.models.Enum10
     :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
+    :keyword header_constant: Constant header property on the client that is a required parameter
+     for operation 'constants_putClientConstants'. Default value is True. Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype header_constant: bool
+    :keyword query_constant: Constant query property on the client that is a required parameter for
+     operation 'constants_putClientConstants'. Default value is 100. Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype query_constant: int
+    :keyword path_constant: Constant path property on the client that is a required parameter for
+     operation 'constants_putClientConstants'. Default value is "path". Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype path_constant: str
     """
 
-    def __init__(
-        self,
-        header_constant: Union[bool, "_models.Enum8"],
-        query_constant: Union[int, "_models.Enum9"],
-        path_constant: Union[str, "_models.Enum10"],
-        base_url: str = "http://localhost:3000",
-        **kwargs: Any
-    ) -> None:
-        self._config = AutoRestSwaggerConstantServiceConfiguration(
-            header_constant=header_constant, query_constant=query_constant, path_constant=path_constant, **kwargs
-        )
+    def __init__(self, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
+        self._config = AutoRestSwaggerConstantServiceConfiguration(**kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}

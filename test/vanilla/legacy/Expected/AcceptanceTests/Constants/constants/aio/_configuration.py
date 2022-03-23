@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Union
+from typing import Any
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
@@ -20,31 +20,25 @@ class AutoRestSwaggerConstantServiceConfiguration(Configuration):  # pylint: dis
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param header_constant: Constant header property on the client that is a required parameter for
-     operation 'constants_putClientConstants'.
-    :type header_constant: bool or ~constants.models.Enum8
-    :param query_constant: Constant query property on the client that is a required parameter for
-     operation 'constants_putClientConstants'.
-    :type query_constant: int or ~constants.models.Enum9
-    :param path_constant: Constant path property on the client that is a required parameter for
-     operation 'constants_putClientConstants'.
-    :type path_constant: str or ~constants.models.Enum10
+    :keyword header_constant: Constant header property on the client that is a required parameter
+     for operation 'constants_putClientConstants'. Default value is True. Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype header_constant: bool
+    :keyword query_constant: Constant query property on the client that is a required parameter for
+     operation 'constants_putClientConstants'. Default value is 100. Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype query_constant: int
+    :keyword path_constant: Constant path property on the client that is a required parameter for
+     operation 'constants_putClientConstants'. Default value is "path". Note that overriding this
+     default value may result in unsupported behavior.
+    :paramtype path_constant: str
     """
 
-    def __init__(
-        self,
-        header_constant: Union[bool, "_models.Enum8"],
-        query_constant: Union[int, "_models.Enum9"],
-        path_constant: Union[str, "_models.Enum10"],
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, **kwargs: Any) -> None:
         super(AutoRestSwaggerConstantServiceConfiguration, self).__init__(**kwargs)
-        if header_constant is None:
-            raise ValueError("Parameter 'header_constant' must not be None.")
-        if query_constant is None:
-            raise ValueError("Parameter 'query_constant' must not be None.")
-        if path_constant is None:
-            raise ValueError("Parameter 'path_constant' must not be None.")
+        header_constant = kwargs.pop("header_constant", True)  # type: bool
+        query_constant = kwargs.pop("query_constant", 100)  # type: int
+        path_constant = kwargs.pop("path_constant", "path")  # type: str
 
         self.header_constant = header_constant
         self.query_constant = query_constant

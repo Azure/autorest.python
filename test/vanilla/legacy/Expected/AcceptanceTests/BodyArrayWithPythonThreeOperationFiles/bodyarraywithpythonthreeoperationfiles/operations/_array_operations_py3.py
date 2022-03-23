@@ -3027,7 +3027,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_base64_url.metadata = {"url": "/array/prim/base64url/valid"}  # type: ignore
 
     @distributed_trace
-    def get_complex_null(self, **kwargs: Any) -> List["_models.Product"]:
+    def get_complex_null(self, **kwargs: Any) -> List[_models.Product]:
         """Get array of complex type null value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -3038,7 +3038,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Product"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.Product]]
 
         request = build_get_complex_null_request(
             template_url=self.get_complex_null.metadata["url"],
@@ -3066,7 +3066,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_complex_null.metadata = {"url": "/array/complex/null"}  # type: ignore
 
     @distributed_trace
-    def get_complex_empty(self, **kwargs: Any) -> List["_models.Product"]:
+    def get_complex_empty(self, **kwargs: Any) -> List[_models.Product]:
         """Get empty array of complex type [].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -3077,7 +3077,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Product"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.Product]]
 
         request = build_get_complex_empty_request(
             template_url=self.get_complex_empty.metadata["url"],
@@ -3105,7 +3105,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_complex_empty.metadata = {"url": "/array/complex/empty"}  # type: ignore
 
     @distributed_trace
-    def get_complex_item_null(self, **kwargs: Any) -> List["_models.Product"]:
+    def get_complex_item_null(self, **kwargs: Any) -> List[_models.Product]:
         """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
         'string': '6'}].
 
@@ -3117,7 +3117,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Product"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.Product]]
 
         request = build_get_complex_item_null_request(
             template_url=self.get_complex_item_null.metadata["url"],
@@ -3145,7 +3145,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_complex_item_null.metadata = {"url": "/array/complex/itemnull"}  # type: ignore
 
     @distributed_trace
-    def get_complex_item_empty(self, **kwargs: Any) -> List["_models.Product"]:
+    def get_complex_item_empty(self, **kwargs: Any) -> List[_models.Product]:
         """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
         'string': '6'}].
 
@@ -3157,7 +3157,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Product"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.Product]]
 
         request = build_get_complex_item_empty_request(
             template_url=self.get_complex_item_empty.metadata["url"],
@@ -3185,7 +3185,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
     get_complex_item_empty.metadata = {"url": "/array/complex/itemempty"}  # type: ignore
 
     @distributed_trace
-    def get_complex_valid(self, **kwargs: Any) -> List["_models.Product"]:
+    def get_complex_valid(self, **kwargs: Any) -> List[_models.Product]:
         """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
         {'integer': 5, 'string': '6'}].
 
@@ -3197,7 +3197,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Product"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.Product]]
 
         request = build_get_complex_valid_request(
             template_url=self.get_complex_valid.metadata["url"],
@@ -3226,7 +3226,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_complex_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List["_models.Product"], **kwargs: Any
+        self, array_body: List[_models.Product], **kwargs: Any
     ) -> None:
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
         'string': '4'}, {'integer': 5, 'string': '6'}].

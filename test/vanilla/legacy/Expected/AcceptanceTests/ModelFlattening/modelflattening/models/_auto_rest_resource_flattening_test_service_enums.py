@@ -7,11 +7,10 @@
 # --------------------------------------------------------------------------
 
 from enum import Enum
-from six import with_metaclass
 from azure.core import CaseInsensitiveEnumMeta
 
 
-class FlattenedProductPropertiesProvisioningStateValues(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class FlattenedProductPropertiesProvisioningStateValues(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     SUCCEEDED = "Succeeded"
     FAILED = "Failed"
@@ -26,7 +25,7 @@ class FlattenedProductPropertiesProvisioningStateValues(with_metaclass(CaseInsen
     OK = "OK"
 
 
-class SimpleProductPropertiesMaxProductCapacity(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class SimpleProductPropertiesMaxProductCapacity(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Capacity of product. For example, 4 people."""
 
     LARGE = "Large"

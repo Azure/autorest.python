@@ -39,9 +39,9 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     def serialization_type(self) -> str:
         return self.name
 
-    @property
-    def type_annotation(self) -> str:
-        return f'"_models.{self.name}"'
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:
+        retval = f"_models.{self.name}"
+        return retval if is_operation_file else f'"{retval}"'
 
     @property
     def docstring_type(self) -> str:
@@ -223,8 +223,7 @@ class HiddenModelObjectSchema(ObjectSchema):
     def serialization_type(self) -> str:
         return "object"
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
         if self.xml_metadata:
             return "ET.Element"
         return "JSONType"

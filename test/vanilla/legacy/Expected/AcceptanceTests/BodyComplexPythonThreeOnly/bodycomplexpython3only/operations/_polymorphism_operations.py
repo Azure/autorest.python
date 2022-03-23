@@ -181,7 +181,7 @@ class PolymorphismOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get_valid(self, **kwargs: Any) -> "_models.Fish":
+    def get_valid(self, **kwargs: Any) -> _models.Fish:
         """Get complex types that are polymorphic.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -192,7 +192,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Fish"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Fish]
 
         request = build_get_valid_request(
             template_url=self.get_valid.metadata["url"],
@@ -221,7 +221,7 @@ class PolymorphismOperations:
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: "_models.Fish", **kwargs: Any
+        self, complex_body: _models.Fish, **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic.
 
@@ -296,7 +296,7 @@ class PolymorphismOperations:
     put_valid.metadata = {"url": "/complex/polymorphism/valid"}  # type: ignore
 
     @distributed_trace
-    def get_dot_syntax(self, **kwargs: Any) -> "_models.DotFish":
+    def get_dot_syntax(self, **kwargs: Any) -> _models.DotFish:
         """Get complex types that are polymorphic, JSON key contains a dot.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -307,7 +307,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DotFish"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DotFish]
 
         request = build_get_dot_syntax_request(
             template_url=self.get_dot_syntax.metadata["url"],
@@ -335,7 +335,7 @@ class PolymorphismOperations:
     get_dot_syntax.metadata = {"url": "/complex/polymorphism/dotsyntax"}  # type: ignore
 
     @distributed_trace
-    def get_composed_with_discriminator(self, **kwargs: Any) -> "_models.DotFishMarket":
+    def get_composed_with_discriminator(self, **kwargs: Any) -> _models.DotFishMarket:
         """Get complex object composing a polymorphic scalar property and array property with polymorphic
         element type, with discriminator specified. Deserialization must NOT fail and use the
         discriminator type specified on the wire.
@@ -348,7 +348,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DotFishMarket"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DotFishMarket]
 
         request = build_get_composed_with_discriminator_request(
             template_url=self.get_composed_with_discriminator.metadata["url"],
@@ -376,7 +376,7 @@ class PolymorphismOperations:
     get_composed_with_discriminator.metadata = {"url": "/complex/polymorphism/composedWithDiscriminator"}  # type: ignore
 
     @distributed_trace
-    def get_composed_without_discriminator(self, **kwargs: Any) -> "_models.DotFishMarket":
+    def get_composed_without_discriminator(self, **kwargs: Any) -> _models.DotFishMarket:
         """Get complex object composing a polymorphic scalar property and array property with polymorphic
         element type, without discriminator specified on wire. Deserialization must NOT fail and use
         the explicit type of the property.
@@ -389,7 +389,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DotFishMarket"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DotFishMarket]
 
         request = build_get_composed_without_discriminator_request(
             template_url=self.get_composed_without_discriminator.metadata["url"],
@@ -417,7 +417,7 @@ class PolymorphismOperations:
     get_composed_without_discriminator.metadata = {"url": "/complex/polymorphism/composedWithoutDiscriminator"}  # type: ignore
 
     @distributed_trace
-    def get_complicated(self, **kwargs: Any) -> "_models.Salmon":
+    def get_complicated(self, **kwargs: Any) -> _models.Salmon:
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
@@ -429,7 +429,7 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}))
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Salmon"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Salmon]
 
         request = build_get_complicated_request(
             template_url=self.get_complicated.metadata["url"],
@@ -458,7 +458,7 @@ class PolymorphismOperations:
 
     @distributed_trace
     def put_complicated(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: "_models.Salmon", **kwargs: Any
+        self, complex_body: _models.Salmon, **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
@@ -502,7 +502,7 @@ class PolymorphismOperations:
     put_complicated.metadata = {"url": "/complex/polymorphism/complicated"}  # type: ignore
 
     @distributed_trace
-    def put_missing_discriminator(self, complex_body: "_models.Salmon", **kwargs: Any) -> "_models.Salmon":
+    def put_missing_discriminator(self, complex_body: _models.Salmon, **kwargs: Any) -> _models.Salmon:
         """Put complex types that are polymorphic, omitting the discriminator.
 
         :param complex_body:
@@ -516,7 +516,7 @@ class PolymorphismOperations:
         error_map.update(kwargs.pop("error_map", {}))
 
         content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Salmon"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Salmon]
 
         _json = self._serialize.body(complex_body, "Salmon")
 
@@ -549,7 +549,7 @@ class PolymorphismOperations:
 
     @distributed_trace
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: "_models.Fish", **kwargs: Any
+        self, complex_body: _models.Fish, **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.

@@ -7,11 +7,10 @@
 # --------------------------------------------------------------------------
 
 from enum import Enum
-from six import with_metaclass
 from azure.core import CaseInsensitiveEnumMeta
 
 
-class DaysOfWeekExtensibleEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class DaysOfWeekExtensibleEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of Pet"""
 
     MONDAY = "Monday"
@@ -23,7 +22,7 @@ class DaysOfWeekExtensibleEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum
     SUNDAY = "Sunday"
 
 
-class IntEnum(with_metaclass(CaseInsensitiveEnumMeta, str, Enum)):
+class IntEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     #: This is a really long comment to see what wrapping looks like. This comment is really long and
     #: it should wrap for readability. Please wrap. This should wrap.

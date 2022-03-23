@@ -693,7 +693,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: "_models.Product", **kwargs: Any
+        self, body_parameter: _models.Product, **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
         before the request is sent.
@@ -738,7 +738,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional["_models.Product"] = None, **kwargs: Any
+        self, body_parameter: Optional[_models.Product] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put null.
 
@@ -785,7 +785,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_required_class_property(  # pylint: disable=inconsistent-return-statements
-        self, value: "_models.Product", **kwargs: Any
+        self, value: _models.Product, **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
         and the client library should throw before the request is sent.
@@ -831,7 +831,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
-        self, value: Optional["_models.Product"] = None, **kwargs: Any
+        self, value: Optional[_models.Product] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 

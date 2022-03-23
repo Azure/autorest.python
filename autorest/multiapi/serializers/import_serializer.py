@@ -14,7 +14,9 @@ def _serialize_package(package_name: str, module_list: Set[Optional[str]], delim
     if module_list != {None}:
         buffer.append(
             "from {} import {}".format(
-                package_name, ", ".join(sorted([mod for mod in module_list if mod is not None]))
+                package_name, ", ".join(sorted([
+                    mod if isinstance(mod, str) else f"{mod[0]} as {mod[1]}" for mod in module_list if mod is not None
+                ]))
             )
         )
     return delimiter.join(buffer)
