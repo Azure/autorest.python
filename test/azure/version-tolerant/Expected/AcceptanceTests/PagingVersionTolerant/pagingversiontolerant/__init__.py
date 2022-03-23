@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_paging_test_service import AutoRestPagingTestService
+from ._client import AutoRestPagingTestService
 from ._version import VERSION
 
 __version__ = VERSION

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._dpg_client import DPGClient
+from ._client import DPGClient
 from ._version import VERSION
 
 __version__ = VERSION

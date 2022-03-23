@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._media_types_client import MediaTypesClient
+from ._client import MediaTypesClient
 
 try:
     from ._patch import __all__ as _patch_all

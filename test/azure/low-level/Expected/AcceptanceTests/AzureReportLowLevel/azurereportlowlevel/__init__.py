@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_report_service_for_azure import AutoRestReportServiceForAzure
+from ._client import AutoRestReportServiceForAzure
 from ._version import VERSION
 
 __version__ = VERSION

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_parameterized_host_test_client import AutoRestParameterizedHostTestClient
+from ._client import AutoRestParameterizedHostTestClient
 
 try:
     from ._patch import __all__ as _patch_all
