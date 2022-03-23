@@ -22,6 +22,10 @@
 - Fix the generation of the root `__init__` files for packages with only models #1195
 - Add pylint and mypy support for `--version-tolerant` generations with `--models-mode=msrest` #1202
 
+**Breaking Changes in Version Tolerant Generation**
+
+- Change client filenames to `_client.py`  #1206
+
 ### 2022-03-08 - 5.14.0
 
 | Library                                                                 | Min Version |
