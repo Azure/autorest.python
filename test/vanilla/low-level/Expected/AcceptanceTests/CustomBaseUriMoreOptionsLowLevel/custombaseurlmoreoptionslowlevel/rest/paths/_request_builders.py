@@ -10,12 +10,13 @@ from typing import TYPE_CHECKING
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
+from azure.core.utils import case_insensitive_dict
 
 from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
+    from typing import Any, Optional
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -45,9 +46,12 @@ def build_get_empty_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    key_version = kwargs.pop('key_version', "v1")  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    key_version = kwargs.pop('key_version', _params.pop('keyVersion', "v1"))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
+
     # Construct URL
     _url = "/customuri/{subscriptionId}/{keyName}"
     path_format_arguments = {
@@ -58,18 +62,16 @@ def build_get_empty_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if key_version is not None:
-        _query_parameters['keyVersion'] = _SERIALIZER.query("key_version", key_version, 'str')
+        _params['keyVersion'] = _SERIALIZER.query("key_version", key_version, 'str')
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )

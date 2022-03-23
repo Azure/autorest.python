@@ -57,13 +57,13 @@ class OperationGroup(BaseModel):
         file_import.add_submodule_import(".." if async_mode else ".", "models", ImportType.LOCAL, alias="_models")
         return file_import
 
-    def imports(self, async_mode: bool) -> FileImport:
+    def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import("azure.core.exceptions", "ClientAuthenticationError", ImportType.AZURECORE)
         file_import.add_submodule_import("azure.core.exceptions", "ResourceNotFoundError", ImportType.AZURECORE)
         file_import.add_submodule_import("azure.core.exceptions", "ResourceExistsError", ImportType.AZURECORE)
         for operation in self.operations:
-            file_import.merge(operation.imports(async_mode))
+            file_import.merge(operation.imports(async_mode, is_python3_file))
         local_path = "..." if async_mode else ".."
         if self.code_model.has_schemas and self.code_model.options["models_mode"]:
             file_import.add_submodule_import(local_path, "models", ImportType.LOCAL, alias="_models")

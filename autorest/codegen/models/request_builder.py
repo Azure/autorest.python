@@ -82,9 +82,7 @@ class RequestBuilder(BaseBuilder):
                 f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
             )
         if self.parameters.headers or self.parameters.query:
-            file_import.add_submodule_import(
-                "typing", "Dict", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
-            )
+            file_import.add_submodule_import("azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE)
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )

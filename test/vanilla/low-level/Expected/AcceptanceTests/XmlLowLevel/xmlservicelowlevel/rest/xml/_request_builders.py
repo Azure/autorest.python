@@ -10,10 +10,11 @@ from typing import TYPE_CHECKING
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
+from azure.core.utils import case_insensitive_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional, TypeVar
+    from typing import Any, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
@@ -49,18 +50,20 @@ def build_get_complex_type_ref_no_meta_request(
             }
     """
 
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/complex-type-ref-no-meta"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -83,20 +86,20 @@ def build_put_complex_type_ref_no_meta_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/complex-type-ref-no-meta"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -127,18 +130,20 @@ def build_get_complex_type_ref_with_meta_request(
             }
     """
 
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/complex-type-ref-with-meta"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -161,20 +166,20 @@ def build_put_complex_type_ref_with_meta_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/complex-type-ref-with-meta"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -213,18 +218,20 @@ def build_get_simple_request(
             }
     """
 
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/simple"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -247,22 +254,23 @@ def build_put_simple_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/xml"
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/simple"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -295,18 +303,20 @@ def build_get_wrapped_lists_request(
             }
     """
 
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/wrapped-lists"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -329,22 +339,23 @@ def build_put_wrapped_lists_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/xml"
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/wrapped-lists"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -408,18 +419,20 @@ def build_get_empty_list_request(
             }
     """
 
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/empty-list"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -442,20 +455,20 @@ def build_put_empty_list_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/empty-list"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -488,18 +501,20 @@ def build_get_empty_wrapped_lists_request(
             }
     """
 
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/empty-wrapped-lists"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -522,20 +537,20 @@ def build_put_empty_wrapped_lists_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/empty-wrapped-lists"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -568,18 +583,20 @@ def build_get_root_list_request(
             ]
     """
 
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/root-list"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -602,20 +619,20 @@ def build_put_root_list_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/root-list"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -648,18 +665,20 @@ def build_get_root_list_single_item_request(
             ]
     """
 
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/root-list-single-item"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -682,20 +701,20 @@ def build_put_root_list_single_item_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/root-list-single-item"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -728,18 +747,20 @@ def build_get_empty_root_list_request(
             ]
     """
 
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/empty-root-list"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -762,20 +783,20 @@ def build_put_empty_root_list_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/empty-root-list"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -806,18 +827,20 @@ def build_get_empty_child_element_request(
             }
     """
 
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/empty-child-element"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -840,20 +863,20 @@ def build_put_empty_child_element_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/empty-child-element"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -909,25 +932,26 @@ def build_list_containers_request(
             }
     """
 
-    comp = kwargs.pop('comp', "list")  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/xml"
+    comp = kwargs.pop('comp', _params.pop('comp', "list"))  # type: str
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -1037,27 +1061,28 @@ def build_get_service_properties_request(
             }
     """
 
-    comp = kwargs.pop('comp', "properties")  # type: str
-    restype = kwargs.pop('restype', "service")  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/xml"
+    comp = kwargs.pop('comp', _params.pop('comp', "properties"))  # type: str
+    restype = kwargs.pop('restype', _params.pop('restype', "service"))  # type: str
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    _query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -1086,28 +1111,28 @@ def build_put_service_properties_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    comp = kwargs.pop('comp', "properties")  # type: str
-    restype = kwargs.pop('restype', "service")  # type: str
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    comp = kwargs.pop('comp', _params.pop('comp', "properties"))  # type: str
+    restype = kwargs.pop('restype', _params.pop('restype', "service"))  # type: str
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    _query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -1151,27 +1176,28 @@ def build_get_acls_request(
             ]
     """
 
-    comp = kwargs.pop('comp', "acl")  # type: str
-    restype = kwargs.pop('restype', "container")  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/xml"
+    comp = kwargs.pop('comp', _params.pop('comp', "acl"))  # type: str
+    restype = kwargs.pop('restype', _params.pop('restype', "container"))  # type: str
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/mycontainer"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    _query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -1200,28 +1226,28 @@ def build_put_acls_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    comp = kwargs.pop('comp', "acl")  # type: str
-    restype = kwargs.pop('restype', "container")  # type: str
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    comp = kwargs.pop('comp', _params.pop('comp', "acl"))  # type: str
+    restype = kwargs.pop('restype', _params.pop('restype', "container"))  # type: str
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/mycontainer"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    _query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -1339,27 +1365,28 @@ def build_list_blobs_request(
             }
     """
 
-    comp = kwargs.pop('comp', "list")  # type: str
-    restype = kwargs.pop('restype', "container")  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/xml"
+    comp = kwargs.pop('comp', _params.pop('comp', "list"))  # type: str
+    restype = kwargs.pop('restype', _params.pop('restype', "container"))  # type: str
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/mycontainer"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    _query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -1394,20 +1421,20 @@ def build_json_input_request(
             }
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = "/xml/jsoninput"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -1435,18 +1462,20 @@ def build_json_output_request(
             }
     """
 
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/json")
+
     # Construct URL
     _url = "/xml/jsonoutput"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -1476,18 +1505,20 @@ def build_get_xms_text_request(
             }
     """
 
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/x-ms-text"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -1515,18 +1546,20 @@ def build_get_bytes_request(
             }
     """
 
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/bytes"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -1549,22 +1582,23 @@ def build_put_binary_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/xml"
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/bytes"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -1592,18 +1626,20 @@ def build_get_uri_request(
             }
     """
 
-    accept = "application/xml"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/url"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -1626,21 +1662,22 @@ def build_put_uri_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/xml"
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/xml")
+
     # Construct URL
     _url = "/xml/url"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )

@@ -62,7 +62,10 @@ class PathsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -70,6 +73,8 @@ class PathsOperations:
             key_name=key_name,
             subscription_id=self._config.subscription_id,
             key_version=key_version,
+            headers=_headers,
+            params=_params,
         )
         path_format_arguments = {
             "vault": self._serialize.url("vault", vault, "str", skip_quote=True),

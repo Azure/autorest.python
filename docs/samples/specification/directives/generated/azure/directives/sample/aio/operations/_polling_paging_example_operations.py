@@ -16,6 +16,7 @@ from azure.core.polling import AsyncNoPolling, AsyncPollingMethod
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 
 from ... import models as _models
@@ -34,9 +35,12 @@ class PollingPagingExampleOperationsMixin:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
-        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: Optional[str]
         cls = kwargs.pop('cls', None)  # type: ClsType[Optional[_models.Product]]
 
         if product is not None:
@@ -48,6 +52,8 @@ class PollingPagingExampleOperationsMixin:
             content_type=content_type,
             json=_json,
             template_url=self._basic_polling_initial.metadata['url'],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -98,7 +104,10 @@ class PollingPagingExampleOperationsMixin:
         :rtype: ~my.library.aio.AsyncCustomPoller[~azure.directives.sample.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: Optional[str]
         cls = kwargs.pop('cls', None)  # type: ClsType[_models.Product]
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop(
@@ -111,6 +120,8 @@ class PollingPagingExampleOperationsMixin:
                 product=product,
                 content_type=content_type,
                 cls=lambda x,y,z: x,
+                headers=_headers,
+                params=_params,
                 **kwargs
             )
         kwargs.pop('error_map', None)
@@ -154,17 +165,22 @@ class PollingPagingExampleOperationsMixin:
         :rtype: ~my.library.aio.AsyncCustomPager[~azure.directives.sample.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
         cls = kwargs.pop('cls', None)  # type: ClsType[_models.ProductResult]
 
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}))
+        error_map.update(kwargs.pop('error_map', {}) or {})
         def prepare_request(next_link=None):
             if not next_link:
                 
                 request = build_basic_paging_request(
                     template_url=self.basic_paging.metadata['url'],
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)  # type: ignore
@@ -173,6 +189,8 @@ class PollingPagingExampleOperationsMixin:
                 
                 request = build_basic_paging_request(
                     template_url=next_link,
+                    headers=_headers,
+                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)  # type: ignore

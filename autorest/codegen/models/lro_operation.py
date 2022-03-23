@@ -143,8 +143,8 @@ class LROOperation(Operation):
         file_import.add_submodule_import(poller_import_path, poller, ImportType.AZURECORE, TypingSection.CONDITIONAL)
         return file_import
 
-    def imports(self, async_mode: bool) -> FileImport:
-        file_import = self._imports_base(async_mode)
+    def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
+        file_import = self._imports_base(async_mode, is_python3_file)
         file_import.add_submodule_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         poller_import_path = ".".join(self.get_poller_path(async_mode).split(".")[:-1])

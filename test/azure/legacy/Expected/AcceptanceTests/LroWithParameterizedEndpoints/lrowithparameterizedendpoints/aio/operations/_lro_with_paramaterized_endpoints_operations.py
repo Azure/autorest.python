@@ -36,12 +36,17 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class LROWithParamaterizedEndpointsOperationsMixin:
     async def _poll_with_parameterized_endpoints_initial(self, account_name: str, **kwargs: Any) -> Optional[str]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
 
         request = build_poll_with_parameterized_endpoints_request_initial(
             template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         path_format_arguments = {
@@ -92,13 +97,16 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         :rtype: ~azure.core.polling.AsyncLROPoller[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._poll_with_parameterized_endpoints_initial(  # type: ignore
-                account_name=account_name, cls=lambda x, y, z: x, **kwargs
+                account_name=account_name, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -142,7 +150,10 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         self, account_name: str, **kwargs: Any
     ) -> Optional[str]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
@@ -150,6 +161,8 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         request = build_poll_with_constant_parameterized_endpoints_request_initial(
             constant_parameter=constant_parameter,
             template_url=self._poll_with_constant_parameterized_endpoints_initial.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         path_format_arguments = {
@@ -205,6 +218,9 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         :rtype: ~azure.core.polling.AsyncLROPoller[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
         constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
@@ -212,7 +228,12 @@ class LROWithParamaterizedEndpointsOperationsMixin:
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
             raw_result = await self._poll_with_constant_parameterized_endpoints_initial(  # type: ignore
-                account_name=account_name, constant_parameter=constant_parameter, cls=lambda x, y, z: x, **kwargs
+                account_name=account_name,
+                constant_parameter=constant_parameter,
+                cls=lambda x, y, z: x,
+                headers=_headers,
+                params=_params,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
