@@ -25,10 +25,6 @@
 # --------------------------------------------------------------------------
 import pytest
 from bodycomplex import AutoRestComplexTestService
-from constants.operations._contants_operations import build_put_no_model_as_string_required_two_value_no_default_request
-from header.operations._header_operations import build_param_protected_key_request
-from urllib.parse import urlparse
-from urllib.parse import parse_qs
 from azure.core.pipeline.policies import CustomHookPolicy
 try:
     from urlparse import urlparse  # type: ignore
@@ -134,27 +130,3 @@ def test_query_kwarg_and_header():
         client.basic.put_valid({}, params={"api-version": "shouldn't-be-me"}, api_version="2021-10-01")
 
     assert str(ex.value) == "Passed!"
-
-def test_build_query_kwarg_with_no_default():
-    request = build_put_no_model_as_string_required_two_value_no_default_request(input="foo", 
-                params={"input": "bar"})
-    parsed_url = urlparse(request.url)
-    assert parse_qs(parsed_url.query)['input'][0] == "foo"
-
-    request = build_put_no_model_as_string_required_two_value_no_default_request(params={"input": "bar"})
-    parsed_url = urlparse(request.url)
-    assert parse_qs(parsed_url.query)['input'][0] == "bar"
-
-    with pytest.raises(KeyError) as ex:
-        build_put_no_model_as_string_required_two_value_no_default_request()
-
-def test_build_header_kwarg_with_no_default():
-    request = build_param_protected_key_request(content_type="foo", 
-                headers={"Content-Type": "bar"})
-    assert request.headers["Content-Type"] == "foo"
-
-    request = build_param_protected_key_request(headers={"Content-Type": "bar"})
-    assert request.headers["Content-Type"] == "bar"
-
-    with pytest.raises(KeyError) as ex:
-        build_param_protected_key_request()
