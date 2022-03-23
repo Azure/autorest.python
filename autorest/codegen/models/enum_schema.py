@@ -59,13 +59,11 @@ class EnumSchema(BaseSchema):
         name: str,
         values: List["EnumValue"],
         enum_type: PrimitiveSchema,
-        enum_file_name: str
     ) -> None:
         super(EnumSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.description = description
         self.name = name
         self.values = values
-        self.enum_file_name = enum_file_name
         self.enum_type = enum_type
 
     def __lt__(self, other):
@@ -154,8 +152,6 @@ class EnumSchema(BaseSchema):
         else:
             enum_type = StringSchema(namespace, {"type": "str"})
         values = EnumSchema._get_enum_values(yaml_data["choices"])
-        code_model = kwargs.pop("code_model")
-
         return cls(
             namespace=namespace,
             yaml_data=yaml_data,
@@ -163,7 +159,6 @@ class EnumSchema(BaseSchema):
             name=name,
             values=values,
             enum_type=enum_type,
-            enum_file_name=f"_{code_model.module_name}_enums"
         )
 
     def imports(self) -> FileImport:
