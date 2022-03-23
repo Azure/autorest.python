@@ -135,9 +135,7 @@ def pop_kwargs_from_signature(
                 + f"{default_value})  # type: {kwarg.type_annotation}"
             )
         else:
-            assignment = f"{kwarg.serialized_name} = kwargs.pop('{kwarg.serialized_name}')"
-            if check_kwarg_dict and (kwarg.location in [ParameterLocation.Header, ParameterLocation.Query]):
-                kwarg_dict = "headers" if kwarg.location == ParameterLocation.Header else "params"
-                assignment += f" if '{kwarg.serialized_name}' in kwargs else _{kwarg_dict}.pop('{kwarg.rest_api_name}')"
-            retval.append(f"{assignment}  # type: {kwarg.type_annotation}")
+            retval.append(
+                f"{kwarg.serialized_name} = kwargs.pop('{kwarg.serialized_name}')  # type: {kwarg.type_annotation}"
+            )
     return retval

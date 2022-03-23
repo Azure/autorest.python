@@ -57,7 +57,7 @@ def build_param_get_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    x_ms_client_request_id = kwargs.pop('x_ms_client_request_id') if 'x_ms_client_request_id' in kwargs else _headers.pop('x-ms-client-request-id')  # type: str
+    x_ms_client_request_id = kwargs.pop('x_ms_client_request_id')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

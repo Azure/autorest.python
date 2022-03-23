@@ -39,7 +39,7 @@ def build_test_four_request(
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version = kwargs.pop('api_version', _params.pop('api-version', "2.0.0"))  # type: str
-    parameter_one = kwargs.pop('parameter_one') if 'parameter_one' in kwargs else _params.pop('parameterOne')  # type: bool
+    parameter_one = kwargs.pop('parameter_one')  # type: bool
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

@@ -192,7 +192,7 @@ def build_post_required_integer_header_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    header_parameter = kwargs.pop('header_parameter') if 'header_parameter' in kwargs else _headers.pop('headerParameter')  # type: int
+    header_parameter = kwargs.pop('header_parameter')  # type: int
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -341,7 +341,7 @@ def build_post_required_string_header_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    header_parameter = kwargs.pop('header_parameter') if 'header_parameter' in kwargs else _headers.pop('headerParameter')  # type: str
+    header_parameter = kwargs.pop('header_parameter')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -590,7 +590,7 @@ def build_post_required_array_header_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    header_parameter = kwargs.pop('header_parameter') if 'header_parameter' in kwargs else _headers.pop('headerParameter')  # type: List[str]
+    header_parameter = kwargs.pop('header_parameter')  # type: List[str]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

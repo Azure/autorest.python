@@ -84,7 +84,7 @@ def build_param_protected_key_request(**kwargs: Any) -> HttpRequest:
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type") if "content_type" in kwargs else _headers.pop("Content-Type")  # type: str
+    content_type = kwargs.pop("content_type")  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL

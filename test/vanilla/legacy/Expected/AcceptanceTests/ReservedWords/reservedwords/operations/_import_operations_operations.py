@@ -44,7 +44,7 @@ def build_operation_one_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    parameter1 = kwargs.pop('parameter1') if 'parameter1' in kwargs else _params.pop('parameter1')  # type: str
+    parameter1 = kwargs.pop('parameter1')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

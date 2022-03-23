@@ -167,7 +167,7 @@ def build_get_with_query_params_request(
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     query_constant = kwargs.pop('query_constant', _params.pop('queryConstant', True))  # type: bool
-    required_query_parameter = kwargs.pop('required_query_parameter') if 'required_query_parameter' in kwargs else _params.pop('requiredQueryParameter')  # type: int
+    required_query_parameter = kwargs.pop('required_query_parameter')  # type: int
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -432,7 +432,7 @@ def build_get_multiple_pages_fragment_next_link_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop('api_version') if 'api_version' in kwargs else _params.pop('api_version')  # type: str
+    api_version = kwargs.pop('api_version')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -466,7 +466,7 @@ def build_get_multiple_pages_fragment_with_grouping_next_link_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop('api_version') if 'api_version' in kwargs else _params.pop('api_version')  # type: str
+    api_version = kwargs.pop('api_version')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -532,7 +532,7 @@ def build_next_fragment_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop('api_version') if 'api_version' in kwargs else _params.pop('api_version')  # type: str
+    api_version = kwargs.pop('api_version')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -568,7 +568,7 @@ def build_next_fragment_with_grouping_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version = kwargs.pop('api_version') if 'api_version' in kwargs else _params.pop('api_version')  # type: str
+    api_version = kwargs.pop('api_version')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

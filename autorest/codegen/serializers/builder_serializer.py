@@ -671,9 +671,9 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         kwargs = utils.pop_kwargs_from_signature(
             kwargs_to_pop,
             check_kwarg_dict=True,
-            pop_headers_kwarg=utils.PopKwargType.CASE_INSENSITIVE if builder.has_kwargs_to_pop(
+            pop_headers_kwarg=utils.PopKwargType.CASE_INSENSITIVE if builder.has_kwargs_to_pop_with_default(
                 kwargs_to_pop, ParameterLocation.Header) else utils.PopKwargType.SIMPLE,
-            pop_params_kwarg=utils.PopKwargType.CASE_INSENSITIVE if builder.has_kwargs_to_pop(
+            pop_params_kwarg=utils.PopKwargType.CASE_INSENSITIVE if builder.has_kwargs_to_pop_with_default(
                 kwargs_to_pop, ParameterLocation.Query) else utils.PopKwargType.SIMPLE,
         )
         kwargs.append(f"cls = kwargs.pop('cls', None)  {self.cls_type_annotation(builder)}")

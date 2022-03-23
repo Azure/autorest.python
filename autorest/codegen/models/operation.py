@@ -178,8 +178,8 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         return file_import
 
     @staticmethod
-    def has_kwargs_to_pop(kwargs_to_pop: List[Parameter], location: ParameterLocation) -> bool:
-        return any(kwarg.location == location for kwarg in kwargs_to_pop)
+    def has_kwargs_to_pop_with_default(kwargs_to_pop: List[Parameter], location: ParameterLocation) -> bool:
+        return any(kwarg.has_default_value and kwarg.location == location for kwarg in kwargs_to_pop)
 
     def _imports_base(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)
@@ -197,8 +197,8 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         file_import.add_submodule_import("azure.core.pipeline", "PipelineResponse", ImportType.AZURECORE)
         file_import.add_submodule_import("azure.core.rest", "HttpRequest", ImportType.AZURECORE)
         kwargs_to_pop = self.parameters.kwargs_to_pop(is_python3_file)
-        if (self.has_kwargs_to_pop(kwargs_to_pop, ParameterLocation.Header) or
-            self.has_kwargs_to_pop(kwargs_to_pop, ParameterLocation.Query)):
+        if (self.has_kwargs_to_pop_with_default(kwargs_to_pop, ParameterLocation.Header) or
+            self.has_kwargs_to_pop_with_default(kwargs_to_pop, ParameterLocation.Query)):
             file_import.add_submodule_import("azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE)
         if async_mode:
             file_import.add_submodule_import("azure.core.pipeline.transport", "AsyncHttpResponse", ImportType.AZURECORE)
@@ -232,6 +232,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             file_import.add_submodule_import(
                 f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
             )
+
         if self.code_model.options["version_tolerant"] and (
             self.parameters.has_body or
             any(r for r in self.responses if r.has_body)

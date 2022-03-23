@@ -38,7 +38,7 @@ def build_test_request(
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version = kwargs.pop('api_version', _params.pop('api-version', "1.0.0"))  # type: str
-    id = kwargs.pop('id') if 'id' in kwargs else _params.pop('id')  # type: int
+    id = kwargs.pop('id')  # type: int
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

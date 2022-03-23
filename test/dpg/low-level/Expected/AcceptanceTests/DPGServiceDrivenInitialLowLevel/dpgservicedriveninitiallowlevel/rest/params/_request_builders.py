@@ -80,7 +80,7 @@ def build_get_required_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    parameter = kwargs.pop('parameter') if 'parameter' in kwargs else _params.pop('parameter')  # type: str
+    parameter = kwargs.pop('parameter')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -124,7 +124,7 @@ def build_put_required_optional_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    required_param = kwargs.pop('required_param') if 'required_param' in kwargs else _params.pop('requiredParam')  # type: str
+    required_param = kwargs.pop('required_param')  # type: str
     optional_param = kwargs.pop('optional_param', _params.pop('optionalParam', None))  # type: Optional[str]
     accept = _headers.pop('Accept', "application/json")
 

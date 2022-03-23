@@ -63,7 +63,7 @@ def build_header_response_existing_key_request(**kwargs: Any) -> HttpRequest:
 def build_header_param_protected_key_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type") if "content_type" in kwargs else _headers.pop("Content-Type")  # type: str
+    content_type = kwargs.pop("content_type")  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -585,12 +585,10 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = (
-            kwargs.pop("content_type") if "content_type" in kwargs else _headers.pop("Content-Type")
-        )  # type: str
+        content_type = kwargs.pop("content_type")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_header_param_protected_key_request(

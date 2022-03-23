@@ -192,7 +192,7 @@ def build_put_no_model_as_string_required_two_value_no_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input') if 'input' in kwargs else _params.pop('input')  # type: str
+    input = kwargs.pop('input')  # type: str
     # Construct URL
     _url = "/constants/putNoModelAsStringRequiredTwoValueNoDefault"
 
@@ -486,7 +486,7 @@ def build_put_model_as_string_required_two_value_no_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input') if 'input' in kwargs else _params.pop('input')  # type: str
+    input = kwargs.pop('input')  # type: str
     # Construct URL
     _url = "/constants/putModelAsStringRequiredTwoValueNoDefault"
 
@@ -558,7 +558,7 @@ def build_put_model_as_string_required_one_value_no_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input') if 'input' in kwargs else _params.pop('input')  # type: str
+    input = kwargs.pop('input')  # type: str
     # Construct URL
     _url = "/constants/putModelAsStringRequiredOneValueNoDefault"
 
