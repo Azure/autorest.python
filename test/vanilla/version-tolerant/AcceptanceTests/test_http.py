@@ -353,9 +353,7 @@ def test_redicret_to_303(client):
 def test_redirect_to_307(client):
     assert_status(200, client.http_redirects.head307)
     assert_status(200, client.http_redirects.get307)
-
-    # TODO, 4042586: Support options operations in swagger modeler
-    #assert_status(200, client.http_redirects.options307)
+    assert_status(200, client.http_redirects.options307)
     assert_status(200, client.http_redirects.put307)
     assert_status(200, client.http_redirects.post307)
     assert_status(200, client.http_redirects.patch307)
