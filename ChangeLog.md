@@ -4,8 +4,8 @@
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
-| `@autorest/core`                                                        | `3.6.2`     |
-| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `@autorest/core`                                                        | `3.8.1`     |
+| `@autorest/modelerfour`                                                 | `4.23.1`    |
 | `azure-core` dep of generated code                                      | `1.23.0`    |
 | `msrest` dep of generated code                                          | `0.6.21`    |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
