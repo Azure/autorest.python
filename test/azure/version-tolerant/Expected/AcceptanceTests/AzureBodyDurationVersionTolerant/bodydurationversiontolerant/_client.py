@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestDurationTestService:  # pylint: disable=client-suffix-needed
+class AutoRestDurationTestService:
     """Test Infrastructure for AutoRest.
 
     :ivar duration: DurationOperations operations

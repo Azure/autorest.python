@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestSwaggerBATHeaderService:  # pylint: disable=client-suffix-needed
+class AutoRestSwaggerBATHeaderService:
     """Test Infrastructure for AutoRest.
 
     :ivar header: HeaderOperations operations

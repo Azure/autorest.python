@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestBoolTestService(object):  # pylint: disable=client-suffix-needed
+class AutoRestBoolTestService(object):
     """Test Infrastructure for AutoRest.
 
     :ivar bool: BoolOperations operations

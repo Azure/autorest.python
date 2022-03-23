@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestSwaggerBATArrayService:  # pylint: disable=client-suffix-needed
+class AutoRestSwaggerBATArrayService:
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar array: ArrayOperations operations

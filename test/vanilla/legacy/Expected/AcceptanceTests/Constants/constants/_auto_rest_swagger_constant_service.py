@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestSwaggerConstantService(object):  # pylint: disable=client-suffix-needed
+class AutoRestSwaggerConstantService(object):
     """Test Infrastructure for AutoRest Swagger Constant.
 
     :ivar contants: ContantsOperations operations

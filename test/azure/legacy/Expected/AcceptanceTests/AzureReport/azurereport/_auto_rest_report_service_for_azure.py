@@ -24,9 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestReportServiceForAzure(
-    AutoRestReportServiceForAzureOperationsMixin
-):  # pylint: disable=client-suffix-needed
+class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin):
     """Test Infrastructure for AutoRest.
 
     :param base_url: Service URL. Default value is "http://localhost:3000".

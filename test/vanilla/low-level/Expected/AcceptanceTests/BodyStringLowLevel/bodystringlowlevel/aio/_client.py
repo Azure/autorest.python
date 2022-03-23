@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestSwaggerBATService:  # pylint: disable=client-suffix-needed
+class AutoRestSwaggerBATService:
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".

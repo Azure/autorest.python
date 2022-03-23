@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestParameterFlattening:  # pylint: disable=client-suffix-needed
+class AutoRestParameterFlattening:
     """Resource Flattening for AutoRest.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".

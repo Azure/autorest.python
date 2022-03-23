@@ -19,7 +19,7 @@ from ._configuration import ErrorWithSecretsConfiguration
 from .operations import ErrorWithSecretsOperationsMixin
 
 
-class ErrorWithSecrets(ErrorWithSecretsOperationsMixin):  # pylint: disable=client-suffix-needed
+class ErrorWithSecrets(ErrorWithSecretsOperationsMixin):
     """Tests whether loggers/tracers redact secrets and PII within error responses.
 
     :param base_url: Service URL. Default value is "http://localhost:3000".

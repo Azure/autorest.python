@@ -19,7 +19,7 @@ from ._configuration import ClassNameConfiguration
 from .operations import ByteOperations
 
 
-class ClassName:  # pylint: disable=client-suffix-needed
+class ClassName:
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar byte: ByteOperations operations

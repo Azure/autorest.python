@@ -19,7 +19,7 @@ from ._configuration import AutoRestSwaggerBATFileServiceConfiguration
 from .operations import FilesOperations
 
 
-class AutoRestSwaggerBATFileService:  # pylint: disable=client-suffix-needed
+class AutoRestSwaggerBATFileService:
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar files: FilesOperations operations

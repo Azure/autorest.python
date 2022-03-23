@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class BodyFormsDataURLEncoded(object):  # pylint: disable=client-suffix-needed
+class BodyFormsDataURLEncoded(object):
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar formdataurlencoded: FormdataurlencodedOperations operations

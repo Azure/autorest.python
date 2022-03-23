@@ -19,7 +19,7 @@ from ._configuration import AutoRestIntegerTestServiceConfiguration
 from .operations import IntOperations
 
 
-class AutoRestIntegerTestService:  # pylint: disable=client-suffix-needed
+class AutoRestIntegerTestService:
     """Test Infrastructure for AutoRest.
 
     :ivar int: IntOperations operations

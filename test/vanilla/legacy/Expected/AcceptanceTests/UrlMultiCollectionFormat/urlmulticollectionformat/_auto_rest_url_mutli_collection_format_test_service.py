@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestUrlMutliCollectionFormatTestService(object):  # pylint: disable=client-suffix-needed
+class AutoRestUrlMutliCollectionFormatTestService(object):
     """Test Infrastructure for AutoRest.
 
     :ivar queries: QueriesOperations operations

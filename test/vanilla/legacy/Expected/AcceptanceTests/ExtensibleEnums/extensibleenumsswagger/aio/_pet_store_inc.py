@@ -19,7 +19,7 @@ from ._configuration import PetStoreIncConfiguration
 from .operations import PetOperations
 
 
-class PetStoreInc:  # pylint: disable=client-suffix-needed
+class PetStoreInc:
     """PetStore.
 
     :ivar pet: PetOperations operations

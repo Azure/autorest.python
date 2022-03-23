@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class PetStoreInc(object):  # pylint: disable=client-suffix-needed
+class PetStoreInc(object):
     """PetStore.
 
     :ivar pet: PetOperations operations

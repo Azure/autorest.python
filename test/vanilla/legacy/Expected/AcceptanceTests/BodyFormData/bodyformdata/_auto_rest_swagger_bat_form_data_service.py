@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestSwaggerBATFormDataService(object):  # pylint: disable=client-suffix-needed
+class AutoRestSwaggerBATFormDataService(object):
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar formdata: FormdataOperations operations

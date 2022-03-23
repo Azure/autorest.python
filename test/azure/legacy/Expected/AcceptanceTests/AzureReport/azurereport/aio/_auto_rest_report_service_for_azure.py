@@ -19,9 +19,7 @@ from ._configuration import AutoRestReportServiceForAzureConfiguration
 from .operations import AutoRestReportServiceForAzureOperationsMixin
 
 
-class AutoRestReportServiceForAzure(
-    AutoRestReportServiceForAzureOperationsMixin
-):  # pylint: disable=client-suffix-needed
+class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin):
     """Test Infrastructure for AutoRest.
 
     :param base_url: Service URL. Default value is "http://localhost:3000".

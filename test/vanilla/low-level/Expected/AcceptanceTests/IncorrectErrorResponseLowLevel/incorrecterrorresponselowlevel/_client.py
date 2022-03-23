@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class IncorrectReturnedErrorModel:  # pylint: disable=client-suffix-needed
+class IncorrectReturnedErrorModel:
     """Test to see when throwing an HttpResponseError whether we swallow error model deserialization
     errors.
 

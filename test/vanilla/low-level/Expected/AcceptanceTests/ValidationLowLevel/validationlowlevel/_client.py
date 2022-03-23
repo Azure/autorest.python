@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestValidationTest:  # pylint: disable=client-suffix-needed
+class AutoRestValidationTest:
     """Test Infrastructure for AutoRest. No server backend exists for these tests.
 
     :param subscription_id: Subscription ID.

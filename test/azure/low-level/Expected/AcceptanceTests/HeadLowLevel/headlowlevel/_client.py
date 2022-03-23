@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class AutoRestHeadTestService:  # pylint: disable=client-suffix-needed
+class AutoRestHeadTestService:
     """Test Infrastructure for AutoRest.
 
     :param credential: Credential needed for the client to connect to Azure.

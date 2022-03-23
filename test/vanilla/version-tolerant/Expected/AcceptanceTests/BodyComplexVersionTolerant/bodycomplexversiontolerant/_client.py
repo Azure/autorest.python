@@ -32,7 +32,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestComplexTestService:  # pylint: disable=too-many-instance-attributes,client-suffix-needed
+class AutoRestComplexTestService:  # pylint: disable=too-many-instance-attributes
     """Test Infrastructure for AutoRest.
 
     :ivar basic: BasicOperations operations

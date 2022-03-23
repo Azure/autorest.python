@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestIntegerTestService(object):  # pylint: disable=client-suffix-needed
+class AutoRestIntegerTestService(object):
     """Test Infrastructure for AutoRest.
 
     :ivar int: IntOperations operations

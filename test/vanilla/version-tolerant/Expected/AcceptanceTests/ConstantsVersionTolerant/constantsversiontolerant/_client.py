@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestSwaggerConstantService:  # pylint: disable=client-suffix-needed
+class AutoRestSwaggerConstantService:
     """Test Infrastructure for AutoRest Swagger Constant.
 
     :ivar contants: ContantsOperations operations

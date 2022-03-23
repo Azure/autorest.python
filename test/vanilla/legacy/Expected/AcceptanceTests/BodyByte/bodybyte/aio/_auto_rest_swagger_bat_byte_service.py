@@ -19,7 +19,7 @@ from ._configuration import AutoRestSwaggerBATByteServiceConfiguration
 from .operations import ByteOperations
 
 
-class AutoRestSwaggerBATByteService:  # pylint: disable=client-suffix-needed
+class AutoRestSwaggerBATByteService:
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar byte: ByteOperations operations

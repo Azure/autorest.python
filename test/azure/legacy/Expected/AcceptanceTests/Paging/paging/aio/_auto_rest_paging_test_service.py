@@ -19,7 +19,7 @@ from ._configuration import AutoRestPagingTestServiceConfiguration
 from .operations import PagingOperations
 
 
-class AutoRestPagingTestService:  # pylint: disable=client-suffix-needed
+class AutoRestPagingTestService:
     """Long-running Operation for AutoRest.
 
     :ivar paging: PagingOperations operations

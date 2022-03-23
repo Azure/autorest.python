@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class IncorrectReturnedErrorModel(IncorrectReturnedErrorModelOperationsMixin):  # pylint: disable=client-suffix-needed
+class IncorrectReturnedErrorModel(IncorrectReturnedErrorModelOperationsMixin):
     """Test to see when throwing an HttpResponseError whether we swallow error model deserialization
     errors.
 

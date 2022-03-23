@@ -19,7 +19,7 @@ from ._configuration import AutoRestParameterFlatteningConfiguration
 from .operations import AvailabilitySetsOperations
 
 
-class AutoRestParameterFlattening:  # pylint: disable=client-suffix-needed
+class AutoRestParameterFlattening:
     """Resource Flattening for AutoRest.
 
     :ivar availability_sets: AvailabilitySetsOperations operations

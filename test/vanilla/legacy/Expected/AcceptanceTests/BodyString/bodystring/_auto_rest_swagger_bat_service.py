@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestSwaggerBATService(object):  # pylint: disable=client-suffix-needed
+class AutoRestSwaggerBATService(object):
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar string: StringOperations operations

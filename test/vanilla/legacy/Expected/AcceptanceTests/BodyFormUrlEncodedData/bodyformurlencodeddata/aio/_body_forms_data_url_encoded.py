@@ -19,7 +19,7 @@ from ._configuration import BodyFormsDataURLEncodedConfiguration
 from .operations import FormdataurlencodedOperations
 
 
-class BodyFormsDataURLEncoded:  # pylint: disable=client-suffix-needed
+class BodyFormsDataURLEncoded:
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar formdataurlencoded: FormdataurlencodedOperations operations

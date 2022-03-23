@@ -19,7 +19,7 @@ from ._configuration import AutoRestNumberTestServiceConfiguration
 from .operations import NumberOperations
 
 
-class AutoRestNumberTestService:  # pylint: disable=client-suffix-needed
+class AutoRestNumberTestService:
     """Test Infrastructure for AutoRest.
 
     :ivar number: NumberOperations operations

@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestPagingTestService:  # pylint: disable=client-suffix-needed
+class AutoRestPagingTestService:
     """Long-running Operation for AutoRest.
 
     :ivar paging: PagingOperations operations

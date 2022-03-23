@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestPagingTestService:  # pylint: disable=client-suffix-needed
+class AutoRestPagingTestService:
     """Long-running Operation for AutoRest.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".

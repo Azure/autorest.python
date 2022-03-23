@@ -19,7 +19,7 @@ from ._configuration import AutoRestTimeTestServiceConfiguration
 from .operations import TimeOperations
 
 
-class AutoRestTimeTestService:  # pylint: disable=client-suffix-needed
+class AutoRestTimeTestService:
     """Test Infrastructure for AutoRest.
 
     :ivar time: TimeOperations operations

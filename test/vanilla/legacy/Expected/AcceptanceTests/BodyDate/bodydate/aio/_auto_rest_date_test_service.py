@@ -19,7 +19,7 @@ from ._configuration import AutoRestDateTestServiceConfiguration
 from .operations import DateOperations
 
 
-class AutoRestDateTestService:  # pylint: disable=client-suffix-needed
+class AutoRestDateTestService:
     """Test Infrastructure for AutoRest.
 
     :ivar date: DateOperations operations

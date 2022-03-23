@@ -19,7 +19,7 @@ from ._configuration import AutoRestRequiredOptionalTestServiceConfiguration
 from .operations import ExplicitOperations, ImplicitOperations
 
 
-class AutoRestRequiredOptionalTestService:  # pylint: disable=client-suffix-needed
+class AutoRestRequiredOptionalTestService:
     """Test Infrastructure for AutoRest.
 
     :ivar implicit: ImplicitOperations operations

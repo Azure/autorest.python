@@ -25,7 +25,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestLongRunningOperationTestService(object):  # pylint: disable=client-suffix-needed
+class AutoRestLongRunningOperationTestService(object):
     """Long-running Operation for AutoRest.
 
     :ivar lros: LROsOperations operations

@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 
     from azure.core.credentials_async import AsyncTokenCredential
 
-class AutoRestHeadTestService:    # pylint: disable=client-suffix-needed
+class AutoRestHeadTestService:
     """Test Infrastructure for AutoRest.
 
     :ivar http_success: HttpSuccessOperations operations

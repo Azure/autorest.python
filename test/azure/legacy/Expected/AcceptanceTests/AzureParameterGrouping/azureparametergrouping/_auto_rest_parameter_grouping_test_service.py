@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestParameterGroupingTestService(object):  # pylint: disable=client-suffix-needed
+class AutoRestParameterGroupingTestService(object):
     """Test Infrastructure for AutoRest.
 
     :ivar parameter_grouping: ParameterGroupingOperations operations

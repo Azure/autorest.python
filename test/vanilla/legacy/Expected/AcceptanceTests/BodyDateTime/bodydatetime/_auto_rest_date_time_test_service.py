@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestDateTimeTestService(object):  # pylint: disable=client-suffix-needed
+class AutoRestDateTimeTestService(object):
     """Test Infrastructure for AutoRest.
 
     :ivar datetime: DatetimeOperations operations

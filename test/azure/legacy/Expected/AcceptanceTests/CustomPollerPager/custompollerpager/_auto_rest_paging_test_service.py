@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
     from azure.core.rest import HttpRequest, HttpResponse
 
-class AutoRestPagingTestService(object):    # pylint: disable=client-suffix-needed
+class AutoRestPagingTestService(object):
     """Long-running Operation for AutoRest.
 
     :ivar paging: PagingOperations operations

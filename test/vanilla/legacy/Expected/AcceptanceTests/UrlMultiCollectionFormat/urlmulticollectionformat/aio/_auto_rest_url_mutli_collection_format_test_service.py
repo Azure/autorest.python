@@ -19,7 +19,7 @@ from ._configuration import AutoRestUrlMutliCollectionFormatTestServiceConfigura
 from .operations import QueriesOperations
 
 
-class AutoRestUrlMutliCollectionFormatTestService:  # pylint: disable=client-suffix-needed
+class AutoRestUrlMutliCollectionFormatTestService:
     """Test Infrastructure for AutoRest.
 
     :ivar queries: QueriesOperations operations

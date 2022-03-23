@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class XMSErrorResponseExtensions(object):  # pylint: disable=client-suffix-needed
+class XMSErrorResponseExtensions(object):
     """XMS Error Response Extensions.
 
     :ivar pet: PetOperations operations

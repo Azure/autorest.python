@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestRequiredOptionalTestService(object):  # pylint: disable=client-suffix-needed
+class AutoRestRequiredOptionalTestService(object):
     """Test Infrastructure for AutoRest.
 
     :ivar implicit: ImplicitOperations operations
