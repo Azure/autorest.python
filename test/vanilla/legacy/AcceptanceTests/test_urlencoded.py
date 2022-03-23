@@ -43,4 +43,4 @@ def test_update_pet_with_form(client):
     )
 
 def test_partial_constant_body(client):
-    client.formdataurlencoded.partial_constant_body(access_token="foo", service="bar")
+    client.formdataurlencoded.partial_constant_body(access_token="foo", service="bar", grant_type="access_token")

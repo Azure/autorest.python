@@ -45,4 +45,4 @@ async def test_update_pet_with_form(client):
 
 @pytest.mark.asyncio
 async def test_partial_constant_body(client):
-    await client.formdataurlencoded.partial_constant_body(access_token="foo", service="bar")
+    await client.formdataurlencoded.partial_constant_body(access_token="foo", service="bar", grant_type="access_token")
