@@ -12,7 +12,7 @@ from ._models import Product
 from ._models import ProductResult
 
 
-from ._dpg_client_enums import (
+from ._enums import (
     ProductReceived,
 )
 from ._patch import __all__ as _patch_all

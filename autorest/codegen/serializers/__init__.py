@@ -187,7 +187,7 @@ class JinjaSerializer:
             )
         if self.code_model.enums:
             self._autorestapi.write_file(
-                models_path / Path(f"_{self.code_model.module_name}_enums.py"),
+                models_path / Path(f"{self.code_model.enums_filename}.py"),
                 EnumSerializer(code_model=self.code_model, env=env).serialize(),
             )
         self._autorestapi.write_file(
