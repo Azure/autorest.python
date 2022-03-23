@@ -401,9 +401,7 @@ class TestHttp(object):
     async def test_redirect_to_307(self, client):
         await self.assert_status(200, client.http_redirects.head307)
         await self.assert_status(200, client.http_redirects.get307)
-
-        # TODO, 4042586: Support options operations in swagger modeler
-        #await self.assert_status(200, client.http_redirects.options307)
+        await self.assert_status(200, client.http_redirects.options307)
         await self.assert_status(200, client.http_redirects.put307)
         await self.assert_status(200, client.http_redirects.post307)
         await self.assert_status(200, client.http_redirects.patch307)

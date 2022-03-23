@@ -442,8 +442,9 @@ async def test_redirect_to_307(send_request_assert_status):
     request = http_redirects.build_get307_request()
     await send_request_assert_status(request, 200)
 
-    # TODO, 4042586: Support options operations in swagger modeler
-    #self.assert_status(200, client.http_redirects.options307)
+    request = http_redirects.build_options307_request()
+    await send_request_assert_status(request, 200)
+
     request = http_redirects.build_put307_request()
     await send_request_assert_status(request, 200)
 

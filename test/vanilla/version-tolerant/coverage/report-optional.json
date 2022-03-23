@@ -45,5 +45,6 @@
   "MultiapiDifferentCallsApiVersionTwo": 0,
   "MultiapiDifferentCallsApiVersionThree": 0,
   "MultiapiCustomBaseUrlApiVersionOne": 0,
-  "MultiapiCustomBaseUrlApiVersionTwo": 0
+  "MultiapiCustomBaseUrlApiVersionTwo": 0,
+  "LROPatchInlineCompleteIgnoreHeaders": 0
 }
