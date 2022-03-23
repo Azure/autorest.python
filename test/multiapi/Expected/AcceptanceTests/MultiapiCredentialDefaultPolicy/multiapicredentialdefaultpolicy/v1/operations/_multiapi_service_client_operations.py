@@ -17,7 +17,6 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
-from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
@@ -38,31 +37,30 @@ def build_test_one_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-    api_version = kwargs.pop('api_version', _params.pop('api-version', "1.0.0"))  # type: str
+    api_version = kwargs.pop('api_version', "1.0.0")  # type: str
     id = kwargs.pop('id')  # type: int
-    message = kwargs.pop('message', _params.pop('message', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    message = kwargs.pop('message', None)  # type: Optional[str]
 
+    accept = "application/json"
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/testOneEndpoint")
 
     # Construct parameters
-    _params['id'] = _SERIALIZER.query("id", id, 'int')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['id'] = _SERIALIZER.query("id", id, 'int')
     if message is not None:
-        _params['message'] = _SERIALIZER.query("message", message, 'str')
-    _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+        _query_parameters['message'] = _SERIALIZER.query("message", message, 'str')
+    _query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        params=_params,
-        headers=_headers,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -71,23 +69,22 @@ def build_test_lro_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
-
+    accept = "application/json"
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/lro")
 
     # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -96,29 +93,28 @@ def build_test_lro_and_paging_request_initial(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    client_request_id = kwargs.pop('client_request_id', None)  # type: Optional[str]
+    maxresults = kwargs.pop('maxresults', None)  # type: Optional[int]
+    timeout = kwargs.pop('timeout', 30)  # type: Optional[int]
 
-    client_request_id = kwargs.pop('client_request_id', _headers.pop('client-request-id', None))  # type: Optional[str]
-    maxresults = kwargs.pop('maxresults', _headers.pop('maxresults', None))  # type: Optional[int]
-    timeout = kwargs.pop('timeout', _headers.pop('timeout', 30))  # type: Optional[int]
-    accept = _headers.pop('Accept', "application/json")
-
+    accept = "application/json"
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/lroAndPaging")
 
     # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if client_request_id is not None:
-        _headers['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
+        _header_parameters['client-request-id'] = _SERIALIZER.header("client_request_id", client_request_id, 'str')
     if maxresults is not None:
-        _headers['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
+        _header_parameters['maxresults'] = _SERIALIZER.header("maxresults", maxresults, 'int')
     if timeout is not None:
-        _headers['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['timeout'] = _SERIALIZER.header("timeout", timeout, 'int')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -127,28 +123,27 @@ def build_test_different_calls_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-    api_version = kwargs.pop('api_version', _params.pop('api-version', "1.0.0"))  # type: str
+    api_version = kwargs.pop('api_version', "1.0.0")  # type: str
     greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
-    accept = _headers.pop('Accept', "application/json")
 
+    accept = "application/json"
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/testDifferentCalls")
 
     # Construct parameters
-    _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    _headers['greetingInEnglish'] = _SERIALIZER.header("greeting_in_english", greeting_in_english, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['greetingInEnglish'] = _SERIALIZER.header("greeting_in_english", greeting_in_english, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_params,
-        headers=_headers,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -177,12 +172,9 @@ class MultiapiServiceClientOperationsMixin(object):
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop('error_map', {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-        api_version = kwargs.pop('api_version', _params.pop('api-version', "1.0.0"))  # type: str
+        api_version = kwargs.pop('api_version', "1.0.0")  # type: str
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         
@@ -191,8 +183,6 @@ class MultiapiServiceClientOperationsMixin(object):
             id=id,
             message=message,
             template_url=self.test_one.metadata['url'],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -217,20 +207,17 @@ class MultiapiServiceClientOperationsMixin(object):
 
     def _test_lro_initial(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        product=None,  # type: Optional[_models.Product]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Optional["_models.Product"]
+        # type: (...) -> Optional[_models.Product]
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop('error_map', {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType[Optional["_models.Product"]]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Optional[_models.Product]]
 
         if product is not None:
             _json = self._serialize.body(product, 'Product')
@@ -241,8 +228,6 @@ class MultiapiServiceClientOperationsMixin(object):
             content_type=content_type,
             json=_json,
             template_url=self._test_lro_initial.metadata['url'],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -273,10 +258,10 @@ class MultiapiServiceClientOperationsMixin(object):
     @distributed_trace
     def begin_test_lro(
         self,
-        product=None,  # type: Optional["_models.Product"]
+        product=None,  # type: Optional[_models.Product]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller["_models.Product"]
+        # type: (...) -> LROPoller[_models.Product]
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put. Default value is None.
@@ -293,11 +278,8 @@ class MultiapiServiceClientOperationsMixin(object):
         :rtype: ~azure.core.polling.LROPoller[~multiapicredentialdefaultpolicy.v1.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.Product"]
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.Product]
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop(
             'polling_interval',
@@ -309,14 +291,11 @@ class MultiapiServiceClientOperationsMixin(object):
                 product=product,
                 content_type=content_type,
                 cls=lambda x,y,z: x,
-                headers=_headers,
-                params=_params,
                 **kwargs
             )
         kwargs.pop('error_map', None)
 
         def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
             deserialized = self._deserialize('Product', pipeline_response)
             if cls:
                 return cls(pipeline_response, deserialized, {})
@@ -346,19 +325,16 @@ class MultiapiServiceClientOperationsMixin(object):
     def _test_lro_and_paging_initial(
         self,
         client_request_id=None,  # type: Optional[str]
-        test_lro_and_paging_options=None,  # type: Optional["_models.TestLroAndPagingOptions"]
+        test_lro_and_paging_options=None,  # type: Optional[_models.TestLroAndPagingOptions]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.PagingResult"
+        # type: (...) -> _models.PagingResult
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop('error_map', {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.PagingResult]
 
         _maxresults = None
         _timeout = None
@@ -371,8 +347,6 @@ class MultiapiServiceClientOperationsMixin(object):
             maxresults=_maxresults,
             timeout=_timeout,
             template_url=self._test_lro_and_paging_initial.metadata['url'],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -402,10 +376,10 @@ class MultiapiServiceClientOperationsMixin(object):
     def begin_test_lro_and_paging(
         self,
         client_request_id=None,  # type: Optional[str]
-        test_lro_and_paging_options=None,  # type: Optional["_models.TestLroAndPagingOptions"]
+        test_lro_and_paging_options=None,  # type: Optional[_models.TestLroAndPagingOptions]
         **kwargs  # type: Any
     ):
-        # type: (...) -> LROPoller[ItemPaged["_models.PagingResult"]]
+        # type: (...) -> LROPoller[ItemPaged[_models.PagingResult]]
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:  Default value is None.
@@ -428,15 +402,12 @@ class MultiapiServiceClientOperationsMixin(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.PagingResult]
 
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop('error_map', {}))
         def prepare_request(next_link=None):
             if not next_link:
                 _maxresults = None
@@ -450,8 +421,6 @@ class MultiapiServiceClientOperationsMixin(object):
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.begin_test_lro_and_paging.metadata['url'],
-                    headers=_headers,
-                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)  # type: ignore
@@ -468,8 +437,6 @@ class MultiapiServiceClientOperationsMixin(object):
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=next_link,
-                    headers=_headers,
-                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)  # type: ignore
@@ -511,8 +478,6 @@ class MultiapiServiceClientOperationsMixin(object):
                 client_request_id=client_request_id,
                 test_lro_and_paging_options=test_lro_and_paging_options,
                 cls=lambda x,y,z: x,
-                headers=_headers,
-                params=_params,
                 **kwargs
             )
         kwargs.pop('error_map', None)
@@ -567,12 +532,9 @@ class MultiapiServiceClientOperationsMixin(object):
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop('error_map', {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-        api_version = kwargs.pop('api_version', _params.pop('api-version', "1.0.0"))  # type: str
+        api_version = kwargs.pop('api_version', "1.0.0")  # type: str
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         
@@ -580,8 +542,6 @@ class MultiapiServiceClientOperationsMixin(object):
             api_version=api_version,
             greeting_in_english=greeting_in_english,
             template_url=self.test_different_calls.metadata['url'],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

@@ -85,7 +85,7 @@ class InheritanceOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get_valid(self, **kwargs: Any) -> "_models.Siamese":
+    def get_valid(self, **kwargs: Any) -> _models.Siamese:
         """Get complex types that extend others.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -99,7 +99,7 @@ class InheritanceOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Siamese"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Siamese]
 
         request = build_get_valid_request(
             template_url=self.get_valid.metadata["url"],
@@ -130,7 +130,7 @@ class InheritanceOperations:
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: "_models.Siamese", **kwargs: Any
+        self, complex_body: _models.Siamese, **kwargs: Any
     ) -> None:
         """Put complex types that extend others.
 

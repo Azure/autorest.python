@@ -19,7 +19,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
-from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._vendor import _convert_request
@@ -56,7 +55,7 @@ class PetsOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def create_ap_true(self, create_parameters: "_models.PetAPTrue", **kwargs: Any) -> "_models.PetAPTrue":
+    async def create_ap_true(self, create_parameters: _models.PetAPTrue, **kwargs: Any) -> _models.PetAPTrue:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -67,15 +66,10 @@ class PetsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPTrue"]
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPTrue]
 
         _json = self._serialize.body(create_parameters, "PetAPTrue")
 
@@ -83,8 +77,6 @@ class PetsOperations:
             content_type=content_type,
             json=_json,
             template_url=self.create_ap_true.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -109,7 +101,7 @@ class PetsOperations:
     create_ap_true.metadata = {"url": "/additionalProperties/true"}  # type: ignore
 
     @distributed_trace_async
-    async def create_cat_ap_true(self, create_parameters: "_models.CatAPTrue", **kwargs: Any) -> "_models.CatAPTrue":
+    async def create_cat_ap_true(self, create_parameters: _models.CatAPTrue, **kwargs: Any) -> _models.CatAPTrue:
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters:
@@ -120,15 +112,10 @@ class PetsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.CatAPTrue"]
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.CatAPTrue]
 
         _json = self._serialize.body(create_parameters, "CatAPTrue")
 
@@ -136,8 +123,6 @@ class PetsOperations:
             content_type=content_type,
             json=_json,
             template_url=self.create_cat_ap_true.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -162,7 +147,7 @@ class PetsOperations:
     create_cat_ap_true.metadata = {"url": "/additionalProperties/true-subclass"}  # type: ignore
 
     @distributed_trace_async
-    async def create_ap_object(self, create_parameters: "_models.PetAPObject", **kwargs: Any) -> "_models.PetAPObject":
+    async def create_ap_object(self, create_parameters: _models.PetAPObject, **kwargs: Any) -> _models.PetAPObject:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -173,15 +158,10 @@ class PetsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPObject"]
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPObject]
 
         _json = self._serialize.body(create_parameters, "PetAPObject")
 
@@ -189,8 +169,6 @@ class PetsOperations:
             content_type=content_type,
             json=_json,
             template_url=self.create_ap_object.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -215,7 +193,7 @@ class PetsOperations:
     create_ap_object.metadata = {"url": "/additionalProperties/type/object"}  # type: ignore
 
     @distributed_trace_async
-    async def create_ap_string(self, create_parameters: "_models.PetAPString", **kwargs: Any) -> "_models.PetAPString":
+    async def create_ap_string(self, create_parameters: _models.PetAPString, **kwargs: Any) -> _models.PetAPString:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -226,15 +204,10 @@ class PetsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPString"]
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPString]
 
         _json = self._serialize.body(create_parameters, "PetAPString")
 
@@ -242,8 +215,6 @@ class PetsOperations:
             content_type=content_type,
             json=_json,
             template_url=self.create_ap_string.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -269,8 +240,8 @@ class PetsOperations:
 
     @distributed_trace_async
     async def create_ap_in_properties(
-        self, create_parameters: "_models.PetAPInProperties", **kwargs: Any
-    ) -> "_models.PetAPInProperties":
+        self, create_parameters: _models.PetAPInProperties, **kwargs: Any
+    ) -> _models.PetAPInProperties:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -281,15 +252,10 @@ class PetsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPInProperties"]
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPInProperties]
 
         _json = self._serialize.body(create_parameters, "PetAPInProperties")
 
@@ -297,8 +263,6 @@ class PetsOperations:
             content_type=content_type,
             json=_json,
             template_url=self.create_ap_in_properties.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -324,8 +288,8 @@ class PetsOperations:
 
     @distributed_trace_async
     async def create_ap_in_properties_with_ap_string(
-        self, create_parameters: "_models.PetAPInPropertiesWithAPString", **kwargs: Any
-    ) -> "_models.PetAPInPropertiesWithAPString":
+        self, create_parameters: _models.PetAPInPropertiesWithAPString, **kwargs: Any
+    ) -> _models.PetAPInPropertiesWithAPString:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -336,15 +300,10 @@ class PetsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAPInPropertiesWithAPString"]
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAPInPropertiesWithAPString]
 
         _json = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
 
@@ -352,8 +311,6 @@ class PetsOperations:
             content_type=content_type,
             json=_json,
             template_url=self.create_ap_in_properties_with_ap_string.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

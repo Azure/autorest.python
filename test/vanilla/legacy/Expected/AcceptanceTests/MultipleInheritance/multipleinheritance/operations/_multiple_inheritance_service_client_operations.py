@@ -277,7 +277,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     def get_horse(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Horse"
+        # type: (...) -> _models.Horse
         """Get a horse with name 'Fred' and isAShowHorse true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -291,7 +291,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Horse"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Horse]
 
         request = build_get_horse_request(
             template_url=self.get_horse.metadata["url"],
@@ -323,7 +323,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     @distributed_trace
     def put_horse(
         self,
-        horse,  # type: "_models.Horse"
+        horse,  # type: _models.Horse
         **kwargs  # type: Any
     ):
         # type: (...) -> str
@@ -381,7 +381,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     def get_pet(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Pet"
+        # type: (...) -> _models.Pet
         """Get a pet with name 'Peanut'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -395,7 +395,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Pet"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Pet]
 
         request = build_get_pet_request(
             template_url=self.get_pet.metadata["url"],
@@ -486,7 +486,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     def get_feline(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Feline"
+        # type: (...) -> _models.Feline
         """Get a feline where meows and hisses are true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -500,7 +500,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Feline"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Feline]
 
         request = build_get_feline_request(
             template_url=self.get_feline.metadata["url"],
@@ -532,7 +532,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     @distributed_trace
     def put_feline(
         self,
-        feline,  # type: "_models.Feline"
+        feline,  # type: _models.Feline
         **kwargs  # type: Any
     ):
         # type: (...) -> str
@@ -590,7 +590,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     def get_cat(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Cat"
+        # type: (...) -> _models.Cat
         """Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -604,7 +604,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Cat"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Cat]
 
         request = build_get_cat_request(
             template_url=self.get_cat.metadata["url"],
@@ -636,7 +636,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     @distributed_trace
     def put_cat(
         self,
-        cat,  # type: "_models.Cat"
+        cat,  # type: _models.Cat
         **kwargs  # type: Any
     ):
         # type: (...) -> str
@@ -694,7 +694,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     def get_kitten(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Kitten"
+        # type: (...) -> _models.Kitten
         """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
         is false.
 
@@ -709,7 +709,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Kitten"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Kitten]
 
         request = build_get_kitten_request(
             template_url=self.get_kitten.metadata["url"],
@@ -741,7 +741,7 @@ class MultipleInheritanceServiceClientOperationsMixin(object):
     @distributed_trace
     def put_kitten(
         self,
-        kitten,  # type: "_models.Kitten"
+        kitten,  # type: _models.Kitten
         **kwargs  # type: Any
     ):
         # type: (...) -> str

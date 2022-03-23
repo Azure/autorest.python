@@ -10,3 +10,4 @@ azure-core==1.23.0
 -e ./Expected/AcceptanceTests/DPGServiceDrivenUpdateOneVersionTolerant/
 -e ./Expected/AcceptanceTests/DPGCustomizationInitialVersionTolerant/
 -e ./Expected/AcceptanceTests/DPGCustomizationCustomizedVersionTolerant/
+-e ./Expected/AcceptanceTests/DPGTestModelsVersionTolerant/

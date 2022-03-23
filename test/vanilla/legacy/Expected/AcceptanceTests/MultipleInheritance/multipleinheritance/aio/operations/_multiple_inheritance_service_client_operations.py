@@ -42,7 +42,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class MultipleInheritanceServiceClientOperationsMixin:
     @distributed_trace_async
-    async def get_horse(self, **kwargs: Any) -> "_models.Horse":
+    async def get_horse(self, **kwargs: Any) -> _models.Horse:
         """Get a horse with name 'Fred' and isAShowHorse true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -56,7 +56,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Horse"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Horse]
 
         request = build_get_horse_request(
             template_url=self.get_horse.metadata["url"],
@@ -86,7 +86,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     get_horse.metadata = {"url": "/multipleInheritance/horse"}  # type: ignore
 
     @distributed_trace_async
-    async def put_horse(self, horse: "_models.Horse", **kwargs: Any) -> str:
+    async def put_horse(self, horse: _models.Horse, **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
         :param horse: Put a horse with name 'General' and isAShowHorse false.
@@ -138,7 +138,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     put_horse.metadata = {"url": "/multipleInheritance/horse"}  # type: ignore
 
     @distributed_trace_async
-    async def get_pet(self, **kwargs: Any) -> "_models.Pet":
+    async def get_pet(self, **kwargs: Any) -> _models.Pet:
         """Get a pet with name 'Peanut'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -152,7 +152,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Pet"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Pet]
 
         request = build_get_pet_request(
             template_url=self.get_pet.metadata["url"],
@@ -235,7 +235,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     put_pet.metadata = {"url": "/multipleInheritance/pet"}  # type: ignore
 
     @distributed_trace_async
-    async def get_feline(self, **kwargs: Any) -> "_models.Feline":
+    async def get_feline(self, **kwargs: Any) -> _models.Feline:
         """Get a feline where meows and hisses are true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -249,7 +249,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Feline"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Feline]
 
         request = build_get_feline_request(
             template_url=self.get_feline.metadata["url"],
@@ -279,7 +279,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     get_feline.metadata = {"url": "/multipleInheritance/feline"}  # type: ignore
 
     @distributed_trace_async
-    async def put_feline(self, feline: "_models.Feline", **kwargs: Any) -> str:
+    async def put_feline(self, feline: _models.Feline, **kwargs: Any) -> str:
         """Put a feline who hisses and doesn't meow.
 
         :param feline: Put a feline who hisses and doesn't meow.
@@ -331,7 +331,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     put_feline.metadata = {"url": "/multipleInheritance/feline"}  # type: ignore
 
     @distributed_trace_async
-    async def get_cat(self, **kwargs: Any) -> "_models.Cat":
+    async def get_cat(self, **kwargs: Any) -> _models.Cat:
         """Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -345,7 +345,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Cat"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Cat]
 
         request = build_get_cat_request(
             template_url=self.get_cat.metadata["url"],
@@ -375,7 +375,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     get_cat.metadata = {"url": "/multipleInheritance/cat"}  # type: ignore
 
     @distributed_trace_async
-    async def put_cat(self, cat: "_models.Cat", **kwargs: Any) -> str:
+    async def put_cat(self, cat: _models.Cat, **kwargs: Any) -> str:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
@@ -427,7 +427,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     put_cat.metadata = {"url": "/multipleInheritance/cat"}  # type: ignore
 
     @distributed_trace_async
-    async def get_kitten(self, **kwargs: Any) -> "_models.Kitten":
+    async def get_kitten(self, **kwargs: Any) -> _models.Kitten:
         """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
         is false.
 
@@ -442,7 +442,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Kitten"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Kitten]
 
         request = build_get_kitten_request(
             template_url=self.get_kitten.metadata["url"],
@@ -472,7 +472,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     get_kitten.metadata = {"url": "/multipleInheritance/kitten"}  # type: ignore
 
     @distributed_trace_async
-    async def put_kitten(self, kitten: "_models.Kitten", **kwargs: Any) -> str:
+    async def put_kitten(self, kitten: _models.Kitten, **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
         true.
 

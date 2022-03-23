@@ -86,7 +86,7 @@ class ErrorWithSecretsOperationsMixin(object):
     def create_secret(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.SecretResponse"
+        # type: (...) -> _models.SecretResponse
         """Creates a secret.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -100,7 +100,7 @@ class ErrorWithSecretsOperationsMixin(object):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.SecretResponse"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.SecretResponse]
 
         request = build_create_secret_request(
             template_url=self.create_secret.metadata["url"],

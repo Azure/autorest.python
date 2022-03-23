@@ -52,7 +52,7 @@ class PetOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_pet_by_id(self, pet_id: str, **kwargs: Any) -> Optional["_models.Pet"]:
+    async def get_pet_by_id(self, pet_id: str, **kwargs: Any) -> Optional[_models.Pet]:
         """Gets pets by id.
 
         :param pet_id: pet id.
@@ -76,7 +76,7 @@ class PetOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional["_models.Pet"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[_models.Pet]]
 
         request = build_get_pet_by_id_request(
             pet_id=pet_id,
@@ -108,7 +108,7 @@ class PetOperations:
     get_pet_by_id.metadata = {"url": "/errorStatusCodes/Pets/{petId}/GetPet"}  # type: ignore
 
     @distributed_trace_async
-    async def do_something(self, what_action: str, **kwargs: Any) -> "_models.PetAction":
+    async def do_something(self, what_action: str, **kwargs: Any) -> _models.PetAction:
         """Asks pet to do something.
 
         :param what_action: what action the pet should do.
@@ -131,7 +131,7 @@ class PetOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.PetAction"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.PetAction]
 
         request = build_do_something_request(
             what_action=what_action,

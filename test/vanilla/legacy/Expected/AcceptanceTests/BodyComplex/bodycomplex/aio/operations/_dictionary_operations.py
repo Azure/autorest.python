@@ -56,7 +56,7 @@ class DictionaryOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> "_models.DictionaryWrapper":
+    async def get_valid(self, **kwargs: Any) -> _models.DictionaryWrapper:
         """Get complex types with dictionary property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -70,7 +70,7 @@ class DictionaryOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DictionaryWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DictionaryWrapper]
 
         request = build_get_valid_request(
             template_url=self.get_valid.metadata["url"],
@@ -152,7 +152,7 @@ class DictionaryOperations:
     put_valid.metadata = {"url": "/complex/dictionary/typed/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs: Any) -> "_models.DictionaryWrapper":
+    async def get_empty(self, **kwargs: Any) -> _models.DictionaryWrapper:
         """Get complex types with dictionary property which is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -166,7 +166,7 @@ class DictionaryOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DictionaryWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DictionaryWrapper]
 
         request = build_get_empty_request(
             template_url=self.get_empty.metadata["url"],
@@ -248,7 +248,7 @@ class DictionaryOperations:
     put_empty.metadata = {"url": "/complex/dictionary/typed/empty"}  # type: ignore
 
     @distributed_trace_async
-    async def get_null(self, **kwargs: Any) -> "_models.DictionaryWrapper":
+    async def get_null(self, **kwargs: Any) -> _models.DictionaryWrapper:
         """Get complex types with dictionary property which is null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -262,7 +262,7 @@ class DictionaryOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DictionaryWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DictionaryWrapper]
 
         request = build_get_null_request(
             template_url=self.get_null.metadata["url"],
@@ -292,7 +292,7 @@ class DictionaryOperations:
     get_null.metadata = {"url": "/complex/dictionary/typed/null"}  # type: ignore
 
     @distributed_trace_async
-    async def get_not_provided(self, **kwargs: Any) -> "_models.DictionaryWrapper":
+    async def get_not_provided(self, **kwargs: Any) -> _models.DictionaryWrapper:
         """Get complex types with dictionary property while server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -306,7 +306,7 @@ class DictionaryOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DictionaryWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DictionaryWrapper]
 
         request = build_get_not_provided_request(
             template_url=self.get_not_provided.metadata["url"],

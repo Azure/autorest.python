@@ -21,7 +21,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
-from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._vendor import _convert_request
@@ -41,20 +40,18 @@ def build_get_complex_type_ref_no_meta_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/complex-type-ref-no-meta")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -63,20 +60,20 @@ def build_put_complex_type_ref_no_meta_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/complex-type-ref-no-meta")
 
     # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -85,20 +82,18 @@ def build_get_complex_type_ref_with_meta_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/complex-type-ref-with-meta")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -107,20 +102,20 @@ def build_put_complex_type_ref_with_meta_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/complex-type-ref-with-meta")
 
     # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -129,20 +124,18 @@ def build_get_simple_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/simple")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -151,23 +144,22 @@ def build_put_simple_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/simple")
 
     # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -176,20 +168,18 @@ def build_get_wrapped_lists_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/wrapped-lists")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -198,23 +188,22 @@ def build_put_wrapped_lists_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/wrapped-lists")
 
     # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -237,20 +226,18 @@ def build_get_empty_list_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/empty-list")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -259,20 +246,20 @@ def build_put_empty_list_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/empty-list")
 
     # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -281,20 +268,18 @@ def build_get_empty_wrapped_lists_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/empty-wrapped-lists")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -303,20 +288,20 @@ def build_put_empty_wrapped_lists_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/empty-wrapped-lists")
 
     # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -325,20 +310,18 @@ def build_get_root_list_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/root-list")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -347,20 +330,20 @@ def build_put_root_list_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/root-list")
 
     # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -369,20 +352,18 @@ def build_get_root_list_single_item_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/root-list-single-item")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -391,20 +372,20 @@ def build_put_root_list_single_item_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/root-list-single-item")
 
     # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -413,20 +394,18 @@ def build_get_empty_root_list_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/empty-root-list")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -435,20 +414,20 @@ def build_put_empty_root_list_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/empty-root-list")
 
     # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -457,20 +436,18 @@ def build_get_empty_child_element_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/empty-child-element")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -479,20 +456,20 @@ def build_put_empty_child_element_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/empty-child-element")
 
     # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -501,26 +478,25 @@ def build_list_containers_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+    comp = kwargs.pop('comp', "list")  # type: str
 
-    comp = kwargs.pop('comp', _params.pop('comp', "list"))  # type: str
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/")
 
     # Construct parameters
-    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_params,
-        headers=_headers,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -529,28 +505,27 @@ def build_get_service_properties_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+    comp = kwargs.pop('comp', "properties")  # type: str
+    restype = kwargs.pop('restype', "service")  # type: str
 
-    comp = kwargs.pop('comp', _params.pop('comp', "properties"))  # type: str
-    restype = kwargs.pop('restype', _params.pop('restype', "service"))  # type: str
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/")
 
     # Construct parameters
-    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_params,
-        headers=_headers,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -559,28 +534,28 @@ def build_put_service_properties_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+    comp = kwargs.pop('comp', "properties")  # type: str
+    restype = kwargs.pop('restype', "service")  # type: str
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    comp = kwargs.pop('comp', _params.pop('comp', "properties"))  # type: str
-    restype = kwargs.pop('restype', _params.pop('restype', "service"))  # type: str
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/")
 
     # Construct parameters
-    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        params=_params,
-        headers=_headers,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -589,28 +564,27 @@ def build_get_acls_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+    comp = kwargs.pop('comp', "acl")  # type: str
+    restype = kwargs.pop('restype', "container")  # type: str
 
-    comp = kwargs.pop('comp', _params.pop('comp', "acl"))  # type: str
-    restype = kwargs.pop('restype', _params.pop('restype', "container"))  # type: str
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/mycontainer")
 
     # Construct parameters
-    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_params,
-        headers=_headers,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -619,28 +593,28 @@ def build_put_acls_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+    comp = kwargs.pop('comp', "acl")  # type: str
+    restype = kwargs.pop('restype', "container")  # type: str
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    comp = kwargs.pop('comp', _params.pop('comp', "acl"))  # type: str
-    restype = kwargs.pop('restype', _params.pop('restype', "container"))  # type: str
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/mycontainer")
 
     # Construct parameters
-    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        params=_params,
-        headers=_headers,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -649,28 +623,27 @@ def build_list_blobs_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+    comp = kwargs.pop('comp', "list")  # type: str
+    restype = kwargs.pop('restype', "container")  # type: str
 
-    comp = kwargs.pop('comp', _params.pop('comp', "list"))  # type: str
-    restype = kwargs.pop('restype', _params.pop('restype', "container"))  # type: str
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/mycontainer")
 
     # Construct parameters
-    _params['comp'] = _SERIALIZER.query("comp", comp, 'str')
-    _params['restype'] = _SERIALIZER.query("restype", restype, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['comp'] = _SERIALIZER.query("comp", comp, 'str')
+    _query_parameters['restype'] = _SERIALIZER.query("restype", restype, 'str')
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_params,
-        headers=_headers,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -679,20 +652,20 @@ def build_json_input_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/jsoninput")
 
     # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -701,20 +674,18 @@ def build_json_output_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop('Accept', "application/json")
-
+    accept = "application/json"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/jsonoutput")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -723,20 +694,18 @@ def build_get_xms_text_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/x-ms-text")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -745,20 +714,18 @@ def build_get_bytes_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/bytes")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -767,23 +734,22 @@ def build_put_binary_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/bytes")
 
     # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -792,20 +758,18 @@ def build_get_uri_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/url")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -814,23 +778,22 @@ def build_put_uri_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/xml")
-
+    accept = "application/xml"
     # Construct URL
     _url = kwargs.pop("template_url", "/xml/url")
 
     # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -858,7 +821,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     def get_complex_type_ref_no_meta(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.RootWithRefAndNoMeta"
+        # type: (...) -> _models.RootWithRefAndNoMeta
         """Get a complex type that has a ref to a complex type with no XML node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -867,17 +830,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.RootWithRefAndNoMeta"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.RootWithRefAndNoMeta]
 
         request = build_get_complex_type_ref_no_meta_request(
             template_url=self.get_complex_type_ref_no_meta.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -903,7 +861,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def put_complex_type_ref_no_meta(  # pylint: disable=inconsistent-return-statements
         self,
-        model,  # type: "_models.RootWithRefAndNoMeta"
+        model,  # type: _models.RootWithRefAndNoMeta
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -917,14 +875,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = self._serialize.body(model, "RootWithRefAndNoMeta", is_xml=True)
@@ -933,8 +886,6 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
             template_url=self.put_complex_type_ref_no_meta.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -957,7 +908,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     def get_complex_type_ref_with_meta(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.RootWithRefAndMeta"
+        # type: (...) -> _models.RootWithRefAndMeta
         """Get a complex type that has a ref to a complex type with XML node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -966,17 +917,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.RootWithRefAndMeta"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.RootWithRefAndMeta]
 
         request = build_get_complex_type_ref_with_meta_request(
             template_url=self.get_complex_type_ref_with_meta.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1002,7 +948,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def put_complex_type_ref_with_meta(  # pylint: disable=inconsistent-return-statements
         self,
-        model,  # type: "_models.RootWithRefAndMeta"
+        model,  # type: _models.RootWithRefAndMeta
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1016,14 +962,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = self._serialize.body(model, "RootWithRefAndMeta", is_xml=True)
@@ -1032,8 +973,6 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
             template_url=self.put_complex_type_ref_with_meta.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1056,7 +995,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     def get_simple(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Slideshow"
+        # type: (...) -> _models.Slideshow
         """Get a simple XML document.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1065,17 +1004,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Slideshow"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Slideshow]
 
         request = build_get_simple_request(
             template_url=self.get_simple.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1102,7 +1036,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def put_simple(  # pylint: disable=inconsistent-return-statements
         self,
-        slideshow,  # type: "_models.Slideshow"
+        slideshow,  # type: _models.Slideshow
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1116,14 +1050,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
@@ -1132,8 +1061,6 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
             template_url=self.put_simple.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1157,7 +1084,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     def get_wrapped_lists(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.AppleBarrel"
+        # type: (...) -> _models.AppleBarrel
         """Get an XML document with multiple wrapped lists.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1166,17 +1093,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.AppleBarrel"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.AppleBarrel]
 
         request = build_get_wrapped_lists_request(
             template_url=self.get_wrapped_lists.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1202,7 +1124,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def put_wrapped_lists(  # pylint: disable=inconsistent-return-statements
         self,
-        wrapped_lists,  # type: "_models.AppleBarrel"
+        wrapped_lists,  # type: _models.AppleBarrel
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1216,14 +1138,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = self._serialize.body(wrapped_lists, "AppleBarrel", is_xml=True)
@@ -1232,8 +1149,6 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
             template_url=self.put_wrapped_lists.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1266,17 +1181,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_headers_request(
             template_url=self.get_headers.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1302,7 +1212,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     def get_empty_list(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Slideshow"
+        # type: (...) -> _models.Slideshow
         """Get an empty list.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1311,17 +1221,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Slideshow"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Slideshow]
 
         request = build_get_empty_list_request(
             template_url=self.get_empty_list.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1347,7 +1252,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def put_empty_list(  # pylint: disable=inconsistent-return-statements
         self,
-        slideshow,  # type: "_models.Slideshow"
+        slideshow,  # type: _models.Slideshow
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1361,14 +1266,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = self._serialize.body(slideshow, "Slideshow", is_xml=True)
@@ -1377,8 +1277,6 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
             template_url=self.put_empty_list.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1401,7 +1299,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     def get_empty_wrapped_lists(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.AppleBarrel"
+        # type: (...) -> _models.AppleBarrel
         """Gets some empty wrapped lists.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1410,17 +1308,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.AppleBarrel"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.AppleBarrel]
 
         request = build_get_empty_wrapped_lists_request(
             template_url=self.get_empty_wrapped_lists.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1446,7 +1339,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def put_empty_wrapped_lists(  # pylint: disable=inconsistent-return-statements
         self,
-        apple_barrel,  # type: "_models.AppleBarrel"
+        apple_barrel,  # type: _models.AppleBarrel
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1460,14 +1353,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = self._serialize.body(apple_barrel, "AppleBarrel", is_xml=True)
@@ -1476,8 +1364,6 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
             template_url=self.put_empty_wrapped_lists.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1500,7 +1386,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     def get_root_list(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> List["_models.Banana"]
+        # type: (...) -> List[_models.Banana]
         """Gets a list as the root element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1509,17 +1395,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Banana"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.Banana]]
 
         request = build_get_root_list_request(
             template_url=self.get_root_list.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1545,7 +1426,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def put_root_list(  # pylint: disable=inconsistent-return-statements
         self,
-        bananas,  # type: List["_models.Banana"]
+        bananas,  # type: List[_models.Banana]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1559,14 +1440,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
@@ -1576,8 +1452,6 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
             template_url=self.put_root_list.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1600,7 +1474,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     def get_root_list_single_item(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> List["_models.Banana"]
+        # type: (...) -> List[_models.Banana]
         """Gets a list with a single item.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1609,17 +1483,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Banana"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.Banana]]
 
         request = build_get_root_list_single_item_request(
             template_url=self.get_root_list_single_item.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1645,7 +1514,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def put_root_list_single_item(  # pylint: disable=inconsistent-return-statements
         self,
-        bananas,  # type: List["_models.Banana"]
+        bananas,  # type: List[_models.Banana]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1659,14 +1528,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
@@ -1676,8 +1540,6 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
             template_url=self.put_root_list_single_item.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1700,7 +1562,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     def get_empty_root_list(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> List["_models.Banana"]
+        # type: (...) -> List[_models.Banana]
         """Gets an empty list as the root element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1709,17 +1571,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.Banana"]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.Banana]]
 
         request = build_get_empty_root_list_request(
             template_url=self.get_empty_root_list.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1745,7 +1602,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def put_empty_root_list(  # pylint: disable=inconsistent-return-statements
         self,
-        bananas,  # type: List["_models.Banana"]
+        bananas,  # type: List[_models.Banana]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1759,14 +1616,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
@@ -1776,8 +1628,6 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
             template_url=self.put_empty_root_list.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1800,7 +1650,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     def get_empty_child_element(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Banana"
+        # type: (...) -> _models.Banana
         """Gets an XML document with an empty child element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1809,17 +1659,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Banana"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Banana]
 
         request = build_get_empty_child_element_request(
             template_url=self.get_empty_child_element.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1845,7 +1690,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def put_empty_child_element(  # pylint: disable=inconsistent-return-statements
         self,
-        banana,  # type: "_models.Banana"
+        banana,  # type: _models.Banana
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1859,14 +1704,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = self._serialize.body(banana, "Banana", is_xml=True)
@@ -1875,8 +1715,6 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
             template_url=self.put_empty_child_element.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1899,7 +1737,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     def list_containers(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.ListContainersResponse"
+        # type: (...) -> _models.ListContainersResponse
         """Lists containers in a storage account.
 
         :keyword comp:  Default value is "list". Note that overriding this default value may result in
@@ -1911,19 +1749,14 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-        comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ListContainersResponse"]
+        comp = kwargs.pop("comp", "list")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ListContainersResponse]
 
         request = build_list_containers_request(
             comp=comp,
             template_url=self.list_containers.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -1950,7 +1783,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     def get_service_properties(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.StorageServiceProperties"
+        # type: (...) -> _models.StorageServiceProperties
         """Gets storage service properties.
 
         :keyword comp:  Default value is "properties". Note that overriding this default value may
@@ -1965,21 +1798,16 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-        comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
-        restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.StorageServiceProperties"]
+        comp = kwargs.pop("comp", "properties")  # type: str
+        restype = kwargs.pop("restype", "service")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.StorageServiceProperties]
 
         request = build_get_service_properties_request(
             comp=comp,
             restype=restype,
             template_url=self.get_service_properties.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2005,7 +1833,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def put_service_properties(  # pylint: disable=inconsistent-return-statements
         self,
-        properties,  # type: "_models.StorageServiceProperties"
+        properties,  # type: _models.StorageServiceProperties
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2025,16 +1853,11 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-        comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
-        restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        comp = kwargs.pop("comp", "properties")  # type: str
+        restype = kwargs.pop("restype", "service")  # type: str
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _content = self._serialize.body(properties, "StorageServiceProperties", is_xml=True)
@@ -2045,8 +1868,6 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
             template_url=self.put_service_properties.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2069,7 +1890,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     def get_acls(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> List["_models.SignedIdentifier"]
+        # type: (...) -> List[_models.SignedIdentifier]
         """Gets storage ACLs for a container.
 
         :keyword comp:  Default value is "acl". Note that overriding this default value may result in
@@ -2084,21 +1905,16 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-        comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
-        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[List["_models.SignedIdentifier"]]
+        comp = kwargs.pop("comp", "acl")  # type: str
+        restype = kwargs.pop("restype", "container")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[_models.SignedIdentifier]]
 
         request = build_get_acls_request(
             comp=comp,
             restype=restype,
             template_url=self.get_acls.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2124,7 +1940,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def put_acls(  # pylint: disable=inconsistent-return-statements
         self,
-        properties,  # type: List["_models.SignedIdentifier"]
+        properties,  # type: List[_models.SignedIdentifier]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2144,16 +1960,11 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-        comp = kwargs.pop("comp", _params.pop("comp", "acl"))  # type: str
-        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        comp = kwargs.pop("comp", "acl")  # type: str
+        restype = kwargs.pop("restype", "container")  # type: str
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
@@ -2167,8 +1978,6 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
             template_url=self.put_acls.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2191,7 +2000,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     def list_blobs(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.ListBlobsResponse"
+        # type: (...) -> _models.ListBlobsResponse
         """Lists blobs in a storage container.
 
         :keyword comp:  Default value is "list". Note that overriding this default value may result in
@@ -2206,21 +2015,16 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-        comp = kwargs.pop("comp", _params.pop("comp", "list"))  # type: str
-        restype = kwargs.pop("restype", _params.pop("restype", "container"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ListBlobsResponse"]
+        comp = kwargs.pop("comp", "list")  # type: str
+        restype = kwargs.pop("restype", "container")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ListBlobsResponse]
 
         request = build_list_blobs_request(
             comp=comp,
             restype=restype,
             template_url=self.list_blobs.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2261,14 +2065,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _properties = _models.JSONInput(id=id)
@@ -2278,8 +2077,6 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             template_url=self.json_input.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2302,7 +2099,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     def json_output(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.JSONOutput"
+        # type: (...) -> _models.JSONOutput
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2311,17 +2108,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.JSONOutput"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.JSONOutput]
 
         request = build_json_output_request(
             template_url=self.json_output.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2348,7 +2140,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     def get_xms_text(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.ObjectWithXMsTextProperty"
+        # type: (...) -> _models.ObjectWithXMsTextProperty
         """Get back an XML object with an x-ms-text property, which should translate to the returned
         object's 'language' property being 'english' and its 'content' property being 'I am text'.
 
@@ -2358,17 +2150,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ObjectWithXMsTextProperty"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ObjectWithXMsTextProperty]
 
         request = build_get_xms_text_request(
             template_url=self.get_xms_text.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2395,7 +2182,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     def get_bytes(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.ModelWithByteProperty"
+        # type: (...) -> _models.ModelWithByteProperty
         """Get an XML document with binary property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2404,17 +2191,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ModelWithByteProperty"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ModelWithByteProperty]
 
         request = build_get_bytes_request(
             template_url=self.get_bytes.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2455,14 +2237,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _slideshow = _models.ModelWithByteProperty(bytes=bytes)
@@ -2472,8 +2249,6 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
             template_url=self.put_binary.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2497,7 +2272,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
     def get_uri(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.ModelWithUrlProperty"
+        # type: (...) -> _models.ModelWithUrlProperty
         """Get an XML document with uri property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2506,17 +2281,12 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ModelWithUrlProperty"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ModelWithUrlProperty]
 
         request = build_get_uri_request(
             template_url=self.get_uri.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -2557,14 +2327,9 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/xml")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", "application/xml")  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _model = _models.ModelWithUrlProperty(url=url)
@@ -2574,8 +2339,6 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
             content_type=content_type,
             content=_content,
             template_url=self.put_uri.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

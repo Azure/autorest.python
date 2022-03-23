@@ -19,7 +19,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
-from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._vendor import _convert_request
@@ -49,7 +48,7 @@ class PetOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> "_models.Pet":
+    async def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> _models.Pet:
         """get pet by id.
 
         :param pet_id: Pet id.
@@ -60,18 +59,13 @@ class PetOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Pet"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Pet]
 
         request = build_get_by_pet_id_request(
             pet_id=pet_id,
             template_url=self.get_by_pet_id.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -95,7 +89,7 @@ class PetOperations:
     get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}  # type: ignore
 
     @distributed_trace_async
-    async def add_pet(self, pet_param: Optional["_models.Pet"] = None, **kwargs: Any) -> "_models.Pet":
+    async def add_pet(self, pet_param: Optional[_models.Pet] = None, **kwargs: Any) -> _models.Pet:
         """add pet.
 
         :param pet_param: pet param. Default value is None.
@@ -106,15 +100,10 @@ class PetOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Pet"]
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Pet]
 
         if pet_param is not None:
             _json = self._serialize.body(pet_param, "Pet")
@@ -125,8 +114,6 @@ class PetOperations:
             content_type=content_type,
             json=_json,
             template_url=self.add_pet.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

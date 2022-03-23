@@ -16,7 +16,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
-from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
@@ -36,20 +35,18 @@ def build_test_paging_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop('Accept', "application/json")
-
+    accept = "application/json"
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/paging")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_headers,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -58,34 +55,33 @@ def build_test_different_calls_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-    api_version = kwargs.pop('api_version', _params.pop('api-version', "3.0.0"))  # type: str
+    api_version = kwargs.pop('api_version', "3.0.0")  # type: str
     greeting_in_english = kwargs.pop('greeting_in_english')  # type: str
-    greeting_in_chinese = kwargs.pop('greeting_in_chinese', _headers.pop('greetingInChinese', None))  # type: Optional[str]
-    greeting_in_french = kwargs.pop('greeting_in_french', _headers.pop('greetingInFrench', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
+    greeting_in_chinese = kwargs.pop('greeting_in_chinese', None)  # type: Optional[str]
+    greeting_in_french = kwargs.pop('greeting_in_french', None)  # type: Optional[str]
 
+    accept = "application/json"
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/testDifferentCalls")
 
     # Construct parameters
-    _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    _headers['greetingInEnglish'] = _SERIALIZER.header("greeting_in_english", greeting_in_english, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['greetingInEnglish'] = _SERIALIZER.header("greeting_in_english", greeting_in_english, 'str')
     if greeting_in_chinese is not None:
-        _headers['greetingInChinese'] = _SERIALIZER.header("greeting_in_chinese", greeting_in_chinese, 'str')
+        _header_parameters['greetingInChinese'] = _SERIALIZER.header("greeting_in_chinese", greeting_in_chinese, 'str')
     if greeting_in_french is not None:
-        _headers['greetingInFrench'] = _SERIALIZER.header("greeting_in_french", greeting_in_french, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['greetingInFrench'] = _SERIALIZER.header("greeting_in_french", greeting_in_french, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_params,
-        headers=_headers,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -97,7 +93,7 @@ class MultiapiServiceClientOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> Iterable["_models.PagingResult"]
+        # type: (...) -> Iterable[_models.PagingResult]
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -105,22 +101,17 @@ class MultiapiServiceClientOperationsMixin(object):
         :rtype: ~azure.core.paging.ItemPaged[~multiapiwithsubmodule.submodule.v3.models.PagingResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.PagingResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.PagingResult]
 
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop('error_map', {}))
         def prepare_request(next_link=None):
             if not next_link:
                 
                 request = build_test_paging_request(
                     template_url=self.test_paging.metadata['url'],
-                    headers=_headers,
-                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)  # type: ignore
@@ -129,8 +120,6 @@ class MultiapiServiceClientOperationsMixin(object):
                 
                 request = build_test_paging_request(
                     template_url=next_link,
-                    headers=_headers,
-                    params=_params,
                 )
                 request = _convert_request(request)
                 request.url = self._client.format_url(request.url)  # type: ignore
@@ -191,12 +180,9 @@ class MultiapiServiceClientOperationsMixin(object):
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop('error_map', {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-        api_version = kwargs.pop('api_version', _params.pop('api-version', "3.0.0"))  # type: str
+        api_version = kwargs.pop('api_version', "3.0.0")  # type: str
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         
@@ -206,8 +192,6 @@ class MultiapiServiceClientOperationsMixin(object):
             greeting_in_chinese=greeting_in_chinese,
             greeting_in_french=greeting_in_french,
             template_url=self.test_different_calls.metadata['url'],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

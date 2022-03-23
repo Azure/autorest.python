@@ -81,7 +81,7 @@ class FlattencomplexOperations(object):
     def get_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.MyBaseType"
+        # type: (...) -> _models.MyBaseType
         """get_valid.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -95,7 +95,7 @@ class FlattencomplexOperations(object):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.MyBaseType"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.MyBaseType]
 
         request = build_get_valid_request(
             template_url=self.get_valid.metadata["url"],

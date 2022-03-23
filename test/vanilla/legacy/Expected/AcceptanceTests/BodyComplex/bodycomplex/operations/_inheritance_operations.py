@@ -106,7 +106,7 @@ class InheritanceOperations(object):
     def get_valid(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.Siamese"
+        # type: (...) -> _models.Siamese
         """Get complex types that extend others.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -120,7 +120,7 @@ class InheritanceOperations(object):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Siamese"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Siamese]
 
         request = build_get_valid_request(
             template_url=self.get_valid.metadata["url"],
@@ -152,7 +152,7 @@ class InheritanceOperations(object):
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self,
-        complex_body,  # type: "_models.Siamese"
+        complex_body,  # type: _models.Siamese
         **kwargs  # type: Any
     ):
         # type: (...) -> None

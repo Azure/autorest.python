@@ -396,7 +396,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get_int(self, **kwargs: Any) -> "_models.IntWrapper":
+    def get_int(self, **kwargs: Any) -> _models.IntWrapper:
         """Get complex types with integer properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -410,7 +410,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.IntWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.IntWrapper]
 
         request = build_get_int_request(
             template_url=self.get_int.metadata["url"],
@@ -441,7 +441,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_int(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: "_models.IntWrapper", **kwargs: Any
+        self, complex_body: _models.IntWrapper, **kwargs: Any
     ) -> None:
         """Put complex types with integer properties.
 
@@ -491,7 +491,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     put_int.metadata = {"url": "/complex/primitive/integer"}  # type: ignore
 
     @distributed_trace
-    def get_long(self, **kwargs: Any) -> "_models.LongWrapper":
+    def get_long(self, **kwargs: Any) -> _models.LongWrapper:
         """Get complex types with long properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -505,7 +505,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.LongWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.LongWrapper]
 
         request = build_get_long_request(
             template_url=self.get_long.metadata["url"],
@@ -536,7 +536,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_long(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: "_models.LongWrapper", **kwargs: Any
+        self, complex_body: _models.LongWrapper, **kwargs: Any
     ) -> None:
         """Put complex types with long properties.
 
@@ -586,7 +586,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     put_long.metadata = {"url": "/complex/primitive/long"}  # type: ignore
 
     @distributed_trace
-    def get_float(self, **kwargs: Any) -> "_models.FloatWrapper":
+    def get_float(self, **kwargs: Any) -> _models.FloatWrapper:
         """Get complex types with float properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -600,7 +600,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.FloatWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.FloatWrapper]
 
         request = build_get_float_request(
             template_url=self.get_float.metadata["url"],
@@ -631,7 +631,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_float(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: "_models.FloatWrapper", **kwargs: Any
+        self, complex_body: _models.FloatWrapper, **kwargs: Any
     ) -> None:
         """Put complex types with float properties.
 
@@ -681,7 +681,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     put_float.metadata = {"url": "/complex/primitive/float"}  # type: ignore
 
     @distributed_trace
-    def get_double(self, **kwargs: Any) -> "_models.DoubleWrapper":
+    def get_double(self, **kwargs: Any) -> _models.DoubleWrapper:
         """Get complex types with double properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -695,7 +695,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DoubleWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DoubleWrapper]
 
         request = build_get_double_request(
             template_url=self.get_double.metadata["url"],
@@ -726,7 +726,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_double(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: "_models.DoubleWrapper", **kwargs: Any
+        self, complex_body: _models.DoubleWrapper, **kwargs: Any
     ) -> None:
         """Put complex types with double properties.
 
@@ -777,7 +777,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     put_double.metadata = {"url": "/complex/primitive/double"}  # type: ignore
 
     @distributed_trace
-    def get_bool(self, **kwargs: Any) -> "_models.BooleanWrapper":
+    def get_bool(self, **kwargs: Any) -> _models.BooleanWrapper:
         """Get complex types with bool properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -791,7 +791,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.BooleanWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.BooleanWrapper]
 
         request = build_get_bool_request(
             template_url=self.get_bool.metadata["url"],
@@ -822,7 +822,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_bool(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: "_models.BooleanWrapper", **kwargs: Any
+        self, complex_body: _models.BooleanWrapper, **kwargs: Any
     ) -> None:
         """Put complex types with bool properties.
 
@@ -872,7 +872,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     put_bool.metadata = {"url": "/complex/primitive/bool"}  # type: ignore
 
     @distributed_trace
-    def get_string(self, **kwargs: Any) -> "_models.StringWrapper":
+    def get_string(self, **kwargs: Any) -> _models.StringWrapper:
         """Get complex types with string properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -886,7 +886,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.StringWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.StringWrapper]
 
         request = build_get_string_request(
             template_url=self.get_string.metadata["url"],
@@ -917,7 +917,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_string(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: "_models.StringWrapper", **kwargs: Any
+        self, complex_body: _models.StringWrapper, **kwargs: Any
     ) -> None:
         """Put complex types with string properties.
 
@@ -967,7 +967,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     put_string.metadata = {"url": "/complex/primitive/string"}  # type: ignore
 
     @distributed_trace
-    def get_date(self, **kwargs: Any) -> "_models.DateWrapper":
+    def get_date(self, **kwargs: Any) -> _models.DateWrapper:
         """Get complex types with date properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -981,7 +981,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DateWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DateWrapper]
 
         request = build_get_date_request(
             template_url=self.get_date.metadata["url"],
@@ -1012,7 +1012,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_date(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: "_models.DateWrapper", **kwargs: Any
+        self, complex_body: _models.DateWrapper, **kwargs: Any
     ) -> None:
         """Put complex types with date properties.
 
@@ -1062,7 +1062,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     put_date.metadata = {"url": "/complex/primitive/date"}  # type: ignore
 
     @distributed_trace
-    def get_date_time(self, **kwargs: Any) -> "_models.DatetimeWrapper":
+    def get_date_time(self, **kwargs: Any) -> _models.DatetimeWrapper:
         """Get complex types with datetime properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1076,7 +1076,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DatetimeWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DatetimeWrapper]
 
         request = build_get_date_time_request(
             template_url=self.get_date_time.metadata["url"],
@@ -1107,7 +1107,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: "_models.DatetimeWrapper", **kwargs: Any
+        self, complex_body: _models.DatetimeWrapper, **kwargs: Any
     ) -> None:
         """Put complex types with datetime properties.
 
@@ -1157,7 +1157,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     put_date_time.metadata = {"url": "/complex/primitive/datetime"}  # type: ignore
 
     @distributed_trace
-    def get_date_time_rfc1123(self, **kwargs: Any) -> "_models.Datetimerfc1123Wrapper":
+    def get_date_time_rfc1123(self, **kwargs: Any) -> _models.Datetimerfc1123Wrapper:
         """Get complex types with datetimeRfc1123 properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1171,7 +1171,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Datetimerfc1123Wrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Datetimerfc1123Wrapper]
 
         request = build_get_date_time_rfc1123_request(
             template_url=self.get_date_time_rfc1123.metadata["url"],
@@ -1202,7 +1202,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: "_models.Datetimerfc1123Wrapper", **kwargs: Any
+        self, complex_body: _models.Datetimerfc1123Wrapper, **kwargs: Any
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
@@ -1253,7 +1253,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     put_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}  # type: ignore
 
     @distributed_trace
-    def get_duration(self, **kwargs: Any) -> "_models.DurationWrapper":
+    def get_duration(self, **kwargs: Any) -> _models.DurationWrapper:
         """Get complex types with duration properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1267,7 +1267,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.DurationWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.DurationWrapper]
 
         request = build_get_duration_request(
             template_url=self.get_duration.metadata["url"],
@@ -1349,7 +1349,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     put_duration.metadata = {"url": "/complex/primitive/duration"}  # type: ignore
 
     @distributed_trace
-    def get_byte(self, **kwargs: Any) -> "_models.ByteWrapper":
+    def get_byte(self, **kwargs: Any) -> _models.ByteWrapper:
         """Get complex types with byte properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1363,7 +1363,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ByteWrapper"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ByteWrapper]
 
         request = build_get_byte_request(
             template_url=self.get_byte.metadata["url"],

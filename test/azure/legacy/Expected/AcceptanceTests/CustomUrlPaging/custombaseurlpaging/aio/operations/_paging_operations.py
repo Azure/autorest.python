@@ -53,7 +53,7 @@ class PagingOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get_pages_partial_url(self, account_name: str, **kwargs: Any) -> AsyncIterable["_models.ProductResult"]:
+    def get_pages_partial_url(self, account_name: str, **kwargs: Any) -> AsyncIterable[_models.ProductResult]:
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
         host.
 
@@ -64,21 +64,16 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custombaseurlpaging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
         def prepare_request(next_link=None):
             if not next_link:
 
                 request = build_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"],
-                    headers=_headers,
-                    params=_params,
                 )
                 request = _convert_request(request)
                 path_format_arguments = {
@@ -91,8 +86,6 @@ class PagingOperations:
 
                 request = build_get_pages_partial_url_request(
                     template_url=next_link,
-                    headers=_headers,
-                    params=_params,
                 )
                 request = _convert_request(request)
                 path_format_arguments = {
@@ -134,9 +127,7 @@ class PagingOperations:
     get_pages_partial_url.metadata = {"url": "/paging/customurl/partialnextlink"}  # type: ignore
 
     @distributed_trace
-    def get_pages_partial_url_operation(
-        self, account_name: str, **kwargs: Any
-    ) -> AsyncIterable["_models.ProductResult"]:
+    def get_pages_partial_url_operation(self, account_name: str, **kwargs: Any) -> AsyncIterable[_models.ProductResult]:
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
         :param account_name: Account Name.
@@ -146,21 +137,16 @@ class PagingOperations:
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~custombaseurlpaging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.ProductResult"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
         def prepare_request(next_link=None):
             if not next_link:
 
                 request = build_get_pages_partial_url_operation_request(
                     template_url=self.get_pages_partial_url_operation.metadata["url"],
-                    headers=_headers,
-                    params=_params,
                 )
                 request = _convert_request(request)
                 path_format_arguments = {
@@ -174,8 +160,6 @@ class PagingOperations:
                 request = build_get_pages_partial_url_operation_next_request(
                     next_link=next_link,
                     template_url="/paging/customurl/{nextLink}",
-                    headers=_headers,
-                    params=_params,
                 )
                 request = _convert_request(request)
                 path_format_arguments = {

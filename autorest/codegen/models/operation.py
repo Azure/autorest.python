@@ -159,7 +159,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             if response.has_body:
                 file_import.merge(cast(BaseSchema, response.schema).imports())
 
-        response_types = [r.type_annotation for r in self.responses if r.has_body]
+        response_types = [r.type_annotation(is_operation_file=True) for r in self.responses if r.has_body]
         if len(set(response_types)) > 1:
             file_import.add_submodule_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
@@ -282,7 +282,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
     def convert_multiple_content_type_parameters(self) -> None:
         type_annot = ", ".join([
-            param.schema.type_annotation
+            param.schema.type_annotation(is_operation_file=True)
             for param in self.multiple_content_type_parameters
         ])
         docstring_type = " or ".join([

@@ -132,10 +132,11 @@ def pop_kwargs_from_signature(
                 default_value = f"_{kwarg_dict}.pop('{kwarg.rest_api_name}', {default_value})"
             retval.append(
                 f"{kwarg.serialized_name} = kwargs.pop('{kwarg.serialized_name}', "
-                + f"{default_value})  # type: {kwarg.type_annotation}"
+                + f"{default_value})  # type: {kwarg.type_annotation(is_operation_file=True)}"
             )
         else:
+            type_annot = kwarg.type_annotation(is_operation_file=True)
             retval.append(
-                f"{kwarg.serialized_name} = kwargs.pop('{kwarg.serialized_name}')  # type: {kwarg.type_annotation}"
+                f"{kwarg.serialized_name} = kwargs.pop('{kwarg.serialized_name}')  # type: {type_annot}"
             )
     return retval

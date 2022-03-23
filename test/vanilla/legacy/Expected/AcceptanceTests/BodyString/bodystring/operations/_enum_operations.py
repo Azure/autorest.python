@@ -403,7 +403,7 @@ class EnumOperations(object):
     def get_referenced_constant(
         self, **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.RefColorConstant"
+        # type: (...) -> _models.RefColorConstant
         """Get value 'green-color' from the constant.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -417,7 +417,7 @@ class EnumOperations(object):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.RefColorConstant"]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.RefColorConstant]
 
         request = build_get_referenced_constant_request(
             template_url=self.get_referenced_constant.metadata["url"],

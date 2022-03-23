@@ -57,13 +57,12 @@ class SchemaResponse(BaseModel):
             return self.schema.serialization_type
         return "None"
 
-    @property
-    def type_annotation(self) -> str:
+    def type_annotation(self, *, is_operation_file: bool = False) -> str:
         if not self.schema:
             return "None"
         if self.nullable:
-            return f"Optional[{self.schema.type_annotation}]"
-        return self.schema.type_annotation
+            return f"Optional[{self.schema.type_annotation(is_operation_file=is_operation_file)}]"
+        return self.schema.type_annotation(is_operation_file=is_operation_file)
 
     @property
     def docstring_text(self) -> str:

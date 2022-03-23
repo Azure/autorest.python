@@ -113,7 +113,7 @@ class OperationGroupTwoOperations(object):
     @distributed_trace
     def test_four(  # pylint: disable=inconsistent-return-statements
         self,
-        input=None,  # type: Optional[Union[IO, "_models.SourcePath"]]
+        input=None,  # type: Optional[Union[IO, _models.SourcePath]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

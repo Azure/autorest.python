@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from enum import Enum
-from typing import Dict, Optional, Set
+from typing import Dict, Optional, Set, Union, Tuple
 
 
 class ImportType(str, Enum):
@@ -21,29 +21,39 @@ class TypingSection(str, Enum):
 
 class FileImport:
     def __init__(
-        self, imports: Dict[TypingSection, Dict[ImportType, Dict[str, Set[Optional[str]]]]] = None
+        self,
+        imports: Dict[
+            TypingSection, Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]]
+        ] = None
     ) -> None:
         # Basic implementation
         # First level dict: TypingSection
         # Second level dict: ImportType
         # Third level dict: the package name.
         # Fourth level set: None if this import is a "import", the name to import if it's a "from"
-        self._imports: Dict[TypingSection, Dict[ImportType, Dict[str, Set[Optional[str]]]]] = imports or dict()
+        self._imports: Dict[
+            TypingSection, Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]]
+        ] = imports or dict()
 
     def _add_import(
         self,
         from_section: str,
         import_type: ImportType,
-        name_import: Optional[str] = None,
+        name_import: Optional[Union[str, Tuple[str, str]]] = None,
         typing_section: TypingSection = TypingSection.REGULAR
     ) -> None:
+        name_input: Optional[Union[str, Tuple[str, str]]] = None
+        if isinstance(name_import, list):
+            name_input = tuple(name_import)
+        else:
+            name_input = name_import
         self._imports.setdefault(
-                typing_section, dict()
-            ).setdefault(
-                import_type, dict()
-            ).setdefault(
-                from_section, set()
-            ).add(name_import)
+            typing_section, dict()
+        ).setdefault(
+            import_type, dict()
+        ).setdefault(
+            from_section, set()
+        ).add(name_input)
 
     def add_submodule_import(
         self,
@@ -66,7 +76,7 @@ class FileImport:
         self._add_import(name_import, import_type, None, typing_section)
 
     @property
-    def imports(self) -> Dict[TypingSection, Dict[ImportType, Dict[str, Set[Optional[str]]]]]:
+    def imports(self) -> Dict[TypingSection, Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]]]:
         return self._imports
 
     def merge(self, file_import: "FileImport") -> None:

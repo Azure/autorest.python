@@ -15,7 +15,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
-from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._vendor import _convert_request
@@ -34,29 +33,28 @@ def build_test_two_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+    api_version = kwargs.pop('api_version', "2.0.0")  # type: str
+    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
 
-    api_version = kwargs.pop('api_version', _params.pop('api-version', "2.0.0"))  # type: str
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
-
+    accept = "application/json"
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/one/testTwoEndpoint")
 
     # Construct parameters
-    _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_params,
-        headers=_headers,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -65,26 +63,25 @@ def build_test_three_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+    api_version = kwargs.pop('api_version', "2.0.0")  # type: str
 
-    api_version = kwargs.pop('api_version', _params.pop('api-version', "2.0.0"))  # type: str
-    accept = _headers.pop('Accept', "application/json")
-
+    accept = "application/json"
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/one/testThreeEndpoint")
 
     # Construct parameters
-    _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
+    _query_parameters['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
+    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        params=_params,
-        headers=_headers,
+        params=_query_parameters,
+        headers=_header_parameters,
         **kwargs
     )
 
@@ -112,10 +109,10 @@ class OperationGroupOneOperations(object):
     @distributed_trace
     def test_two(
         self,
-        parameter_one=None,  # type: Optional["_models.ModelTwo"]
+        parameter_one=None,  # type: Optional[_models.ModelTwo]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "_models.ModelTwo"
+        # type: (...) -> _models.ModelTwo
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
 
         :param parameter_one: A ModelTwo parameter. Default value is None.
@@ -128,14 +125,11 @@ class OperationGroupOneOperations(object):
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop('error_map', {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-        api_version = kwargs.pop('api_version', _params.pop('api-version', "2.0.0"))  # type: str
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ModelTwo"]
+        api_version = kwargs.pop('api_version', "2.0.0")  # type: str
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ModelTwo]
 
         if parameter_one is not None:
             _json = self._serialize.body(parameter_one, 'ModelTwo')
@@ -147,8 +141,6 @@ class OperationGroupOneOperations(object):
             content_type=content_type,
             json=_json,
             template_url=self.test_two.metadata['url'],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -191,20 +183,15 @@ class OperationGroupOneOperations(object):
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop('error_map', {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-        api_version = kwargs.pop('api_version', _params.pop('api-version', "2.0.0"))  # type: str
+        api_version = kwargs.pop('api_version', "2.0.0")  # type: str
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         
         request = build_test_three_request(
             api_version=api_version,
             template_url=self.test_three.metadata['url'],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

@@ -13,7 +13,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
-from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
@@ -45,9 +44,9 @@ class OperationGroupOneOperations:
     @distributed_trace_async
     async def test_two(
         self,
-        parameter_one: Optional["_models.ModelThree"] = None,
+        parameter_one: Optional[_models.ModelThree] = None,
         **kwargs: Any
-    ) -> "_models.ModelThree":
+    ) -> _models.ModelThree:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
         :param parameter_one: A ModelThree parameter. Default value is None.
@@ -60,14 +59,11 @@ class OperationGroupOneOperations:
         error_map = {
             401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop('error_map', {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-        api_version = kwargs.pop('api_version', _params.pop('api-version', "3.0.0"))  # type: str
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: Optional[str]
-        cls = kwargs.pop('cls', None)  # type: ClsType["_models.ModelThree"]
+        api_version = kwargs.pop('api_version', "3.0.0")  # type: str
+        content_type = kwargs.pop('content_type', "application/json")  # type: Optional[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[_models.ModelThree]
 
         if parameter_one is not None:
             _json = self._serialize.body(parameter_one, 'ModelThree')
@@ -79,8 +75,6 @@ class OperationGroupOneOperations:
             content_type=content_type,
             json=_json,
             template_url=self.test_two.metadata['url'],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

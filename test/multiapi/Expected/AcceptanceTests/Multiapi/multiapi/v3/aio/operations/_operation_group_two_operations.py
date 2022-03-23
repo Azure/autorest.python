@@ -45,7 +45,7 @@ class OperationGroupTwoOperations:
     @distributed_trace_async
     async def test_four(  # pylint: disable=inconsistent-return-statements
         self,
-        input: Optional[Union[IO, "_models.SourcePath"]] = None,
+        input: Optional[Union[IO, _models.SourcePath]] = None,
         *,
         content_type: Optional[Union[str, "_models.ContentType"]] = "application/json",
         **kwargs: Any

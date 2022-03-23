@@ -19,7 +19,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
-from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._vendor import _convert_request
@@ -38,7 +37,7 @@ class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
     async def validation_of_method_parameters(
         self, resource_group_name: str, id: int, **kwargs: Any
-    ) -> "_models.Product":
+    ) -> _models.Product:
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -51,13 +50,10 @@ class AutoRestValidationTestOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-        api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        api_version = kwargs.pop("api_version", "1.0.0")  # type: str
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         request = build_validation_of_method_parameters_request(
             subscription_id=self._config.subscription_id,
@@ -65,8 +61,6 @@ class AutoRestValidationTestOperationsMixin:
             id=id,
             api_version=api_version,
             template_url=self.validation_of_method_parameters.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -92,8 +86,8 @@ class AutoRestValidationTestOperationsMixin:
 
     @distributed_trace_async
     async def validation_of_body(
-        self, resource_group_name: str, id: int, body: Optional["_models.Product"] = None, **kwargs: Any
-    ) -> "_models.Product":
+        self, resource_group_name: str, id: int, body: Optional[_models.Product] = None, **kwargs: Any
+    ) -> _models.Product:
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -108,16 +102,11 @@ class AutoRestValidationTestOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop("error_map", {}))
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-        api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: str
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        api_version = kwargs.pop("api_version", "1.0.0")  # type: str
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         if body is not None:
             _json = self._serialize.body(body, "Product")
@@ -132,8 +121,6 @@ class AutoRestValidationTestOperationsMixin:
             content_type=content_type,
             json=_json,
             template_url=self.validation_of_body.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -170,10 +157,7 @@ class AutoRestValidationTestOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         constant_param = kwargs.pop("constant_param", "constant")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -181,8 +165,6 @@ class AutoRestValidationTestOperationsMixin:
         request = build_get_with_constant_in_path_request(
             constant_param=constant_param,
             template_url=self.get_with_constant_in_path.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -203,8 +185,8 @@ class AutoRestValidationTestOperationsMixin:
 
     @distributed_trace_async
     async def post_with_constant_in_body(
-        self, body: Optional["_models.Product"] = None, **kwargs: Any
-    ) -> "_models.Product":
+        self, body: Optional[_models.Product] = None, **kwargs: Any
+    ) -> _models.Product:
         """post_with_constant_in_body.
 
         :param body:  Default value is None.
@@ -218,16 +200,11 @@ class AutoRestValidationTestOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
+        error_map.update(kwargs.pop("error_map", {}))
 
         constant_param = kwargs.pop("constant_param", "constant")  # type: str
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType["_models.Product"]
+        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         if body is not None:
             _json = self._serialize.body(body, "Product")
@@ -239,8 +216,6 @@ class AutoRestValidationTestOperationsMixin:
             content_type=content_type,
             json=_json,
             template_url=self.post_with_constant_in_body.metadata["url"],
-            headers=_headers,
-            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

@@ -40,7 +40,7 @@ class MediaTypesClientOperationsMixin:
     @distributed_trace_async
     async def analyze_body(
         self,
-        input: Optional[Union[IO, "_models.SourcePath"]] = None,
+        input: Optional[Union[IO, _models.SourcePath]] = None,
         *,
         content_type: Optional[Union[str, "_models.ContentType"]] = "application/json",
         **kwargs: Any
@@ -112,7 +112,7 @@ class MediaTypesClientOperationsMixin:
     @distributed_trace_async
     async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
         self,
-        input: Optional[Union[IO, "_models.SourcePath"]] = None,
+        input: Optional[Union[IO, _models.SourcePath]] = None,
         *,
         content_type: Optional[Union[str, "_models.ContentType"]] = "application/json",
         **kwargs: Any
