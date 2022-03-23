@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class MicrosoftAzureTestUrl:
+class MicrosoftAzureTestUrl:  # pylint: disable=client-suffix-needed
     """Some cool documentation.
 
     :ivar group: GroupOperations operations

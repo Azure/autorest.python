@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestSwaggerBATHeaderService(object):
+class AutoRestSwaggerBATHeaderService(object):  # pylint: disable=client-suffix-needed
     """Test Infrastructure for AutoRest.
 
     :ivar header: HeaderOperations operations

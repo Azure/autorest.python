@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class ErrorWithSecrets:
+class ErrorWithSecrets:  # pylint: disable=client-suffix-needed
     """Tests whether loggers/tracers redact secrets and PII within error responses.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".

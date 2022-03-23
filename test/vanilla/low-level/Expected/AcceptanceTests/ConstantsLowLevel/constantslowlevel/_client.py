@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestSwaggerConstantService:
+class AutoRestSwaggerConstantService:  # pylint: disable=client-suffix-needed
     """Test Infrastructure for AutoRest Swagger Constant.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".

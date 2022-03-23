@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestSwaggerBATFileService:
+class AutoRestSwaggerBATFileService:  # pylint: disable=client-suffix-needed
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar files: FilesOperations operations

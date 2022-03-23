@@ -19,7 +19,7 @@ from ._configuration import AutoRestRFC1123DateTimeTestServiceConfiguration
 from .operations import Datetimerfc1123Operations
 
 
-class AutoRestRFC1123DateTimeTestService:
+class AutoRestRFC1123DateTimeTestService:  # pylint: disable=client-suffix-needed
     """Test Infrastructure for AutoRest.
 
     :ivar datetimerfc1123: Datetimerfc1123Operations operations

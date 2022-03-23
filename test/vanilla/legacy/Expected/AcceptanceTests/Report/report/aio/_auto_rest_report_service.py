@@ -19,7 +19,7 @@ from ._configuration import AutoRestReportServiceConfiguration
 from .operations import AutoRestReportServiceOperationsMixin
 
 
-class AutoRestReportService(AutoRestReportServiceOperationsMixin):
+class AutoRestReportService(AutoRestReportServiceOperationsMixin):  # pylint: disable=client-suffix-needed
     """Test Infrastructure for AutoRest.
 
     :param base_url: Service URL. Default value is "http://localhost:3000".

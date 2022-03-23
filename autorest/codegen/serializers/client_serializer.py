@@ -50,8 +50,13 @@ class ClientSerializer:
         elif not (async_mode or self.is_python3_file):
             base_class = "object"
         disable = ""
+        disable_args = []
         if len(self.code_model.operation_groups) > 6:
-            disable = "    # pylint: disable=too-many-instance-attributes"
+            disable_args.append("too-many-instance-attributes")
+        if not class_name.endswith("Client"):
+            disable_args.append("client-suffix-needed")
+        if disable_args:
+            disable = f"    # pylint: disable={','.join(disable_args)}"
         if base_class:
             return f"class {class_name}({base_class}):{disable}"
         return f"class {class_name}:{disable}"

@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestUrlTestService:
+class AutoRestUrlTestService:  # pylint: disable=client-suffix-needed
     """Test Infrastructure for AutoRest.
 
     :ivar paths: PathsOperations operations

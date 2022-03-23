@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class XMSErrorResponseExtensions:
+class XMSErrorResponseExtensions:  # pylint: disable=client-suffix-needed
     """XMS Error Response Extensions.
 
     :ivar pet: PetOperations operations

@@ -18,7 +18,7 @@ from .. import models
 from ._configuration import PollingPagingExampleConfiguration
 from .operations import PollingPagingExampleOperationsMixin
 
-class PollingPagingExample(PollingPagingExampleOperationsMixin):
+class PollingPagingExample(PollingPagingExampleOperationsMixin):    # pylint: disable=client-suffix-needed
     """Show polling and paging generation.
 
     :param base_url: Service URL. Default value is "http://localhost:3000".

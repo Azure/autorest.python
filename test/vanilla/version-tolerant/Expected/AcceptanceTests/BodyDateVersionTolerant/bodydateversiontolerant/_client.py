@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestDateTestService:
+class AutoRestDateTestService:  # pylint: disable=client-suffix-needed
     """Test Infrastructure for AutoRest.
 
     :ivar date: DateOperations operations

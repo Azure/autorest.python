@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestParameterGroupingTestService:
+class AutoRestParameterGroupingTestService:  # pylint: disable=client-suffix-needed
     """Test Infrastructure for AutoRest.
 
     :ivar parameter_grouping: ParameterGroupingOperations operations

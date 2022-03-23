@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class AutoRestHeadExceptionTestService:
+class AutoRestHeadExceptionTestService:  # pylint: disable=client-suffix-needed
     """Test Infrastructure for AutoRest.
 
     :ivar head_exception: HeadExceptionOperations operations

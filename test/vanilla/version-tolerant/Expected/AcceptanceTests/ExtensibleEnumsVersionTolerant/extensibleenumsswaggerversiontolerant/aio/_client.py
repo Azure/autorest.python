@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class PetStoreInc:
+class PetStoreInc:  # pylint: disable=client-suffix-needed
     """PetStore.
 
     :ivar pet: PetOperations operations

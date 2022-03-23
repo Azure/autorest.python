@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 
     from azure.core.rest import HttpRequest, HttpResponse
 
-class PollingPagingExample(PollingPagingExampleOperationsMixin):
+class PollingPagingExample(PollingPagingExampleOperationsMixin):    # pylint: disable=client-suffix-needed
     """Show polling and paging generation.
 
     :param base_url: Service URL. Default value is "http://localhost:3000".

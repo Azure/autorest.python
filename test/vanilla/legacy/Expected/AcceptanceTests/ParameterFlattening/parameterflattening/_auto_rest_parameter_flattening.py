@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestParameterFlattening(object):
+class AutoRestParameterFlattening(object):  # pylint: disable=client-suffix-needed
     """Resource Flattening for AutoRest.
 
     :ivar availability_sets: AvailabilitySetsOperations operations

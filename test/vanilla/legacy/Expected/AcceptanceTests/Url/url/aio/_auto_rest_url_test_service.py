@@ -19,7 +19,7 @@ from ._configuration import AutoRestUrlTestServiceConfiguration
 from .operations import PathItemsOperations, PathsOperations, QueriesOperations
 
 
-class AutoRestUrlTestService:
+class AutoRestUrlTestService:  # pylint: disable=client-suffix-needed
     """Test Infrastructure for AutoRest.
 
     :ivar paths: PathsOperations operations

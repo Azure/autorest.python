@@ -19,7 +19,7 @@ from ._configuration import AutoRestSwaggerBATHeaderServiceConfiguration
 from .operations import HeaderOperations
 
 
-class AutoRestSwaggerBATHeaderService:
+class AutoRestSwaggerBATHeaderService:  # pylint: disable=client-suffix-needed
     """Test Infrastructure for AutoRest.
 
     :ivar header: HeaderOperations operations

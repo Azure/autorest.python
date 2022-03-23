@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestRFC1123DateTimeTestService(object):
+class AutoRestRFC1123DateTimeTestService(object):  # pylint: disable=client-suffix-needed
     """Test Infrastructure for AutoRest.
 
     :ivar datetimerfc1123: Datetimerfc1123Operations operations

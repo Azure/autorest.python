@@ -19,7 +19,7 @@ from ._configuration import AutoRestValidationTestConfiguration
 from .operations import AutoRestValidationTestOperationsMixin
 
 
-class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
+class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):  # pylint: disable=client-suffix-needed
     """Test Infrastructure for AutoRest. No server backend exists for these tests.
 
     :param subscription_id: Subscription ID.

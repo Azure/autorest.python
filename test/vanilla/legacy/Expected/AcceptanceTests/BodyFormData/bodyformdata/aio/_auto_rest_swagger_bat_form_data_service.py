@@ -19,7 +19,7 @@ from ._configuration import AutoRestSwaggerBATFormDataServiceConfiguration
 from .operations import FormdataOperations
 
 
-class AutoRestSwaggerBATFormDataService:
+class AutoRestSwaggerBATFormDataService:  # pylint: disable=client-suffix-needed
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar formdata: FormdataOperations operations

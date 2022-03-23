@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class AutoRestPagingTestService:
+class AutoRestPagingTestService:  # pylint: disable=client-suffix-needed
     """Long-running Operation for AutoRest.
 
     :ivar paging: PagingOperations operations

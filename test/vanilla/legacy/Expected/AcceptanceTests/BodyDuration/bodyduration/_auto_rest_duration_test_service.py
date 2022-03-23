@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestDurationTestService(object):
+class AutoRestDurationTestService(object):  # pylint: disable=client-suffix-needed
     """Test Infrastructure for AutoRest.
 
     :ivar duration: DurationOperations operations

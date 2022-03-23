@@ -34,7 +34,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class AutoRestComplexTestService(object):  # pylint: disable=too-many-instance-attributes
+class AutoRestComplexTestService(object):  # pylint: disable=too-many-instance-attributes,client-suffix-needed
     """Test Infrastructure for AutoRest.
 
     :ivar basic: BasicOperations operations

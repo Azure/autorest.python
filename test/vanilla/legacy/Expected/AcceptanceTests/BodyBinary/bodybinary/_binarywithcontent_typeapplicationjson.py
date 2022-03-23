@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from azure.core.rest import HttpRequest, HttpResponse
 
 
-class BinaryWithContentTypeApplicationJson(object):
+class BinaryWithContentTypeApplicationJson(object):  # pylint: disable=client-suffix-needed
     """Sample for file with json and binary content type.
 
     :ivar upload: UploadOperations operations

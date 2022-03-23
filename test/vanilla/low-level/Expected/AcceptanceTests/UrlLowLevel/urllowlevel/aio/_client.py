@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class AutoRestUrlTestService:
+class AutoRestUrlTestService:  # pylint: disable=client-suffix-needed
     """Test Infrastructure for AutoRest.
 
     :param global_string_path: A string value 'globalItemStringPath' that appears in the path.

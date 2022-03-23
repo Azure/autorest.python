@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from typing import Dict
 
 
-class XMSErrorResponseExtensions:
+class XMSErrorResponseExtensions:  # pylint: disable=client-suffix-needed
     """XMS Error Response Extensions.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".

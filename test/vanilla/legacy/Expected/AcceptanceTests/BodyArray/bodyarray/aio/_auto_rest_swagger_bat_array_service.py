@@ -19,7 +19,7 @@ from ._configuration import AutoRestSwaggerBATArrayServiceConfiguration
 from .operations import ArrayOperations
 
 
-class AutoRestSwaggerBATArrayService:
+class AutoRestSwaggerBATArrayService:  # pylint: disable=client-suffix-needed
     """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar array: ArrayOperations operations

@@ -19,7 +19,7 @@ from ._configuration import AutoRestParameterGroupingTestServiceConfiguration
 from .operations import ParameterGroupingOperations
 
 
-class AutoRestParameterGroupingTestService:
+class AutoRestParameterGroupingTestService:  # pylint: disable=client-suffix-needed
     """Test Infrastructure for AutoRest.
 
     :ivar parameter_grouping: ParameterGroupingOperations operations

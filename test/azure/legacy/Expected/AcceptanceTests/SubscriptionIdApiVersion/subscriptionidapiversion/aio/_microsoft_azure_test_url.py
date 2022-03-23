@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class MicrosoftAzureTestUrl:
+class MicrosoftAzureTestUrl:  # pylint: disable=client-suffix-needed
     """Some cool documentation.
 
     :ivar group: GroupOperations operations
