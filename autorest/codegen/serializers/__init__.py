@@ -178,11 +178,11 @@ class JinjaSerializer:
         if self.code_model.schemas:
             if not self.code_model.options['python3_only']:
                 self._autorestapi.write_file(
-                    models_path / Path("_models.py"),
+                    models_path / Path(f"{self.code_model.get_models_filename(is_python3_file=False)}.py"),
                     ModelGenericSerializer(code_model=self.code_model, env=env).serialize()
                 )
             self._autorestapi.write_file(
-                models_path / Path("_models_py3.py"),
+                models_path / Path(f"{self.code_model.get_models_filename(is_python3_file=True)}.py"),
                 ModelPython3Serializer(code_model=self.code_model, env=env).serialize()
             )
         if self.code_model.enums:
