@@ -47,6 +47,8 @@ class TestAcceptance(object):
             'ConstantsInBody': 1,  # https://github.com/Azure/autorest.modelerfour/issues/83
             "ResponsesScenarioF400DefaultModel": 1,
             "ResponsesScenarioF400DefaultNone": 1,
+            "SecurityKey": 1,
+            "SecurityAad": 1,
         }
         for name in report:
             if name[:3].lower() == 'dpg':
