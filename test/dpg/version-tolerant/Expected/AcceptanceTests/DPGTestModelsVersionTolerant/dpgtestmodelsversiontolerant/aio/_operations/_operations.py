@@ -23,6 +23,7 @@ from azure.core.polling.async_base_polling import AsyncLROBasePolling
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._operations._operations import (
@@ -53,12 +54,17 @@ class DPGClientOperationsMixin(MixinABC):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         request = build_get_model_request(
             mode=mode,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -94,9 +100,14 @@ class DPGClientOperationsMixin(MixinABC):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         _json = self._serialize.body(input, "Input")
@@ -105,6 +116,8 @@ class DPGClientOperationsMixin(MixinABC):
             mode=mode,
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -138,16 +151,21 @@ class DPGClientOperationsMixin(MixinABC):
          ~azure.core.async_paging.AsyncItemPaged[~dpgtestmodelsversiontolerant.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.ProductResult]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(next_link=None):
             if not next_link:
 
                 request = build_get_pages_request(
                     mode=mode,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -155,6 +173,8 @@ class DPGClientOperationsMixin(MixinABC):
 
                 request = build_get_pages_request(
                     mode=mode,
+                    headers=_headers,
+                    params=_params,
                 )
                 request.url = self._client.format_url(next_link)  # type: ignore
                 request.method = "GET"
@@ -185,12 +205,17 @@ class DPGClientOperationsMixin(MixinABC):
 
     async def _lro_initial(self, mode: str, **kwargs: Any) -> _models.LROProduct:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.LROProduct]
 
         request = build_lro_request_initial(
             mode=mode,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -230,12 +255,17 @@ class DPGClientOperationsMixin(MixinABC):
         :rtype: ~azure.core.polling.AsyncLROPoller[~dpgtestmodelsversiontolerant.models.LROProduct]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.LROProduct]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
         if cont_token is None:
-            raw_result = await self._lro_initial(mode=mode, cls=lambda x, y, z: x, **kwargs)  # type: ignore
+            raw_result = await self._lro_initial(  # type: ignore
+                mode=mode, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
+            )
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):

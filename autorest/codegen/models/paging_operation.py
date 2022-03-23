@@ -145,8 +145,8 @@ class PagingOperation(Operation):
 
         return file_import
 
-    def imports(self, async_mode: bool) -> FileImport:
-        file_import = self._imports_base(async_mode)
+    def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
+        file_import = self._imports_base(async_mode, is_python3_file)
         # operation adds an import for distributed_trace_async, we don't want it
         file_import.imports = [i for i in file_import.imports if not i.submodule_name == "distributed_trace_async"]
 

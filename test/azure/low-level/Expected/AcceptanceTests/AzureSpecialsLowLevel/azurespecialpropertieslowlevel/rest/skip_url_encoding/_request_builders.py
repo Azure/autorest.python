@@ -10,12 +10,13 @@ from typing import TYPE_CHECKING
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
+from azure.core.utils import case_insensitive_dict
 
 from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional
+    from typing import Any, Optional
 
 _SERIALIZER = Serializer()
 
@@ -39,7 +40,10 @@ def build_get_method_path_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/json")
+
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}"
     path_format_arguments = {
@@ -49,13 +53,12 @@ def build_get_method_path_valid_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -78,7 +81,10 @@ def build_get_path_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    accept = "application/json"
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop('Accept', "application/json")
+
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}"
     path_format_arguments = {
@@ -88,13 +94,12 @@ def build_get_path_valid_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -118,9 +123,11 @@ def build_get_swagger_path_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    unencoded_path_param = kwargs.pop('unencoded_path_param', "path1/path2/path3")  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    unencoded_path_param = kwargs.pop('unencoded_path_param', "path1/path2/path3")  # type: str
+    accept = _headers.pop('Accept', "application/json")
+
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}"
     path_format_arguments = {
@@ -130,13 +137,12 @@ def build_get_swagger_path_valid_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -158,25 +164,26 @@ def build_get_method_query_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    q1 = kwargs.pop('q1')  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    q1 = kwargs.pop('q1')  # type: str
+    accept = _headers.pop('Accept', "application/json")
+
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/method/query/valid"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
+    _params['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -198,26 +205,27 @@ def build_get_method_query_null_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    q1 = kwargs.pop('q1', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    q1 = kwargs.pop('q1', _params.pop('q1', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
+
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/method/query/null"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if q1 is not None:
-        _query_parameters['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
+        _params['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -239,25 +247,26 @@ def build_get_path_query_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    q1 = kwargs.pop('q1')  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    q1 = kwargs.pop('q1')  # type: str
+    accept = _headers.pop('Accept', "application/json")
+
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/path/query/valid"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
+    _params['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -281,24 +290,25 @@ def build_get_swagger_query_valid_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    q1 = kwargs.pop('q1', "value1&q2=value2&q3=value3")  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    q1 = kwargs.pop('q1', _params.pop('q1', "value1&q2=value2&q3=value3"))  # type: str
+    accept = _headers.pop('Accept', "application/json")
+
     # Construct URL
     _url = "/azurespecials/skipUrlEncoding/swagger/query/valid"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
+    _params['q1'] = _SERIALIZER.query("q1", q1, 'str', skip_quote=True)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
