@@ -6,13 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._models_py3 import Input
-from ._models_py3 import LROProduct
-from ._models_py3 import Product
-from ._models_py3 import ProductResult
+from ._models import Input
+from ._models import LROProduct
+from ._models import Product
+from ._models import ProductResult
 
 
-from ._dpg_client_enums import (
+from ._enums import (
     ProductReceived,
 )
 from ._patch import __all__ as _patch_all

@@ -195,18 +195,15 @@ def _build_flags(
     if low_level_client:
         package_name += "LowLevel"
         generation_section += "/low-level"
-        override_flags = override_flags or {}
         override_flags["low-level-client"] = True
         namespace += "lowlevel"
     elif version_tolerant:
         package_name += "VersionTolerant"
         generation_section += "/version-tolerant"
-        override_flags = override_flags or {}
         override_flags["version-tolerant"] = True
         namespace += "versiontolerant"
     else:
         generation_section += "/legacy"
-        override_flags = override_flags or {}
         override_flags["payload-flattening-threshold"] = 1
         override_flags["reformat-next-link"] = False
 
