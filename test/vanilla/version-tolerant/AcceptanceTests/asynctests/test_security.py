@@ -24,8 +24,8 @@
 #
 # --------------------------------------------------------------------------
 import pytest
-from securityaadswagger.aio import AutorestSecurityAad
-from securitykeyswagger.aio import AutorestSecurityKey
+from securityaadswaggerversiontolerant.aio import AutorestSecurityAad
+from securitykeyswaggerversiontolerant.aio import AutorestSecurityKey
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline.policies import AzureKeyCredentialPolicy
 from azure.core.pipeline.policies import AsyncBearerTokenCredentialPolicy
