@@ -50,3 +50,5 @@ azure-core==1.23.0
 -e ./Expected/AcceptanceTests/ValidationVersionTolerant
 -e ./Expected/AcceptanceTests/XmlVersionTolerant
 -e ./Expected/AcceptanceTests/XmsErrorResponseVersionTolerant
+-e ./Expected/AcceptanceTests/SecurityAadSwaggerVersionTolerant
+-e ./Expected/AcceptanceTests/SecurityKeySwaggerVersionTolerant

@@ -405,7 +405,7 @@ class GlobalParameterList(ParameterList):
         credential_parameter = Parameter(
             self.code_model,
             yaml_data={},
-            schema=self.code_model.credential_schema_policy.credential,
+            schema=self.code_model.credential_model.credential_schema_policy.credential,
             serialized_name="credential",
             rest_api_name="credential",
             implementation="Client",

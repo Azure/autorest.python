@@ -127,7 +127,10 @@ class JinjaSerializer:
         def _prepare_params() -> Dict[Any, Any]:
             package_parts = self.code_model.options["package_name"].split("-")[:-1]
             try:
-                token_cred = isinstance(self.code_model.credential_schema_policy.credential, TokenCredentialSchema)
+                token_cred = isinstance(
+                    self.code_model.credential_model.credential_schema_policy.credential,
+                    TokenCredentialSchema
+                )
             except ValueError:
                 token_cred = False
             version = self.code_model.options["package_version"]

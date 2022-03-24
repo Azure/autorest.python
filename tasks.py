@@ -71,6 +71,8 @@ _VANILLA_SWAGGER_MAPPINGS = {
     'NoOperations': 'no-operations.json',
     "ParameterizedEndpoint": "parameterized-endpoint.json",
     "ReservedWords": "reserved-words.json",
+    "SecurityAadSwagger": "security-aad.json",
+    "SecurityKeySwagger": "security-key.json",
 }
 
 _DPG_SWAGGER_MAPPINGS = {
@@ -86,10 +88,14 @@ _GENERATOR_SPECIFIC_TESTS = {
             "BodyComplexPythonThreeOnly": "body-complex.json",
             'BodyArrayWithNamespaceFolders': 'body-array.json',
             'BodyByteWithPackageName': 'body-byte.json',
-            'BodyArrayWithPythonThreeOperationFiles': 'body-array.json'
+            'BodyArrayWithPythonThreeOperationFiles': 'body-array.json',
+            'SecurityAadSwaggerCredentialFlag': 'security-aad.json',
+            'SecurityKeySwaggerCredentialFlag': 'security-key.json',
         },
         _SwaggerGroup.AZURE_ARM: {
             'HeadWithAzureKeyCredentialPolicy': 'head.json',
+            'SecurityAadSwagger': 'security-aad.json',
+            'SecurityKeySwagger': 'security-key.json',
         }
     },
     _Generator.VERSION_TOLERANT: {
@@ -122,6 +128,15 @@ _PACKAGE_NAME_TO_OVERRIDE_FLAGS: Dict[str, Dict[str, Union[bool, str]]] = {
     "BodyArrayWithPythonThreeOperationFiles": {
         "add-python3-operation-files": True
     },
+    "SecurityAadSwaggerCredentialFlag": {
+        "add-credential": True,
+        "credential-default-policy-type": "AzureKeyCredentialPolicy",
+        "title": "SecurityAadSwaggerCredentialFlag",
+    },
+    "SecurityKeySwaggerCredentialFlag": {
+        "add-credential": True,
+        "title": "SecurityKeySwaggerCredentialFlag",
+    }
 }
 
 _AZURE_SWAGGER_MAPPINGS = {
@@ -505,6 +520,8 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
         "test/multiapi/specification/multiapidataplane/README.md",
         # multiapi client with custom base url (package-name=multiapicustombaseurl)
         "test/multiapi/specification/multiapicustombaseurl/README.md",
+        # create multiapi client with security definition (package-name=multapisecurity)
+        "test/multiapi/specification/multiapisecurity/README.md",
     ]
 
     cmds = [_multiapi_command_line(spec, debug) for spec in available_specifications if swagger_name.lower() in spec]
@@ -573,3 +590,10 @@ def regenerate_samples(c, debug=False):
             cmd += " ".join(flag_strings)
         cmds.append(cmd)
     _run_autorest(cmds, debug)
+
+@task
+def regenerate_security(c, debug=False):
+    regenerate(c, swagger_name='SecurityKeySwaggerCredentialFlag', debug=debug)
+    regenerate(c, swagger_name='SecurityAadSwaggerCredentialFlag', debug=debug)
+    regenerate(c, swagger_name='SecurityAadSwagger', debug=debug)
+    regenerate(c, swagger_name='SecurityKeySwagger', debug=debug)
