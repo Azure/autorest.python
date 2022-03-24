@@ -35,6 +35,7 @@ from unittest import TestLoader, TextTestRunner
 from os.path import dirname, pardir, join, realpath
 
 from azure.core.pipeline.policies import SansIOHTTPPolicy
+from azure.core.credentials import AccessToken
 
 import pytest
 
@@ -85,4 +86,24 @@ class CookiePolicy(SansIOHTTPPolicy):
 @pytest.fixture()
 def cookie_policy():
     return CookiePolicy()
+
+# the token value shall keep same with https://github.com/Azure/autorest.testserver/tree/main/src/test-routes/security.ts
+def generate_token(*scopes) -> AccessToken:
+    return AccessToken(token=''.join(scopes), expires_on=1800)
+
+@pytest.fixture()
+def credential():
+    class FakeCredential:
+        @staticmethod
+        def get_token(*scopes) -> AccessToken:
+            return generate_token(*scopes)
+    return FakeCredential()
+
+@pytest.fixture()
+def credential_async():
+    class FakeCredentialAsync:
+        @staticmethod
+        async def get_token(*scopes) -> AccessToken:
+            return generate_token(*scopes)
+    return FakeCredentialAsync()
 

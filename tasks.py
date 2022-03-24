@@ -71,6 +71,8 @@ _VANILLA_SWAGGER_MAPPINGS = {
     'NoOperations': 'no-operations.json',
     "ParameterizedEndpoint": "parameterized-endpoint.json",
     "ReservedWords": "reserved-words.json",
+    "SecurityAadSwagger": "security-aad.json",
+    "SecurityKeySwagger": "security-key.json",
 }
 
 _DPG_SWAGGER_MAPPINGS = {
@@ -89,8 +91,6 @@ _GENERATOR_SPECIFIC_TESTS = {
             'BodyArrayWithPythonThreeOperationFiles': 'body-array.json',
             'SecurityAadSwaggerCredentialFlag': 'security-aad.json',
             'SecurityKeySwaggerCredentialFlag': 'security-key.json',
-            "SecurityAadSwagger": "security-aad.json",
-            "SecurityKeySwagger": "security-key.json",
         },
         _SwaggerGroup.AZURE_ARM: {
             'HeadWithAzureKeyCredentialPolicy': 'head.json',
