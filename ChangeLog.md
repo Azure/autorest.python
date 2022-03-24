@@ -1,6 +1,6 @@
 # Change Log
 
-### 2022-03-xx - 5.15.0
+### 2022-03-XX - 5.15.0
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -12,6 +12,7 @@
 
 **New Features**
 
+- Add support for security configurations in the swagger. For more information, see https://github.com/Azure/autorest/blob/main/docs/generate/authentication.md #1161
 - Add support for handwritten customizations of generated code. For more information, see https://aka.ms/azsdk/python/dpcodegen/python/customize #1153
 - Allow `header` and `params` as kwargs in operation and request-build function to hand over REST Header and Query parameters case insensitively #1183
 
@@ -24,6 +25,7 @@
 
 **Breaking Changes in Version Tolerant Generation**
 
+- Change client filenames to `_client.py`  #1206
 - Change the models filename from `_models_py3.py` to `_models.py` #1204
 - Change the enums filename to `_enums.py` #1204
 

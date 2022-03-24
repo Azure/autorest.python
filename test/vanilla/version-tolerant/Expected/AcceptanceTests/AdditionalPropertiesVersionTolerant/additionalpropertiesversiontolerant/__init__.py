@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._additional_properties_client import AdditionalPropertiesClient
+from ._client import AdditionalPropertiesClient
 from ._version import VERSION
 
 __version__ = VERSION

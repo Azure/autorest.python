@@ -92,9 +92,9 @@
     },
     "config": {
         "credential": {{ code_model.options['credential'] | tojson }},
-        "credential_scopes": {{ (code_model.credential_schema_policy.credential_scopes if code_model.options['credential'] and code_model.credential_schema_policy.credential_scopes is defined else None)| tojson}},
-        "credential_call_sync": {{ (code_model.credential_schema_policy.call(async_mode=False) if code_model.options['credential'] else None) | tojson }},
-        "credential_call_async": {{ (code_model.credential_schema_policy.call(async_mode=True) if code_model.options['credential'] else None) | tojson }},
+        "credential_scopes": {{ (code_model.credential_model.credential_schema_policy.credential_scopes if code_model.options['credential'] and code_model.credential_model.credential_schema_policy.credential_scopes is defined else None)| tojson}},
+        "credential_call_sync": {{ (code_model.credential_model.credential_schema_policy.call(async_mode=False) if code_model.options['credential'] else None) | tojson }},
+        "credential_call_async": {{ (code_model.credential_model.credential_schema_policy.call(async_mode=True) if code_model.options['credential'] else None) | tojson }},
         "sync_imports": {{ sync_config_imports | tojson }},
         "async_imports": {{ async_config_imports | tojson }}
     },

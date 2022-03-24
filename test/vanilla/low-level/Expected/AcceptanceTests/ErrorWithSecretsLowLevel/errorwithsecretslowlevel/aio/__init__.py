@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._errorwith_secrets import ErrorWithSecrets
+from ._client import ErrorWithSecrets
 
 try:
     from ._patch import __all__ as _patch_all

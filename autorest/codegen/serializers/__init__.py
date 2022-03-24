@@ -127,7 +127,10 @@ class JinjaSerializer:
         def _prepare_params() -> Dict[Any, Any]:
             package_parts = self.code_model.options["package_name"].split("-")[:-1]
             try:
-                token_cred = isinstance(self.code_model.credential_schema_policy.credential, TokenCredentialSchema)
+                token_cred = isinstance(
+                    self.code_model.credential_model.credential_schema_policy.credential,
+                    TokenCredentialSchema
+                )
             except ValueError:
                 token_cred = False
             version = self.code_model.options["package_version"]
@@ -370,7 +373,7 @@ class JinjaSerializer:
         # Write the service client
         if self.code_model.rest.request_builders:
             self._autorestapi.write_file(
-                namespace_path / Path(f"_{self.code_model.module_name}.py"),
+                namespace_path / Path(f"{self.code_model.service_client.filename}.py"),
                 general_serializer.serialize_service_client_file()
             )
 
@@ -408,7 +411,7 @@ class JinjaSerializer:
         # Write the service client
         if self.code_model.rest.request_builders:
             self._autorestapi.write_file(
-                aio_path / Path(f"_{self.code_model.module_name}.py"),
+                aio_path / Path(f"{self.code_model.service_client.filename}.py"),
                 aio_general_serializer.serialize_service_client_file(),
             )
 

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._incorrect_returned_error_model import IncorrectReturnedErrorModel
+from ._client import IncorrectReturnedErrorModel
 from ._version import VERSION
 
 __version__ = VERSION
