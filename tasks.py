@@ -230,7 +230,7 @@ def _build_flags(
     client_side_validation = package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION
     namespace = kwargs.pop("namespace", _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower()))
 
-    generator, output_folder = _get_config(swagger_group, package_name, **kwargs)=
+    generator, output_folder = _get_config(swagger_group, package_name, **kwargs)
 
     if generator == _Generator.LOW_LEVEL_CLIENT:
         override_flags["low-level-client"] = True
@@ -322,7 +322,7 @@ def _regenerate(
         cmds.append(command_line)
         if kwargs.get("version_tolerant"):
             config = _get_config(swagger_group, package_name, **kwargs)
-            post_process_cmd = f"autorest --use={AUTOREST_DIR} --postprocess --output-folder={config.output_folder}"
+            post_process_cmd = f"autorest --use={AUTOREST_DIR} --postprocess --output-folder={config.output_folder} --perform-load=false"
             if debug:
                 post_process_cmd += " --python.debugger"
             print(Fore.YELLOW + f'Queuing up post process command: {post_process_cmd}')
