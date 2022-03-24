@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_resource_flattening_test_service import AutoRestResourceFlatteningTestService
+from ._client import AutoRestResourceFlatteningTestService
 from ._version import VERSION
 
 __version__ = VERSION

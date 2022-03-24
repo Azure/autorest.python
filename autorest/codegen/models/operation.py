@@ -10,7 +10,7 @@ from typing import cast, Dict, List, Any, Optional, Union, Set
 from .base_builder import BaseBuilder, create_parameters
 from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
-from .parameter import Parameter, get_parameter
+from .parameter import Parameter, get_parameter, ParameterLocation
 from .parameter_list import ParameterList, get_parameter_list
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
@@ -171,13 +171,17 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:  # pylint: disable=unused-argument
         return self._imports_shared(async_mode)
 
-    def imports(self, async_mode: bool) -> FileImport:
-        file_import = self._imports_base(async_mode)
+    def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
+        file_import = self._imports_base(async_mode, is_python3_file)
         if self.has_response_body and not self.has_optional_return_type and not self.code_model.options["models_mode"]:
             file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
         return file_import
 
-    def _imports_base(self, async_mode: bool) -> FileImport:
+    @staticmethod
+    def has_kwargs_to_pop_with_default(kwargs_to_pop: List[Parameter], location: ParameterLocation) -> bool:
+        return any(kwarg.has_default_value and kwarg.location == location for kwarg in kwargs_to_pop)
+
+    def _imports_base(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)
 
         # Exceptions
@@ -192,6 +196,10 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         file_import.add_submodule_import("typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.add_submodule_import("azure.core.pipeline", "PipelineResponse", ImportType.AZURECORE)
         file_import.add_submodule_import("azure.core.rest", "HttpRequest", ImportType.AZURECORE)
+        kwargs_to_pop = self.parameters.kwargs_to_pop(is_python3_file)
+        if (self.has_kwargs_to_pop_with_default(kwargs_to_pop, ParameterLocation.Header) or
+            self.has_kwargs_to_pop_with_default(kwargs_to_pop, ParameterLocation.Query)):
+            file_import.add_submodule_import("azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE)
         if async_mode:
             file_import.add_submodule_import("azure.core.pipeline.transport", "AsyncHttpResponse", ImportType.AZURECORE)
         else:
@@ -224,6 +232,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             file_import.add_submodule_import(
                 f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
             )
+
         if self.code_model.options["version_tolerant"] and (
             self.parameters.has_body or
             any(r for r in self.responses if r.has_body)

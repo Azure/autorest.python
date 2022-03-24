@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_date_test_service import AutoRestDateTestService
+from ._client import AutoRestDateTestService
 
 try:
     from ._patch import __all__ as _patch_all

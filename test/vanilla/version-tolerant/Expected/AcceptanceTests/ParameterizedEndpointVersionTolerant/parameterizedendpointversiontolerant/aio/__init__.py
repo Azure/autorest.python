@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._parmaterized_endpoint_client import ParmaterizedEndpointClient
+from ._client import ParmaterizedEndpointClient
 
 try:
     from ._patch import __all__ as _patch_all

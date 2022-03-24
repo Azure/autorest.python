@@ -19,6 +19,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._vendor import _convert_request
@@ -50,9 +51,12 @@ class AutoRestValidationTestOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        api_version = kwargs.pop("api_version", "1.0.0")  # type: str
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         request = build_validation_of_method_parameters_request(
@@ -61,6 +65,8 @@ class AutoRestValidationTestOperationsMixin:
             id=id,
             api_version=api_version,
             template_url=self.validation_of_method_parameters.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -102,10 +108,15 @@ class AutoRestValidationTestOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        api_version = kwargs.pop("api_version", "1.0.0")  # type: str
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+        api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: str
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         if body is not None:
@@ -121,6 +132,8 @@ class AutoRestValidationTestOperationsMixin:
             content_type=content_type,
             json=_json,
             template_url=self.validation_of_body.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -157,7 +170,10 @@ class AutoRestValidationTestOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         constant_param = kwargs.pop("constant_param", "constant")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -165,6 +181,8 @@ class AutoRestValidationTestOperationsMixin:
         request = build_get_with_constant_in_path_request(
             constant_param=constant_param,
             template_url=self.get_with_constant_in_path.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -200,10 +218,15 @@ class AutoRestValidationTestOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         constant_param = kwargs.pop("constant_param", "constant")  # type: str
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
         if body is not None:
@@ -216,6 +239,8 @@ class AutoRestValidationTestOperationsMixin:
             content_type=content_type,
             json=_json,
             template_url=self.post_with_constant_in_body.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

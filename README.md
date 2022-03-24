@@ -34,9 +34,9 @@ modelerfour:
 pass-thru:
   - model-deduplicator
   - subset-reducer
-version: ~3.8.1
+version: ~3.6.2
 use-extension:
-  "@autorest/modelerfour": ~4.23.1
+  "@autorest/modelerfour": ~4.19.1
 
 modelerfour:
   resolve-schema-name-collisons: true

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._xms_error_response_extensions import XMSErrorResponseExtensions
+from ._client import XMSErrorResponseExtensions
 from ._version import VERSION
 
 __version__ = VERSION

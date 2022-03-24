@@ -21,8 +21,8 @@ from .models.credential_schema_policy import CredentialSchemaPolicy, get_credent
 from .models.credential_schema_policy import BearerTokenCredentialPolicy, AzureKeyCredentialPolicy
 from .models.credential_model import CredentialModel
 
-_AAD_TYPE = "OAuth2"
-_KEY_TYPE = "Key"
+_AAD_TYPE = "AADToken"
+_KEY_TYPE = "AzureKey"
 
 def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -> None:
     # Create operations
@@ -141,7 +141,7 @@ class CodeGenerator(Plugin):
     def _build_package_dependency() -> Dict[str, str]:
         return {
             "dependency_azure_mgmt_core": "azure-mgmt-core<2.0.0,>=1.3.0",
-            "dependency_azure_core": "azure-core<2.0.0,>=1.20.1",
+            "dependency_azure_core": "azure-core<2.0.0,>=1.23.0",
             "dependency_msrest": "msrest>=0.6.21",
         }
 
@@ -154,9 +154,7 @@ class CodeGenerator(Plugin):
                     credential_model.credential_scopes.update(scheme["scopes"])
                 elif _KEY_TYPE == scheme["type"]:
                     # only accept the last one
-                    credential_model.key_header_name = scheme["name"]
-            # modelerfour==4.23.0 also put 'user_impersonation' in output
-            credential_model.credential_scopes.discard('user_impersonation')
+                    credential_model.key_header_name = scheme["headerName"]
 
         if credential_model.credential_scopes:
             credential_model.policy_type = BearerTokenCredentialPolicy

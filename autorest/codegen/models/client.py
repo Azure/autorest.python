@@ -102,3 +102,9 @@ class Client:
     def send_request_signature(self, is_python3_file: bool) -> List[str]:
         request_signature = ["request: HttpRequest," if is_python3_file else "request,  # type: HttpRequest"]
         return request_signature + self.parameters.method_signature_kwargs(is_python3_file)
+
+    @property
+    def filename(self) -> str:
+        if self.code_model.options["version_tolerant"] or self.code_model.options["low_level_client"]:
+            return "_client"
+        return f"_{self.code_model.module_name}"

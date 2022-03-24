@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._lro_with_paramaterized_endpoints import LROWithParamaterizedEndpoints
+from ._client import LROWithParamaterizedEndpoints
 from ._version import VERSION
 
 __version__ = VERSION

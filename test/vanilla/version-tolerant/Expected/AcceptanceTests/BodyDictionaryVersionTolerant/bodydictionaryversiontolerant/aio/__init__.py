@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_swagger_ba_tdictionary_service import AutoRestSwaggerBATDictionaryService
+from ._client import AutoRestSwaggerBATDictionaryService
 
 try:
     from ._patch import __all__ as _patch_all

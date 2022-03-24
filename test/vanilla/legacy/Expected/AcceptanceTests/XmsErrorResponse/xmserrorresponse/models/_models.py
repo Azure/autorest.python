@@ -87,7 +87,7 @@ class NotFoundErrorBase(BaseError):
         """
         super(NotFoundErrorBase, self).__init__(**kwargs)
         self.reason = kwargs.get("reason", None)
-        self.what_not_found = None  # type: Optional[str]
+        self.what_not_found = "NotFoundErrorBase"  # type: str
 
 
 class AnimalNotFound(NotFoundErrorBase):
@@ -255,7 +255,7 @@ class PetActionError(PetAction):
         :paramtype error_message: str
         """
         super(PetActionError, self).__init__(**kwargs)
-        self.error_type = None  # type: Optional[str]
+        self.error_type = "PetActionError"  # type: str
         self.error_message = kwargs.get("error_message", None)
 
 

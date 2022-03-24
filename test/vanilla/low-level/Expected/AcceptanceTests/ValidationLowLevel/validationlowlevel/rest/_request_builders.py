@@ -10,12 +10,13 @@ from typing import TYPE_CHECKING
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
+from azure.core.utils import case_insensitive_dict
 
 from .._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional, TypeVar
+    from typing import Any, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
@@ -78,9 +79,12 @@ def build_validation_of_method_parameters_request(
             }
     """
 
-    api_version = kwargs.pop('api_version', "1.0.0")  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    api_version = kwargs.pop('api_version', _params.pop('apiVersion', "1.0.0"))  # type: str
+    accept = _headers.pop('Accept', "application/json")
+
     # Construct URL
     _url = "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"
     path_format_arguments = {
@@ -92,18 +96,16 @@ def build_validation_of_method_parameters_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters['apiVersion'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _params['apiVersion'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -195,10 +197,13 @@ def build_validation_of_body_request(
             }
     """
 
-    api_version = kwargs.pop('api_version', "1.0.0")  # type: str
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    api_version = kwargs.pop('api_version', _params.pop('apiVersion', "1.0.0"))  # type: str
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
+
     # Construct URL
     _url = "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"
     path_format_arguments = {
@@ -210,20 +215,18 @@ def build_validation_of_body_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters['apiVersion'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _params['apiVersion'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -247,7 +250,6 @@ def build_get_with_constant_in_path_request(
     """
 
     constant_param = kwargs.pop('constant_param', "constant")  # type: str
-
     # Construct URL
     _url = "/validation/constantsInPath/{constantParam}/value"
     path_format_arguments = {
@@ -344,10 +346,12 @@ def build_post_with_constant_in_body_request(
             }
     """
 
-    constant_param = kwargs.pop('constant_param', "constant")  # type: str
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    constant_param = kwargs.pop('constant_param', "constant")  # type: str
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
+
     # Construct URL
     _url = "/validation/constantsInPath/{constantParam}/value"
     path_format_arguments = {
@@ -357,14 +361,13 @@ def build_post_with_constant_in_body_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="POST",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )

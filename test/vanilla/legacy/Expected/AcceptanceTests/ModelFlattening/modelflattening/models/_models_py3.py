@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Dict, List, Optional, TYPE_CHECKING
 
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
@@ -229,8 +229,9 @@ class FlattenParameterGroup(msrest.serialization.Model):
     :vartype description: str
     :ivar max_product_display_name: Display name of product.
     :vartype max_product_display_name: str
-    :ivar capacity: Capacity of product. For example, 4 people. Possible values include: "Large".
-    :vartype capacity: str or ~modelflattening.models.SimpleProductPropertiesMaxProductCapacity
+    :ivar capacity: Capacity of product. For example, 4 people. The only acceptable values to pass
+     in are None and "Large". The default value is None.
+    :vartype capacity: str
     :ivar generic_value: Generic URL value.
     :vartype generic_value: str
     :ivar odata_value: URL value.
@@ -261,7 +262,7 @@ class FlattenParameterGroup(msrest.serialization.Model):
         simple_body_product: Optional["_models.SimpleProduct"] = None,
         description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
-        capacity: Optional[Union[str, "_models.SimpleProductPropertiesMaxProductCapacity"]] = None,
+        capacity: Optional[str] = None,
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
         **kwargs
@@ -279,9 +280,9 @@ class FlattenParameterGroup(msrest.serialization.Model):
         :paramtype description: str
         :keyword max_product_display_name: Display name of product.
         :paramtype max_product_display_name: str
-        :keyword capacity: Capacity of product. For example, 4 people. Possible values include:
-         "Large".
-        :paramtype capacity: str or ~modelflattening.models.SimpleProductPropertiesMaxProductCapacity
+        :keyword capacity: Capacity of product. For example, 4 people. The only acceptable values to
+         pass in are None and "Large". The default value is None.
+        :paramtype capacity: str
         :keyword generic_value: Generic URL value.
         :paramtype generic_value: str
         :keyword odata_value: URL value.
@@ -415,8 +416,9 @@ class SimpleProduct(BaseProduct):
     :vartype description: str
     :ivar max_product_display_name: Display name of product.
     :vartype max_product_display_name: str
-    :ivar capacity: Capacity of product. For example, 4 people. Possible values include: "Large".
-    :vartype capacity: str or ~modelflattening.models.SimpleProductPropertiesMaxProductCapacity
+    :ivar capacity: Capacity of product. For example, 4 people. The only acceptable values to pass
+     in are None and "Large". The default value is None.
+    :vartype capacity: str
     :ivar generic_value: Generic URL value.
     :vartype generic_value: str
     :ivar odata_value: URL value.
@@ -442,7 +444,7 @@ class SimpleProduct(BaseProduct):
         product_id: str,
         description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
-        capacity: Optional[Union[str, "_models.SimpleProductPropertiesMaxProductCapacity"]] = None,
+        capacity: Optional[str] = None,
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
         **kwargs
@@ -456,9 +458,9 @@ class SimpleProduct(BaseProduct):
         :paramtype description: str
         :keyword max_product_display_name: Display name of product.
         :paramtype max_product_display_name: str
-        :keyword capacity: Capacity of product. For example, 4 people. Possible values include:
-         "Large".
-        :paramtype capacity: str or ~modelflattening.models.SimpleProductPropertiesMaxProductCapacity
+        :keyword capacity: Capacity of product. For example, 4 people. The only acceptable values to
+         pass in are None and "Large". The default value is None.
+        :paramtype capacity: str
         :keyword generic_value: Generic URL value.
         :paramtype generic_value: str
         :keyword odata_value: URL value.

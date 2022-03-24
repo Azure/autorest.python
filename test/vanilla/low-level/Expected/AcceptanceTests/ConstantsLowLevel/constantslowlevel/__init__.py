@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_swagger_constant_service import AutoRestSwaggerConstantService
+from ._client import AutoRestSwaggerConstantService
 from ._version import VERSION
 
 __version__ = VERSION

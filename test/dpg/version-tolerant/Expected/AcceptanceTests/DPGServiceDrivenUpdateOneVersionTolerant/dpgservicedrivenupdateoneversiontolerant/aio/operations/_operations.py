@@ -64,12 +64,17 @@ class ParamsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
         request = build_params_head_no_params_request(
             new_parameter=new_parameter,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -107,13 +112,18 @@ class ParamsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
         request = build_params_get_required_request(
             parameter=parameter,
             new_parameter=new_parameter,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -159,7 +169,10 @@ class ParamsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
@@ -167,6 +180,8 @@ class ParamsOperations:
             required_param=required_param,
             optional_param=optional_param,
             new_parameter=new_parameter,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -191,30 +206,25 @@ class ParamsOperations:
 
     @distributed_trace_async
     async def post_parameters(
-        self, parameter: Union[JSONType, IO], *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, parameter: Union[IO, JSONType], *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> Any:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
          url: "http://example.org/myimage.jpeg" }.
-        :type parameter: JSONType or IO
+        :type parameter: IO or JSONType
         :keyword content_type: Media type of the body sent to the API. Possible values are:
-         "application/json" or "image/jpeg". Default value is "application/json".
+         "image/jpeg" or "application/json". Default value is "application/json".
         :paramtype content_type: str
         :return: any
         :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                parameter = {
-                    "url": "str"  # Required.
-                }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
@@ -224,17 +234,19 @@ class ParamsOperations:
         if content_type.split(";")[0] in ["application/json"]:
             _json = parameter
         elif content_type.split(";")[0] in ["image/jpeg"]:
-            _json = parameter
+            _content = parameter
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
-                "['application/json', 'image/jpeg']".format(content_type)
+                "['image/jpeg', 'application/json']".format(content_type)
             )
 
         request = build_params_post_parameters_request(
             content_type=content_type,
             json=_json,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -268,11 +280,17 @@ class ParamsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_params_delete_parameters_request()
+        request = build_params_delete_parameters_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -304,13 +322,18 @@ class ParamsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
         request = build_params_get_optional_request(
             optional_param=optional_param,
             new_parameter=new_parameter,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -344,11 +367,17 @@ class ParamsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Any]
 
-        request = build_params_get_new_operation_request()
+        request = build_params_get_new_operation_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access

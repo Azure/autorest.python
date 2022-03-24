@@ -21,6 +21,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
 from .._vendor import MixinABC
 
@@ -33,103 +34,108 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_analyze_body_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/mediatypes/analyze"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_analyze_body_no_accept_header_request(
     *, json: JSONType = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
     # Construct URL
     _url = "/mediatypes/analyzeNoAccept"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_content_type_with_encoding_request(*, content: Any = None, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "application/json"
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/mediatypes/contentTypeWithEncoding"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_header_parameters, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_binary_body_with_two_content_types_request(
     *, json: JSONType = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "text/plain"
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "text/plain")
+
     # Construct URL
     _url = "/mediatypes/binaryBodyTwoContentTypes"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_binary_body_with_three_content_types_request(
     *, json: JSONType = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "text/plain"
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "text/plain")
+
     # Construct URL
     _url = "/mediatypes/binaryBodyThreeContentTypes"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 def build_put_text_and_json_body_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
-    content_type = kwargs.pop("content_type", None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = "text/plain"
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    accept = _headers.pop("Accept", "text/plain")
+
     # Construct URL
     _url = "/mediatypes/textAndJson"
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _header_parameters["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_header_parameters, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
 class MediaTypesClientOperationsMixin(MixinABC):
@@ -162,7 +168,10 @@ class MediaTypesClientOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
@@ -184,6 +193,8 @@ class MediaTypesClientOperationsMixin(MixinABC):
             content_type=content_type,
             json=_json,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -236,7 +247,10 @@ class MediaTypesClientOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -258,6 +272,8 @@ class MediaTypesClientOperationsMixin(MixinABC):
             content_type=content_type,
             json=_json,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -284,9 +300,14 @@ class MediaTypesClientOperationsMixin(MixinABC):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "text/plain; charset=UTF-8")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "text/plain; charset=UTF-8")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         _content = input
@@ -294,6 +315,8 @@ class MediaTypesClientOperationsMixin(MixinABC):
         request = build_content_type_with_encoding_request(
             content_type=content_type,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -333,7 +356,10 @@ class MediaTypesClientOperationsMixin(MixinABC):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
@@ -354,6 +380,8 @@ class MediaTypesClientOperationsMixin(MixinABC):
             content_type=content_type,
             json=_json,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -378,23 +406,27 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
     @distributed_trace
     def binary_body_with_three_content_types(
-        self, message: Union[IO, JSONType], *, content_type: Optional[str] = None, **kwargs: Any
+        self, message: Union[IO, str], *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> str:
         """Binary body with three content types. Pass in string 'hello, world' with content type
         'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
         'application/octet-stream'.
 
         :param message: The payload body.
-        :type message: IO or JSONType
+        :type message: IO or str
         :keyword content_type: Media type of the body sent to the API. Possible values are:
-         "application/json", "application/octet-stream", and "text/plain". Default value is None.
+         "application/json", "application/octet-stream", and "text/plain". Default value is
+         "application/json".
         :paramtype content_type: str
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
@@ -415,6 +447,8 @@ class MediaTypesClientOperationsMixin(MixinABC):
             content_type=content_type,
             json=_json,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -438,20 +472,25 @@ class MediaTypesClientOperationsMixin(MixinABC):
         return cast(str, deserialized)
 
     @distributed_trace
-    def put_text_and_json_body(self, message: str, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
+    def put_text_and_json_body(
+        self, message: Union[str, str], *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> str:
         """Body that's either text/plain or application/json.
 
         :param message: The payload body.
-        :type message: str
+        :type message: str or str
         :keyword content_type: Media type of the body sent to the API. Possible values are:
-         "application/json" or "text/plain". Default value is None.
+         "text/plain" or "application/json". Default value is "application/json".
         :paramtype content_type: str
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
@@ -465,13 +504,15 @@ class MediaTypesClientOperationsMixin(MixinABC):
         else:
             raise ValueError(
                 "The content_type '{}' is not one of the allowed values: "
-                "['application/json', 'text/plain']".format(content_type)
+                "['text/plain', 'application/json']".format(content_type)
             )
 
         request = build_put_text_and_json_body_request(
             content_type=content_type,
             json=_json,
             content=_content,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 

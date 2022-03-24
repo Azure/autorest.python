@@ -19,6 +19,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 
 from ..._operations._operations import (
     build_get_array_request,
@@ -71,9 +72,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if resource_array is not None:
@@ -84,6 +90,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         request = build_put_array_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -134,11 +142,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
 
-        request = build_get_array_request()
+        request = build_get_array_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -184,9 +198,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if resource_array is not None:
@@ -197,6 +216,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         request = build_put_wrapped_array_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -234,11 +255,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
 
-        request = build_get_wrapped_array_request()
+        request = build_get_wrapped_array_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -299,9 +326,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if resource_dictionary is not None:
@@ -312,6 +344,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         request = build_put_dictionary_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -362,11 +396,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
 
-        request = build_get_dictionary_request()
+        request = build_get_dictionary_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -473,9 +513,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if resource_complex_object is not None:
@@ -486,6 +531,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         request = build_put_resource_collection_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -581,11 +628,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
-        request = build_get_resource_collection_request()
+        request = build_get_resource_collection_request(
+            headers=_headers,
+            params=_params,
+        )
         request.url = self._client.format_url(request.url)  # type: ignore
 
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -628,8 +681,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                       Francisco will have a different product_id than uberX in Los Angeles.
                     "details": {
                         "max_product_capacity": "Large",  # Default value is "Large".
-                          Required. Capacity of product. For example, 4 people. Possible values
-                          include: "Large".
+                          Capacity of product. For example, 4 people. Has constant value: "Large".
                         "max_product_display_name": "str",  # Required. Display name of
                           product.
                         "max_product_image": {
@@ -647,8 +699,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                       Francisco will have a different product_id than uberX in Los Angeles.
                     "details": {
                         "max_product_capacity": "Large",  # Default value is "Large".
-                          Required. Capacity of product. For example, 4 people. Possible values
-                          include: "Large".
+                          Capacity of product. For example, 4 people. Has constant value: "Large".
                         "max_product_display_name": "str",  # Required. Display name of
                           product.
                         "max_product_image": {
@@ -659,9 +710,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         if simple_body_product is not None:
@@ -672,6 +728,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         request = build_put_simple_product_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -715,8 +773,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                       Francisco will have a different product_id than uberX in Los Angeles.
                     "details": {
                         "max_product_capacity": "Large",  # Default value is "Large".
-                          Required. Capacity of product. For example, 4 people. Possible values
-                          include: "Large".
+                          Capacity of product. For example, 4 people. Has constant value: "Large".
                         "max_product_display_name": "str",  # Required. Display name of
                           product.
                         "max_product_image": {
@@ -734,8 +791,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                       Francisco will have a different product_id than uberX in Los Angeles.
                     "details": {
                         "max_product_capacity": "Large",  # Default value is "Large".
-                          Required. Capacity of product. For example, 4 people. Possible values
-                          include: "Large".
+                          Capacity of product. For example, 4 people. Has constant value: "Large".
                         "max_product_display_name": "str",  # Required. Display name of
                           product.
                         "max_product_image": {
@@ -746,9 +802,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         if simple_body_product is not None:
@@ -759,6 +820,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         request = build_post_flattened_simple_product_request(
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 
@@ -806,8 +869,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                       Francisco will have a different product_id than uberX in Los Angeles.
                     "details": {
                         "max_product_capacity": "Large",  # Default value is "Large".
-                          Required. Capacity of product. For example, 4 people. Possible values
-                          include: "Large".
+                          Capacity of product. For example, 4 people. Has constant value: "Large".
                         "max_product_display_name": "str",  # Required. Display name of
                           product.
                         "max_product_image": {
@@ -825,8 +887,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                       Francisco will have a different product_id than uberX in Los Angeles.
                     "details": {
                         "max_product_capacity": "Large",  # Default value is "Large".
-                          Required. Capacity of product. For example, 4 people. Possible values
-                          include: "Large".
+                          Capacity of product. For example, 4 people. Has constant value: "Large".
                         "max_product_display_name": "str",  # Required. Display name of
                           product.
                         "max_product_image": {
@@ -837,9 +898,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/json")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/json")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
 
         if simple_body_product is not None:
@@ -851,6 +917,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             name=name,
             content_type=content_type,
             json=_json,
+            headers=_headers,
+            params=_params,
         )
         request.url = self._client.format_url(request.url)  # type: ignore
 

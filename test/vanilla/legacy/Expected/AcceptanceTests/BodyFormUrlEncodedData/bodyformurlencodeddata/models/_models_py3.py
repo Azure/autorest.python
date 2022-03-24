@@ -85,11 +85,12 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
 ):
     """PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 
+    Variables are only populated by the server, and will be ignored when sending a request.
+
     All required parameters must be populated in order to send to Azure.
 
-    :ivar grant_type: Required. Constant part of a formdata body. Possible values include:
-     "access_token".
-    :vartype grant_type: str or ~bodyformurlencodeddata.models.PostContentSchemaGrantType
+    :ivar grant_type: Constant part of a formdata body. Has constant value: "access_token".
+    :vartype grant_type: str
     :ivar service: Required. Indicates the name of your Azure container registry.
     :vartype service: str
     :ivar aad_access_token: Required. AAD access token, mandatory when grant_type is
@@ -98,7 +99,7 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
     """
 
     _validation = {
-        "grant_type": {"required": True},
+        "grant_type": {"required": True, "constant": True},
         "service": {"required": True},
         "aad_access_token": {"required": True},
     }
@@ -109,18 +110,10 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
         "aad_access_token": {"key": "access_token", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        grant_type: Union[str, "_models.PostContentSchemaGrantType"],
-        service: str,
-        aad_access_token: str,
-        **kwargs
-    ):
+    grant_type = "access_token"
+
+    def __init__(self, *, service: str, aad_access_token: str, **kwargs):
         """
-        :keyword grant_type: Required. Constant part of a formdata body. Possible values include:
-         "access_token".
-        :paramtype grant_type: str or ~bodyformurlencodeddata.models.PostContentSchemaGrantType
         :keyword service: Required. Indicates the name of your Azure container registry.
         :paramtype service: str
         :keyword aad_access_token: Required. AAD access token, mandatory when grant_type is
@@ -131,6 +124,5 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
             PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema,
             self,
         ).__init__(**kwargs)
-        self.grant_type = grant_type
         self.service = service
         self.aad_access_token = aad_access_token

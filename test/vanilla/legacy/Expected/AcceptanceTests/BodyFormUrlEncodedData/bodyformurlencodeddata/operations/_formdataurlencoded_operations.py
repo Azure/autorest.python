@@ -21,6 +21,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._vendor import _convert_request, _format_url_section
@@ -41,8 +42,9 @@ def build_update_pet_with_form_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = kwargs.pop("template_url", "/formsdataurlencoded/pet/add/{petId}")
     path_format_arguments = {
@@ -52,14 +54,13 @@ def build_update_pet_with_form_request(
     _url = _format_url_section(_url, **path_format_arguments)
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="POST",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -68,20 +69,20 @@ def build_partial_constant_body_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    content_type = kwargs.pop('content_type', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     # Construct URL
     _url = kwargs.pop("template_url", "/formsdataurlencoded/partialConstantBody")
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
     if content_type is not None:
-        _header_parameters['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
 
     return HttpRequest(
         method="POST",
         url=_url,
-        headers=_header_parameters,
+        headers=_headers,
         **kwargs
     )
 
@@ -139,9 +140,14 @@ class FormdataurlencodedOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/x-www-form-urlencoded")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
+        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         # Construct form data
@@ -158,6 +164,8 @@ class FormdataurlencodedOperations(object):
             content_type=content_type,
             data=_data,
             template_url=self.update_pet_with_form.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore
@@ -179,7 +187,6 @@ class FormdataurlencodedOperations(object):
     @distributed_trace
     def partial_constant_body(  # pylint: disable=inconsistent-return-statements
         self,
-        grant_type,  # type: Union[str, "_models.PostContentSchemaGrantType"]
         service,  # type: str
         access_token,  # type: str
         **kwargs  # type: Any
@@ -188,22 +195,29 @@ class FormdataurlencodedOperations(object):
         """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
         'foo', service: 'bar' } to pass the test.
 
-        :param grant_type: Constant part of a formdata body.
-        :type grant_type: str or ~bodyformurlencodeddata.models.PostContentSchemaGrantType
         :param service: Indicates the name of your Azure container registry.
         :type service: str
         :param access_token: AAD access token, mandatory when grant_type is access_token_refresh_token
          or access_token.
         :type access_token: str
+        :keyword grant_type: Constant part of a formdata body. Default value is "access_token". Note
+         that overriding this default value may result in unsupported behavior.
+        :paramtype grant_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-        content_type = kwargs.pop("content_type", "application/x-www-form-urlencoded")  # type: Optional[str]
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
+        )  # type: Optional[str]
+        grant_type = kwargs.pop("grant_type", "access_token")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         # Construct form data
@@ -217,6 +231,8 @@ class FormdataurlencodedOperations(object):
             content_type=content_type,
             data=_data,
             template_url=self.partial_constant_body.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

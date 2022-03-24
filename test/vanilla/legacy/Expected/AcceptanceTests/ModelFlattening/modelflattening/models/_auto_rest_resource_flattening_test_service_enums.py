@@ -23,9 +23,3 @@ class FlattenedProductPropertiesProvisioningStateValues(str, Enum, metaclass=Cas
     DELETING = "Deleting"
     DELETED = "Deleted"
     OK = "OK"
-
-
-class SimpleProductPropertiesMaxProductCapacity(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Capacity of product. For example, 4 people."""
-
-    LARGE = "Large"

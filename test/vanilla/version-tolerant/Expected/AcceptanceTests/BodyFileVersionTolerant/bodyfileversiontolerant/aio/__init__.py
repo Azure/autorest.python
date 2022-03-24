@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_swagger_bat_file_service import AutoRestSwaggerBATFileService
+from ._client import AutoRestSwaggerBATFileService
 
 try:
     from ._patch import __all__ as _patch_all

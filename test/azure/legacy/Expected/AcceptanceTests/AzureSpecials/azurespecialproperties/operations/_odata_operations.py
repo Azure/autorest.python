@@ -21,6 +21,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
@@ -40,32 +41,33 @@ def build_get_with_filter_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
-    filter = kwargs.pop('filter', None)  # type: Optional[str]
-    top = kwargs.pop('top', None)  # type: Optional[int]
-    orderby = kwargs.pop('orderby', None)  # type: Optional[str]
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    filter = kwargs.pop('filter', _params.pop('$filter', None))  # type: Optional[str]
+    top = kwargs.pop('top', _params.pop('$top', None))  # type: Optional[int]
+    orderby = kwargs.pop('orderby', _params.pop('$orderby', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
+
     # Construct URL
     _url = kwargs.pop("template_url", "/azurespecials/odata/filter")
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
     if filter is not None:
-        _query_parameters['$filter'] = _SERIALIZER.query("filter", filter, 'str')
+        _params['$filter'] = _SERIALIZER.query("filter", filter, 'str')
     if top is not None:
-        _query_parameters['$top'] = _SERIALIZER.query("top", top, 'int')
+        _params['$top'] = _SERIALIZER.query("top", top, 'int')
     if orderby is not None:
-        _query_parameters['$orderby'] = _SERIALIZER.query("orderby", orderby, 'str')
+        _params['$orderby'] = _SERIALIZER.query("orderby", orderby, 'str')
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="GET",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )
 
@@ -113,7 +115,10 @@ class OdataOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
-        error_map.update(kwargs.pop("error_map", {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
@@ -122,6 +127,8 @@ class OdataOperations(object):
             top=top,
             orderby=orderby,
             template_url=self.get_with_filter.metadata["url"],
+            headers=_headers,
+            params=_params,
         )
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)  # type: ignore

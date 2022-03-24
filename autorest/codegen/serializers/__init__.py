@@ -181,16 +181,16 @@ class JinjaSerializer:
         if self.code_model.schemas:
             if not self.code_model.options['python3_only']:
                 self._autorestapi.write_file(
-                    models_path / Path("_models.py"),
+                    models_path / Path(f"{self.code_model.get_models_filename(is_python3_file=False)}.py"),
                     ModelGenericSerializer(code_model=self.code_model, env=env).serialize()
                 )
             self._autorestapi.write_file(
-                models_path / Path("_models_py3.py"),
+                models_path / Path(f"{self.code_model.get_models_filename(is_python3_file=True)}.py"),
                 ModelPython3Serializer(code_model=self.code_model, env=env).serialize()
             )
         if self.code_model.enums:
             self._autorestapi.write_file(
-                models_path / Path(f"_{self.code_model.module_name}_enums.py"),
+                models_path / Path(f"{self.code_model.enums_filename}.py"),
                 EnumSerializer(code_model=self.code_model, env=env).serialize(),
             )
         self._autorestapi.write_file(
@@ -373,7 +373,7 @@ class JinjaSerializer:
         # Write the service client
         if self.code_model.rest.request_builders:
             self._autorestapi.write_file(
-                namespace_path / Path(f"_{self.code_model.module_name}.py"),
+                namespace_path / Path(f"{self.code_model.service_client.filename}.py"),
                 general_serializer.serialize_service_client_file()
             )
 
@@ -411,7 +411,7 @@ class JinjaSerializer:
         # Write the service client
         if self.code_model.rest.request_builders:
             self._autorestapi.write_file(
-                aio_path / Path(f"_{self.code_model.module_name}.py"),
+                aio_path / Path(f"{self.code_model.service_client.filename}.py"),
                 aio_general_serializer.serialize_service_client_file(),
             )
 

@@ -10,10 +10,11 @@ from typing import TYPE_CHECKING
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
+from azure.core.utils import case_insensitive_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict
+    from typing import Any
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -37,24 +38,25 @@ def build_operation_one_request(
     :rtype: ~azure.core.rest.HttpRequest
     """
 
-    parameter1 = kwargs.pop('parameter1')  # type: str
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = "application/json"
+    parameter1 = kwargs.pop('parameter1')  # type: str
+    accept = _headers.pop('Accept', "application/json")
+
     # Construct URL
     _url = "/reservedWords/operationGroup/import"
 
     # Construct parameters
-    _query_parameters = kwargs.pop("params", {})  # type: Dict[str, Any]
-    _query_parameters['parameter1'] = _SERIALIZER.query("parameter1", parameter1, 'str')
+    _params['parameter1'] = _SERIALIZER.query("parameter1", parameter1, 'str')
 
     # Construct headers
-    _header_parameters = kwargs.pop("headers", {})  # type: Dict[str, Any]
-    _header_parameters['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(
         method="PUT",
         url=_url,
-        params=_query_parameters,
-        headers=_header_parameters,
+        params=_params,
+        headers=_headers,
         **kwargs
     )

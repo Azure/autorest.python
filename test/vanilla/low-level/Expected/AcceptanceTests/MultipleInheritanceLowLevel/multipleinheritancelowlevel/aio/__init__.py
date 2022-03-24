@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._multiple_inheritance_service_client import MultipleInheritanceServiceClient
+from ._client import MultipleInheritanceServiceClient
 
 try:
     from ._patch import __all__ as _patch_all
