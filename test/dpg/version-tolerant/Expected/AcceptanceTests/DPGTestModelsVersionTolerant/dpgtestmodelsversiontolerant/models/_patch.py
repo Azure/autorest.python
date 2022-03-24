@@ -7,7 +7,7 @@
 Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
 """
 from typing import List
-from ._models_py3 import Product as ProductGenerated
+from ._models import Product as ProductGenerated
 
 
 class Product(ProductGenerated):
