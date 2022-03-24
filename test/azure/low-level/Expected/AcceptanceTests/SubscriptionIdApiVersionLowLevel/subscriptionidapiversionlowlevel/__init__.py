@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._microsoft_azure_test_url import MicrosoftAzureTestUrl
+from ._client import MicrosoftAzureTestUrl
 from ._version import VERSION
 
 __version__ = VERSION

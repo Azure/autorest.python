@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._object_type_client import ObjectTypeClient
+from ._client import ObjectTypeClient
 
 try:
     from ._patch import __all__ as _patch_all

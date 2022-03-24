@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._anything_client import AnythingClient
+from ._client import AnythingClient
 
 try:
     from ._patch import __all__ as _patch_all

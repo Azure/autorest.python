@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._merge_patch_json_client import MergePatchJsonClient
+from ._client import MergePatchJsonClient
 
 try:
     from ._patch import __all__ as _patch_all

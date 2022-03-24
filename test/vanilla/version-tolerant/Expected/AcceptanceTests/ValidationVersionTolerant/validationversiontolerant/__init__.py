@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_validation_test import AutoRestValidationTest
+from ._client import AutoRestValidationTest
 from ._version import VERSION
 
 __version__ = VERSION

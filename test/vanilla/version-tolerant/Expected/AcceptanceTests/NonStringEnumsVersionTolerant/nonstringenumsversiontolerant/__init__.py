@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._non_string_enums_client import NonStringEnumsClient
+from ._client import NonStringEnumsClient
 from ._version import VERSION
 
 __version__ = VERSION

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_complex_test_service import AutoRestComplexTestService
+from ._client import AutoRestComplexTestService
 from ._version import VERSION
 
 __version__ = VERSION

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._storage_management_client import StorageManagementClient
+from ._client import StorageManagementClient
 
 try:
     from ._patch import __all__ as _patch_all

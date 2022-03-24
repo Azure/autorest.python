@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._pet_store_inc import PetStoreInc
+from ._client import PetStoreInc
 from ._version import VERSION
 
 __version__ = VERSION

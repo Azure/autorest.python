@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_swagger_constant_service import AutoRestSwaggerConstantService
+from ._client import AutoRestSwaggerConstantService
 
 try:
     from ._patch import __all__ as _patch_all

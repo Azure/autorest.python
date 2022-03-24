@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_http_infrastructure_test_service import AutoRestHttpInfrastructureTestService
+from ._client import AutoRestHttpInfrastructureTestService
 from ._version import VERSION
 
 __version__ = VERSION

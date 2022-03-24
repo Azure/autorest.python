@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_swagger_bat_header_service import AutoRestSwaggerBATHeaderService
+from ._client import AutoRestSwaggerBATHeaderService
 from ._version import VERSION
 
 __version__ = VERSION

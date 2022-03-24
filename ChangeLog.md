@@ -24,6 +24,7 @@
 
 **Breaking Changes in Version Tolerant Generation**
 
+- Change client filenames to `_client.py`  #1206
 - Change the models filename from `_models_py3.py` to `_models.py` #1204
 - Change the enums filename to `_enums.py` #1204
 
