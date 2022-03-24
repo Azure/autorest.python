@@ -4,7 +4,6 @@
   "LROPostDoubleHeadersFinalLocationGet": 0,
   "LROConstantParameterizedPost": 1,
   "LROConstantParameterizedGet": 1,
-  "PagingDuplicateParameters": 0,
   "PostParameterGroupingWithReservedWords": 0,
   "LROPutInlineComplete": 0,
   "LROPutInlineComplete201": 0,
@@ -136,7 +135,5 @@
   "postParameterGroupingOptionalParameters": 0,
   "postParameterGroupingRequiredParameters": 0,
   "postParameterGroupingMultipleParameterGroups": 0,
-  "postParameterGroupingSharedParameterGroupObject": 0,
-  "LROPatch201WithAsyncHeader": 0,
-  "LROPatch202WithAsyncAndLocationHeader": 0
+  "postParameterGroupingSharedParameterGroupObject": 0
 }

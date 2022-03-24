@@ -1,7 +1,6 @@
 {
   "StreamUploadFile": 10,
   "UpdatePetWithForm": 0,
-  "UrlEncodedDataWithPartialConstantBody": 0,
   "getDecimalInvalid": 2,
   "getDecimalBig": 2,
   "getDecimalSmall": 2,
@@ -45,6 +44,5 @@
   "MultiapiDifferentCallsApiVersionTwo": 0,
   "MultiapiDifferentCallsApiVersionThree": 0,
   "MultiapiCustomBaseUrlApiVersionOne": 0,
-  "MultiapiCustomBaseUrlApiVersionTwo": 0,
-  "LROPatchInlineCompleteIgnoreHeaders": 0
+  "MultiapiCustomBaseUrlApiVersionTwo": 0
 }
