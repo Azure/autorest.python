@@ -38,11 +38,7 @@
   "getArrayStringValid": 0,
   "putArrayStringValid": 0,
   "getArrayStringWithNull": 0,
-<<<<<<< HEAD
-  "getArrayStringWithString": 0,
-=======
   "getArrayStringWithNumber": 0,
->>>>>>> f87cea7484ee0eed1d6163d5d0c43a30a7e341ca
   "getArrayEnumValid": 0,
   "putArrayEnumValid": 0,
   "getArrayStringEnumValid": 0,
@@ -97,11 +93,7 @@
   "getByteEmpty": 0,
   "getByteNonAscii": 0,
   "getByteInvalid": 0,
-<<<<<<< HEAD
-  "ConstantClientProperties": 3,
-=======
   "ConstantClientProperties": 0,
->>>>>>> f87cea7484ee0eed1d6163d5d0c43a30a7e341ca
   "ErrorWithSecrets": 0,
   "RequestWithSecrets": 0,
   "HttpSuccess200Head": 0,
@@ -137,10 +129,7 @@
   "HttpRedirect307Post": 0,
   "HttpRedirect307Patch": 0,
   "HttpRedirect307Delete": 0,
-<<<<<<< HEAD
-=======
   "HttpRedirect307Options": 0,
->>>>>>> f87cea7484ee0eed1d6163d5d0c43a30a7e341ca
   "HttpClientFailure400Head": 0,
   "HttpClientFailure400Get": 0,
   "HttpClientFailure400Put": 0,
@@ -216,11 +205,7 @@
   "verifyIncorrectErrorParsing": 0,
   "MediaTypesAnalyzeBodyNoAcceptHeader": 0,
   "MediaTypesTwoContentTypes": 0,
-<<<<<<< HEAD
-  "MediaTypesThreeContentTypes": 6,
-=======
   "MediaTypesThreeContentTypes": 0,
->>>>>>> f87cea7484ee0eed1d6163d5d0c43a30a7e341ca
   "PassMergePatchObject": 0,
   "GetParameterizedHostWithNameEndpoint": 0,
   "UrlPathsBoolTrue": 0,
@@ -259,11 +244,8 @@
   "reservedWordsBodyNamedData": 0,
   "reservedWordsBodyNamedFiles": 0,
   "reservedWordsUrlHeaderQuery": 0,
-<<<<<<< HEAD
-=======
   "SecurityKey": 0,
   "SecurityAad": 0,
->>>>>>> f87cea7484ee0eed1d6163d5d0c43a30a7e341ca
   "getStringNull": 0,
   "putStringNull": 0,
   "getStringEmpty": 0,
