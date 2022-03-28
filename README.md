@@ -30,6 +30,10 @@ modelerfour:
   flatten-payloads: true
 ```
 
+```yaml $(postprocess)
+allow-no-input: true
+```
+
 ```yaml !$(multiapiscript) && !$(postprocess)
 pass-thru:
   - model-deduplicator
