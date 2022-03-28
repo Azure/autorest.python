@@ -244,8 +244,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     def _default_value(self) -> Tuple[Optional[Any], str, str]:
         type_annot = self.multiple_content_types_type_annot or self.schema.type_annotation(is_operation_file=True)
         if self._is_io_json:
-            type_annot = f"Union[{type_annot}, JSONType]"
-        any_types = ["Any", "JSONType"]
+            type_annot = f"Union[{type_annot}, Any]"
+        any_types = ["Any", "JSONObject"]
         if not self.required and type_annot not in any_types and not self._is_io_json:
             type_annot = f"Optional[{type_annot}]"
 
@@ -305,7 +305,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     def docstring_type(self) -> str:
         retval = self.multiple_content_types_docstring_type or self.schema.docstring_type
         if self._is_io_json:
-            retval += " or JSONType"
+            retval += " or Any"
         return retval
 
     @property

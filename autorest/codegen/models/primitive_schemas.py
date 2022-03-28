@@ -142,11 +142,10 @@ class JSONSchema(AnySchema):
 
     @property
     def docstring_type(self) -> str:
-        return "JSONType"
+        return "JSONObject"
 
     def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
-        return "JSONType"
-
+        return "JSONObject"
 
 class NumberSchema(PrimitiveSchema):
     def __init__(self, namespace: str, yaml_data: Dict[str, Any]) -> None:

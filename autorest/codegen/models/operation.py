@@ -17,6 +17,7 @@ from .object_schema import ObjectSchema
 from .request_builder import RequestBuilder
 from .schema_request import SchemaRequest
 from .primitive_schemas import IOSchema
+from .utils import has_object_schema
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -237,7 +238,12 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             self.parameters.has_body or
             any(r for r in self.responses if r.has_body)
         ):
-            file_import.define_mypy_type("JSONType", "Any")
+            # file_import.define_mypy_type("JSONObject", "Dict[str, Any]")
+            if (has_object_schema(self.parameters.parameters) or
+                has_object_schema(self.responses) or
+                has_object_schema(self.exceptions)):
+                file_import.define_mypy_type("JSONObject", "Dict[str, Any]")
+                # file_import.define_mypy_type("JSONObject", "Any")
         if self.code_model.options["tracing"] and self.want_tracing:
             file_import.add_submodule_import(
                 f"azure.core.tracing.decorator{'_async' if async_mode else ''}",
@@ -306,6 +312,16 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         chosen_parameter.multiple_content_types_type_annot = f"Union[{type_annot}]"
         chosen_parameter.multiple_content_types_docstring_type = docstring_type
         self.parameters.append(chosen_parameter)
+
+    @property
+    def use_json_object(self) -> bool:
+        for param in self.parameters:
+            if (param.is_body) and not isinstance(param.schema, ObjectSchema):
+                return True
+        return False
+        # return True if there is json contents in either request or response.
+        # return (self.parameters.has_body and has_json_content_types(self.parameters.content_types) or
+                # any(has_json_content_types(r.content_types) for r in self.responses if r.has_body))
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Operation":

@@ -12,6 +12,7 @@ from .schema_request import SchemaRequest
 from .schema_response import SchemaResponse
 from .imports import FileImport, ImportType, TypingSection
 from .parameter import Parameter
+from .primitive_schemas import JSONSchema
 
 
 T = TypeVar('T')
@@ -87,11 +88,16 @@ class RequestBuilder(BaseBuilder):
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
         file_import.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY)
-        if self.parameters.has_body and (
+        if self.parameters.has_body and any([isinstance(p.schema, JSONSchema) for p in self.body_kwargs_to_get]) and (
             self.code_model.options["builders_visibility"] != "embedded" or
             self.code_model.options["add_python3_operation_files"]
         ):
-            file_import.define_mypy_type("JSONType", "Any")
+            file_import.define_mypy_type("JSONObject", "Dict[str, Any]")
+            # if has_object_schema(self.parameters.parameters):
+            #     # file_import.define_mypy_type("JSONType", "Dict[str, Any]")
+            #     file_import.define_mypy_type("JSONType6", "Any")
+            # else:
+            #     file_import.add_submodule_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
 
     @classmethod

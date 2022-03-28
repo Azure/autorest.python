@@ -226,13 +226,13 @@ class HiddenModelObjectSchema(ObjectSchema):
     def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
         if self.xml_metadata:
             return "ET.Element"
-        return "JSONType"
+        return "JSONObject"
 
     @property
     def docstring_type(self) -> str:
         if self.xml_metadata:
             return "ET.Element"
-        return "JSONType"
+        return "JSONObject"
 
     @property
     def docstring_text(self) -> str:
