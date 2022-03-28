@@ -25,7 +25,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from ...operations._operations import build_group_get_sample_resource_group_request
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -47,13 +47,13 @@ class GroupOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_sample_resource_group(self, resource_group_name: str, **kwargs: Any) -> JSONType:
+    async def get_sample_resource_group(self, resource_group_name: str, **kwargs: Any) -> JSONObject:
         """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
         :param resource_group_name: Resource Group name 'testgroup101'.
         :type resource_group_name: str
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -72,7 +72,7 @@ class GroupOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2014-04-01-preview"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_group_get_sample_resource_group_request(
             subscription_id=self._config.subscription_id,
@@ -98,6 +98,6 @@ class GroupOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)

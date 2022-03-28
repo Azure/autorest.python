@@ -24,7 +24,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -85,7 +85,7 @@ def build_params_put_required_optional_request(
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_params_post_parameters_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_params_post_parameters_request(*, json: JSONObject = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -275,12 +275,12 @@ class ParamsOperations:
         return cast(Any, deserialized)
 
     @distributed_trace
-    def post_parameters(self, parameter: JSONType, **kwargs: Any) -> Any:
+    def post_parameters(self, parameter: JSONObject, **kwargs: Any) -> Any:
         """POST a JSON.
 
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }.
-        :type parameter: JSONType
+        :type parameter: JSONObject
         :return: any
         :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError

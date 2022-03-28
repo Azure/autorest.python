@@ -15,13 +15,13 @@ from azure.core.utils import case_insensitive_dict
 from .._vendor import _format_url_section
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_put_array_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_array_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put External Resource as an Array.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -30,7 +30,7 @@ def build_put_array_request(*, json: JSONType = None, content: Any = None, **kwa
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as an Array to put. Default value is
      None.
-    :paramtype json: JSONType
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as an Array to put. Default value is None.
     :paramtype content: any
@@ -123,7 +123,7 @@ def build_get_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_wrapped_array_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_wrapped_array_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """No need to have a route in Express server for this operation. Used to verify the type flattened
     is not removed if it's referenced in an array.
 
@@ -133,7 +133,7 @@ def build_put_wrapped_array_request(*, json: JSONType = None, content: Any = Non
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as an Array to put. Default value is
      None.
-    :paramtype json: JSONType
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as an Array to put. Default value is None.
     :paramtype content: any
@@ -207,7 +207,7 @@ def build_get_wrapped_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_dictionary_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_dictionary_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put External Resource as a Dictionary.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -216,7 +216,7 @@ def build_put_dictionary_request(*, json: JSONType = None, content: Any = None, 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as a Dictionary to put. Default value is
      None.
-    :paramtype json: JSONType
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as a Dictionary to put. Default value is
      None.
@@ -318,7 +318,9 @@ def build_get_dictionary_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_resource_collection_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_resource_collection_request(
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     """Put External Resource as a ResourceCollection.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -327,7 +329,7 @@ def build_put_resource_collection_request(*, json: JSONType = None, content: Any
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as a ResourceCollection to put. Default
      value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as a ResourceCollection to put. Default
      value is None.
@@ -519,7 +521,7 @@ def build_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_simple_product_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_simple_product_request(*, json: JSONObject = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put Simple Product with client flattening true on the model.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -527,7 +529,7 @@ def build_put_simple_product_request(*, json: JSONType = None, content: Any = No
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple body product to put. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple body product to put. Default value is None.
     :paramtype content: any
@@ -593,7 +595,7 @@ def build_put_simple_product_request(*, json: JSONType = None, content: Any = No
 
 
 def build_post_flattened_simple_product_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Put Flattened Simple Product with client flattening true on the parameter.
 
@@ -602,7 +604,7 @@ def build_post_flattened_simple_product_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple body product to post. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple body product to post. Default value is None.
     :paramtype content: any
@@ -668,7 +670,7 @@ def build_post_flattened_simple_product_request(
 
 
 def build_put_simple_product_with_grouping_request(
-    name: str, *, json: JSONType = None, content: Any = None, **kwargs: Any
+    name: str, *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Put Simple Product with client flattening true on the model.
 
@@ -679,7 +681,7 @@ def build_put_simple_product_with_grouping_request(
     :type name: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple body product to put. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple body product to put. Default value is None.
     :paramtype content: any

@@ -19,7 +19,7 @@ if TYPE_CHECKING:
     from typing import Any, Optional, TypeVar
 
     T = TypeVar("T")
-    JSONType = Any
+    JSONObject = Dict[str, Any]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -95,7 +95,7 @@ def build_post_model_request(
     :type mode: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put {'hello': 'world!'}. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put {'hello': 'world!'}. Default value is None.
     :paramtype content: any

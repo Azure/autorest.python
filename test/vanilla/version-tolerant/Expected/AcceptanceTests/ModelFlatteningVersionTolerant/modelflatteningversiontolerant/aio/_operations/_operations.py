@@ -37,19 +37,19 @@ from ..._operations._operations import (
 from .._vendor import MixinABC
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     @distributed_trace_async
     async def put_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[List[JSONType]] = None, **kwargs: Any
+        self, resource_array: Optional[List[JSONObject]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as an Array.
 
         :param resource_array: External Resource as an Array to put. Default value is None.
-        :type resource_array: list[JSONType]
+        :type resource_array: list[JSONObject]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -108,11 +108,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_array(self, **kwargs: Any) -> List[JSONType]:
+    async def get_array(self, **kwargs: Any) -> List[JSONObject]:
         """Get External Resource as an Array.
 
         :return: list of JSON object
-        :rtype: list[JSONType]
+        :rtype: list[JSONObject]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -146,7 +146,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONObject]]
 
         request = build_get_array_request(
             headers=_headers,
@@ -169,19 +169,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSONType], deserialized), {})
+            return cls(pipeline_response, cast(List[JSONObject], deserialized), {})
 
-        return cast(List[JSONType], deserialized)
+        return cast(List[JSONObject], deserialized)
 
     @distributed_trace_async
     async def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[List[JSONType]] = None, **kwargs: Any
+        self, resource_array: Optional[List[JSONObject]] = None, **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
         :param resource_array: External Resource as an Array to put. Default value is None.
-        :type resource_array: list[JSONType]
+        :type resource_array: list[JSONObject]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -233,12 +233,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_wrapped_array(self, **kwargs: Any) -> List[JSONType]:
+    async def get_wrapped_array(self, **kwargs: Any) -> List[JSONObject]:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
         :return: list of JSON object
-        :rtype: list[JSONType]
+        :rtype: list[JSONObject]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -259,7 +259,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONObject]]
 
         request = build_get_wrapped_array_request(
             headers=_headers,
@@ -282,18 +282,18 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSONType], deserialized), {})
+            return cls(pipeline_response, cast(List[JSONObject], deserialized), {})
 
-        return cast(List[JSONType], deserialized)
+        return cast(List[JSONObject], deserialized)
 
     @distributed_trace_async
     async def put_dictionary(  # pylint: disable=inconsistent-return-statements
-        self, resource_dictionary: Optional[Dict[str, JSONType]] = None, **kwargs: Any
+        self, resource_dictionary: Optional[Dict[str, JSONObject]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
 
         :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
-        :type resource_dictionary: dict[str, JSONType]
+        :type resource_dictionary: dict[str, JSONObject]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -360,11 +360,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_dictionary(self, **kwargs: Any) -> Dict[str, JSONType]:
+    async def get_dictionary(self, **kwargs: Any) -> Dict[str, JSONObject]:
         """Get External Resource as a Dictionary.
 
         :return: dict mapping str to JSON object
-        :rtype: dict[str, JSONType]
+        :rtype: dict[str, JSONObject]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -398,7 +398,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONObject]]
 
         request = build_get_dictionary_request(
             headers=_headers,
@@ -421,19 +421,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, JSONType], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, JSONObject], deserialized), {})
 
-        return cast(Dict[str, JSONType], deserialized)
+        return cast(Dict[str, JSONObject], deserialized)
 
     @distributed_trace_async
     async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
-        self, resource_complex_object: JSONType = None, **kwargs: Any
+        self, resource_complex_object: JSONObject = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
          is None.
-        :type resource_complex_object: JSONType
+        :type resource_complex_object: JSONObject
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -545,11 +545,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_resource_collection(self, **kwargs: Any) -> JSONType:
+    async def get_resource_collection(self, **kwargs: Any) -> JSONObject:
         """Get External Resource as a ResourceCollection.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -628,7 +628,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_get_resource_collection_request(
             headers=_headers,
@@ -651,18 +651,18 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
-    async def put_simple_product(self, simple_body_product: JSONType = None, **kwargs: Any) -> JSONType:
+    async def put_simple_product(self, simple_body_product: JSONObject = None, **kwargs: Any) -> JSONObject:
         """Put Simple Product with client flattening true on the model.
 
         :param simple_body_product: Simple body product to put. Default value is None.
-        :type simple_body_product: JSONType
+        :type simple_body_product: JSONObject
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -713,7 +713,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         if simple_body_product is not None:
             _json = simple_body_product
@@ -743,18 +743,18 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
-    async def post_flattened_simple_product(self, simple_body_product: JSONType = None, **kwargs: Any) -> JSONType:
+    async def post_flattened_simple_product(self, simple_body_product: JSONObject = None, **kwargs: Any) -> JSONObject:
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         :param simple_body_product: Simple body product to post. Default value is None.
-        :type simple_body_product: JSONType
+        :type simple_body_product: JSONObject
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -805,7 +805,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         if simple_body_product is not None:
             _json = simple_body_product
@@ -835,22 +835,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
     async def put_simple_product_with_grouping(
-        self, name: str, simple_body_product: JSONType = None, **kwargs: Any
-    ) -> JSONType:
+        self, name: str, simple_body_product: JSONObject = None, **kwargs: Any
+    ) -> JSONObject:
         """Put Simple Product with client flattening true on the model.
 
         :param name: Product name with value 'groupproduct'.
         :type name: str
         :param simple_body_product: Simple body product to put. Default value is None.
-        :type simple_body_product: JSONType
+        :type simple_body_product: JSONObject
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -901,7 +901,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         if simple_body_product is not None:
             _json = simple_body_product
@@ -932,6 +932,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)

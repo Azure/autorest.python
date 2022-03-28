@@ -136,7 +136,7 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -3637,11 +3637,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get200_model204_no_model_default_error200_valid(self, **kwargs: Any) -> Optional[JSONType]:
+    async def get200_model204_no_model_default_error200_valid(self, **kwargs: Any) -> Optional[JSONObject]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: JSON object
-        :rtype: JSONType or None
+        :rtype: JSONObject or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3658,7 +3658,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONObject]]
 
         request = build_multiple_responses_get200_model204_no_model_default_error200_valid_request(
             headers=_headers,
@@ -3688,11 +3688,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def get200_model204_no_model_default_error204_valid(self, **kwargs: Any) -> Optional[JSONType]:
+    async def get200_model204_no_model_default_error204_valid(self, **kwargs: Any) -> Optional[JSONObject]:
         """Send a 204 response with no payload.
 
         :return: JSON object
-        :rtype: JSONType or None
+        :rtype: JSONObject or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3709,7 +3709,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONObject]]
 
         request = build_multiple_responses_get200_model204_no_model_default_error204_valid_request(
             headers=_headers,
@@ -3739,11 +3739,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def get200_model204_no_model_default_error201_invalid(self, **kwargs: Any) -> Optional[JSONType]:
+    async def get200_model204_no_model_default_error201_invalid(self, **kwargs: Any) -> Optional[JSONObject]:
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
         :return: JSON object
-        :rtype: JSONType or None
+        :rtype: JSONObject or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3760,7 +3760,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONObject]]
 
         request = build_multiple_responses_get200_model204_no_model_default_error201_invalid_request(
             headers=_headers,
@@ -3790,11 +3790,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def get200_model204_no_model_default_error202_none(self, **kwargs: Any) -> Optional[JSONType]:
+    async def get200_model204_no_model_default_error202_none(self, **kwargs: Any) -> Optional[JSONObject]:
         """Send a 202 response with no payload:.
 
         :return: JSON object
-        :rtype: JSONType or None
+        :rtype: JSONObject or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3811,7 +3811,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONObject]]
 
         request = build_multiple_responses_get200_model204_no_model_default_error202_none_request(
             headers=_headers,
@@ -3841,11 +3841,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def get200_model204_no_model_default_error400_valid(self, **kwargs: Any) -> Optional[JSONType]:
+    async def get200_model204_no_model_default_error400_valid(self, **kwargs: Any) -> Optional[JSONObject]:
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
 
         :return: JSON object
-        :rtype: JSONType or None
+        :rtype: JSONObject or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3862,7 +3862,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONObject]]
 
         request = build_multiple_responses_get200_model204_no_model_default_error400_valid_request(
             headers=_headers,
@@ -3892,11 +3892,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def get200_model201_model_default_error200_valid(self, **kwargs: Any) -> JSONType:
+    async def get200_model201_model_default_error200_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3918,7 +3918,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model201_model_default_error200_valid_request(
             headers=_headers,
@@ -3948,16 +3948,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
-    async def get200_model201_model_default_error201_valid(self, **kwargs: Any) -> JSONType:
+    async def get200_model201_model_default_error201_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3979,7 +3979,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model201_model_default_error201_valid_request(
             headers=_headers,
@@ -4009,16 +4009,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
-    async def get200_model201_model_default_error400_valid(self, **kwargs: Any) -> JSONType:
+    async def get200_model201_model_default_error400_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -4040,7 +4040,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model201_model_default_error400_valid_request(
             headers=_headers,
@@ -4070,16 +4070,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
-    async def get200_model_a201_model_c404_model_d_default_error200_valid(self, **kwargs: Any) -> JSONType:
+    async def get200_model_a201_model_c404_model_d_default_error200_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -4104,7 +4104,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error200_valid_request(
             headers=_headers,
@@ -4140,16 +4140,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
-    async def get200_model_a201_model_c404_model_d_default_error201_valid(self, **kwargs: Any) -> JSONType:
+    async def get200_model_a201_model_c404_model_d_default_error201_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with valid payload: {'httpCode': '201'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -4174,7 +4174,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error201_valid_request(
             headers=_headers,
@@ -4210,16 +4210,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
-    async def get200_model_a201_model_c404_model_d_default_error404_valid(self, **kwargs: Any) -> JSONType:
+    async def get200_model_a201_model_c404_model_d_default_error404_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -4244,7 +4244,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error404_valid_request(
             headers=_headers,
@@ -4280,16 +4280,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
-    async def get200_model_a201_model_c404_model_d_default_error400_valid(self, **kwargs: Any) -> JSONType:
+    async def get200_model_a201_model_c404_model_d_default_error400_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -4314,7 +4314,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error400_valid_request(
             headers=_headers,
@@ -4350,9 +4350,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
     async def get202_none204_none_default_error202_none(  # pylint: disable=inconsistent-return-statements
@@ -4607,11 +4607,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_default_model_a200_valid(self, **kwargs: Any) -> JSONType:
+    async def get_default_model_a200_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -4628,7 +4628,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get_default_model_a200_valid_request(
             headers=_headers,
@@ -4651,16 +4651,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
-    async def get_default_model_a200_none(self, **kwargs: Any) -> JSONType:
+    async def get_default_model_a200_none(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with no payload.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -4677,7 +4677,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get_default_model_a200_none_request(
             headers=_headers,
@@ -4700,9 +4700,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
     async def get_default_model_a400_valid(  # pylint: disable=inconsistent-return-statements
@@ -4917,12 +4917,12 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get200_model_a200_none(self, **kwargs: Any) -> JSONType:
+    async def get200_model_a200_none(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with no payload, when a payload is expected - client should return a null
         object of thde type for model A.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -4939,7 +4939,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a200_none_request(
             headers=_headers,
@@ -4962,16 +4962,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
-    async def get200_model_a200_valid(self, **kwargs: Any) -> JSONType:
+    async def get200_model_a200_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with payload {'statusCode': '200'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -4988,7 +4988,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a200_valid_request(
             headers=_headers,
@@ -5011,16 +5011,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
-    async def get200_model_a200_invalid(self, **kwargs: Any) -> JSONType:
+    async def get200_model_a200_invalid(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5037,7 +5037,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a200_invalid_request(
             headers=_headers,
@@ -5060,16 +5060,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
-    async def get200_model_a400_none(self, **kwargs: Any) -> JSONType:
+    async def get200_model_a400_none(self, **kwargs: Any) -> JSONObject:
         """Send a 400 response with no payload client should treat as an http error with no error model.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5086,7 +5086,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a400_none_request(
             headers=_headers,
@@ -5109,16 +5109,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
-    async def get200_model_a400_valid(self, **kwargs: Any) -> JSONType:
+    async def get200_model_a400_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with payload {'statusCode': '400'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5135,7 +5135,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a400_valid_request(
             headers=_headers,
@@ -5158,16 +5158,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
-    async def get200_model_a400_invalid(self, **kwargs: Any) -> JSONType:
+    async def get200_model_a400_invalid(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5184,7 +5184,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a400_invalid_request(
             headers=_headers,
@@ -5207,16 +5207,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
-    async def get200_model_a202_valid(self, **kwargs: Any) -> JSONType:
+    async def get200_model_a202_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 202 response with payload {'statusCode': '202'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5233,7 +5233,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a202_valid_request(
             headers=_headers,
@@ -5256,6 +5256,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)

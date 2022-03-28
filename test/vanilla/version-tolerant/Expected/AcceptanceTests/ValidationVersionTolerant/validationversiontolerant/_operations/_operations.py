@@ -26,7 +26,7 @@ from azure.core.utils import case_insensitive_dict
 from .._vendor import MixinABC, _format_url_section
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -67,7 +67,7 @@ def build_validation_of_body_request(
     resource_group_name: str,
     id: int,
     *,
-    json: JSONType = None,
+    json: JSONObject = None,
     content: Any = None,
     **kwargs: Any
 ) -> HttpRequest:
@@ -115,7 +115,7 @@ def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_post_with_constant_in_body_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -141,7 +141,7 @@ def build_post_with_constant_in_body_request(
 
 class AutoRestValidationTestOperationsMixin(MixinABC):
     @distributed_trace
-    def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> JSONType:
+    def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> JSONObject:
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -149,7 +149,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -189,7 +189,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_validation_of_method_parameters_request(
             subscription_id=self._config.subscription_id,
@@ -216,12 +216,14 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def validation_of_body(self, resource_group_name: str, id: int, body: JSONType = None, **kwargs: Any) -> JSONType:
+    def validation_of_body(
+        self, resource_group_name: str, id: int, body: JSONObject = None, **kwargs: Any
+    ) -> JSONObject:
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -229,9 +231,9 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
         :param body:  Default value is None.
-        :type body: JSONType
+        :type body: JSONObject
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -301,7 +303,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         if body is not None:
             _json = body
@@ -335,9 +337,9 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
     def get_with_constant_in_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -379,16 +381,16 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def post_with_constant_in_body(self, body: JSONType = None, **kwargs: Any) -> JSONType:
+    def post_with_constant_in_body(self, body: JSONObject = None, **kwargs: Any) -> JSONObject:
         """post_with_constant_in_body.
 
         :param body:  Default value is None.
-        :type body: JSONType
+        :type body: JSONObject
         :keyword constant_param:  Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype constant_param: str
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -458,7 +460,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         if body is not None:
             _json = body
@@ -489,6 +491,6 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)

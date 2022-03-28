@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from typing import Any, Optional, TypeVar
 
     T = TypeVar("T")
-    JSONType = Any
+    JSONObject = Dict[str, Any]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -160,7 +160,7 @@ def build_post_parameters_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. I am a body parameter. My only valid JSON entry is { url:
      "http://example.org/myimage.jpeg" }. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). I am a body parameter. My only valid JSON entry is { url:
      "http://example.org/myimage.jpeg" }. Default value is None.

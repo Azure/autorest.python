@@ -57,7 +57,7 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -597,13 +597,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_required_integer_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSONType, **kwargs: Any
+        self, body_parameter: JSONObject, **kwargs: Any
     ) -> None:
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: JSONType
+        :type body_parameter: JSONObject
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -651,12 +651,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_optional_integer_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSONType = None, **kwargs: Any
+        self, body_parameter: JSONObject = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
         :param body_parameter:  Default value is None.
-        :type body_parameter: JSONType
+        :type body_parameter: JSONObject
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -880,13 +880,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_required_string_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSONType, **kwargs: Any
+        self, body_parameter: JSONObject, **kwargs: Any
     ) -> None:
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: JSONType
+        :type body_parameter: JSONObject
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -934,12 +934,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_optional_string_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSONType = None, **kwargs: Any
+        self, body_parameter: JSONObject = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
         :param body_parameter:  Default value is None.
-        :type body_parameter: JSONType
+        :type body_parameter: JSONObject
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1069,13 +1069,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSONType, **kwargs: Any
+        self, body_parameter: JSONObject, **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
         before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: JSONType
+        :type body_parameter: JSONObject
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1124,12 +1124,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSONType = None, **kwargs: Any
+        self, body_parameter: JSONObject = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put null.
 
         :param body_parameter:  Default value is None.
-        :type body_parameter: JSONType
+        :type body_parameter: JSONObject
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1181,13 +1181,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_required_class_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSONType, **kwargs: Any
+        self, body_parameter: JSONObject, **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
         and the client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: JSONType
+        :type body_parameter: JSONObject
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1238,12 +1238,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSONType = None, **kwargs: Any
+        self, body_parameter: JSONObject = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
         :param body_parameter:  Default value is None.
-        :type body_parameter: JSONType
+        :type body_parameter: JSONObject
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1407,13 +1407,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_required_array_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSONType, **kwargs: Any
+        self, body_parameter: JSONObject, **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: JSONType
+        :type body_parameter: JSONObject
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1463,12 +1463,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_optional_array_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSONType = None, **kwargs: Any
+        self, body_parameter: JSONObject = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
         :param body_parameter:  Default value is None.
-        :type body_parameter: JSONType
+        :type body_parameter: JSONObject
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

@@ -13,7 +13,7 @@ from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 
 _SERIALIZER = Serializer()
 
@@ -81,7 +81,7 @@ def build_put_required_binary_body_request(*, content: Any, **kwargs: Any) -> Ht
 
 
 def build_post_required_integer_parameter_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Any = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly required integer. Please put null and the client library should throw before
     the request is sent.
@@ -91,7 +91,7 @@ def build_post_required_integer_parameter_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -124,7 +124,7 @@ def build_post_required_integer_parameter_request(
 
 
 def build_post_optional_integer_parameter_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Any = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly optional integer. Please put null.
 
@@ -133,7 +133,7 @@ def build_post_optional_integer_parameter_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -166,7 +166,7 @@ def build_post_optional_integer_parameter_request(
 
 
 def build_post_required_integer_property_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
     client library should throw before the request is sent.
@@ -176,7 +176,7 @@ def build_post_required_integer_property_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -211,7 +211,7 @@ def build_post_required_integer_property_request(
 
 
 def build_post_optional_integer_property_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
@@ -220,7 +220,7 @@ def build_post_optional_integer_property_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -313,7 +313,7 @@ def build_post_optional_integer_header_request(*, header_parameter: Optional[int
 
 
 def build_post_required_string_parameter_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Any = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly required string. Please put null and the client library should throw before the
     request is sent.
@@ -323,7 +323,7 @@ def build_post_required_string_parameter_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -356,7 +356,7 @@ def build_post_required_string_parameter_request(
 
 
 def build_post_optional_string_parameter_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Any = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly optional string. Please put null.
 
@@ -365,7 +365,7 @@ def build_post_optional_string_parameter_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -398,7 +398,7 @@ def build_post_optional_string_parameter_request(
 
 
 def build_post_required_string_property_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
     client library should throw before the request is sent.
@@ -408,7 +408,7 @@ def build_post_required_string_property_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -443,7 +443,7 @@ def build_post_required_string_property_request(
 
 
 def build_post_optional_string_property_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
@@ -452,7 +452,7 @@ def build_post_optional_string_property_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -545,7 +545,7 @@ def build_post_optional_string_header_request(*, body_parameter: Optional[str] =
 
 
 def build_post_required_class_parameter_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly required complex object. Please put null and the client library should throw
     before the request is sent.
@@ -555,7 +555,7 @@ def build_post_required_class_parameter_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -591,7 +591,7 @@ def build_post_required_class_parameter_request(
 
 
 def build_post_optional_class_parameter_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly optional complex object. Please put null.
 
@@ -600,7 +600,7 @@ def build_post_optional_class_parameter_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -636,7 +636,7 @@ def build_post_optional_class_parameter_request(
 
 
 def build_post_required_class_property_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
     and the client library should throw before the request is sent.
@@ -646,7 +646,7 @@ def build_post_required_class_property_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -684,7 +684,7 @@ def build_post_required_class_property_request(
 
 
 def build_post_optional_class_property_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
@@ -693,7 +693,7 @@ def build_post_optional_class_property_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -730,9 +730,7 @@ def build_post_optional_class_property_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_post_required_array_parameter_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_post_required_array_parameter_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Test explicitly required array. Please put null and the client library should throw before the
     request is sent.
 
@@ -741,7 +739,7 @@ def build_post_required_array_parameter_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -775,9 +773,7 @@ def build_post_required_array_parameter_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_post_optional_array_parameter_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_post_optional_array_parameter_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Test explicitly optional array. Please put null.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -785,7 +781,7 @@ def build_post_optional_array_parameter_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -820,7 +816,7 @@ def build_post_optional_array_parameter_request(
 
 
 def build_post_required_array_property_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
     client library should throw before the request is sent.
@@ -830,7 +826,7 @@ def build_post_required_array_property_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -867,7 +863,7 @@ def build_post_required_array_property_request(
 
 
 def build_post_optional_array_property_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
@@ -876,7 +872,7 @@ def build_post_optional_array_property_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any

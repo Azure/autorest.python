@@ -24,7 +24,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -115,7 +115,7 @@ def build_http_success_options200_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="OPTIONS", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_success_put200_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_success_put200_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -132,7 +132,7 @@ def build_http_success_put200_request(*, json: JSONType = None, content: Any = N
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_success_patch200_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_success_patch200_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -149,7 +149,7 @@ def build_http_success_patch200_request(*, json: JSONType = None, content: Any =
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_success_post200_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_success_post200_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -166,7 +166,7 @@ def build_http_success_post200_request(*, json: JSONType = None, content: Any = 
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_success_delete200_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_success_delete200_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -183,7 +183,7 @@ def build_http_success_delete200_request(*, json: JSONType = None, content: Any 
     return HttpRequest(method="DELETE", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_success_put201_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_success_put201_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -200,7 +200,7 @@ def build_http_success_put201_request(*, json: JSONType = None, content: Any = N
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_success_post201_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_success_post201_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -217,7 +217,7 @@ def build_http_success_post201_request(*, json: JSONType = None, content: Any = 
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_success_put202_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_success_put202_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -234,7 +234,7 @@ def build_http_success_put202_request(*, json: JSONType = None, content: Any = N
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_success_patch202_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_success_patch202_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -251,7 +251,7 @@ def build_http_success_patch202_request(*, json: JSONType = None, content: Any =
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_success_post202_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_success_post202_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -268,7 +268,7 @@ def build_http_success_post202_request(*, json: JSONType = None, content: Any = 
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_success_delete202_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_success_delete202_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -299,7 +299,7 @@ def build_http_success_head204_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_success_put204_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_success_put204_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -316,7 +316,7 @@ def build_http_success_put204_request(*, json: JSONType = None, content: Any = N
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_success_patch204_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_success_patch204_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -333,7 +333,7 @@ def build_http_success_patch204_request(*, json: JSONType = None, content: Any =
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_success_post204_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_success_post204_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -350,7 +350,7 @@ def build_http_success_post204_request(*, json: JSONType = None, content: Any = 
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_success_delete204_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_success_delete204_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -437,7 +437,7 @@ def build_http_redirects_get301_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_redirects_put301_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_redirects_put301_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -482,7 +482,7 @@ def build_http_redirects_get302_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_redirects_patch302_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_redirects_patch302_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -499,7 +499,7 @@ def build_http_redirects_patch302_request(*, json: JSONType = None, content: Any
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_redirects_post303_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_redirects_post303_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -558,7 +558,7 @@ def build_http_redirects_options307_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="OPTIONS", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_redirects_put307_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_redirects_put307_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -575,7 +575,7 @@ def build_http_redirects_put307_request(*, json: JSONType = None, content: Any =
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_redirects_patch307_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_redirects_patch307_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -592,7 +592,7 @@ def build_http_redirects_patch307_request(*, json: JSONType = None, content: Any
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_redirects_post307_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_redirects_post307_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -609,7 +609,7 @@ def build_http_redirects_post307_request(*, json: JSONType = None, content: Any 
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_redirects_delete307_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_redirects_delete307_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -668,9 +668,7 @@ def build_http_client_failure_options400_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="OPTIONS", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_client_failure_put400_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_http_client_failure_put400_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -687,9 +685,7 @@ def build_http_client_failure_put400_request(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_client_failure_patch400_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_http_client_failure_patch400_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -706,9 +702,7 @@ def build_http_client_failure_patch400_request(
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_client_failure_post400_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_http_client_failure_post400_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -725,9 +719,7 @@ def build_http_client_failure_post400_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_client_failure_delete400_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_http_client_failure_delete400_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -800,9 +792,7 @@ def build_http_client_failure_get403_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_client_failure_put404_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_http_client_failure_put404_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -819,9 +809,7 @@ def build_http_client_failure_put404_request(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_client_failure_patch405_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_http_client_failure_patch405_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -838,9 +826,7 @@ def build_http_client_failure_patch405_request(
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_client_failure_post406_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_http_client_failure_post406_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -857,9 +843,7 @@ def build_http_client_failure_post406_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_client_failure_delete407_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_http_client_failure_delete407_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -876,9 +860,7 @@ def build_http_client_failure_delete407_request(
     return HttpRequest(method="DELETE", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_client_failure_put409_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_http_client_failure_put409_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -951,9 +933,7 @@ def build_http_client_failure_get412_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_client_failure_put413_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_http_client_failure_put413_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -970,9 +950,7 @@ def build_http_client_failure_put413_request(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_client_failure_patch414_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_http_client_failure_patch414_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -989,9 +967,7 @@ def build_http_client_failure_patch414_request(
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_client_failure_post415_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_http_client_failure_post415_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1022,9 +998,7 @@ def build_http_client_failure_get416_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_client_failure_delete417_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_http_client_failure_delete417_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1083,9 +1057,7 @@ def build_http_server_failure_get501_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_server_failure_post505_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_http_server_failure_post505_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1102,9 +1074,7 @@ def build_http_server_failure_post505_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_server_failure_delete505_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_http_server_failure_delete505_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1135,7 +1105,7 @@ def build_http_retry_head408_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_retry_put500_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_retry_put500_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1152,7 +1122,7 @@ def build_http_retry_put500_request(*, json: JSONType = None, content: Any = Non
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_retry_patch500_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_retry_patch500_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1197,7 +1167,7 @@ def build_http_retry_options502_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="OPTIONS", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_retry_post503_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_retry_post503_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1214,7 +1184,7 @@ def build_http_retry_post503_request(*, json: JSONType = None, content: Any = No
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_retry_delete503_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_retry_delete503_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1231,7 +1201,7 @@ def build_http_retry_delete503_request(*, json: JSONType = None, content: Any = 
     return HttpRequest(method="DELETE", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_retry_put504_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_retry_put504_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1248,7 +1218,7 @@ def build_http_retry_put504_request(*, json: JSONType = None, content: Any = Non
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_http_retry_patch504_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_http_retry_patch504_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -5190,11 +5160,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get200_model204_no_model_default_error200_valid(self, **kwargs: Any) -> Optional[JSONType]:
+    def get200_model204_no_model_default_error200_valid(self, **kwargs: Any) -> Optional[JSONObject]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: JSON object
-        :rtype: JSONType or None
+        :rtype: JSONObject or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5211,7 +5181,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONObject]]
 
         request = build_multiple_responses_get200_model204_no_model_default_error200_valid_request(
             headers=_headers,
@@ -5241,11 +5211,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def get200_model204_no_model_default_error204_valid(self, **kwargs: Any) -> Optional[JSONType]:
+    def get200_model204_no_model_default_error204_valid(self, **kwargs: Any) -> Optional[JSONObject]:
         """Send a 204 response with no payload.
 
         :return: JSON object
-        :rtype: JSONType or None
+        :rtype: JSONObject or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5262,7 +5232,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONObject]]
 
         request = build_multiple_responses_get200_model204_no_model_default_error204_valid_request(
             headers=_headers,
@@ -5292,11 +5262,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def get200_model204_no_model_default_error201_invalid(self, **kwargs: Any) -> Optional[JSONType]:
+    def get200_model204_no_model_default_error201_invalid(self, **kwargs: Any) -> Optional[JSONObject]:
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
         :return: JSON object
-        :rtype: JSONType or None
+        :rtype: JSONObject or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5313,7 +5283,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONObject]]
 
         request = build_multiple_responses_get200_model204_no_model_default_error201_invalid_request(
             headers=_headers,
@@ -5343,11 +5313,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def get200_model204_no_model_default_error202_none(self, **kwargs: Any) -> Optional[JSONType]:
+    def get200_model204_no_model_default_error202_none(self, **kwargs: Any) -> Optional[JSONObject]:
         """Send a 202 response with no payload:.
 
         :return: JSON object
-        :rtype: JSONType or None
+        :rtype: JSONObject or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5364,7 +5334,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONObject]]
 
         request = build_multiple_responses_get200_model204_no_model_default_error202_none_request(
             headers=_headers,
@@ -5394,11 +5364,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def get200_model204_no_model_default_error400_valid(self, **kwargs: Any) -> Optional[JSONType]:
+    def get200_model204_no_model_default_error400_valid(self, **kwargs: Any) -> Optional[JSONObject]:
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
 
         :return: JSON object
-        :rtype: JSONType or None
+        :rtype: JSONObject or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5415,7 +5385,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONObject]]
 
         request = build_multiple_responses_get200_model204_no_model_default_error400_valid_request(
             headers=_headers,
@@ -5445,11 +5415,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace
-    def get200_model201_model_default_error200_valid(self, **kwargs: Any) -> JSONType:
+    def get200_model201_model_default_error200_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5471,7 +5441,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model201_model_default_error200_valid_request(
             headers=_headers,
@@ -5501,16 +5471,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def get200_model201_model_default_error201_valid(self, **kwargs: Any) -> JSONType:
+    def get200_model201_model_default_error201_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5532,7 +5502,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model201_model_default_error201_valid_request(
             headers=_headers,
@@ -5562,16 +5532,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def get200_model201_model_default_error400_valid(self, **kwargs: Any) -> JSONType:
+    def get200_model201_model_default_error400_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5593,7 +5563,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model201_model_default_error400_valid_request(
             headers=_headers,
@@ -5623,16 +5593,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def get200_model_a201_model_c404_model_d_default_error200_valid(self, **kwargs: Any) -> JSONType:
+    def get200_model_a201_model_c404_model_d_default_error200_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5657,7 +5627,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error200_valid_request(
             headers=_headers,
@@ -5693,16 +5663,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def get200_model_a201_model_c404_model_d_default_error201_valid(self, **kwargs: Any) -> JSONType:
+    def get200_model_a201_model_c404_model_d_default_error201_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with valid payload: {'httpCode': '201'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5727,7 +5697,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error201_valid_request(
             headers=_headers,
@@ -5763,16 +5733,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def get200_model_a201_model_c404_model_d_default_error404_valid(self, **kwargs: Any) -> JSONType:
+    def get200_model_a201_model_c404_model_d_default_error404_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5797,7 +5767,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error404_valid_request(
             headers=_headers,
@@ -5833,16 +5803,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def get200_model_a201_model_c404_model_d_default_error400_valid(self, **kwargs: Any) -> JSONType:
+    def get200_model_a201_model_c404_model_d_default_error400_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5867,7 +5837,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a201_model_c404_model_d_default_error400_valid_request(
             headers=_headers,
@@ -5903,9 +5873,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
     def get202_none204_none_default_error202_none(  # pylint: disable=inconsistent-return-statements
@@ -6160,11 +6130,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_default_model_a200_valid(self, **kwargs: Any) -> JSONType:
+    def get_default_model_a200_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6181,7 +6151,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get_default_model_a200_valid_request(
             headers=_headers,
@@ -6204,16 +6174,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def get_default_model_a200_none(self, **kwargs: Any) -> JSONType:
+    def get_default_model_a200_none(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with no payload.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6230,7 +6200,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get_default_model_a200_none_request(
             headers=_headers,
@@ -6253,9 +6223,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
     def get_default_model_a400_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -6462,12 +6432,12 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get200_model_a200_none(self, **kwargs: Any) -> JSONType:
+    def get200_model_a200_none(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with no payload, when a payload is expected - client should return a null
         object of thde type for model A.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6484,7 +6454,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a200_none_request(
             headers=_headers,
@@ -6507,16 +6477,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def get200_model_a200_valid(self, **kwargs: Any) -> JSONType:
+    def get200_model_a200_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with payload {'statusCode': '200'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6533,7 +6503,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a200_valid_request(
             headers=_headers,
@@ -6556,16 +6526,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def get200_model_a200_invalid(self, **kwargs: Any) -> JSONType:
+    def get200_model_a200_invalid(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6582,7 +6552,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a200_invalid_request(
             headers=_headers,
@@ -6605,16 +6575,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def get200_model_a400_none(self, **kwargs: Any) -> JSONType:
+    def get200_model_a400_none(self, **kwargs: Any) -> JSONObject:
         """Send a 400 response with no payload client should treat as an http error with no error model.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6631,7 +6601,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a400_none_request(
             headers=_headers,
@@ -6654,16 +6624,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def get200_model_a400_valid(self, **kwargs: Any) -> JSONType:
+    def get200_model_a400_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with payload {'statusCode': '400'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6680,7 +6650,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a400_valid_request(
             headers=_headers,
@@ -6703,16 +6673,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def get200_model_a400_invalid(self, **kwargs: Any) -> JSONType:
+    def get200_model_a400_invalid(self, **kwargs: Any) -> JSONObject:
         """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6729,7 +6699,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a400_invalid_request(
             headers=_headers,
@@ -6752,16 +6722,16 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def get200_model_a202_valid(self, **kwargs: Any) -> JSONType:
+    def get200_model_a202_valid(self, **kwargs: Any) -> JSONObject:
         """Send a 202 response with payload {'statusCode': '202'}.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6778,7 +6748,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_multiple_responses_get200_model_a202_valid_request(
             headers=_headers,
@@ -6801,6 +6771,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)

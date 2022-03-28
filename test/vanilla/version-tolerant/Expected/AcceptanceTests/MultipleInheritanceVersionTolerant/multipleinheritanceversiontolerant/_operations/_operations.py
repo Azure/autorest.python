@@ -26,7 +26,7 @@ from azure.core.utils import case_insensitive_dict
 from .._vendor import MixinABC
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -47,7 +47,7 @@ def build_get_horse_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_horse_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_horse_request(*, json: JSONObject = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -78,7 +78,7 @@ def build_get_pet_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_pet_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_pet_request(*, json: JSONObject = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -109,7 +109,7 @@ def build_get_feline_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_feline_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_feline_request(*, json: JSONObject = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -140,7 +140,7 @@ def build_get_cat_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_cat_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_cat_request(*, json: JSONObject = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -171,7 +171,7 @@ def build_get_kitten_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_kitten_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_kitten_request(*, json: JSONObject = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -190,11 +190,11 @@ def build_put_kitten_request(*, json: JSONType = None, content: Any = None, **kw
 
 class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
     @distributed_trace
-    def get_horse(self, **kwargs: Any) -> JSONType:
+    def get_horse(self, **kwargs: Any) -> JSONObject:
         """Get a horse with name 'Fred' and isAShowHorse true.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -212,7 +212,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_get_horse_request(
             headers=_headers,
@@ -235,16 +235,16 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def put_horse(self, horse: JSONType, **kwargs: Any) -> str:
+    def put_horse(self, horse: JSONObject, **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
         :param horse: Put a horse with name 'General' and isAShowHorse false.
-        :type horse: JSONType
+        :type horse: JSONObject
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -299,11 +299,11 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         return cast(str, deserialized)
 
     @distributed_trace
-    def get_pet(self, **kwargs: Any) -> JSONType:
+    def get_pet(self, **kwargs: Any) -> JSONObject:
         """Get a pet with name 'Peanut'.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -320,7 +320,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_get_pet_request(
             headers=_headers,
@@ -343,16 +343,16 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def put_pet(self, pet: JSONType, **kwargs: Any) -> str:
+    def put_pet(self, pet: JSONObject, **kwargs: Any) -> str:
         """Put a pet with name 'Butter'.
 
         :param pet: Put a pet with name 'Butter'.
-        :type pet: JSONType
+        :type pet: JSONObject
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -406,11 +406,11 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         return cast(str, deserialized)
 
     @distributed_trace
-    def get_feline(self, **kwargs: Any) -> JSONType:
+    def get_feline(self, **kwargs: Any) -> JSONObject:
         """Get a feline where meows and hisses are true.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -428,7 +428,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_get_feline_request(
             headers=_headers,
@@ -451,16 +451,16 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def put_feline(self, feline: JSONType, **kwargs: Any) -> str:
+    def put_feline(self, feline: JSONObject, **kwargs: Any) -> str:
         """Put a feline who hisses and doesn't meow.
 
         :param feline: Put a feline who hisses and doesn't meow.
-        :type feline: JSONType
+        :type feline: JSONObject
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -515,11 +515,11 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         return cast(str, deserialized)
 
     @distributed_trace
-    def get_cat(self, **kwargs: Any) -> JSONType:
+    def get_cat(self, **kwargs: Any) -> JSONObject:
         """Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -539,7 +539,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_get_cat_request(
             headers=_headers,
@@ -562,16 +562,16 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def put_cat(self, cat: JSONType, **kwargs: Any) -> str:
+    def put_cat(self, cat: JSONObject, **kwargs: Any) -> str:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
-        :type cat: JSONType
+        :type cat: JSONObject
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -628,12 +628,12 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         return cast(str, deserialized)
 
     @distributed_trace
-    def get_kitten(self, **kwargs: Any) -> JSONType:
+    def get_kitten(self, **kwargs: Any) -> JSONObject:
         """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
         is false.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -654,7 +654,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_get_kitten_request(
             headers=_headers,
@@ -677,18 +677,18 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def put_kitten(self, kitten: JSONType, **kwargs: Any) -> str:
+    def put_kitten(self, kitten: JSONObject, **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
          eatsMiceYet is true.
-        :type kitten: JSONType
+        :type kitten: JSONObject
         :return: str
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError

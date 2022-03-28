@@ -13,13 +13,13 @@ from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_create_ap_true_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_create_ap_true_request(*, json: JSONObject = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -27,7 +27,7 @@ def build_create_ap_true_request(*, json: JSONType = None, content: Any = None, 
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -70,7 +70,7 @@ def build_create_ap_true_request(*, json: JSONType = None, content: Any = None, 
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_create_cat_ap_true_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_create_cat_ap_true_request(*, json: JSONObject = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Create a CatAPTrue which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -78,7 +78,7 @@ def build_create_cat_ap_true_request(*, json: JSONType = None, content: Any = No
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -123,7 +123,7 @@ def build_create_cat_ap_true_request(*, json: JSONType = None, content: Any = No
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_create_ap_object_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_create_ap_object_request(*, json: JSONObject = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -131,7 +131,7 @@ def build_create_ap_object_request(*, json: JSONType = None, content: Any = None
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -174,7 +174,7 @@ def build_create_ap_object_request(*, json: JSONType = None, content: Any = None
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_create_ap_string_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_create_ap_string_request(*, json: JSONObject = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -182,7 +182,7 @@ def build_create_ap_string_request(*, json: JSONType = None, content: Any = None
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -225,7 +225,9 @@ def build_create_ap_string_request(*, json: JSONType = None, content: Any = None
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_create_ap_in_properties_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_create_ap_in_properties_request(
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -233,7 +235,7 @@ def build_create_ap_in_properties_request(*, json: JSONType = None, content: Any
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -277,7 +279,7 @@ def build_create_ap_in_properties_request(*, json: JSONType = None, content: Any
 
 
 def build_create_ap_in_properties_with_ap_string_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
@@ -286,7 +288,7 @@ def build_create_ap_in_properties_with_ap_string_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any

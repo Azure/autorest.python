@@ -24,14 +24,14 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_pets_create_ap_true_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_pets_create_ap_true_request(*, json: JSONObject = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -48,7 +48,9 @@ def build_pets_create_ap_true_request(*, json: JSONType = None, content: Any = N
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_pets_create_cat_ap_true_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_pets_create_cat_ap_true_request(
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -65,7 +67,7 @@ def build_pets_create_cat_ap_true_request(*, json: JSONType = None, content: Any
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_pets_create_ap_object_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_pets_create_ap_object_request(*, json: JSONObject = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -82,7 +84,7 @@ def build_pets_create_ap_object_request(*, json: JSONType = None, content: Any =
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_pets_create_ap_string_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_pets_create_ap_string_request(*, json: JSONObject = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -100,7 +102,7 @@ def build_pets_create_ap_string_request(*, json: JSONType = None, content: Any =
 
 
 def build_pets_create_ap_in_properties_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -119,7 +121,7 @@ def build_pets_create_ap_in_properties_request(
 
 
 def build_pets_create_ap_in_properties_with_ap_string_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -155,13 +157,13 @@ class PetsOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def create_ap_true(self, create_parameters: JSONType, **kwargs: Any) -> JSONType:
+    def create_ap_true(self, create_parameters: JSONObject, **kwargs: Any) -> JSONObject:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: JSONType
+        :type create_parameters: JSONObject
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -190,7 +192,7 @@ class PetsOperations:
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         _json = create_parameters
 
@@ -217,18 +219,18 @@ class PetsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def create_cat_ap_true(self, create_parameters: JSONType, **kwargs: Any) -> JSONType:
+    def create_cat_ap_true(self, create_parameters: JSONObject, **kwargs: Any) -> JSONObject:
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: JSONType
+        :type create_parameters: JSONObject
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -259,7 +261,7 @@ class PetsOperations:
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         _json = create_parameters
 
@@ -286,18 +288,18 @@ class PetsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def create_ap_object(self, create_parameters: JSONType, **kwargs: Any) -> JSONType:
+    def create_ap_object(self, create_parameters: JSONObject, **kwargs: Any) -> JSONObject:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: JSONType
+        :type create_parameters: JSONObject
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -326,7 +328,7 @@ class PetsOperations:
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         _json = create_parameters
 
@@ -353,18 +355,18 @@ class PetsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def create_ap_string(self, create_parameters: JSONType, **kwargs: Any) -> JSONType:
+    def create_ap_string(self, create_parameters: JSONObject, **kwargs: Any) -> JSONObject:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: JSONType
+        :type create_parameters: JSONObject
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -393,7 +395,7 @@ class PetsOperations:
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         _json = create_parameters
 
@@ -420,18 +422,18 @@ class PetsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def create_ap_in_properties(self, create_parameters: JSONType, **kwargs: Any) -> JSONType:
+    def create_ap_in_properties(self, create_parameters: JSONObject, **kwargs: Any) -> JSONObject:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: JSONType
+        :type create_parameters: JSONObject
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -460,7 +462,7 @@ class PetsOperations:
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         _json = create_parameters
 
@@ -487,18 +489,18 @@ class PetsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def create_ap_in_properties_with_ap_string(self, create_parameters: JSONType, **kwargs: Any) -> JSONType:
+    def create_ap_in_properties_with_ap_string(self, create_parameters: JSONObject, **kwargs: Any) -> JSONObject:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: JSONType
+        :type create_parameters: JSONObject
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -535,7 +537,7 @@ class PetsOperations:
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         _json = create_parameters
 
@@ -562,6 +564,6 @@ class PetsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)

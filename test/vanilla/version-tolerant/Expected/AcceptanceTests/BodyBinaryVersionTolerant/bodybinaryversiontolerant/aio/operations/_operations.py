@@ -24,7 +24,6 @@ from azure.core.utils import case_insensitive_dict
 from ...operations._operations import build_upload_binary_request, build_upload_file_request
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -47,12 +46,12 @@ class UploadOperations:
 
     @distributed_trace_async
     async def file(  # pylint: disable=inconsistent-return-statements
-        self, file_param: Union[IO, JSONType], **kwargs: Any
+        self, file_param: Union[IO, Any], **kwargs: Any
     ) -> None:
         """Uploading json file.
 
         :param file_param: JSON file with payload { "more": "cowbell" }.
-        :type file_param: IO or JSONType
+        :type file_param: IO or Any
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

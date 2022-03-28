@@ -32,7 +32,6 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Dict, List, Optional, TypeVar, Union
 
     T = TypeVar("T")
-    JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()

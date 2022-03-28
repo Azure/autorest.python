@@ -29,7 +29,7 @@ from azure.core.utils import case_insensitive_dict
 from .._vendor import MixinABC, _format_url_section
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -55,7 +55,7 @@ def build_get_model_request(mode: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_model_request(mode: str, *, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_post_model_request(mode: str, *, json: JSONObject = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -117,7 +117,7 @@ def build_lro_request_initial(mode: str, **kwargs: Any) -> HttpRequest:
 
 class DPGClientOperationsMixin(MixinABC):
     @distributed_trace
-    def get_model(self, mode: str, **kwargs: Any) -> JSONType:
+    def get_model(self, mode: str, **kwargs: Any) -> JSONObject:
         """Get models that you will either return to end users as a raw body, or with a model added during
         grow up.
 
@@ -126,7 +126,7 @@ class DPGClientOperationsMixin(MixinABC):
          before returning to users.
         :type mode: str
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -143,7 +143,7 @@ class DPGClientOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_get_model_request(
             mode=mode,
@@ -167,12 +167,12 @@ class DPGClientOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def post_model(self, mode: str, input: JSONType, **kwargs: Any) -> JSONType:
+    def post_model(self, mode: str, input: JSONObject, **kwargs: Any) -> JSONObject:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -181,9 +181,9 @@ class DPGClientOperationsMixin(MixinABC):
          before returning to users.
         :type mode: str
         :param input: Please put {'hello': 'world!'}.
-        :type input: JSONType
+        :type input: JSONObject
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -208,7 +208,7 @@ class DPGClientOperationsMixin(MixinABC):
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         _json = input
 
@@ -236,12 +236,12 @@ class DPGClientOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def get_pages(self, mode: str, **kwargs: Any) -> Iterable[JSONType]:
+    def get_pages(self, mode: str, **kwargs: Any) -> Iterable[JSONObject]:
         """Get pages that you will either return to users in pages of raw bodies, or pages of models
         following growup.
 
@@ -250,7 +250,7 @@ class DPGClientOperationsMixin(MixinABC):
          before returning to users.
         :type mode: str
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.paging.ItemPaged[JSONType]
+        :rtype: ~azure.core.paging.ItemPaged[JSONObject]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -270,7 +270,7 @@ class DPGClientOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -319,14 +319,14 @@ class DPGClientOperationsMixin(MixinABC):
 
         return ItemPaged(get_next, extract_data)
 
-    def _lro_initial(self, mode: str, **kwargs: Any) -> JSONType:
+    def _lro_initial(self, mode: str, **kwargs: Any) -> JSONObject:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_lro_request_initial(
             mode=mode,
@@ -350,12 +350,12 @@ class DPGClientOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
-    def begin_lro(self, mode: str, **kwargs: Any) -> LROPoller[JSONType]:
+    def begin_lro(self, mode: str, **kwargs: Any) -> LROPoller[JSONObject]:
         """Long running put request that will either return to end users a final payload of a raw body, or
         a final payload of a model after the SDK has grown up.
 
@@ -371,7 +371,7 @@ class DPGClientOperationsMixin(MixinABC):
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of LROPoller that returns JSON object
-        :rtype: ~azure.core.polling.LROPoller[JSONType]
+        :rtype: ~azure.core.polling.LROPoller[JSONObject]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -386,7 +386,7 @@ class DPGClientOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]

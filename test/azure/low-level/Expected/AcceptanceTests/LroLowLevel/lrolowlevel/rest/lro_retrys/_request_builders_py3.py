@@ -13,14 +13,14 @@ from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
 def build_put201_creating_succeeded200_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a 500, then a 201 to the initial request, with an
     entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
@@ -31,7 +31,7 @@ def build_put201_creating_succeeded200_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -97,7 +97,7 @@ def build_put201_creating_succeeded200_request(
 
 
 def build_put_async_relative_retry_succeeded_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a 500, then a 200 to the initial request, with an
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
@@ -108,7 +108,7 @@ def build_put_async_relative_retry_succeeded_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -273,7 +273,7 @@ def build_delete_async_relative_retry_succeeded_request(**kwargs: Any) -> HttpRe
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_post202_retry200_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_post202_retry200_request(*, json: JSONObject = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Long running post request, service returns a 500, then a 202 to the initial request, with
     'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
@@ -282,7 +282,7 @@ def build_post202_retry200_request(*, json: JSONType = None, content: Any = None
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -330,7 +330,7 @@ def build_post202_retry200_request(*, json: JSONType = None, content: Any = None
 
 
 def build_post_async_relative_retry_succeeded_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running post request, service returns a 500, then a 202 to the initial request, with an
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
@@ -341,7 +341,7 @@ def build_post_async_relative_retry_succeeded_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any

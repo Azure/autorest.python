@@ -14,10 +14,7 @@ from azure.core.utils import case_insensitive_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional, TypeVar
-
-    T = TypeVar("T")
-    JSONType = Any
+    from typing import Any, Optional
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -68,7 +65,7 @@ def build_put_null_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. string body. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). string body. Default value is None.
     :paramtype content: any
@@ -443,7 +440,7 @@ def build_put_base64_url_encoded_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. string body. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). string body. Default value is None.
     :paramtype content: any

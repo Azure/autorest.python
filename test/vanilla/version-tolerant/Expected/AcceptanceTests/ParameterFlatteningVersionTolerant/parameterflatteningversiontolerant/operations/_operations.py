@@ -26,7 +26,7 @@ from azure.core.utils import case_insensitive_dict
 from .._vendor import _format_url_section
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -34,7 +34,7 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_availability_sets_update_request(
-    resource_group_name: str, avset: str, *, json: JSONType = None, content: Any = None, **kwargs: Any
+    resource_group_name: str, avset: str, *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -74,7 +74,7 @@ class AvailabilitySetsOperations:
 
     @distributed_trace
     def update(  # pylint: disable=inconsistent-return-statements
-        self, resource_group_name: str, avset: str, tags: JSONType, **kwargs: Any
+        self, resource_group_name: str, avset: str, tags: JSONObject, **kwargs: Any
     ) -> None:
         """Updates the tags for an availability set.
 
@@ -83,7 +83,7 @@ class AvailabilitySetsOperations:
         :param avset: The name of the storage availability set.
         :type avset: str
         :param tags: The tags.
-        :type tags: JSONType
+        :type tags: JSONObject
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

@@ -24,17 +24,17 @@ from ..._operations._operations import build_create_secret_request, build_get_er
 from .._vendor import MixinABC
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class ErrorWithSecretsOperationsMixin(MixinABC):
     @distributed_trace_async
-    async def create_secret(self, **kwargs: Any) -> JSONType:
+    async def create_secret(self, **kwargs: Any) -> JSONObject:
         """Creates a secret.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -52,7 +52,7 @@ class ErrorWithSecretsOperationsMixin(MixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_create_secret_request(
             headers=_headers,
@@ -75,9 +75,9 @@ class ErrorWithSecretsOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
     async def get_error_with_secrets(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

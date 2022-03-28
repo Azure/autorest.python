@@ -24,7 +24,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -45,7 +45,7 @@ def build_string_get_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_put_null_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_string_put_null_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -202,9 +202,7 @@ def build_string_get_base64_url_encoded_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_put_base64_url_encoded_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_string_put_base64_url_encoded_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -249,7 +247,7 @@ def build_enum_get_not_expandable_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_enum_put_not_expandable_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_enum_put_not_expandable_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -280,7 +278,7 @@ def build_enum_get_referenced_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_enum_put_referenced_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_enum_put_referenced_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -312,7 +310,7 @@ def build_enum_get_referenced_constant_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_enum_put_referenced_constant_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1112,11 +1110,11 @@ class EnumOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_referenced_constant(self, **kwargs: Any) -> JSONType:
+    def get_referenced_constant(self, **kwargs: Any) -> JSONObject:
         """Get value 'green-color' from the constant.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1135,7 +1133,7 @@ class EnumOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_enum_get_referenced_constant_request(
             headers=_headers,
@@ -1158,18 +1156,18 @@ class EnumOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace
     def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
-        self, enum_string_body: JSONType, **kwargs: Any
+        self, enum_string_body: JSONObject, **kwargs: Any
     ) -> None:
         """Sends value 'green-color' from a constant.
 
         :param enum_string_body: enum string body.
-        :type enum_string_body: JSONType
+        :type enum_string_body: JSONObject
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

@@ -25,7 +25,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -74,7 +74,7 @@ def build_array_get_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_empty_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_array_put_empty_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -105,7 +105,7 @@ def build_array_get_boolean_tfft_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_boolean_tfft_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_array_put_boolean_tfft_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -164,7 +164,7 @@ def build_array_get_integer_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_integer_valid_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_array_put_integer_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -223,7 +223,7 @@ def build_array_get_long_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_long_valid_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_array_put_long_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -282,7 +282,7 @@ def build_array_get_float_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_float_valid_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_array_put_float_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -341,7 +341,7 @@ def build_array_get_double_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_double_valid_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_array_put_double_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -400,7 +400,7 @@ def build_array_get_string_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_string_valid_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_array_put_string_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -431,7 +431,7 @@ def build_array_get_enum_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_enum_valid_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_array_put_enum_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -462,9 +462,7 @@ def build_array_get_string_enum_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_string_enum_valid_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_array_put_string_enum_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -523,7 +521,7 @@ def build_array_get_uuid_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_uuid_valid_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_array_put_uuid_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -568,7 +566,7 @@ def build_array_get_date_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_date_valid_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_array_put_date_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -627,9 +625,7 @@ def build_array_get_date_time_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_date_time_valid_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_array_put_date_time_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -689,7 +685,7 @@ def build_array_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpReques
 
 
 def build_array_put_date_time_rfc1123_valid_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Any = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -721,7 +717,7 @@ def build_array_get_duration_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_duration_valid_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_array_put_duration_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -752,7 +748,7 @@ def build_array_get_byte_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_byte_valid_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_array_put_byte_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -867,7 +863,7 @@ def build_array_get_complex_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_complex_valid_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_array_put_complex_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -954,7 +950,7 @@ def build_array_get_array_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_array_valid_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_array_put_array_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1041,9 +1037,7 @@ def build_array_get_dictionary_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_dictionary_valid_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_array_put_dictionary_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -3644,11 +3638,11 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return cast(List[bytes], deserialized)
 
     @distributed_trace
-    def get_complex_null(self, **kwargs: Any) -> List[JSONType]:
+    def get_complex_null(self, **kwargs: Any) -> List[JSONObject]:
         """Get array of complex type null value.
 
         :return: list of JSON object
-        :rtype: list[JSONType]
+        :rtype: list[JSONObject]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3668,7 +3662,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONObject]]
 
         request = build_array_get_complex_null_request(
             headers=_headers,
@@ -3691,16 +3685,16 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSONType], deserialized), {})
+            return cls(pipeline_response, cast(List[JSONObject], deserialized), {})
 
-        return cast(List[JSONType], deserialized)
+        return cast(List[JSONObject], deserialized)
 
     @distributed_trace
-    def get_complex_empty(self, **kwargs: Any) -> List[JSONType]:
+    def get_complex_empty(self, **kwargs: Any) -> List[JSONObject]:
         """Get empty array of complex type [].
 
         :return: list of JSON object
-        :rtype: list[JSONType]
+        :rtype: list[JSONObject]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3720,7 +3714,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONObject]]
 
         request = build_array_get_complex_empty_request(
             headers=_headers,
@@ -3743,17 +3737,17 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSONType], deserialized), {})
+            return cls(pipeline_response, cast(List[JSONObject], deserialized), {})
 
-        return cast(List[JSONType], deserialized)
+        return cast(List[JSONObject], deserialized)
 
     @distributed_trace
-    def get_complex_item_null(self, **kwargs: Any) -> List[JSONType]:
+    def get_complex_item_null(self, **kwargs: Any) -> List[JSONObject]:
         """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
         'string': '6'}].
 
         :return: list of JSON object
-        :rtype: list[JSONType]
+        :rtype: list[JSONObject]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3773,7 +3767,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONObject]]
 
         request = build_array_get_complex_item_null_request(
             headers=_headers,
@@ -3796,17 +3790,17 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSONType], deserialized), {})
+            return cls(pipeline_response, cast(List[JSONObject], deserialized), {})
 
-        return cast(List[JSONType], deserialized)
+        return cast(List[JSONObject], deserialized)
 
     @distributed_trace
-    def get_complex_item_empty(self, **kwargs: Any) -> List[JSONType]:
+    def get_complex_item_empty(self, **kwargs: Any) -> List[JSONObject]:
         """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
         'string': '6'}].
 
         :return: list of JSON object
-        :rtype: list[JSONType]
+        :rtype: list[JSONObject]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3826,7 +3820,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONObject]]
 
         request = build_array_get_complex_item_empty_request(
             headers=_headers,
@@ -3849,17 +3843,17 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSONType], deserialized), {})
+            return cls(pipeline_response, cast(List[JSONObject], deserialized), {})
 
-        return cast(List[JSONType], deserialized)
+        return cast(List[JSONObject], deserialized)
 
     @distributed_trace
-    def get_complex_valid(self, **kwargs: Any) -> List[JSONType]:
+    def get_complex_valid(self, **kwargs: Any) -> List[JSONObject]:
         """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
         {'integer': 5, 'string': '6'}].
 
         :return: list of JSON object
-        :rtype: list[JSONType]
+        :rtype: list[JSONObject]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3879,7 +3873,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONObject]]
 
         request = build_array_get_complex_valid_request(
             headers=_headers,
@@ -3902,19 +3896,19 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSONType], deserialized), {})
+            return cls(pipeline_response, cast(List[JSONObject], deserialized), {})
 
-        return cast(List[JSONType], deserialized)
+        return cast(List[JSONObject], deserialized)
 
     @distributed_trace
     def put_complex_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[JSONType], **kwargs: Any
+        self, array_body: List[JSONObject], **kwargs: Any
     ) -> None:
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
         'string': '4'}, {'integer': 5, 'string': '6'}].
 
         :param array_body:
-        :type array_body: list[JSONType]
+        :type array_body: list[JSONObject]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

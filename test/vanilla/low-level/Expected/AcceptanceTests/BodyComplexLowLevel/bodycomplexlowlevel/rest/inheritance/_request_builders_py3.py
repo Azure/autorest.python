@@ -13,7 +13,7 @@ from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 
 _SERIALIZER = Serializer()
 
@@ -61,7 +61,7 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_valid_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_valid_request(*, json: JSONObject = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put complex types that extend others.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -72,7 +72,7 @@ def build_put_valid_request(*, json: JSONType = None, content: Any = None, **kwa
      color=green, breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and
      food="tomato", and the 2nd one named "Tomato" with id=-1 and food="french fries". Default value
      is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put a siamese with id=2, name="Siameee", color=green,
      breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and

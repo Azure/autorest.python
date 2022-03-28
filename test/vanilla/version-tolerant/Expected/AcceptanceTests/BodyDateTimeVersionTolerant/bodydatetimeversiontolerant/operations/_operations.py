@@ -25,7 +25,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -89,7 +89,7 @@ def build_datetime_get_underflow_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_datetime_put_utc_max_date_time_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Any = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -108,7 +108,7 @@ def build_datetime_put_utc_max_date_time_request(
 
 
 def build_datetime_put_utc_max_date_time7_digits_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Any = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -169,7 +169,7 @@ def build_datetime_get_utc_uppercase_max_date_time7_digits_request(**kwargs: Any
 
 
 def build_datetime_put_local_positive_offset_max_date_time_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Any = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -216,7 +216,7 @@ def build_datetime_get_local_positive_offset_uppercase_max_date_time_request(**k
 
 
 def build_datetime_put_local_negative_offset_max_date_time_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Any = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -263,7 +263,7 @@ def build_datetime_get_local_negative_offset_lowercase_max_date_time_request(**k
 
 
 def build_datetime_put_utc_min_date_time_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Any = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -296,7 +296,7 @@ def build_datetime_get_utc_min_date_time_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_datetime_put_local_positive_offset_min_date_time_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Any = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -329,7 +329,7 @@ def build_datetime_get_local_positive_offset_min_date_time_request(**kwargs: Any
 
 
 def build_datetime_put_local_negative_offset_min_date_time_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Any = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 

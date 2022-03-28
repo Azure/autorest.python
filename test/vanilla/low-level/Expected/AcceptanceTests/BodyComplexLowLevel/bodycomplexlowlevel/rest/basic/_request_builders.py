@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from typing import Any, Optional, TypeVar
 
     T = TypeVar("T")
-    JSONType = Any
+    JSONObject = Dict[str, Any]
 
 _SERIALIZER = Serializer()
 
@@ -80,7 +80,7 @@ def build_put_valid_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put {id: 2, name: 'abc', color: 'Magenta'}. Default
      value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put {id: 2, name: 'abc', color: 'Magenta'}. Default
      value is None.

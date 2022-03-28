@@ -15,7 +15,7 @@ from azure.core.utils import case_insensitive_dict
 from .._vendor import _format_url_section
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -64,7 +64,7 @@ def build_get_model_request(mode: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_model_request(mode: str, *, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_post_model_request(mode: str, *, json: JSONObject = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
     take a model instead, and put in 'model' as mode.
 
@@ -77,7 +77,7 @@ def build_post_model_request(mode: str, *, json: JSONType = None, content: Any =
     :type mode: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put {'hello': 'world!'}. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put {'hello': 'world!'}. Default value is None.
     :paramtype content: any

@@ -15,14 +15,14 @@ from azure.core.utils import case_insensitive_dict
 from ..._vendor import _format_url_section
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
 def build_update_request(
-    resource_group_name: str, avset: str, *, json: JSONType = None, content: Any = None, **kwargs: Any
+    resource_group_name: str, avset: str, *, json: JSONObject = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Updates the tags for an availability set.
 
@@ -35,7 +35,7 @@ def build_update_request(
     :type avset: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The tags. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The tags. Default value is None.
     :paramtype content: any

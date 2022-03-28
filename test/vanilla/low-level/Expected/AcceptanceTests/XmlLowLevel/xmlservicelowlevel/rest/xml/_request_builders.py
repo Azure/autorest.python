@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from typing import Any, Optional, TypeVar
 
     T = TypeVar("T")
-    JSONType = Any
+    JSONObject = Dict[str, Any]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -1403,7 +1403,7 @@ def build_json_input_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any

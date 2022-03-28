@@ -24,7 +24,7 @@ from azure.core.utils import case_insensitive_dict
 from ...operations._operations import build_availability_sets_update_request
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -47,7 +47,7 @@ class AvailabilitySetsOperations:
 
     @distributed_trace_async
     async def update(  # pylint: disable=inconsistent-return-statements
-        self, resource_group_name: str, avset: str, tags: JSONType, **kwargs: Any
+        self, resource_group_name: str, avset: str, tags: JSONObject, **kwargs: Any
     ) -> None:
         """Updates the tags for an availability set.
 
@@ -56,7 +56,7 @@ class AvailabilitySetsOperations:
         :param avset: The name of the storage availability set.
         :type avset: str
         :param tags: The tags.
-        :type tags: JSONType
+        :type tags: JSONObject
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from typing import Any, Optional, TypeVar
 
     T = TypeVar("T")
-    JSONType = Any
+    JSONObject = Dict[str, Any]
 
 _SERIALIZER = Serializer()
 
@@ -88,7 +88,7 @@ def build_put_valid_request(
      color=green, breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and
      food="tomato", and the 2nd one named "Tomato" with id=-1 and food="french fries". Default value
      is None.
-    :paramtype json: JSONType
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put a siamese with id=2, name="Siameee", color=green,
      breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and

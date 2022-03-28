@@ -25,7 +25,7 @@ from azure.core.utils import case_insensitive_dict
 from ...operations._operations import build_time_get_request, build_time_put_request
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 

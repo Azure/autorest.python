@@ -14,10 +14,7 @@ from azure.core.utils import case_insensitive_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional, TypeVar, Union
-
-    T = TypeVar("T")
-    JSONType = Any
+    from typing import Any, Optional, Union
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -35,7 +32,7 @@ def build_analyze_body_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Input parameter. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Input parameter. Default value is None.
     :paramtype content: any
@@ -87,7 +84,7 @@ def build_analyze_body_no_accept_header_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Input parameter. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Input parameter. Default value is None.
     :paramtype content: any
@@ -175,7 +172,7 @@ def build_binary_body_with_two_content_types_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The payload body. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The payload body. Default value is None.
     :paramtype content: any
@@ -227,7 +224,7 @@ def build_binary_body_with_three_content_types_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The payload body. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The payload body. Default value is None.
     :paramtype content: any
@@ -277,7 +274,7 @@ def build_put_text_and_json_body_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The payload body. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The payload body. Default value is None.
     :paramtype content: any

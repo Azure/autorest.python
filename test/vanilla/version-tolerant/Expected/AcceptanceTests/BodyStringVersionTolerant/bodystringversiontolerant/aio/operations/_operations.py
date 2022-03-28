@@ -44,7 +44,7 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -830,11 +830,11 @@ class EnumOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_referenced_constant(self, **kwargs: Any) -> JSONType:
+    async def get_referenced_constant(self, **kwargs: Any) -> JSONObject:
         """Get value 'green-color' from the constant.
 
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -853,7 +853,7 @@ class EnumOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_enum_get_referenced_constant_request(
             headers=_headers,
@@ -876,18 +876,18 @@ class EnumOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
     async def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
-        self, enum_string_body: JSONType, **kwargs: Any
+        self, enum_string_body: JSONObject, **kwargs: Any
     ) -> None:
         """Sends value 'green-color' from a constant.
 
         :param enum_string_body: enum string body.
-        :type enum_string_body: JSONType
+        :type enum_string_body: JSONObject
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

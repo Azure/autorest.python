@@ -30,7 +30,7 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -190,12 +190,12 @@ class ParamsOperations:
         return cast(Any, deserialized)
 
     @distributed_trace_async
-    async def post_parameters(self, parameter: JSONType, **kwargs: Any) -> Any:
+    async def post_parameters(self, parameter: JSONObject, **kwargs: Any) -> Any:
         """POST a JSON.
 
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }.
-        :type parameter: JSONType
+        :type parameter: JSONObject
         :return: any
         :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError

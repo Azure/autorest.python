@@ -27,7 +27,7 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
-JSONType = Any
+JSONObject = Dict[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -49,13 +49,13 @@ class PetOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_pet_by_id(self, pet_id: str, **kwargs: Any) -> Optional[JSONType]:
+    async def get_pet_by_id(self, pet_id: str, **kwargs: Any) -> Optional[JSONObject]:
         """Gets pets by id.
 
         :param pet_id: pet id.
         :type pet_id: str
         :return: JSON object
-        :rtype: JSONType or None
+        :rtype: JSONObject or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -79,7 +79,7 @@ class PetOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONObject]]
 
         request = build_pet_get_pet_by_id_request(
             pet_id=pet_id,
@@ -110,13 +110,13 @@ class PetOperations:
         return deserialized
 
     @distributed_trace_async
-    async def do_something(self, what_action: str, **kwargs: Any) -> JSONType:
+    async def do_something(self, what_action: str, **kwargs: Any) -> JSONObject:
         """Asks pet to do something.
 
         :param what_action: what action the pet should do.
         :type what_action: str
         :return: JSON object
-        :rtype: JSONType
+        :rtype: JSONObject
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -138,7 +138,7 @@ class PetOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONType]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
 
         request = build_pet_do_something_request(
             what_action=what_action,
@@ -162,9 +162,9 @@ class PetOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONType, deserialized), {})
+            return cls(pipeline_response, cast(JSONObject, deserialized), {})
 
-        return cast(JSONType, deserialized)
+        return cast(JSONObject, deserialized)
 
     @distributed_trace_async
     async def has_models_param(  # pylint: disable=inconsistent-return-statements
