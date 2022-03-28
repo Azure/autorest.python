@@ -128,7 +128,9 @@ class RequestBuilder(BaseBuilder):
             schema_requests=schema_requests,
             parameters=parameter_list,
             description=yaml_data["language"]["python"]["description"],
-            responses=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])],
+            responses=[
+                SchemaResponse.from_yaml(yaml, code_model=code_model) for yaml in yaml_data.get("responses", [])
+            ],
             summary=yaml_data["language"]["python"].get("summary"),
         )
         code_model.request_builder_ids[id(yaml_data)] = request_builder_class

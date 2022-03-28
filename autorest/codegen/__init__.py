@@ -36,7 +36,6 @@ def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -
             code_model.sort_schemas()
 
     if code_model.options["show_operations"]:
-        code_model.add_schema_link_to_operation()
         code_model.generate_single_parameter_from_multiple_content_types_operation()
         code_model.link_operation_to_request_builder()
         # LRO operation
@@ -188,6 +187,20 @@ class CodeGenerator(Plugin):
             yaml_data["info"]["description"] if yaml_data["info"].get("description") else ""
         )
 
+        # Get my namespace
+        namespace = self._autorestapi.get_value("namespace")
+        _LOGGER.debug("Namespace parameter was %s", namespace)
+        if not namespace:
+            namespace = yaml_data["info"]["python_title"]
+        code_model.namespace = namespace
+
+        if yaml_data.get("schemas"):
+            exceptions_set = CodeGenerator._build_exceptions_set(yaml_data=yaml_data["operationGroups"])
+
+            for type_list in yaml_data["schemas"].values():
+                for schema in type_list:
+                    build_schema(yaml_data=schema, exceptions_set=exceptions_set, code_model=code_model)
+
         # Global parameters
         code_model.global_parameters = GlobalParameterList(
             code_model,
@@ -198,23 +211,7 @@ class CodeGenerator(Plugin):
         # Custom URL
         code_model.setup_client_input_parameters(yaml_data)
 
-        # Get my namespace
-        namespace = self._autorestapi.get_value("namespace")
-        _LOGGER.debug("Namespace parameter was %s", namespace)
-        if not namespace:
-            namespace = yaml_data["info"]["python_title"]
-        code_model.namespace = namespace
-
         code_model.rest = Rest.from_yaml(yaml_data, code_model=code_model)
-        if yaml_data.get("schemas"):
-            exceptions_set = CodeGenerator._build_exceptions_set(yaml_data=yaml_data["operationGroups"])
-
-            for type_list in yaml_data["schemas"].values():
-                for schema in type_list:
-                    build_schema(yaml_data=schema, exceptions_set=exceptions_set, code_model=code_model)
-            code_model.add_schema_link_to_request_builder()
-            code_model.add_schema_link_to_global_parameters()
-
         _build_convenience_layer(yaml_data=yaml_data, code_model=code_model)
 
         if options["credential"]:

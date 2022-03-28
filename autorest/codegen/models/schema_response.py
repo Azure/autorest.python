@@ -3,12 +3,17 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Dict, Optional, List, Union, Any, cast
+from typing import Dict, Optional, List, Union, Any, cast, TYPE_CHECKING
 
 from .base_model import BaseModel
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
 from .imports import FileImport, ImportType
+from .utils import get_schema
+from .primitive_schemas import IOSchema
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 
 class HeaderResponse:
@@ -24,6 +29,7 @@ class HeaderResponse:
 class SchemaResponse(BaseModel):
     def __init__(
         self,
+        code_model: "CodeModel",
         yaml_data: Dict[str, Any],
         schema: Optional[BaseSchema],
         content_types: List[str],
@@ -32,6 +38,7 @@ class SchemaResponse(BaseModel):
         binary: bool,
     ) -> None:
         super().__init__(yaml_data)
+        self.code_model = code_model
         self.schema = schema
         self.content_types = content_types
         self.status_codes = status_codes
@@ -102,20 +109,27 @@ class SchemaResponse(BaseModel):
         return file_import
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "SchemaResponse":
-
+    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model: "CodeModel") -> "SchemaResponse":
+        binary = yaml_data.get("binary", False)
+        if binary:
+            schema: BaseSchema = IOSchema(namespace=None, yaml_data={})
+        else:
+            schema = get_schema(code_model, yaml_data.get("schema"))
         return cls(
+            code_model=code_model,
             yaml_data=yaml_data,
-            schema=yaml_data.get("schema", None),  # FIXME replace by operation model
+            schema=schema,
             content_types=yaml_data["protocol"]["http"].get("mediaTypes", []),
             status_codes=[
                 int(code) if code != "default" else "default" for code in yaml_data["protocol"]["http"]["statusCodes"]
             ],
             headers=[
-                HeaderResponse(header_prop["header"], header_prop["schema"])
+                HeaderResponse(
+                    header_prop["header"], get_schema(code_model, header_prop["schema"], header_prop["header"])
+                )
                 for header_prop in yaml_data["protocol"]["http"].get("headers", [])
             ],
-            binary=yaml_data.get("binary", False),
+            binary=binary,
         )
 
     def __repr__(self) -> str:

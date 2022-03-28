@@ -4,7 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional
-from .parameter import ParameterOnlyPathAndBodyPositional, ParameterLocation, ParameterStyle
+from .parameter import ParameterOnlyPathAndBodyPositional, ParameterLocation, ParameterStyle, get_target_property_name
+from .utils import get_schema
 
 def _make_public(name):
     if name[0] == "_":
@@ -78,10 +79,16 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
         http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
         name = yaml_data["language"]["python"]["name"]
         location = ParameterLocation(http_protocol["in"])
+        serialized_name = yaml_data["language"]["python"]["name"]
+        schema = get_schema(
+            code_model, yaml_data.get("schema"), serialized_name
+        )
+        target_property = yaml_data.get("targetProperty")
+        target_property_name = get_target_property_name(code_model, id(target_property)) if target_property else None
         return cls(
             code_model=code_model,
             yaml_data=yaml_data,
-            schema=yaml_data.get("schema", None),  # FIXME replace by operation model
+            schema=schema,
             # See also https://github.com/Azure/autorest.modelerfour/issues/80
             rest_api_name=yaml_data["language"]["default"].get(
                 "serializedName", yaml_data["language"]["default"]["name"]
@@ -93,7 +100,7 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
             location=location,
             skip_url_encoding=yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
             constraints=[],  # FIXME constraints
-            target_property_name=id(yaml_data["targetProperty"]) if yaml_data.get("targetProperty") else None,
+            target_property_name=target_property_name,
             style=ParameterStyle(http_protocol["style"]) if "style" in http_protocol else None,
             explode=http_protocol.get("explode", False),
             grouped_by=yaml_data.get("groupedBy", None),
