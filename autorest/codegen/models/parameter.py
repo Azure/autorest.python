@@ -6,7 +6,7 @@
 import logging
 from enum import Enum
 
-from typing import Dict, Optional, List, Any, Union, Tuple, cast
+from typing import Dict, Optional, List, Any, Union, Tuple, cast, TYPE_CHECKING
 
 from .imports import FileImport, ImportType, TypingSection
 from .base_model import BaseModel
@@ -15,6 +15,10 @@ from .constant_schema import ConstantSchema
 from .object_schema import ObjectSchema
 from .property import Property
 from .primitive_schemas import IOSchema
+from .utils import get_schema
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -44,6 +48,15 @@ class ParameterStyle(Enum):
     binary = "binary"
     xml = "xml"
     multipart = "multipart"
+
+
+
+def get_target_property_name(code_model: "CodeModel", target_property_id: int) -> str:
+    for obj in code_model.schemas.values():
+        for prop in obj.properties:
+            if prop.id == target_property_id:
+                return prop.name
+    raise KeyError("Didn't find the target property")
 
 
 class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too-many-public-methods
@@ -349,22 +362,29 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         content_types: Optional[List[str]] = None
     ) -> "Parameter":
         http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
+        serialized_name = yaml_data["language"]["python"]["name"]
+        schema = get_schema(
+            code_model, yaml_data.get("schema"), serialized_name
+        )
+        target_property = yaml_data.get("targetProperty")
+        target_property_name = get_target_property_name(code_model, id(target_property)) if target_property else None
+
         return cls(
             code_model=code_model,
             yaml_data=yaml_data,
-            schema=yaml_data.get("schema", None),  # FIXME replace by operation model
+            schema=schema,  # FIXME replace by operation model
             # See also https://github.com/Azure/autorest.modelerfour/issues/80
             rest_api_name=yaml_data["language"]["default"].get(
                 "serializedName", yaml_data["language"]["default"]["name"]
             ),
-            serialized_name=yaml_data["language"]["python"]["name"],
+            serialized_name=serialized_name,
             description=yaml_data["language"]["python"]["description"],
             implementation=yaml_data["implementation"],
             required=yaml_data.get("required", False),
             location=ParameterLocation(http_protocol["in"]),
             skip_url_encoding=yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
             constraints=[],  # FIXME constraints
-            target_property_name=id(yaml_data["targetProperty"]) if yaml_data.get("targetProperty") else None,
+            target_property_name=target_property_name,
             style=ParameterStyle(http_protocol["style"]) if "style" in http_protocol else None,
             explode=http_protocol.get("explode", False),
             grouped_by=yaml_data.get("groupedBy", None),

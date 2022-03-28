@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from itertools import chain
 import logging
 from typing import cast, List, Dict, Optional, Any, Set
 
@@ -17,9 +16,7 @@ from .paging_operation import PagingOperation
 from .parameter import Parameter
 from .client import Client
 from .parameter_list import GlobalParameterList
-from .schema_response import SchemaResponse
 from .property import Property
-from .primitive_schemas import IOSchema
 from .request_builder import RequestBuilder
 from .rest import Rest
 from .credential_model import CredentialModel
@@ -297,56 +294,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
                     parameter.target_property_name = prop.name
                     return
         raise KeyError("Didn't find the target property")
-
-    def _populate_schema(self, obj: Any) -> None:
-        schema_obj = obj.schema
-        if schema_obj and not isinstance(schema_obj, dict):
-            return
-
-        if schema_obj:
-            schema_obj_id = id(obj.schema)
-            _LOGGER.debug("Looking for id %s for member %s", schema_obj_id, obj)
-            try:
-                obj.schema = self.lookup_schema(schema_obj_id)
-            except KeyError:
-                _LOGGER.critical("Unable to ref the object")
-                raise
-        if isinstance(obj, Parameter) and obj.target_property_name:
-            self._populate_target_property(obj)
-        if isinstance(obj, SchemaResponse) and obj.is_stream_response:
-            obj.schema = IOSchema(namespace=None, yaml_data={})
-
-    def add_schema_link_to_operation(self) -> None:
-        """Puts created schemas into operation classes `schema` property
-
-        :return: None
-        :rtype: None
-        """
-        # Index schemas
-        for operation_group in self.operation_groups:
-            for operation in operation_group.operations:
-                for obj in chain(
-                    operation.parameters,
-                    operation.multiple_content_type_parameters or [],
-                    operation.responses,
-                    operation.exceptions,
-                    chain.from_iterable(response.headers for response in operation.responses),
-                ):
-                    self._populate_schema(obj)
-
-    def add_schema_link_to_request_builder(self) -> None:
-        for request_builder in self.rest.request_builders:
-            for obj in chain(
-                request_builder.parameters,
-                chain.from_iterable(request.parameters for request in request_builder.schema_requests),
-                request_builder.responses,
-            ):
-                self._populate_schema(obj)
-
-
-    def add_schema_link_to_global_parameters(self) -> None:
-        for parameter in self.global_parameters:
-            self._populate_schema(parameter)
 
     def generate_single_parameter_from_multiple_content_types_operation(self) -> None:
         for operation_group in self.operation_groups:

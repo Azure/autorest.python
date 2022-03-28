@@ -73,7 +73,8 @@ def build_put_not_expandable_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. string body. Default value is None.
+     our example to find the input shape. string body. Possible values are: "red color",
+     "green-color", and "blue_color". Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). string body. Default value is None.
@@ -160,7 +161,8 @@ def build_put_referenced_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. enum string body. Default value is None.
+     our example to find the input shape. enum string body. Possible values are: "red color",
+     "green-color", and "blue_color". Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). enum string body. Default value is None.

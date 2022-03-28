@@ -26,7 +26,8 @@ def build_put_request(*, json: JSONType = None, content: Any = None, **kwargs: A
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Input float enum. Default value is None.
+     our example to find the input shape. Input float enum. Possible values are: 200.4, 403.4,
+     405.3, 406.2, and 429.1. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Input float enum. Default value is None.
