@@ -101,7 +101,8 @@ def build_put200_request(*, json: JSONType = None, content: Any = None, **kwargs
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Default value is None.
+     our example to find the input shape. Simple boolean value true. Possible values are True or
+     None. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.
@@ -141,7 +142,8 @@ def build_patch200_request(*, json: JSONType = None, content: Any = None, **kwar
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Default value is None.
+     our example to find the input shape. Simple boolean value true. Possible values are True or
+     None. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.
@@ -181,7 +183,8 @@ def build_post200_request(*, json: JSONType = None, content: Any = None, **kwarg
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Default value is None.
+     our example to find the input shape. Simple boolean value true. Possible values are True or
+     None. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.
@@ -221,7 +224,8 @@ def build_delete200_request(*, json: JSONType = None, content: Any = None, **kwa
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Default value is None.
+     our example to find the input shape. Simple boolean value true. Possible values are True or
+     None. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.
@@ -261,7 +265,8 @@ def build_put201_request(*, json: JSONType = None, content: Any = None, **kwargs
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Default value is None.
+     our example to find the input shape. Simple boolean value true. Possible values are True or
+     None. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.
@@ -301,7 +306,8 @@ def build_post201_request(*, json: JSONType = None, content: Any = None, **kwarg
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Default value is None.
+     our example to find the input shape. Simple boolean value true. Possible values are True or
+     None. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.
@@ -341,7 +347,8 @@ def build_put202_request(*, json: JSONType = None, content: Any = None, **kwargs
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Default value is None.
+     our example to find the input shape. Simple boolean value true. Possible values are True or
+     None. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.
@@ -381,7 +388,8 @@ def build_patch202_request(*, json: JSONType = None, content: Any = None, **kwar
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Default value is None.
+     our example to find the input shape. Simple boolean value true. Possible values are True or
+     None. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.
@@ -421,7 +429,8 @@ def build_post202_request(*, json: JSONType = None, content: Any = None, **kwarg
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Default value is None.
+     our example to find the input shape. Simple boolean value true. Possible values are True or
+     None. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.
@@ -461,7 +470,8 @@ def build_delete202_request(*, json: JSONType = None, content: Any = None, **kwa
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Default value is None.
+     our example to find the input shape. Simple boolean value true. Possible values are True or
+     None. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.
@@ -526,7 +536,8 @@ def build_put204_request(*, json: JSONType = None, content: Any = None, **kwargs
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Default value is None.
+     our example to find the input shape. Simple boolean value true. Possible values are True or
+     None. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.
@@ -566,7 +577,8 @@ def build_patch204_request(*, json: JSONType = None, content: Any = None, **kwar
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Default value is None.
+     our example to find the input shape. Simple boolean value true. Possible values are True or
+     None. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.
@@ -606,7 +618,8 @@ def build_post204_request(*, json: JSONType = None, content: Any = None, **kwarg
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Default value is None.
+     our example to find the input shape. Simple boolean value true. Possible values are True or
+     None. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.
@@ -646,7 +659,8 @@ def build_delete204_request(*, json: JSONType = None, content: Any = None, **kwa
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Default value is None.
+     our example to find the input shape. Simple boolean value true. Possible values are True or
+     None. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.
