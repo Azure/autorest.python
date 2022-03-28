@@ -190,6 +190,11 @@ _PACKAGES_WITH_CLIENT_SIDE_VALIDATION = [
     'AzureSpecials'
 ]
 
+_POSTPROCESS_PACKAGES = [
+    "DPGTestModels",
+    "BodyComplex",
+]
+
 def _get_config(
     swagger_group: _SwaggerGroup, package_name: str, **kwargs
 ) -> Config:
@@ -320,7 +325,7 @@ def _regenerate(
 
         print(Fore.YELLOW + f'Queuing up: {command_line}')
         cmds.append(command_line)
-        if kwargs.get("version_tolerant"):
+        if kwargs.get("version_tolerant") and package_name in _POSTPROCESS_PACKAGES:
             config = _get_config(swagger_group, package_name, **kwargs)
             post_process_cmd = f"autorest --use={AUTOREST_DIR} --postprocess --output-folder={config.output_folder} --perform-load=false"
             if debug:
