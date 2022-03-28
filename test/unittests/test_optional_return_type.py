@@ -57,73 +57,73 @@ def paging_operation(code_model):
         schema_requests=[SchemaRequest({}, ["application/json"], ParameterList(code_model))]
     )
 
-def test_success_with_body_and_fail_no_body(operation):
+def test_success_with_body_and_fail_no_body(code_model, operation):
     operation.responses = [
         SchemaResponse(
-            yaml_data={}, content_types=["application/xml", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=[200]
+            code_model=code_model, yaml_data={}, content_types=["application/xml", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=[200]
         ),
         SchemaResponse(
-            yaml_data={}, content_types=["application/xml", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=[202]
+            code_model=code_model, yaml_data={}, content_types=["application/xml", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=[202]
         ),
         SchemaResponse(
-            yaml_data={}, content_types=["application/json", "text/json"], headers=[], binary=False, schema=None, status_codes=["default"]
+            code_model=code_model, yaml_data={}, content_types=["application/json", "text/json"], headers=[], binary=False, schema=None, status_codes=["default"]
         )
     ]
 
     assert operation.has_optional_return_type is False
 
-def test_success_no_body_fail_with_body(operation):
+def test_success_no_body_fail_with_body(code_model, operation):
     operation.responses = [
         SchemaResponse(
-            yaml_data={}, content_types=["application/xml", "text/json"], headers=[], binary=False, schema=None, status_codes=[200]
+            code_model=code_model, yaml_data={}, content_types=["application/xml", "text/json"], headers=[], binary=False, schema=None, status_codes=[200]
         ),
         SchemaResponse(
-            yaml_data={}, content_types=["application/json", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=["default"]
+            code_model=code_model, yaml_data={}, content_types=["application/json", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=["default"]
         )
     ]
 
     assert operation.has_optional_return_type is False
 
-def test_optional_return_type_operation(operation):
+def test_optional_return_type_operation(code_model, operation):
     operation.responses = [
         SchemaResponse(
-            yaml_data={}, content_types=["application/xml", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=[200]
+            code_model=code_model, yaml_data={}, content_types=["application/xml", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=[200]
         ),
         SchemaResponse(
-            yaml_data={}, content_types=["application/json", "text/json"], headers=[], binary=False, schema=None, status_codes=[202]
+            code_model=code_model, yaml_data={}, content_types=["application/json", "text/json"], headers=[], binary=False, schema=None, status_codes=[202]
         ),
         SchemaResponse(
-            yaml_data={}, content_types=["application/json", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=["default"]
+            code_model=code_model, yaml_data={}, content_types=["application/json", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=["default"]
         )
     ]
 
     assert operation.has_optional_return_type is True
 
-def test_lro_operation(lro_operation):
+def test_lro_operation(code_model, lro_operation):
     lro_operation.responses = [
         SchemaResponse(
-            yaml_data={}, content_types=["application/xml", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=[200]
+            code_model=code_model, yaml_data={}, content_types=["application/xml", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=[200]
         ),
         SchemaResponse(
-            yaml_data={}, content_types=["application/json", "text/json"], headers=[], binary=False, schema=None, status_codes=[202]
+            code_model=code_model, yaml_data={}, content_types=["application/json", "text/json"], headers=[], binary=False, schema=None, status_codes=[202]
         ),
         SchemaResponse(
-            yaml_data={}, content_types=["application/json", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=["default"]
+            code_model=code_model, yaml_data={}, content_types=["application/json", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=["default"]
         )
     ]
 
     assert lro_operation.has_optional_return_type is False
 
-def test_paging_operation(paging_operation):
+def test_paging_operation(code_model, paging_operation):
     paging_operation.responses = [
         SchemaResponse(
-            yaml_data={}, content_types=["application/xml", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=[200]
+            code_model=code_model, yaml_data={}, content_types=["application/xml", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=[200]
         ),
         SchemaResponse(
-            yaml_data={}, content_types=["application/json", "text/json"], headers=[], binary=False, schema=None, status_codes=[202]
+            code_model=code_model, yaml_data={}, content_types=["application/json", "text/json"], headers=[], binary=False, schema=None, status_codes=[202]
         ),
         SchemaResponse(
-            yaml_data={}, content_types=["application/json", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=["default"]
+            code_model=code_model, yaml_data={}, content_types=["application/json", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=["default"]
         )
     ]
 
