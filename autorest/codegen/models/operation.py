@@ -240,6 +240,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         ):
             # file_import.define_mypy_type("JSONObject", "Dict[str, Any]")
             if (has_object_schema(self.parameters.parameters) or
+                has_object_schema(self.multiple_content_type_parameters.parameters) or
                 has_object_schema(self.responses) or
                 has_object_schema(self.exceptions)):
                 file_import.add_submodule_import(
