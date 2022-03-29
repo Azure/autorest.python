@@ -134,7 +134,8 @@ class RequestBuilderParameterList(ParameterList):
             "See the template in our example to find the input shape. " +
             json_kwarg.description
         )
-        if body_method_param.schema.get('type') == 'object':
+        from .object_schema import ObjectSchema
+        if isinstance(body_method_param.schema, ObjectSchema):
             json_kwarg.schema = JSONSchema(namespace="", yaml_data={})
         else:
             json_kwarg.schema = AnySchema(namespace="", yaml_data={})
