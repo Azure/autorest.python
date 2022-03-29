@@ -3,9 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Union
+from typing import Any, List, TYPE_CHECKING
 import re
-from typing import Any, TYPE_CHECKING
 import logging
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema

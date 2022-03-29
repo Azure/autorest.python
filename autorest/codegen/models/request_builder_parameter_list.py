@@ -11,6 +11,7 @@ from .parameter import ParameterLocation, Parameter, ParameterStyle
 from .primitive_schemas import AnySchema, JSONSchema
 from .dictionary_schema import DictionarySchema
 from .base_schema import BaseSchema
+from .object_schema import ObjectSchema
 from .schema_request import SchemaRequest
 from .utils import JSON_REGEXP
 
@@ -134,7 +135,6 @@ class RequestBuilderParameterList(ParameterList):
             "See the template in our example to find the input shape. " +
             json_kwarg.description
         )
-        from .object_schema import ObjectSchema
         if isinstance(body_method_param.schema, ObjectSchema):
             json_kwarg.schema = JSONSchema(namespace="", yaml_data={})
         else:
