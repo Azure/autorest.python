@@ -245,7 +245,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         type_annot = self.multiple_content_types_type_annot or self.schema.type_annotation(is_operation_file=True)
         if self._is_io_json:
             type_annot = f"Union[{type_annot}, Any]"
-        any_types = ["Any", "JSONObject"]
+        any_types = ["Any"] # ["Any", "JSONObject"]
         if not self.required and type_annot not in any_types and not self._is_io_json:
             type_annot = f"Optional[{type_annot}]"
 

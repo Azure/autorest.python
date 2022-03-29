@@ -242,8 +242,10 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             if (has_object_schema(self.parameters.parameters) or
                 has_object_schema(self.responses) or
                 has_object_schema(self.exceptions)):
-                file_import.define_mypy_type("JSONObject", "Dict[str, Any]")
-                # file_import.define_mypy_type("JSONObject", "Any")
+                file_import.add_submodule_import(
+                    "collections.abc", "MutableMapping", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
+                )
+                file_import.define_mypy_type("JSONObject", "MutableMapping[str, Any]")
         if self.code_model.options["tracing"] and self.want_tracing:
             file_import.add_submodule_import(
                 f"azure.core.tracing.decorator{'_async' if async_mode else ''}",

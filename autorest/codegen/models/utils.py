@@ -8,6 +8,7 @@ import re
 from typing import Any, TYPE_CHECKING
 import logging
 from .base_schema import BaseSchema
+from .object_schema import ObjectSchema
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -27,14 +28,8 @@ def get_schema(code_model: "CodeModel", schema: Any, serialized_name: str = "unk
     except KeyError:
         _LOGGER.critical("Unable to ref the object")
         raise
-from .parameter import Parameter
-from .object_schema import ObjectSchema
-from .schema_response import SchemaResponse
 
-def has_json_content_types(content_types: List[str]) -> bool:
-    return any(JSON_REGEXP.match(c) for c in content_types)
-
-def has_object_schema(parameters: List[Union[Parameter, SchemaResponse]]) -> bool:
+def has_object_schema(parameters: List) -> bool:
     for param in parameters or []:
         if isinstance(param.schema, ObjectSchema):
             return True

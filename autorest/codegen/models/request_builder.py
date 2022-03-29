@@ -92,7 +92,10 @@ class RequestBuilder(BaseBuilder):
             self.code_model.options["builders_visibility"] != "embedded" or
             self.code_model.options["add_python3_operation_files"]
         ):
-            file_import.define_mypy_type("JSONObject", "Dict[str, Any]")
+            file_import.add_submodule_import(
+                "collections.abc", "MutableMapping", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
+            )
+            file_import.define_mypy_type("JSONObject", "MutableMapping[str, Any]")
             # if has_object_schema(self.parameters.parameters):
             #     # file_import.define_mypy_type("JSONType", "Dict[str, Any]")
             #     file_import.define_mypy_type("JSONType6", "Any")
