@@ -14,8 +14,7 @@ from azure.core.utils import case_insensitive_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from collections.abc import MutableMapping
-    from typing import Any, List, Optional, TypeVar
+    from typing import Any, List, MutableMapping, Optional, TypeVar
 
     T = TypeVar("T")
     JSONObject = MutableMapping[str, Any]

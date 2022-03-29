@@ -16,8 +16,7 @@ from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from collections.abc import MutableMapping
-    from typing import Any, Optional, TypeVar
+    from typing import Any, MutableMapping, Optional, TypeVar
 
     T = TypeVar("T")
     JSONObject = MutableMapping[str, Any]

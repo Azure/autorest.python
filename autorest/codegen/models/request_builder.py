@@ -64,7 +64,7 @@ class RequestBuilder(BaseBuilder):
     def builder_group_name(self) -> str:
         return self.yaml_data["language"]["python"]["builderGroupName"]
 
-    def imports(self) -> FileImport:
+    def imports(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
         for parameter in self.parameters:
             if parameter.need_import:
@@ -88,12 +88,14 @@ class RequestBuilder(BaseBuilder):
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
         file_import.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY)
-        if self.parameters.has_body and any([isinstance(p.schema, JSONSchema) for p in self.body_kwargs_to_get]) and (
+        if (not async_mode and
+            self.parameters.has_body and
+            any([isinstance(p.schema, JSONSchema) for p in self.body_kwargs_to_get]) and (
             self.code_model.options["builders_visibility"] != "embedded" or
             self.code_model.options["add_python3_operation_files"]
-        ):
+        )):
             file_import.add_submodule_import(
-                "collections.abc", "MutableMapping", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
+                "typing", "MutableMapping", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
             )
             file_import.define_mypy_type("JSONObject", "MutableMapping[str, Any]")
             # if has_object_schema(self.parameters.parameters):

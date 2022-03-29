@@ -227,7 +227,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                     alias="rest"
                 )
         if self.code_model.options["builders_visibility"] == "embedded" and not async_mode:
-            file_import.merge(self.request_builder.imports())
+            file_import.merge(self.request_builder.imports(async_mode))
         if self.code_model.need_request_converter:
             relative_path = "..." if async_mode else ".."
             file_import.add_submodule_import(
@@ -243,7 +243,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                 has_object_schema(self.responses) or
                 has_object_schema(self.exceptions)):
                 file_import.add_submodule_import(
-                    "collections.abc", "MutableMapping", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
+                    "typing", "MutableMapping", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
                 )
                 file_import.define_mypy_type("JSONObject", "MutableMapping[str, Any]")
         if self.code_model.options["tracing"] and self.want_tracing:

@@ -23,7 +23,7 @@ class Rest(BaseModel):
         file_import = FileImport()
         for request_builder in self.request_builders:
             if request_builder.builder_group_name == builder_group_name:
-                file_import.merge(request_builder.imports())
+                file_import.merge(request_builder.imports(False))
         return file_import
 
     @classmethod
