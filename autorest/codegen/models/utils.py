@@ -4,12 +4,14 @@
 # license information.
 # --------------------------------------------------------------------------
 import re
-from typing import Any, TYPE_CHECKING
+from typing import Any, List, Dict, TYPE_CHECKING
 import logging
+
 from .base_schema import BaseSchema
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
+    from .schema_request import SchemaRequest
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -26,3 +28,14 @@ def get_schema(code_model: "CodeModel", schema: Any, serialized_name: str = "unk
     except KeyError:
         _LOGGER.critical("Unable to ref the object")
         raise
+
+def build_content_type_to_schema_request(schema_requests: List["SchemaRequest"], yaml_data: Dict[str, Any]) -> Dict[str, "SchemaRequest"]:
+    retval: Dict[str, SchemaRequest] = {}
+    for content_type, schema_request_yaml in yaml_data.items():
+        try:
+            schema_request = next(sr for sr in schema_requests if id(sr.yaml_data) == id(schema_request_yaml))
+        except StopIteration:
+            raise ValueError(f"Can't find a match for {schema_request_yaml} in {schema_requests}")
+        schema_request.content_types.append(content_type)
+        retval[content_type] = schema_request
+    return retval

@@ -102,15 +102,13 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         self.grouped_by = grouped_by
         self.original_parameter = original_parameter
         self.client_default_value = client_default_value
-        self.has_multiple_content_types: bool = False
-        self.multiple_content_types_type_annot: Optional[str] = None
-        self.multiple_content_types_docstring_type: Optional[str] = None
+        self.is_overloaded: bool = False
+        self._type_annotation: Optional[str] = None
+        self._docstring_type: Optional[str] = None
         self._keyword_only = keyword_only
         self.is_multipart = yaml_data.get("language", {}).get("python", {}).get("multipart", False)
         self.is_data_input = yaml_data.get("isPartialBody", False) and not self.is_multipart
-        self.content_types = content_types or []
         self.body_kwargs: List[Parameter] = []
-        self.is_body_kwarg = False
         self.need_import = True
         self.is_kwarg = (self.rest_api_name == "Content-Type" or (self.constant and self.inputtable_by_user))
 
@@ -193,13 +191,6 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         return self.rest_api_name != "Accept"
 
     @property
-    def pre_semicolon_content_types(self) -> List[str]:
-        """Splits on semicolon of media types and returns the first half.
-        I.e. ["text/plain; charset=UTF-8"] -> ["text/plain"]
-        """
-        return [content_type.split(";")[0] for content_type in self.content_types]
-
-    @property
     def in_method_signature(self) -> bool:
         return not(
             # if not inputtable, don't put in signature
@@ -242,7 +233,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         ) and isinstance(self.schema, IOSchema)
 
     def _default_value(self) -> Tuple[Optional[Any], str, str]:
-        type_annot = self.multiple_content_types_type_annot or self.schema.type_annotation(is_operation_file=True)
+        type_annot = self._type_annotation or self.schema.type_annotation(is_operation_file=True)
         if self._is_io_json:
             type_annot = f"Union[{type_annot}, JSONType]"
         any_types = ["Any", "JSONType"]
@@ -252,7 +243,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         if self.client_default_value is not None:
             return self.client_default_value, self.schema.get_declaration(self.client_default_value), type_annot
 
-        if self.multiple_content_types_type_annot:
+        if self.is_overloaded:
             # means this parameter has multiple media types. We force default value to be None.
             default_value = None
             default_value_declaration = "None"
@@ -297,16 +288,23 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
         return self._default_value()[2]
 
+    def set_type_annotation(self, val: str) -> None:
+        self._type_annotation = val
+
     @property
     def serialization_type(self) -> str:
         return self.schema.serialization_type
 
     @property
     def docstring_type(self) -> str:
-        retval = self.multiple_content_types_docstring_type or self.schema.docstring_type
+        retval = self._docstring_type or self.schema.docstring_type
         if self._is_io_json:
             retval += " or JSONType"
         return retval
+
+    @docstring_type.setter
+    def docstring_type(self, val: str) -> None:
+        self._docstring_type = val
 
     @property
     def has_default_value(self):
@@ -398,7 +396,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         file_import = self.schema.imports()
         if not self.required:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        if self.has_multiple_content_types or self._is_io_json:
+        if self.is_overloaded or self._is_io_json:
             file_import.add_submodule_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         return file_import

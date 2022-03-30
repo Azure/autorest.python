@@ -117,6 +117,9 @@ class IOSchema(PrimitiveSchema):
         file_import.add_submodule_import("typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
 
+    def check_user_input_is_instance(self, input_name: str) -> Optional[str]:
+        return f'isinstance({input_name}, bytes) or any(hasattr(content, attr) for attr in ["read", "__iter__", "__aiter__"])'
+
 class AnySchema(PrimitiveSchema):
     @property
     def serialization_type(self) -> str:
@@ -213,6 +216,11 @@ class NumberSchema(PrimitiveSchema):
         default_value = 0 if self.docstring_type == "int" else 0.0
         return self.get_declaration(default_value)
 
+    def check_user_input_is_instance(self, input_name: str) -> Optional[str]:
+        if self.yaml_data["type"] == "integer":
+            return f"isinstance({input_name}, int)"
+        return f"isinstance({input_name}, float)"
+
 class StringSchema(PrimitiveSchema):
 
     def __init__(self, namespace: str, yaml_data: Dict[str, Any]) -> None:
@@ -246,6 +254,9 @@ class StringSchema(PrimitiveSchema):
 
     def get_declaration(self, value) -> str:
         return f'"{value}"'
+
+    def check_user_input_is_instance(self, input_name: str) -> Optional[str]:
+        return f"isinstance({input_name}, str)"
 
 
 class DatetimeSchema(PrimitiveSchema):
@@ -288,6 +299,9 @@ class DatetimeSchema(PrimitiveSchema):
     def default_template_representation_declaration(self):
         return self.get_declaration(datetime.datetime(2020, 2, 20))
 
+    def check_user_input_is_instance(self, input_name: str) -> Optional[str]:
+        return f"isinstance({input_name}, datetime.datetime)"
+
 class TimeSchema(PrimitiveSchema):
     @property
     def serialization_type(self) -> str:
@@ -318,6 +332,9 @@ class TimeSchema(PrimitiveSchema):
     @property
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(datetime.time(12, 30, 0))
+
+    def check_user_input_is_instance(self, input_name: str) -> Optional[str]:
+        return f"isinstance({input_name}, datetime.time)"
 
 
 class UnixTimeSchema(PrimitiveSchema):
@@ -351,6 +368,9 @@ class UnixTimeSchema(PrimitiveSchema):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(datetime.datetime(2020, 2, 20))
 
+    def check_user_input_is_instance(self, input_name: str) -> Optional[str]:
+        return f"isinstance({input_name}, datetime.datetime)"
+
 
 class DateSchema(PrimitiveSchema):
     @property
@@ -382,6 +402,9 @@ class DateSchema(PrimitiveSchema):
     @property
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(datetime.date(2020, 2, 20))
+
+    def check_user_input_is_instance(self, input_name: str) -> Optional[str]:
+        return f"isinstance({input_name}, datetime.date)"
 
 
 class DurationSchema(PrimitiveSchema):
@@ -415,6 +438,9 @@ class DurationSchema(PrimitiveSchema):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(datetime.timedelta(1))
 
+    def check_user_input_is_instance(self, input_name: str) -> Optional[str]:
+        return f"isinstance({input_name}, datetime.timedelta)"
+
 
 class ByteArraySchema(PrimitiveSchema):
     def __init__(self, namespace: str, yaml_data: Dict[str, Any]) -> None:
@@ -441,6 +467,11 @@ class ByteArraySchema(PrimitiveSchema):
         if self.format == ByteArraySchema.Formats.base64url:
             return f'bytes("{value}", encoding="utf-8")'
         return f'bytearray("{value}", encoding="utf-8")'
+
+    def check_user_input_is_instance(self, input_name: str) -> Optional[str]:
+        if self.format == ByteArraySchema.Formats.base64url:
+            return f"isinstance({input_name}, bytes)"
+        return f"isinstance({input_name}, bytearray)"
 
 
 def get_primitive_schema(namespace: str, yaml_data: Dict[str, Any]) -> "PrimitiveSchema":

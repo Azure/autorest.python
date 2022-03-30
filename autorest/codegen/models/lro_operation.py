@@ -25,13 +25,14 @@ class LROOperation(Operation):
         description: str,
         api_versions: Set[str],
         parameters: ParameterList,
-        multiple_content_type_parameters: ParameterList,
         schema_requests: List[SchemaRequest],
         summary: Optional[str] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
         want_description_docstring: bool = True,
-        want_tracing: bool = True
+        want_tracing: bool = True,
+        *,
+        content_type_to_schema_request: Optional[Dict[str, SchemaRequest]] = None,
     ) -> None:
         super(LROOperation, self).__init__(
             code_model,
@@ -40,13 +41,13 @@ class LROOperation(Operation):
             description,
             api_versions,
             parameters,
-            multiple_content_type_parameters,
             schema_requests,
             summary,
             responses,
             exceptions,
             want_description_docstring,
             want_tracing,
+            content_type_to_schema_request=content_type_to_schema_request,
         )
         self.lro_options = yaml_data.get("extensions", {}).get("x-ms-long-running-operation-options", {})
         self.name = "begin_" + self.name
@@ -90,7 +91,6 @@ class LROOperation(Operation):
             api_versions=self.api_versions,
             parameters=self.parameters,
             schema_requests=self.schema_requests,
-            multiple_content_type_parameters=self.multiple_content_type_parameters,
             summary=self.summary,
             responses=self.responses,
             want_description_docstring=False,

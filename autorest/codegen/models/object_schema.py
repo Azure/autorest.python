@@ -217,6 +217,19 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         file_import.add_import("__init__", ImportType.LOCAL, typing_section=TypingSection.TYPING, alias="_models")
         return file_import
 
+    def check_user_input_imports(self) -> FileImport:
+        file_import = FileImport()
+        if self.xml_metadata:
+            file_import.add_import("xml.etree.ElementTree", ImportType.STDLIB, alias="ET")
+        else:
+            file_import.add_submodule_import("collections.abc", "MutableMapping", ImportType.STDLIB)
+        return file_import
+
+    def check_user_input_is_instance(self, input_name: str) -> Optional[str]:
+        if self.xml_metadata:
+            return f"isinstance({input_name}, ET.Element)"
+        return f"isinstance({input_name}, MutableMapping)"
+
 class HiddenModelObjectSchema(ObjectSchema):
 
     @property

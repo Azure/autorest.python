@@ -295,12 +295,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
                     return
         raise KeyError("Didn't find the target property")
 
-    def generate_single_parameter_from_multiple_content_types_operation(self) -> None:
-        for operation_group in self.operation_groups:
-            for operation in operation_group.operations:
-                if operation.multiple_content_type_parameters:
-                    operation.convert_multiple_content_type_parameters()
-
     def need_vendored_code(self, async_mode: bool) -> bool:
         if async_mode:
             return self.need_mixin_abc
@@ -350,7 +344,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
                 if isinstance(operation, LROOperation):
                     request_builder.name = request_builder.name + "_initial"
                 operation.request_builder = request_builder
-                operation.link_body_kwargs_to_body_params()
 
     def get_models_filename(self, is_python3_file: bool) -> str:
         if (

@@ -97,7 +97,16 @@ class DictionarySchema(BaseSchema):
         file_import.merge(self.element_type.imports())
         return file_import
 
+    def check_user_input_imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_submodule_import("collections.abc", "Mapping", ImportType.STDLIB)
+        return file_import
+
+
     def model_file_imports(self) -> FileImport:
         file_import = self.imports()
         file_import.merge(self.element_type.model_file_imports())
         return file_import
+
+    def check_user_input_is_instance(self, input_name: str) -> Optional[str]:
+        return f"isinstance({input_name}, Mapping)"

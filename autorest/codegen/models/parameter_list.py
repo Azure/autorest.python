@@ -32,10 +32,8 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
         self,
         code_model,
         parameters: Optional[List[Parameter]] = None,
-        schema_requests: Optional[List["SchemaRequest"]] = None,
     ) -> None:
         self.code_model = code_model
-        self.schema_requests = schema_requests or []
         self.parameters = parameters or []
         self._json_body: Optional[BaseSchema] = None
 
@@ -68,36 +66,6 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
 
     def get_from_location(self, location: ParameterLocation) -> List[Parameter]:
         return self.get_from_predicate(lambda parameter: parameter.location == location)
-
-    @property
-    def content_types(self) -> List[str]:
-        ordered_set = {
-            m: None
-            for request in self.schema_requests
-            for m in request.content_types
-        }
-        return list(ordered_set.keys())
-
-    @property
-    def default_content_type(self) -> str:
-        json_content_types = [c for c in self.content_types if JSON_REGEXP.match(c)]
-        if json_content_types:
-            if "application/json" in json_content_types:
-                return "application/json"
-            return json_content_types[0]
-
-        xml_content_types = [c for c in self.content_types if "xml" in c]
-        if xml_content_types:
-            if "application/xml" in xml_content_types:
-                return "application/xml"
-            return xml_content_types[0]
-        return self.content_types[0]
-
-    @property
-    def json_body(self) -> BaseSchema:
-        if not self._json_body:
-            self._json_body = self.body[0].schema
-        return self._json_body
 
     @property
     def has_body(self) -> bool:
@@ -174,29 +142,14 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
     @property
     def multipart(self) -> List[Parameter]:
         return self.get_from_predicate(
-            lambda parameter: parameter.is_multipart and not parameter.is_body_kwarg
+            lambda parameter: parameter.is_multipart and not parameter.is_keyword_only
         )
 
     @property
     def data_inputs(self) -> List[Parameter]:
         return self.get_from_predicate(
-            lambda parameter: parameter.is_data_input and not parameter.is_body_kwarg
+            lambda parameter: parameter.is_data_input and not parameter.is_keyword_only
         )
-
-    def _filter_out_multiple_content_type(self, kwarg_params):
-        """We don't want multiple content type kwargs in the method signature"""
-        content_type_params = [k for k in kwarg_params if k.rest_api_name == "Content-Type"]
-        if len(content_type_params) > 1:
-            # we don't want multiple content type params in the method, just one
-            # we'll pick the one with the default content type
-            kwarg_params = [
-                k for k in kwarg_params
-                if not (
-                    k.rest_api_name == "Content-Type"
-                    and k.default_value_declaration != f'"{self.default_content_type}"'
-                )
-            ]
-        return kwarg_params
 
     @property
     def method(self) -> List[Parameter]:
@@ -207,12 +160,8 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
             lambda parameter: parameter.implementation == self.implementation
         )
         positional = [p for p in parameters_of_this_implementation if p.is_positional]
-        keyword_only = self._filter_out_multiple_content_type(
-            [p for p in parameters_of_this_implementation if p.is_keyword_only]
-        )
-        kwargs = self._filter_out_multiple_content_type(
-            [p for p in parameters_of_this_implementation if p.is_kwarg]
-        )
+        keyword_only = [p for p in parameters_of_this_implementation if p.is_keyword_only]
+        kwargs = [p for p in parameters_of_this_implementation if p.is_kwarg]
         def _sort(params):
             return sorted(params, key=lambda x: not x.default_value and x.required, reverse=True)
         signature_parameters = (
@@ -317,12 +266,8 @@ class ParameterOnlyPathAndBodyPositionalList(ParameterList):
             file_and_data_params.append(data_param)
         method_params = [p for p in method_params if not p.is_multipart and not p.is_data_input]
         positional = [p for p in method_params if p.is_positional]
-        keyword_only = self._filter_out_multiple_content_type(
-            [p for p in method_params if p.is_keyword_only]
-        )
-        kwargs = self._filter_out_multiple_content_type(
-            [p for p in method_params if p.is_kwarg]
-        )
+        keyword_only = [p for p in method_params if p.is_keyword_only]
+        kwargs = [p for p in method_params if p.is_kwarg]
         return positional + file_and_data_params + keyword_only + kwargs
 
 def get_parameter_list(code_model):
@@ -342,12 +287,8 @@ class GlobalParameterList(ParameterList):
         """
         # Client level should not be on Method, etc.
         positional = [p for p in self.parameters if p.is_positional]
-        keyword_only = self._filter_out_multiple_content_type(
-            [p for p in self.parameters if p.is_keyword_only]
-        )
-        kwargs = self._filter_out_multiple_content_type(
-            [p for p in self.parameters if p.is_kwarg]
-        )
+        keyword_only = [p for p in self.parameters if p.is_keyword_only]
+        kwargs = [p for p in self.parameters if p.is_kwarg]
         def _sort(params):
             return sorted(params, key=lambda x: not x.default_value and x.required, reverse=True)
         signature_parameters = (

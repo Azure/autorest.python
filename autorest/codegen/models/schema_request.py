@@ -6,18 +6,17 @@
 from typing import Dict, List, Any, Optional
 
 from .base_model import BaseModel
-from .parameter import Parameter
+from .parameter import Parameter, get_parameter
 from .parameter_list import ParameterList
 
 class SchemaRequest(BaseModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        content_types: List[str],
         parameters: ParameterList,
     ) -> None:
         super().__init__(yaml_data)
-        self.content_types = content_types
+        self.content_types = []
         self.parameters = parameters
 
     @property
@@ -29,15 +28,14 @@ class SchemaRequest(BaseModel):
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "SchemaRequest":
-
+        parameter_creator = get_parameter(code_model).from_yaml
         parameters: Optional[List[Parameter]] = [
-            Parameter.from_yaml(yaml, code_model=code_model)
+            parameter_creator(yaml, code_model=code_model)
             for yaml in yaml_data.get("parameters", [])
         ]
 
         return cls(
             yaml_data=yaml_data,
-            content_types=yaml_data["protocol"]["http"].get("mediaTypes", []),
             parameters=ParameterList(code_model, parameters)
         )
 

@@ -12,6 +12,7 @@ from .schema_request import SchemaRequest
 from .schema_response import SchemaResponse
 from .imports import FileImport, ImportType, TypingSection
 from .parameter import Parameter
+from .utils import build_content_type_to_schema_request
 
 
 T = TypeVar('T')
@@ -31,6 +32,8 @@ class RequestBuilder(BaseBuilder):
         description: str,
         summary: str,
         responses: Optional[List[SchemaResponse]] = None,
+        *,
+        content_type_to_schema_request: Optional[Dict[str, SchemaRequest]] = None,
     ):
         super().__init__(
             code_model=code_model,
@@ -41,6 +44,7 @@ class RequestBuilder(BaseBuilder):
             responses=responses,
             schema_requests=schema_requests,
             summary=summary,
+            content_type_to_schema_request=content_type_to_schema_request,
         )
         self.url = url
         self.method = method
@@ -50,10 +54,6 @@ class RequestBuilder(BaseBuilder):
     def is_stream(self) -> bool:
         """Is the request we're preparing a stream, like an upload."""
         return any(request.is_stream_request for request in self.schema_requests)
-
-    @property
-    def body_kwargs_to_get(self) -> List[Parameter]:
-        return self.parameters.body_kwargs_to_get
 
     @property
     def operation_group_name(self) -> str:
@@ -109,15 +109,22 @@ class RequestBuilder(BaseBuilder):
             "request"
         ]
         name = "_".join([n for n in names if n])
+        if name == "build_put_byte_request":
+            a = 'b'
 
         first_request = yaml_data["requests"][0]
         schema_requests = [SchemaRequest.from_yaml(yaml, code_model=code_model) for yaml in yaml_data["requests"]]
-        parameters, multiple_content_type_parameters = (
+        parameters = (
             create_parameters(yaml_data, code_model, RequestBuilderParameter.from_yaml)
         )
         parameter_list = RequestBuilderParameterList(
-            code_model, parameters + multiple_content_type_parameters, schema_requests
+            code_model, parameters
         )
+        request_media_types = yaml_data.get("requestMediaTypes")
+        if request_media_types:
+            content_type_to_schema_request = build_content_type_to_schema_request(schema_requests, request_media_types)
+        else:
+            content_type_to_schema_request = None
         request_builder_class = cls(
             code_model=code_model,
             yaml_data=yaml_data,
@@ -132,7 +139,11 @@ class RequestBuilder(BaseBuilder):
                 SchemaResponse.from_yaml(yaml, code_model=code_model) for yaml in yaml_data.get("responses", [])
             ],
             summary=yaml_data["language"]["python"].get("summary"),
+            content_type_to_schema_request=content_type_to_schema_request,
         )
         code_model.request_builder_ids[id(yaml_data)] = request_builder_class
-        parameter_list.add_body_kwargs()
+        parameter_list.add_body_kwargs(
+            request_builder_class.content_type_to_schema_request,
+            request_builder_class.body_kwarg_name_to_content_types,
+        )
         return request_builder_class

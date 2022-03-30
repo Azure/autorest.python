@@ -136,3 +136,16 @@ class BaseSchema(BaseModel, ABC):
     def get_files_and_data_template_representation(self, **kwargs: Any) -> Any:
         """Template of what this schema would look like as files input"""
         ...
+
+    def check_user_input_is_instance(self, input_name: str) -> Optional[str]:
+        """Check if the input users pass in are of this schema"""
+        return None
+
+    def check_user_input_imports(self) -> FileImport:
+        """These are the imports needed to check if a user's input is of this schema.
+
+        Not adding as part of imports because only the operation will know
+        whether we need to check input type (depending if we're overloading for diff
+        content types or not)
+        """
+        return FileImport()

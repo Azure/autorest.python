@@ -92,14 +92,6 @@ def _get_data_example_template(builder) -> List[str]:
         "You're trying to get a template for your form-encoded params, but you don't have form-encoded params"
     )
 
-def _content_type_error_check(builder) -> List[str]:
-    retval = ["else:"]
-    retval.append("    raise ValueError(")
-    retval.append("        \"The content_type '{}' is not one of the allowed values: \"")
-    retval.append(f'        "{builder.parameters.content_types}".format(content_type)')
-    retval.append("    )")
-    return retval
-
 def _serialize_files_and_data_body(builder, param_name: str) -> List[str]:
     retval: List[str] = []
     # we have to construct our form data before passing to the request as well
@@ -309,13 +301,13 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
                 f":{param.docstring_type_keyword} { param.serialized_name }: { param.docstring_type }"
             )
 
-        if len(builder.parameters.content_types) > 1:
-            description_list = [
-                _content_type_docstring(builder) if l.startswith(":keyword content_type:") else l
-                for l in description_list
-            ]
-            if not any(l for l in description_list if l.startswith(":keyword content_type:")):
-                description_list.append(_content_type_docstring(builder))
+        # if len(builder.parameters.content_types) > 1:
+        #     description_list = [
+        #         _content_type_docstring(builder) if l.startswith(":keyword content_type:") else l
+        #         for l in description_list
+        #     ]
+        #     if not any(l for l in description_list if l.startswith(":keyword content_type:")):
+        #         description_list.append(_content_type_docstring(builder))
         return description_list
 
     def param_description_and_response_docstring(self, builder) -> List[str]:
@@ -360,7 +352,10 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
 
     def _get_json_example_template(self, builder) -> List[str]:
         template = []
-        json_body = builder.parameters.json_body
+        json_body = next(
+            sr.parameters.body[0] for content_type, sr in builder.content_type_to_schema_request.items()
+            if content_type in builder.body_kwarg_name_to_content_types["json"]
+        ).schema
         object_schema = cast(ObjectSchema, json_body)
         try:
             discriminator_name = object_schema.discriminator_name
@@ -394,7 +389,7 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
             template.append("")
         template.append("# JSON input template you can fill out and use as your body input.")
         json_template = _json_dumps_template(
-            builder.parameters.json_body.get_json_template_representation(),
+            json_body.get_json_template_representation(),
         )
         template.extend(f"{self._json_example_param_name(builder)} = {json_template}".splitlines())
         return template
@@ -735,32 +730,30 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         return bool(builder.parameters.data_inputs)
 
     def _serialize_body_call(
-        self, builder, body_param: Parameter, send_xml: bool, ser_ctxt: Optional[str], ser_ctxt_name: str
+        self, body_param: Parameter, body_kwarg: str, send_xml: bool, ser_ctxt: Optional[str], ser_ctxt_name: str
     ) -> str:
         body_is_xml = ", is_xml=True" if send_xml else ""
         pass_ser_ctxt = f", {ser_ctxt_name}={ser_ctxt_name}" if ser_ctxt else ""
-        body_kwarg_to_pass = builder.body_kwargs_to_pass_to_request_builder[0]
         if self.code_model.options["models_mode"]:
             return (
-                f"_{body_kwarg_to_pass} = self._serialize.body({body_param.serialized_name}, "
+                f"_{body_kwarg} = self._serialize.body({body_param.serialized_name}, "
                 f"'{ body_param.serialization_type }'{body_is_xml}{ pass_ser_ctxt })"
             )
-        return f"_{body_kwarg_to_pass} = {body_param.serialized_name}"
+        return f"_{body_kwarg} = {body_param.serialized_name}"
 
     def _serialize_body(self, builder, body_param: Parameter, body_kwarg: str) -> List[str]:
         retval = []
         send_xml = bool(
             builder.parameters.has_body and
-            any(["xml" in ct for ct in builder.parameters.content_types]) and
-            not isinstance(body_param.schema, IOSchema)
+            any(["xml" in ct for ct in builder.content_type_to_schema_request])
         )
         ser_ctxt_name = "serialization_ctxt"
-        ser_ctxt = builder.parameters.body[0].xml_serialization_ctxt if send_xml else None
+        ser_ctxt = body_param.xml_serialization_ctxt if send_xml else None
         if ser_ctxt and self.code_model.options["models_mode"]:
             retval.append(f'{ser_ctxt_name} = {{"xml": {{{ser_ctxt}}}}}')
         serialize_body_call = self._serialize_body_call(
-            builder,
             body_param,
+            body_kwarg,
             send_xml,
             ser_ctxt,
             ser_ctxt_name,
@@ -770,56 +763,47 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         else:
             retval.append(f"if {body_param.serialized_name} is not None:")
             retval.append("    " + serialize_body_call)
-            if len(builder.body_kwargs_to_pass_to_request_builder) == 1:
+            if len(builder.body_kwarg_name_to_content_types) == 1:
                 retval.append("else:")
-                retval.append(f"    _{body_kwarg} = None")
+                retval.append("    _json = None")
         return retval
 
     def _set_body_content_kwarg(
-        self, builder, body_param: Parameter, body_kwarg: Parameter
+        self, builder, body_param: Parameter, body_kwarg: str
     ) -> List[str]:
         retval: List[str] = []
-        if body_kwarg.serialized_name == "data" or body_kwarg.serialized_name == "files":
+        if body_kwarg == "data" or body_kwarg == "files":
             return retval
-        try:
-            if not body_param.style == ParameterStyle.binary:
-                retval.extend(self._serialize_body(builder, body_param, body_kwarg.serialized_name))
-                return retval
-        except AttributeError:
-            pass
-        retval.append(f"_{body_kwarg.serialized_name} = {body_param.serialized_name}")
+        if not isinstance(body_param.schema, IOSchema):
+            retval.extend(self._serialize_body(builder, body_param, body_kwarg))
+            return retval
+        retval.append(f"_{body_kwarg} = {body_param.serialized_name}")
         return retval
 
 
     def _serialize_body_parameters(
-        self, builder,
+        self, builder, body_name: str
     ) -> List[str]:
         retval = []
-        body_kwargs = [
-            p for p in builder.request_builder.parameters.body
-            if p.content_types
-        ]
-        builder_params = []
-        if builder.parameters.has_body:
-            builder_params += builder.parameters.body
-        if builder.multiple_content_type_parameters.has_body:
-            builder_params += builder.multiple_content_type_parameters.body
-        if len(body_kwargs) == 1:
-            retval.extend(self._set_body_content_kwarg(builder, builder.parameters.body[0], body_kwargs[0]))
+        if len(builder.body_kwarg_name_to_content_types) == 1:
+            retval.extend(self._set_body_content_kwarg(builder, builder.parameters.body[0], list(builder.body_kwarg_name_to_content_types.keys())[0]))
         else:
-            retval.append('content_type = content_type or ""')
-            for idx, body_kwarg in enumerate(body_kwargs):
-                body_param = next(
-                    b for b in builder_params
-                    if body_kwarg in b.body_kwargs
-                )
-                if_statement = "if" if idx == 0 else "elif"
-                retval.append(
-                    f'{if_statement} content_type.split(";")[0] in {body_kwarg.pre_semicolon_content_types}:'
-                )
-                retval.extend(["    " + line for line in self._set_body_content_kwarg(builder, body_param, body_kwarg)])
-            retval.extend(_content_type_error_check(builder))
+            # we know we have one json input and one content input
+            # first we deal with JSON
+            json_param = next(
+                sr.parameters.body[0] for content_type, sr in builder.content_type_to_schema_request.items()
+                if content_type in builder.body_kwarg_name_to_content_types["json"]
+            )
+            retval.append(f"if {json_param.schema.check_user_input_is_instance(body_name)}:")
+            retval.extend(["    " + line for line in self._set_body_content_kwarg(builder, json_param, "json")])
 
+            # then we deal with the content input
+            content_param = next(
+                sr.parameters.body[0] for content_type, sr in builder.content_type_to_schema_request.items()
+                if content_type in builder.body_kwarg_name_to_content_types["content"]
+            )
+            retval.append("else:")
+            retval.extend(["    " + line for line in self._set_body_content_kwarg(builder, content_param, "content")])
         return retval
 
     def _call_request_builder_helper(
@@ -830,9 +814,9 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         is_next_request: bool = False,
     ) -> List[str]:
         retval = []
-        if len(builder.body_kwargs_to_pass_to_request_builder) > 1:
+        if len(builder.body_kwarg_name_to_content_types) > 1:
             # special case for files, bc we hardcode body param to be called 'files' for multipart
-            body_params_to_initialize = builder.body_kwargs_to_pass_to_request_builder
+            body_params_to_initialize = builder.body_kwarg_name_to_content_types.keys()
             if self.code_model.options["version_tolerant"]:
                 body_params_to_initialize = [p for p in body_params_to_initialize if p != "files"]
             for k in body_params_to_initialize:
@@ -849,7 +833,9 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                 param_name = "_files" if request_builder.multipart else "_data"
                 retval.extend(_serialize_files_and_data_body(builder, param_name))
         elif builder.parameters.has_body and not builder.parameters.body[0].constant:
-            retval.extend(self._serialize_body_parameters(builder))
+            retval.extend(self._serialize_body_parameters(
+                builder, body_name=builder.parameters.body[0].serialized_name
+            ))
 
         if self.code_model.options["builders_visibility"] == "embedded":
             request_path_name = request_builder.name
@@ -861,11 +847,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         retval.append("")
         retval.append(f"request = {request_path_name}(")
         for parameter in request_builder.parameters.method:
-            if (
-                parameter.is_body and
-                not parameter.constant and
-                parameter.serialized_name not in builder.body_kwargs_to_pass_to_request_builder
-            ):
+            if (parameter.is_body):
                 continue
             if (
                 is_next_request and
@@ -879,6 +861,8 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                 continue
             high_level_name = cast(RequestBuilderParameter, parameter).name_in_high_level_operation
             retval.append(f"    {parameter.serialized_name}={high_level_name},")
+        for body_kwarg in builder.body_kwarg_name_to_content_types:
+            retval.append(f"    {body_kwarg}=_{body_kwarg},")
         if not self.code_model.options["version_tolerant"]:
             template_url = template_url or f"self.{builder.name}.metadata['url']"
             retval.append(f"    template_url={template_url},")
@@ -887,7 +871,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         retval.append(f")")
         if not self.code_model.options["version_tolerant"]:
             pass_files = ""
-            if "files" in builder.body_kwargs_to_pass_to_request_builder:
+            if "files" in builder.body_kwarg_name_to_content_types:
                 pass_files = ", _files"
             retval.append(f"request = _convert_request(request{pass_files})")
         if builder.parameters.path:
