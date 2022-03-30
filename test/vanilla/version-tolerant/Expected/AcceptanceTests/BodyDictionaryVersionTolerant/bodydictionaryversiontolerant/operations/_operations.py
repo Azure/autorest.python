@@ -60,7 +60,9 @@ def build_dictionary_get_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_dictionary_put_empty_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_dictionary_put_empty_request(
+    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -147,7 +149,9 @@ def build_dictionary_get_boolean_tfft_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_dictionary_put_boolean_tfft_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_dictionary_put_boolean_tfft_request(
+    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -206,7 +210,9 @@ def build_dictionary_get_integer_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_dictionary_put_integer_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_dictionary_put_integer_valid_request(
+    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -265,7 +271,9 @@ def build_dictionary_get_long_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_dictionary_put_long_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_dictionary_put_long_valid_request(
+    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -324,7 +332,9 @@ def build_dictionary_get_float_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_dictionary_put_float_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_dictionary_put_float_valid_request(
+    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -383,7 +393,9 @@ def build_dictionary_get_double_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_dictionary_put_double_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_dictionary_put_double_valid_request(
+    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -442,7 +454,9 @@ def build_dictionary_get_string_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_dictionary_put_string_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_dictionary_put_string_valid_request(
+    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -501,7 +515,9 @@ def build_dictionary_get_date_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_dictionary_put_date_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_dictionary_put_date_valid_request(
+    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -561,7 +577,7 @@ def build_dictionary_get_date_time_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_dictionary_put_date_time_valid_request(
-    *, json: Any = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -622,7 +638,7 @@ def build_dictionary_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpR
 
 
 def build_dictionary_put_date_time_rfc1123_valid_request(
-    *, json: Any = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -654,7 +670,9 @@ def build_dictionary_get_duration_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_dictionary_put_duration_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_dictionary_put_duration_valid_request(
+    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -685,7 +703,9 @@ def build_dictionary_get_byte_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_dictionary_put_byte_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_dictionary_put_byte_valid_request(
+    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -800,7 +820,9 @@ def build_dictionary_get_complex_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_dictionary_put_complex_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_dictionary_put_complex_valid_request(
+    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -887,7 +909,9 @@ def build_dictionary_get_array_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_dictionary_put_array_valid_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_dictionary_put_array_valid_request(
+    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -975,7 +999,7 @@ def build_dictionary_get_dictionary_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_dictionary_put_dictionary_valid_request(
-    *, json: Any = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
