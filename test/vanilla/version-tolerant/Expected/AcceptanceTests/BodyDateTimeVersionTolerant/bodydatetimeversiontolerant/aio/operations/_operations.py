@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, MutableMapping, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, Optional, TypeVar, cast
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -48,7 +48,6 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
-JSONObject = MutableMapping[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 

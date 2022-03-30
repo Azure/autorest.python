@@ -136,8 +136,8 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
-JSONObject = MutableMapping[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+JSONObject = MutableMapping[str, Any]
 
 
 class HttpFailureOperations:

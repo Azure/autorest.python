@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, List, MutableMapping, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, List, Optional, TypeVar, cast
 
 from msrest import Serializer
 
@@ -25,7 +25,6 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
-JSONObject = MutableMapping[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()

@@ -26,8 +26,8 @@ from azure.core.utils import case_insensitive_dict
 from .._vendor import _format_url_section
 
 T = TypeVar("T")
-JSONObject = MutableMapping[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+JSONObject = MutableMapping[str, Any]
 
 _SERIALIZER = Serializer()
 

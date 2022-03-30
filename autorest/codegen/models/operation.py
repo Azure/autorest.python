@@ -13,6 +13,7 @@ from .schema_response import SchemaResponse
 from .parameter import Parameter, get_parameter, ParameterLocation
 from .parameter_list import ParameterList, get_parameter_list
 from .base_schema import BaseSchema
+from .list_schema import ListSchema
 from .object_schema import ObjectSchema
 from .request_builder import RequestBuilder
 from .schema_request import SchemaRequest
@@ -233,10 +234,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                 f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
             )
 
-        if self.code_model.options["version_tolerant"] and self.use_json_object and (
-            self.parameters.has_body or
-            any(r for r in self.responses if r.has_body)
-        ):
+        if self.use_json_object:
             file_import.add_submodule_import(
                 "typing", "MutableMapping", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
             )
@@ -312,15 +310,18 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
     @property
     def use_json_object(self) -> bool:
-        return (self.has_object_schema(self.parameters.parameters) or
+        return self.code_model.options["version_tolerant"] and (
+                self.parameters.has_body or
+                any(r for r in self.responses if r.has_body)
+                ) and (self.has_object_schema(self.parameters.parameters) or
                 self.has_object_schema(self.multiple_content_type_parameters.parameters) or
-                self.has_object_schema(self.responses) or
-                self.has_object_schema(self.exceptions))
+                self.has_object_schema(self.responses))
 
     @staticmethod
     def has_object_schema(parameters: List) -> bool:
         for param in parameters or []:
-            if isinstance(param.schema, ObjectSchema):
+            if (isinstance(param.schema, ObjectSchema) or
+                isinstance(param.schema, ListSchema) and isinstance(param.schema.element_type, ObjectSchema)):
                 return True
         return False
 

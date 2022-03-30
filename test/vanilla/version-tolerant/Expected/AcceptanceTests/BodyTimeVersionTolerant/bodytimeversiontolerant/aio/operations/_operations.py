@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, MutableMapping, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, Optional, TypeVar, cast
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -25,7 +25,6 @@ from azure.core.utils import case_insensitive_dict
 from ...operations._operations import build_time_get_request, build_time_put_request
 
 T = TypeVar("T")
-JSONObject = MutableMapping[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 

@@ -24,8 +24,8 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
-JSONObject = MutableMapping[str, Any]
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+JSONObject = MutableMapping[str, Any]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
