@@ -17,7 +17,6 @@ from .object_schema import ObjectSchema
 from .request_builder import RequestBuilder
 from .schema_request import SchemaRequest
 from .primitive_schemas import IOSchema
-from .utils import has_object_schema
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -234,19 +233,14 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                 f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
             )
 
-        if self.code_model.options["version_tolerant"] and (
+        if self.code_model.options["version_tolerant"] and self.use_json_object and (
             self.parameters.has_body or
             any(r for r in self.responses if r.has_body)
         ):
-            # file_import.define_mypy_type("JSONObject", "Dict[str, Any]")
-            if (has_object_schema(self.parameters.parameters) or
-                has_object_schema(self.multiple_content_type_parameters.parameters) or
-                has_object_schema(self.responses) or
-                has_object_schema(self.exceptions)):
-                file_import.add_submodule_import(
-                    "typing", "MutableMapping", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
-                )
-                file_import.define_mypy_type("JSONObject", "MutableMapping[str, Any]")
+            file_import.add_submodule_import(
+                "typing", "MutableMapping", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
+            )
+            file_import.define_mypy_type("JSONObject", "MutableMapping[str, Any]")
         if self.code_model.options["tracing"] and self.want_tracing:
             file_import.add_submodule_import(
                 f"azure.core.tracing.decorator{'_async' if async_mode else ''}",
@@ -318,13 +312,17 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
     @property
     def use_json_object(self) -> bool:
-        for param in self.parameters:
-            if (param.is_body) and not isinstance(param.schema, ObjectSchema):
+        return (self.has_object_schema(self.parameters.parameters) or
+                self.has_object_schema(self.multiple_content_type_parameters.parameters) or
+                self.has_object_schema(self.responses) or
+                self.has_object_schema(self.exceptions))
+
+    @staticmethod
+    def has_object_schema(parameters: List) -> bool:
+        for param in parameters or []:
+            if isinstance(param.schema, ObjectSchema):
                 return True
         return False
-        # return True if there is json contents in either request or response.
-        # return (self.parameters.has_body and has_json_content_types(self.parameters.content_types) or
-                # any(has_json_content_types(r.content_types) for r in self.responses if r.has_body))
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Operation":

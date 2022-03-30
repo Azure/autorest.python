@@ -138,7 +138,7 @@ class AnySchema(PrimitiveSchema):
         file_import.add_submodule_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
 
-class JSONSchema(AnySchema):
+class JSONObjectSchema(AnySchema):
 
     @property
     def docstring_type(self) -> str:

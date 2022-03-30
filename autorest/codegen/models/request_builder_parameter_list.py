@@ -8,7 +8,7 @@ from typing import List, Optional, Tuple, TypeVar, Dict
 from .request_builder_parameter import RequestBuilderParameter
 from .parameter_list import ParameterList
 from .parameter import ParameterLocation, Parameter, ParameterStyle
-from .primitive_schemas import AnySchema, JSONSchema
+from .primitive_schemas import AnySchema, JSONObjectSchema
 from .dictionary_schema import DictionarySchema
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
@@ -136,7 +136,7 @@ class RequestBuilderParameterList(ParameterList):
             json_kwarg.description
         )
         if isinstance(body_method_param.schema, ObjectSchema):
-            json_kwarg.schema = JSONSchema(namespace="", yaml_data={})
+            json_kwarg.schema = JSONObjectSchema(namespace="", yaml_data={})
         else:
             json_kwarg.schema = AnySchema(namespace="", yaml_data={})
         json_kwarg.content_types = [

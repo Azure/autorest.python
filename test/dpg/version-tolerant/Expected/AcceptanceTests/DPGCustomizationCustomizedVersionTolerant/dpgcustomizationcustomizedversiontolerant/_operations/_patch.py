@@ -19,9 +19,9 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
 
     def get_pages(self, mode: str, **kwargs: Any) -> Iterable[Product]:
         pages = super().get_pages(mode, cls=lambda objs: [Product(**x) for x in objs], **kwargs)
-        return cast(Iterable[Product], pages) # be safe since calling get_pages with Product
+        return cast(Iterable[Product], pages)  # be safe since calling get_pages with Product
 
-    def begin_lro(self, mode: str, **kwargs: Any) -> LROPoller[LROProduct]: # type: ignore
+    def begin_lro(self, mode: str, **kwargs: Any) -> LROPoller[LROProduct]:  # type: ignore
         lro = super().begin_lro(
             mode,
             cls=lambda pipeline_response, deserialized, headers: LROProduct._from_dict(  # pylint: disable=protected-access
@@ -29,7 +29,7 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
             ),
             **kwargs
         )
-        return cast(LROPoller[LROProduct], lro) # be safe since calling begin_lro with LROProduct
+        return cast(LROPoller[LROProduct], lro)  # be safe since calling begin_lro with LROProduct
 
 
 def patch_sdk():
