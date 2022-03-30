@@ -207,7 +207,9 @@ def build_get_wrapped_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_dictionary_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_dictionary_request(
+    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     """Put External Resource as a Dictionary.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -216,7 +218,7 @@ def build_put_dictionary_request(*, json: Any = None, content: Any = None, **kwa
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as a Dictionary to put. Default value is
      None.
-    :paramtype json: any
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as a Dictionary to put. Default value is
      None.

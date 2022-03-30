@@ -256,7 +256,7 @@ def build_put_dictionary_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as a Dictionary to put. Default value is
      None.
-    :paramtype json: any
+    :paramtype json: JSONObject
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as a Dictionary to put. Default value is
      None.

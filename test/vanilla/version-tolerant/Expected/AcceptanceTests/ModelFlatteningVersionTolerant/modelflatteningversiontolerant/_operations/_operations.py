@@ -95,7 +95,9 @@ def build_get_wrapped_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_dictionary_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_dictionary_request(
+    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
