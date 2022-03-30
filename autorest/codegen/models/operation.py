@@ -13,6 +13,7 @@ from .schema_response import SchemaResponse
 from .parameter import Parameter, get_parameter, ParameterLocation
 from .parameter_list import ParameterList, get_parameter_list
 from .base_schema import BaseSchema
+from .dictionary_schema import DictionarySchema
 from .list_schema import ListSchema
 from .object_schema import ObjectSchema
 from .request_builder import RequestBuilder
@@ -321,7 +322,8 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
     def has_object_schema(parameters: List) -> bool:
         for param in parameters or []:
             if (isinstance(param.schema, ObjectSchema) or
-                isinstance(param.schema, ListSchema) and isinstance(param.schema.element_type, ObjectSchema)):
+                isinstance(param.schema, ListSchema) and isinstance(param.schema.element_type, ObjectSchema) or
+                isinstance(param.schema, DictionarySchema) and isinstance(param.schema.element_type, ObjectSchema)):
                 return True
         return False
 
