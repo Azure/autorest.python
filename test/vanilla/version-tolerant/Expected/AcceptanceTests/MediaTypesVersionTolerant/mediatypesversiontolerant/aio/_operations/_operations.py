@@ -49,7 +49,7 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
         :param input: Input parameter. Default value is None.
         :type input: IO or JSONType
-        :keyword content_type: Media type of the body sent to the API. Possible values are:
+        :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
          value is "application/json".
         :paramtype content_type: str
@@ -128,7 +128,7 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
         :param input: Input parameter. Default value is None.
         :type input: IO or JSONType
-        :keyword content_type: Media type of the body sent to the API. Possible values are:
+        :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
          value is "application/json".
         :paramtype content_type: str
@@ -246,7 +246,7 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
         :param message: The payload body.
         :type message: IO or JSONType
-        :keyword content_type: Media type of the body sent to the API. Possible values are:
+        :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json" or "application/octet-stream". Default value is None.
         :paramtype content_type: str
         :return: str
@@ -312,7 +312,7 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
         :param message: The payload body.
         :type message: IO or str
-        :keyword content_type: Media type of the body sent to the API. Possible values are:
+        :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json", "application/octet-stream", and "text/plain". Default value is
          "application/json".
         :paramtype content_type: str
@@ -377,8 +377,8 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
         :param message: The payload body.
         :type message: str or str
-        :keyword content_type: Media type of the body sent to the API. Possible values are:
-         "text/plain" or "application/json". Default value is "application/json".
+        :keyword content_type: Media type of the body sent to the API. Known values are: "text/plain"
+         or "application/json". Default value is "application/json".
         :paramtype content_type: str
         :return: str
         :rtype: str

@@ -60,7 +60,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             values = [self.schema.enum_type.get_declaration(v.value) for v in self.schema.values]
             if description and description[-1] != " ":
                 description += " "
-            description += "Possible values include: {}.".format(", ".join(values))
+            description += "Known values are: {}.".format(", ".join(values))
             if self.schema.default_value:
                 description += f' Default value: "{self.schema.default_value}".'
         return description

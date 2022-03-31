@@ -126,7 +126,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
             if isinstance(self.schema, ConstantSchema) and not self.constant:
                 if description:
                     description += " "
-                description += f"Possible values are {self.schema.get_declaration(self.schema.value)} or {None}."
+                description += f"Known values are {self.schema.get_declaration(self.schema.value)} or {None}."
             if self.has_default_value and not any(
                 l for l in ["default value is", "default is"] if l in description.lower()
             ):

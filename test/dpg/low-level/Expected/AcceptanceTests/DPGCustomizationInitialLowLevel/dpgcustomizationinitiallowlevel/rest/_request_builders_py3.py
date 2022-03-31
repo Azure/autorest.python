@@ -42,7 +42,7 @@ def build_get_model_request(mode: str, **kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == {
-                "received": "str"  # Required. Possible values include: "raw", "model".
+                "received": "str"  # Required. Known values are: "raw", "model".
             }
     """
 
@@ -96,7 +96,7 @@ def build_post_model_request(mode: str, *, json: JSONType = None, content: Any =
 
             # response body for status code(s): 200
             response.json() == {
-                "received": "str"  # Required. Possible values include: "raw", "model".
+                "received": "str"  # Required. Known values are: "raw", "model".
             }
     """
 
@@ -145,8 +145,8 @@ def build_get_pages_request(mode: str, **kwargs: Any) -> HttpRequest:
                 "nextLink": "str",  # Optional.
                 "values": [
                     {
-                        "received": "str"  # Required. Possible values include:
-                          "raw", "model".
+                        "received": "str"  # Required. Known values are: "raw",
+                          "model".
                     }
                 ]
             }
@@ -192,7 +192,7 @@ def build_lro_request(mode: str, **kwargs: Any) -> HttpRequest:
             # response body for status code(s): 200
             response.json() == {
                 "provisioningState": "str",  # Required.
-                "received": "str"  # Required. Possible values include: "raw", "model".
+                "received": "str"  # Required. Known values are: "raw", "model".
             }
     """
 

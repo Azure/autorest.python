@@ -57,7 +57,7 @@ class DPGClientOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "received": "str"  # Required. Possible values include: "raw", "model".
+                    "received": "str"  # Required. Known values are: "raw", "model".
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -119,7 +119,7 @@ class DPGClientOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "received": "str"  # Required. Possible values include: "raw", "model".
+                    "received": "str"  # Required. Known values are: "raw", "model".
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -184,8 +184,8 @@ class DPGClientOperationsMixin(MixinABC):
                     "nextLink": "str",  # Optional.
                     "values": [
                         {
-                            "received": "str"  # Required. Possible values include:
-                              "raw", "model".
+                            "received": "str"  # Required. Known values are: "raw",
+                              "model".
                         }
                     ]
                 }
@@ -303,7 +303,7 @@ class DPGClientOperationsMixin(MixinABC):
                 # response body for status code(s): 200
                 response.json() == {
                     "provisioningState": "str",  # Required.
-                    "received": "str"  # Required. Possible values include: "raw", "model".
+                    "received": "str"  # Required. Known values are: "raw", "model".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}

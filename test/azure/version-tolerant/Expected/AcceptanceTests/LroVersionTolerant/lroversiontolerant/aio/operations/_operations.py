@@ -204,9 +204,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -222,9 +222,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -358,9 +358,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -376,9 +376,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -523,9 +523,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -541,9 +541,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -690,9 +690,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -708,9 +708,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -837,9 +837,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -855,9 +855,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -982,8 +982,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "name": "str",  # Optional. Resource Name.
                         "properties": {
                             "provisioningState": "str",  # Optional.
-                            "provisioningStateValues": "str"  # Optional. Possible values
-                              include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                            "provisioningStateValues": "str"  # Optional. Known values
+                              are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
                               "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                         },
                         "tags": {
@@ -1106,9 +1106,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -1124,9 +1124,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -1254,9 +1254,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -1272,9 +1272,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -1411,9 +1411,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -1429,9 +1429,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -1561,9 +1561,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -1579,9 +1579,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -1718,9 +1718,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -1736,9 +1736,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -1868,9 +1868,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -1886,9 +1886,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -2018,9 +2018,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -2036,9 +2036,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -2178,9 +2178,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -2196,9 +2196,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -2341,9 +2341,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -2359,9 +2359,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -2502,9 +2502,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -2520,9 +2520,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -2665,9 +2665,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -2683,9 +2683,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -2826,9 +2826,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -2844,9 +2844,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -3209,9 +3209,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "id": "str",  # Optional. Sub Resource Id.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     }
                 }
 
@@ -3220,9 +3220,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "id": "str",  # Optional. Sub Resource Id.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     }
                 }
         """
@@ -3341,9 +3341,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "id": "str",  # Optional. Sub Resource Id.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     }
                 }
 
@@ -3352,9 +3352,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "id": "str",  # Optional. Sub Resource Id.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     }
                 }
         """
@@ -3476,9 +3476,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -3597,9 +3597,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -3718,9 +3718,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -3912,9 +3912,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -4028,9 +4028,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -4764,9 +4764,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -4891,9 +4891,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -4909,9 +4909,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -5031,9 +5031,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -5143,9 +5143,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -5256,9 +5256,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -5390,9 +5390,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -5408,9 +5408,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -5552,9 +5552,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -5570,9 +5570,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -5704,9 +5704,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -5832,9 +5832,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -5983,9 +5983,9 @@ class LRORetrysOperations:
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -6001,9 +6001,9 @@ class LRORetrysOperations:
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -6140,9 +6140,9 @@ class LRORetrysOperations:
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -6158,9 +6158,9 @@ class LRORetrysOperations:
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -6294,9 +6294,9 @@ class LRORetrysOperations:
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -6585,9 +6585,9 @@ class LRORetrysOperations:
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -6713,9 +6713,9 @@ class LRORetrysOperations:
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -6860,9 +6860,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -6878,9 +6878,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -7016,9 +7016,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -7034,9 +7034,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -7174,9 +7174,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -7192,9 +7192,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -7330,9 +7330,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -7348,9 +7348,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -7734,9 +7734,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -7857,9 +7857,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -7984,9 +7984,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -8117,9 +8117,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -8135,9 +8135,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -8274,9 +8274,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -8292,9 +8292,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -8440,9 +8440,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -8458,9 +8458,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -8759,9 +8759,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -8887,9 +8887,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -9012,9 +9012,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -9030,9 +9030,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -9171,9 +9171,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -9189,9 +9189,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -9337,9 +9337,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -9355,9 +9355,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -9747,9 +9747,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -9875,9 +9875,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -10003,9 +10003,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -10155,9 +10155,9 @@ class LROsCustomHeaderOperations:
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -10173,9 +10173,9 @@ class LROsCustomHeaderOperations:
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -10320,9 +10320,9 @@ class LROsCustomHeaderOperations:
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -10338,9 +10338,9 @@ class LROsCustomHeaderOperations:
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -10469,9 +10469,9 @@ class LROsCustomHeaderOperations:
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of
@@ -10598,9 +10598,9 @@ class LROsCustomHeaderOperations:
                     "name": "str",  # Optional. Resource Name.
                     "properties": {
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str"  # Optional. Possible values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", "OK".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Dictionary of

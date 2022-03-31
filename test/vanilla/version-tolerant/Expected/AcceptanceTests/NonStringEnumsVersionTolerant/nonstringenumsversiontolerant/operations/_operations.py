@@ -114,8 +114,8 @@ class IntOperations:
     def put(self, input: Optional[int] = None, **kwargs: Any) -> str:
         """Put an int enum.
 
-        :param input: Input int enum. Possible values are: 200, 403, 405, 406, and 429. Default value
-         is None.
+        :param input: Input int enum. Known values are: 200, 403, 405, 406, and 429. Default value is
+         None.
         :type input: int
         :return: str
         :rtype: str
@@ -168,7 +168,7 @@ class IntOperations:
     def get(self, **kwargs: Any) -> int:
         """Get an int enum.
 
-        :return: int. Possible values are: 200, 403, 405, 406, and 429.
+        :return: int. Known values are: 200, 403, 405, 406, and 429.
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -233,7 +233,7 @@ class FloatOperations:
     def put(self, input: Optional[float] = None, **kwargs: Any) -> str:
         """Put a float enum.
 
-        :param input: Input float enum. Possible values are: 200.4, 403.4, 405.3, 406.2, and 429.1.
+        :param input: Input float enum. Known values are: 200.4, 403.4, 405.3, 406.2, and 429.1.
          Default value is None.
         :type input: float
         :return: str
@@ -287,7 +287,7 @@ class FloatOperations:
     def get(self, **kwargs: Any) -> float:
         """Get a float enum.
 
-        :return: float. Possible values are: 200.4, 403.4, 405.3, 406.2, and 429.1.
+        :return: float. Known values are: 200.4, 403.4, 405.3, 406.2, and 429.1.
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
 

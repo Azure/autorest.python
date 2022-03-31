@@ -96,10 +96,9 @@ def build_get_array_request(**kwargs: Any) -> HttpRequest:
                     "properties": {
                         "p.name": "str",  # Optional.
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str",  # Optional. Possible
-                          values include: "Succeeded", "Failed", "canceled", "Accepted",
-                          "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-                          "OK".
+                        "provisioningStateValues": "str",  # Optional. Known values
+                          are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                         "type": "str"  # Optional.
                     },
                     "tags": {
@@ -239,10 +238,9 @@ def build_put_dictionary_request(*, json: JSONType = None, content: Any = None, 
                     "properties": {
                         "p.name": "str",  # Optional.
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str",  # Optional. Possible
-                          values include: "Succeeded", "Failed", "canceled", "Accepted",
-                          "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-                          "OK".
+                        "provisioningStateValues": "str",  # Optional. Known values
+                          are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                         "type": "str"  # Optional.
                     },
                     "tags": {
@@ -293,10 +291,9 @@ def build_get_dictionary_request(**kwargs: Any) -> HttpRequest:
                     "properties": {
                         "p.name": "str",  # Optional.
                         "provisioningState": "str",  # Optional.
-                        "provisioningStateValues": "str",  # Optional. Possible
-                          values include: "Succeeded", "Failed", "canceled", "Accepted",
-                          "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-                          "OK".
+                        "provisioningStateValues": "str",  # Optional. Known values
+                          are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                         "type": "str"  # Optional.
                     },
                     "tags": {
@@ -353,10 +350,10 @@ def build_put_resource_collection_request(*, json: JSONType = None, content: Any
                         "properties": {
                             "p.name": "str",  # Optional.
                             "provisioningState": "str",  # Optional.
-                            "provisioningStateValues": "str",  # Optional.
-                              Possible values include: "Succeeded", "Failed", "canceled",
-                              "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting",
-                              "Deleted", "OK".
+                            "provisioningStateValues": "str",  # Optional. Known
+                              values are: "Succeeded", "Failed", "canceled", "Accepted",
+                              "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+                              "OK".
                             "type": "str"  # Optional.
                         },
                         "tags": {
@@ -376,10 +373,10 @@ def build_put_resource_collection_request(*, json: JSONType = None, content: Any
                               :code:`<FlattenedProduct>`.
                             "provisioningState": "str",  # Optional. Dictionary
                               of :code:`<FlattenedProduct>`.
-                            "provisioningStateValues": "str",  # Optional.
-                              Possible values include: "Succeeded", "Failed", "canceled",
-                              "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting",
-                              "Deleted", "OK".
+                            "provisioningStateValues": "str",  # Optional. Known
+                              values are: "Succeeded", "Failed", "canceled", "Accepted",
+                              "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+                              "OK".
                             "type": "str"  # Optional. Dictionary of
                               :code:`<FlattenedProduct>`.
                         },
@@ -397,10 +394,9 @@ def build_put_resource_collection_request(*, json: JSONType = None, content: Any
                     "properties": {
                         "p.name": "str",  # Optional. Flattened product.
                         "provisioningState": "str",  # Optional. Flattened product.
-                        "provisioningStateValues": "str",  # Optional. Possible
-                          values include: "Succeeded", "Failed", "canceled", "Accepted",
-                          "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-                          "OK".
+                        "provisioningStateValues": "str",  # Optional. Known values
+                          are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                         "type": "str"  # Optional. Flattened product.
                     },
                     "tags": {
@@ -452,10 +448,10 @@ def build_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
                         "properties": {
                             "p.name": "str",  # Optional.
                             "provisioningState": "str",  # Optional.
-                            "provisioningStateValues": "str",  # Optional.
-                              Possible values include: "Succeeded", "Failed", "canceled",
-                              "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting",
-                              "Deleted", "OK".
+                            "provisioningStateValues": "str",  # Optional. Known
+                              values are: "Succeeded", "Failed", "canceled", "Accepted",
+                              "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+                              "OK".
                             "type": "str"  # Optional.
                         },
                         "tags": {
@@ -475,10 +471,10 @@ def build_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
                               :code:`<FlattenedProduct>`.
                             "provisioningState": "str",  # Optional. Dictionary
                               of :code:`<FlattenedProduct>`.
-                            "provisioningStateValues": "str",  # Optional.
-                              Possible values include: "Succeeded", "Failed", "canceled",
-                              "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting",
-                              "Deleted", "OK".
+                            "provisioningStateValues": "str",  # Optional. Known
+                              values are: "Succeeded", "Failed", "canceled", "Accepted",
+                              "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+                              "OK".
                             "type": "str"  # Optional. Dictionary of
                               :code:`<FlattenedProduct>`.
                         },
@@ -496,10 +492,9 @@ def build_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
                     "properties": {
                         "p.name": "str",  # Optional. Flattened product.
                         "provisioningState": "str",  # Optional. Flattened product.
-                        "provisioningStateValues": "str",  # Optional. Possible
-                          values include: "Succeeded", "Failed", "canceled", "Accepted",
-                          "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-                          "OK".
+                        "provisioningStateValues": "str",  # Optional. Known values
+                          are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                          "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                         "type": "str"  # Optional. Flattened product.
                     },
                     "tags": {

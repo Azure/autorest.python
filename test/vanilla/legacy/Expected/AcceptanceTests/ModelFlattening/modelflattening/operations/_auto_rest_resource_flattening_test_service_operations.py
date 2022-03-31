@@ -809,8 +809,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :type description: str
         :param max_product_display_name: Display name of product. Default value is None.
         :type max_product_display_name: str
-        :param capacity: Capacity of product. For example, 4 people. Possible values are "Large" or
-         None. Default value is "Large".
+        :param capacity: Capacity of product. For example, 4 people. Known values are "Large" or None.
+         Default value is "Large".
         :type capacity: str
         :param generic_value: Generic URL value. Default value is None.
         :type generic_value: str

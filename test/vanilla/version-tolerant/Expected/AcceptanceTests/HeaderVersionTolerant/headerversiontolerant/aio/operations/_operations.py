@@ -1172,7 +1172,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
          "empty".
         :paramtype scenario: str
-        :keyword value: Send a post request with header values 'GREY'. Possible values are: "White",
+        :keyword value: Send a post request with header values 'GREY'. Known values are: "White",
          "black", and "GREY". Default value is None.
         :paramtype value: str
         :return: None

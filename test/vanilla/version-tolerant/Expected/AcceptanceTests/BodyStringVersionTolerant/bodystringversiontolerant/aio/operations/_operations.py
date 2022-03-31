@@ -647,7 +647,7 @@ class EnumOperations:
     async def get_not_expandable(self, **kwargs: Any) -> str:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :return: str. Possible values are: "red color", "green-color", and "blue_color".
+        :return: str. Known values are: "red color", "green-color", and "blue_color".
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -696,7 +696,7 @@ class EnumOperations:
     ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :param string_body: string body. Possible values are: "red color", "green-color", and
+        :param string_body: string body. Known values are: "red color", "green-color", and
          "blue_color".
         :type string_body: str
         :return: None
@@ -740,7 +740,7 @@ class EnumOperations:
     async def get_referenced(self, **kwargs: Any) -> str:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :return: str. Possible values are: "red color", "green-color", and "blue_color".
+        :return: str. Known values are: "red color", "green-color", and "blue_color".
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -789,7 +789,7 @@ class EnumOperations:
     ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :param enum_string_body: enum string body. Possible values are: "red color", "green-color", and
+        :param enum_string_body: enum string body. Known values are: "red color", "green-color", and
          "blue_color".
         :type enum_string_body: str
         :return: None

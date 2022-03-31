@@ -829,7 +829,7 @@ def build_enum_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword enum_query: 'green color' enum value. Possible values are: "red color", "green color",
+    :keyword enum_query: 'green color' enum value. Known values are: "red color", "green color",
      and "blue color". Default value is None.
     :paramtype enum_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -872,8 +872,8 @@ def build_enum_null_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword enum_query: null string value. Possible values are: "red color", "green color", and
-     "blue color". Default value is None.
+    :keyword enum_query: null string value. Known values are: "red color", "green color", and "blue
+     color". Default value is None.
     :paramtype enum_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

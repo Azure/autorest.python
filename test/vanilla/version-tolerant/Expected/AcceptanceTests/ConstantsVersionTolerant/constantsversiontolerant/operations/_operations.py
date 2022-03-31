@@ -311,7 +311,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2". Default value is None.
+        :keyword input: Known values are: "value1" or "value2". Default value is None.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -352,7 +352,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
+        :keyword input: Known values are: "value1" or "value2". Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -393,7 +393,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are "value1" or None. Default value is None.
+        :keyword input: Known values are "value1" or None. Default value is None.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -434,7 +434,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are "value1" or None. Default value is "value1".
+        :keyword input: Known values are "value1" or None. Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -475,7 +475,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2".
+        :keyword input: Known values are: "value1" or "value2".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -516,7 +516,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
+        :keyword input: Known values are: "value1" or "value2". Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -643,7 +643,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2". Default value is None.
+        :keyword input: Known values are: "value1" or "value2". Default value is None.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -684,7 +684,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
+        :keyword input: Known values are: "value1" or "value2". Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -807,7 +807,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2".
+        :keyword input: Known values are: "value1" or "value2".
         :paramtype input: str
         :return: None
         :rtype: None
@@ -848,7 +848,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Possible values are: "value1" or "value2". Default value is "value1".
+        :keyword input: Known values are: "value1" or "value2". Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None

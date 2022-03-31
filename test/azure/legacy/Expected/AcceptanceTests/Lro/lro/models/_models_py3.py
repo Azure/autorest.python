@@ -18,9 +18,8 @@ if TYPE_CHECKING:
 class OperationResult(msrest.serialization.Model):
     """OperationResult.
 
-    :ivar status: The status of the request. Possible values include: "Succeeded", "Failed",
-     "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-     "OK".
+    :ivar status: The status of the request. Known values are: "Succeeded", "Failed", "canceled",
+     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
     :vartype status: str or ~lro.models.OperationResultStatus
     :ivar error:
     :vartype error: ~lro.models.OperationResultError
@@ -39,7 +38,7 @@ class OperationResult(msrest.serialization.Model):
         **kwargs
     ):
         """
-        :keyword status: The status of the request. Possible values include: "Succeeded", "Failed",
+        :keyword status: The status of the request. Known values are: "Succeeded", "Failed",
          "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
          "OK".
         :paramtype status: str or ~lro.models.OperationResultStatus
@@ -140,7 +139,7 @@ class Product(Resource):
     :vartype name: str
     :ivar provisioning_state:
     :vartype provisioning_state: str
-    :ivar provisioning_state_values: Possible values include: "Succeeded", "Failed", "canceled",
+    :ivar provisioning_state_values: Known values are: "Succeeded", "Failed", "canceled",
      "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
     :vartype provisioning_state_values: str or ~lro.models.ProductPropertiesProvisioningStateValues
     """
@@ -241,7 +240,7 @@ class SubProduct(SubResource):
     :vartype id: str
     :ivar provisioning_state:
     :vartype provisioning_state: str
-    :ivar provisioning_state_values: Possible values include: "Succeeded", "Failed", "canceled",
+    :ivar provisioning_state_values: Known values are: "Succeeded", "Failed", "canceled",
      "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
     :vartype provisioning_state_values: str or
      ~lro.models.SubProductPropertiesProvisioningStateValues

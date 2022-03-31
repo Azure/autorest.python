@@ -77,9 +77,8 @@ class OdataProductResult(msrest.serialization.Model):
 class OperationResult(msrest.serialization.Model):
     """OperationResult.
 
-    :ivar status: The status of the request. Possible values include: "Succeeded", "Failed",
-     "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-     "OK".
+    :ivar status: The status of the request. Known values are: "Succeeded", "Failed", "canceled",
+     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
     :vartype status: str or ~custompollerpager.models.OperationResultStatus
     """
 
@@ -92,7 +91,7 @@ class OperationResult(msrest.serialization.Model):
         **kwargs
     ):
         """
-        :keyword status: The status of the request. Possible values include: "Succeeded", "Failed",
+        :keyword status: The status of the request. Known values are: "Succeeded", "Failed",
          "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
          "OK".
         :paramtype status: str or ~custompollerpager.models.OperationResultStatus
