@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from copy import deepcopy
 from typing import List
-from ..models.imports import ImportType, FileImport, ImportModel, TypingSection
+from ..models.imports import ImportType, FileImport, ImportModel, TypingSection, TypeDefinition
 
 def _serialize_package(
     imports: List[ImportModel], delimiter: str
@@ -70,18 +70,26 @@ class FileImportSerializer:
             self.file_import.add_submodule_import("typing", "TYPE_CHECKING", ImportType.STDLIB)
 
     def _get_typing_definitions(self) -> str:
+        def declare_defintion(spacing: int, type_name: str, type_definition: TypeDefinition) -> List[str]:
+            ret: List[str] = []
+            definition_value = type_definition.async_definition if self.async_mode else type_definition.sync_definition
+            if type_definition.except_imports is None:
+                ret.append("{}{} = {}".format(spacing, type_name, definition_value))
+            else:
+                ret.append("{}try:".format((spacing)))
+                ret.append("    {}{} = {}".format(spacing, type_name, definition_value))
+                ret.append("{}except:".format(spacing))
+                ret.extend(map(lambda x: "    " + spacing + x,
+                                _get_import_clauses(type_definition.except_imports, "\n    ")))
+                ret.append("    {}{} = {}".format(spacing, type_name, definition_value))
+            return ret
+
         if not self.file_import.type_definitions:
             return ""
         spacing = "" if self.is_python3_file else "    "
-        declarations: List[str] = [f"\n{spacing}T = TypeVar('T')"]
-        declarations.extend([
-            "{}{} = {}".format(
-                spacing,
-                type_name,
-                values[1] if self.async_mode else values[0]
-            )
-            for type_name, values in self.file_import.type_definitions.items()
-        ])
+        declarations: List[str] = [""]
+        for type_name, value in self.file_import.type_definitions.items():
+            declarations.extend(declare_defintion(spacing, type_name, value))
         return "\n".join(declarations)
 
     def __str__(self) -> str:

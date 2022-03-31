@@ -16,10 +16,15 @@ from .._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, MutableMapping, Optional, TypeVar
+    from collections.abc import MutableMapping
+    from typing import Any, Optional
 
-    T = TypeVar("T")
-    JSONObject = MutableMapping[str, Any]
+    try:
+        JSONObject = MutableMapping[str, Any]
+    except:
+        from typing import MutableMapping
+
+        JSONObject = MutableMapping[str, Any]
 
 _SERIALIZER = Serializer()
 

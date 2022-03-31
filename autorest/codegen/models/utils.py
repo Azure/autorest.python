@@ -7,6 +7,7 @@ import re
 from typing import Any, TYPE_CHECKING
 import logging
 from .base_schema import BaseSchema
+from .imports import FileImport, ImportType, TypingSection, ImportModel
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -26,3 +27,11 @@ def get_schema(code_model: "CodeModel", schema: Any, serialized_name: str = "unk
     except KeyError:
         _LOGGER.critical("Unable to ref the object")
         raise
+
+def import_mutable_mapping(file_import: FileImport):
+    file_import.add_submodule_import(
+        "collections.abc", "MutableMapping", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
+    )
+    file_import.define_mypy_type("JSONObject", "MutableMapping[str, Any]", None, [ImportModel(
+        TypingSection.CONDITIONAL, ImportType.STDLIB, "typing", submodule_name="MutableMapping"
+    )])

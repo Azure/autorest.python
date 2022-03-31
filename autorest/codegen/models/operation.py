@@ -19,6 +19,7 @@ from .object_schema import ObjectSchema
 from .request_builder import RequestBuilder
 from .schema_request import SchemaRequest
 from .primitive_schemas import IOSchema
+from .utils import import_mutable_mapping
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -236,10 +237,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             )
 
         if self.use_json_object:
-            file_import.add_submodule_import(
-                "typing", "MutableMapping", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
-            )
-            file_import.define_mypy_type("JSONObject", "MutableMapping[str, Any]")
+            import_mutable_mapping(file_import)
         if self.code_model.options["tracing"] and self.want_tracing:
             file_import.add_submodule_import(
                 f"azure.core.tracing.decorator{'_async' if async_mode else ''}",

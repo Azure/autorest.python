@@ -13,7 +13,7 @@ from .schema_response import SchemaResponse
 from .imports import FileImport, ImportType, TypingSection
 from .parameter import Parameter
 from .primitive_schemas import JSONObjectSchema
-
+from .utils import import_mutable_mapping
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
@@ -94,10 +94,7 @@ class RequestBuilder(BaseBuilder):
             self.code_model.options["builders_visibility"] != "embedded" or
             self.code_model.options["add_python3_operation_files"]
         )):
-            file_import.add_submodule_import(
-                "typing", "MutableMapping", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
-            )
-            file_import.define_mypy_type("JSONObject", "MutableMapping[str, Any]")
+            import_mutable_mapping(file_import)
         return file_import
 
     @classmethod

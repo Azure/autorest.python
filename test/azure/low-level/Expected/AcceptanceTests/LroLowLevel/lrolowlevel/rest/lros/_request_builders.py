@@ -14,10 +14,15 @@ from azure.core.utils import case_insensitive_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, MutableMapping, Optional, TypeVar
+    from collections.abc import MutableMapping
+    from typing import Any, Optional
 
-    T = TypeVar("T")
-    JSONObject = MutableMapping[str, Any]
+    try:
+        JSONObject = MutableMapping[str, Any]
+    except:
+        from typing import MutableMapping
+
+        JSONObject = MutableMapping[str, Any]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
