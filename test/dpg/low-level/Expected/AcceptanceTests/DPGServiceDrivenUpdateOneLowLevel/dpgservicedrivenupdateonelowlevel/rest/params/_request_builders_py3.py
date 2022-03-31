@@ -142,11 +142,10 @@ def build_post_parameters_request(*, json: JSONType = None, content: Any = None,
      valid JSON entry is { url: "http://example.org/myimage.jpeg" }. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). I am a body parameter with a new content type. My only valid
-     JSON entry is { url: "http://example.org/myimage.jpeg" }. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
-    :keyword content_type: Media type of the body sent to the API. Known values are: "image/jpeg"
-     or "application/json". Default value is None.
+    :keyword content_type: Media type of the body sent to the API. Known values are:
+     "application/json" or "image/jpeg". Default value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -156,7 +155,9 @@ def build_post_parameters_request(*, json: JSONType = None, content: Any = None,
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = b'bytes'  # Optional.
+            json = {
+                "url": "str"  # Required.
+            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})

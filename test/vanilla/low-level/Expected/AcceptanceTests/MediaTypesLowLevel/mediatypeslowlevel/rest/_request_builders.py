@@ -14,7 +14,7 @@ from azure.core.utils import case_insensitive_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional, TypeVar, Union
+    from typing import Any, IO, Optional, TypeVar, Union
 
     T = TypeVar("T")
     JSONType = Any
@@ -37,10 +37,10 @@ def build_analyze_body_request(
      our example to find the input shape. Input parameter. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Input parameter. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :keyword content_type: Media type of the body sent to the API. Known values are:
-     "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
+     "application/json", "application/pdf", "image/jpeg", "image/png", and "image/tiff". Default
      value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -51,7 +51,9 @@ def build_analyze_body_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = b'bytes'  # Optional.
+            json = {
+                "source": "str"  # Optional. File source path.
+            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -89,10 +91,10 @@ def build_analyze_body_no_accept_header_request(
      our example to find the input shape. Input parameter. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Input parameter. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :keyword content_type: Media type of the body sent to the API. Known values are:
-     "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
+     "application/json", "application/pdf", "image/jpeg", "image/png", and "image/tiff". Default
      value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -103,7 +105,9 @@ def build_analyze_body_no_accept_header_request(
         .. code-block:: python
 
             # JSON input template you can fill out and use as your body input.
-            json = b'bytes'  # Optional.
+            json = {
+                "source": "str"  # Optional. File source path.
+            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -134,7 +138,7 @@ def build_content_type_with_encoding_request(
     into your code flow.
 
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Input parameter. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -177,7 +181,7 @@ def build_binary_body_with_two_content_types_request(
      our example to find the input shape. The payload body. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). The payload body. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :keyword content_type: Media type of the body sent to the API. Known values are:
      "application/json" or "application/octet-stream". Default value is None.
@@ -229,7 +233,7 @@ def build_binary_body_with_three_content_types_request(
      our example to find the input shape. The payload body. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). The payload body. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :keyword content_type: Media type of the body sent to the API. Known values are:
      "application/json", "application/octet-stream", and "text/plain". Default value is None.
@@ -279,10 +283,10 @@ def build_put_text_and_json_body_request(
      our example to find the input shape. The payload body. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). The payload body. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
-    :keyword content_type: Media type of the body sent to the API. Known values are: "text/plain"
-     or "application/json". Default value is None.
+    :keyword content_type: Media type of the body sent to the API. Known values are:
+     "application/json" or "text/plain". Default value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.

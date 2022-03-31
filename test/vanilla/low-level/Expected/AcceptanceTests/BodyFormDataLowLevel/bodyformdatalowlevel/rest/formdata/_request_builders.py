@@ -14,7 +14,7 @@ from azure.core.utils import case_insensitive_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, Optional, TypeVar
+    from typing import Any, Dict, IO, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
@@ -34,10 +34,10 @@ def build_upload_file_request(
     into your code flow.
 
     :keyword files: Multipart input for files. See the template in our example to find the input
-     shape. File to upload. Default value is None.
+     shape. Default value is None.
     :paramtype files: dict[str, any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). File to upload. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -86,7 +86,7 @@ def build_upload_file_via_body_request(
     into your code flow.
 
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). File to upload.
+     a byte iterator, or stream input).
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -125,10 +125,10 @@ def build_upload_files_request(
     into your code flow.
 
     :keyword files: Multipart input for files. See the template in our example to find the input
-     shape. Files to upload. Default value is None.
+     shape. Default value is None.
     :paramtype files: dict[str, any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Files to upload. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

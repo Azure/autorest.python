@@ -16,7 +16,7 @@
 
         {% endif %}
 {% endfor %}
-{% if serializer.want_example_template(builder) %}
+{% if serializer.get_example_template(builder) %}
 
 Example:
     .. code-block:: python

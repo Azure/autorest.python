@@ -25,10 +25,12 @@ from ..models import (
     RequestBuilderParameter,
     EnumSchema,
     SchemaResponse,
-    PrimitiveSchema,
+    ConstantSchema,
     ParameterStyle,
     ParameterLocation,
     ContentTypesContainer,
+    BodyKwargNames,
+    IOSchema,
 )
 from . import utils
 
@@ -140,7 +142,7 @@ def _serialize_flattened_body(builder) -> List[str]:
     return retval
 
 def _content_type_docstring(builder) -> str:
-    content_types = [f'"{c}"' for c in builder.parameters.content_types]
+    content_types = [f'"{c}"' for c in builder.content_type_to_schema_request]
     if len(content_types) == 2:
         possible_values_str = " or ".join(content_types)
     else:
@@ -212,10 +214,6 @@ class _BuilderSerializerProtocol(ABC):
     @abstractmethod
     def response_docstring(self, builder) -> List[str]:
         """Response portion of the docstring"""
-        ...
-
-    @abstractmethod
-    def want_example_template(self, builder) -> bool:
         ...
 
     @abstractmethod
@@ -302,13 +300,13 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
                 f":{param.docstring_type_keyword} { param.serialized_name }: { param.docstring_type }"
             )
 
-        # if len(builder.parameters.content_types) > 1:
-        #     description_list = [
-        #         _content_type_docstring(builder) if l.startswith(":keyword content_type:") else l
-        #         for l in description_list
-        #     ]
-        #     if not any(l for l in description_list if l.startswith(":keyword content_type:")):
-        #         description_list.append(_content_type_docstring(builder))
+        if len(builder.content_type_to_schema_request) > 1:
+            description_list = [
+                _content_type_docstring(builder) if l.startswith(":keyword content_type:") else l
+                for l in description_list
+            ]
+            if not any(l for l in description_list if l.startswith(":keyword content_type:")):
+                description_list.append(_content_type_docstring(builder))
         return description_list
 
     def param_description_and_response_docstring(self, builder) -> List[str]:
@@ -316,6 +314,8 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
 
     def _get_json_response_template_to_status_codes(self, builder) -> Dict[str, List[str]]:
         # successful status codes of responses that have bodies
+        if self.code_model.options["models_mode"] == "msrest":
+            return {}
         responses = [
             response
             for response in builder.responses
@@ -465,14 +465,6 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
             not p.in_method_signature
         ]
 
-    def want_example_template(self, builder) -> bool:
-        if self.code_model.options["builders_visibility"] != "public":
-            return False  # if we're not exposing rest layer, don't need to generate
-        if builder.parameters.has_body:
-            body_kwargs = builder.parameters.body_kwarg_name_to_content_types.keys()
-            return bool(body_kwargs.intersection({"json", "files", "data"}))
-        return bool(self._get_json_response_template_to_status_codes(builder))
-
     @property
     def _def(self) -> str:
         return "def"
@@ -495,9 +487,6 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
 
     def _json_example_param_name(self, builder) -> str:
         return "json"
-
-    def _has_json_example_template(self, builder) -> bool:
-        return "json" in builder.body_kwarg_name_to_content_types
 
     def _has_files_example_template(self, builder) -> bool:
         return "files" in builder.body_kwarg_name_to_content_types
@@ -561,6 +550,9 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
             url_value = f'kwargs.pop("template_url", {_escape_str(builder.url)})'
         return f"_url = {url_value}{'  # pylint: disable=line-too-long' if len(url_value) > 114 else ''}"
 
+    def _has_json_example_template(self, builder) -> bool:
+        return "json" in builder.body_kwarg_name_to_content_types and not builder.parameters.body[0].constant
+
 class RequestBuilderGenericSerializer(_RequestBuilderBaseSerializer):
     @property
     def _want_inline_type_hints(self) -> bool:
@@ -576,7 +568,7 @@ class RequestBuilderGenericSerializer(_RequestBuilderBaseSerializer):
         return builder.parameters.kwargs_to_pop(is_python3_file=False)
 
     def _body_params_to_pass_to_request_creation(self, builder) -> List[str]:
-        if builder.parameters.has_body and not builder.body_kwarg_name_to_content_types:
+        if builder.parameters.has_body and builder.parameters.body[0].constant:
             # this means we have a constant body
             # only doing json body in this case
             return ["json"]
@@ -598,7 +590,10 @@ class RequestBuilderPython3Serializer(_RequestBuilderBaseSerializer):
         return builder.parameters.kwargs_to_pop(is_python3_file=True)
 
     def _body_params_to_pass_to_request_creation(self, builder) -> List[str]:
-        body_kwargs = list(builder.body_kwarg_name_to_content_types.keys())
+        body_kwargs = [
+            b.serialized_name for b in builder.parameters
+            if b.is_body and b.created_body_kwarg
+        ]
         if body_kwargs:
             return body_kwargs
         if builder.parameters.has_body:
@@ -627,6 +622,16 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
     @property
     def serializer_name(self) -> str:
         return "self._serialize"
+
+    def _has_json_example_template(self, builder) -> bool:
+        return (
+            "json" in builder.body_kwarg_name_to_content_types and
+            self.code_model.options["models_mode"] != "msrest" and
+            isinstance(
+                builder.parameters.body[0].schema,
+                (ObjectSchema, DictionarySchema, ListSchema)
+            )
+        )
 
     def _response_docstring_type_wrapper(self, builder) -> List[str]:  # pylint: disable=unused-argument, no-self-use
         return []
@@ -705,30 +710,14 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         rtype_str = f":rtype: {self._response_docstring_type_template(builder).format(rtype)}"
         return [response_str, rtype_str, ":raises: ~azure.core.exceptions.HttpResponseError"]
 
-    def want_example_template(self, builder) -> bool:
-        if self.code_model.options['models_mode']:
-            return False
-        if builder.parameters.has_body:
-            if builder.parameters.multipart or builder.parameters.data_inputs:
-                return True
-            body_params = builder.parameters.body
-            return any([b for b in body_params if isinstance(b.schema, (DictionarySchema, ListSchema, ObjectSchema))])
-        return bool(self._get_json_response_template_to_status_codes(builder))
-
     def _json_example_param_name(self, builder) -> str:
         return builder.parameters.body[0].serialized_name
 
-    def _has_json_example_template(self, builder) -> bool:
-        return (
-            builder.parameters.has_body and
-            not (builder.parameters.multipart or builder.parameters.data_inputs)
-        )
-
     def _has_files_example_template(self, builder) -> bool:
-        return bool(builder.parameters.multipart)
+        return bool(builder.parameters.multipart) and self.code_model.options["version_tolerant"]
 
     def _has_data_example_template(self, builder) -> bool:
-        return bool(builder.parameters.data_inputs)
+        return bool(builder.parameters.data_inputs) and self.code_model.options["version_tolerant"]
 
     def _serialize_body_call(
         self, body_param: Parameter, body_kwarg: str, send_xml: bool, ser_ctxt: Optional[str], ser_ctxt_name: str
@@ -775,7 +764,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         retval: List[str] = []
         if body_kwarg == "data" or body_kwarg == "files":
             return retval
-        if not body_param.style == ParameterStyle.binary:
+        if not isinstance(body_param.schema, IOSchema) and body_kwarg == "json":
             retval.extend(self._serialize_body(builder, body_param, body_kwarg))
             return retval
         retval.append(f"_{body_kwarg} = {body_param.serialized_name}")
@@ -819,7 +808,10 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                 # this means we only have one kind of body.
                 # If there's json here, we default to json
                 chosen_kwarg = "json" if "json" in builder.body_kwarg_name_to_content_types else "content"
-                content_types_container: ContentTypesContainer = builder.body_kwarg_name_to_content_types[chosen_kwarg]
+                try:
+                    content_types_container: ContentTypesContainer = builder.body_kwarg_name_to_content_types[chosen_kwarg]
+                except KeyError:
+                    a = "b"
                 retval.append(f'    content_type = "{content_types_container.default_content_type}"')
                 retval.append(f"    _{chosen_kwarg} = {body_param.serialized_name}")
             else:
@@ -882,7 +874,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         retval.append("")
         retval.append(f"request = {request_path_name}(")
         for parameter in request_builder.parameters.method:
-            if (parameter.is_body):
+            if parameter.is_body and parameter.serialized_name not in builder.body_kwarg_name_to_content_types:
                 continue
             if (
                 is_next_request and
@@ -896,8 +888,6 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
                 continue
             high_level_name = cast(RequestBuilderParameter, parameter).name_in_high_level_operation
             retval.append(f"    {parameter.serialized_name}={high_level_name},")
-        for body_kwarg in builder.body_kwarg_name_to_content_types:
-            retval.append(f"    {body_kwarg}=_{body_kwarg},")
         if not self.code_model.options["version_tolerant"]:
             template_url = template_url or f"self.{builder.name}.metadata['url']"
             retval.append(f"    template_url={template_url},")

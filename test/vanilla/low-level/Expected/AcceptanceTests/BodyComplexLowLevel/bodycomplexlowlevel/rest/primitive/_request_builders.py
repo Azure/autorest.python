@@ -78,7 +78,7 @@ def build_put_int_request(
      our example to find the input shape. Please put -1 and 2. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put -1 and 2. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -172,8 +172,7 @@ def build_put_long_request(
      is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put 1099511627775 and -999511627788. Default value is
-     None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -266,7 +265,7 @@ def build_put_float_request(
      our example to find the input shape. Please put 1.05 and -0.003. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put 1.05 and -0.003. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -361,8 +360,7 @@ def build_put_double_request(
      -0.000000000000000000000000000000000000000000000000000000005. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put 3e-100 and
-     -0.000000000000000000000000000000000000000000000000000000005. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -456,7 +454,7 @@ def build_put_bool_request(
      our example to find the input shape. Please put true and false. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put true and false. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -551,8 +549,7 @@ def build_put_string_request(
      None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put 'goodrequest', '', and null. Default value is
-     None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -647,8 +644,7 @@ def build_put_date_request(
      None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put '0001-01-01' and '2016-02-29'. Default value is
-     None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -742,8 +738,7 @@ def build_put_date_time_request(
      '2015-05-18T11:38:00-08:00'. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put '0001-01-01T12:00:00-04:00' and
-     '2015-05-18T11:38:00-08:00'. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -837,8 +832,7 @@ def build_put_date_time_rfc1123_request(
      May 2015 11:38:00 GMT'. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May
-     2015 11:38:00 GMT'. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -930,7 +924,7 @@ def build_put_duration_request(
      our example to find the input shape. Please put 'P123DT22H14M12.011S'. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put 'P123DT22H14M12.011S'. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -1022,8 +1016,7 @@ def build_put_byte_request(
      F8 F7 F6). Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8
-     F7 F6). Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

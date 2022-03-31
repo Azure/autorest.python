@@ -74,7 +74,7 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], *, code_model, content_types: Optional[List[str]] = None
+        cls, yaml_data: Dict[str, Any], *, code_model
     ) -> "RequestBuilderParameter":
         http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
         name = yaml_data["language"]["python"]["name"]
@@ -107,5 +107,4 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
             original_parameter=yaml_data.get("originalParameter", None),
             flattened=yaml_data.get("flattened", False),
             client_default_value=yaml_data.get("clientDefaultValue"),
-            content_types=content_types,
         )

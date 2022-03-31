@@ -82,11 +82,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         original_parameter: Optional["Parameter"] = None,
         client_default_value: Optional[Any] = None,
         keyword_only: Optional[bool] = None,
-        content_types: Optional[List[str]] = None,
     ) -> None:
         super().__init__(yaml_data)
         self.code_model = code_model
-        self.schema = schema
+        self._schema = schema
         self.rest_api_name = rest_api_name
         self.serialized_name = serialized_name
         self._description = description
@@ -112,9 +111,21 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         self.is_kwarg = (self.rest_api_name == "Content-Type" or (self.constant and self.inputtable_by_user))
         self.possible_types: OrderedSet[str] = {self.schema.type_annotation(is_operation_file=True): None}
         self.possible_docstring_types: OrderedSet[str] = {self.schema.docstring_type: None}
+        self.created_body_kwarg = False
 
     def __hash__(self) -> int:
         return hash(self.serialized_name)
+
+    @property
+    def schema(self) -> BaseSchema:
+        return self._schema
+
+    @schema.setter
+    def schema(self, val: BaseSchema) -> None:
+        # if someone overrides the schema type, we also want to override the possible types and posible_docstring_types
+        self._schema = val
+        self.possible_types = {val.type_annotation(is_operation_file=True): None}
+        self.possible_docstring_types = {val.docstring_type: None}
 
     @property
     def description(self):
@@ -229,7 +240,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
 
     def _default_value(self) -> Tuple[Optional[Any], str, str]:
         if len(self.possible_types) > 1:
-            type_annot = f"Union[{','.join(list(self.possible_types.keys()))}]"
+            type_annot = f"Union[{', '.join(list(self.possible_types.keys()))}]"
         else:
             type_annot = list(self.possible_types.keys())[0]
         any_types = ["Any", "JSONType"]
@@ -345,7 +356,6 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         yaml_data: Dict[str, Any],
         *,
         code_model,
-        content_types: Optional[List[str]] = None
     ) -> "Parameter":
         http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
         serialized_name = yaml_data["language"]["python"]["name"]
@@ -377,14 +387,13 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
             original_parameter=yaml_data.get("originalParameter", None),
             flattened=yaml_data.get("flattened", False),
             client_default_value=yaml_data.get("clientDefaultValue"),
-            content_types=content_types
         )
 
     def imports(self) -> FileImport:
         file_import = self.schema.imports()
         if not self.required:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        if self.is_overloaded:
+        if len(self.possible_types) > 1:
             file_import.add_submodule_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         return file_import

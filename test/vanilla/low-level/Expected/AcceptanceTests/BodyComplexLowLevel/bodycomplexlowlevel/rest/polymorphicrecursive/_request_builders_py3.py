@@ -118,59 +118,7 @@ def build_put_valid_request(*, json: JSONType = None, content: Any = None, **kwa
      }. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put a salmon that looks like this:
-     {
-         "fishtype": "salmon",
-         "species": "king",
-         "length": 1,
-         "age": 1,
-         "location": "alaska",
-         "iswild": true,
-         "siblings": [
-             {
-                 "fishtype": "shark",
-                 "species": "predator",
-                 "length": 20,
-                 "age": 6,
-                 "siblings": [
-                     {
-                         "fishtype": "salmon",
-                         "species": "coho",
-                         "length": 2,
-                         "age": 2,
-                         "location": "atlantic",
-                         "iswild": true,
-                         "siblings": [
-                             {
-                                 "fishtype": "shark",
-                                 "species": "predator",
-                                 "length": 20,
-                                 "age": 6
-                             },
-                             {
-                                 "fishtype": "sawshark",
-                                 "species": "dangerous",
-                                 "length": 10,
-                                 "age": 105
-                             }
-                         ]
-                     },
-                     {
-                         "fishtype": "sawshark",
-                         "species": "dangerous",
-                         "length": 10,
-                         "age": 105
-                     }
-                 ]
-             },
-             {
-                 "fishtype": "sawshark",
-                 "species": "dangerous",
-                 "length": 10,
-                 "age": 105
-             }
-         ]
-     }. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

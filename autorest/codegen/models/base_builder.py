@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Callable, Dict, List, Optional, Union, NamedTuple, cast
+from typing import Any, Callable, Dict, List, Optional, Union, NamedTuple, cast, TYPE_CHECKING
 from enum import Enum
 
 from autorest.codegen.models.primitive_schemas import StringSchema
@@ -12,9 +12,12 @@ from .schema_response import SchemaResponse
 from .schema_request import SchemaRequest
 from .parameter import Parameter, ParameterLocation
 from .object_schema import ObjectSchema
-from .enum_schema import EnumSchema, EnumValue
+from .enum_schema import EnumSchema, EnumValue, get_enum_schema
 from .constant_schema import ConstantSchema
 from .utils import JSON_REGEXP
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 _M4_HEADER_PARAMETERS = ["content_type", "accept"]
 
@@ -29,7 +32,7 @@ class ContentTypesContainer(NamedTuple):
     default_content_type: str
     content_types: List[str]
 
-def _get_chosen_parameter(overloaded_parameters: List[Parameter]) -> Parameter:
+def _get_chosen_parameter(overloaded_parameters: List[Parameter], code_model: "CodeModel") -> Parameter:
     """Choose a parameter to elevate to the main operation depending on its location.
 
     Right now we only see body or header parameters here, may change in the future
@@ -89,17 +92,20 @@ def _get_chosen_parameter(overloaded_parameters: List[Parameter]) -> Parameter:
                 )
                 for param in overloaded_parameters
             ]
-            chosen_parameter.schema = EnumSchema(namespace="", yaml_data={}, description="", name="", values=values, enum_type=StringSchema("", {"type": "str"}))
+            chosen_parameter.schema = get_enum_schema(code_model)(namespace="", yaml_data={}, description="", name="", values=values, enum_type=StringSchema("", {"type": "str"}))
         return chosen_parameter
 
-def _unify_overloaded_parameters(overloaded_parameters: List[Parameter]) -> Parameter:
+def _unify_overloaded_parameters(overloaded_parameters: List[Parameter], code_model: "CodeModel") -> Parameter:
     """Unify the overloaded parameters into one parameter for the main method
 
     When parameters are overloaded, we need to create one unified
     parameter on the actual function.
     """
-    chosen_parameter = _get_chosen_parameter(overloaded_parameters)
+    chosen_parameter = _get_chosen_parameter(overloaded_parameters, code_model)
     for param in overloaded_parameters:
+        # we don't want to add string if we've already seen enums
+        if isinstance(chosen_parameter.schema, EnumSchema) and isinstance(param.schema, ConstantSchema):
+            continue
         for type in param.possible_types:
             chosen_parameter.possible_types[type] = None
         for type in param.possible_docstring_types:
@@ -135,7 +141,7 @@ def create_parameters(
             f"The body parameter with multiple media types has different names: {', '.join(non_header_keys)}"
         )
         for _, overloaded_parameters in overloaded_parameters_dict.items():
-            parameters.append(_unify_overloaded_parameters(overloaded_parameters))
+            parameters.append(_unify_overloaded_parameters(overloaded_parameters, code_model))
 
     parameters_index = {id(parameter.yaml_data): parameter for parameter in parameters}
 

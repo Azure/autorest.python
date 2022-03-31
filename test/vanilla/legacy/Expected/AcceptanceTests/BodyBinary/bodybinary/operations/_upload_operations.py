@@ -27,9 +27,10 @@ from .._vendor import _convert_request
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, IO, Optional, TypeVar
+    from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union
 
     T = TypeVar("T")
+    JSONType = Any
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -100,14 +101,14 @@ class UploadOperations(object):
     @distributed_trace
     def file(  # pylint: disable=inconsistent-return-statements
         self,
-        file_param,  # type: IO
+        file_param,  # type: Union[IO, JSONType]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Uploading json file.
 
         :param file_param: JSON file with payload { "more": "cowbell" }.
-        :type file_param: IO
+        :type file_param: IO or JSONType
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -124,11 +125,11 @@ class UploadOperations(object):
         )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _content = file_param
+        _json = file_param
 
         request = build_file_request(
             content_type=content_type,
-            content=_content,
+            json=_json,
             template_url=self.file.metadata["url"],
             headers=_headers,
             params=_params,

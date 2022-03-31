@@ -48,8 +48,9 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
         :param input: Input parameter. Default value is None.
         :type input: JSONType or IO
-        :keyword content_type: Upload file type. Known values are: "application/pdf", "image/jpeg",
-         "image/png", "image/tiff", and "application/json". Default value is None.
+        :keyword content_type: Media type of the body sent to the API. Known values are:
+         "application/json", "application/pdf", "image/jpeg", "image/png", and "image/tiff". Default
+         value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -124,8 +125,9 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
         :param input: Input parameter. Default value is None.
         :type input: JSONType or IO
-        :keyword content_type: Upload file type. Known values are: "application/pdf", "image/jpeg",
-         "image/png", "image/tiff", and "application/json". Default value is None.
+        :keyword content_type: Media type of the body sent to the API. Known values are:
+         "application/json", "application/pdf", "image/jpeg", "image/png", and "image/tiff". Default
+         value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -243,8 +245,8 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
         :param message: The payload body.
         :type message: IO or JSONType
-        :keyword content_type: Upload file type. Known values are: "application/json" or
-         "application/octet-stream". Default value is None.
+        :keyword content_type: Media type of the body sent to the API. Known values are:
+         "application/json" or "application/octet-stream". Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -307,8 +309,8 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
         :param message: The payload body.
         :type message: IO or JSONType or str
-        :keyword content_type: Upload file type. Known values are: "application/json",
-         "application/octet-stream", and "text/plain". Default value is None.
+        :keyword content_type: Media type of the body sent to the API. Known values are:
+         "application/json", "application/octet-stream", and "text/plain". Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -362,15 +364,13 @@ class MediaTypesClientOperationsMixin(MixinABC):
         return cast(str, deserialized)
 
     @distributed_trace_async
-    async def put_text_and_json_body(
-        self, message: Union[str, JSONType], *, content_type: Optional[str] = None, **kwargs: Any
-    ) -> str:
+    async def put_text_and_json_body(self, message: str, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
         """Body that's either text/plain or application/json.
 
         :param message: The payload body.
-        :type message: str or JSONType
-        :keyword content_type: Upload file type. Known values are: "application/json" or "text/plain".
-         Default value is None.
+        :type message: str
+        :keyword content_type: Media type of the body sent to the API. Known values are:
+         "application/json" or "text/plain". Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str

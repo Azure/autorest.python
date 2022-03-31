@@ -41,11 +41,10 @@ def build_update_pet_with_form_request(
     :param pet_id: ID of pet that needs to be updated.
     :type pet_id: int
     :keyword data: Pass in dictionary that contains form data to include in the body of the
-     request. Can take a value of dog, or cat, or fish. Default value is None.
+     request. Default value is None.
     :paramtype data: dict[str, any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Can take a value of dog, or cat, or fish. Default value is
-     None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -102,11 +101,10 @@ def build_partial_constant_body_request(
     into your code flow.
 
     :keyword data: Pass in dictionary that contains form data to include in the body of the
-     request. Indicates the name of your Azure container registry. Default value is None.
+     request. Default value is None.
     :paramtype data: dict[str, any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Indicates the name of your Azure container registry. Default
-     value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

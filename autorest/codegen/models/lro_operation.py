@@ -97,6 +97,7 @@ class LROOperation(Operation):
             want_tracing=False,
         )
         operation.request_builder = self.request_builder
+        operation.content_type_to_schema_request = self.content_type_to_schema_request
         return operation
 
     @property

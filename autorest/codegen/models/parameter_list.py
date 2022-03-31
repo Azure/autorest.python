@@ -12,6 +12,7 @@ from .parameter import Parameter, ParameterLocation
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .primitive_schemas import AnySchema, StringSchema
+from .request_builder_parameter import RequestBuilderParameter
 from .utils import JSON_REGEXP
 
 
@@ -109,7 +110,7 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
 
     @property
     def grouped(self) -> List[Parameter]:
-        return self.get_from_predicate(lambda parameter: cast(bool, parameter.grouped_by))
+        return self.get_from_predicate(lambda parameter: cast(bool, parameter.grouped_by) and not parameter.created_body_kwarg)
 
     @property
     def groupers(self) -> List[Parameter]:
@@ -137,13 +138,13 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
     @property
     def multipart(self) -> List[Parameter]:
         return self.get_from_predicate(
-            lambda parameter: parameter.is_multipart and not parameter.is_keyword_only
+            lambda parameter: parameter.is_multipart and not parameter.created_body_kwarg
         )
 
     @property
     def data_inputs(self) -> List[Parameter]:
         return self.get_from_predicate(
-            lambda parameter: parameter.is_data_input and not parameter.is_keyword_only
+            lambda parameter: parameter.is_data_input and not parameter.created_body_kwarg
         )
 
     @property

@@ -153,6 +153,11 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             if response.has_body:
                 file_import.merge(cast(BaseSchema, response.schema).imports())
 
+        for schema_request in self.schema_requests:
+            for param in schema_request.parameters:
+                if param.location != ParameterLocation.Body:
+                    file_import.merge(param.imports())
+
         response_types = [r.type_annotation(is_operation_file=True) for r in self.responses if r.has_body]
         if len(set(response_types)) > 1:
             file_import.add_submodule_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
@@ -227,9 +232,14 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                 f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
             )
 
-        if self.code_model.options["version_tolerant"] and (
+        if not self.code_model.options["models_mode"] and (
             self.parameters.has_body or
             any(r for r in self.responses if r.has_body)
+        ):
+            file_import.define_mypy_type("JSONType", "Any")
+        if (
+            "json" in self.body_kwarg_name_to_content_types and
+            isinstance(self.parameters.body[0].schema, IOSchema)
         ):
             file_import.define_mypy_type("JSONType", "Any")
         if self.code_model.options["tracing"] and self.want_tracing:
@@ -285,14 +295,17 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             ],
             content_type_to_schema_request=content_type_to_schema_request,
         )
-        if len(operation_cls.body_kwarg_name_to_content_types) > 1:
+        if len(operation_cls.content_type_to_schema_request) > 1:
             for p in operation_cls.parameters.parameters:
                 if p.rest_api_name == "Content-Type":
                     p.is_keyword_only = True
-            if "json" in operation_cls.body_kwarg_name_to_content_types:
-                operation_cls.parameters.body[0].possible_types["JSONType"] = None
-                operation_cls.parameters.body[0].possible_docstring_types["JSONType"] = None
-            if "text/plain" in operation_cls.content_type_to_schema_request:
-                operation_cls.parameters.body[0].possible_types["str"] = None
-                operation_cls.parameters.body[0].possible_docstring_types["str"] = None
+        if (
+            "json" in operation_cls.body_kwarg_name_to_content_types and
+            isinstance(operation_cls.parameters.body[0].schema, IOSchema)
+        ):
+            operation_cls.parameters.body[0].possible_types["JSONType"] = None
+            operation_cls.parameters.body[0].possible_docstring_types["JSONType"] = None
+        if "text/plain" in operation_cls.content_type_to_schema_request:
+            operation_cls.parameters.body[0].possible_types["str"] = None
+            operation_cls.parameters.body[0].possible_docstring_types["str"] = None
         return operation_cls

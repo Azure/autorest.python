@@ -40,7 +40,7 @@ def build_post_required_request(
      our example to find the input shape.  Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).  Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :keyword custom_header:  Default value is None.
     :paramtype custom_header: str

@@ -36,7 +36,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_analyze_body_request(*, json: JSONType = None, content: Optional[IO] = None, **kwargs: Any) -> HttpRequest:
+def build_analyze_body_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -54,7 +54,7 @@ def build_analyze_body_request(*, json: JSONType = None, content: Optional[IO] =
 
 
 def build_analyze_body_no_accept_header_request(
-    *, json: JSONType = None, content: Optional[IO] = None, **kwargs: Any
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -69,7 +69,7 @@ def build_analyze_body_no_accept_header_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_content_type_with_encoding_request(*, content: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_content_type_with_encoding_request(*, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -87,7 +87,7 @@ def build_content_type_with_encoding_request(*, content: Optional[str] = None, *
 
 
 def build_binary_body_with_two_content_types_request(
-    *, json: Optional[IO] = None, content: Optional[IO] = None, **kwargs: Any
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -106,7 +106,7 @@ def build_binary_body_with_two_content_types_request(
 
 
 def build_binary_body_with_three_content_types_request(
-    *, json: Optional[IO] = None, content: Optional[IO] = None, **kwargs: Any
+    *, json: JSONType = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -124,9 +124,7 @@ def build_binary_body_with_three_content_types_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_put_text_and_json_body_request(
-    *, json: Optional[str] = None, content: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_text_and_json_body_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -152,8 +150,9 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
         :param input: Input parameter. Default value is None.
         :type input: JSONType or IO
-        :keyword content_type: Upload file type. Known values are: "application/pdf", "image/jpeg",
-         "image/png", "image/tiff", and "application/json". Default value is None.
+        :keyword content_type: Media type of the body sent to the API. Known values are:
+         "application/json", "application/pdf", "image/jpeg", "image/png", and "image/tiff". Default
+         value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -228,8 +227,9 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
         :param input: Input parameter. Default value is None.
         :type input: JSONType or IO
-        :keyword content_type: Upload file type. Known values are: "application/pdf", "image/jpeg",
-         "image/png", "image/tiff", and "application/json". Default value is None.
+        :keyword content_type: Media type of the body sent to the API. Known values are:
+         "application/json", "application/pdf", "image/jpeg", "image/png", and "image/tiff". Default
+         value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -347,8 +347,8 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
         :param message: The payload body.
         :type message: IO or JSONType
-        :keyword content_type: Upload file type. Known values are: "application/json" or
-         "application/octet-stream". Default value is None.
+        :keyword content_type: Media type of the body sent to the API. Known values are:
+         "application/json" or "application/octet-stream". Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -411,8 +411,8 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
         :param message: The payload body.
         :type message: IO or JSONType or str
-        :keyword content_type: Upload file type. Known values are: "application/json",
-         "application/octet-stream", and "text/plain". Default value is None.
+        :keyword content_type: Media type of the body sent to the API. Known values are:
+         "application/json", "application/octet-stream", and "text/plain". Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -466,15 +466,13 @@ class MediaTypesClientOperationsMixin(MixinABC):
         return cast(str, deserialized)
 
     @distributed_trace
-    def put_text_and_json_body(
-        self, message: Union[str, JSONType], *, content_type: Optional[str] = None, **kwargs: Any
-    ) -> str:
+    def put_text_and_json_body(self, message: str, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
         """Body that's either text/plain or application/json.
 
         :param message: The payload body.
-        :type message: str or JSONType
-        :keyword content_type: Upload file type. Known values are: "application/json" or "text/plain".
-         Default value is None.
+        :type message: str
+        :keyword content_type: Media type of the body sent to the API. Known values are:
+         "application/json" or "text/plain". Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str

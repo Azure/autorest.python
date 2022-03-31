@@ -16,7 +16,7 @@ from .._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, List, Optional, TypeVar
+    from typing import Any, Dict, IO, List, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
@@ -36,7 +36,7 @@ def build_operation_with_content_param_request(
     into your code flow.
 
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Pass in b'hello, world'.
+     a byte iterator, or stream input).
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -78,7 +78,7 @@ def build_operation_with_json_param_request(
      our example to find the input shape. Pass in {'hello': 'world'}. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Pass in {'hello': 'world'}. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -123,10 +123,10 @@ def build_operation_with_data_param_request(
     into your code flow.
 
     :keyword data: Pass in dictionary that contains form data to include in the body of the
-     request. Pass in 'hello'. Default value is None.
+     request. Default value is None.
     :paramtype data: dict[str, any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Pass in 'hello'. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -174,11 +174,10 @@ def build_operation_with_files_param_request(
     into your code flow.
 
     :keyword files: Multipart input for files. See the template in our example to find the input
-     shape. Files to upload. Pass in list of input streams. Default value is None.
+     shape. Default value is None.
     :paramtype files: dict[str, any]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Files to upload. Pass in list of input streams. Default
-     value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

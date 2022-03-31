@@ -57,7 +57,7 @@ class AzureKeyCredentialSchema(CredentialSchema):
 
 class TokenCredentialSchema(CredentialSchema):
     def __init__(self, async_mode) -> None:
-        super(TokenCredentialSchema, self).__init__()
+        super().__init__()
         self.async_mode = async_mode
         self.async_type = "~azure.core.credentials_async.AsyncTokenCredential"
         self.sync_type = "~azure.core.credentials.TokenCredential"

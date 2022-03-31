@@ -633,17 +633,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                model = {
-                    "RefToModel": {
-                        "ID": "str"  # Optional. The id of the res.
-                    },
-                    "Something": "str"  # Optional. Something else (just to avoid flattening).
-                }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -741,17 +730,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                model = {
-                    "RefToModel": {
-                        "ID": "str"  # Optional. The id of the res.
-                    },
-                    "Something": "str"  # Optional. Something else (just to avoid flattening).
-                }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -857,25 +835,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                slideshow = {
-                    "author": "str",  # Optional.
-                    "date": "str",  # Optional.
-                    "slides": [
-                        {
-                            "items": [
-                                "str"  # Optional.
-                            ],
-                            "title": "str",  # Optional.
-                            "type": "str"  # Optional.
-                        }
-                    ],
-                    "title": "str"  # Optional.
-                }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -975,19 +934,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                wrapped_lists = {
-                    "BadApples": [
-                        "str"  # Optional.
-                    ],
-                    "GoodApples": [
-                        "str"  # Optional.
-                    ]
-                }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1130,25 +1076,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                slideshow = {
-                    "author": "str",  # Optional.
-                    "date": "str",  # Optional.
-                    "slides": [
-                        {
-                            "items": [
-                                "str"  # Optional.
-                            ],
-                            "title": "str",  # Optional.
-                            "type": "str"  # Optional.
-                        }
-                    ],
-                    "title": "str"  # Optional.
-                }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1248,19 +1175,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                apple_barrel = {
-                    "BadApples": [
-                        "str"  # Optional.
-                    ],
-                    "GoodApples": [
-                        "str"  # Optional.
-                    ]
-                }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1360,19 +1274,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                bananas = [
-                    {
-                        "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
-                          you should reconsider eating this banana.
-                        "flavor": "str",  # Optional.
-                        "name": "str"  # Optional.
-                    }
-                ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1472,19 +1373,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                bananas = [
-                    {
-                        "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
-                          you should reconsider eating this banana.
-                        "flavor": "str",  # Optional.
-                        "name": "str"  # Optional.
-                    }
-                ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1584,19 +1472,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                bananas = [
-                    {
-                        "expiration": "2020-02-20 00:00:00",  # Optional. The time at which
-                          you should reconsider eating this banana.
-                        "flavor": "str",  # Optional.
-                        "name": "str"  # Optional.
-                    }
-                ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1694,17 +1569,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                banana = {
-                    "expiration": "2020-02-20 00:00:00",  # Optional. The time at which you
-                      should reconsider eating this banana.
-                    "flavor": "str",  # Optional.
-                    "name": "str"  # Optional.
-                }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1970,90 +1834,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                properties = {
-                    "Cors": [
-                        {
-                            "AllowedHeaders": "str",  # Required. the request headers
-                              that the origin domain may specify on the CORS request.
-                            "AllowedMethods": "str",  # Required. The methods (HTTP
-                              request verbs) that the origin domain may use for a CORS request. (comma
-                              separated).
-                            "AllowedOrigins": "str",  # Required. The origin domains that
-                              are permitted to make a request against the storage service via CORS. The
-                              origin domain is the domain from which the request originates. Note that
-                              the origin must be an exact case-sensitive match with the origin that the
-                              user age sends to the service. You can also use the wildcard character
-                              '*' to allow all origin domains to make requests via CORS.
-                            "ExposedHeaders": "str",  # Required. The response headers
-                              that may be sent in the response to the CORS request and exposed by the
-                              browser to the request issuer.
-                            "MaxAgeInSeconds": 0  # Required. The maximum amount time
-                              that a browser should cache the preflight OPTIONS request.
-                        }
-                    ],
-                    "DefaultServiceVersion": "str",  # Optional. The default version to use for
-                      requests to the Blob service if an incoming request's version is not specified.
-                      Possible values include version 2008-10-27 and all more recent versions.
-                    "DeleteRetentionPolicy": {
-                        "Days": 0,  # Optional. Indicates the number of days that metrics or
-                          logging or soft-deleted data should be retained. All data older than this
-                          value will be deleted.
-                        "Enabled": bool  # Required. Indicates whether a retention policy is
-                          enabled for the storage service.
-                    },
-                    "HourMetrics": {
-                        "Enabled": bool,  # Required. Indicates whether metrics are enabled
-                          for the Blob service.
-                        "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
-                          generate summary statistics for called API operations.
-                        "RetentionPolicy": {
-                            "Days": 0,  # Optional. Indicates the number of days that
-                              metrics or logging or soft-deleted data should be retained. All data
-                              older than this value will be deleted.
-                            "Enabled": bool  # Required. Indicates whether a retention
-                              policy is enabled for the storage service.
-                        },
-                        "Version": "str"  # Optional. The version of Storage Analytics to
-                          configure.
-                    },
-                    "Logging": {
-                        "Delete": bool,  # Required. Indicates whether all delete requests
-                          should be logged.
-                        "Read": bool,  # Required. Indicates whether all read requests should
-                          be logged.
-                        "RetentionPolicy": {
-                            "Days": 0,  # Optional. Indicates the number of days that
-                              metrics or logging or soft-deleted data should be retained. All data
-                              older than this value will be deleted.
-                            "Enabled": bool  # Required. Indicates whether a retention
-                              policy is enabled for the storage service.
-                        },
-                        "Version": "str",  # Required. The version of Storage Analytics to
-                          configure.
-                        "Write": bool  # Required. Indicates whether all write requests
-                          should be logged.
-                    },
-                    "MinuteMetrics": {
-                        "Enabled": bool,  # Required. Indicates whether metrics are enabled
-                          for the Blob service.
-                        "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
-                          generate summary statistics for called API operations.
-                        "RetentionPolicy": {
-                            "Days": 0,  # Optional. Indicates the number of days that
-                              metrics or logging or soft-deleted data should be retained. All data
-                              older than this value will be deleted.
-                            "Enabled": bool  # Required. Indicates whether a retention
-                              policy is enabled for the storage service.
-                        },
-                        "Version": "str"  # Optional. The version of Storage Analytics to
-                          configure.
-                    }
-                }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2176,24 +1956,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                properties = [
-                    {
-                        "AccessPolicy": {
-                            "Expiry": "2020-02-20 00:00:00",  # Required. the date-time
-                              the policy expires.
-                            "Permission": "str",  # Required. the permissions for the acl
-                              policy.
-                            "Start": "2020-02-20 00:00:00"  # Required. the date-time the
-                              policy is active.
-                        },
-                        "Id": "str"  # Required. a unique id.
-                    }
-                ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2585,14 +2347,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                slideshow = {
-                    "Bytes": bytearray("bytearray", encoding="utf-8")  # Optional.
-                }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -2685,14 +2439,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                model = {
-                    "Url": str  # Optional.
-                }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})

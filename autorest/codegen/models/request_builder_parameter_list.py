@@ -3,8 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from copy import copy
-from typing import List, Optional, TypeVar, Dict
+from typing import List, Optional, cast, TypeVar, Dict
+
+from .base_schema import BaseSchema
 from .request_builder_parameter import RequestBuilderParameter
 from .parameter_list import ParameterList
 from .parameter import ParameterLocation, Parameter
@@ -31,74 +32,110 @@ class RequestBuilderParameterList(ParameterList):
         )
         self.parameters: List[RequestBuilderParameter] = parameters or []  # type: ignore
 
-    def _change_body_param_name(self, parameter: Parameter, name: str) -> None:
-        parameter.serialized_name = name
-        parameter.is_keyword_only = True
-        parameter.flattened = False
+    def _create_request_builder_parameter(
+        self, parameter: Parameter, name: str, schema: BaseSchema, description: str
+    ) -> RequestBuilderParameter:
+        parameter.need_import = False
+        retval = RequestBuilderParameter(
+            code_model=parameter.code_model,
+            yaml_data=parameter.yaml_data,
+            schema=schema,
+            rest_api_name=parameter.rest_api_name,
+            serialized_name=name,
+            description=description,
+            implementation=parameter.implementation,
+            required=parameter.required,
+            location=parameter.location,
+            skip_url_encoding=parameter.skip_url_encoding,
+            constraints=parameter.constraints,
+            target_property_name=parameter.target_property_name,
+            style=parameter.style,
+            explode=parameter.explode,
+            flattened=False,
+            grouped_by=parameter.grouped_by,
+            original_parameter=parameter.original_parameter,
+            client_default_value=parameter.client_default_value,
+            keyword_only=True,
+        )
+        retval.created_body_kwarg = True
+        return retval
+
+    def _update_constant_params(self):
+        # we don't currently have a fully constant data or files input
+        # so we don't need to modify the body kwarg
+        constant_bodies = [
+            p for p in self.parameters
+            if p.location == ParameterLocation.Body
+            and p.constant
+            and not p.is_data_input
+            and not p.is_multipart
+        ]
+        for constant_body in constant_bodies:
+            constant_body.serialized_name = "json"
+            constant_body.created_body_kwarg = True
 
     def _add_files_kwarg(
         self, body_param_base
     ) -> RequestBuilderParameter:
-        file_kwarg = copy(body_param_base)
-        self._change_body_param_name(file_kwarg, "files")
-        file_kwarg.schema = DictionarySchema(
+        description = (
+            "Multipart input for files. See the template in our example to find the input shape."
+        )
+        schema = DictionarySchema(
             namespace="",
             yaml_data={},
             element_type=AnySchema(namespace="", yaml_data={}),
         )
-        file_kwarg.description = (
-            "Multipart input for files. See the template in our example to find the input shape. " +
-            file_kwarg.description
+        return self._create_request_builder_parameter(
+            body_param_base, name="files", schema=schema, description=description
         )
-        return file_kwarg
 
     def _add_data_kwarg(
         self, body_param_base
     ) -> RequestBuilderParameter:
-        data_kwarg = copy(body_param_base)
-        self._change_body_param_name(data_kwarg, "data")
-        data_kwarg.schema = DictionarySchema(
+        description = (
+            "Pass in dictionary that contains form data to include in the body of the request."
+        )
+        schema = DictionarySchema(
             namespace="",
             yaml_data={},
             element_type=AnySchema(namespace="", yaml_data={}),
         )
-        data_kwarg.description = (
-            "Pass in dictionary that contains form data to include in the body of the request. " +
-            data_kwarg.description
+        return self._create_request_builder_parameter(
+            body_param_base,
+            name="data",
+            schema=schema,
+            description=description,
         )
-        return data_kwarg
 
     def _add_json_kwarg(
         self, body_param_base
     ) -> RequestBuilderParameter:
-        json_kwarg = copy(body_param_base)
-        self._change_body_param_name(json_kwarg, "json")
-        json_kwarg.description = (
+        description = (
             "Pass in a JSON-serializable object (usually a dictionary). "
             "See the template in our example to find the input shape. " +
-            json_kwarg.description
+            body_param_base.description
         )
-        json_kwarg.schema = JSONSchema(namespace="", yaml_data={})
-        return json_kwarg
+        schema = JSONSchema(namespace="", yaml_data={})
+        return self._create_request_builder_parameter(
+            body_param_base, "json", schema=schema, description=description
+        )
 
     def _add_content_kwarg(
-        self, body_method_param
+        self, body_method_param,
     ) -> RequestBuilderParameter:
-        content_kwarg = copy(body_method_param)
-        self._change_body_param_name(content_kwarg, "content")
-        content_kwarg.schema = AnySchema(namespace="", yaml_data={})
-        content_kwarg.description = (
+        description = (
             "Pass in binary content you want in the body of the request (typically bytes, "
-            "a byte iterator, or stream input). " +
-            content_kwarg.description
+            "a byte iterator, or stream input)."
         )
-        content_kwarg.is_data_input = False
-        content_kwarg.is_multipart = False
+        content_kwarg = self._create_request_builder_parameter(
+            parameter=body_method_param, name="content", schema=AnySchema(namespace="", yaml_data={}), description=description
+        )
         return content_kwarg
 
     def add_body_kwargs(
         self, content_type_to_schema_request: Dict[str, SchemaRequest], body_kwarg_name_to_content_types: Dict[BodyKwargNames, ContentTypesContainer]
     ) -> None:
+        self._update_constant_params()
         body_kwargs_added: List[RequestBuilderParameter] = []
         body_method_params = [
             p for p in self.parameters
@@ -122,7 +159,7 @@ class RequestBuilderParameterList(ParameterList):
                 content_kwarg = self._add_content_kwarg(body_param)
                 body_kwargs_added.append(content_kwarg)
         first_body_param = body_method_params[0]
-        if _kwarg_not_added(body_kwargs_added, "content"):
+        if _kwarg_not_added(body_kwargs_added, "content") and not first_body_param.constant:
             # we always add a content kwarg so users can pass in input by stream
             content_kwarg = self._add_content_kwarg(first_body_param)
             body_kwargs_added.append(content_kwarg)
@@ -131,7 +168,6 @@ class RequestBuilderParameterList(ParameterList):
         else:
             for kwarg in body_kwargs_added:
                 kwarg.required = False
-        first_body_param.need_import = False
         self.parameters = body_kwargs_added + self.parameters
 
     def kwargs_to_pop(self, is_python3_file: bool) -> List[Parameter]:
@@ -159,24 +195,9 @@ class RequestBuilderParameterList(ParameterList):
         for parameter in parameters:
             if (
                 parameter.location == ParameterLocation.Body and
-                (parameter.is_data_input or parameter.is_multipart) and
-                not parameter.is_keyword_only
+                not parameter.created_body_kwarg
             ):
-                # if i am a part of files or data, and i'm not the files or
-                # data kwarg, ignore me
-                continue
-            if (
-                parameter.location == ParameterLocation.Body and
-                not parameter.is_keyword_only and
-                not parameter.constant
-            ):
-                # we keep the original body param from the swagger for documentation purposes
-                # we don't want it in the method signature
-                continue
-            if (
-                parameter.location == ParameterLocation.Body and
-                parameter.serialized_name not in [k.value for k in BodyKwargNames]
-            ):
+                # we only want the body kwargs we created
                 continue
             if any([g for g in self.groupers if id(g.yaml_data) == id(parameter.yaml_data)]):
                 # we don't allow a grouped parameter for the body param

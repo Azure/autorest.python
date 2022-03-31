@@ -24,7 +24,7 @@ from .operation_group import OperationGroup
 from .schema_response import SchemaResponse
 from .parameter_list import ParameterList, GlobalParameterList
 from .request_builder import RequestBuilder
-from .base_builder import BaseBuilder, ContentTypesContainer
+from .base_builder import BaseBuilder, ContentTypesContainer, BodyKwargNames
 from .lro_paging_operation import LROPagingOperation
 from .request_builder_parameter import RequestBuilderParameter
 from .schema_request import SchemaRequest
@@ -34,6 +34,7 @@ __all__ = [
     "AnySchema",
     "BaseModel",
     "BaseSchema",
+    "BodyKwargNames",
     "CodeModel",
     "ConstantSchema",
     "ContentTypesContainer",

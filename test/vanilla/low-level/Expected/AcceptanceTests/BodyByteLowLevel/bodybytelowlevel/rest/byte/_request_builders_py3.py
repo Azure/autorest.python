@@ -105,8 +105,7 @@ def build_put_non_ascii_request(*, json: JSONType = None, content: Any = None, *
      F9 F8 F7 F6). Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA
-     F9 F8 F7 F6). Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

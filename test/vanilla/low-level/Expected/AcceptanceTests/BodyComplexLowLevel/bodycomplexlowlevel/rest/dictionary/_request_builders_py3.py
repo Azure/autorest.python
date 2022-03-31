@@ -64,8 +64,7 @@ def build_put_valid_request(*, json: JSONType = None, content: Any = None, **kwa
      "txt":"notepad", "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put a dictionary with 5 key-value pairs:
-     "txt":"notepad", "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -144,7 +143,7 @@ def build_put_empty_request(*, json: JSONType = None, content: Any = None, **kwa
      our example to find the input shape. Please put an empty dictionary. Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put an empty dictionary. Default value is None.
+     a byte iterator, or stream input). Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
