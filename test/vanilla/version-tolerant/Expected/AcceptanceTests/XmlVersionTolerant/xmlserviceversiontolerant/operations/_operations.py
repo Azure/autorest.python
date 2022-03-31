@@ -1766,13 +1766,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                                 "Etag": "str",  # Required.
                                 "Last-Modified": "2020-02-20 00:00:00",  # Required.
                                 "LeaseDuration": "str",  # Optional. Known values
-                                  include: "infinite", "fixed".
-                                "LeaseState": "str",  # Optional. Known values
-                                  include: "available", "leased", "expired", "breaking", "broken".
-                                "LeaseStatus": "str",  # Optional. Known values
-                                  include: "locked", "unlocked".
-                                "PublicAccess": "str"  # Optional. Known values
-                                  include: "container", "blob".
+                                  are: "infinite", "fixed".
+                                "LeaseState": "str",  # Optional. Known values are:
+                                  "available", "leased", "expired", "breaking", "broken".
+                                "LeaseStatus": "str",  # Optional. Known values are:
+                                  "locked", "unlocked".
+                                "PublicAccess": "str"  # Optional. Known values are:
+                                  "container", "blob".
                             }
                         }
                     ],
@@ -2262,15 +2262,15 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                                 "Name": "str",  # Required.
                                 "Properties": {
                                     "AccessTier": "str",  # Optional. Known
-                                      values include: "P4", "P6", "P10", "P20", "P30", "P40", "P50",
-                                      "Hot", "Cool", "Archive".
+                                      values are: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot",
+                                      "Cool", "Archive".
                                     "AccessTierInferred": bool,  # Optional.
                                       Required. Properties of a blob.
                                     "ArchiveStatus": "str",  # Optional. Known
-                                      values include: "rehydrate-pending-to-hot",
+                                      values are: "rehydrate-pending-to-hot",
                                       "rehydrate-pending-to-cool".
                                     "BlobType": "str",  # Optional. Known values
-                                      include: "BlockBlob", "PageBlob", "AppendBlob".
+                                      are: "BlockBlob", "PageBlob", "AppendBlob".
                                     "Cache-Control": "str",  # Optional.
                                       Required. Properties of a blob.
                                     "Content-Disposition": "str",  # Optional.
@@ -2294,7 +2294,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                                     "CopySource": "str",  # Optional. Required.
                                       Properties of a blob.
                                     "CopyStatus": "str",  # Optional. Known
-                                      values include: "pending", "success", "aborted", "failed".
+                                      values are: "pending", "success", "aborted", "failed".
                                     "CopyStatusDescription": "str",  # Optional.
                                       Required. Properties of a blob.
                                     "DeletedTime": "2020-02-20 00:00:00",  #
@@ -2307,12 +2307,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                                     "Last-Modified": "2020-02-20 00:00:00",  #
                                       Required.
                                     "LeaseDuration": "str",  # Optional. Known
-                                      values include: "infinite", "fixed".
+                                      values are: "infinite", "fixed".
                                     "LeaseState": "str",  # Optional. Known
-                                      values include: "available", "leased", "expired", "breaking",
+                                      values are: "available", "leased", "expired", "breaking",
                                       "broken".
                                     "LeaseStatus": "str",  # Optional. Known
-                                      values include: "locked", "unlocked".
+                                      values are: "locked", "unlocked".
                                     "RemainingRetentionDays": 0,  # Optional.
                                       Required. Properties of a blob.
                                     "ServerEncrypted": bool,  # Optional.

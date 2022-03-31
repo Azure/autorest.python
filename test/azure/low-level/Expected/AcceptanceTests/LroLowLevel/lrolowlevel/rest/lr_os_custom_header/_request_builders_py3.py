@@ -51,7 +51,7 @@ def build_put_async_retry_succeeded_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Known values include:
+                    "provisioningStateValues": "str"  # Optional. Known values are:
                       "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
                       "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
@@ -69,7 +69,7 @@ def build_put_async_retry_succeeded_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Known values include:
+                    "provisioningStateValues": "str"  # Optional. Known values are:
                       "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
                       "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
@@ -129,7 +129,7 @@ def build_put201_creating_succeeded200_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Known values include:
+                    "provisioningStateValues": "str"  # Optional. Known values are:
                       "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
                       "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
@@ -147,7 +147,7 @@ def build_put201_creating_succeeded200_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Known values include:
+                    "provisioningStateValues": "str"  # Optional. Known values are:
                       "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
                       "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
@@ -204,7 +204,7 @@ def build_post202_retry200_request(*, json: JSONType = None, content: Any = None
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Known values include:
+                    "provisioningStateValues": "str"  # Optional. Known values are:
                       "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
                       "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
@@ -264,7 +264,7 @@ def build_post_async_retry_succeeded_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Known values include:
+                    "provisioningStateValues": "str"  # Optional. Known values are:
                       "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
                       "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },

@@ -97,7 +97,7 @@ class StorageAccountsOperations:
                       false, the name has already been taken or invalid and cannot be used.
                     "reason": "str"  # Optional. Gets the reason that a storage account name
                       could not be used. The Reason element is only returned if NameAvailable is false.
-                      Known values include: "AccountNameInvalid", "AlreadyExists".
+                      Known values are: "AccountNameInvalid", "AlreadyExists".
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -240,7 +240,7 @@ class StorageAccountsOperations:
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str"  # Optional. Gets or sets the account type.
-                          Known values include: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
+                          Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
                           "Standard_RAGRS", "Premium_LRS".
                     },
                     "tags": {
@@ -256,8 +256,8 @@ class StorageAccountsOperations:
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
-                          account. Known values include: "Standard_LRS", "Standard_ZRS",
-                          "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+                          account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
+                          "Standard_RAGRS", "Premium_LRS".
                         "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
                           date and time of the storage account in UTC.
                         "customDomain": {
@@ -286,7 +286,7 @@ class StorageAccountsOperations:
                         "primaryLocation": "str",  # Optional. Gets the location of the
                           primary for the storage account.
                         "provisioningState": "str",  # Optional. Gets the status of the
-                          storage account at the time the operation was called. Known values include:
+                          storage account at the time the operation was called. Known values are:
                           "Creating", "ResolvingDNS", "Succeeded".
                         "secondaryEndpoints": {
                             "FooPoint": {
@@ -304,11 +304,11 @@ class StorageAccountsOperations:
                           accountType is StandardGRS or StandardRAGRS.
                         "statusOfPrimary": "str",  # Optional. Gets the status indicating
                           whether the primary location of the storage account is available or
-                          unavailable. Known values include: "Available", "Unavailable".
+                          unavailable. Known values are: "Available", "Unavailable".
                         "statusOfSecondary": "str"  # Optional. Gets the status indicating
                           whether the secondary location of the storage account is available or
                           unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values include: "Available", "Unavailable".
+                          StandardRAGRS. Known values are: "Available", "Unavailable".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Resource tags.
@@ -436,8 +436,8 @@ class StorageAccountsOperations:
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
-                          account. Known values include: "Standard_LRS", "Standard_ZRS",
-                          "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+                          account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
+                          "Standard_RAGRS", "Premium_LRS".
                         "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
                           date and time of the storage account in UTC.
                         "customDomain": {
@@ -466,7 +466,7 @@ class StorageAccountsOperations:
                         "primaryLocation": "str",  # Optional. Gets the location of the
                           primary for the storage account.
                         "provisioningState": "str",  # Optional. Gets the status of the
-                          storage account at the time the operation was called. Known values include:
+                          storage account at the time the operation was called. Known values are:
                           "Creating", "ResolvingDNS", "Succeeded".
                         "secondaryEndpoints": {
                             "FooPoint": {
@@ -484,11 +484,11 @@ class StorageAccountsOperations:
                           accountType is StandardGRS or StandardRAGRS.
                         "statusOfPrimary": "str",  # Optional. Gets the status indicating
                           whether the primary location of the storage account is available or
-                          unavailable. Known values include: "Available", "Unavailable".
+                          unavailable. Known values are: "Available", "Unavailable".
                         "statusOfSecondary": "str"  # Optional. Gets the status indicating
                           whether the secondary location of the storage account is available or
                           unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values include: "Available", "Unavailable".
+                          StandardRAGRS. Known values are: "Available", "Unavailable".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Resource tags.
@@ -580,8 +580,8 @@ class StorageAccountsOperations:
                         "accountType": "str",  # Optional. Gets or sets the account type.
                           Note that StandardZRS and PremiumLRS accounts cannot be changed to other
                           account types, and other account types cannot be changed to StandardZRS or
-                          PremiumLRS. Known values include: "Standard_LRS", "Standard_ZRS",
-                          "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+                          PremiumLRS. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
+                          "Standard_RAGRS", "Premium_LRS".
                         "customDomain": {
                             "name": "str",  # Optional. Gets or sets the custom domain
                               name. Name is the CNAME source.
@@ -603,8 +603,8 @@ class StorageAccountsOperations:
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
-                          account. Known values include: "Standard_LRS", "Standard_ZRS",
-                          "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+                          account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
+                          "Standard_RAGRS", "Premium_LRS".
                         "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
                           date and time of the storage account in UTC.
                         "customDomain": {
@@ -633,7 +633,7 @@ class StorageAccountsOperations:
                         "primaryLocation": "str",  # Optional. Gets the location of the
                           primary for the storage account.
                         "provisioningState": "str",  # Optional. Gets the status of the
-                          storage account at the time the operation was called. Known values include:
+                          storage account at the time the operation was called. Known values are:
                           "Creating", "ResolvingDNS", "Succeeded".
                         "secondaryEndpoints": {
                             "FooPoint": {
@@ -651,11 +651,11 @@ class StorageAccountsOperations:
                           accountType is StandardGRS or StandardRAGRS.
                         "statusOfPrimary": "str",  # Optional. Gets the status indicating
                           whether the primary location of the storage account is available or
-                          unavailable. Known values include: "Available", "Unavailable".
+                          unavailable. Known values are: "Available", "Unavailable".
                         "statusOfSecondary": "str"  # Optional. Gets the status indicating
                           whether the secondary location of the storage account is available or
                           unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values include: "Available", "Unavailable".
+                          StandardRAGRS. Known values are: "Available", "Unavailable".
                     },
                     "tags": {
                         "str": "str"  # Optional. A set of tags. Resource tags.
@@ -787,7 +787,7 @@ class StorageAccountsOperations:
                             "name": "str",  # Optional. Resource name.
                             "properties": {
                                 "accountType": "str",  # Optional. Gets the type of
-                                  the storage account. Known values include: "Standard_LRS",
+                                  the storage account. Known values are: "Standard_LRS",
                                   "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
                                 "creationTime": "2020-02-20 00:00:00",  # Optional.
                                   Gets the creation date and time of the storage account in UTC.
@@ -822,7 +822,7 @@ class StorageAccountsOperations:
                                   location of the primary for the storage account.
                                 "provisioningState": "str",  # Optional. Gets the
                                   status of the storage account at the time the operation was called.
-                                  Known values include: "Creating", "ResolvingDNS", "Succeeded".
+                                  Known values are: "Creating", "ResolvingDNS", "Succeeded".
                                 "secondaryEndpoints": {
                                     "FooPoint": {
                                         "Bar.Point": {
@@ -842,12 +842,12 @@ class StorageAccountsOperations:
                                   Only available if the accountType is StandardGRS or StandardRAGRS.
                                 "statusOfPrimary": "str",  # Optional. Gets the
                                   status indicating whether the primary location of the storage account
-                                  is available or unavailable. Known values include: "Available",
+                                  is available or unavailable. Known values are: "Available",
                                   "Unavailable".
                                 "statusOfSecondary": "str"  # Optional. Gets the
                                   status indicating whether the secondary location of the storage
                                   account is available or unavailable. Only available if the
-                                  accountType is StandardGRS or StandardRAGRS. Known values include:
+                                  accountType is StandardGRS or StandardRAGRS. Known values are:
                                   "Available", "Unavailable".
                             },
                             "tags": {
@@ -938,7 +938,7 @@ class StorageAccountsOperations:
                             "name": "str",  # Optional. Resource name.
                             "properties": {
                                 "accountType": "str",  # Optional. Gets the type of
-                                  the storage account. Known values include: "Standard_LRS",
+                                  the storage account. Known values are: "Standard_LRS",
                                   "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
                                 "creationTime": "2020-02-20 00:00:00",  # Optional.
                                   Gets the creation date and time of the storage account in UTC.
@@ -973,7 +973,7 @@ class StorageAccountsOperations:
                                   location of the primary for the storage account.
                                 "provisioningState": "str",  # Optional. Gets the
                                   status of the storage account at the time the operation was called.
-                                  Known values include: "Creating", "ResolvingDNS", "Succeeded".
+                                  Known values are: "Creating", "ResolvingDNS", "Succeeded".
                                 "secondaryEndpoints": {
                                     "FooPoint": {
                                         "Bar.Point": {
@@ -993,12 +993,12 @@ class StorageAccountsOperations:
                                   Only available if the accountType is StandardGRS or StandardRAGRS.
                                 "statusOfPrimary": "str",  # Optional. Gets the
                                   status indicating whether the primary location of the storage account
-                                  is available or unavailable. Known values include: "Available",
+                                  is available or unavailable. Known values are: "Available",
                                   "Unavailable".
                                 "statusOfSecondary": "str"  # Optional. Gets the
                                   status indicating whether the secondary location of the storage
                                   account is available or unavailable. Only available if the
-                                  accountType is StandardGRS or StandardRAGRS. Known values include:
+                                  accountType is StandardGRS or StandardRAGRS. Known values are:
                                   "Available", "Unavailable".
                             },
                             "tags": {
@@ -1098,7 +1098,7 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 regenerate_key = {
-                    "keyName": "str"  # Optional. Known values include: "key1", "key2".
+                    "keyName": "str"  # Optional. Known values are: "key1", "key2".
                 }
 
                 # response body for status code(s): 200
@@ -1193,7 +1193,7 @@ class UsageOperations:
                                   the resource name.
                             },
                             "unit": "str"  # Optional. Gets the unit of measurement.
-                              Known values include: "Count", "Bytes", "Seconds", "Percent",
+                              Known values are: "Count", "Bytes", "Seconds", "Percent",
                               "CountsPerSecond", "BytesPerSecond".
                         }
                     ]

@@ -38,7 +38,7 @@ class Basic(msrest.serialization.Model):
     :ivar name: Name property with a very long description that does not fit on a single line and a
      line break.
     :vartype name: str
-    :ivar color: Known values include: "cyan", "Magenta", "YELLOW", "blacK".
+    :ivar color: Known values are: "cyan", "Magenta", "YELLOW", "blacK".
     :vartype color: str or ~bodycomplex.models.CMYKColors
     """
 
@@ -55,7 +55,7 @@ class Basic(msrest.serialization.Model):
         :keyword name: Name property with a very long description that does not fit on a single line
          and a line break.
         :paramtype name: str
-        :keyword color: Known values include: "cyan", "Magenta", "YELLOW", "blacK".
+        :keyword color: Known values are: "cyan", "Magenta", "YELLOW", "blacK".
         :paramtype color: str or ~bodycomplex.models.CMYKColors
         """
         super(Basic, self).__init__(**kwargs)
@@ -704,8 +704,8 @@ class Goblinshark(Shark):
     :vartype birthday: ~datetime.datetime
     :ivar jawsize:
     :vartype jawsize: int
-    :ivar color: Colors possible. Known values include: "pink", "gray", "brown", "RED", "red".
-     Default value: "gray".
+    :ivar color: Colors possible. Known values are: "pink", "gray", "brown", "RED", "red". Default
+     value: "gray".
     :vartype color: str or ~bodycomplex.models.GoblinSharkColor
     """
 
@@ -740,7 +740,7 @@ class Goblinshark(Shark):
         :paramtype birthday: ~datetime.datetime
         :keyword jawsize:
         :paramtype jawsize: int
-        :keyword color: Colors possible. Known values include: "pink", "gray", "brown", "RED", "red".
+        :keyword color: Colors possible. Known values are: "pink", "gray", "brown", "RED", "red".
          Default value: "gray".
         :paramtype color: str or ~bodycomplex.models.GoblinSharkColor
         """
@@ -810,7 +810,7 @@ class MyBaseType(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar kind: Required. Constant filled by server. Known values include: "Kind1".
+    :ivar kind: Required. Constant filled by server. Known values are: "Kind1".
     :vartype kind: str or ~bodycomplex.models.MyKind
     :ivar prop_b1:
     :vartype prop_b1: str
@@ -848,7 +848,7 @@ class MyDerivedType(MyBaseType):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar kind: Required. Constant filled by server. Known values include: "Kind1".
+    :ivar kind: Required. Constant filled by server. Known values are: "Kind1".
     :vartype kind: str or ~bodycomplex.models.MyKind
     :ivar prop_b1:
     :vartype prop_b1: str

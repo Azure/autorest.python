@@ -113,7 +113,7 @@ def build_get_array_request(
                         "p.name": "str",  # Optional.
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str",  # Optional. Known values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                          are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
                           "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                         "type": "str"  # Optional.
                     },
@@ -279,7 +279,7 @@ def build_put_dictionary_request(
                         "p.name": "str",  # Optional.
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str",  # Optional. Known values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                          are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
                           "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                         "type": "str"  # Optional.
                     },
@@ -340,7 +340,7 @@ def build_get_dictionary_request(
                         "p.name": "str",  # Optional.
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str",  # Optional. Known values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                          are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
                           "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                         "type": "str"  # Optional.
                     },
@@ -407,7 +407,7 @@ def build_put_resource_collection_request(
                             "p.name": "str",  # Optional.
                             "provisioningState": "str",  # Optional.
                             "provisioningStateValues": "str",  # Optional. Known
-                              values include: "Succeeded", "Failed", "canceled", "Accepted",
+                              values are: "Succeeded", "Failed", "canceled", "Accepted",
                               "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
                               "OK".
                             "type": "str"  # Optional.
@@ -430,7 +430,7 @@ def build_put_resource_collection_request(
                             "provisioningState": "str",  # Optional. Dictionary
                               of :code:`<FlattenedProduct>`.
                             "provisioningStateValues": "str",  # Optional. Known
-                              values include: "Succeeded", "Failed", "canceled", "Accepted",
+                              values are: "Succeeded", "Failed", "canceled", "Accepted",
                               "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
                               "OK".
                             "type": "str"  # Optional. Dictionary of
@@ -451,7 +451,7 @@ def build_put_resource_collection_request(
                         "p.name": "str",  # Optional. Flattened product.
                         "provisioningState": "str",  # Optional. Flattened product.
                         "provisioningStateValues": "str",  # Optional. Known values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                          are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
                           "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                         "type": "str"  # Optional. Flattened product.
                     },
@@ -513,7 +513,7 @@ def build_get_resource_collection_request(
                             "p.name": "str",  # Optional.
                             "provisioningState": "str",  # Optional.
                             "provisioningStateValues": "str",  # Optional. Known
-                              values include: "Succeeded", "Failed", "canceled", "Accepted",
+                              values are: "Succeeded", "Failed", "canceled", "Accepted",
                               "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
                               "OK".
                             "type": "str"  # Optional.
@@ -536,7 +536,7 @@ def build_get_resource_collection_request(
                             "provisioningState": "str",  # Optional. Dictionary
                               of :code:`<FlattenedProduct>`.
                             "provisioningStateValues": "str",  # Optional. Known
-                              values include: "Succeeded", "Failed", "canceled", "Accepted",
+                              values are: "Succeeded", "Failed", "canceled", "Accepted",
                               "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
                               "OK".
                             "type": "str"  # Optional. Dictionary of
@@ -557,7 +557,7 @@ def build_get_resource_collection_request(
                         "p.name": "str",  # Optional. Flattened product.
                         "provisioningState": "str",  # Optional. Flattened product.
                         "provisioningStateValues": "str",  # Optional. Known values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                          are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
                           "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                         "type": "str"  # Optional. Flattened product.
                     },

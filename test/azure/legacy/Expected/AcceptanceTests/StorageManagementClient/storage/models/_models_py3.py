@@ -44,7 +44,7 @@ class CheckNameAvailabilityResult(msrest.serialization.Model):
      and cannot be used.
     :vartype name_available: bool
     :ivar reason: Gets the reason that a storage account name could not be used. The Reason element
-     is only returned if NameAvailable is false. Known values include: "AccountNameInvalid",
+     is only returned if NameAvailable is false. Known values are: "AccountNameInvalid",
      "AlreadyExists".
     :vartype reason: str or ~storage.models.Reason
     :ivar message: Gets an error message explaining the Reason value in more detail.
@@ -71,7 +71,7 @@ class CheckNameAvailabilityResult(msrest.serialization.Model):
          invalid and cannot be used.
         :paramtype name_available: bool
         :keyword reason: Gets the reason that a storage account name could not be used. The Reason
-         element is only returned if NameAvailable is false. Known values include: "AccountNameInvalid",
+         element is only returned if NameAvailable is false. Known values are: "AccountNameInvalid",
          "AlreadyExists".
         :paramtype reason: str or ~storage.models.Reason
         :keyword message: Gets an error message explaining the Reason value in more detail.
@@ -251,9 +251,9 @@ class StorageAccount(Resource):
     :ivar tags: A set of tags. Resource tags.
     :vartype tags: dict[str, str]
     :ivar provisioning_state: Gets the status of the storage account at the time the operation was
-     called. Known values include: "Creating", "ResolvingDNS", "Succeeded".
+     called. Known values are: "Creating", "ResolvingDNS", "Succeeded".
     :vartype provisioning_state: str or ~storage.models.ProvisioningState
-    :ivar account_type: Gets the type of the storage account. Known values include: "Standard_LRS",
+    :ivar account_type: Gets the type of the storage account. Known values are: "Standard_LRS",
      "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
     :vartype account_type: str or ~storage.models.AccountType
     :ivar primary_endpoints: Gets the URLs that are used to perform a retrieval of a public blob,
@@ -263,7 +263,7 @@ class StorageAccount(Resource):
     :ivar primary_location: Gets the location of the primary for the storage account.
     :vartype primary_location: str
     :ivar status_of_primary: Gets the status indicating whether the primary location of the storage
-     account is available or unavailable. Known values include: "Available", "Unavailable".
+     account is available or unavailable. Known values are: "Available", "Unavailable".
     :vartype status_of_primary: str or ~storage.models.AccountStatus
     :ivar last_geo_failover_time: Gets the timestamp of the most recent instance of a failover to
      the secondary location. Only the most recent timestamp is retained. This element is not
@@ -275,7 +275,7 @@ class StorageAccount(Resource):
     :vartype secondary_location: str
     :ivar status_of_secondary: Gets the status indicating whether the secondary location of the
      storage account is available or unavailable. Only available if the accountType is StandardGRS
-     or StandardRAGRS. Known values include: "Available", "Unavailable".
+     or StandardRAGRS. Known values are: "Available", "Unavailable".
     :vartype status_of_secondary: str or ~storage.models.AccountStatus
     :ivar creation_time: Gets the creation date and time of the storage account in UTC.
     :vartype creation_time: ~datetime.datetime
@@ -337,10 +337,10 @@ class StorageAccount(Resource):
         :keyword tags: A set of tags. Resource tags.
         :paramtype tags: dict[str, str]
         :keyword provisioning_state: Gets the status of the storage account at the time the operation
-         was called. Known values include: "Creating", "ResolvingDNS", "Succeeded".
+         was called. Known values are: "Creating", "ResolvingDNS", "Succeeded".
         :paramtype provisioning_state: str or ~storage.models.ProvisioningState
-        :keyword account_type: Gets the type of the storage account. Known values include:
-         "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+        :keyword account_type: Gets the type of the storage account. Known values are: "Standard_LRS",
+         "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
         :paramtype account_type: str or ~storage.models.AccountType
         :keyword primary_endpoints: Gets the URLs that are used to perform a retrieval of a public
          blob, queue or table object.Note that StandardZRS and PremiumLRS accounts only return the blob
@@ -349,7 +349,7 @@ class StorageAccount(Resource):
         :keyword primary_location: Gets the location of the primary for the storage account.
         :paramtype primary_location: str
         :keyword status_of_primary: Gets the status indicating whether the primary location of the
-         storage account is available or unavailable. Known values include: "Available", "Unavailable".
+         storage account is available or unavailable. Known values are: "Available", "Unavailable".
         :paramtype status_of_primary: str or ~storage.models.AccountStatus
         :keyword last_geo_failover_time: Gets the timestamp of the most recent instance of a failover
          to the secondary location. Only the most recent timestamp is retained. This element is not
@@ -361,7 +361,7 @@ class StorageAccount(Resource):
         :paramtype secondary_location: str
         :keyword status_of_secondary: Gets the status indicating whether the secondary location of the
          storage account is available or unavailable. Only available if the accountType is StandardGRS
-         or StandardRAGRS. Known values include: "Available", "Unavailable".
+         or StandardRAGRS. Known values are: "Available", "Unavailable".
         :paramtype status_of_secondary: str or ~storage.models.AccountStatus
         :keyword creation_time: Gets the creation date and time of the storage account in UTC.
         :paramtype creation_time: ~datetime.datetime
@@ -435,7 +435,7 @@ class StorageAccountCreateParameters(Resource):
     :vartype location: str
     :ivar tags: A set of tags. Resource tags.
     :vartype tags: dict[str, str]
-    :ivar account_type: Gets or sets the account type. Known values include: "Standard_LRS",
+    :ivar account_type: Gets or sets the account type. Known values are: "Standard_LRS",
      "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
     :vartype account_type: str or ~storage.models.AccountType
     """
@@ -469,7 +469,7 @@ class StorageAccountCreateParameters(Resource):
         :paramtype location: str
         :keyword tags: A set of tags. Resource tags.
         :paramtype tags: dict[str, str]
-        :keyword account_type: Gets or sets the account type. Known values include: "Standard_LRS",
+        :keyword account_type: Gets or sets the account type. Known values are: "Standard_LRS",
          "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
         :paramtype account_type: str or ~storage.models.AccountType
         """
@@ -536,7 +536,7 @@ class StorageAccountListResult(msrest.serialization.Model):
 class StorageAccountRegenerateKeyParameters(msrest.serialization.Model):
     """StorageAccountRegenerateKeyParameters.
 
-    :ivar key_name: Known values include: "key1", "key2".
+    :ivar key_name: Known values are: "key1", "key2".
     :vartype key_name: str or ~storage.models.KeyName
     """
 
@@ -546,7 +546,7 @@ class StorageAccountRegenerateKeyParameters(msrest.serialization.Model):
 
     def __init__(self, *, key_name: Optional[Union[str, "_models.KeyName"]] = None, **kwargs):
         """
-        :keyword key_name: Known values include: "key1", "key2".
+        :keyword key_name: Known values are: "key1", "key2".
         :paramtype key_name: str or ~storage.models.KeyName
         """
         super(StorageAccountRegenerateKeyParameters, self).__init__(**kwargs)
@@ -572,8 +572,8 @@ class StorageAccountUpdateParameters(Resource):
     :vartype tags: dict[str, str]
     :ivar account_type: Gets or sets the account type. Note that StandardZRS and PremiumLRS
      accounts cannot be changed to other account types, and other account types cannot be changed to
-     StandardZRS or PremiumLRS. Known values include: "Standard_LRS", "Standard_ZRS",
-     "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+     StandardZRS or PremiumLRS. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
+     "Standard_RAGRS", "Premium_LRS".
     :vartype account_type: str or ~storage.models.AccountType
     :ivar custom_domain: User domain assigned to the storage account. Name is the CNAME source.
      Only one custom domain is supported per storage account at this time. To clear the existing
@@ -614,8 +614,8 @@ class StorageAccountUpdateParameters(Resource):
         :paramtype tags: dict[str, str]
         :keyword account_type: Gets or sets the account type. Note that StandardZRS and PremiumLRS
          accounts cannot be changed to other account types, and other account types cannot be changed to
-         StandardZRS or PremiumLRS. Known values include: "Standard_LRS", "Standard_ZRS",
-         "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
+         StandardZRS or PremiumLRS. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
+         "Standard_RAGRS", "Premium_LRS".
         :paramtype account_type: str or ~storage.models.AccountType
         :keyword custom_domain: User domain assigned to the storage account. Name is the CNAME source.
          Only one custom domain is supported per storage account at this time. To clear the existing
@@ -650,7 +650,7 @@ class SubResource(msrest.serialization.Model):
 class Usage(msrest.serialization.Model):
     """Describes Storage Resource Usage.
 
-    :ivar unit: Gets the unit of measurement. Known values include: "Count", "Bytes", "Seconds",
+    :ivar unit: Gets the unit of measurement. Known values are: "Count", "Bytes", "Seconds",
      "Percent", "CountsPerSecond", "BytesPerSecond".
     :vartype unit: str or ~storage.models.UsageUnit
     :ivar current_value: Gets the current count of the allocated resources in the subscription.
@@ -678,7 +678,7 @@ class Usage(msrest.serialization.Model):
         **kwargs
     ):
         """
-        :keyword unit: Gets the unit of measurement. Known values include: "Count", "Bytes", "Seconds",
+        :keyword unit: Gets the unit of measurement. Known values are: "Count", "Bytes", "Seconds",
          "Percent", "CountsPerSecond", "BytesPerSecond".
         :paramtype unit: str or ~storage.models.UsageUnit
         :keyword current_value: Gets the current count of the allocated resources in the subscription.

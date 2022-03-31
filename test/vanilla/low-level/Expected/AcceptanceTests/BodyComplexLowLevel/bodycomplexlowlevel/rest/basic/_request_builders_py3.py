@@ -34,8 +34,8 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == {
-                "color": "str",  # Optional. Known values include: "cyan", "Magenta",
-                  "YELLOW", "blacK".
+                "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
+                  "blacK".
                 "id": 0,  # Optional. Basic Id.
                 "name": "str"  # Optional. Name property with a very long description that
                   does not fit on a single line and a line break.
@@ -79,8 +79,8 @@ def build_put_valid_request(*, json: JSONType = None, content: Any = None, **kwa
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "color": "str",  # Optional. Known values include: "cyan", "Magenta",
-                  "YELLOW", "blacK".
+                "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
+                  "blacK".
                 "id": 0,  # Optional. Basic Id.
                 "name": "str"  # Optional. Name property with a very long description that
                   does not fit on a single line and a line break.
@@ -124,8 +124,8 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == {
-                "color": "str",  # Optional. Known values include: "cyan", "Magenta",
-                  "YELLOW", "blacK".
+                "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
+                  "blacK".
                 "id": 0,  # Optional. Basic Id.
                 "name": "str"  # Optional. Name property with a very long description that
                   does not fit on a single line and a line break.
@@ -161,8 +161,8 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == {
-                "color": "str",  # Optional. Known values include: "cyan", "Magenta",
-                  "YELLOW", "blacK".
+                "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
+                  "blacK".
                 "id": 0,  # Optional. Basic Id.
                 "name": "str"  # Optional. Name property with a very long description that
                   does not fit on a single line and a line break.
@@ -198,8 +198,8 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == {
-                "color": "str",  # Optional. Known values include: "cyan", "Magenta",
-                  "YELLOW", "blacK".
+                "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
+                  "blacK".
                 "id": 0,  # Optional. Basic Id.
                 "name": "str"  # Optional. Name property with a very long description that
                   does not fit on a single line and a line break.
@@ -235,8 +235,8 @@ def build_get_not_provided_request(**kwargs: Any) -> HttpRequest:
 
             # response body for status code(s): 200
             response.json() == {
-                "color": "str",  # Optional. Known values include: "cyan", "Magenta",
-                  "YELLOW", "blacK".
+                "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
+                  "blacK".
                 "id": 0,  # Optional. Basic Id.
                 "name": "str"  # Optional. Name property with a very long description that
                   does not fit on a single line and a line break.

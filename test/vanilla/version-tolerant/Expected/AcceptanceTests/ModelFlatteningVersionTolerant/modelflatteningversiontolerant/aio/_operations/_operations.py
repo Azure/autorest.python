@@ -128,7 +128,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                             "p.name": "str",  # Optional.
                             "provisioningState": "str",  # Optional.
                             "provisioningStateValues": "str",  # Optional. Known values
-                              include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                              are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
                               "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                             "type": "str"  # Optional.
                         },
@@ -311,7 +311,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                             "p.name": "str",  # Optional.
                             "provisioningState": "str",  # Optional.
                             "provisioningStateValues": "str",  # Optional. Known values
-                              include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                              are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
                               "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                             "type": "str"  # Optional.
                         },
@@ -380,7 +380,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                             "p.name": "str",  # Optional.
                             "provisioningState": "str",  # Optional.
                             "provisioningStateValues": "str",  # Optional. Known values
-                              include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                              are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
                               "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                             "type": "str"  # Optional.
                         },
@@ -452,7 +452,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                                 "p.name": "str",  # Optional.
                                 "provisioningState": "str",  # Optional.
                                 "provisioningStateValues": "str",  # Optional. Known
-                                  values include: "Succeeded", "Failed", "canceled", "Accepted",
+                                  values are: "Succeeded", "Failed", "canceled", "Accepted",
                                   "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
                                   "OK".
                                 "type": "str"  # Optional.
@@ -475,7 +475,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                                 "provisioningState": "str",  # Optional. Dictionary
                                   of :code:`<FlattenedProduct>`.
                                 "provisioningStateValues": "str",  # Optional. Known
-                                  values include: "Succeeded", "Failed", "canceled", "Accepted",
+                                  values are: "Succeeded", "Failed", "canceled", "Accepted",
                                   "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
                                   "OK".
                                 "type": "str"  # Optional. Dictionary of
@@ -496,7 +496,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                             "p.name": "str",  # Optional. Flattened product.
                             "provisioningState": "str",  # Optional. Flattened product.
                             "provisioningStateValues": "str",  # Optional. Known values
-                              include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                              are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
                               "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                             "type": "str"  # Optional. Flattened product.
                         },
@@ -566,7 +566,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                                 "p.name": "str",  # Optional.
                                 "provisioningState": "str",  # Optional.
                                 "provisioningStateValues": "str",  # Optional. Known
-                                  values include: "Succeeded", "Failed", "canceled", "Accepted",
+                                  values are: "Succeeded", "Failed", "canceled", "Accepted",
                                   "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
                                   "OK".
                                 "type": "str"  # Optional.
@@ -589,7 +589,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                                 "provisioningState": "str",  # Optional. Dictionary
                                   of :code:`<FlattenedProduct>`.
                                 "provisioningStateValues": "str",  # Optional. Known
-                                  values include: "Succeeded", "Failed", "canceled", "Accepted",
+                                  values are: "Succeeded", "Failed", "canceled", "Accepted",
                                   "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
                                   "OK".
                                 "type": "str"  # Optional. Dictionary of
@@ -610,7 +610,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                             "p.name": "str",  # Optional. Flattened product.
                             "provisioningState": "str",  # Optional. Flattened product.
                             "provisioningStateValues": "str",  # Optional. Known values
-                              include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                              are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
                               "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                             "type": "str"  # Optional. Flattened product.
                         },

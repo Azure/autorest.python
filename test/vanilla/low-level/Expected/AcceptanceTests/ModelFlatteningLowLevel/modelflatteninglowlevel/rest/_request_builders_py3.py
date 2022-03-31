@@ -97,7 +97,7 @@ def build_get_array_request(**kwargs: Any) -> HttpRequest:
                         "p.name": "str",  # Optional.
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str",  # Optional. Known values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                          are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
                           "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                         "type": "str"  # Optional.
                     },
@@ -239,7 +239,7 @@ def build_put_dictionary_request(*, json: JSONType = None, content: Any = None, 
                         "p.name": "str",  # Optional.
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str",  # Optional. Known values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                          are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
                           "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                         "type": "str"  # Optional.
                     },
@@ -292,7 +292,7 @@ def build_get_dictionary_request(**kwargs: Any) -> HttpRequest:
                         "p.name": "str",  # Optional.
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str",  # Optional. Known values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                          are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
                           "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                         "type": "str"  # Optional.
                     },
@@ -351,7 +351,7 @@ def build_put_resource_collection_request(*, json: JSONType = None, content: Any
                             "p.name": "str",  # Optional.
                             "provisioningState": "str",  # Optional.
                             "provisioningStateValues": "str",  # Optional. Known
-                              values include: "Succeeded", "Failed", "canceled", "Accepted",
+                              values are: "Succeeded", "Failed", "canceled", "Accepted",
                               "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
                               "OK".
                             "type": "str"  # Optional.
@@ -374,7 +374,7 @@ def build_put_resource_collection_request(*, json: JSONType = None, content: Any
                             "provisioningState": "str",  # Optional. Dictionary
                               of :code:`<FlattenedProduct>`.
                             "provisioningStateValues": "str",  # Optional. Known
-                              values include: "Succeeded", "Failed", "canceled", "Accepted",
+                              values are: "Succeeded", "Failed", "canceled", "Accepted",
                               "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
                               "OK".
                             "type": "str"  # Optional. Dictionary of
@@ -395,7 +395,7 @@ def build_put_resource_collection_request(*, json: JSONType = None, content: Any
                         "p.name": "str",  # Optional. Flattened product.
                         "provisioningState": "str",  # Optional. Flattened product.
                         "provisioningStateValues": "str",  # Optional. Known values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                          are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
                           "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                         "type": "str"  # Optional. Flattened product.
                     },
@@ -449,7 +449,7 @@ def build_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
                             "p.name": "str",  # Optional.
                             "provisioningState": "str",  # Optional.
                             "provisioningStateValues": "str",  # Optional. Known
-                              values include: "Succeeded", "Failed", "canceled", "Accepted",
+                              values are: "Succeeded", "Failed", "canceled", "Accepted",
                               "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
                               "OK".
                             "type": "str"  # Optional.
@@ -472,7 +472,7 @@ def build_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
                             "provisioningState": "str",  # Optional. Dictionary
                               of :code:`<FlattenedProduct>`.
                             "provisioningStateValues": "str",  # Optional. Known
-                              values include: "Succeeded", "Failed", "canceled", "Accepted",
+                              values are: "Succeeded", "Failed", "canceled", "Accepted",
                               "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
                               "OK".
                             "type": "str"  # Optional. Dictionary of
@@ -493,7 +493,7 @@ def build_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
                         "p.name": "str",  # Optional. Flattened product.
                         "provisioningState": "str",  # Optional. Flattened product.
                         "provisioningStateValues": "str",  # Optional. Known values
-                          include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                          are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
                           "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
                         "type": "str"  # Optional. Flattened product.
                     },

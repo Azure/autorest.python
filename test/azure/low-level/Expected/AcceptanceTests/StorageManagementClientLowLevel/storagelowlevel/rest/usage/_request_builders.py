@@ -59,7 +59,7 @@ def build_list_request(
                               the resource name.
                         },
                         "unit": "str"  # Optional. Gets the unit of measurement.
-                          Known values include: "Count", "Bytes", "Seconds", "Percent",
+                          Known values are: "Count", "Bytes", "Seconds", "Percent",
                           "CountsPerSecond", "BytesPerSecond".
                     }
                 ]
