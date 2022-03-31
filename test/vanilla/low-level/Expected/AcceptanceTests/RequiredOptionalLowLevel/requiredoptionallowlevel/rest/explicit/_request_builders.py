@@ -20,9 +20,9 @@ if TYPE_CHECKING:
     try:
         JSONObject = MutableMapping[str, Any]  # pylint: disable=E1136
     except TypeError:
-        from typing import MutableMapping  # pylint: disable=W0404
+        from typing import MutableMapping  # pylint: disable=W0404, C0412
 
-        JSONObject = MutableMapping[str, Any]  # pylint: disable=E1136
+        JSONObject = MutableMapping[str, Any]  # type: ignore # pylint: disable=E1136
 
 _SERIALIZER = Serializer()
 

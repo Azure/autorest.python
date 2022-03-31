@@ -30,9 +30,9 @@ from azure.mgmt.core.polling.arm_polling import ARMPolling
 try:
     JSONObject = MutableMapping[str, Any]  # pylint: disable=E1136
 except TypeError:
-    from typing import MutableMapping  # pylint: disable=W0404
+    from typing import MutableMapping  # pylint: disable=W0404, C0412
 
-    JSONObject = MutableMapping[str, Any]  # pylint: disable=E1136
+    JSONObject = MutableMapping[str, Any]  # type: ignore # pylint: disable=E1136
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
