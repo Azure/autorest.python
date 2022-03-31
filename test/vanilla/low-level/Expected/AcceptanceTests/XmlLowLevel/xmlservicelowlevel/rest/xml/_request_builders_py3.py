@@ -738,14 +738,14 @@ def build_list_containers_request(**kwargs: Any) -> HttpRequest:
                         "Properties": {
                             "Etag": "str",  # Required.
                             "Last-Modified": "2020-02-20 00:00:00",  # Required.
-                            "LeaseDuration": "str",  # Optional. Possible values
-                              include: "infinite", "fixed".
-                            "LeaseState": "str",  # Optional. Possible values
-                              include: "available", "leased", "expired", "breaking", "broken".
-                            "LeaseStatus": "str",  # Optional. Possible values
-                              include: "locked", "unlocked".
-                            "PublicAccess": "str"  # Optional. Possible values
-                              include: "container", "blob".
+                            "LeaseDuration": "str",  # Optional. Known values
+                              are: "infinite", "fixed".
+                            "LeaseState": "str",  # Optional. Known values are:
+                              "available", "leased", "expired", "breaking", "broken".
+                            "LeaseStatus": "str",  # Optional. Known values are:
+                              "locked", "unlocked".
+                            "PublicAccess": "str"  # Optional. Known values are:
+                              "container", "blob".
                         }
                     }
                 ],
@@ -1067,16 +1067,16 @@ def build_list_blobs_request(**kwargs: Any) -> HttpRequest:
                             },
                             "Name": "str",  # Required.
                             "Properties": {
-                                "AccessTier": "str",  # Optional. Possible
-                                  values include: "P4", "P6", "P10", "P20", "P30", "P40", "P50",
-                                  "Hot", "Cool", "Archive".
+                                "AccessTier": "str",  # Optional. Known
+                                  values are: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot",
+                                  "Cool", "Archive".
                                 "AccessTierInferred": bool,  # Optional.
                                   Required. Properties of a blob.
-                                "ArchiveStatus": "str",  # Optional. Possible
-                                  values include: "rehydrate-pending-to-hot",
+                                "ArchiveStatus": "str",  # Optional. Known
+                                  values are: "rehydrate-pending-to-hot",
                                   "rehydrate-pending-to-cool".
-                                "BlobType": "str",  # Optional. Possible
-                                  values include: "BlockBlob", "PageBlob", "AppendBlob".
+                                "BlobType": "str",  # Optional. Known values
+                                  are: "BlockBlob", "PageBlob", "AppendBlob".
                                 "Cache-Control": "str",  # Optional.
                                   Required. Properties of a blob.
                                 "Content-Disposition": "str",  # Optional.
@@ -1099,8 +1099,8 @@ def build_list_blobs_request(**kwargs: Any) -> HttpRequest:
                                   Properties of a blob.
                                 "CopySource": "str",  # Optional. Required.
                                   Properties of a blob.
-                                "CopyStatus": "str",  # Optional. Possible
-                                  values include: "pending", "success", "aborted", "failed".
+                                "CopyStatus": "str",  # Optional. Known
+                                  values are: "pending", "success", "aborted", "failed".
                                 "CopyStatusDescription": "str",  # Optional.
                                   Required. Properties of a blob.
                                 "DeletedTime": "2020-02-20 00:00:00",  #
@@ -1112,13 +1112,13 @@ def build_list_blobs_request(**kwargs: Any) -> HttpRequest:
                                   Required. Properties of a blob.
                                 "Last-Modified": "2020-02-20 00:00:00",  #
                                   Required.
-                                "LeaseDuration": "str",  # Optional. Possible
-                                  values include: "infinite", "fixed".
-                                "LeaseState": "str",  # Optional. Possible
-                                  values include: "available", "leased", "expired", "breaking",
+                                "LeaseDuration": "str",  # Optional. Known
+                                  values are: "infinite", "fixed".
+                                "LeaseState": "str",  # Optional. Known
+                                  values are: "available", "leased", "expired", "breaking",
                                   "broken".
-                                "LeaseStatus": "str",  # Optional. Possible
-                                  values include: "locked", "unlocked".
+                                "LeaseStatus": "str",  # Optional. Known
+                                  values are: "locked", "unlocked".
                                 "RemainingRetentionDays": 0,  # Optional.
                                   Required. Properties of a blob.
                                 "ServerEncrypted": bool,  # Optional.

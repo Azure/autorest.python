@@ -24,7 +24,7 @@ class Error(msrest.serialization.Model):
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
     :vartype additional_properties: dict[str, any]
-    :ivar code: Required. One of a server-defined set of error codes. Possible values include:
+    :ivar code: Required. One of a server-defined set of error codes. Known values are:
      "BadParameter", "Unauthorized".
     :vartype code: str or ~errorwithsecrets.models.ErrorCode
     :ivar message: Required. A human-readable representation of the error.
@@ -67,7 +67,7 @@ class Error(msrest.serialization.Model):
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
         :paramtype additional_properties: dict[str, any]
-        :keyword code: Required. One of a server-defined set of error codes. Possible values include:
+        :keyword code: Required. One of a server-defined set of error codes. Known values are:
          "BadParameter", "Unauthorized".
         :paramtype code: str or ~errorwithsecrets.models.ErrorCode
         :keyword message: Required. A human-readable representation of the error.
@@ -131,7 +131,7 @@ class InnerError(msrest.serialization.Model):
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
     :vartype additional_properties: dict[str, any]
-    :ivar code: Required. One of a server-defined set of error codes. Possible values include:
+    :ivar code: Required. One of a server-defined set of error codes. Known values are:
      "MissingSharedKey", "UnauthorizedSharedKey".
     :vartype code: str or ~errorwithsecrets.models.InnerErrorCode
     :ivar message: Required. Error message.
@@ -166,7 +166,7 @@ class InnerError(msrest.serialization.Model):
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
         :paramtype additional_properties: dict[str, any]
-        :keyword code: Required. One of a server-defined set of error codes. Possible values include:
+        :keyword code: Required. One of a server-defined set of error codes. Known values are:
          "MissingSharedKey", "UnauthorizedSharedKey".
         :paramtype code: str or ~errorwithsecrets.models.InnerErrorCode
         :keyword message: Required. Error message.

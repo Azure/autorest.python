@@ -16,10 +16,10 @@ class Pet(msrest.serialization.Model):
 
     :ivar name: name.
     :vartype name: str
-    :ivar days_of_week: Type of Pet. Possible values include: "Monday", "Tuesday", "Wednesday",
+    :ivar days_of_week: Type of Pet. Known values are: "Monday", "Tuesday", "Wednesday",
      "Thursday", "Friday", "Saturday", "Sunday". Default value: "Friday".
     :vartype days_of_week: str or ~extensibleenumsswagger.models.DaysOfWeekExtensibleEnum
-    :ivar int_enum: Required. Possible values include: "1", "2", "3".
+    :ivar int_enum: Required. Known values are: "1", "2", "3".
     :vartype int_enum: str or ~extensibleenumsswagger.models.IntEnum
     """
 
@@ -37,10 +37,10 @@ class Pet(msrest.serialization.Model):
         """
         :keyword name: name.
         :paramtype name: str
-        :keyword days_of_week: Type of Pet. Possible values include: "Monday", "Tuesday", "Wednesday",
+        :keyword days_of_week: Type of Pet. Known values are: "Monday", "Tuesday", "Wednesday",
          "Thursday", "Friday", "Saturday", "Sunday". Default value: "Friday".
         :paramtype days_of_week: str or ~extensibleenumsswagger.models.DaysOfWeekExtensibleEnum
-        :keyword int_enum: Required. Possible values include: "1", "2", "3".
+        :keyword int_enum: Required. Known values are: "1", "2", "3".
         :paramtype int_enum: str or ~extensibleenumsswagger.models.IntEnum
         """
         super(Pet, self).__init__(**kwargs)

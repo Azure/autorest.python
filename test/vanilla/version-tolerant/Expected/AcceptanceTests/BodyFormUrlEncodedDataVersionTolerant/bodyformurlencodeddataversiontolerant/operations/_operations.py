@@ -111,10 +111,10 @@ class FormdataurlencodedOperations:
                 data = {
                     "name": "str",  # Optional. Updated name of the pet. Default value is None.
                     "pet_age": 0,  # How many years is it old?.
-                    "pet_food": "str",  # Can take a value of meat, or fish, or plant. Possible
+                    "pet_food": "str",  # Can take a value of meat, or fish, or plant. Known
                       values are: "meat", "fish", and "plant".
-                    "pet_type": "str",  # Can take a value of dog, or cat, or fish. Possible
-                      values are: "dog", "cat", and "fish".
+                    "pet_type": "str",  # Can take a value of dog, or cat, or fish. Known values
+                      are: "dog", "cat", and "fish".
                     "status": "str"  # Optional. Updated status of the pet. Default value is
                       None.
                 }

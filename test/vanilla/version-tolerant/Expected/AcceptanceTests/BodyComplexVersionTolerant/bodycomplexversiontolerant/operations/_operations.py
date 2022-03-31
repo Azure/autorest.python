@@ -916,8 +916,8 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "color": "str",  # Optional. Possible values include: "cyan", "Magenta",
-                      "YELLOW", "blacK".
+                    "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
+                      "blacK".
                     "id": 0,  # Optional. Basic Id.
                     "name": "str"  # Optional. Name property with a very long description that
                       does not fit on a single line and a line break.
@@ -973,8 +973,8 @@ class BasicOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "color": "str",  # Optional. Possible values include: "cyan", "Magenta",
-                      "YELLOW", "blacK".
+                    "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
+                      "blacK".
                     "id": 0,  # Optional. Basic Id.
                     "name": "str"  # Optional. Name property with a very long description that
                       does not fit on a single line and a line break.
@@ -1028,8 +1028,8 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "color": "str",  # Optional. Possible values include: "cyan", "Magenta",
-                      "YELLOW", "blacK".
+                    "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
+                      "blacK".
                     "id": 0,  # Optional. Basic Id.
                     "name": "str"  # Optional. Name property with a very long description that
                       does not fit on a single line and a line break.
@@ -1081,8 +1081,8 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "color": "str",  # Optional. Possible values include: "cyan", "Magenta",
-                      "YELLOW", "blacK".
+                    "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
+                      "blacK".
                     "id": 0,  # Optional. Basic Id.
                     "name": "str"  # Optional. Name property with a very long description that
                       does not fit on a single line and a line break.
@@ -1134,8 +1134,8 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "color": "str",  # Optional. Possible values include: "cyan", "Magenta",
-                      "YELLOW", "blacK".
+                    "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
+                      "blacK".
                     "id": 0,  # Optional. Basic Id.
                     "name": "str"  # Optional. Name property with a very long description that
                       does not fit on a single line and a line break.
@@ -1187,8 +1187,8 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "color": "str",  # Optional. Possible values include: "cyan", "Magenta",
-                      "YELLOW", "blacK".
+                    "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
+                      "blacK".
                     "id": 0,  # Optional. Basic Id.
                     "name": "str"  # Optional. Name property with a very long description that
                       does not fit on a single line and a line break.

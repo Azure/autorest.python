@@ -67,8 +67,8 @@ def build_put500_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Possible values are True or
-     None. Default value is None.
+     our example to find the input shape. Simple boolean value true. Known values are True or None.
+     Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.
@@ -116,8 +116,8 @@ def build_patch500_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Possible values are True or
-     None. Default value is None.
+     our example to find the input shape. Simple boolean value true. Known values are True or None.
+     Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.
@@ -231,8 +231,8 @@ def build_post503_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Possible values are True or
-     None. Default value is None.
+     our example to find the input shape. Simple boolean value true. Known values are True or None.
+     Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.
@@ -280,8 +280,8 @@ def build_delete503_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Possible values are True or
-     None. Default value is None.
+     our example to find the input shape. Simple boolean value true. Known values are True or None.
+     Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.
@@ -329,8 +329,8 @@ def build_put504_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Possible values are True or
-     None. Default value is None.
+     our example to find the input shape. Simple boolean value true. Known values are True or None.
+     Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.
@@ -378,8 +378,8 @@ def build_patch504_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Simple boolean value true. Possible values are True or
-     None. Default value is None.
+     our example to find the input shape. Simple boolean value true. Known values are True or None.
+     Default value is None.
     :paramtype json: JSONType
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple boolean value true. Default value is None.

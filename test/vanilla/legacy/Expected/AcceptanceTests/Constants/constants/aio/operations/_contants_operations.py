@@ -170,7 +170,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input: Possible values are "value1" or None. Default value is "value1".
+        :param input: Known values are "value1" or None. Default value is "value1".
         :type input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -216,7 +216,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input: Possible values are "value1" or None. Default value is "value1".
+        :param input: Known values are "value1" or None. Default value is "value1".
         :type input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

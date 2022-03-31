@@ -201,7 +201,7 @@ class HiddenModelEnumSchema(EnumSchema):
                 possible_values[: len(possible_values) - 1]
             ) + f", and {possible_values[-1]}"
 
-        return "Possible values are: {}.".format(possible_values_str)
+        return "Known values are: {}.".format(possible_values_str)
 
     @property
     def docstring_type(self) -> str:

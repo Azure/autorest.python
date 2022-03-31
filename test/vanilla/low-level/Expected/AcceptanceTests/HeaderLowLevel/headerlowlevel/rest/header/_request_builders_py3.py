@@ -800,7 +800,7 @@ def build_param_enum_request(*, scenario: str, value: Optional[str] = None, **kw
     :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
      "empty".
     :paramtype scenario: str
-    :keyword value: Send a post request with header values 'GREY'. Possible values are: "White",
+    :keyword value: Send a post request with header values 'GREY'. Known values are: "White",
      "black", and "GREY". Default value is None.
     :paramtype value: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's

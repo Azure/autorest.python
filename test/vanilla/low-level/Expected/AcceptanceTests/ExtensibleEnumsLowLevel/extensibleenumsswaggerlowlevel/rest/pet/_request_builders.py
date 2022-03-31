@@ -49,9 +49,9 @@ def build_get_by_pet_id_request(
             # response body for status code(s): 200
             response.json() == {
                 "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
-                  Possible values include: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                  Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                   "Saturday", "Sunday". Default value: "Friday".
-                "IntEnum": "str",  # Required. Possible values include: "1", "2", "3".
+                "IntEnum": "str",  # Required. Known values are: "1", "2", "3".
                 "name": "str"  # Optional. name.
             }
     """
@@ -105,18 +105,18 @@ def build_add_pet_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
-                  Possible values include: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                  Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                   "Saturday", "Sunday". Default value: "Friday".
-                "IntEnum": "str",  # Required. Possible values include: "1", "2", "3".
+                "IntEnum": "str",  # Required. Known values are: "1", "2", "3".
                 "name": "str"  # Optional. name.
             }
 
             # response body for status code(s): 200
             response.json() == {
                 "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
-                  Possible values include: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                  Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                   "Saturday", "Sunday". Default value: "Friday".
-                "IntEnum": "str",  # Required. Possible values include: "1", "2", "3".
+                "IntEnum": "str",  # Required. Known values are: "1", "2", "3".
                 "name": "str"  # Optional. name.
             }
     """

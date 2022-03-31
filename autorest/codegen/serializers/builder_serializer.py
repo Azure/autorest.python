@@ -159,7 +159,7 @@ def _content_type_docstring(builder) -> str:
     ).default_value_declaration
     return (
         ":keyword content_type: Media type of the body sent to the API. " +
-        f"Possible values are: {possible_values_str}. " +
+        f"Known values are: {possible_values_str}. " +
         f"Default value is {default_value}."
     )
 
