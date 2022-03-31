@@ -241,6 +241,10 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         if len(self.body_kwarg_name_to_content_types) > 1:
             for param in self.parameters:
                 file_import.merge(param.schema.check_user_input_imports())
+            if "json" in self.body_kwarg_name_to_content_types:
+                # need JSON regexp import
+                file_import.add_submodule_import("azure.core.pipeline.policies", "ContentDecodePolicy", ImportType.AZURECORE)
+                file_import.define_mypy_type("JSON_REGEXP", "ContentDecodePolicy.JSON_REGEXP")
         return file_import
 
     @classmethod
@@ -285,4 +289,10 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             for p in operation_cls.parameters.parameters:
                 if p.rest_api_name == "Content-Type":
                     p.is_keyword_only = True
+            if "json" in operation_cls.body_kwarg_name_to_content_types:
+                operation_cls.parameters.body[0].possible_types["JSONType"] = None
+                operation_cls.parameters.body[0].possible_docstring_types["JSONType"] = None
+            if "text/plain" in operation_cls.content_type_to_schema_request:
+                operation_cls.parameters.body[0].possible_types["str"] = None
+                operation_cls.parameters.body[0].possible_docstring_types["str"] = None
         return operation_cls

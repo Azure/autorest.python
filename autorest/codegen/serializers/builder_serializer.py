@@ -25,9 +25,10 @@ from ..models import (
     RequestBuilderParameter,
     EnumSchema,
     SchemaResponse,
-    IOSchema,
+    PrimitiveSchema,
     ParameterStyle,
-    ParameterLocation
+    ParameterLocation,
+    ContentTypesContainer,
 )
 from . import utils
 
@@ -354,7 +355,7 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
         template = []
         json_body = next(
             sr.parameters.body[0] for content_type, sr in builder.content_type_to_schema_request.items()
-            if content_type in builder.body_kwarg_name_to_content_types["json"]
+            if content_type in builder.body_kwarg_name_to_content_types["json"].content_types
         ).schema
         object_schema = cast(ObjectSchema, json_body)
         try:
@@ -468,7 +469,7 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
         if self.code_model.options["builders_visibility"] != "public":
             return False  # if we're not exposing rest layer, don't need to generate
         if builder.parameters.has_body:
-            body_kwargs = set(builder.parameters.body_kwarg_names.keys())
+            body_kwargs = builder.parameters.body_kwarg_name_to_content_types.keys()
             return bool(body_kwargs.intersection({"json", "files", "data"}))
         return bool(self._get_json_response_template_to_status_codes(builder))
 
@@ -496,13 +497,13 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
         return "json"
 
     def _has_json_example_template(self, builder) -> bool:
-        return "json" in builder.parameters.body_kwarg_names
+        return "json" in builder.body_kwarg_name_to_content_types
 
     def _has_files_example_template(self, builder) -> bool:
-        return "files" in builder.parameters.body_kwarg_names
+        return "files" in builder.body_kwarg_name_to_content_types
 
     def _has_data_example_template(self, builder) -> bool:
-        return "data" in builder.parameters.body_kwarg_names
+        return "data" in builder.body_kwarg_name_to_content_types
 
     @abstractmethod
     def _body_params_to_pass_to_request_creation(self, builder) -> List[str]:
@@ -575,7 +576,7 @@ class RequestBuilderGenericSerializer(_RequestBuilderBaseSerializer):
         return builder.parameters.kwargs_to_pop(is_python3_file=False)
 
     def _body_params_to_pass_to_request_creation(self, builder) -> List[str]:
-        if builder.parameters.has_body and not builder.parameters.body_kwarg_names:
+        if builder.parameters.has_body and not builder.body_kwarg_name_to_content_types:
             # this means we have a constant body
             # only doing json body in this case
             return ["json"]
@@ -597,7 +598,7 @@ class RequestBuilderPython3Serializer(_RequestBuilderBaseSerializer):
         return builder.parameters.kwargs_to_pop(is_python3_file=True)
 
     def _body_params_to_pass_to_request_creation(self, builder) -> List[str]:
-        body_kwargs = list(builder.parameters.body_kwarg_names.keys())
+        body_kwargs = list(builder.body_kwarg_name_to_content_types.keys())
         if body_kwargs:
             return body_kwargs
         if builder.parameters.has_body:
@@ -774,7 +775,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         retval: List[str] = []
         if body_kwarg == "data" or body_kwarg == "files":
             return retval
-        if not isinstance(body_param.schema, IOSchema):
+        if not body_param.style == ParameterStyle.binary:
             retval.extend(self._serialize_body(builder, body_param, body_kwarg))
             return retval
         retval.append(f"_{body_kwarg} = {body_param.serialized_name}")
@@ -785,25 +786,59 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         self, builder, body_name: str
     ) -> List[str]:
         retval = []
+        body_param = builder.schema_requests[0].parameters.body[0]
         if len(builder.body_kwarg_name_to_content_types) == 1:
             retval.extend(self._set_body_content_kwarg(builder, builder.parameters.body[0], list(builder.body_kwarg_name_to_content_types.keys())[0]))
         else:
             # we know we have one json input and one content input
-            # first we deal with JSON
-            json_param = next(
-                sr.parameters.body[0] for content_type, sr in builder.content_type_to_schema_request.items()
-                if content_type in builder.body_kwarg_name_to_content_types["json"]
-            )
-            retval.append(f"if {json_param.schema.check_user_input_is_instance(body_name)}:")
-            retval.extend(["    " + line for line in self._set_body_content_kwarg(builder, json_param, "json")])
+            # first, we check if the user explicitly passed in content_type. If so, we route to the correct kwarg based off of their input.
+            retval.append("if content_type:")
+            for idx, body_kwarg_name in enumerate(builder.body_kwarg_name_to_content_types):
+                if body_kwarg_name == "json":
+                    # here we use the json regexp
+                    logic_check = "JSON_REGEXP.match(content_type)"
+                else:
+                    content_types_container: ContentTypesContainer = builder.body_kwarg_name_to_content_types[body_kwarg_name]
+                    pre_semicolon_content_types = [ct.split(";")[0] for ct in content_types_container.content_types]
+                    logic_check = f'content_type.split(";")[0] in {pre_semicolon_content_types}'
 
-            # then we deal with the content input
-            content_param = next(
-                sr.parameters.body[0] for content_type, sr in builder.content_type_to_schema_request.items()
-                if content_type in builder.body_kwarg_name_to_content_types["content"]
-            )
+                if idx == 0:
+                    if_statement = "if"
+                elif idx < len(builder.body_kwarg_name_to_content_types) - 1:
+                    if_statement = "elif"
+                else:
+                    if_statement = "else"
+                retval.extend([
+                    f'    {if_statement} {logic_check}:' if if_statement != "else" else "    else:",
+                    f"        _{body_kwarg_name} = {body_param.serialized_name}"
+                ])
+
+            # If users didn't input content_type, we sniff the body
             retval.append("else:")
-            retval.extend(["    " + line for line in self._set_body_content_kwarg(builder, content_param, "content")])
+            if len(builder.schema_requests) == 1:
+                # this means we only have one kind of body.
+                # If there's json here, we default to json
+                chosen_kwarg = "json" if "json" in builder.body_kwarg_name_to_content_types else "content"
+                content_types_container: ContentTypesContainer = builder.body_kwarg_name_to_content_types[chosen_kwarg]
+                retval.append(f'    content_type = "{content_types_container.default_content_type}"')
+                retval.append(f"    _{chosen_kwarg} = {body_param.serialized_name}")
+            else:
+                json_param = next(
+                    sr.parameters.body[0] for content_type, sr in builder.content_type_to_schema_request.items()
+                    if content_type in builder.body_kwarg_name_to_content_types["json"].content_types
+                )
+                retval.append(f"    if {json_param.schema.check_user_input_is_instance(body_name)}:")
+                retval.append(f'        content_type = content_type or "{builder.body_kwarg_name_to_content_types["json"].default_content_type}"')
+                retval.extend(["        " + line for line in self._set_body_content_kwarg(builder, json_param, "json")])
+
+                # then we deal with the content input
+                content_param = next(
+                    sr.parameters.body[0] for content_type, sr in builder.content_type_to_schema_request.items()
+                    if content_type in builder.body_kwarg_name_to_content_types["content"].content_types
+                )
+                retval.append("    else:")
+                retval.append(f'        content_type = content_type or "{builder.body_kwarg_name_to_content_types["content"].default_content_type}"')
+                retval.extend(["        " + line for line in self._set_body_content_kwarg(builder, content_param, "content")])
         return retval
 
     def _call_request_builder_helper(

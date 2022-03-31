@@ -6,7 +6,7 @@
 from collections.abc import MutableSequence
 from copy import copy
 import logging
-from typing import cast, List, Callable, Optional, TypeVar, Dict, TYPE_CHECKING
+from typing import cast, List, Callable, Optional
 
 from .parameter import Parameter, ParameterLocation
 from .base_schema import BaseSchema
@@ -14,11 +14,6 @@ from .dictionary_schema import DictionarySchema
 from .primitive_schemas import AnySchema, StringSchema
 from .utils import JSON_REGEXP
 
-if TYPE_CHECKING:
-    from .schema_request import SchemaRequest
-
-T = TypeVar('T')
-OrderedSet = Dict[T, None]
 
 _LOGGER = logging.getLogger(__name__)
 

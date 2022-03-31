@@ -48,11 +48,6 @@ async def test_json(client):
     assert result == "Nice job with JSON"
 
 @pytest.mark.asyncio
-async def test_incorrect_content_type(client):
-    with pytest.raises(ValueError):
-        await client.analyze_body(input=b"PDF", content_type="text/plain")
-
-@pytest.mark.asyncio
 async def test_content_type_with_encoding(client):
     result = await client.content_type_with_encoding(input="hello", content_type='text/plain; charset=UTF-8')
     assert result == "Nice job sending content type with encoding"

@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, TypeVar, Optional
+from typing import Any, Dict, List, Optional
 
 from .base_builder import BaseBuilder, create_parameters
 from .request_builder_parameter import RequestBuilderParameter
@@ -11,12 +11,7 @@ from .request_builder_parameter_list import RequestBuilderParameterList
 from .schema_request import SchemaRequest
 from .schema_response import SchemaResponse
 from .imports import FileImport, ImportType, TypingSection
-from .parameter import Parameter
 from .utils import build_content_type_to_schema_request
-
-
-T = TypeVar('T')
-OrderedSet = Dict[T, None]
 
 class RequestBuilder(BaseBuilder):
     def __init__(

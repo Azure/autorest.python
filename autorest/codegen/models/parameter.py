@@ -15,7 +15,7 @@ from .constant_schema import ConstantSchema
 from .object_schema import ObjectSchema
 from .property import Property
 from .primitive_schemas import IOSchema
-from .utils import get_schema
+from .utils import get_schema, OrderedSet
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -103,7 +103,6 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         self.original_parameter = original_parameter
         self.client_default_value = client_default_value
         self.is_overloaded: bool = False
-        self._type_annotation: Optional[str] = None
         self._docstring_type: Optional[str] = None
         self._keyword_only = keyword_only
         self.is_multipart = yaml_data.get("language", {}).get("python", {}).get("multipart", False)
@@ -111,6 +110,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         self.body_kwargs: List[Parameter] = []
         self.need_import = True
         self.is_kwarg = (self.rest_api_name == "Content-Type" or (self.constant and self.inputtable_by_user))
+        self.possible_types: OrderedSet[str] = {self.schema.type_annotation(is_operation_file=True): None}
+        self.possible_docstring_types: OrderedSet[str] = {self.schema.docstring_type: None}
 
     def __hash__(self) -> int:
         return hash(self.serialized_name)
@@ -226,18 +227,13 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
             return "Method"
         return self._implementation
 
-    @property
-    def _is_io_json(self):
-        return any(
-            k for k in self.body_kwargs if k.serialized_name == "json"
-        ) and isinstance(self.schema, IOSchema)
-
     def _default_value(self) -> Tuple[Optional[Any], str, str]:
-        type_annot = self._type_annotation or self.schema.type_annotation(is_operation_file=True)
-        if self._is_io_json:
-            type_annot = f"Union[{type_annot}, JSONType]"
+        if len(self.possible_types) > 1:
+            type_annot = f"Union[{','.join(list(self.possible_types.keys()))}]"
+        else:
+            type_annot = list(self.possible_types.keys())[0]
         any_types = ["Any", "JSONType"]
-        if not self.required and type_annot not in any_types and not self._is_io_json:
+        if not self.required and type_annot not in any_types:
             type_annot = f"Optional[{type_annot}]"
 
         if self.client_default_value is not None:
@@ -288,23 +284,15 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
         return self._default_value()[2]
 
-    def set_type_annotation(self, val: str) -> None:
-        self._type_annotation = val
-
     @property
     def serialization_type(self) -> str:
         return self.schema.serialization_type
 
     @property
     def docstring_type(self) -> str:
-        retval = self._docstring_type or self.schema.docstring_type
-        if self._is_io_json:
-            retval += " or JSONType"
-        return retval
-
-    @docstring_type.setter
-    def docstring_type(self, val: str) -> None:
-        self._docstring_type = val
+        if len(self.possible_docstring_types) > 1:
+            return " or ".join(list(self.possible_docstring_types.keys()))
+        return list(self.possible_docstring_types.keys())[0]
 
     @property
     def has_default_value(self):
@@ -396,7 +384,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         file_import = self.schema.imports()
         if not self.required:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        if self.is_overloaded or self._is_io_json:
+        if self.is_overloaded:
             file_import.add_submodule_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
         return file_import

@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import re
-from typing import Any, List, Dict, TYPE_CHECKING
+from typing import Any, List, Dict, TYPE_CHECKING, TypeVar
 import logging
 
 from .base_schema import BaseSchema
@@ -13,6 +13,9 @@ if TYPE_CHECKING:
     from .code_model import CodeModel
     from .schema_request import SchemaRequest
 
+
+T = TypeVar('T')
+OrderedSet = Dict[T, None]
 
 _LOGGER = logging.getLogger(__name__)
 

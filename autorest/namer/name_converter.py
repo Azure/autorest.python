@@ -7,36 +7,6 @@ import re
 import copy
 from typing import cast, Any, Dict, List, Match, Optional
 from .python_mappings import basic_latin_chars, reserved_words, PadType
-from ..codegen.models.utils import JSON_REGEXP
-
-def _get_all_values(all_headers: List[Dict[str, Any]]) -> List[str]:
-    content_types: List[str] = []
-    for h in all_headers:
-        if h['schema']['type'] == 'constant':
-            content_types.append(h['schema']['value']['value'])
-        elif any(
-            choice_type for choice_type in ['sealed-choice', 'choice']
-            if h['schema']['type'] == choice_type
-        ):
-            content_types.extend([
-                choice['value']
-                for choice in h['schema']['choices']
-            ])
-    return content_types
-
-def _get_default_value(all_values: List[str]) -> str:
-    json_values = [v for v in all_values if JSON_REGEXP.match(v)]
-    if json_values:
-        if "application/json" in json_values:
-            return "application/json"
-        return json_values[0]
-
-    xml_values = [v for v in all_values if "xml" in v]
-    if xml_values:
-        if "application/xml" in xml_values:
-            return "application/xml"
-        return xml_values[0]
-    return all_values[0]
 
 _M4_HEADER_PARAMETERS = ["content_type", "accept"]
 class NameConverter:
@@ -104,74 +74,10 @@ class NameConverter:
                         NameConverter._convert_language_default_python_case(parameter, pad_string=PadType.Parameter)
                         if parameter.get("origin", "") == "modelerfour:synthesized/content-type":
                             parameter["required"] = False
-                NameConverter._handle_m4_header_parameters(operation.get("requests", []))
                 for response in operation.get("responses", []):
                     NameConverter._convert_language_default_python_case(response)
                 if operation.get("extensions"):
                     NameConverter._convert_extensions(operation)
-
-    @staticmethod
-    def _handle_m4_header_parameters(requests):
-        m4_header_params = []
-        for request in requests:
-            m4_header_params.extend([
-                p for p in request.get('parameters', [])
-                if NameConverter._is_schema_an_m4_header_parameter(p['language']['default']['name'], p)
-            ])
-        m4_header_params_to_remove = []
-        for m4_header in _M4_HEADER_PARAMETERS:
-            params_of_header = [
-                p for p in m4_header_params
-                if p['language']['default']['name'] == m4_header
-            ]
-            if len(params_of_header) < 2:
-                continue
-            param_schema_to_param = {  # if they share the same schema, we don't need to keep both of them in this case
-                id(param['schema']): param
-                for param in params_of_header
-            }
-            if len(param_schema_to_param) == 1:
-                # we'll remove the ones that aren't the first
-                m4_header_params_to_remove.extend([
-                    id(p) for p in params_of_header[1:]
-                ])
-            else:
-                all_values = _get_all_values(params_of_header)
-                # if one of them is an enum schema, set the default value to constant
-                param_with_constant_schema = next(p for p in params_of_header if p['schema']['type'] == 'constant')
-                try:
-                    param_with_enum_schema = next(
-                        p for p in params_of_header
-                        if p['schema']['type'] == 'sealed-choice' or p['schema']['type'] == 'choice'
-                    )
-                except StopIteration:
-                    # this means there's no enum schema
-                    pass
-                else:
-                    param_with_enum_schema['clientDefaultValue'] = _get_default_value(all_values)
-                    # add constant enum schema value into list of possible schema values
-                    constant_schema = param_with_constant_schema['schema']
-                    constant_choice = {
-                        "language": {
-                            "default": {
-                                "description": constant_schema['language']['default']['description'],
-                                "name": constant_schema['language']['default']['name'],
-                            },
-                            "python": {
-                                "description": constant_schema['language']['python']['description'],
-                                "name": constant_schema['language']['python']['name'].upper(),
-                            }
-                        },
-                        "value": constant_schema['value']['value']
-                    }
-                    param_with_enum_schema['schema']['choices'].append(constant_choice)
-                    m4_header_params_to_remove.append(id(param_with_constant_schema))
-
-        for request in requests:
-            if not request.get('parameters'):
-                continue
-            request['parameters'] = [p for p in request['parameters'] if id(p) not in m4_header_params_to_remove]
-
 
     @staticmethod
     def _add_multipart_information(parameter: Dict[str, Any], request: Dict[str, Any]):

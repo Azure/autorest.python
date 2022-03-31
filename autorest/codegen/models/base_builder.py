@@ -3,13 +3,17 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, Union, NamedTuple, cast
 from enum import Enum
+
+from autorest.codegen.models.primitive_schemas import StringSchema
 from .base_model import BaseModel
 from .schema_response import SchemaResponse
 from .schema_request import SchemaRequest
 from .parameter import Parameter, ParameterLocation
 from .object_schema import ObjectSchema
+from .enum_schema import EnumSchema, EnumValue
+from .constant_schema import ConstantSchema
 from .utils import JSON_REGEXP
 
 _M4_HEADER_PARAMETERS = ["content_type", "accept"]
@@ -20,6 +24,10 @@ class BodyKwargNames(str, Enum):
     CONTENT = "content"
     FILES = "files"
     DATA = "data"
+
+class ContentTypesContainer(NamedTuple):
+    default_content_type: str
+    content_types: List[str]
 
 def _get_chosen_parameter(overloaded_parameters: List[Parameter]) -> Parameter:
     """Choose a parameter to elevate to the main operation depending on its location.
@@ -44,7 +52,45 @@ def _get_chosen_parameter(overloaded_parameters: List[Parameter]) -> Parameter:
             raise ValueError("You are trying to unify an overloaded parameter but there is no parameter to unify.")
         return chosen_parameter
     else:
-        return overloaded_parameters[0]
+        if len(overloaded_parameters) == 1 or overloaded_parameters[0].rest_api_name == "Accept":
+            # Currently we don't do different Accept headers
+            return overloaded_parameters[0]
+        # if it's an enum schema, we default to it.
+        try:
+            chosen_parameter = next(p for p in overloaded_parameters if isinstance(p.schema, EnumSchema))
+        except StopIteration:
+            chosen_parameter = overloaded_parameters[0]
+        enum_params = [p for p in overloaded_parameters if isinstance(p.schema, EnumSchema)]
+        # if there are multiple enums
+        if len(enum_params) > 1:
+            chosen_parameter = enum_params[0]
+            chosen_parameter_schema = cast(EnumSchema, chosen_parameter.schema)
+            for enum_param in enum_params[1:]:
+                for value in cast(EnumSchema, enum_param).values:
+                    if value.name not in [v.name for v in chosen_parameter_schema.values]:
+                        chosen_parameter_schema.values.append(value)
+        elif enum_params:
+            chosen_parameter = enum_params[0]
+            chosen_parameter_schema = cast(EnumSchema, chosen_parameter.schema)
+            for param in overloaded_parameters:
+                if isinstance(param.schema, EnumSchema):
+                    continue
+                constant_schema = cast(ConstantSchema, param.schema)
+                enum_name = cast(str, constant_schema.value).replace("/", "_").upper()
+                enum_value = constant_schema.value
+                if enum_name not in [v.name for v in chosen_parameter_schema.values]:
+                    chosen_parameter_schema.values.append(EnumValue(enum_name, enum_value))
+        else:
+            chosen_parameter = overloaded_parameters[0]
+            values = [
+                EnumValue(
+                    cast(str, cast(ConstantSchema, param.schema).value).replace("/", "_").upper(),
+                    cast(ConstantSchema, param.schema).value,
+                )
+                for param in overloaded_parameters
+            ]
+            chosen_parameter.schema = EnumSchema(namespace="", yaml_data={}, description="", name="", values=values, enum_type=StringSchema("", {"type": "str"}))
+        return chosen_parameter
 
 def _unify_overloaded_parameters(overloaded_parameters: List[Parameter]) -> Parameter:
     """Unify the overloaded parameters into one parameter for the main method
@@ -52,17 +98,12 @@ def _unify_overloaded_parameters(overloaded_parameters: List[Parameter]) -> Para
     When parameters are overloaded, we need to create one unified
     parameter on the actual function.
     """
-    type_annot = ", ".join([
-        param.schema.type_annotation(is_operation_file=True)
-        for param in overloaded_parameters
-    ])
-    docstring_type = " or ".join([
-        param.schema.docstring_type for param in overloaded_parameters
-    ])
     chosen_parameter = _get_chosen_parameter(overloaded_parameters)
-
-    chosen_parameter.set_type_annotation(f"Union[{type_annot}]")
-    chosen_parameter.docstring_type = docstring_type
+    for param in overloaded_parameters:
+        for type in param.possible_types:
+            chosen_parameter.possible_types[type] = None
+        for type in param.possible_docstring_types:
+            chosen_parameter.possible_docstring_types[type] = None
     return chosen_parameter
 
 def create_parameters(
@@ -137,18 +178,47 @@ class BaseBuilder(BaseModel):
         self.content_type_to_schema_request = content_type_to_schema_request or {}
 
     @property
-    def body_kwarg_name_to_content_types(self) -> Dict[BodyKwargNames, List[str]]:
+    def body_kwarg_name_to_content_types(self) -> Dict[BodyKwargNames, ContentTypesContainer]:
         # Group the different content types into content type groups based off of request kwarg name
-        retval: Dict[BodyKwargNames, List[str]] = {}
+        holder: Dict[BodyKwargNames, List[str]] = {}
         for content_type in self.content_type_to_schema_request.keys():
             if "multipart" in content_type:
-                retval.setdefault(BodyKwargNames.FILES, []).append(content_type)
+                holder.setdefault(BodyKwargNames.FILES, []).append(content_type)
             elif "application/x-www-form-urlencoded" == content_type:
-                retval.setdefault(BodyKwargNames.DATA, []).append(content_type)
+                holder.setdefault(BodyKwargNames.DATA, []).append(content_type)
             elif JSON_REGEXP.match(content_type):
-                retval.setdefault(BodyKwargNames.JSON, []).append(content_type)
+                holder.setdefault(BodyKwargNames.JSON, []).append(content_type)
             else:
-                retval.setdefault(BodyKwargNames.CONTENT, []).append(content_type)
+                holder.setdefault(BodyKwargNames.CONTENT, []).append(content_type)
+        # Now we choose the default content type for each kwarg
+        retval: Dict[BodyKwargNames, ContentTypesContainer] = {}
+        for body_kwarg_name, content_types in holder.items():
+            default_content_type = ""
+            if body_kwarg_name == "json":
+                json_content_types = [c for c in content_types if JSON_REGEXP.match(c)]
+                if "application/json" in json_content_types:
+                    default_content_type = "application/json"
+                elif json_content_types:
+                    default_content_type = json_content_types[0]
+                else:
+                    default_content_type = content_types[0]
+                retval[BodyKwargNames.JSON] = ContentTypesContainer(default_content_type, content_types)
+            elif body_kwarg_name == "content":
+                xml_content_types = [c for c in content_types if "xml" in c]
+                if xml_content_types:
+                    if "application/xml" in xml_content_types:
+                        default_content_type = "application/xml"
+                    elif xml_content_types:
+                        default_content_type = xml_content_types[0]
+                elif [c for c in content_types if "text/plain" in c]:
+                    default_content_type = next(c for c in content_types if "text/plain" in c)
+                elif "application/octet-stream" in content_types:
+                    default_content_type = "application/octet-stream"
+                else:
+                    default_content_type = content_types[0]
+                retval[BodyKwargNames.CONTENT] = ContentTypesContainer(default_content_type, content_types)
+            else:
+                retval[body_kwarg_name] = ContentTypesContainer(content_types[0], content_types)
         return retval
 
 

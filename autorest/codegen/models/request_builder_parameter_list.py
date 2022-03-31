@@ -4,16 +4,14 @@
 # license information.
 # --------------------------------------------------------------------------
 from copy import copy
-from typing import List, Optional, Tuple, TypeVar, Dict
+from typing import List, Optional, TypeVar, Dict
 from .request_builder_parameter import RequestBuilderParameter
 from .parameter_list import ParameterList
-from .parameter import ParameterLocation, Parameter, ParameterStyle
+from .parameter import ParameterLocation, Parameter
 from .primitive_schemas import AnySchema, JSONSchema
 from .dictionary_schema import DictionarySchema
-from .base_schema import BaseSchema
 from .schema_request import SchemaRequest
-from .utils import JSON_REGEXP
-from .base_builder import BodyKwargNames
+from .base_builder import BodyKwargNames, ContentTypesContainer
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
@@ -31,11 +29,9 @@ class RequestBuilderParameterList(ParameterList):
         super(RequestBuilderParameterList, self).__init__(
             code_model, parameters, # type: ignore
         )
-        self.body_kwarg_names: OrderedSet[str] = {}
         self.parameters: List[RequestBuilderParameter] = parameters or []  # type: ignore
 
     def _change_body_param_name(self, parameter: Parameter, name: str) -> None:
-        self.body_kwarg_names[name] = None
         parameter.serialized_name = name
         parameter.is_keyword_only = True
         parameter.flattened = False
@@ -101,7 +97,7 @@ class RequestBuilderParameterList(ParameterList):
         return content_kwarg
 
     def add_body_kwargs(
-        self, content_type_to_schema_request: Dict[str, SchemaRequest], body_kwarg_name_to_content_types: Dict[BodyKwargNames, List[str]]
+        self, content_type_to_schema_request: Dict[str, SchemaRequest], body_kwarg_name_to_content_types: Dict[BodyKwargNames, ContentTypesContainer]
     ) -> None:
         body_kwargs_added: List[RequestBuilderParameter] = []
         body_method_params = [
@@ -112,13 +108,14 @@ class RequestBuilderParameterList(ParameterList):
             return
         for content_type, schema_request in content_type_to_schema_request.items():
             body_param = schema_request.parameters.body[0]
+            json_entry = body_kwarg_name_to_content_types.get(BodyKwargNames.JSON)
             if body_param.is_multipart and _kwarg_not_added(body_kwargs_added, "files"):
                 file_kwarg = self._add_files_kwarg(body_param)
                 body_kwargs_added.append(file_kwarg)
             elif body_param.is_data_input and _kwarg_not_added(body_kwargs_added, "data"):
                 data_kwarg = self._add_data_kwarg(body_param)
                 body_kwargs_added.append(data_kwarg)
-            elif content_type in body_kwarg_name_to_content_types.get(BodyKwargNames.JSON, {}) and _kwarg_not_added(body_kwargs_added, "json"):
+            elif json_entry and content_type in json_entry.content_types and _kwarg_not_added(body_kwargs_added, "json"):
                 json_kwarg = self._add_json_kwarg(body_param)
                 body_kwargs_added.append(json_kwarg)
             elif _kwarg_not_added(body_kwargs_added, "content"):
