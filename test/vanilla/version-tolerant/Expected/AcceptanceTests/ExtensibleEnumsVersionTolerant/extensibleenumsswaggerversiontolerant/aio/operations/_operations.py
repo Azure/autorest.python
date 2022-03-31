@@ -25,11 +25,11 @@ from azure.core.utils import case_insensitive_dict
 from ...operations._operations import build_pet_add_pet_request, build_pet_get_by_pet_id_request
 
 try:
-    JSONObject = MutableMapping[str, Any]
-except:
-    from typing import MutableMapping
+    JSONObject = MutableMapping[str, Any]  # pylint: disable=E1136
+except TypeError:
+    from typing import MutableMapping  # pylint: disable=W0404
 
-    JSONObject = MutableMapping[str, Any]
+    JSONObject = MutableMapping[str, Any]  # pylint: disable=E1136
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 

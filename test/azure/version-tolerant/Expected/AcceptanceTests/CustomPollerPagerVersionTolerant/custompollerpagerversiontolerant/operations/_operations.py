@@ -32,11 +32,11 @@ from custompollerpagerdefinitions import CustomPager, CustomPoller
 from .._vendor import _format_url_section
 
 try:
-    JSONObject = MutableMapping[str, Any]
-except:
-    from typing import MutableMapping
+    JSONObject = MutableMapping[str, Any]  # pylint: disable=E1136
+except TypeError:
+    from typing import MutableMapping  # pylint: disable=W0404
 
-    JSONObject = MutableMapping[str, Any]
+    JSONObject = MutableMapping[str, Any]  # pylint: disable=E1136
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 

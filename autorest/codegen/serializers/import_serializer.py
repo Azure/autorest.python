@@ -78,8 +78,8 @@ class FileImportSerializer:
             else:
                 ret.append("{}try:".format((spacing)))
                 ret.append("    {}{} = {}".format(spacing, type_name, definition_value))
-                ret.append("{}except:".format(spacing))
-                ret.extend(map(lambda x: "    " + spacing + x,
+                ret.append("{}except {}:".format(spacing, type_definition.except_type))
+                ret.extend(map(lambda x: "    {}{}  # pylint: disable=W0404".format(spacing, x),
                                 _get_import_clauses(type_definition.except_imports, "\n    ")))
                 ret.append("    {}{} = {}".format(spacing, type_name, definition_value))
             return ret

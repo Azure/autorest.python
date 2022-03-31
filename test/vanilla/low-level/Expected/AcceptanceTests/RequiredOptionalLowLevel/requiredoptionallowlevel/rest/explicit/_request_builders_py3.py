@@ -14,11 +14,11 @@ from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
 
 try:
-    JSONObject = MutableMapping[str, Any]
-except:
-    from typing import MutableMapping
+    JSONObject = MutableMapping[str, Any]  # pylint: disable=E1136
+except TypeError:
+    from typing import MutableMapping  # pylint: disable=W0404
 
-    JSONObject = MutableMapping[str, Any]
+    JSONObject = MutableMapping[str, Any]  # pylint: disable=E1136
 
 _SERIALIZER = Serializer()
 

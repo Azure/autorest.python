@@ -16,11 +16,11 @@ from azure.core.utils import case_insensitive_dict
 from .._vendor import _format_url_section
 
 try:
-    JSONObject = MutableMapping[str, Any]
-except:
-    from typing import MutableMapping
+    JSONObject = MutableMapping[str, Any]  # pylint: disable=E1136
+except TypeError:
+    from typing import MutableMapping  # pylint: disable=W0404
 
-    JSONObject = MutableMapping[str, Any]
+    JSONObject = MutableMapping[str, Any]  # pylint: disable=E1136
 
 _SERIALIZER = Serializer()
 

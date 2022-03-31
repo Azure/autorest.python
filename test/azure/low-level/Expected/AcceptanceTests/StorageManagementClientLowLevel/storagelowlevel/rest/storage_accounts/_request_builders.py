@@ -20,11 +20,11 @@ if TYPE_CHECKING:
     from typing import Any, Optional
 
     try:
-        JSONObject = MutableMapping[str, Any]
-    except:
-        from typing import MutableMapping
+        JSONObject = MutableMapping[str, Any]  # pylint: disable=E1136
+    except TypeError:
+        from typing import MutableMapping  # pylint: disable=W0404
 
-        JSONObject = MutableMapping[str, Any]
+        JSONObject = MutableMapping[str, Any]  # pylint: disable=E1136
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False

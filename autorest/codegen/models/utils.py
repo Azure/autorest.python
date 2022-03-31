@@ -32,6 +32,6 @@ def import_mutable_mapping(file_import: FileImport):
     file_import.add_submodule_import(
         "collections.abc", "MutableMapping", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
     )
-    file_import.define_mypy_type("JSONObject", "MutableMapping[str, Any]", None, [ImportModel(
+    file_import.define_mypy_type("JSONObject", "MutableMapping[str, Any]  # pylint: disable=E1136", None, [ImportModel(
         TypingSection.CONDITIONAL, ImportType.STDLIB, "typing", submodule_name="MutableMapping"
-    )])
+    )], "TypeError")

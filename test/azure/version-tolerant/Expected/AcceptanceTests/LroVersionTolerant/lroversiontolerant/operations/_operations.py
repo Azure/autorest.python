@@ -28,11 +28,11 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 try:
-    JSONObject = MutableMapping[str, Any]
-except:
-    from typing import MutableMapping
+    JSONObject = MutableMapping[str, Any]  # pylint: disable=E1136
+except TypeError:
+    from typing import MutableMapping  # pylint: disable=W0404
 
-    JSONObject = MutableMapping[str, Any]
+    JSONObject = MutableMapping[str, Any]  # pylint: disable=E1136
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
