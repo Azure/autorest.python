@@ -56,9 +56,9 @@ def build_put201_creating_succeeded200_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values
-                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Known values include:
+                      "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                      "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
                     "str": "str"  # Optional. A set of tags. Dictionary of
@@ -74,9 +74,9 @@ def build_put201_creating_succeeded200_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values
-                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Known values include:
+                      "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                      "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
                     "str": "str"  # Optional. A set of tags. Dictionary of
@@ -139,9 +139,9 @@ def build_put_async_relative_retry_succeeded_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values
-                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Known values include:
+                      "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                      "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
                     "str": "str"  # Optional. A set of tags. Dictionary of
@@ -157,9 +157,9 @@ def build_put_async_relative_retry_succeeded_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values
-                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Known values include:
+                      "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                      "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
                     "str": "str"  # Optional. A set of tags. Dictionary of
@@ -216,9 +216,9 @@ def build_delete_provisioning202_accepted200_succeeded_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values
-                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Known values include:
+                      "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                      "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
                     "str": "str"  # Optional. A set of tags. Dictionary of
@@ -345,9 +345,9 @@ def build_post202_retry200_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values
-                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Known values include:
+                      "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                      "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
                     "str": "str"  # Optional. A set of tags. Dictionary of
@@ -410,9 +410,9 @@ def build_post_async_relative_retry_succeeded_request(
                 "name": "str",  # Optional. Resource Name.
                 "properties": {
                     "provisioningState": "str",  # Optional.
-                    "provisioningStateValues": "str"  # Optional. Possible values
-                      include: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                      "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                    "provisioningStateValues": "str"  # Optional. Known values include:
+                      "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                      "Updating", "Updated", "Deleting", "Deleted", "OK".
                 },
                 "tags": {
                     "str": "str"  # Optional. A set of tags. Dictionary of

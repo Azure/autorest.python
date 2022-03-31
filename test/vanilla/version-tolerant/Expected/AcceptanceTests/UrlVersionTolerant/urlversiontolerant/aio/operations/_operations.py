@@ -707,8 +707,8 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     async def enum_valid(self, enum_path: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get using uri with 'green color' in path parameter.
 
-        :param enum_path: send the value green. Possible values are: "red color", "green color", and
-         "blue color".
+        :param enum_path: send the value green. Known values are: "red color", "green color", and "blue
+         color".
         :type enum_path: str
         :return: None
         :rtype: None
@@ -745,7 +745,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     async def enum_null(self, enum_path: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get null (should throw on the client before the request is sent on wire).
 
-        :param enum_path: send null should throw. Possible values are: "red color", "green color", and
+        :param enum_path: send null should throw. Known values are: "red color", "green color", and
          "blue color".
         :type enum_path: str
         :return: None
@@ -1943,7 +1943,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get using uri with query parameter 'green color'.
 
-        :keyword enum_query: 'green color' enum value. Possible values are: "red color", "green color",
+        :keyword enum_query: 'green color' enum value. Known values are: "red color", "green color",
          and "blue color". Default value is None.
         :paramtype enum_query: str
         :return: None
@@ -1983,8 +1983,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null (no query parameter in url).
 
-        :keyword enum_query: null string value. Possible values are: "red color", "green color", and
-         "blue color". Default value is None.
+        :keyword enum_query: null string value. Known values are: "red color", "green color", and "blue
+         color". Default value is None.
         :paramtype enum_query: str
         :return: None
         :rtype: None

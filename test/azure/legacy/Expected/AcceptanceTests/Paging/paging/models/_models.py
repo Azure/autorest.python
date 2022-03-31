@@ -71,7 +71,7 @@ class OdataProductResult(msrest.serialization.Model):
 class OperationResult(msrest.serialization.Model):
     """OperationResult.
 
-    :ivar status: The status of the request. Possible values include: "Succeeded", "Failed",
+    :ivar status: The status of the request. Known values include: "Succeeded", "Failed",
      "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
      "OK".
     :vartype status: str or ~paging.models.OperationResultStatus
@@ -83,7 +83,7 @@ class OperationResult(msrest.serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword status: The status of the request. Possible values include: "Succeeded", "Failed",
+        :keyword status: The status of the request. Known values include: "Succeeded", "Failed",
          "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
          "OK".
         :paramtype status: str or ~paging.models.OperationResultStatus

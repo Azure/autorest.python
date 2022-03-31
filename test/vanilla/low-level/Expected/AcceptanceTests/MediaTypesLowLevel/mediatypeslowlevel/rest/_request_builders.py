@@ -39,7 +39,7 @@ def build_analyze_body_request(
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Input parameter. Default value is None.
     :paramtype content: any
-    :keyword content_type: Media type of the body sent to the API. Possible values are:
+    :keyword content_type: Media type of the body sent to the API. Known values are:
      "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
      value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -91,7 +91,7 @@ def build_analyze_body_no_accept_header_request(
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Input parameter. Default value is None.
     :paramtype content: any
-    :keyword content_type: Media type of the body sent to the API. Possible values are:
+    :keyword content_type: Media type of the body sent to the API. Known values are:
      "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
      value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -179,7 +179,7 @@ def build_binary_body_with_two_content_types_request(
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The payload body. Default value is None.
     :paramtype content: any
-    :keyword content_type: Media type of the body sent to the API. Possible values are:
+    :keyword content_type: Media type of the body sent to the API. Known values are:
      "application/json" or "application/octet-stream". Default value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -231,7 +231,7 @@ def build_binary_body_with_three_content_types_request(
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The payload body. Default value is None.
     :paramtype content: any
-    :keyword content_type: Media type of the body sent to the API. Possible values are:
+    :keyword content_type: Media type of the body sent to the API. Known values are:
      "application/json", "application/octet-stream", and "text/plain". Default value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -281,8 +281,8 @@ def build_put_text_and_json_body_request(
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The payload body. Default value is None.
     :paramtype content: any
-    :keyword content_type: Media type of the body sent to the API. Possible values are:
-     "text/plain" or "application/json". Default value is None.
+    :keyword content_type: Media type of the body sent to the API. Known values are: "text/plain"
+     or "application/json". Default value is None.
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.

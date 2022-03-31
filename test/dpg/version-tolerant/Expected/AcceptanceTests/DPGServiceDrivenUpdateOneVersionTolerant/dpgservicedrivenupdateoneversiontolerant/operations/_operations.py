@@ -335,8 +335,8 @@ class ParamsOperations:
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
          url: "http://example.org/myimage.jpeg" }.
         :type parameter: IO or JSONType
-        :keyword content_type: Media type of the body sent to the API. Possible values are:
-         "image/jpeg" or "application/json". Default value is "application/json".
+        :keyword content_type: Media type of the body sent to the API. Known values are: "image/jpeg"
+         or "application/json". Default value is "application/json".
         :paramtype content_type: str
         :return: any
         :rtype: any

@@ -16,10 +16,10 @@ class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicatio
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar pet_type: Required. Can take a value of dog, or cat, or fish. Possible values include:
+    :ivar pet_type: Required. Can take a value of dog, or cat, or fish. Known values include:
      "dog", "cat", "fish".
     :vartype pet_type: str or ~bodyformurlencodeddata.models.PetType
-    :ivar pet_food: Required. Can take a value of meat, or fish, or plant. Possible values include:
+    :ivar pet_food: Required. Can take a value of meat, or fish, or plant. Known values include:
      "meat", "fish", "plant".
     :vartype pet_food: str or ~bodyformurlencodeddata.models.PetFood
     :ivar pet_age: Required. How many years is it old?.
@@ -46,11 +46,11 @@ class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicatio
 
     def __init__(self, **kwargs):
         """
-        :keyword pet_type: Required. Can take a value of dog, or cat, or fish. Possible values include:
+        :keyword pet_type: Required. Can take a value of dog, or cat, or fish. Known values include:
          "dog", "cat", "fish".
         :paramtype pet_type: str or ~bodyformurlencodeddata.models.PetType
-        :keyword pet_food: Required. Can take a value of meat, or fish, or plant. Possible values
-         include: "meat", "fish", "plant".
+        :keyword pet_food: Required. Can take a value of meat, or fish, or plant. Known values include:
+         "meat", "fish", "plant".
         :paramtype pet_food: str or ~bodyformurlencodeddata.models.PetFood
         :keyword pet_age: Required. How many years is it old?.
         :paramtype pet_age: int

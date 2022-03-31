@@ -2381,7 +2381,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_enum_valid(self, **kwargs: Any) -> List[str]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
-        :return: list of str. Possible values are: "foo1", "foo2", and "foo3".
+        :return: list of str. Known values are: "foo1", "foo2", and "foo3".
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -2483,7 +2483,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_string_enum_valid(self, **kwargs: Any) -> List[str]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
-        :return: list of str. Possible values are: "foo1", "foo2", and "foo3".
+        :return: list of str. Known values are: "foo1", "foo2", and "foo3".
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
 

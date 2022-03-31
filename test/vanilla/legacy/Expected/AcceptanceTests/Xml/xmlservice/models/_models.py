@@ -214,18 +214,18 @@ class BlobProperties(msrest.serialization.Model):
     :vartype cache_control: str
     :ivar blob_sequence_number:
     :vartype blob_sequence_number: int
-    :ivar blob_type: Possible values include: "BlockBlob", "PageBlob", "AppendBlob".
+    :ivar blob_type: Known values include: "BlockBlob", "PageBlob", "AppendBlob".
     :vartype blob_type: str or ~xmlservice.models.BlobType
-    :ivar lease_status: Possible values include: "locked", "unlocked".
+    :ivar lease_status: Known values include: "locked", "unlocked".
     :vartype lease_status: str or ~xmlservice.models.LeaseStatusType
-    :ivar lease_state: Possible values include: "available", "leased", "expired", "breaking",
+    :ivar lease_state: Known values include: "available", "leased", "expired", "breaking",
      "broken".
     :vartype lease_state: str or ~xmlservice.models.LeaseStateType
-    :ivar lease_duration: Possible values include: "infinite", "fixed".
+    :ivar lease_duration: Known values include: "infinite", "fixed".
     :vartype lease_duration: str or ~xmlservice.models.LeaseDurationType
     :ivar copy_id:
     :vartype copy_id: str
-    :ivar copy_status: Possible values include: "pending", "success", "aborted", "failed".
+    :ivar copy_status: Known values include: "pending", "success", "aborted", "failed".
     :vartype copy_status: str or ~xmlservice.models.CopyStatusType
     :ivar copy_source:
     :vartype copy_source: str
@@ -245,12 +245,12 @@ class BlobProperties(msrest.serialization.Model):
     :vartype deleted_time: ~datetime.datetime
     :ivar remaining_retention_days:
     :vartype remaining_retention_days: int
-    :ivar access_tier: Possible values include: "P4", "P6", "P10", "P20", "P30", "P40", "P50",
-     "Hot", "Cool", "Archive".
+    :ivar access_tier: Known values include: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot",
+     "Cool", "Archive".
     :vartype access_tier: str or ~xmlservice.models.AccessTier
     :ivar access_tier_inferred:
     :vartype access_tier_inferred: bool
-    :ivar archive_status: Possible values include: "rehydrate-pending-to-hot",
+    :ivar archive_status: Known values include: "rehydrate-pending-to-hot",
      "rehydrate-pending-to-cool".
     :vartype archive_status: str or ~xmlservice.models.ArchiveStatus
     """
@@ -313,18 +313,18 @@ class BlobProperties(msrest.serialization.Model):
         :paramtype cache_control: str
         :keyword blob_sequence_number:
         :paramtype blob_sequence_number: int
-        :keyword blob_type: Possible values include: "BlockBlob", "PageBlob", "AppendBlob".
+        :keyword blob_type: Known values include: "BlockBlob", "PageBlob", "AppendBlob".
         :paramtype blob_type: str or ~xmlservice.models.BlobType
-        :keyword lease_status: Possible values include: "locked", "unlocked".
+        :keyword lease_status: Known values include: "locked", "unlocked".
         :paramtype lease_status: str or ~xmlservice.models.LeaseStatusType
-        :keyword lease_state: Possible values include: "available", "leased", "expired", "breaking",
+        :keyword lease_state: Known values include: "available", "leased", "expired", "breaking",
          "broken".
         :paramtype lease_state: str or ~xmlservice.models.LeaseStateType
-        :keyword lease_duration: Possible values include: "infinite", "fixed".
+        :keyword lease_duration: Known values include: "infinite", "fixed".
         :paramtype lease_duration: str or ~xmlservice.models.LeaseDurationType
         :keyword copy_id:
         :paramtype copy_id: str
-        :keyword copy_status: Possible values include: "pending", "success", "aborted", "failed".
+        :keyword copy_status: Known values include: "pending", "success", "aborted", "failed".
         :paramtype copy_status: str or ~xmlservice.models.CopyStatusType
         :keyword copy_source:
         :paramtype copy_source: str
@@ -344,12 +344,12 @@ class BlobProperties(msrest.serialization.Model):
         :paramtype deleted_time: ~datetime.datetime
         :keyword remaining_retention_days:
         :paramtype remaining_retention_days: int
-        :keyword access_tier: Possible values include: "P4", "P6", "P10", "P20", "P30", "P40", "P50",
+        :keyword access_tier: Known values include: "P4", "P6", "P10", "P20", "P30", "P40", "P50",
          "Hot", "Cool", "Archive".
         :paramtype access_tier: str or ~xmlservice.models.AccessTier
         :keyword access_tier_inferred:
         :paramtype access_tier_inferred: bool
-        :keyword archive_status: Possible values include: "rehydrate-pending-to-hot",
+        :keyword archive_status: Known values include: "rehydrate-pending-to-hot",
          "rehydrate-pending-to-cool".
         :paramtype archive_status: str or ~xmlservice.models.ArchiveStatus
         """
@@ -499,14 +499,14 @@ class ContainerProperties(msrest.serialization.Model):
     :vartype last_modified: ~datetime.datetime
     :ivar etag: Required.
     :vartype etag: str
-    :ivar lease_status: Possible values include: "locked", "unlocked".
+    :ivar lease_status: Known values include: "locked", "unlocked".
     :vartype lease_status: str or ~xmlservice.models.LeaseStatusType
-    :ivar lease_state: Possible values include: "available", "leased", "expired", "breaking",
+    :ivar lease_state: Known values include: "available", "leased", "expired", "breaking",
      "broken".
     :vartype lease_state: str or ~xmlservice.models.LeaseStateType
-    :ivar lease_duration: Possible values include: "infinite", "fixed".
+    :ivar lease_duration: Known values include: "infinite", "fixed".
     :vartype lease_duration: str or ~xmlservice.models.LeaseDurationType
-    :ivar public_access: Possible values include: "container", "blob".
+    :ivar public_access: Known values include: "container", "blob".
     :vartype public_access: str or ~xmlservice.models.PublicAccessType
     """
 
@@ -530,14 +530,14 @@ class ContainerProperties(msrest.serialization.Model):
         :paramtype last_modified: ~datetime.datetime
         :keyword etag: Required.
         :paramtype etag: str
-        :keyword lease_status: Possible values include: "locked", "unlocked".
+        :keyword lease_status: Known values include: "locked", "unlocked".
         :paramtype lease_status: str or ~xmlservice.models.LeaseStatusType
-        :keyword lease_state: Possible values include: "available", "leased", "expired", "breaking",
+        :keyword lease_state: Known values include: "available", "leased", "expired", "breaking",
          "broken".
         :paramtype lease_state: str or ~xmlservice.models.LeaseStateType
-        :keyword lease_duration: Possible values include: "infinite", "fixed".
+        :keyword lease_duration: Known values include: "infinite", "fixed".
         :paramtype lease_duration: str or ~xmlservice.models.LeaseDurationType
-        :keyword public_access: Possible values include: "container", "blob".
+        :keyword public_access: Known values include: "container", "blob".
         :paramtype public_access: str or ~xmlservice.models.PublicAccessType
         """
         super(ContainerProperties, self).__init__(**kwargs)

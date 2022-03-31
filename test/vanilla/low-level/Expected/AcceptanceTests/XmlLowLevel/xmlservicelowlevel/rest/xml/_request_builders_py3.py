@@ -738,13 +738,13 @@ def build_list_containers_request(**kwargs: Any) -> HttpRequest:
                         "Properties": {
                             "Etag": "str",  # Required.
                             "Last-Modified": "2020-02-20 00:00:00",  # Required.
-                            "LeaseDuration": "str",  # Optional. Possible values
+                            "LeaseDuration": "str",  # Optional. Known values
                               include: "infinite", "fixed".
-                            "LeaseState": "str",  # Optional. Possible values
+                            "LeaseState": "str",  # Optional. Known values
                               include: "available", "leased", "expired", "breaking", "broken".
-                            "LeaseStatus": "str",  # Optional. Possible values
+                            "LeaseStatus": "str",  # Optional. Known values
                               include: "locked", "unlocked".
-                            "PublicAccess": "str"  # Optional. Possible values
+                            "PublicAccess": "str"  # Optional. Known values
                               include: "container", "blob".
                         }
                     }
@@ -1067,16 +1067,16 @@ def build_list_blobs_request(**kwargs: Any) -> HttpRequest:
                             },
                             "Name": "str",  # Required.
                             "Properties": {
-                                "AccessTier": "str",  # Optional. Possible
+                                "AccessTier": "str",  # Optional. Known
                                   values include: "P4", "P6", "P10", "P20", "P30", "P40", "P50",
                                   "Hot", "Cool", "Archive".
                                 "AccessTierInferred": bool,  # Optional.
                                   Required. Properties of a blob.
-                                "ArchiveStatus": "str",  # Optional. Possible
+                                "ArchiveStatus": "str",  # Optional. Known
                                   values include: "rehydrate-pending-to-hot",
                                   "rehydrate-pending-to-cool".
-                                "BlobType": "str",  # Optional. Possible
-                                  values include: "BlockBlob", "PageBlob", "AppendBlob".
+                                "BlobType": "str",  # Optional. Known values
+                                  include: "BlockBlob", "PageBlob", "AppendBlob".
                                 "Cache-Control": "str",  # Optional.
                                   Required. Properties of a blob.
                                 "Content-Disposition": "str",  # Optional.
@@ -1099,7 +1099,7 @@ def build_list_blobs_request(**kwargs: Any) -> HttpRequest:
                                   Properties of a blob.
                                 "CopySource": "str",  # Optional. Required.
                                   Properties of a blob.
-                                "CopyStatus": "str",  # Optional. Possible
+                                "CopyStatus": "str",  # Optional. Known
                                   values include: "pending", "success", "aborted", "failed".
                                 "CopyStatusDescription": "str",  # Optional.
                                   Required. Properties of a blob.
@@ -1112,12 +1112,12 @@ def build_list_blobs_request(**kwargs: Any) -> HttpRequest:
                                   Required. Properties of a blob.
                                 "Last-Modified": "2020-02-20 00:00:00",  #
                                   Required.
-                                "LeaseDuration": "str",  # Optional. Possible
+                                "LeaseDuration": "str",  # Optional. Known
                                   values include: "infinite", "fixed".
-                                "LeaseState": "str",  # Optional. Possible
+                                "LeaseState": "str",  # Optional. Known
                                   values include: "available", "leased", "expired", "breaking",
                                   "broken".
-                                "LeaseStatus": "str",  # Optional. Possible
+                                "LeaseStatus": "str",  # Optional. Known
                                   values include: "locked", "unlocked".
                                 "RemainingRetentionDays": 0,  # Optional.
                                   Required. Properties of a blob.

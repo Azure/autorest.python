@@ -49,7 +49,7 @@ class MediaTypesClientOperationsMixin:
 
         :param input: Input parameter. Default value is None.
         :type input: IO or ~mediatypes.models.SourcePath
-        :keyword content_type: Media type of the body sent to the API. Possible values are:
+        :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
          value is "application/json".
         :paramtype content_type: str or ~mediatypes.models.ContentType
@@ -122,7 +122,7 @@ class MediaTypesClientOperationsMixin:
 
         :param input: Input parameter. Default value is None.
         :type input: IO or ~mediatypes.models.SourcePath
-        :keyword content_type: Media type of the body sent to the API. Possible values are:
+        :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
          value is "application/json".
         :paramtype content_type: str or ~mediatypes.models.ContentType
@@ -239,7 +239,7 @@ class MediaTypesClientOperationsMixin:
 
         :param message: The payload body.
         :type message: IO
-        :keyword content_type: Media type of the body sent to the API. Possible values are:
+        :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json" or "application/octet-stream". Default value is None.
         :paramtype content_type: str or ~mediatypes.models.ContentType1
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -299,7 +299,7 @@ class MediaTypesClientOperationsMixin:
 
         :param message: The payload body.
         :type message: IO or str
-        :keyword content_type: Media type of the body sent to the API. Possible values are:
+        :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json", "application/octet-stream", and "text/plain". Default value is
          "application/json".
         :paramtype content_type: str or ~mediatypes.models.ContentType1
@@ -354,8 +354,8 @@ class MediaTypesClientOperationsMixin:
 
         :param message: The payload body.
         :type message: str or str
-        :keyword content_type: Media type of the body sent to the API. Possible values are:
-         "text/plain" or "application/json". Default value is "application/json".
+        :keyword content_type: Media type of the body sent to the API. Known values are: "text/plain"
+         or "application/json". Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)

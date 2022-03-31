@@ -54,7 +54,7 @@ class OperationGroupTwoOperations:
 
         :param input: Input parameter. Default value is None.
         :type input: IO or ~multiapicredentialdefaultpolicy.v3.models.SourcePath
-        :keyword content_type: Media type of the body sent to the API. Possible values are:
+        :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
          value is "application/json".
         :paramtype content_type: str or ~multiapicredentialdefaultpolicy.v3.models.ContentType

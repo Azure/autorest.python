@@ -46,7 +46,7 @@ class Product(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar received: Required. Possible values include: "raw", "model".
+    :ivar received: Required. Known values include: "raw", "model".
     :vartype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
     """
 
@@ -60,7 +60,7 @@ class Product(msrest.serialization.Model):
 
     def __init__(self, *, received: Union[str, "_models.ProductReceived"], **kwargs):
         """
-        :keyword received: Required. Possible values include: "raw", "model".
+        :keyword received: Required. Known values include: "raw", "model".
         :paramtype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
         """
         super(Product, self).__init__(**kwargs)
@@ -72,7 +72,7 @@ class LROProduct(Product):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar received: Required. Possible values include: "raw", "model".
+    :ivar received: Required. Known values include: "raw", "model".
     :vartype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
     :ivar provisioning_state: Required.
     :vartype provisioning_state: str
@@ -90,7 +90,7 @@ class LROProduct(Product):
 
     def __init__(self, *, received: Union[str, "_models.ProductReceived"], provisioning_state: str, **kwargs):
         """
-        :keyword received: Required. Possible values include: "raw", "model".
+        :keyword received: Required. Known values include: "raw", "model".
         :paramtype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
         :keyword provisioning_state: Required.
         :paramtype provisioning_state: str

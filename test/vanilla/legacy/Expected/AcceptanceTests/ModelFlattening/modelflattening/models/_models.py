@@ -143,7 +143,7 @@ class FlattenedProduct(Resource):
     :vartype p_name: str
     :ivar type_properties_type:
     :vartype type_properties_type: str
-    :ivar provisioning_state_values: Possible values include: "Succeeded", "Failed", "canceled",
+    :ivar provisioning_state_values: Known values include: "Succeeded", "Failed", "canceled",
      "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
     :vartype provisioning_state_values: str or
      ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
