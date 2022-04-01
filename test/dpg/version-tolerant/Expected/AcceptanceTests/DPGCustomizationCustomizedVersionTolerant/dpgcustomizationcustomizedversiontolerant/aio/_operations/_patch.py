@@ -3,11 +3,14 @@
 # Licensed under the MIT License.
 # ------------------------------------
 
-from typing import Any, AsyncIterable, Union, cast
+from typing import Any, AsyncIterable, TYPE_CHECKING
 from azure.core.polling import AsyncLROPoller
 
-from ._operations import DPGClientOperationsMixin as DPGClientOperationsMixinGenerated, JSONObject
+from ._operations import DPGClientOperationsMixin as DPGClientOperationsMixinGenerated
 from ...models import *  # pylint: disable=wildcard-import,unused-wildcard-import
+
+if TYPE_CHECKING:
+    from typing import Literal
 
 
 class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
@@ -15,23 +18,21 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
         response = await super().get_model(mode, **kwargs)
         return Product(**response)
 
-    async def post_model(self, mode: str, input: Union[Product, JSONObject], **kwargs: Any) -> Product:
+    async def post_model(self, mode: str, input: Product, **kwargs: Any) -> Product:
         response = await super().post_model(mode, input, **kwargs)
         return Product(**response)
 
     def get_pages(self, mode: str, **kwargs) -> AsyncIterable[Product]:
-        pages = super().get_pages(mode, cls=lambda objs: [Product(**x) for x in objs], **kwargs)
-        return cast(AsyncIterable[Product], pages)  # be safe since calling get_pages with Product
+        return super().get_pages(mode, cls=lambda objs: [Product(**x) for x in objs], **kwargs)
 
-    async def begin_lro(self, mode: str, **kwargs: Any) -> AsyncLROPoller[LROProduct]:  # type: ignore
-        lro = await super().begin_lro(
+    async def begin_lro(self, mode: str, **kwargs: Any) -> AsyncLROPoller[LROProduct]:
+        return await super().begin_lro(
             mode,
             cls=lambda pipeline_response, deserialized, headers: LROProduct._from_dict(  # pylint: disable=protected-access
                 **deserialized
             ),
             **kwargs
         )
-        return cast(AsyncLROPoller[LROProduct], lro)  # be safe since calling begin_lro with LROProduct
 
 
 def patch_sdk():

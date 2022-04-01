@@ -73,15 +73,16 @@ class FileImportSerializer:
         def declare_defintion(spacing: str, type_name: str, type_definition: TypeDefinition) -> List[str]:
             ret: List[str] = []
             definition_value = type_definition.async_definition if self.async_mode else type_definition.sync_definition
-            if type_definition.except_imports is None:
+            if type_definition.version_if_else_imports is None:
                 ret.append("{}{} = {}".format(spacing, type_name, definition_value))
             else:
-                ret.append("{}try:".format((spacing)))
-                ret.append("    {}{} = {} # pylint: disable=E1136".format(spacing, type_name, definition_value))
-                ret.append("{}except {}:".format(spacing, type_definition.except_type))
-                ret.extend(map(lambda x: "    {}{}  # pylint: disable=W0404, C0412".format(spacing, x),
-                                _get_import_clauses(type_definition.except_imports, "\n    ")))
-                ret.append("    {}{} = {} # type: ignore # pylint: disable=E1136".format(spacing, type_name, definition_value))
+                ret.append("{}if sys.version_info >= {}:".format(spacing, type_definition.version_if_else_imports[0]))
+                ret.extend(map(lambda x: "    {}{}".format(spacing, x),
+                                _get_import_clauses([type_definition.version_if_else_imports[1]], "\n")))
+                ret.append("{}else:".format(spacing))
+                ret.extend(map(lambda x: "    {}{} # type: ignore".format(spacing, x),
+                                _get_import_clauses([type_definition.version_if_else_imports[2]], "\n")))
+                ret.append("{}{} = {}".format(spacing, type_name, definition_value))
             return ret
 
         if not self.file_import.type_definitions:
