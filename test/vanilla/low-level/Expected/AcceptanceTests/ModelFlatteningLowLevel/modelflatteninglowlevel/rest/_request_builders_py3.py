@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Optional
+from typing import Any, Dict, List, Optional
 
 from msrest import Serializer
 
@@ -25,7 +25,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_put_array_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_array_request(
+    *, json: Optional[List[JSONObject]] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     """Put External Resource as an Array.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -34,7 +36,7 @@ def build_put_array_request(*, json: Any = None, content: Any = None, **kwargs: 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as an Array to put. Default value is
      None.
-    :paramtype json: any
+    :paramtype json: list[JSONObject]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as an Array to put. Default value is None.
     :paramtype content: any
@@ -127,7 +129,9 @@ def build_get_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_wrapped_array_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_wrapped_array_request(
+    *, json: Optional[List[JSONObject]] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     """No need to have a route in Express server for this operation. Used to verify the type flattened
     is not removed if it's referenced in an array.
 
@@ -137,7 +141,7 @@ def build_put_wrapped_array_request(*, json: Any = None, content: Any = None, **
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as an Array to put. Default value is
      None.
-    :paramtype json: any
+    :paramtype json: list[JSONObject]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as an Array to put. Default value is None.
     :paramtype content: any
@@ -212,7 +216,7 @@ def build_get_wrapped_array_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_put_dictionary_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[Dict[str, JSONObject]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Put External Resource as a Dictionary.
 
@@ -222,7 +226,7 @@ def build_put_dictionary_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as a Dictionary to put. Default value is
      None.
-    :paramtype json: JSONObject
+    :paramtype json: dict[str, JSONObject]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as a Dictionary to put. Default value is
      None.

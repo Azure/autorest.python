@@ -62,7 +62,7 @@ def build_get_model_request(mode: str, **kwargs: Any) -> HttpRequest:
 
 
 def build_post_model_request(
-    mode: str, *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    mode: str, *, json: Optional[_models.Input] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 

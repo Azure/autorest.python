@@ -17,7 +17,7 @@ from .._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any, Dict, List, Optional
 
     if sys.version_info >= (3, 9):
         from collections.abc import MutableMapping
@@ -42,7 +42,7 @@ def build_put_array_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as an Array to put. Default value is
      None.
-    :paramtype json: any
+    :paramtype json: list[JSONObject]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as an Array to put. Default value is None.
     :paramtype content: any
@@ -161,7 +161,7 @@ def build_put_wrapped_array_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as an Array to put. Default value is
      None.
-    :paramtype json: any
+    :paramtype json: list[JSONObject]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as an Array to put. Default value is None.
     :paramtype content: any
@@ -260,7 +260,7 @@ def build_put_dictionary_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as a Dictionary to put. Default value is
      None.
-    :paramtype json: JSONObject
+    :paramtype json: dict[str, JSONObject]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as a Dictionary to put. Default value is
      None.

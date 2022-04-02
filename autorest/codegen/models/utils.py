@@ -4,9 +4,12 @@
 # license information.
 # --------------------------------------------------------------------------
 import re
-from typing import Any, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING, Type
 import logging
 from .base_schema import BaseSchema
+from .dictionary_schema import DictionarySchema
+from .list_schema import ListSchema
+from .object_schema import ObjectSchema
 from .imports import FileImport, ImportType, TypingSection, ImportModel
 
 if TYPE_CHECKING:
@@ -35,3 +38,8 @@ def import_mutable_mapping(file_import: FileImport):
     ), ImportModel(
         TypingSection.CONDITIONAL, ImportType.STDLIB, "typing", submodule_name="MutableMapping"
     )))
+
+def is_or_contain_schema(schema: BaseSchema, t: Type = ObjectSchema) -> bool:
+    return (isinstance(schema, t) or
+            isinstance(schema, ListSchema) and isinstance(schema.element_type, t) or
+            isinstance(schema, DictionarySchema) and isinstance(schema.element_type, t))

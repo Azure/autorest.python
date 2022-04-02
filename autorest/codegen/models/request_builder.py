@@ -6,14 +6,14 @@
 from typing import Any, Dict, List, TypeVar, Optional
 
 from .base_builder import BaseBuilder, create_parameters
+from .object_schema import HiddenModelObjectSchema
 from .request_builder_parameter import RequestBuilderParameter
 from .request_builder_parameter_list import RequestBuilderParameterList
 from .schema_request import SchemaRequest
 from .schema_response import SchemaResponse
 from .imports import FileImport, ImportType, TypingSection
 from .parameter import Parameter
-from .primitive_schemas import JSONObjectSchema
-from .utils import import_mutable_mapping
+from .utils import import_mutable_mapping, is_or_contain_schema
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
@@ -90,7 +90,7 @@ class RequestBuilder(BaseBuilder):
         file_import.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY)
         if (not async_mode and
             self.parameters.has_body and
-            any([isinstance(p.schema, JSONObjectSchema) for p in self.body_kwargs_to_get]) and (
+            any(is_or_contain_schema(p.schema, HiddenModelObjectSchema) for p in self.body_kwargs_to_get) and (
             self.code_model.options["builders_visibility"] != "embedded" or
             self.code_model.options["add_python3_operation_files"]
         )):

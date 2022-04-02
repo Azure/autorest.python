@@ -734,7 +734,9 @@ def build_post_optional_class_property_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_post_required_array_parameter_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_post_required_array_parameter_request(
+    *, json: Optional[List[str]] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly required array. Please put null and the client library should throw before the
     request is sent.
 
@@ -743,7 +745,7 @@ def build_post_required_array_parameter_request(*, json: Any = None, content: An
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: any
+    :paramtype json: list[str]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -777,7 +779,9 @@ def build_post_required_array_parameter_request(*, json: Any = None, content: An
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_post_optional_array_parameter_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_post_optional_array_parameter_request(
+    *, json: Optional[List[str]] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     """Test explicitly optional array. Please put null.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -785,7 +789,7 @@ def build_post_optional_array_parameter_request(*, json: Any = None, content: An
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: any
+    :paramtype json: list[str]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any

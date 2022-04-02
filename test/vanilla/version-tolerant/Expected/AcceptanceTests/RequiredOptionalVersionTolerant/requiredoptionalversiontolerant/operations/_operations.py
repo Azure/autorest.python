@@ -512,7 +512,7 @@ def build_explicit_post_optional_class_property_request(
 
 
 def build_explicit_post_required_array_parameter_request(
-    *, json: Any = None, content: Any = None, **kwargs: Any
+    *, json: Optional[List[str]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -531,7 +531,7 @@ def build_explicit_post_required_array_parameter_request(
 
 
 def build_explicit_post_optional_array_parameter_request(
-    *, json: Any = None, content: Any = None, **kwargs: Any
+    *, json: Optional[List[str]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 

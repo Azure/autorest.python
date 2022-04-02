@@ -13,13 +13,11 @@ from .schema_response import SchemaResponse
 from .parameter import Parameter, get_parameter, ParameterLocation
 from .parameter_list import ParameterList, get_parameter_list
 from .base_schema import BaseSchema
-from .dictionary_schema import DictionarySchema
-from .list_schema import ListSchema
 from .object_schema import ObjectSchema
 from .request_builder import RequestBuilder
 from .schema_request import SchemaRequest
 from .primitive_schemas import IOSchema
-from .utils import import_mutable_mapping
+from .utils import import_mutable_mapping, is_or_contain_schema
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -317,13 +315,8 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                 self.has_object_schema(self.responses))
 
     @staticmethod
-    def has_object_schema(parameters: List) -> bool:
-        for param in parameters or []:
-            if (isinstance(param.schema, ObjectSchema) or
-                isinstance(param.schema, ListSchema) and isinstance(param.schema.element_type, ObjectSchema) or
-                isinstance(param.schema, DictionarySchema) and isinstance(param.schema.element_type, ObjectSchema)):
-                return True
-        return False
+    def has_object_schema(param_or_responses: List) -> bool:
+        return any(is_or_contain_schema(p.schema) for p in (param_or_responses or []))
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Operation":
