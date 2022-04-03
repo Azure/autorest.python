@@ -39,7 +39,7 @@ def import_mutable_mapping(file_import: FileImport):
         TypingSection.CONDITIONAL, ImportType.STDLIB, "typing", submodule_name="MutableMapping"
     )))
 
-def is_or_contain_schema(schema: BaseSchema, t: Type = ObjectSchema) -> bool:
-    return (isinstance(schema, t) or
-            isinstance(schema, ListSchema) and isinstance(schema.element_type, t) or
-            isinstance(schema, DictionarySchema) and isinstance(schema.element_type, t))
+def is_or_contain_schema(schema: BaseSchema, t: Type) -> bool:
+    if isinstance(schema, (DictionarySchema, ListSchema)):
+        return is_or_contain_schema(schema.element_type, t)
+    return isinstance(schema, t)

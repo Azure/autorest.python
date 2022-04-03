@@ -316,7 +316,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
     @staticmethod
     def has_object_schema(param_or_responses: List) -> bool:
-        return any(is_or_contain_schema(p.schema) for p in (param_or_responses or []))
+        return any(is_or_contain_schema(p.schema, ObjectSchema) for p in (param_or_responses or []))
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Operation":
