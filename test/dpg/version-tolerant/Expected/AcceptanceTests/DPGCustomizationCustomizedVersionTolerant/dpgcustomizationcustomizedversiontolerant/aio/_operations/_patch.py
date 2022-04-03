@@ -9,12 +9,13 @@ from azure.core.polling import AsyncLROPoller
 from ._operations import DPGClientOperationsMixin as DPGClientOperationsMixinGenerated
 from ...models import *  # pylint: disable=wildcard-import,unused-wildcard-import
 
+
 class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
     async def get_model(self, mode: str, **kwargs: Any) -> Product:
         response = await super().get_model(mode, **kwargs)
         return Product(**response)
 
-    async def post_model(self, mode: str, input: Input, **kwargs: Any) -> Product: # type: ignore
+    async def post_model(self, mode: str, input: Input, **kwargs: Any) -> Product:  # type: ignore
         response = await super().post_model(mode, input, **kwargs)
         return Product(**response)
 

@@ -13,7 +13,7 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
         response = super().get_model(mode, **kwargs)
         return Product(**response)
 
-    def post_model(self, mode: str, input: Input, **kwargs: Any) -> Product: # type: ignore
+    def post_model(self, mode: str, input: Input, **kwargs: Any) -> Product:  # type: ignore
         response = super().post_model(mode, input, **kwargs)
         return Product(**response)
 
@@ -21,7 +21,7 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
         pages = super().get_pages(mode, cls=lambda objs: [Product(**x) for x in objs], **kwargs)
         return cast(Iterable[Product], pages)
 
-    def begin_lro(self, mode: str, **kwargs: Any) -> LROPoller[LROProduct]: # type: ignore
+    def begin_lro(self, mode: str, **kwargs: Any) -> LROPoller[LROProduct]:  # type: ignore
         poller = super().begin_lro(
             mode,
             cls=lambda pipeline_response, deserialized, headers: LROProduct._from_dict(  # pylint: disable=protected-access
