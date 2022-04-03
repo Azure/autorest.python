@@ -9,7 +9,6 @@ import logging
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .list_schema import ListSchema
-from .object_schema import ObjectSchema
 from .imports import FileImport, ImportType, TypingSection, ImportModel
 
 if TYPE_CHECKING:
