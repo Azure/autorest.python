@@ -21,8 +21,8 @@ from .models.credential_schema_policy import CredentialSchemaPolicy, get_credent
 from .models.credential_schema_policy import BearerTokenCredentialPolicy, AzureKeyCredentialPolicy
 from .models.credential_model import CredentialModel
 
-_AAD_TYPE = "AADToken"
-_KEY_TYPE = "AzureKey"
+_AAD_TYPE = "OAuth2"
+_KEY_TYPE = "Key"
 
 def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -> None:
     # Create operations
@@ -153,7 +153,9 @@ class CodeGenerator(Plugin):
                     credential_model.credential_scopes.update(scheme["scopes"])
                 elif _KEY_TYPE == scheme["type"]:
                     # only accept the last one
-                    credential_model.key_header_name = scheme["headerName"]
+                    # Right now, we only deal with headers. When this changes, we'll have to check
+                    # first whether the credential is in the header or not
+                    credential_model.key_header_name = scheme["name"]
 
         if credential_model.credential_scopes:
             credential_model.policy_type = BearerTokenCredentialPolicy
