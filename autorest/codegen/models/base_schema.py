@@ -137,11 +137,11 @@ class BaseSchema(BaseModel, ABC):
         """Template of what this schema would look like as files input"""
         ...
 
-    def check_user_input_is_instance(self, input_name: str) -> Optional[str]:
+    def check_user_input_is_instance(self, input_name: str) -> Optional[str]:  # pylint: disable=unused-argument,no-self-use
         """Check if the input users pass in are of this schema"""
         return None
 
-    def check_user_input_imports(self) -> FileImport:
+    def check_user_input_imports(self) -> FileImport:  # pylint: disable=no-self-use
         """These are the imports needed to check if a user's input is of this schema.
 
         Not adding as part of imports because only the operation will know

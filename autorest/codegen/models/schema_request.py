@@ -16,7 +16,7 @@ class SchemaRequest(BaseModel):
         parameters: ParameterList,
     ) -> None:
         super().__init__(yaml_data)
-        self.content_types = []
+        self.content_types: List[str] = []
         self.parameters = parameters
 
     @property

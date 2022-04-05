@@ -104,8 +104,6 @@ class RequestBuilder(BaseBuilder):
             "request"
         ]
         name = "_".join([n for n in names if n])
-        if name == "build_put_byte_request":
-            a = 'b'
 
         first_request = yaml_data["requests"][0]
         schema_requests = [SchemaRequest.from_yaml(yaml, code_model=code_model) for yaml in yaml_data["requests"]]

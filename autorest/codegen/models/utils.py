@@ -32,8 +32,10 @@ def get_schema(code_model: "CodeModel", schema: Any, serialized_name: str = "unk
         _LOGGER.critical("Unable to ref the object")
         raise
 
-def build_content_type_to_schema_request(schema_requests: List["SchemaRequest"], yaml_data: Dict[str, Any]) -> Dict[str, "SchemaRequest"]:
-    retval: Dict[str, SchemaRequest] = {}
+def build_content_type_to_schema_request(
+    schema_requests: List["SchemaRequest"], yaml_data: Dict[str, Any]
+) -> Dict[str, "SchemaRequest"]:
+    retval: Dict[str, "SchemaRequest"] = {}
     for content_type, schema_request_yaml in yaml_data.items():
         try:
             schema_request = next(sr for sr in schema_requests if id(sr.yaml_data) == id(schema_request_yaml))

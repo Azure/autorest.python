@@ -118,7 +118,10 @@ class IOSchema(PrimitiveSchema):
         return file_import
 
     def check_user_input_is_instance(self, input_name: str) -> Optional[str]:
-        return f'isinstance({input_name}, bytes) or any(hasattr({input_name}, attr) for attr in ["read", "__iter__", "__aiter__"])'
+        return (
+            f'isinstance({input_name}, bytes) or any(hasattr({input_name}, attr) "\
+            "for attr in ["read", "__iter__", "__aiter__"])'
+        )
 
 class AnySchema(PrimitiveSchema):
     @property

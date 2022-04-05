@@ -253,7 +253,9 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                 file_import.merge(param.schema.check_user_input_imports())
             if "json" in self.body_kwarg_name_to_content_types:
                 # need JSON regexp import
-                file_import.add_submodule_import("azure.core.pipeline.policies", "ContentDecodePolicy", ImportType.AZURECORE)
+                file_import.add_submodule_import(
+                    "azure.core.pipeline.policies", "ContentDecodePolicy", ImportType.AZURECORE
+                )
                 file_import.define_mypy_type("JSON_REGEXP", "ContentDecodePolicy.JSON_REGEXP")
         return file_import
 

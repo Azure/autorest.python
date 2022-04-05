@@ -14,7 +14,6 @@ from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
 from .object_schema import ObjectSchema
 from .property import Property
-from .primitive_schemas import IOSchema
 from .utils import get_schema, OrderedSet
 
 if TYPE_CHECKING:

@@ -28,7 +28,7 @@ class BodyKwargNames(str, Enum):
     FILES = "files"
     DATA = "data"
 
-class ContentTypesContainer(NamedTuple):
+class ContentTypesContainer(NamedTuple):  # pylint: disable=inherit-non-class
     default_content_type: str
     content_types: List[str]
 
@@ -54,46 +54,52 @@ def _get_chosen_parameter(overloaded_parameters: List[Parameter], code_model: "C
         if not chosen_parameter:
             raise ValueError("You are trying to unify an overloaded parameter but there is no parameter to unify.")
         return chosen_parameter
+    if len(overloaded_parameters) == 1 or overloaded_parameters[0].rest_api_name == "Accept":
+        # Currently we don't do different Accept headers
+        return overloaded_parameters[0]
+    # if it's an enum schema, we default to it.
+    try:
+        chosen_parameter = next(p for p in overloaded_parameters if isinstance(p.schema, EnumSchema))
+    except StopIteration:
+        chosen_parameter = overloaded_parameters[0]
+    enum_params = [p for p in overloaded_parameters if isinstance(p.schema, EnumSchema)]
+    # if there are multiple enums
+    if len(enum_params) > 1:
+        chosen_parameter = enum_params[0]
+        chosen_parameter_schema = cast(EnumSchema, chosen_parameter.schema)
+        for enum_param in enum_params[1:]:
+            for value in cast(EnumSchema, enum_param).values:
+                if value.name not in [v.name for v in chosen_parameter_schema.values]:
+                    chosen_parameter_schema.values.append(value)
+    elif enum_params:
+        chosen_parameter = enum_params[0]
+        chosen_parameter_schema = cast(EnumSchema, chosen_parameter.schema)
+        for param in overloaded_parameters:
+            if isinstance(param.schema, EnumSchema):
+                continue
+            constant_schema = cast(ConstantSchema, param.schema)
+            enum_name = cast(str, constant_schema.value).replace("/", "_").upper()
+            enum_value = constant_schema.value
+            if enum_name not in [v.name for v in chosen_parameter_schema.values]:
+                chosen_parameter_schema.values.append(EnumValue(enum_name, cast(str, enum_value)))
     else:
-        if len(overloaded_parameters) == 1 or overloaded_parameters[0].rest_api_name == "Accept":
-            # Currently we don't do different Accept headers
-            return overloaded_parameters[0]
-        # if it's an enum schema, we default to it.
-        try:
-            chosen_parameter = next(p for p in overloaded_parameters if isinstance(p.schema, EnumSchema))
-        except StopIteration:
-            chosen_parameter = overloaded_parameters[0]
-        enum_params = [p for p in overloaded_parameters if isinstance(p.schema, EnumSchema)]
-        # if there are multiple enums
-        if len(enum_params) > 1:
-            chosen_parameter = enum_params[0]
-            chosen_parameter_schema = cast(EnumSchema, chosen_parameter.schema)
-            for enum_param in enum_params[1:]:
-                for value in cast(EnumSchema, enum_param).values:
-                    if value.name not in [v.name for v in chosen_parameter_schema.values]:
-                        chosen_parameter_schema.values.append(value)
-        elif enum_params:
-            chosen_parameter = enum_params[0]
-            chosen_parameter_schema = cast(EnumSchema, chosen_parameter.schema)
-            for param in overloaded_parameters:
-                if isinstance(param.schema, EnumSchema):
-                    continue
-                constant_schema = cast(ConstantSchema, param.schema)
-                enum_name = cast(str, constant_schema.value).replace("/", "_").upper()
-                enum_value = constant_schema.value
-                if enum_name not in [v.name for v in chosen_parameter_schema.values]:
-                    chosen_parameter_schema.values.append(EnumValue(enum_name, enum_value))
-        else:
-            chosen_parameter = overloaded_parameters[0]
-            values = [
-                EnumValue(
-                    cast(str, cast(ConstantSchema, param.schema).value).replace("/", "_").upper(),
-                    cast(ConstantSchema, param.schema).value,
-                )
-                for param in overloaded_parameters
-            ]
-            chosen_parameter.schema = get_enum_schema(code_model)(namespace="", yaml_data={}, description="", name="", values=values, enum_type=StringSchema("", {"type": "str"}))
-        return chosen_parameter
+        chosen_parameter = overloaded_parameters[0]
+        values = [
+            EnumValue(
+                cast(str, cast(ConstantSchema, param.schema).value).replace("/", "_").upper(),
+                cast(str, cast(ConstantSchema, param.schema).value),
+            )
+            for param in overloaded_parameters
+        ]
+        chosen_parameter.schema = get_enum_schema(code_model)(
+            namespace="",
+            yaml_data={},
+            description="",
+            name="",
+            values=values,
+            enum_type=StringSchema("", {"type": "str"})
+        )
+    return chosen_parameter
 
 def _unify_overloaded_parameters(overloaded_parameters: List[Parameter], code_model: "CodeModel") -> Parameter:
     """Unify the overloaded parameters into one parameter for the main method
@@ -135,7 +141,7 @@ def create_parameters(
                 parameters.append(parameter)
 
     if overloaded_parameters_dict:
-        non_header_keys = [k for k in overloaded_parameters_dict.keys() if k not in _M4_HEADER_PARAMETERS]
+        non_header_keys = [k for k in overloaded_parameters_dict if k not in _M4_HEADER_PARAMETERS]
         if len(non_header_keys) > 1:
             raise ValueError(
             f"The body parameter with multiple media types has different names: {', '.join(non_header_keys)}"
@@ -190,7 +196,7 @@ class BaseBuilder(BaseModel):
         for content_type in self.content_type_to_schema_request.keys():
             if "multipart" in content_type:
                 holder.setdefault(BodyKwargNames.FILES, []).append(content_type)
-            elif "application/x-www-form-urlencoded" == content_type:
+            elif content_type == "application/x-www-form-urlencoded":
                 holder.setdefault(BodyKwargNames.DATA, []).append(content_type)
             elif JSON_REGEXP.match(content_type):
                 holder.setdefault(BodyKwargNames.JSON, []).append(content_type)
