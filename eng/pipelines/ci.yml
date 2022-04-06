@@ -83,8 +83,6 @@ jobs:
       - script: |
           inv regenerate
         displayName: 'Regenerate Code'
-      - script: node ./eng/scripts/check-for-changed-files.js
-        displayName: Fail on regeneration diff
       - task: UsePythonVersion@0
         displayName: 'Use Python $(PythonVersion)'
         inputs:
