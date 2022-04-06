@@ -752,7 +752,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             retval.append("    " + serialize_body_call)
             if len(builder.body_kwarg_name_to_content_types) == 1:
                 retval.append("else:")
-                retval.append("    _json = None")
+                retval.append(f"    _{body_kwarg} = None")
         return retval
 
     def _set_body_content_kwarg(
@@ -761,7 +761,10 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         retval: List[str] = []
         if body_kwarg in ("data", "files"):
             return retval
-        if not isinstance(body_param.schema, IOSchema) and body_kwarg == "json":
+        if (
+            not isinstance(body_param.schema, IOSchema) and
+            (body_kwarg == "json" or isinstance(body_param.schema, (ObjectSchema, ListSchema, DictionarySchema)))
+        ):
             retval.extend(self._serialize_body(builder, body_param, body_kwarg))
             return retval
         retval.append(f"_{body_kwarg} = {body_param.serialized_name}")
