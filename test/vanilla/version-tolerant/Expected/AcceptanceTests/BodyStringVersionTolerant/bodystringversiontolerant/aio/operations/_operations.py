@@ -50,7 +50,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
 class StringOperations:
@@ -835,11 +835,11 @@ class EnumOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_referenced_constant(self, **kwargs: Any) -> JSONObject:
+    async def get_referenced_constant(self, **kwargs: Any) -> JSON:
         """Get value 'green-color' from the constant.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -858,7 +858,7 @@ class EnumOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_enum_get_referenced_constant_request(
             headers=_headers,
@@ -881,18 +881,18 @@ class EnumOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
-        self, enum_string_body: JSONObject, **kwargs: Any
+        self, enum_string_body: JSON, **kwargs: Any
     ) -> None:
         """Sends value 'green-color' from a constant.
 
         :param enum_string_body: enum string body.
-        :type enum_string_body: JSONObject
+        :type enum_string_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

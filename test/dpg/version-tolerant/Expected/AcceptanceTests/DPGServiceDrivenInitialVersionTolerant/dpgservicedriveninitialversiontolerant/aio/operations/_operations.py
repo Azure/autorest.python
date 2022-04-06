@@ -34,7 +34,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -195,12 +195,12 @@ class ParamsOperations:
         return cast(Any, deserialized)
 
     @distributed_trace_async
-    async def post_parameters(self, parameter: JSONObject, **kwargs: Any) -> Any:
+    async def post_parameters(self, parameter: JSON, **kwargs: Any) -> Any:
         """POST a JSON.
 
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }.
-        :type parameter: JSONObject
+        :type parameter: JSON
         :return: any
         :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError

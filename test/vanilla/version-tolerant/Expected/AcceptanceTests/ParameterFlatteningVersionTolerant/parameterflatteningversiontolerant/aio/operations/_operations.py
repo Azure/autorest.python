@@ -28,7 +28,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -52,7 +52,7 @@ class AvailabilitySetsOperations:
 
     @distributed_trace_async
     async def update(  # pylint: disable=inconsistent-return-statements
-        self, resource_group_name: str, avset: str, tags: JSONObject, **kwargs: Any
+        self, resource_group_name: str, avset: str, tags: JSON, **kwargs: Any
     ) -> None:
         """Updates the tags for an availability set.
 
@@ -61,7 +61,7 @@ class AvailabilitySetsOperations:
         :param avset: The name of the storage availability set.
         :type avset: str
         :param tags: The tags.
-        :type tags: JSONObject
+        :type tags: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

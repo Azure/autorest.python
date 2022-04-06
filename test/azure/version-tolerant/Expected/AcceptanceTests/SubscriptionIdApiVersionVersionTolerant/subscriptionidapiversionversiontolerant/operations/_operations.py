@@ -31,7 +31,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -84,13 +84,13 @@ class GroupOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get_sample_resource_group(self, resource_group_name: str, **kwargs: Any) -> JSONObject:
+    def get_sample_resource_group(self, resource_group_name: str, **kwargs: Any) -> JSON:
         """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
         :param resource_group_name: Resource Group name 'testgroup101'.
         :type resource_group_name: str
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -109,7 +109,7 @@ class GroupOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2014-04-01-preview"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_group_get_sample_resource_group_request(
             subscription_id=self._config.subscription_id,
@@ -135,6 +135,6 @@ class GroupOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)

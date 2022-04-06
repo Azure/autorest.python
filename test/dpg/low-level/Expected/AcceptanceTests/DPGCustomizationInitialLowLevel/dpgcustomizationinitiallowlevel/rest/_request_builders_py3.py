@@ -19,7 +19,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -69,7 +69,7 @@ def build_get_model_request(mode: str, **kwargs: Any) -> HttpRequest:
 
 
 def build_post_model_request(
-    mode: str, *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    mode: str, *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
     take a model instead, and put in 'model' as mode.
@@ -83,7 +83,7 @@ def build_post_model_request(
     :type mode: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put {'hello': 'world!'}. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put {'hello': 'world!'}. Default value is None.
     :paramtype content: any

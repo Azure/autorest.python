@@ -21,7 +21,7 @@ if TYPE_CHECKING:
         from collections.abc import MutableMapping
     else:
         from typing import MutableMapping  # type: ignore
-    JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -41,7 +41,7 @@ def build_put201_creating_succeeded200_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -124,7 +124,7 @@ def build_put_async_relative_retry_succeeded_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -330,7 +330,7 @@ def build_post202_retry200_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -395,7 +395,7 @@ def build_post_async_relative_retry_succeeded_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any

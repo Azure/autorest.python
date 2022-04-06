@@ -19,14 +19,14 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
 def build_update_request(
-    resource_group_name: str, avset: str, *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    resource_group_name: str, avset: str, *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Updates the tags for an availability set.
 
@@ -39,7 +39,7 @@ def build_update_request(
     :type avset: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The tags. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The tags. Default value is None.
     :paramtype content: any

@@ -84,7 +84,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -107,11 +107,11 @@ class BasicOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> JSONObject:
+    async def get_valid(self, **kwargs: Any) -> JSON:
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -132,7 +132,7 @@ class BasicOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_basic_get_valid_request(
             headers=_headers,
@@ -155,18 +155,18 @@ class BasicOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -219,11 +219,11 @@ class BasicOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs: Any) -> JSONObject:
+    async def get_invalid(self, **kwargs: Any) -> JSON:
         """Get a basic complex type that is invalid for the local strong type.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -244,7 +244,7 @@ class BasicOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_basic_get_invalid_request(
             headers=_headers,
@@ -267,16 +267,16 @@ class BasicOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs: Any) -> JSONObject:
+    async def get_empty(self, **kwargs: Any) -> JSON:
         """Get a basic complex type that is empty.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -297,7 +297,7 @@ class BasicOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_basic_get_empty_request(
             headers=_headers,
@@ -320,16 +320,16 @@ class BasicOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def get_null(self, **kwargs: Any) -> JSONObject:
+    async def get_null(self, **kwargs: Any) -> JSON:
         """Get a basic complex type whose properties are null.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -350,7 +350,7 @@ class BasicOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_basic_get_null_request(
             headers=_headers,
@@ -373,16 +373,16 @@ class BasicOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def get_not_provided(self, **kwargs: Any) -> JSONObject:
+    async def get_not_provided(self, **kwargs: Any) -> JSON:
         """Get a basic complex type while the server doesn't provide a response payload.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -403,7 +403,7 @@ class BasicOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_basic_get_not_provided_request(
             headers=_headers,
@@ -426,9 +426,9 @@ class BasicOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
 
 class PrimitiveOperations:  # pylint: disable=too-many-public-methods
@@ -449,11 +449,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_int(self, **kwargs: Any) -> JSONObject:
+    async def get_int(self, **kwargs: Any) -> JSON:
         """Get complex types with integer properties.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -471,7 +471,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_primitive_get_int_request(
             headers=_headers,
@@ -494,18 +494,18 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_int(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2.
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -553,11 +553,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_long(self, **kwargs: Any) -> JSONObject:
+    async def get_long(self, **kwargs: Any) -> JSON:
         """Get complex types with long properties.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -575,7 +575,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_primitive_get_long_request(
             headers=_headers,
@@ -598,18 +598,18 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_long(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788.
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -657,11 +657,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_float(self, **kwargs: Any) -> JSONObject:
+    async def get_float(self, **kwargs: Any) -> JSON:
         """Get complex types with float properties.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -679,7 +679,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_primitive_get_float_request(
             headers=_headers,
@@ -702,18 +702,18 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_float(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003.
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -761,11 +761,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_double(self, **kwargs: Any) -> JSONObject:
+    async def get_double(self, **kwargs: Any) -> JSON:
         """Get complex types with double properties.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -784,7 +784,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_primitive_get_double_request(
             headers=_headers,
@@ -807,19 +807,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_double(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
          -0.000000000000000000000000000000000000000000000000000000005.
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -868,11 +868,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_bool(self, **kwargs: Any) -> JSONObject:
+    async def get_bool(self, **kwargs: Any) -> JSON:
         """Get complex types with bool properties.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -890,7 +890,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_primitive_get_bool_request(
             headers=_headers,
@@ -913,18 +913,18 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_bool(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false.
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -972,11 +972,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_string(self, **kwargs: Any) -> JSONObject:
+    async def get_string(self, **kwargs: Any) -> JSON:
         """Get complex types with string properties.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -995,7 +995,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_primitive_get_string_request(
             headers=_headers,
@@ -1018,18 +1018,18 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_string(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null.
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1078,11 +1078,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_date(self, **kwargs: Any) -> JSONObject:
+    async def get_date(self, **kwargs: Any) -> JSON:
         """Get complex types with date properties.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1100,7 +1100,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_primitive_get_date_request(
             headers=_headers,
@@ -1123,18 +1123,18 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_date(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'.
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1182,11 +1182,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_date_time(self, **kwargs: Any) -> JSONObject:
+    async def get_date_time(self, **kwargs: Any) -> JSON:
         """Get complex types with datetime properties.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1204,7 +1204,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_primitive_get_date_time_request(
             headers=_headers,
@@ -1227,18 +1227,18 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1286,11 +1286,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_date_time_rfc1123(self, **kwargs: Any) -> JSONObject:
+    async def get_date_time_rfc1123(self, **kwargs: Any) -> JSON:
         """Get complex types with datetimeRfc1123 properties.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1308,7 +1308,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_primitive_get_date_time_rfc1123_request(
             headers=_headers,
@@ -1331,19 +1331,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
          GMT'.
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1391,11 +1391,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_duration(self, **kwargs: Any) -> JSONObject:
+    async def get_duration(self, **kwargs: Any) -> JSON:
         """Get complex types with duration properties.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1412,7 +1412,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_primitive_get_duration_request(
             headers=_headers,
@@ -1435,18 +1435,18 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_duration(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types with duration properties.
 
         :param complex_body: Please put 'P123DT22H14M12.011S'.
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1493,11 +1493,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_byte(self, **kwargs: Any) -> JSONObject:
+    async def get_byte(self, **kwargs: Any) -> JSON:
         """Get complex types with byte properties.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1514,7 +1514,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_primitive_get_byte_request(
             headers=_headers,
@@ -1537,18 +1537,18 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_byte(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types with byte properties.
 
         :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6).
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1613,11 +1613,11 @@ class ArrayOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> JSONObject:
+    async def get_valid(self, **kwargs: Any) -> JSON:
         """Get complex types with array property.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1636,7 +1636,7 @@ class ArrayOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_array_get_valid_request(
             headers=_headers,
@@ -1659,19 +1659,19 @@ class ArrayOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types with array property.
 
         :param complex_body: Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The
          quick brown fox jumps over the lazy dog".
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1720,11 +1720,11 @@ class ArrayOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs: Any) -> JSONObject:
+    async def get_empty(self, **kwargs: Any) -> JSON:
         """Get complex types with array property which is empty.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1743,7 +1743,7 @@ class ArrayOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_array_get_empty_request(
             headers=_headers,
@@ -1766,18 +1766,18 @@ class ArrayOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types with array property which is empty.
 
         :param complex_body: Please put an empty array.
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1826,11 +1826,11 @@ class ArrayOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_not_provided(self, **kwargs: Any) -> JSONObject:
+    async def get_not_provided(self, **kwargs: Any) -> JSON:
         """Get complex types with array property while server doesn't provide a response payload.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1849,7 +1849,7 @@ class ArrayOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_array_get_not_provided_request(
             headers=_headers,
@@ -1872,9 +1872,9 @@ class ArrayOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
 
 class DictionaryOperations:
@@ -1895,11 +1895,11 @@ class DictionaryOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> JSONObject:
+    async def get_valid(self, **kwargs: Any) -> JSON:
         """Get complex types with dictionary property.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1918,7 +1918,7 @@ class DictionaryOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_dictionary_get_valid_request(
             headers=_headers,
@@ -1941,19 +1941,19 @@ class DictionaryOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property.
 
         :param complex_body: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
          "bmp":"mspaint", "xls":"excel", "exe":"", "":null.
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2002,11 +2002,11 @@ class DictionaryOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs: Any) -> JSONObject:
+    async def get_empty(self, **kwargs: Any) -> JSON:
         """Get complex types with dictionary property which is empty.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2025,7 +2025,7 @@ class DictionaryOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_dictionary_get_empty_request(
             headers=_headers,
@@ -2048,18 +2048,18 @@ class DictionaryOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property which is empty.
 
         :param complex_body: Please put an empty dictionary.
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2108,11 +2108,11 @@ class DictionaryOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_null(self, **kwargs: Any) -> JSONObject:
+    async def get_null(self, **kwargs: Any) -> JSON:
         """Get complex types with dictionary property which is null.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2131,7 +2131,7 @@ class DictionaryOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_dictionary_get_null_request(
             headers=_headers,
@@ -2154,16 +2154,16 @@ class DictionaryOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def get_not_provided(self, **kwargs: Any) -> JSONObject:
+    async def get_not_provided(self, **kwargs: Any) -> JSON:
         """Get complex types with dictionary property while server doesn't provide a response payload.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2182,7 +2182,7 @@ class DictionaryOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_dictionary_get_not_provided_request(
             headers=_headers,
@@ -2205,9 +2205,9 @@ class DictionaryOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
 
 class InheritanceOperations:
@@ -2228,11 +2228,11 @@ class InheritanceOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> JSONObject:
+    async def get_valid(self, **kwargs: Any) -> JSON:
         """Get complex types that extend others.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2259,7 +2259,7 @@ class InheritanceOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_inheritance_get_valid_request(
             headers=_headers,
@@ -2282,20 +2282,20 @@ class InheritanceOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types that extend others.
 
         :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
          breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
          the 2nd one named "Tomato" with id=-1 and food="french fries".
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2370,11 +2370,11 @@ class PolymorphismOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> JSONObject:
+    async def get_valid(self, **kwargs: Any) -> JSON:
         """Get complex types that are polymorphic.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2396,7 +2396,7 @@ class PolymorphismOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_polymorphism_get_valid_request(
             headers=_headers,
@@ -2419,13 +2419,13 @@ class PolymorphismOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic.
 
@@ -2462,7 +2462,7 @@ class PolymorphismOperations:
                    }
                  ]
                };.
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2516,11 +2516,11 @@ class PolymorphismOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_dot_syntax(self, **kwargs: Any) -> JSONObject:
+    async def get_dot_syntax(self, **kwargs: Any) -> JSON:
         """Get complex types that are polymorphic, JSON key contains a dot.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2538,7 +2538,7 @@ class PolymorphismOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_polymorphism_get_dot_syntax_request(
             headers=_headers,
@@ -2561,18 +2561,18 @@ class PolymorphismOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def get_composed_with_discriminator(self, **kwargs: Any) -> JSONObject:
+    async def get_composed_with_discriminator(self, **kwargs: Any) -> JSON:
         """Get complex object composing a polymorphic scalar property and array property with polymorphic
         element type, with discriminator specified. Deserialization must NOT fail and use the
         discriminator type specified on the wire.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2612,7 +2612,7 @@ class PolymorphismOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_polymorphism_get_composed_with_discriminator_request(
             headers=_headers,
@@ -2635,18 +2635,18 @@ class PolymorphismOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def get_composed_without_discriminator(self, **kwargs: Any) -> JSONObject:
+    async def get_composed_without_discriminator(self, **kwargs: Any) -> JSON:
         """Get complex object composing a polymorphic scalar property and array property with polymorphic
         element type, without discriminator specified on wire. Deserialization must NOT fail and use
         the explicit type of the property.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2686,7 +2686,7 @@ class PolymorphismOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_polymorphism_get_composed_without_discriminator_request(
             headers=_headers,
@@ -2709,17 +2709,17 @@ class PolymorphismOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def get_complicated(self, **kwargs: Any) -> JSONObject:
+    async def get_complicated(self, **kwargs: Any) -> JSON:
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2750,7 +2750,7 @@ class PolymorphismOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_polymorphism_get_complicated_request(
             headers=_headers,
@@ -2773,19 +2773,19 @@ class PolymorphismOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_complicated(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
         :param complex_body:
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2848,13 +2848,13 @@ class PolymorphismOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def put_missing_discriminator(self, complex_body: JSONObject, **kwargs: Any) -> JSONObject:
+    async def put_missing_discriminator(self, complex_body: JSON, **kwargs: Any) -> JSON:
         """Put complex types that are polymorphic, omitting the discriminator.
 
         :param complex_body:
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2909,7 +2909,7 @@ class PolymorphismOperations:
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _json = complex_body
 
@@ -2936,13 +2936,13 @@ class PolymorphismOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
@@ -2974,7 +2974,7 @@ class PolymorphismOperations:
                  }
              ]
          }.
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3046,11 +3046,11 @@ class PolymorphicrecursiveOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> JSONObject:
+    async def get_valid(self, **kwargs: Any) -> JSON:
         """Get complex types that are polymorphic and have recursive references.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3072,7 +3072,7 @@ class PolymorphicrecursiveOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_polymorphicrecursive_get_valid_request(
             headers=_headers,
@@ -3095,13 +3095,13 @@ class PolymorphicrecursiveOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
@@ -3158,7 +3158,7 @@ class PolymorphicrecursiveOperations:
                  }
              ]
          }.
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3230,11 +3230,11 @@ class ReadonlypropertyOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> JSONObject:
+    async def get_valid(self, **kwargs: Any) -> JSON:
         """Get complex types that have readonly properties.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3252,7 +3252,7 @@ class ReadonlypropertyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_readonlyproperty_get_valid_request(
             headers=_headers,
@@ -3275,18 +3275,18 @@ class ReadonlypropertyOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSONObject, **kwargs: Any
+        self, complex_body: JSON, **kwargs: Any
     ) -> None:
         """Put complex types that have readonly properties.
 
         :param complex_body:
-        :type complex_body: JSONObject
+        :type complex_body: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3352,11 +3352,11 @@ class FlattencomplexOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_valid(self, **kwargs: Any) -> JSONObject:
+    async def get_valid(self, **kwargs: Any) -> JSON:
         """get_valid.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3377,7 +3377,7 @@ class FlattencomplexOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_flattencomplex_get_valid_request(
             headers=_headers,
@@ -3400,6 +3400,6 @@ class FlattencomplexOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)

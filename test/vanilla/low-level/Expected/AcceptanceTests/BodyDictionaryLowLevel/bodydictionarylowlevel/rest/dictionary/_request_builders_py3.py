@@ -18,7 +18,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -1899,7 +1899,7 @@ def build_get_complex_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_put_complex_valid_request(
-    *, json: Optional[Dict[str, JSONObject]] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[Dict[str, JSON]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
     {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
@@ -1909,7 +1909,7 @@ def build_put_complex_valid_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: dict[str, JSONObject]
+    :paramtype json: dict[str, JSON]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any

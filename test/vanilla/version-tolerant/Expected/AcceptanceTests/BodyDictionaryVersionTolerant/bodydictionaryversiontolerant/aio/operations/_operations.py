@@ -95,7 +95,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -2477,11 +2477,11 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         return cast(Dict[str, bytes], deserialized)
 
     @distributed_trace_async
-    async def get_complex_null(self, **kwargs: Any) -> Optional[Dict[str, JSONObject]]:
+    async def get_complex_null(self, **kwargs: Any) -> Optional[Dict[str, JSON]]:
         """Get dictionary of complex type null value.
 
         :return: dict mapping str to JSON object or None
-        :rtype: dict[str, JSONObject] or None
+        :rtype: dict[str, JSON] or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2501,7 +2501,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, JSONObject]]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, JSON]]]
 
         request = build_dictionary_get_complex_null_request(
             headers=_headers,
@@ -2524,16 +2524,16 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Optional[Dict[str, JSONObject]], deserialized), {})
+            return cls(pipeline_response, cast(Optional[Dict[str, JSON]], deserialized), {})
 
-        return cast(Optional[Dict[str, JSONObject]], deserialized)
+        return cast(Optional[Dict[str, JSON]], deserialized)
 
     @distributed_trace_async
-    async def get_complex_empty(self, **kwargs: Any) -> Dict[str, JSONObject]:
+    async def get_complex_empty(self, **kwargs: Any) -> Dict[str, JSON]:
         """Get empty dictionary of complex type {}.
 
         :return: dict mapping str to JSON object
-        :rtype: dict[str, JSONObject]
+        :rtype: dict[str, JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2553,7 +2553,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONObject]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSON]]
 
         request = build_dictionary_get_complex_empty_request(
             headers=_headers,
@@ -2576,17 +2576,17 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, JSONObject], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, JSON], deserialized), {})
 
-        return cast(Dict[str, JSONObject], deserialized)
+        return cast(Dict[str, JSON], deserialized)
 
     @distributed_trace_async
-    async def get_complex_item_null(self, **kwargs: Any) -> Dict[str, JSONObject]:
+    async def get_complex_item_null(self, **kwargs: Any) -> Dict[str, JSON]:
         """Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null,
         "2": {"integer": 5, "string": "6"}}.
 
         :return: dict mapping str to JSON object
-        :rtype: dict[str, JSONObject]
+        :rtype: dict[str, JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2606,7 +2606,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONObject]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSON]]
 
         request = build_dictionary_get_complex_item_null_request(
             headers=_headers,
@@ -2629,17 +2629,17 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, JSONObject], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, JSON], deserialized), {})
 
-        return cast(Dict[str, JSONObject], deserialized)
+        return cast(Dict[str, JSON], deserialized)
 
     @distributed_trace_async
-    async def get_complex_item_empty(self, **kwargs: Any) -> Dict[str, JSONObject]:
+    async def get_complex_item_empty(self, **kwargs: Any) -> Dict[str, JSON]:
         """Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {},
         "2": {"integer": 5, "string": "6"}}.
 
         :return: dict mapping str to JSON object
-        :rtype: dict[str, JSONObject]
+        :rtype: dict[str, JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2659,7 +2659,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONObject]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSON]]
 
         request = build_dictionary_get_complex_item_empty_request(
             headers=_headers,
@@ -2682,17 +2682,17 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, JSONObject], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, JSON], deserialized), {})
 
-        return cast(Dict[str, JSONObject], deserialized)
+        return cast(Dict[str, JSON], deserialized)
 
     @distributed_trace_async
-    async def get_complex_valid(self, **kwargs: Any) -> Dict[str, JSONObject]:
+    async def get_complex_valid(self, **kwargs: Any) -> Dict[str, JSON]:
         """Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3,
         "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         :return: dict mapping str to JSON object
-        :rtype: dict[str, JSONObject]
+        :rtype: dict[str, JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2712,7 +2712,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONObject]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSON]]
 
         request = build_dictionary_get_complex_valid_request(
             headers=_headers,
@@ -2735,19 +2735,19 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, JSONObject], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, JSON], deserialized), {})
 
-        return cast(Dict[str, JSONObject], deserialized)
+        return cast(Dict[str, JSON], deserialized)
 
     @distributed_trace_async
     async def put_complex_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Dict[str, JSONObject], **kwargs: Any
+        self, array_body: Dict[str, JSON], **kwargs: Any
     ) -> None:
         """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
         {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         :param array_body:
-        :type array_body: dict[str, JSONObject]
+        :type array_body: dict[str, JSON]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

@@ -17,7 +17,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -203,7 +203,7 @@ def build_get_referenced_constant_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_put_referenced_constant_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Sends value 'green-color' from a constant.
 
@@ -212,7 +212,7 @@ def build_put_referenced_constant_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. enum string body. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). enum string body. Default value is None.
     :paramtype content: any

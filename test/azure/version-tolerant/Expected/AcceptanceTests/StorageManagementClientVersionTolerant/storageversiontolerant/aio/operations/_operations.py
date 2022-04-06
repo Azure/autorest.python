@@ -44,7 +44,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -68,19 +68,19 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def check_name_availability(
-        self, account_name: JSONObject, *, content_type: Optional[str] = "application/json", **kwargs: Any
-    ) -> JSONObject:
+        self, account_name: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> JSON:
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only.
-        :type account_name: JSONObject
+        :type account_name: JSON
         :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json" or "text/json". Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -112,7 +112,7 @@ class StorageAccountsOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _json = account_name
 
@@ -141,19 +141,19 @@ class StorageAccountsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     async def _create_initial(
         self,
         resource_group_name: str,
         account_name: str,
-        parameters: JSONObject,
+        parameters: JSON,
         *,
         content_type: Optional[str] = "application/json",
         **kwargs: Any
-    ) -> Optional[JSONObject]:
+    ) -> Optional[JSON]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -161,7 +161,7 @@ class StorageAccountsOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONObject]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSON]]
 
         _json = parameters
 
@@ -203,11 +203,11 @@ class StorageAccountsOperations:
         self,
         resource_group_name: str,
         account_name: str,
-        parameters: JSONObject,
+        parameters: JSON,
         *,
         content_type: Optional[str] = "application/json",
         **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+    ) -> AsyncLROPoller[JSON]:
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
         cannot be updated with this API and should instead use the Update Storage Account API. If an
         account is already created and subsequent PUT request is issued with exact same set of
@@ -220,7 +220,7 @@ class StorageAccountsOperations:
          lower-case letters only.
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
-        :type parameters: JSONObject
+        :type parameters: JSON
         :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json" or "text/json". Default value is "application/json".
         :paramtype content_type: str
@@ -232,7 +232,7 @@ class StorageAccountsOperations:
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -325,7 +325,7 @@ class StorageAccountsOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -416,7 +416,7 @@ class StorageAccountsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_properties(self, resource_group_name: str, account_name: str, **kwargs: Any) -> JSONObject:
+    async def get_properties(self, resource_group_name: str, account_name: str, **kwargs: Any) -> JSON:
         """Returns the properties for the specified storage account including but not limited to name,
         account type, location, and account status. The ListKeys operation should be used to retrieve
         storage keys.
@@ -428,7 +428,7 @@ class StorageAccountsOperations:
          lower-case letters only.
         :type account_name: str
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -508,7 +508,7 @@ class StorageAccountsOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_storage_accounts_get_properties_request(
             resource_group_name=resource_group_name,
@@ -535,20 +535,20 @@ class StorageAccountsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def update(
         self,
         resource_group_name: str,
         account_name: str,
-        parameters: JSONObject,
+        parameters: JSON,
         *,
         content_type: Optional[str] = "application/json",
         **kwargs: Any
-    ) -> JSONObject:
+    ) -> JSON:
         """Updates the account type or tags for a storage account. It can also be used to add a custom
         domain (note that custom domains cannot be added via the Create operation). Only one custom
         domain is supported per storage account. This API can only be used to update one of tags,
@@ -565,12 +565,12 @@ class StorageAccountsOperations:
         :type account_name: str
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API.
-        :type parameters: JSONObject
+        :type parameters: JSON
         :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json" or "text/json". Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -675,7 +675,7 @@ class StorageAccountsOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _json = parameters
 
@@ -706,12 +706,12 @@ class StorageAccountsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def list_keys(self, resource_group_name: str, account_name: str, **kwargs: Any) -> JSONObject:
+    async def list_keys(self, resource_group_name: str, account_name: str, **kwargs: Any) -> JSON:
         """Lists the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -719,7 +719,7 @@ class StorageAccountsOperations:
         :param account_name: The name of the storage account.
         :type account_name: str
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -738,7 +738,7 @@ class StorageAccountsOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_storage_accounts_list_keys_request(
             resource_group_name=resource_group_name,
@@ -765,17 +765,17 @@ class StorageAccountsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace
-    def list(self, **kwargs: Any) -> AsyncIterable[JSONObject]:
+    def list(self, **kwargs: Any) -> AsyncIterable[JSON]:
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
         returned; use the ListKeys operation for this.
 
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONObject]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -868,7 +868,7 @@ class StorageAccountsOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -919,14 +919,14 @@ class StorageAccountsOperations:
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> AsyncIterable[JSONObject]:
+    def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> AsyncIterable[JSON]:
         """Lists all the storage accounts available under the given resource group. Note that storage keys
         are not returned; use the ListKeys operation for this.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONObject]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1019,7 +1019,7 @@ class StorageAccountsOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1076,11 +1076,11 @@ class StorageAccountsOperations:
         self,
         resource_group_name: str,
         account_name: str,
-        regenerate_key: JSONObject,
+        regenerate_key: JSON,
         *,
         content_type: Optional[str] = "application/json",
         **kwargs: Any
-    ) -> JSONObject:
+    ) -> JSON:
         """Regenerates the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
@@ -1090,12 +1090,12 @@ class StorageAccountsOperations:
          lower-case letters only.
         :type account_name: str
         :param regenerate_key: Specifies name of the key which should be regenerated.
-        :type regenerate_key: JSONObject
+        :type regenerate_key: JSON
         :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json" or "text/json". Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1119,7 +1119,7 @@ class StorageAccountsOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _json = regenerate_key
 
@@ -1150,9 +1150,9 @@ class StorageAccountsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
 
 class UsageOperations:
@@ -1173,11 +1173,11 @@ class UsageOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def list(self, **kwargs: Any) -> JSONObject:
+    async def list(self, **kwargs: Any) -> JSON:
         """Gets the current usage count and the limit for the resources under the subscription.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1211,7 +1211,7 @@ class UsageOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_usage_list_request(
             subscription_id=self._config.subscription_id,
@@ -1236,6 +1236,6 @@ class UsageOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)

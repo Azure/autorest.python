@@ -28,7 +28,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -51,13 +51,13 @@ class PetOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> JSONObject:
+    async def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> JSON:
         """get pet by id.
 
         :param pet_id: Pet id.
         :type pet_id: str
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -78,7 +78,7 @@ class PetOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_pet_get_by_pet_id_request(
             pet_id=pet_id,
@@ -102,18 +102,18 @@ class PetOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def add_pet(self, pet_param: Optional[JSONObject] = None, **kwargs: Any) -> JSONObject:
+    async def add_pet(self, pet_param: Optional[JSON] = None, **kwargs: Any) -> JSON:
         """add pet.
 
         :param pet_param: pet param. Default value is None.
-        :type pet_param: JSONObject
+        :type pet_param: JSON
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -146,7 +146,7 @@ class PetOperations:
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if pet_param is not None:
             _json = pet_param
@@ -176,6 +176,6 @@ class PetOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)

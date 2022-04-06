@@ -21,7 +21,7 @@ if TYPE_CHECKING:
         from collections.abc import MutableMapping
     else:
         from typing import MutableMapping  # type: ignore
-    JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 
@@ -116,7 +116,7 @@ def build_put_valid_request(
                }
              ]
            };. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put a salmon that looks like this:
      {
@@ -436,7 +436,7 @@ def build_put_complicated_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -502,7 +502,7 @@ def build_put_missing_discriminator_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -614,7 +614,7 @@ def build_put_valid_missing_required_request(
              }
          ]
      }. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please attempt put a sawshark that looks like this, the
      client should not allow this data to be sent:

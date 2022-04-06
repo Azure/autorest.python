@@ -113,7 +113,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -136,8 +136,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def _put200_succeeded_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> Optional[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> Optional[JSON]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -147,7 +147,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONObject]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSON]]
 
         if product is not None:
             _json = product
@@ -185,13 +185,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put200_succeeded(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -200,7 +200,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -248,7 +248,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -289,8 +289,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _patch200_succeeded_ignore_headers_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -300,7 +300,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -335,19 +335,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_patch200_succeeded_ignore_headers(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request with location header. We
         should not have any subsequent calls after receiving this first response.
 
         :param product: Product to patch. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -356,7 +356,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -404,7 +404,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -450,8 +450,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _patch201_retry_with_async_header_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -461,7 +461,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -503,18 +503,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_patch201_retry_with_async_header(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running patch request, service returns a 201 to the initial request with async header.
 
         :param product: Product to patch. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -523,7 +523,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -571,7 +571,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -615,8 +615,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _patch202_retry_with_async_and_location_header_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -626,7 +626,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -669,19 +669,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_patch202_retry_with_async_and_location_header(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running patch request, service returns a 202 to the initial request with async and
         location header.
 
         :param product: Product to patch. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -690,7 +690,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -738,7 +738,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -778,7 +778,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put201_succeeded_initial(self, product: Optional[JSONObject] = None, **kwargs: Any) -> JSONObject:
+    async def _put201_succeeded_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -788,7 +788,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -818,19 +818,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put201_succeeded(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -839,7 +839,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -887,7 +887,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -927,14 +927,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _post202_list_initial(self, **kwargs: Any) -> Optional[List[JSONObject]]:
+    async def _post202_list_initial(self, **kwargs: Any) -> Optional[List[JSON]]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[JSONObject]]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[JSON]]]
 
         request = build_lros_post202_list_request_initial(
             headers=_headers,
@@ -971,7 +971,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def begin_post202_list(self, **kwargs: Any) -> AsyncLROPoller[List[JSONObject]]:
+    async def begin_post202_list(self, **kwargs: Any) -> AsyncLROPoller[List[JSON]]:
         """Long running put request, service returns a 202 with empty body to first request, returns a 200
         with body [{ 'id': '100', 'name': 'foo' }].
 
@@ -983,7 +983,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns list of JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[list[JSONObject]]
+        :rtype: ~azure.core.polling.AsyncLROPoller[list[JSON]]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1012,7 +1012,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONObject]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSON]]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -1048,8 +1048,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put200_succeeded_no_state_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1059,7 +1059,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -1089,19 +1089,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put200_succeeded_no_state(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         does not contain ProvisioningState=’Succeeded’.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -1110,7 +1110,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1158,7 +1158,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -1198,7 +1198,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put202_retry200_initial(self, product: Optional[JSONObject] = None, **kwargs: Any) -> JSONObject:
+    async def _put202_retry200_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1208,7 +1208,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -1238,20 +1238,20 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put202_retry200(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 202 to the initial request, with a location header
         that points to a polling URL that returns a 200 and an entity that doesn't contains
         ProvisioningState.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -1260,7 +1260,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1308,7 +1308,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -1349,8 +1349,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put201_creating_succeeded200_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1360,7 +1360,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -1397,20 +1397,20 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -1419,7 +1419,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1467,7 +1467,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -1508,8 +1508,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put200_updating_succeeded204_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1519,7 +1519,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -1549,20 +1549,20 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put200_updating_succeeded204(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -1571,7 +1571,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1619,7 +1619,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -1660,8 +1660,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put201_creating_failed200_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1671,7 +1671,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -1708,20 +1708,20 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put201_creating_failed200(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Failed’.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -1730,7 +1730,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1778,7 +1778,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -1819,8 +1819,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put200_acceptedcanceled200_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1830,7 +1830,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -1860,20 +1860,20 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put200_acceptedcanceled200(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Canceled’.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -1882,7 +1882,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1930,7 +1930,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -1970,7 +1970,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put_no_header_in_retry_initial(self, product: Optional[JSONObject] = None, **kwargs: Any) -> JSONObject:
+    async def _put_no_header_in_retry_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1980,7 +1980,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -2013,19 +2013,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_no_header_in_retry(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 202 to the initial request with location header.
         Subsequent calls to operation status do not contain location header.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -2034,7 +2034,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2082,7 +2082,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -2126,8 +2126,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put_async_retry_succeeded_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2137,7 +2137,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -2174,20 +2174,20 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_async_retry_succeeded(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -2196,7 +2196,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2244,7 +2244,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -2292,8 +2292,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put_async_no_retry_succeeded_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2303,7 +2303,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -2339,20 +2339,20 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_async_no_retry_succeeded(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -2361,7 +2361,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2409,7 +2409,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -2455,7 +2455,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put_async_retry_failed_initial(self, product: Optional[JSONObject] = None, **kwargs: Any) -> JSONObject:
+    async def _put_async_retry_failed_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2465,7 +2465,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -2502,20 +2502,20 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_async_retry_failed(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -2524,7 +2524,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2572,7 +2572,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -2620,8 +2620,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put_async_no_retrycanceled_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2631,7 +2631,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -2667,20 +2667,20 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_async_no_retrycanceled(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -2689,7 +2689,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2737,7 +2737,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -2784,8 +2784,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put_async_no_header_in_retry_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2795,7 +2795,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -2830,20 +2830,20 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_async_no_header_in_retry(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 202 to the initial request with
         Azure-AsyncOperation header. Subsequent calls to operation status do not contain
         Azure-AsyncOperation header.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -2852,7 +2852,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2900,7 +2900,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -2945,7 +2945,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put_non_resource_initial(self, sku: Optional[JSONObject] = None, **kwargs: Any) -> JSONObject:
+    async def _put_non_resource_initial(self, sku: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2955,7 +2955,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if sku is not None:
             _json = sku
@@ -2985,18 +2985,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_non_resource(
-        self, sku: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, sku: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request with non resource.
 
         :param sku: sku to put. Default value is None.
-        :type sku: JSONObject
+        :type sku: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -3005,7 +3005,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3029,7 +3029,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -3064,7 +3064,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put_async_non_resource_initial(self, sku: Optional[JSONObject] = None, **kwargs: Any) -> JSONObject:
+    async def _put_async_non_resource_initial(self, sku: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -3074,7 +3074,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if sku is not None:
             _json = sku
@@ -3104,18 +3104,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_async_non_resource(
-        self, sku: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, sku: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request with non resource.
 
         :param sku: Sku to put. Default value is None.
-        :type sku: JSONObject
+        :type sku: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -3124,7 +3124,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3148,7 +3148,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -3183,7 +3183,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put_sub_resource_initial(self, product: Optional[JSONObject] = None, **kwargs: Any) -> JSONObject:
+    async def _put_sub_resource_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -3193,7 +3193,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -3223,18 +3223,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_sub_resource(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request with sub resource.
 
         :param product: Sub Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -3243,7 +3243,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3277,7 +3277,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -3317,7 +3317,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put_async_sub_resource_initial(self, product: Optional[JSONObject] = None, **kwargs: Any) -> JSONObject:
+    async def _put_async_sub_resource_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -3327,7 +3327,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -3357,18 +3357,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_async_sub_resource(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request with sub resource.
 
         :param product: Sub Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -3377,7 +3377,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3411,7 +3411,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -3451,14 +3451,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _delete_provisioning202_accepted200_succeeded_initial(self, **kwargs: Any) -> JSONObject:
+    async def _delete_provisioning202_accepted200_succeeded_initial(self, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_lros_delete_provisioning202_accepted200_succeeded_request_initial(
             headers=_headers,
@@ -3492,12 +3492,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs: Any) -> AsyncLROPoller[JSONObject]:
+    async def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
@@ -3510,7 +3510,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3537,7 +3537,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -3572,14 +3572,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _delete_provisioning202_deleting_failed200_initial(self, **kwargs: Any) -> JSONObject:
+    async def _delete_provisioning202_deleting_failed200_initial(self, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_lros_delete_provisioning202_deleting_failed200_request_initial(
             headers=_headers,
@@ -3613,12 +3613,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_delete_provisioning202_deleting_failed200(self, **kwargs: Any) -> AsyncLROPoller[JSONObject]:
+    async def begin_delete_provisioning202_deleting_failed200(self, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Failed’.
@@ -3631,7 +3631,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3658,7 +3658,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -3693,14 +3693,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _delete_provisioning202_deletingcanceled200_initial(self, **kwargs: Any) -> JSONObject:
+    async def _delete_provisioning202_deletingcanceled200_initial(self, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_lros_delete_provisioning202_deletingcanceled200_request_initial(
             headers=_headers,
@@ -3734,12 +3734,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_delete_provisioning202_deletingcanceled200(self, **kwargs: Any) -> AsyncLROPoller[JSONObject]:
+    async def begin_delete_provisioning202_deletingcanceled200(self, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Canceled’.
@@ -3752,7 +3752,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3779,7 +3779,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -3892,14 +3892,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _delete202_retry200_initial(self, **kwargs: Any) -> Optional[JSONObject]:
+    async def _delete202_retry200_initial(self, **kwargs: Any) -> Optional[JSON]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONObject]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSON]]
 
         request = build_lros_delete202_retry200_request_initial(
             headers=_headers,
@@ -3934,7 +3934,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def begin_delete202_retry200(self, **kwargs: Any) -> AsyncLROPoller[JSONObject]:
+    async def begin_delete202_retry200(self, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running delete request, service returns a 202 to the initial request. Polls return this
         value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -3946,7 +3946,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3973,7 +3973,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -4008,14 +4008,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _delete202_no_retry204_initial(self, **kwargs: Any) -> Optional[JSONObject]:
+    async def _delete202_no_retry204_initial(self, **kwargs: Any) -> Optional[JSON]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONObject]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSON]]
 
         request = build_lros_delete202_no_retry204_request_initial(
             headers=_headers,
@@ -4050,7 +4050,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def begin_delete202_no_retry204(self, **kwargs: Any) -> AsyncLROPoller[JSONObject]:
+    async def begin_delete202_no_retry204(self, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running delete request, service returns a 202 to the initial request. Polls return this
         value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -4062,7 +4062,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -4089,7 +4089,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -4634,14 +4634,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _post200_with_payload_initial(self, **kwargs: Any) -> JSONObject:
+    async def _post200_with_payload_initial(self, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_lros_post200_with_payload_request_initial(
             headers=_headers,
@@ -4671,12 +4671,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_post200_with_payload(self, **kwargs: Any) -> AsyncLROPoller[JSONObject]:
+    async def begin_post200_with_payload(self, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request, with 'Location'
         header. Poll returns a 200 with a response body after success.
 
@@ -4688,7 +4688,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -4703,7 +4703,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -4739,7 +4739,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -4783,13 +4783,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post202_retry200(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with 'Location' and
         'Retry-After' headers, Polls return a 200 with a response body after success.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -4862,7 +4862,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _post202_no_retry204_initial(self, product: Optional[JSONObject] = None, **kwargs: Any) -> JSONObject:
+    async def _post202_no_retry204_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -4872,7 +4872,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -4906,19 +4906,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_post202_no_retry204(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request, with 'Location'
         header, 204 with noresponse body after success.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -4927,7 +4927,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -4975,7 +4975,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -5019,14 +5019,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _post_double_headers_final_location_get_initial(self, **kwargs: Any) -> JSONObject:
+    async def _post_double_headers_final_location_get_initial(self, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_lros_post_double_headers_final_location_get_request_initial(
             headers=_headers,
@@ -5049,12 +5049,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_post_double_headers_final_location_get(self, **kwargs: Any) -> AsyncLROPoller[JSONObject]:
+    async def begin_post_double_headers_final_location_get(self, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request with both Location and
         Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final
         object.
@@ -5067,7 +5067,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5094,7 +5094,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -5131,14 +5131,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _post_double_headers_final_azure_header_get_initial(self, **kwargs: Any) -> JSONObject:
+    async def _post_double_headers_final_azure_header_get_initial(self, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_lros_post_double_headers_final_azure_header_get_request_initial(
             headers=_headers,
@@ -5161,12 +5161,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_post_double_headers_final_azure_header_get(self, **kwargs: Any) -> AsyncLROPoller[JSONObject]:
+    async def begin_post_double_headers_final_azure_header_get(self, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request with both Location and
         Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
         final object.
@@ -5179,7 +5179,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5206,7 +5206,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -5244,14 +5244,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _post_double_headers_final_azure_header_get_default_initial(self, **kwargs: Any) -> JSONObject:
+    async def _post_double_headers_final_azure_header_get_default_initial(self, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_lros_post_double_headers_final_azure_header_get_default_request_initial(
             headers=_headers,
@@ -5274,14 +5274,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_post_double_headers_final_azure_header_get_default(
         self, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+    ) -> AsyncLROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request with both Location and
         Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
         final object if you support initial Autorest behavior.
@@ -5294,7 +5294,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5321,7 +5321,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -5357,8 +5357,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _post_async_retry_succeeded_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> Optional[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> Optional[JSON]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -5368,7 +5368,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONObject]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSON]]
 
         if product is not None:
             _json = product
@@ -5414,14 +5414,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_retry_succeeded(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -5430,7 +5430,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5478,7 +5478,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -5519,8 +5519,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _post_async_no_retry_succeeded_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> Optional[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> Optional[JSON]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -5530,7 +5530,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONObject]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSON]]
 
         if product is not None:
             _json = product
@@ -5576,14 +5576,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_no_retry_succeeded(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -5592,7 +5592,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -5640,7 +5640,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -5681,7 +5681,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _post_async_retry_failed_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -5728,14 +5728,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_retry_failed(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -5809,7 +5809,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _post_async_retrycanceled_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -5856,14 +5856,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_retrycanceled(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -5955,8 +5955,8 @@ class LRORetrysOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def _put201_creating_succeeded200_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -5966,7 +5966,7 @@ class LRORetrysOperations:
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -6003,20 +6003,20 @@ class LRORetrysOperations:
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 500, then a 201 to the initial request, with an
         entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -6025,7 +6025,7 @@ class LRORetrysOperations:
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6073,7 +6073,7 @@ class LRORetrysOperations:
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -6114,8 +6114,8 @@ class LRORetrysOperations:
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put_async_relative_retry_succeeded_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -6125,7 +6125,7 @@ class LRORetrysOperations:
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -6162,20 +6162,20 @@ class LRORetrysOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_succeeded(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 500, then a 200 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -6184,7 +6184,7 @@ class LRORetrysOperations:
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6232,7 +6232,7 @@ class LRORetrysOperations:
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -6279,14 +6279,14 @@ class LRORetrysOperations:
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _delete_provisioning202_accepted200_succeeded_initial(self, **kwargs: Any) -> JSONObject:
+    async def _delete_provisioning202_accepted200_succeeded_initial(self, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_lro_retrys_delete_provisioning202_accepted200_succeeded_request_initial(
             headers=_headers,
@@ -6320,12 +6320,12 @@ class LRORetrysOperations:
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs: Any) -> AsyncLROPoller[JSONObject]:
+    async def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running delete request, service returns a 500, then a  202 to the initial request, with an
         entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
@@ -6338,7 +6338,7 @@ class LRORetrysOperations:
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6365,7 +6365,7 @@ class LRORetrysOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -6570,7 +6570,7 @@ class LRORetrysOperations:
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -6614,13 +6614,13 @@ class LRORetrysOperations:
 
     @distributed_trace_async
     async def begin_post202_retry200(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -6694,7 +6694,7 @@ class LRORetrysOperations:
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _post_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -6741,14 +6741,14 @@ class LRORetrysOperations:
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_succeeded(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -6839,7 +6839,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def _put_non_retry400_initial(self, product: Optional[JSONObject] = None, **kwargs: Any) -> JSONObject:
+    async def _put_non_retry400_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -6849,7 +6849,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -6886,18 +6886,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_non_retry400(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 400 to the initial request.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -6906,7 +6906,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -6954,7 +6954,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -6995,8 +6995,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put_non_retry201_creating400_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -7006,7 +7006,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -7043,19 +7043,19 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_non_retry201_creating400(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
         201 response code.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -7064,7 +7064,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -7112,7 +7112,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -7153,8 +7153,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put_non_retry201_creating400_invalid_json_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -7164,7 +7164,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -7201,19 +7201,19 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_non_retry201_creating400_invalid_json(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
         201 response code.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -7222,7 +7222,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -7270,7 +7270,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -7311,8 +7311,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put_async_relative_retry400_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -7322,7 +7322,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -7359,19 +7359,19 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_async_relative_retry400(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -7380,7 +7380,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -7428,7 +7428,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -7726,7 +7726,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _post_non_retry400_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -7770,12 +7770,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_non_retry400(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 400 with no error body.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -7849,7 +7849,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _post202_non_retry400_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -7893,12 +7893,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post202_non_retry400(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 with a location header.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -7972,7 +7972,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _post_async_relative_retry400_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -8019,13 +8019,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_relative_retry400(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -8099,8 +8099,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put_error201_no_provisioning_state_payload_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -8110,7 +8110,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -8147,18 +8147,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_error201_no_provisioning_state_payload(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request with no payload.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -8167,7 +8167,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -8215,7 +8215,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -8256,8 +8256,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put_async_relative_retry_no_status_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -8267,7 +8267,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -8304,20 +8304,20 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_no_status(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -8326,7 +8326,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -8374,7 +8374,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -8422,8 +8422,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put_async_relative_retry_no_status_payload_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -8433,7 +8433,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -8470,20 +8470,20 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_no_status_payload(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -8492,7 +8492,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -8540,7 +8540,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -8752,7 +8752,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _post202_no_location_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -8796,13 +8796,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post202_no_location(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, without a location
         header.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -8876,7 +8876,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _post_async_relative_retry_no_payload_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -8923,14 +8923,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_no_payload(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -9004,8 +9004,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put200_invalid_json_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> Optional[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> Optional[JSON]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -9015,7 +9015,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSONObject]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSON]]
 
         if product is not None:
             _json = product
@@ -9053,13 +9053,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put200_invalid_json(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that is
         not a valid json.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -9068,7 +9068,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -9116,7 +9116,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -9157,8 +9157,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put_async_relative_retry_invalid_header_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -9168,7 +9168,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -9205,20 +9205,20 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_invalid_header(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
         header is invalid.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -9227,7 +9227,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -9275,7 +9275,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -9323,8 +9323,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put_async_relative_retry_invalid_json_polling_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -9334,7 +9334,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -9371,20 +9371,20 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_async_relative_retry_invalid_json_polling(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -9393,7 +9393,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -9441,7 +9441,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -9744,7 +9744,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _post202_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -9788,13 +9788,13 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post202_retry_invalid_header(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with invalid
         'Location' and 'Retry-After' headers.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -9868,7 +9868,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _post_async_relative_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -9915,14 +9915,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_invalid_header(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
         header is invalid.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -9996,7 +9996,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _post_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -10043,14 +10043,14 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_relative_retry_invalid_json_polling(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -10142,8 +10142,8 @@ class LROsCustomHeaderOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def _put_async_retry_succeeded_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -10153,7 +10153,7 @@ class LROsCustomHeaderOperations:
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -10190,21 +10190,21 @@ class LROsCustomHeaderOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), response_headers)
+            return cls(pipeline_response, cast(JSON, deserialized), response_headers)
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put_async_retry_succeeded(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 200 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -10213,7 +10213,7 @@ class LROsCustomHeaderOperations:
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -10261,7 +10261,7 @@ class LROsCustomHeaderOperations:
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -10309,8 +10309,8 @@ class LROsCustomHeaderOperations:
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _put201_creating_succeeded200_initial(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -10320,7 +10320,7 @@ class LROsCustomHeaderOperations:
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if product is not None:
             _json = product
@@ -10357,21 +10357,21 @@ class LROsCustomHeaderOperations:
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(
-        self, product: Optional[JSONObject] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSONObject]:
+        self, product: Optional[JSON] = None, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 201 to the initial request, with an
         entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -10380,7 +10380,7 @@ class LROsCustomHeaderOperations:
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns JSON object
-        :rtype: ~azure.core.polling.AsyncLROPoller[JSONObject]
+        :rtype: ~azure.core.polling.AsyncLROPoller[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -10428,7 +10428,7 @@ class LROsCustomHeaderOperations:
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, AsyncPollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token = kwargs.pop("continuation_token", None)  # type: Optional[str]
@@ -10469,7 +10469,7 @@ class LROsCustomHeaderOperations:
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -10513,14 +10513,14 @@ class LROsCustomHeaderOperations:
 
     @distributed_trace_async
     async def begin_post202_retry200(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal
@@ -10594,7 +10594,7 @@ class LROsCustomHeaderOperations:
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     async def _post_async_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -10641,7 +10641,7 @@ class LROsCustomHeaderOperations:
 
     @distributed_trace_async
     async def begin_post_async_retry_succeeded(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSONObject] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with an
@@ -10649,7 +10649,7 @@ class LROsCustomHeaderOperations:
         Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
-        :type product: JSONObject
+        :type product: JSON
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
          this operation to not poll, or pass in your own initialized polling object for a personal

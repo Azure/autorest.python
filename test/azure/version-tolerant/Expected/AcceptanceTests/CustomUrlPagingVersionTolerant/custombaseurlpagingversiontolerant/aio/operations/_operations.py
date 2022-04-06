@@ -32,7 +32,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -55,14 +55,14 @@ class PagingOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get_pages_partial_url(self, account_name: str, **kwargs: Any) -> AsyncIterable[JSONObject]:
+    def get_pages_partial_url(self, account_name: str, **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
         host.
 
         :param account_name: Account Name.
         :type account_name: str
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONObject]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -84,7 +84,7 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -145,13 +145,13 @@ class PagingOperations:
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_pages_partial_url_operation(self, account_name: str, **kwargs: Any) -> AsyncIterable[JSONObject]:
+    def get_pages_partial_url_operation(self, account_name: str, **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
         :param account_name: Account Name.
         :type account_name: str
         :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSONObject]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -173,7 +173,7 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})

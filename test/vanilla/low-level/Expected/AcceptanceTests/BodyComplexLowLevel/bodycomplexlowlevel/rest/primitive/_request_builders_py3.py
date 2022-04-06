@@ -17,7 +17,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 
@@ -56,7 +56,7 @@ def build_get_int_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_int_request(*, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_int_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with integer properties.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -64,7 +64,7 @@ def build_put_int_request(*, json: Optional[JSONObject] = None, content: Any = N
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put -1 and 2. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put -1 and 2. Default value is None.
     :paramtype content: any
@@ -133,7 +133,7 @@ def build_get_long_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_long_request(*, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_long_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with long properties.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -142,7 +142,7 @@ def build_put_long_request(*, json: Optional[JSONObject] = None, content: Any = 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put 1099511627775 and -999511627788. Default value
      is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put 1099511627775 and -999511627788. Default value is
      None.
@@ -212,7 +212,7 @@ def build_get_float_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_float_request(*, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_float_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with float properties.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -220,7 +220,7 @@ def build_put_float_request(*, json: Optional[JSONObject] = None, content: Any =
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put 1.05 and -0.003. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put 1.05 and -0.003. Default value is None.
     :paramtype content: any
@@ -290,7 +290,7 @@ def build_get_double_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_double_request(*, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_double_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with double properties.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -299,7 +299,7 @@ def build_put_double_request(*, json: Optional[JSONObject] = None, content: Any 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put 3e-100 and
      -0.000000000000000000000000000000000000000000000000000000005. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put 3e-100 and
      -0.000000000000000000000000000000000000000000000000000000005. Default value is None.
@@ -370,7 +370,7 @@ def build_get_bool_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_bool_request(*, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_bool_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with bool properties.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -378,7 +378,7 @@ def build_put_bool_request(*, json: Optional[JSONObject] = None, content: Any = 
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put true and false. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put true and false. Default value is None.
     :paramtype content: any
@@ -448,7 +448,7 @@ def build_get_string_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_string_request(*, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_string_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with string properties.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -457,7 +457,7 @@ def build_put_string_request(*, json: Optional[JSONObject] = None, content: Any 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put 'goodrequest', '', and null. Default value is
      None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put 'goodrequest', '', and null. Default value is
      None.
@@ -528,7 +528,7 @@ def build_get_date_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_date_request(*, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_date_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with date properties.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -537,7 +537,7 @@ def build_put_date_request(*, json: Optional[JSONObject] = None, content: Any = 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put '0001-01-01' and '2016-02-29'. Default value is
      None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put '0001-01-01' and '2016-02-29'. Default value is
      None.
@@ -608,7 +608,7 @@ def build_get_date_time_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_put_date_time_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Put complex types with datetime properties.
 
@@ -618,7 +618,7 @@ def build_put_date_time_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put '0001-01-01T12:00:00-04:00' and
      '2015-05-18T11:38:00-08:00'. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put '0001-01-01T12:00:00-04:00' and
      '2015-05-18T11:38:00-08:00'. Default value is None.
@@ -689,7 +689,7 @@ def build_get_date_time_rfc1123_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_put_date_time_rfc1123_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Put complex types with datetimeRfc1123 properties.
 
@@ -699,7 +699,7 @@ def build_put_date_time_rfc1123_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18
      May 2015 11:38:00 GMT'. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May
      2015 11:38:00 GMT'. Default value is None.
@@ -768,7 +768,7 @@ def build_get_duration_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_duration_request(*, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_duration_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with duration properties.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -776,7 +776,7 @@ def build_put_duration_request(*, json: Optional[JSONObject] = None, content: An
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put 'P123DT22H14M12.011S'. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put 'P123DT22H14M12.011S'. Default value is None.
     :paramtype content: any
@@ -843,7 +843,7 @@ def build_get_byte_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_byte_request(*, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_byte_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with byte properties.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -852,7 +852,7 @@ def build_put_byte_request(*, json: Optional[JSONObject] = None, content: Any = 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put non-ascii byte string hex(FF FE FD FC 00 FA F9
      F8 F7 F6). Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8
      F7 F6). Default value is None.

@@ -17,7 +17,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 
@@ -60,7 +60,7 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_valid_request(*, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_valid_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put complex types that are polymorphic.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -100,7 +100,7 @@ def build_put_valid_request(*, json: Optional[JSONObject] = None, content: Any =
                }
              ]
            };. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put a salmon that looks like this:
      {
@@ -372,7 +372,7 @@ def build_get_complicated_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_put_complicated_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
     additional properties.
@@ -382,7 +382,7 @@ def build_put_complicated_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -433,7 +433,7 @@ def build_put_complicated_request(
 
 
 def build_put_missing_discriminator_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Put complex types that are polymorphic, omitting the discriminator.
 
@@ -442,7 +442,7 @@ def build_put_missing_discriminator_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -512,7 +512,7 @@ def build_put_missing_discriminator_request(
 
 
 def build_put_valid_missing_required_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
     request should not be allowed from the client.
@@ -548,7 +548,7 @@ def build_put_valid_missing_required_request(
              }
          ]
      }. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please attempt put a sawshark that looks like this, the
      client should not allow this data to be sent:

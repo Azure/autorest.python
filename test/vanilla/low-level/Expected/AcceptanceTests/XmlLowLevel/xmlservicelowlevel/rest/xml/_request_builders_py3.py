@@ -17,7 +17,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -1169,7 +1169,7 @@ def build_list_blobs_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_json_input_request(*, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_json_input_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
     number 42.
 
@@ -1178,7 +1178,7 @@ def build_json_input_request(*, json: Optional[JSONObject] = None, content: Any 
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any

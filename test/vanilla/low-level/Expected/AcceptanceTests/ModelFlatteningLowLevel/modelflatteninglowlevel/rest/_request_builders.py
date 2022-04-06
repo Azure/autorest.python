@@ -23,7 +23,7 @@ if TYPE_CHECKING:
         from collections.abc import MutableMapping
     else:
         from typing import MutableMapping  # type: ignore
-    JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -42,7 +42,7 @@ def build_put_array_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as an Array to put. Default value is
      None.
-    :paramtype json: list[JSONObject]
+    :paramtype json: list[JSON]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as an Array to put. Default value is None.
     :paramtype content: any
@@ -161,7 +161,7 @@ def build_put_wrapped_array_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as an Array to put. Default value is
      None.
-    :paramtype json: list[JSONObject]
+    :paramtype json: list[JSON]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as an Array to put. Default value is None.
     :paramtype content: any
@@ -260,7 +260,7 @@ def build_put_dictionary_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as a Dictionary to put. Default value is
      None.
-    :paramtype json: dict[str, JSONObject]
+    :paramtype json: dict[str, JSON]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as a Dictionary to put. Default value is
      None.
@@ -387,7 +387,7 @@ def build_put_resource_collection_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as a ResourceCollection to put. Default
      value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as a ResourceCollection to put. Default
      value is None.
@@ -603,7 +603,7 @@ def build_put_simple_product_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple body product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple body product to put. Default value is None.
     :paramtype content: any
@@ -684,7 +684,7 @@ def build_post_flattened_simple_product_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple body product to post. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple body product to post. Default value is None.
     :paramtype content: any
@@ -768,7 +768,7 @@ def build_put_simple_product_with_grouping_request(
     :type name: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple body product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple body product to put. Default value is None.
     :paramtype content: any

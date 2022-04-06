@@ -36,7 +36,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -45,7 +45,7 @@ class MediaTypesClientOperationsMixin(MixinABC):
     @distributed_trace_async
     async def analyze_body(
         self,
-        input: Optional[Union[IO, JSONObject]] = None,
+        input: Optional[Union[IO, JSON]] = None,
         *,
         content_type: Optional[str] = "application/json",
         **kwargs: Any
@@ -53,7 +53,7 @@ class MediaTypesClientOperationsMixin(MixinABC):
         """Analyze body, that could be different media types.
 
         :param input: Input parameter. Default value is None.
-        :type input: IO or JSONObject
+        :type input: IO or JSON
         :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
          value is "application/json".
@@ -123,7 +123,7 @@ class MediaTypesClientOperationsMixin(MixinABC):
     @distributed_trace_async
     async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
         self,
-        input: Optional[Union[IO, JSONObject]] = None,
+        input: Optional[Union[IO, JSON]] = None,
         *,
         content_type: Optional[str] = "application/json",
         **kwargs: Any
@@ -132,7 +132,7 @@ class MediaTypesClientOperationsMixin(MixinABC):
         type.
 
         :param input: Input parameter. Default value is None.
-        :type input: IO or JSONObject
+        :type input: IO or JSON
         :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/pdf", "image/jpeg", "image/png", "image/tiff", and "application/json". Default
          value is "application/json".

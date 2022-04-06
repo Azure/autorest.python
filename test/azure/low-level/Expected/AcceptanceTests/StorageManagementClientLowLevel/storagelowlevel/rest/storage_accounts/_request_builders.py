@@ -23,7 +23,7 @@ if TYPE_CHECKING:
         from collections.abc import MutableMapping
     else:
         from typing import MutableMapping  # type: ignore
-    JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -47,7 +47,7 @@ def build_check_name_availability_request(
      our example to find the input shape. The name of the storage account within the specified
      resource group. Storage account names must be between 3 and 24 characters in length and use
      numbers and lower-case letters only. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The name of the storage account within the specified
      resource group. Storage account names must be between 3 and 24 characters in length and use
@@ -142,7 +142,7 @@ def build_create_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The parameters to provide for the created account. Default
      value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The parameters to provide for the created account. Default
      value is None.
@@ -486,7 +486,7 @@ def build_update_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The parameters to update on the account. Note that only
      one property can be changed at a time using this API. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The parameters to update on the account. Note that only one
      property can be changed at a time using this API. Default value is None.
@@ -991,7 +991,7 @@ def build_regenerate_key_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Specifies name of the key which should be regenerated.
      Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Specifies name of the key which should be regenerated.
      Default value is None.

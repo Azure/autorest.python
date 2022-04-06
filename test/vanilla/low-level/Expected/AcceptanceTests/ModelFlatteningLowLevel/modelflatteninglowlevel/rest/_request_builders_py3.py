@@ -19,14 +19,14 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
 def build_put_array_request(
-    *, json: Optional[List[JSONObject]] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[List[JSON]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Put External Resource as an Array.
 
@@ -36,7 +36,7 @@ def build_put_array_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as an Array to put. Default value is
      None.
-    :paramtype json: list[JSONObject]
+    :paramtype json: list[JSON]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as an Array to put. Default value is None.
     :paramtype content: any
@@ -130,7 +130,7 @@ def build_get_array_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_put_wrapped_array_request(
-    *, json: Optional[List[JSONObject]] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[List[JSON]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """No need to have a route in Express server for this operation. Used to verify the type flattened
     is not removed if it's referenced in an array.
@@ -141,7 +141,7 @@ def build_put_wrapped_array_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as an Array to put. Default value is
      None.
-    :paramtype json: list[JSONObject]
+    :paramtype json: list[JSON]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as an Array to put. Default value is None.
     :paramtype content: any
@@ -216,7 +216,7 @@ def build_get_wrapped_array_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_put_dictionary_request(
-    *, json: Optional[Dict[str, JSONObject]] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[Dict[str, JSON]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Put External Resource as a Dictionary.
 
@@ -226,7 +226,7 @@ def build_put_dictionary_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as a Dictionary to put. Default value is
      None.
-    :paramtype json: dict[str, JSONObject]
+    :paramtype json: dict[str, JSON]
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as a Dictionary to put. Default value is
      None.
@@ -329,7 +329,7 @@ def build_get_dictionary_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_put_resource_collection_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Put External Resource as a ResourceCollection.
 
@@ -339,7 +339,7 @@ def build_put_resource_collection_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. External Resource as a ResourceCollection to put. Default
      value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). External Resource as a ResourceCollection to put. Default
      value is None.
@@ -532,7 +532,7 @@ def build_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_put_simple_product_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Put Simple Product with client flattening true on the model.
 
@@ -541,7 +541,7 @@ def build_put_simple_product_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple body product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple body product to put. Default value is None.
     :paramtype content: any
@@ -607,7 +607,7 @@ def build_put_simple_product_request(
 
 
 def build_post_flattened_simple_product_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Put Flattened Simple Product with client flattening true on the parameter.
 
@@ -616,7 +616,7 @@ def build_post_flattened_simple_product_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple body product to post. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple body product to post. Default value is None.
     :paramtype content: any
@@ -682,7 +682,7 @@ def build_post_flattened_simple_product_request(
 
 
 def build_put_simple_product_with_grouping_request(
-    name: str, *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    name: str, *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Put Simple Product with client flattening true on the model.
 
@@ -693,7 +693,7 @@ def build_put_simple_product_with_grouping_request(
     :type name: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple body product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Simple body product to put. Default value is None.
     :paramtype content: any

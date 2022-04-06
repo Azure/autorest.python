@@ -32,7 +32,7 @@ def get_schema(code_model: "CodeModel", schema: Any, serialized_name: str = "unk
 
 def import_mutable_mapping(file_import: FileImport):
     file_import.add_import("sys", ImportType.STDLIB)
-    file_import.define_mypy_type("JSONObject", "MutableMapping[str, Any] # pylint: disable=unsubscriptable-object", None, ((3, 9), ImportModel(
+    file_import.define_mypy_type("JSON", "MutableMapping[str, Any] # pylint: disable=unsubscriptable-object", None, ((3, 9), ImportModel(
         TypingSection.CONDITIONAL, ImportType.STDLIB, "collections.abc", submodule_name="MutableMapping"
     ), ImportModel(
         TypingSection.CONDITIONAL, ImportType.STDLIB, "typing", submodule_name="MutableMapping"

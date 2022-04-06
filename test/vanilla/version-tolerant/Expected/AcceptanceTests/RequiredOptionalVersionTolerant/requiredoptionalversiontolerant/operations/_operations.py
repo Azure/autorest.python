@@ -32,7 +32,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 
@@ -256,7 +256,7 @@ def build_explicit_post_optional_integer_parameter_request(
 
 
 def build_explicit_post_required_integer_property_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -275,7 +275,7 @@ def build_explicit_post_required_integer_property_request(
 
 
 def build_explicit_post_optional_integer_property_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -365,7 +365,7 @@ def build_explicit_post_optional_string_parameter_request(
 
 
 def build_explicit_post_required_string_property_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -384,7 +384,7 @@ def build_explicit_post_required_string_property_request(
 
 
 def build_explicit_post_optional_string_property_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -436,7 +436,7 @@ def build_explicit_post_optional_string_header_request(
 
 
 def build_explicit_post_required_class_parameter_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -455,7 +455,7 @@ def build_explicit_post_required_class_parameter_request(
 
 
 def build_explicit_post_optional_class_parameter_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -474,7 +474,7 @@ def build_explicit_post_optional_class_parameter_request(
 
 
 def build_explicit_post_required_class_property_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -493,7 +493,7 @@ def build_explicit_post_required_class_property_request(
 
 
 def build_explicit_post_optional_class_property_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -550,7 +550,7 @@ def build_explicit_post_optional_array_parameter_request(
 
 
 def build_explicit_post_required_array_property_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -569,7 +569,7 @@ def build_explicit_post_required_array_property_request(
 
 
 def build_explicit_post_optional_array_property_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1156,13 +1156,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_required_integer_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSONObject, **kwargs: Any
+        self, body_parameter: JSON, **kwargs: Any
     ) -> None:
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: JSONObject
+        :type body_parameter: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1210,12 +1210,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_optional_integer_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[JSONObject] = None, **kwargs: Any
+        self, body_parameter: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
         :param body_parameter:  Default value is None.
-        :type body_parameter: JSONObject
+        :type body_parameter: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1439,13 +1439,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_required_string_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSONObject, **kwargs: Any
+        self, body_parameter: JSON, **kwargs: Any
     ) -> None:
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: JSONObject
+        :type body_parameter: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1493,12 +1493,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_optional_string_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[JSONObject] = None, **kwargs: Any
+        self, body_parameter: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
         :param body_parameter:  Default value is None.
-        :type body_parameter: JSONObject
+        :type body_parameter: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1628,13 +1628,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSONObject, **kwargs: Any
+        self, body_parameter: JSON, **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
         before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: JSONObject
+        :type body_parameter: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1683,12 +1683,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[JSONObject] = None, **kwargs: Any
+        self, body_parameter: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put null.
 
         :param body_parameter:  Default value is None.
-        :type body_parameter: JSONObject
+        :type body_parameter: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1740,13 +1740,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_required_class_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSONObject, **kwargs: Any
+        self, body_parameter: JSON, **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
         and the client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: JSONObject
+        :type body_parameter: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1797,12 +1797,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[JSONObject] = None, **kwargs: Any
+        self, body_parameter: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
         :param body_parameter:  Default value is None.
-        :type body_parameter: JSONObject
+        :type body_parameter: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1966,13 +1966,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_required_array_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSONObject, **kwargs: Any
+        self, body_parameter: JSON, **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
         :param body_parameter:
-        :type body_parameter: JSONObject
+        :type body_parameter: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2022,12 +2022,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_optional_array_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[JSONObject] = None, **kwargs: Any
+        self, body_parameter: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
         :param body_parameter:  Default value is None.
-        :type body_parameter: JSONObject
+        :type body_parameter: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

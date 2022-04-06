@@ -34,14 +34,14 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class AutoRestValidationTestOperationsMixin(MixinABC):
     @distributed_trace_async
-    async def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> JSONObject:
+    async def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> JSON:
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -49,7 +49,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -89,7 +89,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_validation_of_method_parameters_request(
             subscription_id=self._config.subscription_id,
@@ -116,14 +116,14 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def validation_of_body(
-        self, resource_group_name: str, id: int, body: Optional[JSONObject] = None, **kwargs: Any
-    ) -> JSONObject:
+        self, resource_group_name: str, id: int, body: Optional[JSON] = None, **kwargs: Any
+    ) -> JSON:
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -131,9 +131,9 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
         :param body:  Default value is None.
-        :type body: JSONObject
+        :type body: JSON
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -203,7 +203,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if body is not None:
             _json = body
@@ -237,9 +237,9 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def get_with_constant_in_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -281,16 +281,16 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def post_with_constant_in_body(self, body: Optional[JSONObject] = None, **kwargs: Any) -> JSONObject:
+    async def post_with_constant_in_body(self, body: Optional[JSON] = None, **kwargs: Any) -> JSON:
         """post_with_constant_in_body.
 
         :param body:  Default value is None.
-        :type body: JSONObject
+        :type body: JSON
         :keyword constant_param:  Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype constant_param: str
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -360,7 +360,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         if body is not None:
             _json = body
@@ -391,6 +391,6 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)

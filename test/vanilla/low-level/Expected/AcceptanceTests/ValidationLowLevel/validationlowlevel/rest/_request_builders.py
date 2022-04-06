@@ -23,7 +23,7 @@ if TYPE_CHECKING:
         from collections.abc import MutableMapping
     else:
         from typing import MutableMapping  # type: ignore
-    JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 
@@ -134,7 +134,7 @@ def build_validation_of_body_request(
     :type id: int
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any
@@ -283,7 +283,7 @@ def build_post_with_constant_in_body_request(
     :paramtype constant_param: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input).  Default value is None.
     :paramtype content: any

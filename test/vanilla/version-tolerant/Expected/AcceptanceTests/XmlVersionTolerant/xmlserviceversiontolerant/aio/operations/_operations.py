@@ -64,7 +64,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -87,11 +87,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_complex_type_ref_no_meta(self, **kwargs: Any) -> JSONObject:
+    async def get_complex_type_ref_no_meta(self, **kwargs: Any) -> JSON:
         """Get a complex type that has a ref to a complex type with no XML node.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -111,7 +111,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_xml_get_complex_type_ref_no_meta_request(
             headers=_headers,
@@ -134,18 +134,18 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_complex_type_ref_no_meta(  # pylint: disable=inconsistent-return-statements
-        self, model: JSONObject, **kwargs: Any
+        self, model: JSON, **kwargs: Any
     ) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
 
         :param model:
-        :type model: JSONObject
+        :type model: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -195,11 +195,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_complex_type_ref_with_meta(self, **kwargs: Any) -> JSONObject:
+    async def get_complex_type_ref_with_meta(self, **kwargs: Any) -> JSON:
         """Get a complex type that has a ref to a complex type with XML node.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -219,7 +219,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_xml_get_complex_type_ref_with_meta_request(
             headers=_headers,
@@ -242,18 +242,18 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_complex_type_ref_with_meta(  # pylint: disable=inconsistent-return-statements
-        self, model: JSONObject, **kwargs: Any
+        self, model: JSON, **kwargs: Any
     ) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
 
         :param model:
-        :type model: JSONObject
+        :type model: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -427,11 +427,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_wrapped_lists(self, **kwargs: Any) -> JSONObject:
+    async def get_wrapped_lists(self, **kwargs: Any) -> JSON:
         """Get an XML document with multiple wrapped lists.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -453,7 +453,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_xml_get_wrapped_lists_request(
             headers=_headers,
@@ -476,18 +476,18 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_wrapped_lists(  # pylint: disable=inconsistent-return-statements
-        self, wrapped_lists: JSONObject, **kwargs: Any
+        self, wrapped_lists: JSON, **kwargs: Any
     ) -> None:
         """Put an XML document with multiple wrapped lists.
 
         :param wrapped_lists:
-        :type wrapped_lists: JSONObject
+        :type wrapped_lists: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -700,11 +700,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_empty_wrapped_lists(self, **kwargs: Any) -> JSONObject:
+    async def get_empty_wrapped_lists(self, **kwargs: Any) -> JSON:
         """Gets some empty wrapped lists.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -726,7 +726,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_xml_get_empty_wrapped_lists_request(
             headers=_headers,
@@ -749,18 +749,18 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_empty_wrapped_lists(  # pylint: disable=inconsistent-return-statements
-        self, apple_barrel: JSONObject, **kwargs: Any
+        self, apple_barrel: JSON, **kwargs: Any
     ) -> None:
         """Puts some empty wrapped lists.
 
         :param apple_barrel:
-        :type apple_barrel: JSONObject
+        :type apple_barrel: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1335,7 +1335,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return cast(ET.Element, deserialized)
 
     @distributed_trace_async
-    async def get_service_properties(self, **kwargs: Any) -> JSONObject:
+    async def get_service_properties(self, **kwargs: Any) -> JSON:
         """Gets storage service properties.
 
         :keyword comp:  Default value is "properties". Note that overriding this default value may
@@ -1345,7 +1345,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
          result in unsupported behavior.
         :paramtype restype: str
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1440,7 +1440,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         comp = kwargs.pop("comp", _params.pop("comp", "properties"))  # type: str
         restype = kwargs.pop("restype", _params.pop("restype", "service"))  # type: str
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_xml_get_service_properties_request(
             comp=comp,
@@ -1465,18 +1465,18 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_service_properties(  # pylint: disable=inconsistent-return-statements
-        self, properties: JSONObject, **kwargs: Any
+        self, properties: JSON, **kwargs: Any
     ) -> None:
         """Puts storage service properties.
 
         :param properties:
-        :type properties: JSONObject
+        :type properties: JSON
         :keyword comp:  Default value is "properties". Note that overriding this default value may
          result in unsupported behavior.
         :paramtype comp: str
@@ -1895,13 +1895,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def json_input(  # pylint: disable=inconsistent-return-statements
-        self, properties: JSONObject, **kwargs: Any
+        self, properties: JSON, **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
         :param properties:
-        :type properties: JSONObject
+        :type properties: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1948,11 +1948,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def json_output(self, **kwargs: Any) -> JSONObject:
+    async def json_output(self, **kwargs: Any) -> JSON:
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -1969,7 +1969,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_xml_json_output_request(
             headers=_headers,
@@ -1992,9 +1992,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def get_xms_text(self, **kwargs: Any) -> ET.Element:
@@ -2048,11 +2048,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return cast(ET.Element, deserialized)
 
     @distributed_trace_async
-    async def get_bytes(self, **kwargs: Any) -> JSONObject:
+    async def get_bytes(self, **kwargs: Any) -> JSON:
         """Get an XML document with binary property.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2069,7 +2069,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_xml_get_bytes_request(
             headers=_headers,
@@ -2092,18 +2092,18 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
     async def put_binary(  # pylint: disable=inconsistent-return-statements
-        self, slideshow: JSONObject, **kwargs: Any
+        self, slideshow: JSON, **kwargs: Any
     ) -> None:
         """Put an XML document with binary property.
 
         :param slideshow:
-        :type slideshow: JSONObject
+        :type slideshow: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2150,11 +2150,11 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_uri(self, **kwargs: Any) -> JSONObject:
+    async def get_uri(self, **kwargs: Any) -> JSON:
         """Get an XML document with uri property.
 
         :return: JSON object
-        :rtype: JSONObject
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2171,7 +2171,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSONObject]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_xml_get_uri_request(
             headers=_headers,
@@ -2194,16 +2194,16 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSONObject, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(JSONObject, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def put_uri(self, model: JSONObject, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_uri(self, model: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put an XML document with uri property.
 
         :param model:
-        :type model: JSONObject
+        :type model: JSON
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

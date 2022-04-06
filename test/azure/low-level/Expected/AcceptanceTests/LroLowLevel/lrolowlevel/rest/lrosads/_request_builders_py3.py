@@ -17,14 +17,14 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
 def build_put_non_retry400_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a 400 to the initial request.
 
@@ -33,7 +33,7 @@ def build_put_non_retry400_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -99,7 +99,7 @@ def build_put_non_retry400_request(
 
 
 def build_put_non_retry201_creating400_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
     201 response code.
@@ -109,7 +109,7 @@ def build_put_non_retry201_creating400_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -175,7 +175,7 @@ def build_put_non_retry201_creating400_request(
 
 
 def build_put_non_retry201_creating400_invalid_json_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
     201 response code.
@@ -185,7 +185,7 @@ def build_put_non_retry201_creating400_invalid_json_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -251,7 +251,7 @@ def build_put_non_retry201_creating400_invalid_json_request(
 
 
 def build_put_async_relative_retry400_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
     endpoint indicated in the Azure-AsyncOperation header for operation status.
@@ -261,7 +261,7 @@ def build_put_async_relative_retry400_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -403,7 +403,7 @@ def build_delete_async_relative_retry400_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_post_non_retry400_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running post request, service returns a 400 with no error body.
 
@@ -412,7 +412,7 @@ def build_post_non_retry400_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -460,7 +460,7 @@ def build_post_non_retry400_request(
 
 
 def build_post202_non_retry400_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running post request, service returns a 202 with a location header.
 
@@ -469,7 +469,7 @@ def build_post202_non_retry400_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -517,7 +517,7 @@ def build_post202_non_retry400_request(
 
 
 def build_post_async_relative_retry400_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request Poll the endpoint
     indicated in the Azure-AsyncOperation header for operation status.
@@ -527,7 +527,7 @@ def build_post_async_relative_retry400_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -575,7 +575,7 @@ def build_post_async_relative_retry400_request(
 
 
 def build_put_error201_no_provisioning_state_payload_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request with no payload.
 
@@ -584,7 +584,7 @@ def build_put_error201_no_provisioning_state_payload_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -650,7 +650,7 @@ def build_put_error201_no_provisioning_state_payload_request(
 
 
 def build_put_async_relative_retry_no_status_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -661,7 +661,7 @@ def build_put_async_relative_retry_no_status_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -727,7 +727,7 @@ def build_put_async_relative_retry_no_status_request(
 
 
 def build_put_async_relative_retry_no_status_payload_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -738,7 +738,7 @@ def build_put_async_relative_retry_no_status_payload_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -855,7 +855,7 @@ def build_delete_async_relative_retry_no_status_request(**kwargs: Any) -> HttpRe
 
 
 def build_post202_no_location_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, without a location
     header.
@@ -865,7 +865,7 @@ def build_post202_no_location_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -913,7 +913,7 @@ def build_post202_no_location_request(
 
 
 def build_post_async_relative_retry_no_payload_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -924,7 +924,7 @@ def build_post_async_relative_retry_no_payload_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -972,7 +972,7 @@ def build_post_async_relative_retry_no_payload_request(
 
 
 def build_put200_invalid_json_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that is
     not a valid json.
@@ -982,7 +982,7 @@ def build_put200_invalid_json_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -1048,7 +1048,7 @@ def build_put200_invalid_json_request(
 
 
 def build_put_async_relative_retry_invalid_header_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
@@ -1059,7 +1059,7 @@ def build_put_async_relative_retry_invalid_header_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -1125,7 +1125,7 @@ def build_put_async_relative_retry_invalid_header_request(
 
 
 def build_put_async_relative_retry_invalid_json_polling_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -1136,7 +1136,7 @@ def build_put_async_relative_retry_invalid_json_polling_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -1280,7 +1280,7 @@ def build_delete_async_relative_retry_invalid_json_polling_request(**kwargs: Any
 
 
 def build_post202_retry_invalid_header_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with invalid
     'Location' and 'Retry-After' headers.
@@ -1290,7 +1290,7 @@ def build_post202_retry_invalid_header_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -1338,7 +1338,7 @@ def build_post202_retry_invalid_header_request(
 
 
 def build_post_async_relative_retry_invalid_header_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
@@ -1349,7 +1349,7 @@ def build_post_async_relative_retry_invalid_header_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any
@@ -1397,7 +1397,7 @@ def build_post_async_relative_retry_invalid_header_request(
 
 
 def build_post_async_relative_retry_invalid_json_polling_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with an entity that
     contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -1408,7 +1408,7 @@ def build_post_async_relative_retry_invalid_json_polling_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Product to put. Default value is None.
-    :paramtype json: JSONObject
+    :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Product to put. Default value is None.
     :paramtype content: any

@@ -35,7 +35,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -211,13 +211,13 @@ class ParamsOperations:
 
     @distributed_trace_async
     async def post_parameters(
-        self, parameter: Union[IO, JSONObject], *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, parameter: Union[IO, JSON], *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> Any:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
          url: "http://example.org/myimage.jpeg" }.
-        :type parameter: IO or JSONObject
+        :type parameter: IO or JSON
         :keyword content_type: Media type of the body sent to the API. Known values are: "image/jpeg"
          or "application/json". Default value is "application/json".
         :paramtype content_type: str

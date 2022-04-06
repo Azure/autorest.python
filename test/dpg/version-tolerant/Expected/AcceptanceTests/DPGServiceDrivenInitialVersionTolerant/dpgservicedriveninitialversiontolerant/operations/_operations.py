@@ -28,7 +28,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-JSONObject = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -91,7 +91,7 @@ def build_params_put_required_optional_request(
 
 
 def build_params_post_parameters_request(
-    *, json: Optional[JSONObject] = None, content: Any = None, **kwargs: Any
+    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -282,12 +282,12 @@ class ParamsOperations:
         return cast(Any, deserialized)
 
     @distributed_trace
-    def post_parameters(self, parameter: JSONObject, **kwargs: Any) -> Any:
+    def post_parameters(self, parameter: JSON, **kwargs: Any) -> Any:
         """POST a JSON.
 
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }.
-        :type parameter: JSONObject
+        :type parameter: JSON
         :return: any
         :rtype: any
         :raises: ~azure.core.exceptions.HttpResponseError
