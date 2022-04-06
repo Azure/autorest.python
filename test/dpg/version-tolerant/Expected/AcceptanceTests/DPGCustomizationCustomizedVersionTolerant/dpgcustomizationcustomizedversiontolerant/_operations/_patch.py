@@ -2,10 +2,10 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 # ------------------------------------
-from typing import Any, Iterable, cast
+from typing import Any, Iterable, Union, cast
 from azure.core.polling import LROPoller
 from ..models import *  # pylint: disable=wildcard-import,unused-wildcard-import
-from ._operations import DPGClientOperationsMixin as DPGClientOperationsMixinGenerated
+from ._operations import DPGClientOperationsMixin as DPGClientOperationsMixinGenerated, JSON
 
 
 class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
@@ -13,7 +13,7 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
         response = super().get_model(mode, **kwargs)
         return Product(**response)
 
-    def post_model(self, mode: str, input: Input, **kwargs: Any) -> Product:  # type: ignore
+    def post_model(self, mode: str, input: Union[Input, JSON], **kwargs: Any) -> Product:
         response = super().post_model(mode, input, **kwargs)
         return Product(**response)
 
