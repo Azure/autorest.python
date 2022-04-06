@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 from typing import Dict, Any
 
+
 class Input(Dict[str, Any]):
     """Input.
 

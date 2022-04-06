@@ -49,9 +49,7 @@ def build_basic_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_basic_put_valid_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_basic_put_valid_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -143,9 +141,7 @@ def build_primitive_get_int_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_primitive_put_int_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_primitive_put_int_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -176,9 +172,7 @@ def build_primitive_get_long_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_primitive_put_long_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_primitive_put_long_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -275,9 +269,7 @@ def build_primitive_get_bool_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_primitive_put_bool_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_primitive_put_bool_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -341,9 +333,7 @@ def build_primitive_get_date_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_primitive_put_date_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_primitive_put_date_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -473,9 +463,7 @@ def build_primitive_get_byte_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_primitive_put_byte_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_primitive_put_byte_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -506,9 +494,7 @@ def build_array_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_valid_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_array_put_valid_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -539,9 +525,7 @@ def build_array_get_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_empty_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_array_put_empty_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -996,9 +980,7 @@ class BasicOperations:
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, **kwargs: Any
-    ) -> None:
+    def put_valid(self, complex_body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
@@ -1335,9 +1317,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_int(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, **kwargs: Any
-    ) -> None:
+    def put_int(self, complex_body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2.
@@ -1439,9 +1419,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_long(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, **kwargs: Any
-    ) -> None:
+    def put_long(self, complex_body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788.
@@ -1543,9 +1521,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_float(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, **kwargs: Any
-    ) -> None:
+    def put_float(self, complex_body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003.
@@ -1648,9 +1624,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_double(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, **kwargs: Any
-    ) -> None:
+    def put_double(self, complex_body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
@@ -1754,9 +1728,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_bool(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, **kwargs: Any
-    ) -> None:
+    def put_bool(self, complex_body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false.
@@ -1859,9 +1831,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_string(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, **kwargs: Any
-    ) -> None:
+    def put_string(self, complex_body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null.
@@ -1964,9 +1934,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_date(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, **kwargs: Any
-    ) -> None:
+    def put_date(self, complex_body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'.
@@ -2276,9 +2244,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_duration(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, **kwargs: Any
-    ) -> None:
+    def put_duration(self, complex_body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types with duration properties.
 
         :param complex_body: Please put 'P123DT22H14M12.011S'.
@@ -2378,9 +2344,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_byte(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, **kwargs: Any
-    ) -> None:
+    def put_byte(self, complex_body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types with byte properties.
 
         :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6).
@@ -2500,9 +2464,7 @@ class ArrayOperations:
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, **kwargs: Any
-    ) -> None:
+    def put_valid(self, complex_body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types with array property.
 
         :param complex_body: Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The
@@ -2607,9 +2569,7 @@ class ArrayOperations:
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, **kwargs: Any
-    ) -> None:
+    def put_empty(self, complex_body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types with array property which is empty.
 
         :param complex_body: Please put an empty array.
@@ -2782,9 +2742,7 @@ class DictionaryOperations:
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, **kwargs: Any
-    ) -> None:
+    def put_valid(self, complex_body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types with dictionary property.
 
         :param complex_body: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
@@ -2889,9 +2847,7 @@ class DictionaryOperations:
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, **kwargs: Any
-    ) -> None:
+    def put_empty(self, complex_body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types with dictionary property which is empty.
 
         :param complex_body: Please put an empty dictionary.
@@ -3123,9 +3079,7 @@ class InheritanceOperations:
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, **kwargs: Any
-    ) -> None:
+    def put_valid(self, complex_body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types that extend others.
 
         :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
@@ -3260,9 +3214,7 @@ class PolymorphismOperations:
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, **kwargs: Any
-    ) -> None:
+    def put_valid(self, complex_body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types that are polymorphic.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -3936,9 +3888,7 @@ class PolymorphicrecursiveOperations:
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, **kwargs: Any
-    ) -> None:
+    def put_valid(self, complex_body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types that are polymorphic and have recursive references.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -4116,9 +4066,7 @@ class ReadonlypropertyOperations:
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, **kwargs: Any
-    ) -> None:
+    def put_valid(self, complex_body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put complex types that have readonly properties.
 
         :param complex_body:

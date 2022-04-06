@@ -371,9 +371,7 @@ def build_get_complicated_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_complicated_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_complicated_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
     additional properties.
 

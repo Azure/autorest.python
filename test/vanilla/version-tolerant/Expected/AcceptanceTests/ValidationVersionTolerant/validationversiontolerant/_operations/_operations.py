@@ -226,9 +226,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def validation_of_body(
-        self, resource_group_name: str, id: int, body: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    def validation_of_body(self, resource_group_name: str, id: int, body: Optional[JSON] = None, **kwargs: Any) -> JSON:
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.

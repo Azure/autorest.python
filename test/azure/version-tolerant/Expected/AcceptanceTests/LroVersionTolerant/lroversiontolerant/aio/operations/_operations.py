@@ -135,9 +135,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def _put200_succeeded_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> Optional[JSON]:
+    async def _put200_succeeded_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> Optional[JSON]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -184,9 +182,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def begin_put200_succeeded(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSON]:
+    async def begin_put200_succeeded(self, product: Optional[JSON] = None, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
 
@@ -288,9 +284,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _patch200_succeeded_ignore_headers_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    async def _patch200_succeeded_ignore_headers_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -449,9 +443,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _patch201_retry_with_async_header_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    async def _patch201_retry_with_async_header_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -823,9 +815,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_put201_succeeded(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSON]:
+    async def begin_put201_succeeded(self, product: Optional[JSON] = None, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
 
@@ -1047,9 +1037,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put200_succeeded_no_state_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    async def _put200_succeeded_no_state_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1243,9 +1231,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_put202_retry200(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSON]:
+    async def begin_put202_retry200(self, product: Optional[JSON] = None, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 202 to the initial request, with a location header
         that points to a polling URL that returns a 200 and an entity that doesn't contains
         ProvisioningState.
@@ -1348,9 +1334,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put201_creating_succeeded200_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    async def _put201_creating_succeeded200_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1507,9 +1491,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put200_updating_succeeded204_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    async def _put200_updating_succeeded204_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1659,9 +1641,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put201_creating_failed200_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    async def _put201_creating_failed200_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -1818,9 +1798,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put200_acceptedcanceled200_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    async def _put200_acceptedcanceled200_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2018,9 +1996,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_put_no_header_in_retry(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSON]:
+    async def begin_put_no_header_in_retry(self, product: Optional[JSON] = None, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 202 to the initial request with location header.
         Subsequent calls to operation status do not contain location header.
 
@@ -2125,9 +2101,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put_async_retry_succeeded_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    async def _put_async_retry_succeeded_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2291,9 +2265,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put_async_no_retry_succeeded_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    async def _put_async_no_retry_succeeded_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2507,9 +2479,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_put_async_retry_failed(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSON]:
+    async def begin_put_async_retry_failed(self, product: Optional[JSON] = None, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
@@ -2619,9 +2589,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put_async_no_retrycanceled_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    async def _put_async_no_retrycanceled_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2783,9 +2751,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put_async_no_header_in_retry_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    async def _put_async_no_header_in_retry_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -2990,9 +2956,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_put_non_resource(
-        self, sku: Optional[JSON] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSON]:
+    async def begin_put_non_resource(self, sku: Optional[JSON] = None, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running put request with non resource.
 
         :param sku: sku to put. Default value is None.
@@ -3109,9 +3073,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_put_async_non_resource(
-        self, sku: Optional[JSON] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSON]:
+    async def begin_put_async_non_resource(self, sku: Optional[JSON] = None, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running put request with non resource.
 
         :param sku: Sku to put. Default value is None.
@@ -3228,9 +3190,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_put_sub_resource(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSON]:
+    async def begin_put_sub_resource(self, product: Optional[JSON] = None, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running put request with sub resource.
 
         :param product: Sub Product to put. Default value is None.
@@ -3362,9 +3322,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_put_async_sub_resource(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSON]:
+    async def begin_put_async_sub_resource(self, product: Optional[JSON] = None, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running put request with sub resource.
 
         :param product: Sub Product to put. Default value is None.
@@ -4911,9 +4869,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_post202_no_retry204(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSON]:
+    async def begin_post202_no_retry204(self, product: Optional[JSON] = None, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request, with 'Location'
         header, 204 with noresponse body after success.
 
@@ -5279,9 +5235,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_post_double_headers_final_azure_header_get_default(
-        self, **kwargs: Any
-    ) -> AsyncLROPoller[JSON]:
+    async def begin_post_double_headers_final_azure_header_get_default(self, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request with both Location and
         Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
         final object if you support initial Autorest behavior.
@@ -5954,9 +5908,7 @@ class LRORetrysOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def _put201_creating_succeeded200_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    async def _put201_creating_succeeded200_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -6113,9 +6065,7 @@ class LRORetrysOperations:
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put_async_relative_retry_succeeded_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    async def _put_async_relative_retry_succeeded_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -6891,9 +6841,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_put_non_retry400(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSON]:
+    async def begin_put_non_retry400(self, product: Optional[JSON] = None, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 400 to the initial request.
 
         :param product: Product to put. Default value is None.
@@ -6994,9 +6942,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put_non_retry201_creating400_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    async def _put_non_retry201_creating400_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -7310,9 +7256,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put_async_relative_retry400_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    async def _put_async_relative_retry400_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -8255,9 +8199,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put_async_relative_retry_no_status_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    async def _put_async_relative_retry_no_status_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -9003,9 +8945,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put200_invalid_json_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> Optional[JSON]:
+    async def _put200_invalid_json_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> Optional[JSON]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -9052,9 +8992,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return deserialized
 
     @distributed_trace_async
-    async def begin_put200_invalid_json(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> AsyncLROPoller[JSON]:
+    async def begin_put200_invalid_json(self, product: Optional[JSON] = None, **kwargs: Any) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that is
         not a valid json.
 
@@ -10141,9 +10079,7 @@ class LROsCustomHeaderOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def _put_async_retry_succeeded_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    async def _put_async_retry_succeeded_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -10308,9 +10244,7 @@ class LROsCustomHeaderOperations:
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    async def _put201_creating_succeeded200_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    async def _put201_creating_succeeded200_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 

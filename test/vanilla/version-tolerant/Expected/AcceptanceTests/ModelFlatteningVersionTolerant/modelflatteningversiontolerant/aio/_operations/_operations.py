@@ -753,9 +753,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def post_flattened_simple_product(
-        self, simple_body_product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    async def post_flattened_simple_product(self, simple_body_product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         :param simple_body_product: Simple body product to post. Default value is None.

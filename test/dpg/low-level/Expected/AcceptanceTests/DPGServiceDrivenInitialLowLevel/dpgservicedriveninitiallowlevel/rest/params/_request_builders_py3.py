@@ -120,9 +120,7 @@ def build_put_required_optional_request(
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_post_parameters_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_post_parameters_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """POST a JSON.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder

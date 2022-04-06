@@ -23,9 +23,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_put200_succeeded_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put200_succeeded_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 200 to the initial request, with an entity that
     contains ProvisioningState=’Succeeded’.
 
@@ -326,9 +324,7 @@ def build_patch202_retry_with_async_and_location_header_request(
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_put201_succeeded_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put201_succeeded_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 201 to the initial request, with an entity that
     contains ProvisioningState=’Succeeded’.
 
@@ -527,9 +523,7 @@ def build_put200_succeeded_no_state_request(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_put202_retry200_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put202_retry200_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Long running put request, service returns a 202 to the initial request, with a location header
     that points to a polling URL that returns a 200 and an entity that doesn't contains
     ProvisioningState.
@@ -1373,9 +1367,7 @@ def build_put_async_no_header_in_retry_request(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_put_non_resource_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_non_resource_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Long running put request with non resource.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -1475,9 +1467,7 @@ def build_put_async_non_resource_request(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_put_sub_resource_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_sub_resource_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Long running put request with sub resource.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -2051,9 +2041,7 @@ def build_post200_with_payload_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_post202_retry200_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_post202_retry200_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Long running post request, service returns a 202 to the initial request, with 'Location' and
     'Retry-After' headers, Polls return a 200 with a response body after success.
 

@@ -607,9 +607,7 @@ def build_get_date_time_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_date_time_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_date_time_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Put complex types with datetime properties.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder

@@ -454,9 +454,7 @@ def build_xml_list_blobs_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_xml_json_input_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_xml_json_input_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -2383,9 +2381,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return cast(ET.Element, deserialized)
 
     @distributed_trace
-    def json_input(  # pylint: disable=inconsistent-return-statements
-        self, properties: JSON, **kwargs: Any
-    ) -> None:
+    def json_input(self, properties: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
@@ -2586,9 +2582,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_binary(  # pylint: disable=inconsistent-return-statements
-        self, slideshow: JSON, **kwargs: Any
-    ) -> None:
+    def put_binary(self, slideshow: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put an XML document with binary property.
 
         :param slideshow:

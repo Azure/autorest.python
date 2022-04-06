@@ -38,9 +38,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_put_array_request(
-    *, json: Optional[List[JSON]] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_array_request(*, json: Optional[List[JSON]] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -170,9 +168,7 @@ def build_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_simple_product_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_put_simple_product_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -939,9 +935,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         return cast(JSON, deserialized)
 
     @distributed_trace
-    def post_flattened_simple_product(
-        self, simple_body_product: Optional[JSON] = None, **kwargs: Any
-    ) -> JSON:
+    def post_flattened_simple_product(self, simple_body_product: Optional[JSON] = None, **kwargs: Any) -> JSON:
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         :param simple_body_product: Simple body product to post. Default value is None.

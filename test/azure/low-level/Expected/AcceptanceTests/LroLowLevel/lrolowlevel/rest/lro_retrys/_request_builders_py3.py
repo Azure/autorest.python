@@ -277,9 +277,7 @@ def build_delete_async_relative_retry_succeeded_request(**kwargs: Any) -> HttpRe
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_post202_retry200_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_post202_retry200_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Long running post request, service returns a 500, then a 202 to the initial request, with
     'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 

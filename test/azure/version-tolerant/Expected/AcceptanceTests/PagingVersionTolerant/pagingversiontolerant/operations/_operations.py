@@ -1591,9 +1591,7 @@ class PagingOperations:
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_multiple_pages_fragment_next_link(
-        self, tenant: str, *, api_version: str, **kwargs: Any
-    ) -> Iterable[JSON]:
+    def get_multiple_pages_fragment_next_link(self, tenant: str, *, api_version: str, **kwargs: Any) -> Iterable[JSON]:
         """A paging operation that doesn't return a full URL, just a fragment.
 
         :param tenant: Sets the tenant to use.
