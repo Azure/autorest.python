@@ -32,21 +32,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
+@abc.abstractmethod
 def build_formdata_upload_file_request(*args, **kwargs) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/octet-stream, application/json")
-
-    # Construct URL
-    _url = "/formdata/stream/uploadfile"
-
-    # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    ...
 
 
 def build_formdata_upload_file_via_body_request(*, content: Any, **kwargs: Any) -> HttpRequest:
@@ -66,24 +54,12 @@ def build_formdata_upload_file_via_body_request(*, content: Any, **kwargs: Any) 
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
+@abc.abstractmethod
 def build_formdata_upload_files_request(*args, **kwargs) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/octet-stream, application/json")
-
-    # Construct URL
-    _url = "/formdata/stream/uploadfiles"
-
-    # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    ...
 
 
-class FormdataOperations:
+class FormdataOperations(abc.ABC):
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -104,7 +80,7 @@ class FormdataOperations:
     @abc.abstractmethod
     def upload_file(self, *args, **kwargs) -> IO:
         """You need to write a custom operation for "upload_file". Please refer to
-        https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize
+        https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
         """
         ...
@@ -160,7 +136,7 @@ class FormdataOperations:
     @abc.abstractmethod
     def upload_files(self, *args, **kwargs) -> IO:
         """You need to write a custom operation for "upload_files". Please refer to
-        https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize
+        https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
         """
         ...

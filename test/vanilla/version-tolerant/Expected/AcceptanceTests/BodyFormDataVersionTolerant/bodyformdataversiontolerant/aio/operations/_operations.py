@@ -33,7 +33,7 @@ JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class FormdataOperations:
+class FormdataOperations(abc.ABC):
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -54,7 +54,7 @@ class FormdataOperations:
     @abc.abstractmethod
     async def upload_file(self, *args, **kwargs) -> IO:
         """You need to write a custom operation for "upload_file". Please refer to
-        https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize
+        https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
         """
         ...
@@ -110,7 +110,7 @@ class FormdataOperations:
     @abc.abstractmethod
     async def upload_files(self, *args, **kwargs) -> IO:
         """You need to write a custom operation for "upload_files". Please refer to
-        https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize
+        https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
         """
         ...
