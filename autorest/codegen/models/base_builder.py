@@ -71,15 +71,37 @@ class BaseBuilder(BaseModel):
         schema_requests: List[SchemaRequest],
         responses: Optional[List[SchemaResponse]] = None,
         summary: Optional[str] = None,
+        *,
+        abstract: bool = False,
+        want_tracing: bool = True,
     ) -> None:
         super().__init__(yaml_data=yaml_data)
         self.code_model = code_model
         self.name = name
-        self.description = description
+        self._description = description
         self.parameters = parameters
         self.responses = responses or []
-        self.summary = summary
+        self._summary = summary
         self.schema_requests = schema_requests
+        # for operations where we don't know what to do, we mark them as abstract so users implement
+        # in patch.py
+        self.abstract = abstract
+        self.want_tracing = want_tracing
+
+    @property
+    def summary(self) -> Optional[str]:
+        if self.abstract:
+            return None
+        return self._summary
+
+    @property
+    def description(self) -> str:
+        if self.abstract:
+            return (
+                f'You need to write a custom operation for "{self.name}". Please refer to '
+                "https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
+            )
+        return self._description
 
     @property
     def default_content_type_declaration(self) -> str:
@@ -95,3 +117,8 @@ class BaseBuilder(BaseModel):
     def success_status_code(self) -> List[Union[str, int]]:
         """The list of all successfull status code."""
         return [code for response in self.responses for code in response.status_codes if code != "default"]
+
+    def method_signature(self, is_python3_file: bool) -> List[str]:
+        if self.abstract:
+            return ["*args,", "**kwargs"]
+        return self.parameters.method_signature(is_python3_file)

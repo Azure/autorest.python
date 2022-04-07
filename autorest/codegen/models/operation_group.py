@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Set
+from typing import Dict, List, Any, Set, Optional, TYPE_CHECKING
 
 from .base_model import BaseModel
 from .operation import Operation
@@ -12,6 +12,9 @@ from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .lro_paging_operation import LROPagingOperation
 from .imports import FileImport, ImportType
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -36,7 +39,7 @@ class OperationGroup(BaseModel):
     """
     def __init__(
         self,
-        code_model,
+        code_model: "CodeModel",
         yaml_data: Dict[str, Any],
         name: str,
         class_name: str,
@@ -49,6 +52,16 @@ class OperationGroup(BaseModel):
         self.class_name = class_name
         self.operations = operations
         self.api_versions = api_versions
+
+    def base_class(self, async_mode: bool) -> str:
+        base_classes: List[str] = []
+        if self.is_empty_operation_group and self.code_model.need_mixin_abc:
+            base_classes.append("MixinABC")
+        if not (async_mode or self.code_model.options["python3_only"]):
+            base_classes.append("object")
+        if any(o for o in self.operations if o.abstract):
+            base_classes.append("abc.ABC")
+        return ", ".join(base_classes)
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
         file_import = FileImport()

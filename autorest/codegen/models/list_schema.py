@@ -68,9 +68,6 @@ class ListSchema(BaseSchema):
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         return [self.element_type.get_json_template_representation(**kwargs)]
 
-    def get_files_and_data_template_representation(self, **kwargs: Any) -> Any:
-        return [self.element_type.get_files_and_data_template_representation(**kwargs)]
-
     def xml_serialization_ctxt(self) -> Optional[str]:
         attrs_list = []
         base_xml_map = super().xml_serialization_ctxt()

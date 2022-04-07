@@ -131,9 +131,6 @@ class EnumSchema(BaseSchema):
         # for better display effect, use the only value instead of var type
         return self.enum_type.get_json_template_representation(**self._template_kwargs(**kwargs))
 
-    def get_files_and_data_template_representation(self, **kwargs: Any) -> Any:
-        return self.enum_type.get_files_and_data_template_representation(**self._template_kwargs(**kwargs))
-
     @classmethod
     def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs: Any) -> "EnumSchema":
         """Constructs an EnumSchema from yaml data.

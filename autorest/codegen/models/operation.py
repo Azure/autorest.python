@@ -11,7 +11,7 @@ from .base_builder import BaseBuilder, create_parameters
 from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
 from .parameter import Parameter, get_parameter, ParameterLocation
-from .parameter_list import ParameterList, get_parameter_list
+from .parameter_list import ParameterList
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
 from .request_builder import RequestBuilder
@@ -39,6 +39,8 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         exceptions: Optional[List[SchemaResponse]] = None,
         want_description_docstring: bool = True,
         want_tracing: bool = True,
+        *,
+        abstract: bool = False,
     ) -> None:
         super().__init__(
             code_model=code_model,
@@ -49,13 +51,14 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             responses=responses,
             schema_requests=schema_requests,
             summary=summary,
+            abstract=abstract,
+            want_tracing=want_tracing,
         )
         self.multiple_content_type_parameters = multiple_content_type_parameters
         self.api_versions = api_versions
         self.multiple_content_type_parameters = multiple_content_type_parameters
         self.exceptions = exceptions or []
         self.want_description_docstring = want_description_docstring
-        self.want_tracing = want_tracing
         self._request_builder: Optional[RequestBuilder] = None
         self.deprecated = False
 
@@ -244,16 +247,14 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                 f"distributed_trace{'_async' if async_mode else ''}",
                 ImportType.AZURECORE,
             )
+        if self.abstract:
+            file_import.add_import("abc", ImportType.STDLIB)
         return file_import
 
     def _get_body_param_from_body_kwarg(self, body_kwarg: Parameter) -> Parameter:
         # determine which of the body parameters returned from m4 corresponds to this body_kwarg
         if not self.multiple_content_type_parameters.has_body:
             return self.parameters.body[0]
-        if body_kwarg.serialized_name == "data":
-            return next(p for p in self.multiple_content_type_parameters.body if p.is_data_input)
-        if body_kwarg.serialized_name == "files":
-            return next(p for p in self.multiple_content_type_parameters.body if p.is_multipart)
         if body_kwarg.serialized_name == "json":
             # first check if there's any non-binary. In the case of multiple content types, there's
             # usually one binary (for content), and one schema parameter (for json)
@@ -313,15 +314,27 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         _LOGGER.debug("Parsing %s operation", name)
 
         parameter_creator = get_parameter(code_model).from_yaml
-        parameter_list_creator = get_parameter_list(code_model)
         schema_requests = [SchemaRequest.from_yaml(yaml, code_model=code_model) for yaml in yaml_data["requests"]]
         parameters, multiple_content_type_parameters = create_parameters(
             yaml_data, code_model, parameter_creator
         )
-        parameter_list = parameter_list_creator(code_model, parameters, schema_requests)
-        multiple_content_type_parameter_list = parameter_list_creator(
+        parameter_list = ParameterList(code_model, parameters, schema_requests)
+        multiple_content_type_parameter_list = ParameterList(
             code_model, multiple_content_type_parameters, schema_requests
         )
+        abstract = False
+        if code_model.options["version_tolerant"] and (
+            any(p for p in parameter_list if p.is_multipart or p.is_data_input) or
+            any(p for p in multiple_content_type_parameter_list if p.is_multipart or p.is_data_input)
+        ):
+            _LOGGER.warning(
+                'Not going to generate operation "%s" because it has multipart / urlencoded body parameters. '\
+                "Multipart / urlencoded body parameters are not supported for version tolerant generation right now. "\
+                "Please write your own custom operation in the \"_patch.py\" file "\
+                "following https://aka.ms/azsdk/python/dpcodegen/python/customize",
+                name
+            )
+            abstract = True
 
         if len(parameter_list.content_types) > 1:
             for p in parameter_list.parameters:
@@ -347,4 +360,5 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                 SchemaResponse.from_yaml(yaml, code_model=code_model)
                 for yaml in yaml_data.get("exceptions", []) if "schema" in yaml
             ],
+            abstract=abstract,
         )

@@ -1,18 +1,18 @@
 {% import 'operation_tools.jinja2' as op_tools with context %}
-{% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {# actual template starts here #}
-{% if code_model.options['tracing'] %}
-{{ trace_decorator }}
-{% endif %}
-{{ operation_serializer.method_signature_and_response_type_annotation(operation) }}
+{{ operation_serializer.method_signature_and_response_type_annotation(operation, async_mode) }}
     {{ op_tools.description(operation, operation_serializer) | indent -}}
-    {% if operation_serializer.pop_kwargs_from_signature(operation) %}
+    {% if operation.abstract %}
+    ...
+    {% else %}
+        {% if operation_serializer.pop_kwargs_from_signature(operation) %}
     {{ op_tools.serialize(operation_serializer.pop_kwargs_from_signature(operation)) | indent }}
-    {%- endif %}
+        {%- endif %}
     {{ op_tools.serialize(operation_serializer.initial_call(operation)) | indent }}
     {{ op_tools.serialize(operation_serializer.get_long_running_output(operation)) | indent }}
 
     {{ op_tools.serialize(operation_serializer.return_lro_poller(operation)) | indent }}
+    {% endif %}
 {% if not code_model.options["version_tolerant"] %}
 {{ operation_serializer.get_metadata_url(operation) -}}
 {% endif %}
