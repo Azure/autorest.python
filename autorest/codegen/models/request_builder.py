@@ -65,7 +65,7 @@ class RequestBuilder(BaseBuilder):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        for parameter in self.parameters:
+        for parameter in self.parameters.method:
             if parameter.need_import:
                 file_import.merge(parameter.imports())
 
@@ -87,11 +87,6 @@ class RequestBuilder(BaseBuilder):
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
         file_import.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY)
-        if self.parameters.has_body and (
-            self.code_model.options["builders_visibility"] != "embedded" or
-            self.code_model.options["add_python3_operation_files"]
-        ):
-            file_import.define_mypy_type("JSONType", "Any")
         return file_import
 
     @classmethod

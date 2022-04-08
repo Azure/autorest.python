@@ -138,16 +138,6 @@ class AnySchema(PrimitiveSchema):
         file_import.add_submodule_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
 
-class JSONSchema(AnySchema):
-
-    @property
-    def docstring_type(self) -> str:
-        return "JSONType"
-
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
-        return "JSONType"
-
-
 class NumberSchema(PrimitiveSchema):
     def __init__(self, namespace: str, yaml_data: Dict[str, Any]) -> None:
         super(NumberSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
