@@ -3,15 +3,18 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Optional
+from typing import List, Optional, TYPE_CHECKING
 from .parameter_list import GlobalParameterList
 from .imports import FileImport, ImportType, TypingSection
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 class Client:
     """A service client.
     """
 
-    def __init__(self, code_model, parameters: GlobalParameterList):
+    def __init__(self, code_model: "CodeModel", parameters: GlobalParameterList):
         self.code_model = code_model
         self.parameters = parameters
         self.parameterized_host_template: Optional[str] = None

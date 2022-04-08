@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import cast, Any, Dict, Union, List, Optional
+from typing import cast, Any, Dict, Union, List, Optional, TYPE_CHECKING
 
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
@@ -11,10 +11,14 @@ from .imports import FileImport, ImportType, TypingSection
 from .base_schema import BaseSchema
 from .enum_schema import EnumSchema
 
+if TYPE_CHECKING:
+    from .code_model import CodeModel
+
 class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def __init__(
         self,
         yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
         name: str,
         schema: BaseSchema,
         original_swagger_name: str,
@@ -23,7 +27,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         description: Optional[str] = None,
         client_default_value: Optional[Any] = None
     ) -> None:
-        super().__init__(yaml_data)
+        super().__init__(yaml_data, code_model)
         self.name = name
         self.schema = schema
         self.original_swagger_name = original_swagger_name
@@ -98,16 +102,22 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self.original_swagger_name.replace(".", "\\\\.")
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "Property":
+    def from_yaml(
+        cls,
+        yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
+        *,
+        has_additional_properties: Optional[bool] = None,
+    ) -> "Property":
         from . import build_schema  # pylint: disable=import-outside-toplevel
 
         name = yaml_data["language"]["python"]["name"]
-        has_additional_properties = kwargs.pop("has_additional_properties", None)
         if name == "additional_properties" and has_additional_properties:
             name = "additional_properties1"
-        schema = build_schema(yaml_data=yaml_data["schema"], **kwargs)
+        schema = build_schema(yaml_data=yaml_data["schema"], code_model=code_model)
         return cls(
             yaml_data=yaml_data,
+            code_model=code_model,
             name=name,
             schema=schema,
             original_swagger_name=yaml_data["serializedName"],

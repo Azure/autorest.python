@@ -6,10 +6,13 @@
 import logging
 import datetime
 from enum import Enum
-from typing import cast, Any, Dict, List, Optional, Union
+from typing import cast, Any, Dict, List, Optional, Union, TYPE_CHECKING
 
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType, TypingSection
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -82,8 +85,8 @@ class PrimitiveSchema(BaseSchema):
 
 class IOSchema(PrimitiveSchema):
 
-    def __init__(self, namespace, yaml_data) -> None:
-        super(IOSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.type = "IO"
 
     @property
@@ -132,8 +135,8 @@ class AnySchema(PrimitiveSchema):
         return file_import
 
 class NumberSchema(PrimitiveSchema):
-    def __init__(self, namespace: str, yaml_data: Dict[str, Any]) -> None:
-        super(NumberSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.precision = cast(int, yaml_data["precision"])
         self.multiple = cast(int, yaml_data.get("multipleOf"))
         self.maximum = cast(int, yaml_data.get("maximum"))
@@ -198,8 +201,8 @@ class NumberSchema(PrimitiveSchema):
 
 class StringSchema(PrimitiveSchema):
 
-    def __init__(self, namespace: str, yaml_data: Dict[str, Any]) -> None:
-        super(StringSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.max_length = cast(int, yaml_data.get("maxLength"))
         self.min_length = cast(
             int, (yaml_data.get("minLength", 0) if yaml_data.get("maxLength") else yaml_data.get("minLength"))
@@ -232,8 +235,8 @@ class StringSchema(PrimitiveSchema):
 
 
 class DatetimeSchema(PrimitiveSchema):
-    def __init__(self, namespace: str, yaml_data: Dict[str, Any]) -> None:
-        super(DatetimeSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.format = self.Formats(yaml_data["format"])
 
     class Formats(str, Enum):
@@ -400,8 +403,8 @@ class DurationSchema(PrimitiveSchema):
 
 
 class ByteArraySchema(PrimitiveSchema):
-    def __init__(self, namespace: str, yaml_data: Dict[str, Any]) -> None:
-        super(ByteArraySchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.format = self.Formats(yaml_data["format"])
 
     class Formats(str, Enum):
@@ -426,7 +429,7 @@ class ByteArraySchema(PrimitiveSchema):
         return f'bytearray("{value}", encoding="utf-8")'
 
 
-def get_primitive_schema(namespace: str, yaml_data: Dict[str, Any]) -> "PrimitiveSchema":
+def get_primitive_schema(yaml_data: Dict[str, Any], code_model: "CodeModel") -> "PrimitiveSchema":
     mapping = {
         "integer": NumberSchema,
         "number": NumberSchema,
@@ -444,6 +447,6 @@ def get_primitive_schema(namespace: str, yaml_data: Dict[str, Any]) -> "Primitiv
     }
     schema_type = yaml_data["type"]
     primitive_schema = cast(
-        PrimitiveSchema, mapping.get(schema_type, PrimitiveSchema).from_yaml(namespace=namespace, yaml_data=yaml_data)
+        PrimitiveSchema, mapping.get(schema_type, PrimitiveSchema).from_yaml(yaml_data=yaml_data, code_model=code_model)
     )
     return primitive_schema

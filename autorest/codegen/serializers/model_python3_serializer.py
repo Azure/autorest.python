@@ -13,7 +13,7 @@ from ..models.imports import FileImport
 class ModelPython3Serializer(ModelBaseSerializer):
 
     def __init__(self, code_model: CodeModel, env: Environment) -> None:
-        super(ModelPython3Serializer, self).__init__(
+        super().__init__(
             code_model=code_model, env=env, is_python3_file=True
         )
 

@@ -3,23 +3,26 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, Optional, Union, TYPE_CHECKING
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType, TypingSection
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 
 class ListSchema(BaseSchema):
     def __init__(
         self,
-        namespace: str,
         yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
         element_type: BaseSchema,
         *,
         max_items: Optional[int] = None,
         min_items: Optional[int] = None,
         unique_items: Optional[int] = None,
     ) -> None:
-        super(ListSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.element_type = element_type
         self.max_items = max_items
         self.min_items = min_items
@@ -90,17 +93,17 @@ class ListSchema(BaseSchema):
         return ", ".join(attrs_list)
 
     @classmethod
-    def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "ListSchema":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "ListSchema":
         # TODO: for items, if the type is a primitive is it listed in type instead of $ref?
         element_schema = yaml_data["elementType"]
 
         from . import build_schema  # pylint: disable=import-outside-toplevel
 
-        element_type = build_schema(yaml_data=element_schema, **kwargs)
+        element_type = build_schema(yaml_data=element_schema, code_model=code_model)
 
         return cls(
-            namespace=namespace,
             yaml_data=yaml_data,
+            code_model=code_model,
             element_type=element_type,
             max_items=yaml_data.get("maxItems"),
             min_items=yaml_data.get("minItems"),

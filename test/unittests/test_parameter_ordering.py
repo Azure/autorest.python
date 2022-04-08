@@ -3,8 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-
-import pytest
 from autorest.codegen.models import Parameter, AnySchema, CodeModel
 from autorest.codegen.models.primitive_schemas import StringSchema
 from autorest.codegen.models.parameter_list import ParameterList
@@ -16,19 +14,19 @@ def get_code_model():
         "builders_visibility": "embedded",
         "multiapi": False,
     }
-    return CodeModel(options)
+    return CodeModel({}, options)
 
 def get_parameter(name, required, default_value=None, schema=None):
     if not schema:
         schema = AnySchema(
-            namespace="parameterordering",
-            yaml_data={}
+            yaml_data={},
+            code_model=get_code_model(),
         )
 
     return Parameter(
-        get_code_model(),
-        schema=schema,
         yaml_data={},
+        code_model=get_code_model(),
+        schema=schema,
         rest_api_name=name,
         serialized_name=name,
         description="Parameter to test parameter ordering",
@@ -42,8 +40,8 @@ def get_parameter(name, required, default_value=None, schema=None):
 
 def test_sort_parameters_with_default_value_from_schema():
     schema = StringSchema(
-        namespace="parameterordering",
-        yaml_data={"defaultValue": "this_is_the_default", "type": str}
+        yaml_data={"defaultValue": "this_is_the_default", "type": str},
+        code_model=get_code_model(),
     )
     parameter_with_default_schema_value_required = get_parameter(
         name="required_param_with_schema_default",

@@ -3,10 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List
+from typing import Any, Dict, List, TYPE_CHECKING
 from .base_model import BaseModel
 from .request_builder import RequestBuilder
 from .imports import FileImport
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 class Rest(BaseModel):
     """Everything that goes into the request_builders
@@ -14,9 +17,10 @@ class Rest(BaseModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
         request_builders: List[RequestBuilder]
     ):
-        super(Rest, self). __init__(yaml_data=yaml_data)
+        super(). __init__(yaml_data=yaml_data, code_model=code_model)
         self.request_builders = request_builders
 
     def imports(self, builder_group_name: str) -> FileImport:
@@ -27,7 +31,7 @@ class Rest(BaseModel):
         return file_import
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Rest":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "Rest":
         request_builders = []
         if yaml_data.get("operationGroups"):
             request_builders = [
@@ -38,5 +42,6 @@ class Rest(BaseModel):
 
         return cls(
             yaml_data=yaml_data,
+            code_model=code_model,
             request_builders=request_builders
         )

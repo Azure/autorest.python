@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import logging
 import sys
-from typing import Dict, Any, Set, Union, List, Type
+from typing import Dict, Any, Union, Type
 from pathlib import Path
 import yaml
 
@@ -28,7 +28,7 @@ def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -
     # Create operations
     if code_model.options["show_operations"] and yaml_data.get("operationGroups"):
         code_model.operation_groups = [
-            OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_data["operationGroups"]
+            OperationGroup.from_yaml(op_group, code_model) for op_group in yaml_data["operationGroups"]
         ]
     if yaml_data.get("schemas"):
         code_model.add_inheritance_to_models()
@@ -124,19 +124,6 @@ class CodeGenerator(Plugin):
                     break
 
     @staticmethod
-    def _build_exceptions_set(yaml_data: List[Dict[str, Any]]) -> Set[int]:
-        exceptions_set = set()
-        for group in yaml_data:
-            for operation in group["operations"]:
-                if not operation.get("exceptions"):
-                    continue
-                for exception in operation["exceptions"]:
-                    if not exception.get("schema"):
-                        continue
-                    exceptions_set.add(id(exception["schema"]))
-        return exceptions_set
-
-    @staticmethod
     def _build_package_dependency() -> Dict[str, str]:
         return {
             "dependency_azure_mgmt_core": "azure-mgmt-core<2.0.0,>=1.3.0",
@@ -179,7 +166,7 @@ class CodeGenerator(Plugin):
     def _create_code_model(self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]) -> CodeModel:
         # Create a code model
 
-        code_model = CodeModel(options=options)
+        code_model = CodeModel(yaml_data, options=options)
         self._handle_credential_model(yaml_data, code_model)
         code_model.module_name = yaml_data["info"]["python_title"]
         code_model.class_name = yaml_data["info"]["pascal_case_title"]
@@ -195,18 +182,16 @@ class CodeGenerator(Plugin):
         code_model.namespace = namespace
 
         if yaml_data.get("schemas"):
-            exceptions_set = CodeGenerator._build_exceptions_set(yaml_data=yaml_data["operationGroups"])
 
             for type_list in yaml_data["schemas"].values():
                 for schema in type_list:
-                    build_schema(yaml_data=schema, exceptions_set=exceptions_set, code_model=code_model)
+                    build_schema(yaml_data=schema, code_model=code_model)
 
         # Global parameters
         code_model.global_parameters = GlobalParameterList(
             code_model,
             [Parameter.from_yaml(param, code_model=code_model) for param in yaml_data.get("globalParameters", [])],
         )
-        code_model.global_parameters.code_model = code_model
 
         # Custom URL
         code_model.setup_client_input_parameters(yaml_data)

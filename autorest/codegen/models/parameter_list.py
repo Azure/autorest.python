@@ -14,6 +14,7 @@ from .utils import JSON_REGEXP
 
 if TYPE_CHECKING:
     from .schema_request import SchemaRequest
+    from .code_model import CodeModel
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
@@ -28,7 +29,7 @@ def _method_signature_helper(positional: List[str], keyword_only: Optional[List[
 class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
     def __init__(
         self,
-        code_model,
+        code_model: "CodeModel",
         parameters: Optional[List[Parameter]] = None,
         schema_requests: Optional[List["SchemaRequest"]] = None,
     ) -> None:
@@ -298,17 +299,6 @@ class GlobalParameterList(ParameterList):
         return signature_parameters
 
     @property
-    def code_model(self):
-        try:
-            return self._code_model
-        except AttributeError:
-            raise ValueError("You need to first set the code model")
-
-    @code_model.setter
-    def code_model(self, val):
-        self._code_model = val
-
-    @property
     def host_variable_name(self) -> str:
         return (
             "endpoint" if self.code_model.options["version_tolerant"]
@@ -327,9 +317,9 @@ class GlobalParameterList(ParameterList):
     def add_host(self, host_value: Optional[str]) -> None:
         # only adds if we don't have a parameterized host
         host_param = Parameter(
-            self.code_model,
             yaml_data={},
-            schema=StringSchema(namespace="", yaml_data={"type": "str"}),
+            code_model=self.code_model,
+            schema=StringSchema(yaml_data={"type": "str"}, code_model=self.code_model),
             rest_api_name=self.host_variable_name,
             serialized_name=self.host_variable_name,
             description=f"Service URL.",
@@ -345,8 +335,8 @@ class GlobalParameterList(ParameterList):
 
     def add_credential_global_parameter(self) -> None:
         credential_parameter = Parameter(
-            self.code_model,
             yaml_data={},
+            code_model=self.code_model,
             schema=self.code_model.credential_model.credential_schema_policy.credential,
             serialized_name="credential",
             rest_api_name="credential",

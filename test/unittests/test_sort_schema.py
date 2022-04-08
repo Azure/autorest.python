@@ -4,12 +4,11 @@
 # license information.
 # --------------------------------------------------------------------------
 
-import pytest
 from autorest.codegen.models import CodeModel, ObjectSchema
 
-@pytest.fixture
-def code_model():
+def get_code_model():
     return CodeModel(
+        {},
         options={
             "show_send_request": True,
             "builders_visibility": "public"
@@ -24,15 +23,16 @@ def get_schemas_in_dict_form(schemas):
 
 def get_object_schema(name, base_models):
     return ObjectSchema(
-        namespace="namespace",
         yaml_data={},
+        code_model=get_code_model(),
         name=name,
         base_models=base_models
     )
 
-def test_pet_cat_kitten_horse_wood(code_model):
+def test_pet_cat_kitten_horse_wood():
     """Horse -> Pet <- Cat <- Kitten, Wood
     """
+    code_model = get_code_model()
     pet = get_object_schema("Pet", None)
     horse = get_object_schema("Horse", [pet])
     cat = get_object_schema("Cat", [pet])
@@ -52,11 +52,12 @@ def test_pet_cat_kitten_horse_wood(code_model):
     # assert wood in list
     assert wood in sorted_schemas
 
-def test_multiple_inheritance(code_model):
+def test_multiple_inheritance():
     """CarbonObject <- Person <- Teacher -> Employee, Person <- Kid
                         |
                         ObjectOnEarth
     """
+    code_model = get_code_model()
     carbon_object = get_object_schema("CarbonObject", [])
     object_on_earth = get_object_schema("ObjectOnEarth", [])
     person = get_object_schema("Person", [carbon_object, object_on_earth])

@@ -53,8 +53,10 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
 
     def __init__(
         self,
+        yaml_data: Dict[str, Any],
         options: Dict[str, Any],
     ) -> None:
+        self.yaml_data = yaml_data
         self.send_request_name = "send_request" if options['show_send_request'] else "_send_request"
         self.rest_layer_name = "rest" if options["builders_visibility"] == "public" else "_rest"
         self.options = options
@@ -107,6 +109,19 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
                 if schema_id == elt_key:
                     return elt_value
         raise KeyError("Didn't find it!!!!!")
+
+    @property
+    def exception_ids(self) -> Set[int]:
+        exceptions_set = set()
+        for group in self.yaml_data["operationGroups"]:
+            for operation in group["operations"]:
+                if not operation.get("exceptions"):
+                    continue
+                for exception in operation["exceptions"]:
+                    if not exception.get("schema"):
+                        continue
+                    exceptions_set.add(id(exception["schema"]))
+        return exceptions_set
 
     @staticmethod
     def _sort_schemas_helper(current, seen_schema_names, seen_schema_yaml_ids):

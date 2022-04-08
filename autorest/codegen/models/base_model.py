@@ -3,7 +3,10 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict
+from typing import Any, Dict, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 
 class BaseModel:
@@ -14,9 +17,10 @@ class BaseModel:
     """
 
     def __init__(
-        self, yaml_data: Dict[str, Any],
+        self, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> None:
         self.yaml_data = yaml_data
+        self.code_model = code_model
 
     @property
     def id(self) -> int:

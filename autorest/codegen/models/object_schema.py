@@ -3,11 +3,14 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional, Union, Type
+from typing import Any, Dict, List, Optional, Union, Type, TYPE_CHECKING
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .property import Property
 from .imports import FileImport, ImportModel, ImportType, TypingSection
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     """Represents a class ready to be serialized in Python.
@@ -19,9 +22,9 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     """
 
     def __init__(
-        self, namespace: str, yaml_data: Dict[str, Any], name: str, description: str = "", **kwargs
+        self, yaml_data: Dict[str, Any], code_model: "CodeModel", name: str, description: str = "", **kwargs
     ) -> None:
-        super(ObjectSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.name = name
         self.description = description
         self.max_properties: Optional[int] = kwargs.pop("max_properties", None)
@@ -44,7 +47,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
 
     @property
     def docstring_type(self) -> str:
-        return f"~{self.namespace}.models.{self.name}"
+        return f"~{self.code_model.namespace}.models.{self.name}"
 
     @property
     def docstring_text(self) -> str:
@@ -99,7 +102,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         return representation
 
     @classmethod
-    def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "ObjectSchema":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "ObjectSchema":
         """Returns a ClassType from the dict object constructed from a yaml file.
 
         WARNING: This guy might create an infinite loop.
@@ -110,11 +113,11 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         :returns: A ClassType.
         :rtype: ~autorest.models.schema.ClassType
         """
-        obj = cls(namespace, yaml_data, "", description="")
-        obj.fill_instance_from_yaml(namespace, yaml_data)
+        obj = cls(yaml_data, code_model, "", description="")
+        obj.fill_instance_from_yaml(yaml_data, code_model)
         return obj
 
-    def fill_instance_from_yaml(self, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> None:
+    def fill_instance_from_yaml(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         properties = []
         base_models = []
 
@@ -128,14 +131,15 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
                 for immediate_parent in immediate_parents:
                     if immediate_parent["type"] == "dictionary":
                         additional_properties_schema = DictionarySchema.from_yaml(
-                            namespace=namespace, yaml_data=immediate_parent, **kwargs
+                            yaml_data=immediate_parent, code_model=code_model
                         )
                         properties.append(
                             Property(
+                                yaml_data={},
+                                code_model=code_model,
                                 name="additional_properties",
                                 schema=additional_properties_schema,
                                 original_swagger_name="",
-                                yaml_data={},
                                 description="Unmatched properties from the message are deserialized to this collection."
                             )
                         )
@@ -154,18 +158,15 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
                 subtype_map[children_yaml["discriminatorValue"]] = children_yaml["language"]["python"]["name"]
         if yaml_data.get("properties"):
             properties += [
-                Property.from_yaml(p, has_additional_properties=len(properties) > 0, **kwargs)
+                Property.from_yaml(p, code_model, has_additional_properties=len(properties) > 0)
                 for p in yaml_data["properties"]
             ]
         # this is to ensure that the attribute map type and property type are generated correctly
 
-
-
         description = yaml_data["language"]["python"]["description"]
         is_exception = False
-        exceptions_set = kwargs.pop("exceptions_set", None)
-        if exceptions_set:
-            if id(yaml_data) in exceptions_set:
+        if code_model.exception_ids:
+            if id(yaml_data) in code_model.exception_ids:
                 is_exception = True
 
         self.yaml_data = yaml_data

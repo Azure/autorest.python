@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import cast, Dict, List, Any, Optional, Set
+from typing import cast, Dict, List, Any, Optional, Set, TYPE_CHECKING
 
 from .operation import Operation
 from .schema_response import SchemaResponse
@@ -14,14 +14,17 @@ from .object_schema import ObjectSchema
 from .schema_request import SchemaRequest
 from .parameter_list import ParameterList
 
+if TYPE_CHECKING:
+    from .code_model import CodeModel
+
 _LOGGER = logging.getLogger(__name__)
 
 
 class PagingOperation(Operation):
     def __init__(
         self,
-        code_model,
         yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
         name: str,
         description: str,
         api_versions: Set[str],
@@ -37,9 +40,9 @@ class PagingOperation(Operation):
         abstract: bool = False,
         override_success_response_to_200: bool = False
     ) -> None:
-        super(PagingOperation, self).__init__(
-            code_model,
+        super().__init__(
             yaml_data,
+            code_model,
             name,
             description,
             api_versions,

@@ -29,16 +29,15 @@ class HeaderResponse:
 class SchemaResponse(BaseModel):
     def __init__(
         self,
-        code_model: "CodeModel",
         yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
         schema: Optional[BaseSchema],
         content_types: List[str],
         status_codes: List[Union[str, int]],
         headers: List[HeaderResponse],
         binary: bool,
     ) -> None:
-        super().__init__(yaml_data)
-        self.code_model = code_model
+        super().__init__(yaml_data, code_model)
         self.schema = schema
         self.content_types = content_types
         self.status_codes = status_codes
@@ -109,15 +108,15 @@ class SchemaResponse(BaseModel):
         return file_import
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model: "CodeModel") -> "SchemaResponse":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "SchemaResponse":
         binary = yaml_data.get("binary", False)
         if binary:
-            schema: BaseSchema = IOSchema(namespace=None, yaml_data={})
+            schema: BaseSchema = IOSchema(yaml_data={}, code_model=code_model)
         else:
             schema = get_schema(code_model, yaml_data.get("schema"))
         return cls(
-            code_model=code_model,
             yaml_data=yaml_data,
+            code_model=code_model,
             schema=schema,
             content_types=yaml_data["protocol"]["http"].get("mediaTypes", []),
             status_codes=[
