@@ -12,6 +12,7 @@ from .imports import FileImport, ImportModel, ImportType, TypingSection
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
+
 class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     """Represents a class ready to be serialized in Python.
 
@@ -22,7 +23,12 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     """
 
     def __init__(
-        self, yaml_data: Dict[str, Any], code_model: "CodeModel", name: str, description: str = "", **kwargs
+        self,
+        yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
+        name: str,
+        description: str = "",
+        **kwargs,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.name = name
@@ -31,10 +37,14 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         self.min_properties: Optional[int] = kwargs.pop("min_properties", None)
         self.properties: List[Property] = kwargs.pop("properties", [])
         self.is_exception: bool = kwargs.pop("is_exception", False)
-        self.base_models: Union[List[int], List["ObjectSchema"]] = kwargs.pop("base_models", [])
+        self.base_models: Union[List[int], List["ObjectSchema"]] = kwargs.pop(
+            "base_models", []
+        )
         self.subtype_map: Optional[Dict[str, str]] = kwargs.pop("subtype_map", None)
         self.discriminator_name: Optional[str] = kwargs.pop("discriminator_name", None)
-        self.discriminator_value: Optional[str] = kwargs.pop("discriminator_value", None)
+        self.discriminator_value: Optional[str] = kwargs.pop(
+            "discriminator_value", None
+        )
         self._created_json_template_representation = False
 
     @property
@@ -81,18 +91,21 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         # don't add additional properties, because there's not really a concept of
         # additional properties in the template
         representation = {
-            f'"{prop.original_swagger_name}"': prop.get_json_template_representation(**kwargs)
+            f'"{prop.original_swagger_name}"': prop.get_json_template_representation(
+                **kwargs
+            )
             for prop in [
-                p for p in self.properties
+                p
+                for p in self.properties
                 if not (p.is_discriminator or p.name == "additional_properties")
             ]
         }
         try:
             # add discriminator prop if there is one
             discriminator = next(p for p in self.properties if p.is_discriminator)
-            representation[
-                discriminator.original_swagger_name
-            ] = self.discriminator_value or discriminator.original_swagger_name
+            representation[discriminator.original_swagger_name] = (
+                self.discriminator_value or discriminator.original_swagger_name
+            )
         except StopIteration:
             pass
 
@@ -102,7 +115,9 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         return representation
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "ObjectSchema":
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "ObjectSchema":
         """Returns a ClassType from the dict object constructed from a yaml file.
 
         WARNING: This guy might create an infinite loop.
@@ -117,7 +132,9 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         obj.fill_instance_from_yaml(yaml_data, code_model)
         return obj
 
-    def fill_instance_from_yaml(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
+    def fill_instance_from_yaml(
+        self, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> None:
         properties = []
         base_models = []
 
@@ -140,12 +157,12 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
                                 name="additional_properties",
                                 schema=additional_properties_schema,
                                 original_swagger_name="",
-                                description="Unmatched properties from the message are deserialized to this collection."
+                                description="Unmatched properties from the message are deserialized to this collection.",
                             )
                         )
                     elif (
-                        immediate_parent["language"]["default"]["name"] != name and
-                        immediate_parent['type'] == "object"
+                        immediate_parent["language"]["default"]["name"] != name
+                        and immediate_parent["type"] == "object"
                     ):
                         base_models.append(id(immediate_parent))
 
@@ -155,10 +172,14 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
             subtype_map = {}
             # map of discriminator value to child's name
             for children_yaml in yaml_data["discriminator"]["immediate"].values():
-                subtype_map[children_yaml["discriminatorValue"]] = children_yaml["language"]["python"]["name"]
+                subtype_map[children_yaml["discriminatorValue"]] = children_yaml[
+                    "language"
+                ]["python"]["name"]
         if yaml_data.get("properties"):
             properties += [
-                Property.from_yaml(p, code_model, has_additional_properties=len(properties) > 0)
+                Property.from_yaml(
+                    p, code_model, has_additional_properties=len(properties) > 0
+                )
                 for p in yaml_data["properties"]
             ]
         # this is to ensure that the attribute map type and property type are generated correctly
@@ -190,28 +211,41 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     @property
     def property_with_discriminator(self) -> Any:
         try:
-            return next(p for p in self.properties if getattr(p.schema, "discriminator_name", None))
+            return next(
+                p
+                for p in self.properties
+                if getattr(p.schema, "discriminator_name", None)
+            )
         except StopIteration:
             return None
 
     def imports(self) -> FileImport:
         file_import = FileImport()
         if self.is_exception:
-            file_import.add_submodule_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
+            file_import.add_submodule_import(
+                "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
+            )
         return file_import
 
     def model_file_imports(self) -> FileImport:
         file_import = self.imports()
-        file_import.add_import("__init__", ImportType.LOCAL, typing_section=TypingSection.TYPING, alias="_models")
+        file_import.add_import(
+            "__init__",
+            ImportType.LOCAL,
+            typing_section=TypingSection.TYPING,
+            alias="_models",
+        )
         return file_import
 
-class HiddenModelObjectSchema(ObjectSchema):
 
+class HiddenModelObjectSchema(ObjectSchema):
     @property
     def serialization_type(self) -> str:
         return "object"
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
+    def type_annotation(
+        self, *, is_operation_file: bool = False
+    ) -> str:  # pylint: disable=unused-argument
         if self.xml_metadata:
             return "ET.Element"
         return "JSON"
@@ -230,19 +264,35 @@ class HiddenModelObjectSchema(ObjectSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_submodule_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        file_import.add_submodule_import(
+            "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
         if self.xml_metadata:
-            file_import.add_submodule_import("xml.etree", "ElementTree", ImportType.STDLIB, alias="ET")
-        file_import.add_import("sys", ImportType.STDLIB)
-        file_import.define_mypy_type("JSON", "MutableMapping[str, Any] # pylint: disable=unsubscriptable-object", None, {
-            (3, 9): ImportModel(
-                TypingSection.CONDITIONAL, ImportType.STDLIB, "collections.abc", submodule_name="MutableMapping"
-            ),
-            None: ImportModel(
-                TypingSection.CONDITIONAL, ImportType.STDLIB, "typing", submodule_name="MutableMapping"
+            file_import.add_submodule_import(
+                "xml.etree", "ElementTree", ImportType.STDLIB, alias="ET"
             )
-        })
+        file_import.add_import("sys", ImportType.STDLIB)
+        file_import.define_mypy_type(
+            "JSON",
+            "MutableMapping[str, Any] # pylint: disable=unsubscriptable-object",
+            None,
+            {
+                (3, 9): ImportModel(
+                    TypingSection.CONDITIONAL,
+                    ImportType.STDLIB,
+                    "collections.abc",
+                    submodule_name="MutableMapping",
+                ),
+                None: ImportModel(
+                    TypingSection.CONDITIONAL,
+                    ImportType.STDLIB,
+                    "typing",
+                    submodule_name="MutableMapping",
+                ),
+            },
+        )
         return file_import
+
 
 def get_object_schema(code_model) -> Type[ObjectSchema]:
     if code_model.options["models_mode"]:

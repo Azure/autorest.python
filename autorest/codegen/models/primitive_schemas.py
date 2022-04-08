@@ -17,13 +17,13 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
+
 class RawString(object):
     def __init__(self, string: str) -> None:
         self.string = string
 
     def __repr__(self) -> str:
-        return "r'{}'".format(self.string.replace('\'', '\\\''))
-
+        return "r'{}'".format(self.string.replace("'", "\\'"))
 
 
 class PrimitiveSchema(BaseSchema):
@@ -42,7 +42,9 @@ class PrimitiveSchema(BaseSchema):
     def docstring_type(self) -> str:
         return self._to_python_type()
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
+    def type_annotation(
+        self, *, is_operation_file: bool = False
+    ) -> str:  # pylint: disable=unused-argument
         return self.docstring_type
 
     @property
@@ -72,19 +74,16 @@ class PrimitiveSchema(BaseSchema):
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         if self.default_value:
             kwargs["default_value_declaration"] = kwargs.get(
-                "default_value_declaration",
-                self.get_declaration(self.default_value)
+                "default_value_declaration", self.get_declaration(self.default_value)
             )
-        return self._add_optional_and_default_value_template_representation(
-            **kwargs
-        )
+        return self._add_optional_and_default_value_template_representation(**kwargs)
 
     @property
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(self.docstring_type)
 
-class IOSchema(PrimitiveSchema):
 
+class IOSchema(PrimitiveSchema):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.type = "IO"
@@ -97,7 +96,9 @@ class IOSchema(PrimitiveSchema):
     def docstring_type(self) -> str:
         return self.type
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
+    def type_annotation(
+        self, *, is_operation_file: bool = False
+    ) -> str:  # pylint: disable=unused-argument
         return self.docstring_type
 
     @property
@@ -110,8 +111,11 @@ class IOSchema(PrimitiveSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_submodule_import("typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        file_import.add_submodule_import(
+            "typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
         return file_import
+
 
 class AnySchema(PrimitiveSchema):
     @property
@@ -122,7 +126,9 @@ class AnySchema(PrimitiveSchema):
     def docstring_type(self) -> str:
         return "any"
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
+    def type_annotation(
+        self, *, is_operation_file: bool = False
+    ) -> str:  # pylint: disable=unused-argument
         return "Any"
 
     @property
@@ -131,8 +137,11 @@ class AnySchema(PrimitiveSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_submodule_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        file_import.add_submodule_import(
+            "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
         return file_import
+
 
 class NumberSchema(PrimitiveSchema):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
@@ -147,10 +156,18 @@ class NumberSchema(PrimitiveSchema):
     @property
     def serialization_constraints(self) -> List[str]:
         validation_constraints = [
-            f"maximum_ex={self.maximum}" if self.maximum is not None and self.exclusive_maximum else None,
-            f"maximum={self.maximum}" if self.maximum is not None and not self.exclusive_maximum else None,
-            f"minimum_ex={self.minimum}" if self.minimum is not None and self.exclusive_minimum else None,
-            f"minimum={self.minimum}" if self.minimum is not None and not self.exclusive_minimum else None,
+            f"maximum_ex={self.maximum}"
+            if self.maximum is not None and self.exclusive_maximum
+            else None,
+            f"maximum={self.maximum}"
+            if self.maximum is not None and not self.exclusive_maximum
+            else None,
+            f"minimum_ex={self.minimum}"
+            if self.minimum is not None and self.exclusive_minimum
+            else None,
+            f"minimum={self.minimum}"
+            if self.minimum is not None and not self.exclusive_minimum
+            else None,
             f"multiple={self.multiple}" if self.multiple else None,
         ]
         return [x for x in validation_constraints if x is not None]
@@ -188,7 +205,9 @@ class NumberSchema(PrimitiveSchema):
             return "int"
         return "float"
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
+    def type_annotation(
+        self, *, is_operation_file: bool = False
+    ) -> str:  # pylint: disable=unused-argument
         python_type = self.docstring_type
         if python_type == "long":
             return "int"
@@ -199,13 +218,18 @@ class NumberSchema(PrimitiveSchema):
         default_value = 0 if self.docstring_type == "int" else 0.0
         return self.get_declaration(default_value)
 
-class StringSchema(PrimitiveSchema):
 
+class StringSchema(PrimitiveSchema):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.max_length = cast(int, yaml_data.get("maxLength"))
         self.min_length = cast(
-            int, (yaml_data.get("minLength", 0) if yaml_data.get("maxLength") else yaml_data.get("minLength"))
+            int,
+            (
+                yaml_data.get("minLength", 0)
+                if yaml_data.get("maxLength")
+                else yaml_data.get("minLength")
+            ),
         )
         self.pattern = cast(str, yaml_data.get("pattern"))
 
@@ -245,14 +269,19 @@ class DatetimeSchema(PrimitiveSchema):
 
     @property
     def serialization_type(self) -> str:
-        formats_to_attribute_type = {self.Formats.datetime: "iso-8601", self.Formats.rfc1123: "rfc-1123"}
+        formats_to_attribute_type = {
+            self.Formats.datetime: "iso-8601",
+            self.Formats.rfc1123: "rfc-1123",
+        }
         return formats_to_attribute_type[self.format]
 
     @property
     def docstring_type(self) -> str:
         return "~" + self.type_annotation()
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
+    def type_annotation(
+        self, *, is_operation_file: bool = False
+    ) -> str:  # pylint: disable=unused-argument
         return "datetime.datetime"
 
     @property
@@ -274,6 +303,7 @@ class DatetimeSchema(PrimitiveSchema):
     def default_template_representation_declaration(self):
         return self.get_declaration(datetime.datetime(2020, 2, 20))
 
+
 class TimeSchema(PrimitiveSchema):
     @property
     def serialization_type(self) -> str:
@@ -283,7 +313,9 @@ class TimeSchema(PrimitiveSchema):
     def docstring_type(self) -> str:
         return "~" + self.type_annotation()
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
+    def type_annotation(
+        self, *, is_operation_file: bool = False
+    ) -> str:  # pylint: disable=unused-argument
         return "datetime.time"
 
     @property
@@ -315,7 +347,9 @@ class UnixTimeSchema(PrimitiveSchema):
     def docstring_type(self) -> str:
         return "~" + self.type_annotation()
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
+    def type_annotation(
+        self, *, is_operation_file: bool = False
+    ) -> str:  # pylint: disable=unused-argument
         return "datetime.datetime"
 
     @property
@@ -347,7 +381,9 @@ class DateSchema(PrimitiveSchema):
     def docstring_type(self) -> str:
         return "~" + self.type_annotation()
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
+    def type_annotation(
+        self, *, is_operation_file: bool = False
+    ) -> str:  # pylint: disable=unused-argument
         return "datetime.date"
 
     @property
@@ -379,7 +415,9 @@ class DurationSchema(PrimitiveSchema):
     def docstring_type(self) -> str:
         return "~" + self.type_annotation()
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
+    def type_annotation(
+        self, *, is_operation_file: bool = False
+    ) -> str:  # pylint: disable=unused-argument
         return "datetime.timedelta"
 
     @property
@@ -429,7 +467,9 @@ class ByteArraySchema(PrimitiveSchema):
         return f'bytearray("{value}", encoding="utf-8")'
 
 
-def get_primitive_schema(yaml_data: Dict[str, Any], code_model: "CodeModel") -> "PrimitiveSchema":
+def get_primitive_schema(
+    yaml_data: Dict[str, Any], code_model: "CodeModel"
+) -> "PrimitiveSchema":
     mapping = {
         "integer": NumberSchema,
         "number": NumberSchema,
@@ -443,10 +483,13 @@ def get_primitive_schema(yaml_data: Dict[str, Any], code_model: "CodeModel") -> 
         "byte-array": ByteArraySchema,
         "any": AnySchema,
         "any-object": AnySchema,
-        "binary": IOSchema
+        "binary": IOSchema,
     }
     schema_type = yaml_data["type"]
     primitive_schema = cast(
-        PrimitiveSchema, mapping.get(schema_type, PrimitiveSchema).from_yaml(yaml_data=yaml_data, code_model=code_model)
+        PrimitiveSchema,
+        mapping.get(schema_type, PrimitiveSchema).from_yaml(
+            yaml_data=yaml_data, code_model=code_model
+        ),
     )
     return primitive_schema

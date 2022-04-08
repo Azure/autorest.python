@@ -12,14 +12,14 @@ _LOGGER = logging.getLogger(__name__)
 def _sync_or_async(async_mode: bool) -> str:
     return "async" if async_mode else "sync"
 
+
 def _get_default_api_version_from_list(
     mod_to_api_version: Dict[str, str],
     api_versions_list: List[str],
     preview_mode: bool,
-    user_specified_default_api: Optional[str]
+    user_specified_default_api: Optional[str],
 ) -> str:
-    """Get the floating latest, from a random list of API versions.
-    """
+    """Get the floating latest, from a random list of API versions."""
 
     # I need user_specified_default_api to be v2019_06_07_preview shaped if it exists, let's be smart
     # and change it automatically so I can take both syntax as input

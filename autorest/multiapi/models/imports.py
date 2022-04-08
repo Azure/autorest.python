@@ -13,6 +13,7 @@ class ImportType(str, Enum):
     AZURECORE = "azurecore"
     LOCAL = "local"
 
+
 class TypingSection(str, Enum):
     REGULAR = "regular"  # this import is always a typing import
     CONDITIONAL = "conditional"  # is a typing import when we're dealing with files that py2 will use, else regular
@@ -23,8 +24,9 @@ class FileImport:
     def __init__(
         self,
         imports: Dict[
-            TypingSection, Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]]
-        ] = None
+            TypingSection,
+            Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]],
+        ] = None,
     ) -> None:
         # Basic implementation
         # First level dict: TypingSection
@@ -32,51 +34,54 @@ class FileImport:
         # Third level dict: the package name.
         # Fourth level set: None if this import is a "import", the name to import if it's a "from"
         self._imports: Dict[
-            TypingSection, Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]]
-        ] = imports or dict()
+            TypingSection,
+            Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]],
+        ] = (
+            imports or dict()
+        )
 
     def _add_import(
         self,
         from_section: str,
         import_type: ImportType,
         name_import: Optional[Union[str, Tuple[str, str]]] = None,
-        typing_section: TypingSection = TypingSection.REGULAR
+        typing_section: TypingSection = TypingSection.REGULAR,
     ) -> None:
         name_input: Optional[Union[str, Tuple[str, str]]] = None
         if isinstance(name_import, list):
             name_input = tuple(name_import)
         else:
             name_input = name_import
-        self._imports.setdefault(
-            typing_section, dict()
-        ).setdefault(
+        self._imports.setdefault(typing_section, dict()).setdefault(
             import_type, dict()
-        ).setdefault(
-            from_section, set()
-        ).add(name_input)
+        ).setdefault(from_section, set()).add(name_input)
 
     def add_submodule_import(
         self,
         from_section: str,
         name_import: str,
         import_type: ImportType,
-        typing_section: TypingSection = TypingSection.REGULAR
+        typing_section: TypingSection = TypingSection.REGULAR,
     ) -> None:
-        """Add an import to this import block.
-        """
+        """Add an import to this import block."""
         self._add_import(from_section, import_type, name_import, typing_section)
 
     def add_import(
         self,
         name_import: str,
         import_type: ImportType,
-        typing_section: TypingSection = TypingSection.REGULAR
+        typing_section: TypingSection = TypingSection.REGULAR,
     ) -> None:
         # Implementation detail: a regular import is just a "from" with no from
         self._add_import(name_import, import_type, None, typing_section)
 
     @property
-    def imports(self) -> Dict[TypingSection, Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]]]:
+    def imports(
+        self,
+    ) -> Dict[
+        TypingSection,
+        Dict[ImportType, Dict[str, Set[Optional[Union[str, Tuple[str, str]]]]]],
+    ]:
         return self._imports
 
     def merge(self, file_import: "FileImport") -> None:
@@ -85,4 +90,6 @@ class FileImport:
             for import_type, package_list in import_type_dict.items():
                 for package_name, module_list in package_list.items():
                     for module_name in module_list:
-                        self._add_import(package_name, import_type, module_name, typing_section)
+                        self._add_import(
+                            package_name, import_type, module_name, typing_section
+                        )

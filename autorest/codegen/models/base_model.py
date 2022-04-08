@@ -16,9 +16,7 @@ class BaseModel:
     :type yaml_data: dict[str, Any]
     """
 
-    def __init__(
-        self, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> None:
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         self.yaml_data = yaml_data
         self.code_model = code_model
 

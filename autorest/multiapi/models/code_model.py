@@ -13,6 +13,7 @@ from .operation_mixin_group import OperationMixinGroup
 from .global_parameters import GlobalParameters
 from ..utils import _get_default_api_version_from_list
 
+
 class CodeModel:  # pylint: disable=too-many-instance-attributes
     def __init__(
         self,
@@ -23,7 +24,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         default_version_metadata: Dict[str, Any],
         mod_to_api_version: Dict[str, str],
         version_path_to_metadata: Dict[Path, Dict[str, Any]],
-        user_specified_default_api: Optional[str] = None
+        user_specified_default_api: Optional[str] = None,
     ):
         self.module_name = module_name
         self.package_name = package_name
@@ -33,9 +34,13 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self.azure_arm = default_version_metadata["client"]["azure_arm"]
         self.default_version_metadata = default_version_metadata
         self.version_path_to_metadata = version_path_to_metadata
-        self.service_client = Client(self.azure_arm, default_version_metadata, version_path_to_metadata)
+        self.service_client = Client(
+            self.azure_arm, default_version_metadata, version_path_to_metadata
+        )
         self.config = Config(default_version_metadata)
-        self.operation_mixin_group = OperationMixinGroup(version_path_to_metadata, default_api_version)
+        self.operation_mixin_group = OperationMixinGroup(
+            version_path_to_metadata, default_api_version
+        )
         self.global_parameters = GlobalParameters(
             default_version_metadata["global_parameters"]
         )
@@ -45,17 +50,24 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
     def operation_groups(self) -> List[OperationGroup]:
         operation_groups: List[OperationGroup] = []
         for version_path, metadata_json in self.version_path_to_metadata.items():
-            if not metadata_json.get('operation_groups'):
+            if not metadata_json.get("operation_groups"):
                 continue
-            operation_groups_metadata = metadata_json['operation_groups']
-            for operation_group_name, operation_group_class_name in operation_groups_metadata.items():
+            operation_groups_metadata = metadata_json["operation_groups"]
+            for (
+                operation_group_name,
+                operation_group_class_name,
+            ) in operation_groups_metadata.items():
                 try:
-                    operation_group = [og for og in operation_groups if og.name == operation_group_name][0]
+                    operation_group = [
+                        og for og in operation_groups if og.name == operation_group_name
+                    ][0]
                 except IndexError:
                     operation_group = OperationGroup(operation_group_name)
                     operation_groups.append(operation_group)
                 operation_group.append_available_api(version_path.name)
-                operation_group.append_api_class_name_pair(version_path.name, operation_group_class_name)
+                operation_group.append_api_class_name_pair(
+                    version_path.name, operation_group_class_name
+                )
         operation_groups.sort(key=lambda x: x.name)
         return operation_groups
 
@@ -110,7 +122,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 self.mod_to_api_version,
                 api_versions_list,
                 self.preview_mode,
-                self.user_specified_default_api
+                self.user_specified_default_api,
             )
             if local_default_api_version == self.default_api_version:
                 continue
@@ -129,5 +141,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
     @property
     def default_models(self):
         return sorted(
-            {self.default_api_version} | {versions for _, versions in self.last_rt_list.items()}
+            {self.default_api_version}
+            | {versions for _, versions in self.last_rt_list.items()}
         )

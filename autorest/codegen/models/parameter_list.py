@@ -16,12 +16,15 @@ if TYPE_CHECKING:
     from .schema_request import SchemaRequest
     from .code_model import CodeModel
 
-T = TypeVar('T')
+T = TypeVar("T")
 OrderedSet = Dict[T, None]
 
 _LOGGER = logging.getLogger(__name__)
 
-def _method_signature_helper(positional: List[str], keyword_only: Optional[List[str]], kwarg_params: List[str]):
+
+def _method_signature_helper(
+    positional: List[str], keyword_only: Optional[List[str]], kwarg_params: List[str]
+):
     keyword_only = keyword_only or []
     return positional + keyword_only + kwarg_params
 
@@ -60,9 +63,17 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
     # Parameter helpers
 
     def has_any_location(self, location: ParameterLocation) -> bool:
-        return bool([parameter for parameter in self.parameters if parameter.location == location])
+        return bool(
+            [
+                parameter
+                for parameter in self.parameters
+                if parameter.location == location
+            ]
+        )
 
-    def get_from_predicate(self, predicate: Callable[[Parameter], bool]) -> List[Parameter]:
+    def get_from_predicate(
+        self, predicate: Callable[[Parameter], bool]
+    ) -> List[Parameter]:
         return [parameter for parameter in self.parameters if predicate(parameter)]
 
     def get_from_location(self, location: ParameterLocation) -> List[Parameter]:
@@ -71,9 +82,7 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
     @property
     def content_types(self) -> List[str]:
         ordered_set = {
-            m: None
-            for request in self.schema_requests
-            for m in request.content_types
+            m: None for request in self.schema_requests for m in request.content_types
         }
         return list(ordered_set.keys())
 
@@ -115,7 +124,10 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
         # TODO add 'and parameter.location == "Method"' as requirement to this check once
         # I can use send_request on operations.
         # Don't want to duplicate code from send_request.
-        return parameter.location == ParameterLocation.Uri and parameter.rest_api_name != "$host"
+        return (
+            parameter.location == ParameterLocation.Uri
+            and parameter.rest_api_name != "$host"
+        )
 
     @property
     def implementation(self) -> str:
@@ -138,23 +150,26 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
         headers = self.get_from_location(ParameterLocation.Header)
         if not headers:
             return headers
-        return list({
-            header.serialized_name: header
-            for header in headers
-        }.values())
+        return list({header.serialized_name: header for header in headers}.values())
 
     @property
     def grouped(self) -> List[Parameter]:
-        return self.get_from_predicate(lambda parameter: cast(bool, parameter.grouped_by))
+        return self.get_from_predicate(
+            lambda parameter: cast(bool, parameter.grouped_by)
+        )
 
     @property
     def groupers(self) -> List[Parameter]:
         groupers: List[Parameter] = []
         for parameter in self.parameters:
-            if any([
-                p for p in self.grouped
-                if p.grouped_by and id(p.grouped_by.yaml_data) == id(parameter.yaml_data)
-            ]):
+            if any(
+                [
+                    p
+                    for p in self.grouped
+                    if p.grouped_by
+                    and id(p.grouped_by.yaml_data) == id(parameter.yaml_data)
+                ]
+            ):
                 groupers.append(parameter)
         return groupers
 
@@ -166,30 +181,27 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
         constant from this set of parameters, they are constants on the models and hence they do
         not have impact on any generation at this level
         """
-        return self.get_from_predicate(
-            lambda parameter: parameter.constant
-        )
+        return self.get_from_predicate(lambda parameter: parameter.constant)
 
     @property
     def multipart(self) -> List[Parameter]:
-        return self.get_from_predicate(
-            lambda parameter: parameter.is_multipart
-        )
+        return self.get_from_predicate(lambda parameter: parameter.is_multipart)
 
     @property
     def data_inputs(self) -> List[Parameter]:
-        return self.get_from_predicate(
-            lambda parameter: parameter.is_data_input
-        )
+        return self.get_from_predicate(lambda parameter: parameter.is_data_input)
 
     def _filter_out_multiple_content_type(self, kwarg_params):
         """We don't want multiple content type kwargs in the method signature"""
-        content_type_params = [k for k in kwarg_params if k.rest_api_name == "Content-Type"]
+        content_type_params = [
+            k for k in kwarg_params if k.rest_api_name == "Content-Type"
+        ]
         if len(content_type_params) > 1:
             # we don't want multiple content type params in the method, just one
             # we'll pick the one with the default content type
             kwarg_params = [
-                k for k in kwarg_params
+                k
+                for k in kwarg_params
                 if not (
                     k.rest_api_name == "Content-Type"
                     and k.default_value_declaration != f'"{self.default_content_type}"'
@@ -199,8 +211,7 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
 
     @property
     def method(self) -> List[Parameter]:
-        """The list of parameter used in method signature.
-        """
+        """The list of parameter used in method signature."""
         # Client level should not be on Method, etc.
         parameters_of_this_implementation = self.get_from_predicate(
             lambda parameter: parameter.implementation == self.implementation
@@ -212,28 +223,34 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
         kwargs = self._filter_out_multiple_content_type(
             [p for p in parameters_of_this_implementation if p.is_kwarg]
         )
-        def _sort(params):
-            return sorted(params, key=lambda x: not x.default_value and x.required, reverse=True)
-        signature_parameters = (
-            _sort(positional) + _sort(keyword_only) + _sort(kwargs)
-        )
-        return signature_parameters
 
+        def _sort(params):
+            return sorted(
+                params, key=lambda x: not x.default_value and x.required, reverse=True
+            )
+
+        signature_parameters = _sort(positional) + _sort(keyword_only) + _sort(kwargs)
+        return signature_parameters
 
     def method_signature(self, is_python3_file: bool) -> List[str]:
         return _method_signature_helper(
             positional=self.method_signature_positional(is_python3_file),
             keyword_only=self.method_signature_keyword_only(is_python3_file),
-            kwarg_params=self.method_signature_kwargs(is_python3_file)
+            kwarg_params=self.method_signature_kwargs(is_python3_file),
         )
 
     def method_signature_positional(self, is_python3_file: bool) -> List[str]:
-        return [parameter.method_signature(is_python3_file) for parameter in self.positional]
+        return [
+            parameter.method_signature(is_python3_file) for parameter in self.positional
+        ]
 
     def method_signature_keyword_only(self, is_python3_file: bool) -> List[str]:
         if not (self.keyword_only and is_python3_file):
             return []
-        return ["*,"] + [parameter.method_signature(is_python3_file) for parameter in self.keyword_only]
+        return ["*,"] + [
+            parameter.method_signature(is_python3_file)
+            for parameter in self.keyword_only
+        ]
 
     @staticmethod
     def method_signature_kwargs(is_python3_file: bool) -> List[str]:
@@ -259,30 +276,28 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
 
     @property
     def call(self) -> List[str]:
-        retval = [
-            p.serialized_name for p in self.positional
-        ]
-        retval.extend([
-            f"{p.serialized_name}={p.serialized_name}"
-            for p in self.keyword_only
-        ])
+        retval = [p.serialized_name for p in self.positional]
+        retval.extend(
+            [f"{p.serialized_name}={p.serialized_name}" for p in self.keyword_only]
+        )
         retval.append("**kwargs")
         return retval
 
     @property
     def is_flattened(self) -> bool:
-        return cast(bool, self.get_from_predicate(lambda parameter: parameter.flattened))
+        return cast(
+            bool, self.get_from_predicate(lambda parameter: parameter.flattened)
+        )
+
 
 class GlobalParameterList(ParameterList):
-
     @property
     def implementation(self) -> str:
         return "Client"
 
     @property
     def method(self) -> List[Parameter]:
-        """The list of parameter used in method signature.
-        """
+        """The list of parameter used in method signature."""
         # Client level should not be on Method, etc.
         positional = [p for p in self.parameters if p.is_positional]
         keyword_only = self._filter_out_multiple_content_type(
@@ -291,17 +306,20 @@ class GlobalParameterList(ParameterList):
         kwargs = self._filter_out_multiple_content_type(
             [p for p in self.parameters if p.is_kwarg]
         )
+
         def _sort(params):
-            return sorted(params, key=lambda x: not x.default_value and x.required, reverse=True)
-        signature_parameters = (
-            _sort(positional) + _sort(keyword_only) + _sort(kwargs)
-        )
+            return sorted(
+                params, key=lambda x: not x.default_value and x.required, reverse=True
+            )
+
+        signature_parameters = _sort(positional) + _sort(keyword_only) + _sort(kwargs)
         return signature_parameters
 
     @property
     def host_variable_name(self) -> str:
         return (
-            "endpoint" if self.code_model.options["version_tolerant"]
+            "endpoint"
+            if self.code_model.options["version_tolerant"]
             or self.code_model.options["low_level_client"]
             else "base_url"
         )
@@ -309,9 +327,9 @@ class GlobalParameterList(ParameterList):
     @staticmethod
     def _wanted_path_parameter(parameter: Parameter) -> bool:
         return (
-            parameter.location == ParameterLocation.Uri and
-            parameter.implementation == "Client" and
-            parameter.rest_api_name != "$host"
+            parameter.location == ParameterLocation.Uri
+            and parameter.implementation == "Client"
+            and parameter.rest_api_name != "$host"
         )
 
     def add_host(self, host_value: Optional[str]) -> None:
@@ -329,7 +347,8 @@ class GlobalParameterList(ParameterList):
             skip_url_encoding=False,
             constraints=[],
             client_default_value=host_value,
-            keyword_only=self.code_model.options["version_tolerant"] or self.code_model.options["low_level_client"],
+            keyword_only=self.code_model.options["version_tolerant"]
+            or self.code_model.options["low_level_client"],
         )
         self.parameters.append(host_param)
 
@@ -347,7 +366,10 @@ class GlobalParameterList(ParameterList):
             skip_url_encoding=True,
             constraints=[],
         )
-        if self.code_model.options["version_tolerant"] or self.code_model.options["low_level_client"]:
+        if (
+            self.code_model.options["version_tolerant"]
+            or self.code_model.options["low_level_client"]
+        ):
             self.parameters.append(credential_parameter)
         else:
             self.parameters.insert(0, credential_parameter)
@@ -355,7 +377,11 @@ class GlobalParameterList(ParameterList):
     @property
     def host(self) -> Optional[Parameter]:
         try:
-            return next(p for p in self.parameters if p.serialized_name == self.host_variable_name)
+            return next(
+                p
+                for p in self.parameters
+                if p.serialized_name == self.host_variable_name
+            )
         except StopIteration:
             return None
 
@@ -364,8 +390,7 @@ class GlobalParameterList(ParameterList):
         if self.code_model.service_client.has_parameterized_host:
             return None
         return next(
-            p for p in self.parameters
-            if p.serialized_name == self.host_variable_name
+            p for p in self.parameters if p.serialized_name == self.host_variable_name
         ).default_value_declaration
 
     @property
@@ -379,17 +404,24 @@ class GlobalParameterList(ParameterList):
 
     def kwargs_to_pop(self, is_python3_file: bool) -> List[Parameter]:
         return [
-            k for k in super().kwargs_to_pop(is_python3_file)
+            k
+            for k in super().kwargs_to_pop(is_python3_file)
             if not self._param_is_in_config_method(k.serialized_name)
         ]
 
     def config_kwargs_to_pop(self, is_python3_file: bool) -> List[Parameter]:
         current_kwargs_to_pop = super().kwargs_to_pop(is_python3_file)
-        return [k for k in current_kwargs_to_pop if self._param_is_in_config_method(k.serialized_name)]
+        return [
+            k
+            for k in current_kwargs_to_pop
+            if self._param_is_in_config_method(k.serialized_name)
+        ]
 
     @property
     def config_method(self) -> List[Parameter]:
-        return [p for p in self.method if self._param_is_in_config_method(p.serialized_name)]
+        return [
+            p for p in self.method if self._param_is_in_config_method(p.serialized_name)
+        ]
 
     def client_method_signature(self, is_python3_file: bool) -> List[str]:
         return self.method_signature(is_python3_file)
@@ -401,17 +433,23 @@ class GlobalParameterList(ParameterList):
             for p in self.positional
             if self._param_is_in_config_method(p.serialized_name)
         ]
-        keyword_only_params = [p for p in self.keyword_only if self._param_is_in_config_method(p.serialized_name)]
+        keyword_only_params = [
+            p
+            for p in self.keyword_only
+            if self._param_is_in_config_method(p.serialized_name)
+        ]
         keyword_only_method_signature = []
         if is_python3_file:
             keyword_only_method_signature = (
-                ["*,"] +
-                [
-                    p.method_signature(is_python3_file) for p in keyword_only_params
-                ]
-            ) if keyword_only_params else []
+                (
+                    ["*,"]
+                    + [p.method_signature(is_python3_file) for p in keyword_only_params]
+                )
+                if keyword_only_params
+                else []
+            )
         return _method_signature_helper(
             positional=positional,
             keyword_only=keyword_only_method_signature,
-            kwarg_params=self.method_signature_kwargs(is_python3_file)
+            kwarg_params=self.method_signature_kwargs(is_python3_file),
         )

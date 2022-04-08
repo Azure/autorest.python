@@ -14,6 +14,7 @@ from .enum_schema import EnumSchema
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
+
 class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def __init__(
         self,
@@ -25,7 +26,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         *,
         flattened_names: Optional[List[str]] = None,
         description: Optional[str] = None,
-        client_default_value: Optional[Any] = None
+        client_default_value: Optional[Any] = None,
     ) -> None:
         super().__init__(yaml_data, code_model)
         self.name = name
@@ -39,15 +40,18 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.client_default_value = client_default_value
         self.description = self._create_description(description, yaml_data)
 
-
-    def _create_description(self, description_input: Optional[str], yaml_data: Dict[str, Any]) -> str:
-        description: str = description_input or yaml_data["language"]["python"]["description"]
+    def _create_description(
+        self, description_input: Optional[str], yaml_data: Dict[str, Any]
+    ) -> str:
+        description: str = (
+            description_input or yaml_data["language"]["python"]["description"]
+        )
         if description and description[-1] != ".":
             description += "."
         if self.name == "tags":
             description = "A set of tags. " + description
         if self.constant:
-            description += f' Has constant value: {self.constant_declaration}.'
+            description += f" Has constant value: {self.constant_declaration}."
         elif self.required:
             if description:
                 description = "Required. " + description
@@ -55,13 +59,16 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
                 description = "Required. "
         elif isinstance(self.schema, ConstantSchema):
             description += (
-                f" The only acceptable values to pass in are None and {self.constant_declaration}. " +
-                f"The default value is {self.default_value_declaration}."
+                f" The only acceptable values to pass in are None and {self.constant_declaration}. "
+                + f"The default value is {self.default_value_declaration}."
             )
         if self.is_discriminator:
             description += "Constant filled by server. "
         if isinstance(self.schema, EnumSchema):
-            values = [self.schema.enum_type.get_declaration(v.value) for v in self.schema.values]
+            values = [
+                self.schema.enum_type.get_declaration(v.value)
+                for v in self.schema.values
+            ]
             if description and description[-1] != " ":
                 description += " "
             description += "Known values are: {}.".format(", ".join(values))
@@ -74,9 +81,9 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         # this bool doesn't consider you to be constant if you are a discriminator
         # you also have to be required to be considered a constant
         return (
-            isinstance(self.schema, ConstantSchema) and
-            self.required and
-            not self.is_discriminator
+            isinstance(self.schema, ConstantSchema)
+            and self.required
+            and not self.is_discriminator
         )
 
     @property
@@ -89,14 +96,15 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.constant:
             retval["constant"] = True
         if self.schema.validation_map:
-            validation_map_from_schema = cast(Dict[str, Union[bool, int, str]], self.schema.validation_map)
+            validation_map_from_schema = cast(
+                Dict[str, Union[bool, int, str]], self.schema.validation_map
+            )
             retval.update(validation_map_from_schema)
         return retval or None
 
     @property
     def escaped_swagger_name(self) -> str:
-        """Return the RestAPI name correctly escaped for serialization.
-        """
+        """Return the RestAPI name correctly escaped for serialization."""
         if self.flattened_names:
             return ".".join(n.replace(".", "\\\\.") for n in self.flattened_names)
         return self.original_swagger_name.replace(".", "\\\\.")
@@ -136,7 +144,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
                 return self.schema.get_declaration(self.schema.value)
             raise ValueError(
                 "Trying to get constant declaration for a schema that is not ConstantSchema"
-                )
+            )
         raise ValueError("Trying to get a declaration for a schema that doesn't exist")
 
     @property
@@ -167,7 +175,9 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         kwargs["optional"] = not self.required
         if self.default_value:
-            kwargs["default_value_declaration"] = self.schema.get_declaration(self.default_value)
+            kwargs["default_value_declaration"] = self.schema.get_declaration(
+                self.default_value
+            )
         if self.description:
             kwargs["description"] = self.description
         return self.schema.get_json_template_representation(**kwargs)
@@ -175,6 +185,8 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def model_file_imports(self) -> FileImport:
         file_import = self.schema.model_file_imports()
         if not self.required:
-            file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
+            file_import.add_submodule_import(
+                "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
+            )
         file_import.merge(self.schema.model_file_imports())
         return file_import

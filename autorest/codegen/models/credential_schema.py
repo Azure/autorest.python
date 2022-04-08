@@ -7,6 +7,7 @@ from typing import Any
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType, TypingSection
 
+
 class CredentialSchema(BaseSchema):
     def __init__(self) -> None:  # pylint: disable=super-init-not-called
         self.default_value = None
@@ -29,15 +30,19 @@ class CredentialSchema(BaseSchema):
         pass
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
-        raise TypeError("You should not try to get a JSON template representation of a CredentialSchema")
+        raise TypeError(
+            "You should not try to get a JSON template representation of a CredentialSchema"
+        )
+
 
 class AzureKeyCredentialSchema(CredentialSchema):
-
     @property
     def serialization_type(self) -> str:
         return "~azure.core.credentials.AzureKeyCredential"
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
+    def type_annotation(
+        self, *, is_operation_file: bool = False
+    ) -> str:  # pylint: disable=unused-argument
         return "AzureKeyCredential"
 
     def imports(self) -> FileImport:
@@ -46,7 +51,7 @@ class AzureKeyCredentialSchema(CredentialSchema):
             "azure.core.credentials",
             "AzureKeyCredential",
             ImportType.AZURECORE,
-            typing_section=TypingSection.CONDITIONAL
+            typing_section=TypingSection.CONDITIONAL,
         )
         return file_import
 
@@ -64,24 +69,27 @@ class TokenCredentialSchema(CredentialSchema):
             return self.async_type
         return self.sync_type
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
+    def type_annotation(
+        self, *, is_operation_file: bool = False
+    ) -> str:  # pylint: disable=unused-argument
         if self.async_mode:
             return '"AsyncTokenCredential"'
         return '"TokenCredential"'
-
 
     def imports(self) -> FileImport:
         file_import = FileImport()
         if self.async_mode:
             file_import.add_submodule_import(
-                "azure.core.credentials_async", "AsyncTokenCredential",
+                "azure.core.credentials_async",
+                "AsyncTokenCredential",
                 ImportType.AZURECORE,
-                typing_section=TypingSection.TYPING
+                typing_section=TypingSection.TYPING,
             )
         else:
             file_import.add_submodule_import(
-                "azure.core.credentials", "TokenCredential",
+                "azure.core.credentials",
+                "TokenCredential",
                 ImportType.AZURECORE,
-                typing_section=TypingSection.TYPING
+                typing_section=TypingSection.TYPING,
             )
         return file_import

@@ -23,9 +23,11 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
-class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-many-instance-attributes
-    """Represent an self.
-    """
+
+class Operation(
+    BaseBuilder
+):  # pylint: disable=too-many-public-methods, too-many-instance-attributes
+    """Represent an self."""
 
     def __init__(
         self,
@@ -99,19 +101,22 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
         # successful status codes of responses that have bodies
         status_codes_for_responses_with_bodies = [
-            code for code in self.success_status_code
+            code
+            for code in self.success_status_code
             if isinstance(code, int) and self.get_response_from_status(code).has_body
         ]
 
         successful_responses = [
-            response for response in self.responses
+            response
+            for response in self.responses
             if any(code in self.success_status_code for code in response.status_codes)
         ]
 
         return (
-            self.has_response_body and
-            len(successful_responses) > 1 and
-            len(self.success_status_code) != len(status_codes_for_responses_with_bodies)
+            self.has_response_body
+            and len(successful_responses) > 1
+            and len(self.success_status_code)
+            != len(status_codes_for_responses_with_bodies)
         )
 
     @property
@@ -121,9 +126,11 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
     @property
     def has_response_body(self) -> bool:
-        """Tell if at least one response has a body.
-        """
-        return any(response.has_body or response.is_stream_response for response in self.responses)
+        """Tell if at least one response has a body."""
+        return any(
+            response.has_body or response.is_stream_response
+            for response in self.responses
+        )
 
     @property
     def any_response_has_headers(self) -> bool:
@@ -131,29 +138,42 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
     @property
     def default_exception(self) -> Optional[str]:
-        default_excp = [excp for excp in self.exceptions for code in excp.status_codes if code == "default"]
+        default_excp = [
+            excp
+            for excp in self.exceptions
+            for code in excp.status_codes
+            if code == "default"
+        ]
         if not default_excp:
             return None
         excep_schema = default_excp[0].schema
         if isinstance(excep_schema, ObjectSchema):
             return f"_models.{excep_schema.name}"
         # in this case, it's just an AnySchema
-        return "\'object\'"
+        return "'object'"
 
     @property
     def status_code_exceptions(self) -> List[SchemaResponse]:
-        return [excp for excp in self.exceptions if list(excp.status_codes) != ["default"]]
+        return [
+            excp for excp in self.exceptions if list(excp.status_codes) != ["default"]
+        ]
 
     @property
     def status_code_exceptions_status_codes(self) -> List[Union[str, int]]:
         """Actually returns all of the status codes from exceptions (besides default)"""
-        return list(chain.from_iterable([
-            excp.status_codes for excp in self.status_code_exceptions
-        ]))
+        return list(
+            chain.from_iterable(
+                [excp.status_codes for excp in self.status_code_exceptions]
+            )
+        )
 
-    def _imports_shared(self, async_mode: bool) -> FileImport: # pylint: disable=unused-argument
+    def _imports_shared(
+        self, async_mode: bool
+    ) -> FileImport:  # pylint: disable=unused-argument
         file_import = FileImport()
-        file_import.add_submodule_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        file_import.add_submodule_import(
+            "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
         for param in self.parameters.method:
             if self.abstract and (param.is_multipart or param.is_data_input):
                 continue
@@ -167,29 +187,47 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             if response.has_body:
                 file_import.merge(cast(BaseSchema, response.schema).imports())
 
-        response_types = [r.type_annotation(is_operation_file=True) for r in self.responses if r.has_body]
+        response_types = [
+            r.type_annotation(is_operation_file=True)
+            for r in self.responses
+            if r.has_body
+        ]
         if len(set(response_types)) > 1:
-            file_import.add_submodule_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
+            file_import.add_submodule_import(
+                "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL
+            )
 
         if self.is_stream_response:
-            file_import.add_submodule_import("typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL)
+            file_import.add_submodule_import(
+                "typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL
+            )
         return file_import
 
-
-    def imports_for_multiapi(self, async_mode: bool) -> FileImport:  # pylint: disable=unused-argument
+    def imports_for_multiapi(
+        self, async_mode: bool
+    ) -> FileImport:  # pylint: disable=unused-argument
         return self._imports_shared(async_mode)
 
     def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         file_import = self._imports_base(async_mode, is_python3_file)
         if self.abstract:
             return file_import
-        if self.has_response_body and not self.has_optional_return_type and not self.code_model.options["models_mode"]:
+        if (
+            self.has_response_body
+            and not self.has_optional_return_type
+            and not self.code_model.options["models_mode"]
+        ):
             file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
         return file_import
 
     @staticmethod
-    def has_kwargs_to_pop_with_default(kwargs_to_pop: List[Parameter], location: ParameterLocation) -> bool:
-        return any(kwarg.has_default_value and kwarg.location == location for kwarg in kwargs_to_pop)
+    def has_kwargs_to_pop_with_default(
+        kwargs_to_pop: List[Parameter], location: ParameterLocation
+    ) -> bool:
+        return any(
+            kwarg.has_default_value and kwarg.location == location
+            for kwarg in kwargs_to_pop
+        )
 
     def _imports_base(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)
@@ -198,18 +236,37 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         if self.abstract:
             file_import.add_import("abc", ImportType.STDLIB)
         else:
-            file_import.add_submodule_import("azure.core.exceptions", "map_error", ImportType.AZURECORE)
+            file_import.add_submodule_import(
+                "azure.core.exceptions", "map_error", ImportType.AZURECORE
+            )
             if self.code_model.options["azure_arm"]:
-                file_import.add_submodule_import("azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE)
-            file_import.add_submodule_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
-            file_import.add_submodule_import("azure.core.exceptions", "ClientAuthenticationError", ImportType.AZURECORE)
-            file_import.add_submodule_import("azure.core.exceptions", "ResourceNotFoundError", ImportType.AZURECORE)
-            file_import.add_submodule_import("azure.core.exceptions", "ResourceExistsError", ImportType.AZURECORE)
+                file_import.add_submodule_import(
+                    "azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE
+                )
+            file_import.add_submodule_import(
+                "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
+            )
+            file_import.add_submodule_import(
+                "azure.core.exceptions",
+                "ClientAuthenticationError",
+                ImportType.AZURECORE,
+            )
+            file_import.add_submodule_import(
+                "azure.core.exceptions", "ResourceNotFoundError", ImportType.AZURECORE
+            )
+            file_import.add_submodule_import(
+                "azure.core.exceptions", "ResourceExistsError", ImportType.AZURECORE
+            )
 
             kwargs_to_pop = self.parameters.kwargs_to_pop(is_python3_file)
-            if (self.has_kwargs_to_pop_with_default(kwargs_to_pop, ParameterLocation.Header) or
-                self.has_kwargs_to_pop_with_default(kwargs_to_pop, ParameterLocation.Query)):
-                file_import.add_submodule_import("azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE)
+            if self.has_kwargs_to_pop_with_default(
+                kwargs_to_pop, ParameterLocation.Header
+            ) or self.has_kwargs_to_pop_with_default(
+                kwargs_to_pop, ParameterLocation.Query
+            ):
+                file_import.add_submodule_import(
+                    "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
+                )
             if self.deprecated:
                 file_import.add_import("warnings", ImportType.STDLIB)
             if self.code_model.options["builders_visibility"] != "embedded":
@@ -220,14 +277,14 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                         f"{rest_import_path}{self.code_model.rest_layer_name}",
                         builder_group_name,
                         import_type=ImportType.LOCAL,
-                        alias=f"rest_{builder_group_name}"
+                        alias=f"rest_{builder_group_name}",
                     )
                 else:
                     file_import.add_submodule_import(
                         rest_import_path,
                         self.code_model.rest_layer_name,
                         import_type=ImportType.LOCAL,
-                        alias="rest"
+                        alias="rest",
                     )
             if self.code_model.need_request_converter:
                 relative_path = "..." if async_mode else ".."
@@ -235,17 +292,38 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                     f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
                 )
         if async_mode:
-            file_import.add_submodule_import("azure.core.pipeline.transport", "AsyncHttpResponse", ImportType.AZURECORE)
+            file_import.add_submodule_import(
+                "azure.core.pipeline.transport",
+                "AsyncHttpResponse",
+                ImportType.AZURECORE,
+            )
         else:
-            file_import.add_submodule_import("azure.core.pipeline.transport", "HttpResponse", ImportType.AZURECORE)
-        if self.code_model.options["builders_visibility"] == "embedded" and not async_mode:
+            file_import.add_submodule_import(
+                "azure.core.pipeline.transport", "HttpResponse", ImportType.AZURECORE
+            )
+        if (
+            self.code_model.options["builders_visibility"] == "embedded"
+            and not async_mode
+        ):
             file_import.merge(self.request_builder.imports())
-        file_import.add_submodule_import("azure.core.pipeline", "PipelineResponse", ImportType.AZURECORE)
-        file_import.add_submodule_import("azure.core.rest", "HttpRequest", ImportType.AZURECORE)
-        file_import.add_submodule_import("typing", "Callable", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        file_import.add_submodule_import("typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        file_import.add_submodule_import("typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        file_import.add_submodule_import(
+            "azure.core.pipeline", "PipelineResponse", ImportType.AZURECORE
+        )
+        file_import.add_submodule_import(
+            "azure.core.rest", "HttpRequest", ImportType.AZURECORE
+        )
+        file_import.add_submodule_import(
+            "typing", "Callable", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
+        file_import.add_submodule_import(
+            "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
+        file_import.add_submodule_import(
+            "typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
+        file_import.add_submodule_import(
+            "typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
         if self.code_model.options["tracing"] and self.want_tracing:
             file_import.add_submodule_import(
                 f"azure.core.tracing.decorator{'_async' if async_mode else ''}",
@@ -264,19 +342,23 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             # usually one binary (for content), and one schema parameter (for json)
             try:
                 return next(
-                    p for p in self.multiple_content_type_parameters.body
+                    p
+                    for p in self.multiple_content_type_parameters.body
                     if not isinstance(p.schema, IOSchema)
                 )
             except StopIteration:
-                return next(p for p in self.multiple_content_type_parameters.body if p.is_json_parameter)
+                return next(
+                    p
+                    for p in self.multiple_content_type_parameters.body
+                    if p.is_json_parameter
+                )
         return self.multiple_content_type_parameters.body[0]
 
     def link_body_kwargs_to_body_params(self) -> None:
         if not self.parameters.has_body:
             return
         body_kwargs = [
-            p for p in self.request_builder.parameters.body
-            if p.content_types
+            p for p in self.request_builder.parameters.body if p.content_types
         ]
         if len(body_kwargs) == 1:
             self.parameters.body[0].body_kwargs = [body_kwargs[0]]
@@ -286,39 +368,56 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             body_param.body_kwargs.append(body_kwarg)
 
     def convert_multiple_content_type_parameters(self) -> None:
-        type_annot = ", ".join([
-            param.schema.type_annotation(is_operation_file=True)
-            for param in self.multiple_content_type_parameters
-        ])
-        docstring_type = " or ".join([
-            param.schema.docstring_type for param in self.multiple_content_type_parameters
-        ])
+        type_annot = ", ".join(
+            [
+                param.schema.type_annotation(is_operation_file=True)
+                for param in self.multiple_content_type_parameters
+            ]
+        )
+        docstring_type = " or ".join(
+            [
+                param.schema.docstring_type
+                for param in self.multiple_content_type_parameters
+            ]
+        )
         try:
             # get an optional param with object first. These params are the top choice
             # bc they have more info about how to serialize the body
             chosen_parameter = next(
-                p for p in self.multiple_content_type_parameters
+                p
+                for p in self.multiple_content_type_parameters
                 if not p.required and isinstance(p.schema, ObjectSchema)
             )
         except StopIteration:  # pylint: disable=broad-except
             # otherwise, we get the first optional param, if that exists. If not, we just grab the first one
-            optional_parameters = [p for p in self.multiple_content_type_parameters if not p.required]
+            optional_parameters = [
+                p for p in self.multiple_content_type_parameters if not p.required
+            ]
             chosen_parameter = (
-                optional_parameters[0] if optional_parameters else self.multiple_content_type_parameters[0]
+                optional_parameters[0]
+                if optional_parameters
+                else self.multiple_content_type_parameters[0]
             )
         if not chosen_parameter:
-            raise ValueError("You are missing a parameter that has multiple media types")
+            raise ValueError(
+                "You are missing a parameter that has multiple media types"
+            )
         chosen_parameter.multiple_content_types_type_annot = f"Union[{type_annot}]"
         chosen_parameter.multiple_content_types_docstring_type = docstring_type
         self.parameters.append(chosen_parameter)
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "Operation":
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "Operation":
         name = yaml_data["language"]["python"]["name"]
         _LOGGER.debug("Parsing %s operation", name)
 
         parameter_creator = get_parameter(code_model).from_yaml
-        schema_requests = [SchemaRequest.from_yaml(yaml, code_model=code_model) for yaml in yaml_data["requests"]]
+        schema_requests = [
+            SchemaRequest.from_yaml(yaml, code_model=code_model)
+            for yaml in yaml_data["requests"]
+        ]
         parameters, multiple_content_type_parameters = create_parameters(
             yaml_data, code_model, parameter_creator
         )
@@ -328,15 +427,19 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         )
         abstract = False
         if code_model.options["version_tolerant"] and (
-            any(p for p in parameter_list if p.is_multipart or p.is_data_input) or
-            any(p for p in multiple_content_type_parameter_list if p.is_multipart or p.is_data_input)
+            any(p for p in parameter_list if p.is_multipart or p.is_data_input)
+            or any(
+                p
+                for p in multiple_content_type_parameter_list
+                if p.is_multipart or p.is_data_input
+            )
         ):
             _LOGGER.warning(
-                'Not going to generate operation "%s" because it has multipart / urlencoded body parameters. '\
-                "Multipart / urlencoded body parameters are not supported for version tolerant generation right now. "\
-                "Please write your own custom operation in the \"_patch.py\" file "\
+                'Not going to generate operation "%s" because it has multipart / urlencoded body parameters. '
+                "Multipart / urlencoded body parameters are not supported for version tolerant generation right now. "
+                'Please write your own custom operation in the "_patch.py" file '
                 "following https://aka.ms/azsdk/python/dpcodegen/python/customize",
-                name
+                name,
             )
             abstract = True
 
@@ -350,7 +453,9 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             yaml_data=yaml_data,
             name=name,
             description=yaml_data["language"]["python"]["description"],
-            api_versions=set(value_dict["version"] for value_dict in yaml_data["apiVersions"]),
+            api_versions=set(
+                value_dict["version"] for value_dict in yaml_data["apiVersions"]
+            ),
             parameters=parameter_list,
             multiple_content_type_parameters=multiple_content_type_parameter_list,
             schema_requests=schema_requests,
@@ -362,7 +467,8 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
             # Exception with no schema means default exception, we don't store them
             exceptions=[
                 SchemaResponse.from_yaml(yaml, code_model=code_model)
-                for yaml in yaml_data.get("exceptions", []) if "schema" in yaml
+                for yaml in yaml_data.get("exceptions", [])
+                if "schema" in yaml
             ],
             abstract=abstract,
         )

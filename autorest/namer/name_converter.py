@@ -9,20 +9,20 @@ from typing import cast, Any, Dict, List, Match, Optional
 from .python_mappings import basic_latin_chars, reserved_words, PadType
 from ..codegen.models.utils import JSON_REGEXP
 
+
 def _get_all_values(all_headers: List[Dict[str, Any]]) -> List[str]:
     content_types: List[str] = []
     for h in all_headers:
-        if h['schema']['type'] == 'constant':
-            content_types.append(h['schema']['value']['value'])
+        if h["schema"]["type"] == "constant":
+            content_types.append(h["schema"]["value"]["value"])
         elif any(
-            choice_type for choice_type in ['sealed-choice', 'choice']
-            if h['schema']['type'] == choice_type
+            choice_type
+            for choice_type in ["sealed-choice", "choice"]
+            if h["schema"]["type"] == choice_type
         ):
-            content_types.extend([
-                choice['value']
-                for choice in h['schema']['choices']
-            ])
+            content_types.extend([choice["value"] for choice in h["schema"]["choices"]])
     return content_types
+
 
 def _get_default_value(all_values: List[str]) -> str:
     json_values = [v for v in all_values if JSON_REGEXP.match(v)]
@@ -38,7 +38,10 @@ def _get_default_value(all_values: List[str]) -> str:
         return xml_values[0]
     return all_values[0]
 
+
 _M4_HEADER_PARAMETERS = ["content_type", "accept"]
+
+
 class NameConverter:
     @staticmethod
     def convert_yaml_names(yaml_data: Dict[str, Any]) -> None:
@@ -46,16 +49,22 @@ class NameConverter:
         yaml_data["info"]["python_title"] = NameConverter._to_valid_python_name(
             name=yaml_data["info"]["title"].replace(" ", ""), convert_name=True
         )
-        yaml_data['info']['pascal_case_title'] = yaml_data["language"]["default"]["name"]
-        if yaml_data['info'].get("description"):
+        yaml_data["info"]["pascal_case_title"] = yaml_data["language"]["default"][
+            "name"
+        ]
+        if yaml_data["info"].get("description"):
             if yaml_data["info"]["description"][-1] != ".":
                 yaml_data["info"]["description"] += "."
         else:
-            yaml_data["info"]["description"] = yaml_data['info']['pascal_case_title'] + "."
-        NameConverter._convert_schemas(yaml_data['schemas'])
-        NameConverter._convert_operation_groups(yaml_data['operationGroups'], yaml_data['info']['pascal_case_title'])
-        if yaml_data.get('globalParameters'):
-            NameConverter._convert_global_parameters(yaml_data['globalParameters'])
+            yaml_data["info"]["description"] = (
+                yaml_data["info"]["pascal_case_title"] + "."
+            )
+        NameConverter._convert_schemas(yaml_data["schemas"])
+        NameConverter._convert_operation_groups(
+            yaml_data["operationGroups"], yaml_data["info"]["pascal_case_title"]
+        )
+        if yaml_data.get("globalParameters"):
+            NameConverter._convert_global_parameters(yaml_data["globalParameters"])
 
     @staticmethod
     def _convert_global_parameters(global_parameters: List[Dict[str, Any]]) -> None:
@@ -63,48 +72,69 @@ class NameConverter:
             NameConverter._convert_language_default_python_case(global_parameter)
 
     @staticmethod
-    def _convert_operation_groups(operation_groups: List[Dict[str, Any]], code_model_title: str) -> None:
+    def _convert_operation_groups(
+        operation_groups: List[Dict[str, Any]], code_model_title: str
+    ) -> None:
         for operation_group in operation_groups:
             builder_group = copy.deepcopy(operation_group)
             NameConverter._convert_language_default_python_case(
                 operation_group, pad_string=PadType.OperationGroup, convert_name=True
             )
-            operation_group_name = operation_group['language']['default']['name']
+            operation_group_name = operation_group["language"]["default"]["name"]
             if not operation_group_name:
-                operation_group['language']['python']['className'] = code_model_title + "OperationsMixin"
-                operation_group['language']['python']['name'] = ""
-            elif operation_group_name == 'Operations':
-                operation_group['language']['python']['className'] = operation_group_name
+                operation_group["language"]["python"]["className"] = (
+                    code_model_title + "OperationsMixin"
+                )
+                operation_group["language"]["python"]["name"] = ""
+            elif operation_group_name == "Operations":
+                operation_group["language"]["python"][
+                    "className"
+                ] = operation_group_name
             else:
-                operation_group['language']['python']['className'] = operation_group_name + "Operations"
-            for operation in operation_group['operations']:
-                NameConverter._convert_language_default_python_case(operation, pad_string=PadType.Method)
+                operation_group["language"]["python"]["className"] = (
+                    operation_group_name + "Operations"
+                )
+            for operation in operation_group["operations"]:
+                NameConverter._convert_language_default_python_case(
+                    operation, pad_string=PadType.Method
+                )
                 if operation_group_name:
-                    operation['language']['python']['operationGroupName'] = (
-                        operation_group['language']['python']['name'].lower()
-                    )
+                    operation["language"]["python"][
+                        "operationGroupName"
+                    ] = operation_group["language"]["python"]["name"].lower()
                     NameConverter._convert_language_default_python_case(
-                        builder_group, pad_string=PadType.BuilderGroup, convert_name=True
+                        builder_group,
+                        pad_string=PadType.BuilderGroup,
+                        convert_name=True,
                     )
-                    operation['language']['python']['builderGroupName'] = (
-                        builder_group['language']['python']['name'].lower()
-                    )
+                    operation["language"]["python"]["builderGroupName"] = builder_group[
+                        "language"
+                    ]["python"]["name"].lower()
                 else:
-                    operation['language']['python']['operationGroupName'] = ""
-                    operation['language']['python']['builderGroupName'] = ""
-                for exception in operation.get('exceptions', []):
+                    operation["language"]["python"]["operationGroupName"] = ""
+                    operation["language"]["python"]["builderGroupName"] = ""
+                for exception in operation.get("exceptions", []):
                     NameConverter._convert_language_default_python_case(exception)
                 for parameter in operation.get("parameters", []):
                     NameConverter._add_multipart_information(parameter, operation)
-                    NameConverter._convert_language_default_python_case(parameter, pad_string=PadType.Parameter)
+                    NameConverter._convert_language_default_python_case(
+                        parameter, pad_string=PadType.Parameter
+                    )
                 for request in operation.get("requests", []):
                     NameConverter._convert_language_default_python_case(request)
                     for parameter in request.get("parameters", []):
                         NameConverter._add_multipart_information(parameter, request)
-                        NameConverter._convert_language_default_python_case(parameter, pad_string=PadType.Parameter)
-                        if parameter.get("origin", "") == "modelerfour:synthesized/content-type":
+                        NameConverter._convert_language_default_python_case(
+                            parameter, pad_string=PadType.Parameter
+                        )
+                        if (
+                            parameter.get("origin", "")
+                            == "modelerfour:synthesized/content-type"
+                        ):
                             parameter["required"] = False
-                NameConverter._handle_m4_header_parameters(operation.get("requests", []))
+                NameConverter._handle_m4_header_parameters(
+                    operation.get("requests", [])
+                )
                 for response in operation.get("responses", []):
                     NameConverter._convert_language_default_python_case(response)
                 if operation.get("extensions"):
@@ -114,64 +144,82 @@ class NameConverter:
     def _handle_m4_header_parameters(requests):
         m4_header_params = []
         for request in requests:
-            m4_header_params.extend([
-                p for p in request.get('parameters', [])
-                if NameConverter._is_schema_an_m4_header_parameter(p['language']['default']['name'], p)
-            ])
+            m4_header_params.extend(
+                [
+                    p
+                    for p in request.get("parameters", [])
+                    if NameConverter._is_schema_an_m4_header_parameter(
+                        p["language"]["default"]["name"], p
+                    )
+                ]
+            )
         m4_header_params_to_remove = []
         for m4_header in _M4_HEADER_PARAMETERS:
             params_of_header = [
-                p for p in m4_header_params
-                if p['language']['default']['name'] == m4_header
+                p
+                for p in m4_header_params
+                if p["language"]["default"]["name"] == m4_header
             ]
             if len(params_of_header) < 2:
                 continue
             param_schema_to_param = {  # if they share the same schema, we don't need to keep both of them in this case
-                id(param['schema']): param
-                for param in params_of_header
+                id(param["schema"]): param for param in params_of_header
             }
             if len(param_schema_to_param) == 1:
                 # we'll remove the ones that aren't the first
-                m4_header_params_to_remove.extend([
-                    id(p) for p in params_of_header[1:]
-                ])
+                m4_header_params_to_remove.extend([id(p) for p in params_of_header[1:]])
             else:
                 all_values = _get_all_values(params_of_header)
                 # if one of them is an enum schema, set the default value to constant
-                param_with_constant_schema = next(p for p in params_of_header if p['schema']['type'] == 'constant')
+                param_with_constant_schema = next(
+                    p for p in params_of_header if p["schema"]["type"] == "constant"
+                )
                 try:
                     param_with_enum_schema = next(
-                        p for p in params_of_header
-                        if p['schema']['type'] == 'sealed-choice' or p['schema']['type'] == 'choice'
+                        p
+                        for p in params_of_header
+                        if p["schema"]["type"] == "sealed-choice"
+                        or p["schema"]["type"] == "choice"
                     )
                 except StopIteration:
                     # this means there's no enum schema
                     pass
                 else:
-                    param_with_enum_schema['clientDefaultValue'] = _get_default_value(all_values)
+                    param_with_enum_schema["clientDefaultValue"] = _get_default_value(
+                        all_values
+                    )
                     # add constant enum schema value into list of possible schema values
-                    constant_schema = param_with_constant_schema['schema']
+                    constant_schema = param_with_constant_schema["schema"]
                     constant_choice = {
                         "language": {
                             "default": {
-                                "description": constant_schema['language']['default']['description'],
-                                "name": constant_schema['language']['default']['name'],
+                                "description": constant_schema["language"]["default"][
+                                    "description"
+                                ],
+                                "name": constant_schema["language"]["default"]["name"],
                             },
                             "python": {
-                                "description": constant_schema['language']['python']['description'],
-                                "name": constant_schema['language']['python']['name'].upper(),
-                            }
+                                "description": constant_schema["language"]["python"][
+                                    "description"
+                                ],
+                                "name": constant_schema["language"]["python"][
+                                    "name"
+                                ].upper(),
+                            },
                         },
-                        "value": constant_schema['value']['value']
+                        "value": constant_schema["value"]["value"],
                     }
-                    param_with_enum_schema['schema']['choices'].append(constant_choice)
+                    param_with_enum_schema["schema"]["choices"].append(constant_choice)
                     m4_header_params_to_remove.append(id(param_with_constant_schema))
 
         for request in requests:
-            if not request.get('parameters'):
+            if not request.get("parameters"):
                 continue
-            request['parameters'] = [p for p in request['parameters'] if id(p) not in m4_header_params_to_remove]
-
+            request["parameters"] = [
+                p
+                for p in request["parameters"]
+                if id(p) not in m4_header_params_to_remove
+            ]
 
     @staticmethod
     def _add_multipart_information(parameter: Dict[str, Any], request: Dict[str, Any]):
@@ -180,13 +228,12 @@ class NameConverter:
             if parameter["protocol"]["http"]["in"] == "body":
                 parameter["language"]["default"]["multipart"] = True
             if parameter["language"]["default"]["serializedName"] == "Content-Type":
-                parameter['schema']['value']['value'] = None
-
+                parameter["schema"]["value"]["value"] = None
 
     @staticmethod
     def _convert_extensions(operation: Dict[str, Any]) -> None:
         operation_extensions = operation["extensions"]
-        if operation_extensions.get('x-ms-pageable'):
+        if operation_extensions.get("x-ms-pageable"):
             operation["extensions"]["pager-sync"] = operation_extensions.get(
                 "x-python-custom-pager-sync", "azure.core.paging.ItemPaged"
             )
@@ -203,29 +250,45 @@ class NameConverter:
             )
 
             # polling methods
-            sync_polling_method_directive = "x-python-custom-default-polling-method-sync"
+            sync_polling_method_directive = (
+                "x-python-custom-default-polling-method-sync"
+            )
             operation["extensions"]["default-polling-method-sync"] = {
                 "azure-arm": operation_extensions.get(
-                    sync_polling_method_directive, "azure.mgmt.core.polling.arm_polling.ARMPolling"
+                    sync_polling_method_directive,
+                    "azure.mgmt.core.polling.arm_polling.ARMPolling",
                 ),
                 "data-plane": operation_extensions.get(
-                    sync_polling_method_directive, "azure.core.polling.base_polling.LROBasePolling"
+                    sync_polling_method_directive,
+                    "azure.core.polling.base_polling.LROBasePolling",
                 ),
             }
-            async_polling_method_directive = "x-python-custom-default-polling-method-async"
+            async_polling_method_directive = (
+                "x-python-custom-default-polling-method-async"
+            )
             operation["extensions"]["default-polling-method-async"] = {
                 "azure-arm": operation_extensions.get(
-                    async_polling_method_directive, "azure.mgmt.core.polling.async_arm_polling.AsyncARMPolling"
+                    async_polling_method_directive,
+                    "azure.mgmt.core.polling.async_arm_polling.AsyncARMPolling",
                 ),
                 "data-plane": operation_extensions.get(
-                    async_polling_method_directive, "azure.core.polling.async_base_polling.AsyncLROBasePolling"
+                    async_polling_method_directive,
+                    "azure.core.polling.async_base_polling.AsyncLROBasePolling",
                 ),
             }
 
-            operation["extensions"]["default-no-polling-method-sync"] = "azure.core.polling.NoPolling"
-            operation["extensions"]["default-no-polling-method-async"] = "azure.core.polling.AsyncNoPolling"
-            operation["extensions"]["base-polling-method-sync"] = "azure.core.polling.PollingMethod"
-            operation["extensions"]["base-polling-method-async"] = "azure.core.polling.AsyncPollingMethod"
+            operation["extensions"][
+                "default-no-polling-method-sync"
+            ] = "azure.core.polling.NoPolling"
+            operation["extensions"][
+                "default-no-polling-method-async"
+            ] = "azure.core.polling.AsyncNoPolling"
+            operation["extensions"][
+                "base-polling-method-sync"
+            ] = "azure.core.polling.PollingMethod"
+            operation["extensions"][
+                "base-polling-method-async"
+            ] = "azure.core.polling.AsyncPollingMethod"
 
     @staticmethod
     def _convert_schemas(schemas: Dict[str, Any]) -> None:
@@ -239,11 +302,15 @@ class NameConverter:
                     continue
                 if type_list in ["arrays", "dictionaries"]:
                     NameConverter._convert_language_default_python_case(schema)
-                    NameConverter._convert_language_default_python_case(schema["elementType"])
+                    NameConverter._convert_language_default_python_case(
+                        schema["elementType"]
+                    )
                 elif type_list == "constants":
                     NameConverter._convert_language_default_python_case(schema)
                     NameConverter._convert_language_default_python_case(schema["value"])
-                    NameConverter._convert_language_default_python_case(schema["valueType"])
+                    NameConverter._convert_language_default_python_case(
+                        schema["valueType"]
+                    )
                 else:
                     NameConverter._convert_language_default_python_case(schema)
 
@@ -251,7 +318,9 @@ class NameConverter:
     def _convert_enum_schema(schema: Dict[str, Any]) -> None:
         NameConverter._convert_language_default_pascal_case(schema)
         for choice in schema["choices"]:
-            NameConverter._convert_language_default_python_case(choice, pad_string=PadType.Enum, all_upper=True)
+            NameConverter._convert_language_default_python_case(
+                choice, pad_string=PadType.Enum, all_upper=True
+            )
 
     @staticmethod
     def _convert_object_schema(schema: Dict[str, Any]) -> None:
@@ -264,13 +333,17 @@ class NameConverter:
             schema_description += "."
         schema["language"]["python"]["description"] = schema_description
         for prop in schema.get("properties", []):
-            NameConverter._convert_language_default_python_case(schema=prop, pad_string=PadType.Property)
+            NameConverter._convert_language_default_python_case(
+                schema=prop, pad_string=PadType.Property
+            )
 
     @staticmethod
-    def _is_schema_an_m4_header_parameter(schema_name: str, schema: Dict[str, Any]) -> bool:
+    def _is_schema_an_m4_header_parameter(
+        schema_name: str, schema: Dict[str, Any]
+    ) -> bool:
         return (
-            schema_name in _M4_HEADER_PARAMETERS and
-            schema.get('protocol', {}).get('http', {}).get('in', {}) == 'header'
+            schema_name in _M4_HEADER_PARAMETERS
+            and schema.get("protocol", {}).get("http", {}).get("in", {}) == "header"
         )
 
     @staticmethod
@@ -279,17 +352,15 @@ class NameConverter:
         *,
         pad_string: Optional[PadType] = None,
         convert_name: bool = False,
-        all_upper: bool = False
+        all_upper: bool = False,
     ) -> None:
         if not schema.get("language") or schema["language"].get("python"):
             return
-        schema['language']['python'] = dict(schema['language']['default'])
-        schema_name = schema['language']['default']['name']
-        schema_python_name = schema['language']['python']['name']
+        schema["language"]["python"] = dict(schema["language"]["default"])
+        schema_name = schema["language"]["default"]["name"]
+        schema_python_name = schema["language"]["python"]["name"]
 
-        if not NameConverter._is_schema_an_m4_header_parameter(
-            schema_name, schema
-        ):
+        if not NameConverter._is_schema_an_m4_header_parameter(schema_name, schema):
             # only escaping name if it's not a content_type header parameter
             schema_python_name = NameConverter._to_valid_python_name(
                 name=schema_name, pad_string=pad_string, convert_name=convert_name
@@ -297,12 +368,16 @@ class NameConverter:
         # need to add the lower in case certain words, like LRO, are overriden to
         # always return LRO. Without .lower(), for example, begin_lro would be
         # begin_LRO
-        schema['language']['python']['name'] = (
+        schema["language"]["python"]["name"] = (
             schema_python_name.upper() if all_upper else schema_python_name.lower()
         )
 
         schema_description = schema["language"]["default"]["description"].strip()
-        if pad_string == PadType.Method and not schema_description and not schema["language"]["default"].get("summary"):
+        if (
+            pad_string == PadType.Method
+            and not schema_description
+            and not schema["language"]["default"].get("summary")
+        ):
             schema_description = schema["language"]["python"]["name"]
         if schema_description and schema_description[-1] != ".":
             schema_description += "."
@@ -319,7 +394,7 @@ class NameConverter:
     def _convert_language_default_pascal_case(schema: Dict[str, Any]) -> None:
         if schema["language"].get("python"):
             return
-        schema['language']['python'] = dict(schema['language']['default'])
+        schema["language"]["python"] = dict(schema["language"]["default"])
 
         schema_description = schema["language"]["default"]["description"].strip()
 
@@ -328,11 +403,15 @@ class NameConverter:
     @staticmethod
     def _to_pascal_case(name: str) -> str:
         name_list = re.split("[^a-zA-Z\\d]", name)
-        name_list = [s[0].upper() + s[1:] if len(s) > 1 else s.upper() for s in name_list]
+        name_list = [
+            s[0].upper() + s[1:] if len(s) > 1 else s.upper() for s in name_list
+        ]
         return "".join(name_list)
 
     @staticmethod
-    def _to_valid_python_name(name: str, *, pad_string: Optional[PadType] = None, convert_name: bool = False) -> str:
+    def _to_valid_python_name(
+        name: str, *, pad_string: Optional[PadType] = None, convert_name: bool = False
+    ) -> str:
         if not name:
             return NameConverter._to_python_case(pad_string.value if pad_string else "")
         escaped_name = NameConverter._get_escaped_reserved_name(
@@ -360,13 +439,21 @@ class NameConverter:
                 and name[next_non_upper_case_char_location].isalpha()
             ):
 
-                return prefix + match_str[: len(match_str) - 1] + "_" + match_str[len(match_str) - 1]
+                return (
+                    prefix
+                    + match_str[: len(match_str) - 1]
+                    + "_"
+                    + match_str[len(match_str) - 1]
+                )
 
             return prefix + match_str
+
         return re.sub("[A-Z]+", replace_upper_characters, name)
 
     @staticmethod
-    def _get_escaped_reserved_name(name: str, pad_string: Optional[PadType] = None) -> str:
+    def _get_escaped_reserved_name(
+        name: str, pad_string: Optional[PadType] = None
+    ) -> str:
         if name is None:
             raise ValueError("The value for name can not be None")
         try:
@@ -383,17 +470,23 @@ class NameConverter:
                 name += pad_string.value
             return name_prefix + name
         except AttributeError:
-            raise ValueError(f"The name {name} is a reserved word and you have not specified a pad string for it.")
+            raise ValueError(
+                f"The name {name} is a reserved word and you have not specified a pad string for it."
+            )
 
     @staticmethod
     def _remove_invalid_characters(name: str, allowed_characters: List[str]) -> str:
         name = name.replace("[]", "Sequence")
-        valid_string = "".join([n for n in name if n.isalpha() or n.isdigit() or n in allowed_characters])
+        valid_string = "".join(
+            [n for n in name if n.isalpha() or n.isdigit() or n in allowed_characters]
+        )
         return valid_string
 
     @staticmethod
     def _to_valid_name(name: str, allowed_characters: List[str]) -> str:
-        correct_name = NameConverter._remove_invalid_characters(name, allowed_characters)
+        correct_name = NameConverter._remove_invalid_characters(
+            name, allowed_characters
+        )
 
         # here we have an empty string or a string that consists only of invalid characters
         if not correct_name or correct_name[0] in basic_latin_chars.keys():
@@ -403,10 +496,14 @@ class NameConverter:
                     ret_name += basic_latin_chars[c]
                 else:
                     ret_name += c
-            correct_name = NameConverter._remove_invalid_characters(ret_name, allowed_characters)
+            correct_name = NameConverter._remove_invalid_characters(
+                ret_name, allowed_characters
+            )
 
         if not correct_name:
             raise ValueError(
-                "Property name {} cannot be used as an identifier, as it contains only invalid characters.".format(name)
+                "Property name {} cannot be used as an identifier, as it contains only invalid characters.".format(
+                    name
+                )
             )
         return correct_name

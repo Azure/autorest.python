@@ -19,8 +19,9 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
-T = TypeVar('T')
+T = TypeVar("T")
 OrderedSet = Dict[T, None]
+
 
 class RequestBuilder(BaseBuilder):
     def __init__(
@@ -87,13 +88,18 @@ class RequestBuilder(BaseBuilder):
         if not self.abstract:
             if self.parameters.path:
                 relative_path = ".."
-                if not self.code_model.options["builders_visibility"] == "embedded" and self.operation_group_name:
+                if (
+                    not self.code_model.options["builders_visibility"] == "embedded"
+                    and self.operation_group_name
+                ):
                     relative_path = "..." if self.operation_group_name else ".."
                 file_import.add_submodule_import(
                     f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
                 )
             if self.parameters.headers or self.parameters.query:
-                file_import.add_submodule_import("azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE)
+                file_import.add_submodule_import(
+                    "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
+                )
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
@@ -101,40 +107,48 @@ class RequestBuilder(BaseBuilder):
         return file_import
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "RequestBuilder":
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "RequestBuilder":
 
         # when combine embeded builders into one operation file, we need to avoid duplicated build function name.
         # So add operation group name is effective method
         additional_mark = ""
-        if code_model.options["combine_operation_files"] and code_model.options["builders_visibility"] == "embedded":
+        if (
+            code_model.options["combine_operation_files"]
+            and code_model.options["builders_visibility"] == "embedded"
+        ):
             additional_mark = yaml_data["language"]["python"]["builderGroupName"]
         names = [
             "build",
             additional_mark,
             yaml_data["language"]["python"]["name"],
-            "request"
+            "request",
         ]
         name = "_".join([n for n in names if n])
 
         first_request = yaml_data["requests"][0]
-        schema_requests = [SchemaRequest.from_yaml(yaml, code_model=code_model) for yaml in yaml_data["requests"]]
-        parameters, multiple_content_type_parameters = (
-            create_parameters(yaml_data, code_model, RequestBuilderParameter.from_yaml)
+        schema_requests = [
+            SchemaRequest.from_yaml(yaml, code_model=code_model)
+            for yaml in yaml_data["requests"]
+        ]
+        parameters, multiple_content_type_parameters = create_parameters(
+            yaml_data, code_model, RequestBuilderParameter.from_yaml
         )
         parameter_list = RequestBuilderParameterList(
             code_model, parameters + multiple_content_type_parameters, schema_requests
         )
         abstract = False
         if (
-            (code_model.options["version_tolerant"] or code_model.options["low_level_client"]) and
-            any(p for p in parameter_list if p.is_multipart or p.is_data_input)
-        ):
+            code_model.options["version_tolerant"]
+            or code_model.options["low_level_client"]
+        ) and any(p for p in parameter_list if p.is_multipart or p.is_data_input):
             _LOGGER.warning(
-                'Not going to generate request_builder "%s" because it has multipart / urlencoded '\
-                "body parameters. Multipart / urlencoded body parameters are not supported for version "\
-                "tolerant and low level generations right now. Please write your own custom operation "\
+                'Not going to generate request_builder "%s" because it has multipart / urlencoded '
+                "body parameters. Multipart / urlencoded body parameters are not supported for version "
+                "tolerant and low level generations right now. Please write your own custom operation "
                 "in the _patch.py file following https://aka.ms/azsdk/python/dpcodegen/python/customize.",
-                name
+                name,
             )
             abstract = True
 
@@ -149,7 +163,8 @@ class RequestBuilder(BaseBuilder):
             parameters=parameter_list,
             description=yaml_data["language"]["python"]["description"],
             responses=[
-                SchemaResponse.from_yaml(yaml, code_model=code_model) for yaml in yaml_data.get("responses", [])
+                SchemaResponse.from_yaml(yaml, code_model=code_model)
+                for yaml in yaml_data.get("responses", [])
             ],
             summary=yaml_data["language"]["python"].get("summary"),
             abstract=abstract,

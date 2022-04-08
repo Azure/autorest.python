@@ -10,6 +10,7 @@ from .imports import FileImport, ImportType, TypingSection
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
+
 class DictionarySchema(BaseSchema):
     """Schema for dictionaries that will be serialized.
 
@@ -23,7 +24,7 @@ class DictionarySchema(BaseSchema):
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        element_type: "BaseSchema"
+        element_type: "BaseSchema",
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.element_type = element_type
@@ -58,15 +59,19 @@ class DictionarySchema(BaseSchema):
         return f"dict[str, {self.element_type.docstring_type}]"
 
     def xml_serialization_ctxt(self) -> Optional[str]:
-        raise NotImplementedError("Dictionary schema does not support XML serialization.")
+        raise NotImplementedError(
+            "Dictionary schema does not support XML serialization."
+        )
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         return {
-            f'"{"str"}"' : self.element_type.get_json_template_representation(**kwargs)
+            f'"{"str"}"': self.element_type.get_json_template_representation(**kwargs)
         }
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "DictionarySchema":
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "DictionarySchema":
         """Constructs a DictionarySchema from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema
@@ -79,9 +84,7 @@ class DictionarySchema(BaseSchema):
 
         from . import build_schema  # pylint: disable=import-outside-toplevel
 
-        element_type = build_schema(
-            yaml_data=element_schema, code_model=code_model
-        )
+        element_type = build_schema(yaml_data=element_schema, code_model=code_model)
 
         return cls(
             yaml_data=yaml_data,
@@ -91,7 +94,9 @@ class DictionarySchema(BaseSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_submodule_import("typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        file_import.add_submodule_import(
+            "typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
         file_import.merge(self.element_type.imports())
         return file_import
 

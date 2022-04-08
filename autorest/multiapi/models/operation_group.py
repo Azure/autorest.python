@@ -5,8 +5,9 @@
 # --------------------------------------------------------------------------
 from typing import Dict, List, TypeVar
 
-T = TypeVar('T')
+T = TypeVar("T")
 OrderedSet = Dict[T, None]
+
 
 class OperationGroup:
     def __init__(self, name: str):
