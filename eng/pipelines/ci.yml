@@ -78,6 +78,11 @@ jobs:
           mypy autorest
         displayName: 'Mypy'
       - script: |
+          black autorest
+        displayName: 'Black autorest repo'
+      - script: node ./eng/scripts/check-for-changed-files.js
+        displayName: Fail on black autorest diff
+      - script: |
           pytest test/unittests
         displayName: 'Unit tests'
       - script: |
