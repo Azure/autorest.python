@@ -24,7 +24,8 @@ from ._operations import ReservedWordsClientOperationsMixin as _ReservedWordsCli
 
 
 class Helpers:
-    def _operation_with_data_param_request(self, data: Dict[str, Any], **kwargs: Any) -> HttpRequest:
+    @staticmethod
+    def _operation_with_data_param_request(data: Dict[str, Any], **kwargs: Any) -> HttpRequest:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
@@ -41,7 +42,8 @@ class Helpers:
 
         return HttpRequest(method="PUT", url=_url, headers=_headers, data=data, params=_params)
 
-    def _operation_with_data_param_deserialize(self, pipeline_response: PipelineResponse, **kwargs) -> Any:
+    @staticmethod
+    def _operation_with_data_param_deserialize(pipeline_response: PipelineResponse, **kwargs) -> Any:
         cls = kwargs.pop("cls", None)
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -62,7 +64,8 @@ class Helpers:
 
         return cast(Any, deserialized)
 
-    def _operation_with_files_param_request(self, *, files: Dict[str, Any], **kwargs: Any) -> HttpRequest:
+    @staticmethod
+    def _operation_with_files_param_request(*, files: Dict[str, Any], **kwargs: Any) -> HttpRequest:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
@@ -79,7 +82,8 @@ class Helpers:
 
         return HttpRequest(method="PUT", url=_url, headers=_headers, files=files, params=_params)
 
-    def _operation_with_files_param_deserialize(self, pipeline_response: PipelineResponse, **kwargs) -> Any:
+    @staticmethod
+    def _operation_with_files_param_deserialize(pipeline_response: PipelineResponse, **kwargs) -> Any:
         cls = kwargs.pop("cls", None)
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -107,7 +111,7 @@ class ReservedWordsClientOperationsMixin(_ReservedWordsClientOperationsMixin, He
         return self._client._pipeline.run(request, stream=stream, **kwargs)  # pylint: disable=protected-access
 
     @distributed_trace
-    def operation_with_data_param(self, data: Dict[str, Any], **kwargs: Any) -> Any:
+    def operation_with_data_param(self, data: Dict[str, Any], **kwargs: Any) -> Any:  # pylint: disable=arguments-differ
         """Operation with urlencoded body param called 'data'.
 
         :param data: Form-encoded input for data. See the template in our example to find the input
@@ -130,7 +134,9 @@ class ReservedWordsClientOperationsMixin(_ReservedWordsClientOperationsMixin, He
         return self._operation_with_data_param_deserialize(self._send_request(request), **kwargs)
 
     @distributed_trace
-    def operation_with_files_param(self, files: Dict[str, Any], **kwargs: Any) -> Any:
+    def operation_with_files_param(  # pylint: disable=arguments-differ
+        self, files: Dict[str, Any], **kwargs: Any
+    ) -> Any:
         """Operation with multipart body param called 'files'.
 
         :param files: Multipart input for files. See the template in our example to find the input

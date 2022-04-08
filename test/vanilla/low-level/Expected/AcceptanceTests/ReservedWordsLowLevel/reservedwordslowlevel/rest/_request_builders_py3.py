@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import abc
-from typing import Any, IO, List, Optional, TypeVar
+from typing import Any, List, Optional, TypeVar
 
 from msrest import Serializer
 
@@ -105,7 +105,10 @@ def build_operation_with_data_param_request(*args, **kwargs) -> HttpRequest:
 
     """
 
-    ...
+    raise NotImplementedError(
+        "You need to write a custom operation for 'build_operation_with_data_param_request'. "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
+    )
 
 
 @abc.abstractmethod
@@ -118,7 +121,10 @@ def build_operation_with_files_param_request(*args, **kwargs) -> HttpRequest:
 
     """
 
-    ...
+    raise NotImplementedError(
+        "You need to write a custom operation for 'build_operation_with_files_param_request'. "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
+    )
 
 
 def build_operation_with_url_request(

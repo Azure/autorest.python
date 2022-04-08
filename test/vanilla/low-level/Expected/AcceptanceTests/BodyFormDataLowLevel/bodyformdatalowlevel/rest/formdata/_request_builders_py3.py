@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import abc
-from typing import Any, IO, List, Optional, TypeVar
+from typing import Any, Optional, TypeVar
 
 from msrest import Serializer
 
@@ -30,7 +30,10 @@ def build_upload_file_request(*args, **kwargs) -> HttpRequest:
 
     """
 
-    ...
+    raise NotImplementedError(
+        "You need to write a custom operation for 'build_upload_file_request'. "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
+    )
 
 
 def build_upload_file_via_body_request(*, content: Any, **kwargs: Any) -> HttpRequest:
@@ -74,4 +77,7 @@ def build_upload_files_request(*args, **kwargs) -> HttpRequest:
 
     """
 
-    ...
+    raise NotImplementedError(
+        "You need to write a custom operation for 'build_upload_files_request'. "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
+    )

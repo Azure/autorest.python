@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import abc
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, cast
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -22,11 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ...operations._operations import (
-    build_formdata_upload_file_request,
-    build_formdata_upload_file_via_body_request,
-    build_formdata_upload_files_request,
-)
+from ...operations._operations import build_formdata_upload_file_via_body_request
 
 T = TypeVar("T")
 JSONType = Any
@@ -57,7 +53,6 @@ class FormdataOperations(abc.ABC):
         https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
         """
-        ...
 
     @distributed_trace_async
     async def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> IO:
@@ -113,4 +108,3 @@ class FormdataOperations(abc.ABC):
         https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
         """
-        ...

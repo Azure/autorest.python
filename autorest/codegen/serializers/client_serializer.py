@@ -106,13 +106,13 @@ class ClientSerializer:
         if not self.code_model.options["client_side_validation"]:
             retval.append("self._serialize.client_side_validation = False")
         operation_groups = [og for og in self.code_model.operation_groups if not og.is_empty_operation_group]
-        if operation_groups:
-            retval.extend(
-                [
-                    f"self.{og.name} = {og.class_name}(self._client, self._config, self._serialize, self._deserialize)"
-                    for og in operation_groups
-                ]
-            )
+        for og in operation_groups:
+            disable_check = "  # pylint: disable=abstract-class-instantiated" if og.has_abstract_operations else ""
+            retval.extend([
+                f"self.{og.name} = {og.class_name}({disable_check}",
+                "    self._client, self._config, self._serialize, self._deserialize",
+                ")",
+            ])
         return retval
 
     def _send_request_signature(self, async_mode: bool) -> str:

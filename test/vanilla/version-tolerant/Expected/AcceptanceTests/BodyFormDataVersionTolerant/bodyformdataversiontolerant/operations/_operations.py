@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import abc
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, cast
 
 from msrest import Serializer
 
@@ -34,7 +34,10 @@ _SERIALIZER.client_side_validation = False
 
 @abc.abstractmethod
 def build_formdata_upload_file_request(*args, **kwargs) -> HttpRequest:
-    ...
+    raise NotImplementedError(
+        "You need to write a custom operation for 'build_formdata_upload_file_request'. "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
+    )
 
 
 def build_formdata_upload_file_via_body_request(*, content: Any, **kwargs: Any) -> HttpRequest:
@@ -56,7 +59,10 @@ def build_formdata_upload_file_via_body_request(*, content: Any, **kwargs: Any) 
 
 @abc.abstractmethod
 def build_formdata_upload_files_request(*args, **kwargs) -> HttpRequest:
-    ...
+    raise NotImplementedError(
+        "You need to write a custom operation for 'build_formdata_upload_files_request'. "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
+    )
 
 
 class FormdataOperations(abc.ABC):
@@ -83,7 +89,6 @@ class FormdataOperations(abc.ABC):
         https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
         """
-        ...
 
     @distributed_trace
     def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> IO:
@@ -139,4 +144,3 @@ class FormdataOperations(abc.ABC):
         https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
         """
-        ...

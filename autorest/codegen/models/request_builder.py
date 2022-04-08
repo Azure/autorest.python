@@ -72,23 +72,27 @@ class RequestBuilder(BaseBuilder):
     def imports(self) -> FileImport:
         file_import = FileImport()
         for parameter in self.parameters:
-            if parameter.need_import:
-                file_import.merge(parameter.imports())
+            if self.abstract and (parameter.is_multipart or parameter.is_data_input):
+                continue
+            file_import.merge(parameter.imports())
 
         file_import.add_submodule_import(
             "azure.core.rest",
             "HttpRequest",
             ImportType.AZURECORE,
         )
-        if self.parameters.path:
-            relative_path = ".."
-            if not self.code_model.options["builders_visibility"] == "embedded" and self.operation_group_name:
-                relative_path = "..." if self.operation_group_name else ".."
-            file_import.add_submodule_import(
-                f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
-            )
-        if self.parameters.headers or self.parameters.query:
-            file_import.add_submodule_import("azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE)
+        if self.abstract:
+            file_import.add_import("abc", ImportType.STDLIB)
+        else:
+            if self.parameters.path:
+                relative_path = ".."
+                if not self.code_model.options["builders_visibility"] == "embedded" and self.operation_group_name:
+                    relative_path = "..." if self.operation_group_name else ".."
+                file_import.add_submodule_import(
+                    f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
+                )
+            if self.parameters.headers or self.parameters.query:
+                file_import.add_submodule_import("azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE)
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
@@ -98,8 +102,6 @@ class RequestBuilder(BaseBuilder):
             self.code_model.options["add_python3_operation_files"]
         ):
             file_import.define_mypy_type("JSONType", "Any")
-        if self.abstract:
-            file_import.add_import("abc", ImportType.STDLIB)
         return file_import
 
     @classmethod

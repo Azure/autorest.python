@@ -11,20 +11,10 @@ from typing import Any, Callable, Dict, Optional, TypeVar
 
 from msrest import Serializer
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    map_error,
-)
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
-from azure.core.utils import case_insensitive_dict
-
-from .._vendor import _format_url_section
 
 T = TypeVar("T")
 JSONType = Any
@@ -36,12 +26,18 @@ _SERIALIZER.client_side_validation = False
 
 @abc.abstractmethod
 def build_formdataurlencoded_update_pet_with_form_request(*args, **kwargs) -> HttpRequest:
-    ...
+    raise NotImplementedError(
+        "You need to write a custom operation for 'build_formdataurlencoded_update_pet_with_form_request'. "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
+    )
 
 
 @abc.abstractmethod
 def build_formdataurlencoded_partial_constant_body_request(*args, **kwargs) -> HttpRequest:
-    ...
+    raise NotImplementedError(
+        "You need to write a custom operation for 'build_formdataurlencoded_partial_constant_body_request'. "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
+    )
 
 
 class FormdataurlencodedOperations(abc.ABC):
@@ -68,7 +64,6 @@ class FormdataurlencodedOperations(abc.ABC):
         https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
         """
-        ...
 
     @distributed_trace
     @abc.abstractmethod
@@ -77,4 +72,3 @@ class FormdataurlencodedOperations(abc.ABC):
         https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
         """
-        ...

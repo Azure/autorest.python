@@ -25,7 +25,8 @@ from .._vendor import _format_url_section
 
 
 class Helpers:
-    def _update_pet_with_form_request(self, pet_id: int, *, data: Dict[str, Any], **kwargs: Any) -> HttpRequest:
+    @staticmethod
+    def _update_pet_with_form_request(pet_id: int, *, data: Dict[str, Any], **kwargs: Any) -> HttpRequest:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded"))
         # Construct URL
@@ -42,7 +43,10 @@ class Helpers:
             method="POST", url=cast(str, _url), headers=_headers, data=data, params=kwargs.pop("params", {})
         )
 
-    def _update_pet_with_form_deserialize(self, pipeline_response: PipelineResponse, **kwargs: Any) -> None:
+    @staticmethod
+    def _update_pet_with_form_deserialize(  # pylint: disable=inconsistent-return-statements
+        pipeline_response: PipelineResponse, **kwargs: Any
+    ) -> None:
         cls = kwargs.pop("cls", None)
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -55,7 +59,8 @@ class Helpers:
         if cls:
             return cls(pipeline_response, None, {})
 
-    def _partial_constant_body_request(self, *, data: Dict[str, Any], **kwargs: Any) -> HttpRequest:
+    @staticmethod
+    def _partial_constant_body_request(*, data: Dict[str, Any], **kwargs: Any) -> HttpRequest:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
@@ -69,7 +74,10 @@ class Helpers:
 
         return HttpRequest(method="POST", url=_url, headers=_headers, data=data, params=_params)
 
-    def _partial_constant_body_deserialize(self, pipeline_response: PipelineResponse, **kwargs: Any) -> None:
+    @staticmethod
+    def _partial_constant_body_deserialize(  # pylint: disable=inconsistent-return-statements
+        pipeline_response: PipelineResponse, **kwargs: Any
+    ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -87,10 +95,10 @@ class Helpers:
 
 class FormdataurlencodedOperations(_FormdataurlencodedOperations, Helpers):
     def _send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> PipelineResponse:
-        return self._client._pipeline.run(request, stream=stream, **kwargs)
+        return self._client._pipeline.run(request, stream=stream, **kwargs)  # pylint: disable=protected-access
 
     @distributed_trace
-    def update_pet_with_form(  # pylint: disable=inconsistent-return-statements
+    def update_pet_with_form(  # pylint: disable=inconsistent-return-statements,arguments-differ
         self, pet_id: int, data: Dict[str, Any], **kwargs: Any
     ) -> None:
         """Updates a pet in the store with form data.
@@ -124,7 +132,7 @@ class FormdataurlencodedOperations(_FormdataurlencodedOperations, Helpers):
         return self._update_pet_with_form_deserialize(self._send_request(request, **kwargs))
 
     @distributed_trace
-    def partial_constant_body(  # pylint: disable=inconsistent-return-statements
+    def partial_constant_body(  # pylint: disable=inconsistent-return-statements,arguments-differ
         self, data: Dict[str, Any], **kwargs: Any
     ) -> None:
         """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:

@@ -5,9 +5,7 @@
 {{ operation_serializer.method_signature_and_response_type_annotation(operation, async_mode) }}
 {% if operation.want_description_docstring %}
     {{ op_tools.description(operation, operation_serializer) | indent }}{% endif %}
-    {% if operation.abstract %}
-    ...
-    {% else %}
+    {% if not operation.abstract %}
         {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
         {% endif %}

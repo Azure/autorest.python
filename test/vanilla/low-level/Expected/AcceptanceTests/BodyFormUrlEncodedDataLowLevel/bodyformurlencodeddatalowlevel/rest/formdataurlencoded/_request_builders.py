@@ -11,9 +11,6 @@ from typing import TYPE_CHECKING
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
-from azure.core.utils import case_insensitive_dict
-
-from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -41,7 +38,10 @@ def build_update_pet_with_form_request(
 
     """
 
-    ...
+    raise NotImplementedError(
+        "You need to write a custom operation for 'build_update_pet_with_form_request'. "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
+    )
 
 @abc.abstractmethod
 def build_partial_constant_body_request(
@@ -57,4 +57,7 @@ def build_partial_constant_body_request(
 
     """
 
-    ...
+    raise NotImplementedError(
+        "You need to write a custom operation for 'build_partial_constant_body_request'. "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
+    )

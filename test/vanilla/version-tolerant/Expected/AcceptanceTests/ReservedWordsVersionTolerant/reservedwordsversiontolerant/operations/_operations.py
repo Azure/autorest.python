@@ -90,12 +90,18 @@ def build_operation_with_json_param_request(
 
 @abc.abstractmethod
 def build_operation_with_data_param_request(*args, **kwargs) -> HttpRequest:
-    ...
+    raise NotImplementedError(
+        "You need to write a custom operation for 'build_operation_with_data_param_request'. "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
+    )
 
 
 @abc.abstractmethod
 def build_operation_with_files_param_request(*args, **kwargs) -> HttpRequest:
-    ...
+    raise NotImplementedError(
+        "You need to write a custom operation for 'build_operation_with_files_param_request'. "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
+    )
 
 
 def build_operation_with_url_request(
@@ -297,7 +303,6 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
         https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
         """
-        ...
 
     @distributed_trace
     @abc.abstractmethod
@@ -306,7 +311,6 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
         https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
         """
-        ...
 
     @distributed_trace
     def operation_with_url(

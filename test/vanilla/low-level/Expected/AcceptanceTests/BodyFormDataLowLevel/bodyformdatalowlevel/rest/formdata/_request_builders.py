@@ -15,7 +15,7 @@ from azure.core.utils import case_insensitive_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, IO, List, Optional, TypeVar
+    from typing import Any, Optional, TypeVar
 
     T = TypeVar("T")
     JSONType = Any
@@ -39,7 +39,10 @@ def build_upload_file_request(
 
     """
 
-    ...
+    raise NotImplementedError(
+        "You need to write a custom operation for 'build_upload_file_request'. "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
+    )
 
 def build_upload_file_via_body_request(
     **kwargs  # type: Any
@@ -94,4 +97,7 @@ def build_upload_files_request(
 
     """
 
-    ...
+    raise NotImplementedError(
+        "You need to write a custom operation for 'build_upload_files_request'. "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
+    )

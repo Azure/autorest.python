@@ -5,7 +5,10 @@
     {{ op_tools.description(request_builder, request_builder_serializer) | indent }}
 {% endif %}
 {% if request_builder.abstract %}
-    ...
+    raise NotImplementedError(
+        "You need to write a custom operation for '{{ request_builder.name }}'. "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
+    )
 {% else %}
     {% if request_builder_serializer.pop_kwargs_from_signature(request_builder) %}
     {{ op_tools.serialize(request_builder_serializer.pop_kwargs_from_signature(request_builder)) | indent }}

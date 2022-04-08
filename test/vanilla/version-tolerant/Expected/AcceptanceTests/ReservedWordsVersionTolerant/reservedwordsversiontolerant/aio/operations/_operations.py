@@ -25,8 +25,6 @@ from azure.core.utils import case_insensitive_dict
 from ...operations._operations import (
     build_import_builders_operation_one_request,
     build_operation_with_content_param_request,
-    build_operation_with_data_param_request,
-    build_operation_with_files_param_request,
     build_operation_with_json_param_request,
     build_operation_with_url_request,
 )
@@ -207,7 +205,6 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
         https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
         """
-        ...
 
     @distributed_trace_async
     @abc.abstractmethod
@@ -216,7 +213,6 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
         https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
         """
-        ...
 
     @distributed_trace_async
     async def operation_with_url(

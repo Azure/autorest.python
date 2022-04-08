@@ -2,9 +2,7 @@
 {# actual template starts here #}
 {{ operation_serializer.method_signature_and_response_type_annotation(operation, async_mode) }}
     {{ op_tools.description(operation, operation_serializer) | indent -}}
-    {% if operation.abstract %}
-    ...
-    {% else %}
+    {% if not operation.abstract %}
         {% if operation_serializer.pop_kwargs_from_signature(operation) %}
     {{ op_tools.serialize(operation_serializer.pop_kwargs_from_signature(operation)) | indent }}
         {%- endif %}

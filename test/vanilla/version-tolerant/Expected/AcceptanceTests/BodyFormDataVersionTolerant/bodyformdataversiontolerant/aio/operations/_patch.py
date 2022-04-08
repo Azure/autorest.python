@@ -28,7 +28,7 @@ class FormdataOperations(_FormdataOperations):
         return await self._client._pipeline.run(request, stream=stream, **kwargs)  # pylint: disable=protected-access
 
     @distributed_trace_async
-    async def upload_file(self, files: Dict[str, Any], **kwargs: Any) -> IO:
+    async def upload_file(self, files: Dict[str, Any], **kwargs: Any) -> IO:  # pylint: disable=arguments-differ
         """Upload file.
 
         :param files: Multipart input for files. See the template in our example to find the input
@@ -52,7 +52,7 @@ class FormdataOperations(_FormdataOperations):
         return _upload_file_deserialize(await self._send_request(request, stream=True, **kwargs), **kwargs)
 
     @distributed_trace_async
-    async def upload_files(self, files: Dict[str, Any], **kwargs: Any) -> IO:
+    async def upload_files(self, files: Dict[str, Any], **kwargs: Any) -> IO:  # pylint: disable=arguments-differ
         """Upload multiple files.
 
         :param files: Multipart input for files. See the template in our example to find the input

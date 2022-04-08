@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional
+from .imports import FileImport
 from .parameter import ParameterOnlyPathAndBodyPositional, ParameterLocation, ParameterStyle, get_target_property_name
 from .utils import get_schema
 
