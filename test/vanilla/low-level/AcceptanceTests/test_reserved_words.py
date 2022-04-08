@@ -57,10 +57,12 @@ def test_operation_with_json_param(send_request):
     request = build_operation_with_json_param_request(json={"hello": "world"})
     send_request(request)
 
+@pytest.mark.skip("We don't do urlencoded bodies anymore")
 def test_operation_with_data_param(send_request):
     request = build_operation_with_data_param_request(data={"data": "hello", "world": "world"})
     send_request(request)
 
+@pytest.mark.skip("We don't do multipart bodies anymore")
 def test_operation_with_files_param(send_request):
     request = build_operation_with_files_param_request(files={
         "file_name": "my.txt",

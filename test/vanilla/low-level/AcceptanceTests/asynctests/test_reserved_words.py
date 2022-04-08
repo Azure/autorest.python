@@ -61,11 +61,13 @@ async def test_operation_with_json_param(send_request):
     request = build_operation_with_json_param_request(json={"hello": "world"})
     await send_request(request)
 
+@pytest.mark.skip("We don't do urlencoded bodies anymore")
 @pytest.mark.asyncio
 async def test_operation_with_data_param(send_request):
     request = build_operation_with_data_param_request(data={"data": "hello", "world": "world"})
     await send_request(request)
 
+@pytest.mark.skip("We don't do multipart bodies anymore")
 @pytest.mark.asyncio
 async def test_operation_with_files_param(send_request):
     request = build_operation_with_files_param_request(files={

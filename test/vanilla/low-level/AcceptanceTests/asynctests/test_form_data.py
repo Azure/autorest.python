@@ -60,6 +60,7 @@ async def client(connection_data_block_size=None):
     ) as client:
         await yield_(client)
 
+@pytest.mark.skip("Not generating formdata bodies anymore.")
 @pytest.mark.asyncio
 async def test_file_upload_stream(client):
 
@@ -78,6 +79,7 @@ async def test_file_upload_stream(client):
                 result.write(data)
     assert result.getvalue().decode() ==  test_string
 
+@pytest.mark.skip("Not generating formdata bodies anymore.")
 @pytest.mark.asyncio
 async def test_file_upload_file_stream(client, dummy_file):
 

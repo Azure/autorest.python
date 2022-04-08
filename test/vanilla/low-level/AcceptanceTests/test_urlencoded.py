@@ -39,6 +39,7 @@ def send_request(client, base_send_request):
         return base_send_request(client, request)
     return _send_request
 
+@pytest.mark.skip("We don't do urlencoded bodies anymore.")
 def test_update_pet_with_form(send_request):
     request = formdataurlencoded.build_update_pet_with_form_request(
         pet_id=1,
@@ -51,6 +52,7 @@ def test_update_pet_with_form(send_request):
     )
     send_request(request)
 
+@pytest.mark.skip("We don't do urlencoded bodies anymore.")
 def test_partial_constant_body(send_request):
     request = formdataurlencoded.build_partial_constant_body_request(
         data={
