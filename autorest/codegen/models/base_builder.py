@@ -76,8 +76,7 @@ class BaseBuilder(BaseModel):
         responses: Optional[List[SchemaResponse]] = None,
         summary: Optional[str] = None,
         *,
-        abstract: bool = False,
-        want_tracing: bool = True,
+        abstract: bool = False, want_tracing: bool = True,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.name = name
