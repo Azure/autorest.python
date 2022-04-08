@@ -85,7 +85,6 @@ def build_operation_with_json_param_request(*, json: Any = None, content: Any = 
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-@abc.abstractmethod
 def build_operation_with_data_param_request(*args, **kwargs) -> HttpRequest:
     raise NotImplementedError(
         "You need to write a custom operation for 'build_operation_with_data_param_request'. "
@@ -93,7 +92,6 @@ def build_operation_with_data_param_request(*args, **kwargs) -> HttpRequest:
     )
 
 
-@abc.abstractmethod
 def build_operation_with_files_param_request(*args, **kwargs) -> HttpRequest:
     raise NotImplementedError(
         "You need to write a custom operation for 'build_operation_with_files_param_request'. "

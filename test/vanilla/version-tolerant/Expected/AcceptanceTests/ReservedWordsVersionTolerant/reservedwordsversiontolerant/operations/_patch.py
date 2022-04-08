@@ -111,7 +111,7 @@ class ReservedWordsClientOperationsMixin(_ReservedWordsClientOperationsMixin, He
         return self._client._pipeline.run(request, stream=stream, **kwargs)  # pylint: disable=protected-access
 
     @distributed_trace
-    def operation_with_data_param(self, data: Dict[str, Any], **kwargs: Any) -> Any:  # pylint: disable=arguments-differ
+    def operation_with_data_param(self, data: Dict[str, Any], **kwargs: Any) -> Any:  # type: ignore # pylint: disable=arguments-differ
         """Operation with urlencoded body param called 'data'.
 
         :param data: Form-encoded input for data. See the template in our example to find the input
@@ -134,7 +134,7 @@ class ReservedWordsClientOperationsMixin(_ReservedWordsClientOperationsMixin, He
         return self._operation_with_data_param_deserialize(self._send_request(request), **kwargs)
 
     @distributed_trace
-    def operation_with_files_param(  # pylint: disable=arguments-differ
+    def operation_with_files_param(  # type: ignore # pylint: disable=arguments-differ
         self, files: Dict[str, Any], **kwargs: Any
     ) -> Any:
         """Operation with multipart body param called 'files'.

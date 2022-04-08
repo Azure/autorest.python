@@ -38,7 +38,7 @@ class AutoRestSwaggerBATFormDataService:
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.formdata = FormdataOperations(  # pylint: disable=abstract-class-instantiated
+        self.formdata = FormdataOperations(  # type: ignore # pylint: disable=abstract-class-instantiated
             self._client, self._config, self._serialize, self._deserialize
         )
 

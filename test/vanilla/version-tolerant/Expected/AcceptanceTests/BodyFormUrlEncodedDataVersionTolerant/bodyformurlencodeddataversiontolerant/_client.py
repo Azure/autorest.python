@@ -40,7 +40,7 @@ class BodyFormsDataURLEncoded:
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.formdataurlencoded = FormdataurlencodedOperations(  # pylint: disable=abstract-class-instantiated
+        self.formdataurlencoded = FormdataurlencodedOperations(  # type: ignore # pylint: disable=abstract-class-instantiated
             self._client, self._config, self._serialize, self._deserialize
         )
 

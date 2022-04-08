@@ -23,7 +23,6 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-@abc.abstractmethod
 def build_formdataurlencoded_update_pet_with_form_request(*args, **kwargs) -> HttpRequest:
     raise NotImplementedError(
         "You need to write a custom operation for 'build_formdataurlencoded_update_pet_with_form_request'. "
@@ -31,7 +30,6 @@ def build_formdataurlencoded_update_pet_with_form_request(*args, **kwargs) -> Ht
     )
 
 
-@abc.abstractmethod
 def build_formdataurlencoded_partial_constant_body_request(*args, **kwargs) -> HttpRequest:
     raise NotImplementedError(
         "You need to write a custom operation for 'build_formdataurlencoded_partial_constant_body_request'. "

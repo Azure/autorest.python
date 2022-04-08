@@ -98,7 +98,7 @@ class FormdataurlencodedOperations(_FormdataurlencodedOperations, Helpers):
         return self._client._pipeline.run(request, stream=stream, **kwargs)  # pylint: disable=protected-access
 
     @distributed_trace
-    def update_pet_with_form(  # pylint: disable=inconsistent-return-statements,arguments-differ
+    def update_pet_with_form(  # type: ignore # pylint: disable=inconsistent-return-statements,arguments-differ
         self, pet_id: int, data: Dict[str, Any], **kwargs: Any
     ) -> None:
         """Updates a pet in the store with form data.
@@ -132,7 +132,7 @@ class FormdataurlencodedOperations(_FormdataurlencodedOperations, Helpers):
         return self._update_pet_with_form_deserialize(self._send_request(request, **kwargs))
 
     @distributed_trace
-    def partial_constant_body(  # pylint: disable=inconsistent-return-statements,arguments-differ
+    def partial_constant_body(  # type: ignore # pylint: disable=inconsistent-return-statements,arguments-differ
         self, data: Dict[str, Any], **kwargs: Any
     ) -> None:
         """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:

@@ -81,9 +81,7 @@ class RequestBuilder(BaseBuilder):
             "HttpRequest",
             ImportType.AZURECORE,
         )
-        if self.abstract:
-            file_import.add_import("abc", ImportType.STDLIB)
-        else:
+        if not self.abstract:
             if self.parameters.path:
                 relative_path = ".."
                 if not self.code_model.options["builders_visibility"] == "embedded" and self.operation_group_name:

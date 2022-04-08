@@ -238,8 +238,6 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
         retval: List[str] = []
         if self.code_model.options["tracing"] and builder.want_tracing:
             retval.append(f"@distributed_trace{'_async' if async_mode else ''}")
-        if builder.abstract:
-            retval.append("@abc.abstractmethod")
         return retval
 
     def _method_signature(self, builder: Operation, response_type_annotation: str) -> str:
@@ -605,6 +603,13 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
     @property
     def serializer_name(self) -> str:
         return "self._serialize"
+
+    def decorators(self, builder, async_mode: bool) -> List[str]:
+        """Decorators for the method"""
+        super_decorators = super().decorators(builder, async_mode)
+        if builder.abstract:
+            super_decorators.append("@abc.abstractmethod")
+        return super_decorators
 
     def _response_docstring_type_wrapper(self, builder) -> List[str]:  # pylint: disable=unused-argument, no-self-use
         return []

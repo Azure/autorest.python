@@ -21,7 +21,7 @@ class ReservedWordsClientOperationsMixin(_ReservedWordsClientOperationsMixin, He
         return await self._client._pipeline.run(request, stream=stream, **kwargs)  # pylint: disable=protected-access
 
     @distributed_trace_async
-    async def operation_with_data_param(  # pylint: disable=arguments-differ
+    async def operation_with_data_param(  # type: ignore # pylint: disable=arguments-differ
         self, data: Dict[str, Any], **kwargs: Any
     ) -> Any:
         """Operation with urlencoded body param called 'data'.
@@ -46,7 +46,7 @@ class ReservedWordsClientOperationsMixin(_ReservedWordsClientOperationsMixin, He
         return self._operation_with_data_param_deserialize(await self._send_request(request), **kwargs)
 
     @distributed_trace_async
-    async def operation_with_files_param(  # pylint: disable=arguments-differ
+    async def operation_with_files_param(  # type: ignore # pylint: disable=arguments-differ
         self, files: Dict[str, Any], **kwargs: Any
     ) -> Any:
         """Operation with multipart body param called 'files'.

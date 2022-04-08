@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Set, Optional, TYPE_CHECKING
+from typing import Dict, List, Any, Set, TYPE_CHECKING
 
 from .base_model import BaseModel
 from .operation import Operation

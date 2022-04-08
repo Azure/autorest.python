@@ -108,7 +108,7 @@ class FormdataOperations(_FormdataOperations):
         )
 
     @distributed_trace
-    def upload_file(self, files: Dict[str, Any], **kwargs: Any) -> IO:  # pylint: disable=arguments-differ
+    def upload_file(self, files: Dict[str, Any], **kwargs: Any) -> IO:  # type: ignore # pylint: disable=arguments-differ
         """Upload file.
 
         :param files: Multipart input for files. See the template in our example to find the input
@@ -132,7 +132,7 @@ class FormdataOperations(_FormdataOperations):
         return _upload_file_deserialize(self._send_request(request, stream=True, **kwargs), **kwargs)
 
     @distributed_trace
-    def upload_files(self, files: Dict[str, Any], **kwargs: Any) -> IO:  # pylint: disable=arguments-differ
+    def upload_files(self, files: Dict[str, Any], **kwargs: Any) -> IO:  # type: ignore # pylint: disable=arguments-differ
         """Upload multiple files.
 
         :param files: Multipart input for files. See the template in our example to find the input
