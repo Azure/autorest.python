@@ -34,6 +34,7 @@ class PagingOperation(Operation):
         want_description_docstring: bool = True,
         want_tracing: bool = True,
         *,
+        abstract: bool = False,
         override_success_response_to_200: bool = False
     ) -> None:
         super(PagingOperation, self).__init__(
@@ -49,7 +50,8 @@ class PagingOperation(Operation):
             responses,
             exceptions,
             want_description_docstring,
-            want_tracing
+            want_tracing=want_tracing,
+            abstract=abstract,
         )
         self._item_name: str = yaml_data["extensions"]["x-ms-pageable"].get("itemName")
         self._next_link_name: str = yaml_data["extensions"]["x-ms-pageable"].get("nextLinkName")

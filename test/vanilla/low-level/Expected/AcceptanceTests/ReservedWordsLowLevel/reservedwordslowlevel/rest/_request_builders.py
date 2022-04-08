@@ -16,7 +16,7 @@ from .._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Dict, List, Optional
+    from typing import Any, List, Optional
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -111,107 +111,40 @@ def build_operation_with_json_param_request(
 
 
 def build_operation_with_data_param_request(
-    **kwargs  # type: Any
+    *args,
+    **kwargs
 ):
     # type: (...) -> HttpRequest
-    """Operation with urlencoded body param called 'data'.
+    """You need to write a custom operation for "build_operation_with_data_param_request". Please
+    refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword data: Pass in dictionary that contains form data to include in the body of the
-     request. Pass in 'hello'. Default value is None.
-    :paramtype data: dict[str, any]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Pass in 'hello'. Default value is None.
-    :paramtype content: any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # form-encoded input template you can fill out and use as your `data` input.
-            data = {
-                "data": "str",  # Pass in 'hello'.
-                "world": "str"  # Pass in 'world'.
-            }
     """
 
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
-
-    # Construct URL
-    _url = "/reservedWords/operation/data"
-
-    # Construct headers
-    if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
+    raise NotImplementedError(
+        "You need to write a custom operation for 'build_operation_with_data_param_request'. "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
     )
-
 
 def build_operation_with_files_param_request(
-    **kwargs  # type: Any
+    *args,
+    **kwargs
 ):
     # type: (...) -> HttpRequest
-    """Operation with multipart body param called 'files'.
+    """You need to write a custom operation for "build_operation_with_files_param_request". Please
+    refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword files: Multipart input for files. See the template in our example to find the input
-     shape. Files to upload. Pass in list of input streams. Default value is None.
-    :paramtype files: dict[str, any]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Files to upload. Pass in list of input streams. Default
-     value is None.
-    :paramtype content: any
-    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
-     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
-     incorporate this response into your code flow.
-    :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # multipart input template you can fill out and use as your `files` input.
-            files = {
-                "file_name": "str",  # File name to upload. Pass in 'my.txt'.
-                "files": b'bytes'  # Files to upload. Pass in list of input streams.
-            }
     """
 
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    accept = _headers.pop('Accept', "application/json")
-
-    # Construct URL
-    _url = "/reservedWords/operation/files"
-
-    # Construct headers
-    if content_type is not None:
-        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
-
-    return HttpRequest(
-        method="PUT",
-        url=_url,
-        headers=_headers,
-        **kwargs
+    raise NotImplementedError(
+        "You need to write a custom operation for 'build_operation_with_files_param_request'. "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
     )
-
 
 def build_operation_with_url_request(
     url,  # type: str

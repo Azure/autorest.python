@@ -131,8 +131,3 @@ class BaseSchema(BaseModel, ABC):
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         """Template of what this schema would look like as JSON input"""
         ...
-
-    @abstractmethod
-    def get_files_and_data_template_representation(self, **kwargs: Any) -> Any:
-        """Template of what this schema would look like as files input"""
-        ...

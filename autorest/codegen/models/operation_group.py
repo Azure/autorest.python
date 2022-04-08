@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Set
+from typing import Dict, List, Any, Set, TYPE_CHECKING
 
 from .base_model import BaseModel
 from .operation import Operation
@@ -12,6 +12,9 @@ from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .lro_paging_operation import LROPagingOperation
 from .imports import FileImport, ImportType, TypingSection
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -36,7 +39,7 @@ class OperationGroup(BaseModel):
     """
     def __init__(
         self,
-        code_model,
+        code_model: "CodeModel",
         yaml_data: Dict[str, Any],
         name: str,
         class_name: str,
@@ -50,6 +53,20 @@ class OperationGroup(BaseModel):
         self.operations = operations
         self.api_versions = api_versions
 
+    @property
+    def has_abstract_operations(self) -> bool:
+        return any(o for o in self.operations if o.abstract)
+
+    def base_class(self, async_mode: bool) -> str:
+        base_classes: List[str] = []
+        if self.is_empty_operation_group and self.code_model.need_mixin_abc:
+            base_classes.append("MixinABC")
+        if not (async_mode or self.code_model.options["python3_only"]):
+            base_classes.append("object")
+        if self.has_abstract_operations:
+            base_classes.append("abc.ABC")
+        return ", ".join(base_classes)
+
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
         for operation in self.operations:
@@ -59,9 +76,7 @@ class OperationGroup(BaseModel):
 
     def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         file_import = FileImport()
-        file_import.add_submodule_import("azure.core.exceptions", "ClientAuthenticationError", ImportType.AZURECORE)
-        file_import.add_submodule_import("azure.core.exceptions", "ResourceNotFoundError", ImportType.AZURECORE)
-        file_import.add_submodule_import("azure.core.exceptions", "ResourceExistsError", ImportType.AZURECORE)
+
         for operation in self.operations:
             file_import.merge(operation.imports(async_mode, is_python3_file))
         local_path = "..." if async_mode else ".."
@@ -77,6 +92,8 @@ class OperationGroup(BaseModel):
             else:
                 operation_group_builders = self.code_model.rest.request_builders
             for request_builder in operation_group_builders:
+                if request_builder.abstract:
+                    continue
                 python3_only = self.code_model.options["python3_only"]
                 typed_sync_operation_file = self.code_model.options["add_python3_operation_files"]
                 suffix = "_py3" if typed_sync_operation_file and not python3_only else ""

@@ -111,8 +111,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         self.content_types = content_types or []
         self.body_kwargs: List[Parameter] = []
         self.is_body_kwarg = False
-        self.need_import = True
         self.is_kwarg = (self.rest_api_name == "Content-Type" or (self.constant and self.inputtable_by_user))
+        self.need_import = True
 
     def __hash__(self) -> int:
         return hash(self.serialized_name)
@@ -394,13 +394,15 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         )
 
     def imports(self) -> FileImport:
-        file_import = self.schema.imports()
-        if not self.required:
-            file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
-        if self.has_multiple_content_types or self._is_io_json:
-            file_import.add_submodule_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        if self.need_import:
+            file_import = self.schema.imports()
+            if not self.required:
+                file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
+            if self.has_multiple_content_types or self._is_io_json:
+                file_import.add_submodule_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
 
-        return file_import
+            return file_import
+        return FileImport()
 
 class ParameterOnlyPathAndBodyPositional(Parameter):
 

@@ -75,56 +75,12 @@ class RequestBuilderParameterList(ParameterList):
             p for p in self.parameters
             if p.location == ParameterLocation.Body
             and p.constant
-            and not p.is_data_input
-            and not p.is_multipart
         ]
         for constant_body in constant_bodies:
             if self._is_json(constant_body):
                 constant_body.serialized_name = "json"
             else:
                 constant_body.serialized_name = "content"
-
-    def _add_files_kwarg(
-        self, content_types_to_assign, body_method_param
-    ) -> Tuple[List[str], RequestBuilderParameter]:
-        file_kwarg = copy(body_method_param)
-        self._change_body_param_name(file_kwarg, "files")
-        file_kwarg.schema = DictionarySchema(
-            namespace="",
-            yaml_data={},
-            element_type=AnySchema(namespace="", yaml_data={}),
-        )
-        file_kwarg.description = (
-            "Multipart input for files. See the template in our example to find the input shape. " +
-            file_kwarg.description
-        )
-        file_kwarg.content_types = [
-            c for c in content_types_to_assign
-            if c == "multipart/form-data"
-        ]
-        content_types_to_assign = _update_content_types(content_types_to_assign, file_kwarg)
-        return content_types_to_assign, file_kwarg
-
-    def _add_data_kwarg(
-        self, content_types_to_assign, body_method_param
-    ) -> Tuple[List[str], RequestBuilderParameter]:
-        data_kwarg = copy(body_method_param)
-        self._change_body_param_name(data_kwarg, "data")
-        data_kwarg.schema = DictionarySchema(
-            namespace="",
-            yaml_data={},
-            element_type=AnySchema(namespace="", yaml_data={}),
-        )
-        data_kwarg.description = (
-            "Pass in dictionary that contains form data to include in the body of the request. " +
-            data_kwarg.description
-        )
-        data_kwarg.content_types = [
-            c for c in content_types_to_assign
-            if c == "application/x-www-form-urlencoded"
-        ]
-        content_types_to_assign = _update_content_types(content_types_to_assign, data_kwarg)
-        return content_types_to_assign, data_kwarg
 
     def _add_json_kwarg(
         self, content_types_to_assign, body_method_param
@@ -156,8 +112,6 @@ class RequestBuilderParameterList(ParameterList):
             "a byte iterator, or stream input). " +
             content_kwarg.description
         )
-        content_kwarg.is_data_input = False
-        content_kwarg.is_multipart = False
         content_kwarg.content_types = content_types_to_assign
         return content_kwarg
 
@@ -166,24 +120,14 @@ class RequestBuilderParameterList(ParameterList):
         body_kwargs_added: List[RequestBuilderParameter] = []
         body_method_params = [
             p for p in self.parameters
-            if p.location == ParameterLocation.Body and not p.constant
+            if p.location == ParameterLocation.Body and not
+            (p.constant or p.is_multipart or p.is_data_input)
         ]
         if not body_method_params:
             return
         content_types_to_assign = copy(self.content_types)
         for body_method_param in body_method_params:
-            if body_method_param.is_multipart and _kwarg_not_added(body_kwargs_added, "files"):
-                content_types_to_assign, file_kwarg = self._add_files_kwarg(
-                    content_types_to_assign, body_method_param
-                )
-                body_kwargs_added.append(file_kwarg)
-
-            elif body_method_param.is_data_input and _kwarg_not_added(body_kwargs_added, "data"):
-                content_types_to_assign, data_kwarg = self._add_data_kwarg(
-                    content_types_to_assign, body_method_param
-                )
-                body_kwargs_added.append(data_kwarg)
-            elif self._is_json(body_method_param) and _kwarg_not_added(body_kwargs_added, "json"):
+            if self._is_json(body_method_param) and _kwarg_not_added(body_kwargs_added, "json"):
                 content_types_to_assign, json_kwarg = self._add_json_kwarg(
                     content_types_to_assign, body_method_param
                 )
@@ -241,14 +185,8 @@ class RequestBuilderParameterList(ParameterList):
         seen_content_type = False
 
         for parameter in parameters:
-
-            if (
-                parameter.location == ParameterLocation.Body and
-                (parameter.is_data_input or parameter.is_multipart) and
-                not parameter.is_body_kwarg
-            ):
-                # if i am a part of files or data, and i'm not the files or
-                # data kwarg, ignore me
+            if (parameter.location == ParameterLocation.Body and (parameter.is_multipart or parameter.is_data_input)):
+                # don't want any multipart for formdata params in our signature
                 continue
             if (
                 parameter.location == ParameterLocation.Body and

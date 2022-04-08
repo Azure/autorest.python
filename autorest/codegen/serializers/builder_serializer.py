@@ -57,41 +57,6 @@ def _json_dumps_template(template_representation: Any) -> Any:
     # only for template use, since it wraps everything in strings
     return _improve_json_string(json.dumps(template_representation, sort_keys=True, indent=4))
 
-def _serialize_files_or_data_dict(multipart_parameters: List[Parameter]) -> str:
-    # only for template use
-    template = {
-        f'"{param.serialized_name}"': param.schema.get_files_and_data_template_representation(
-            optional=not param.required,
-            description=param.description,
-        )
-        for param in multipart_parameters
-    }
-    return _json_dumps_template(template)
-
-def _get_files_example_template(builder) -> List[str]:
-    multipart_params = builder.parameters.multipart
-    if multipart_params:
-        retval = [
-            "# multipart input template you can fill out and use as your `files` input.",
-        ]
-        retval.extend(f"files = {_serialize_files_or_data_dict(multipart_params)}".splitlines())
-        return retval
-    raise ValueError(
-        "You're trying to get a template for your multipart params, but you don't have multipart params"
-    )
-
-def _get_data_example_template(builder) -> List[str]:
-    data_inputs = builder.parameters.data_inputs
-    if data_inputs:
-        retval = [
-            "# form-encoded input template you can fill out and use as your `data` input."
-        ]
-        retval.extend(f"data = {_serialize_files_or_data_dict(data_inputs)}".splitlines())
-        return retval
-    raise ValueError(
-        "You're trying to get a template for your form-encoded params, but you don't have form-encoded params"
-    )
-
 def _content_type_error_check(builder) -> List[str]:
     retval = ["else:"]
     retval.append("    raise ValueError(")
@@ -207,7 +172,14 @@ class _BuilderSerializerProtocol(ABC):
         ...
 
     @abstractmethod
-    def method_signature_and_response_type_annotation(self, builder) -> str:
+    def decorators(self, builder, async_mode: bool) -> List[str]:
+        """Decorators for the method"""
+        ...
+
+    @abstractmethod
+    def method_signature_and_response_type_annotation(
+        self, builder, async_mode: bool, *, want_decorators: Optional[bool] = True
+    ) -> str:
         """Combines the method signature + the response type annotation together"""
         ...
 
@@ -238,13 +210,6 @@ class _BuilderSerializerProtocol(ABC):
         ...
 
     @abstractmethod
-    def _has_files_example_template(self, builder) -> bool:
-        ...
-    @abstractmethod
-    def _has_data_example_template(self, builder) -> bool:
-        ...
-
-    @abstractmethod
     def _json_example_param_name(self, builder) -> str:
         ...
 
@@ -268,25 +233,41 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
     def _cls_docstring_rtype(self) -> str:
         return "" if self.code_model.options["version_tolerant"] else " or the result of cls(response)"
 
+    def decorators(self, builder, async_mode: bool) -> List[str]:
+        """Decorators for the method"""
+        retval: List[str] = []
+        if self.code_model.options["tracing"] and builder.want_tracing:
+            retval.append(f"@distributed_trace{'_async' if async_mode else ''}")
+        return retval
+
     def _method_signature(self, builder: Operation, response_type_annotation: str) -> str:
         return utils.serialize_method(
             function_def=self._function_definition,
             method_name=builder.name,
             is_in_class=self._is_in_class,
-            method_param_signatures=builder.parameters.method_signature(self._want_inline_type_hints),
+            method_param_signatures=builder.method_signature(self._want_inline_type_hints),
             ignore_inconsistent_return_statements=(response_type_annotation == "None")
         )
 
     def _response_type_annotation_wrapper(self, builder) -> List[str]:
         return []
 
-    def method_signature_and_response_type_annotation(self, builder) -> str:
+    def method_signature_and_response_type_annotation(
+        self, builder, async_mode: bool, *, want_decorators: Optional[bool] = True
+    ) -> str:
         response_type_annotation = self._response_type_annotation(builder)
         # want pre-wrapped response type. As long as it's None, pylint will get mad about inconsistent return types
         method_signature = self._method_signature(builder, response_type_annotation)
         for wrapper in self._response_type_annotation_wrapper(builder)[::-1]:
             response_type_annotation = f"{wrapper}[{response_type_annotation}]"
-        return self._method_signature_and_response_type_annotation_template(method_signature, response_type_annotation)
+        decorators = self.decorators(builder, async_mode)
+        decorators_str = ""
+        if decorators and want_decorators:
+            decorators_str = "\n".join(decorators) + "\n"
+        return (
+            decorators_str +
+            self._method_signature_and_response_type_annotation_template(method_signature, response_type_annotation)
+        )
 
     def description_and_summary(self, builder) -> List[str]:
         description_list: List[str] = []
@@ -319,6 +300,8 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
         return description_list
 
     def param_description_and_response_docstring(self, builder) -> List[str]:
+        if builder.abstract:
+            return []
         return self.param_description(builder) + self.response_docstring(builder)
 
     def _get_json_response_template_to_status_codes(self, builder) -> Dict[str, List[str]]:
@@ -347,12 +330,6 @@ class _BuilderBaseSerializer(_BuilderSerializerProtocol):  # pylint: disable=abs
         if self._has_json_example_template(builder):
             template.append("")
             template += self._get_json_example_template(builder)
-        if self._has_files_example_template(builder):
-            template.append("")
-            template += _get_files_example_template(builder)
-        if self._has_data_example_template(builder):
-            template.append("")
-            template += _get_data_example_template(builder)
         if self._get_json_response_template_to_status_codes(builder):
             template.append("")
             template += self._get_json_response_template(builder)
@@ -470,6 +447,8 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
         ]
 
     def want_example_template(self, builder) -> bool:
+        if builder.abstract:
+            return False
         if self.code_model.options["builders_visibility"] != "public":
             return False  # if we're not exposing rest layer, don't need to generate
         if builder.parameters.has_body:
@@ -502,12 +481,6 @@ class _RequestBuilderBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=
 
     def _has_json_example_template(self, builder) -> bool:
         return "json" in builder.parameters.body_kwarg_names
-
-    def _has_files_example_template(self, builder) -> bool:
-        return "files" in builder.parameters.body_kwarg_names
-
-    def _has_data_example_template(self, builder) -> bool:
-        return "data" in builder.parameters.body_kwarg_names
 
     @abstractmethod
     def _body_params_to_pass_to_request_creation(self, builder) -> List[str]:
@@ -579,8 +552,9 @@ class RequestBuilderGenericSerializer(_RequestBuilderBaseSerializer):
     def _get_kwargs_to_pop(self, builder):
         return builder.parameters.kwargs_to_pop(is_python3_file=False)
 
+
     def _body_params_to_pass_to_request_creation(self, builder) -> List[str]:
-        if builder.parameters.has_body and not builder.parameters.body_kwarg_names:
+        if any(b for b in builder.parameters.body if b.constant and not (b.is_data_input or b.is_multipart)):
             # this means we have a constant body
             # only doing json body in this case
             return ["json"]
@@ -605,9 +579,7 @@ class RequestBuilderPython3Serializer(_RequestBuilderBaseSerializer):
         body_kwargs = list(builder.parameters.body_kwarg_names.keys())
         if body_kwargs:
             return body_kwargs
-        if builder.parameters.has_body:
-            # this means we have a constant body
-            # only doing json body in this case
+        if any(b for b in builder.parameters.body if b.constant and not (b.is_data_input or b.is_multipart)):
             return ["json"]
         return body_kwargs
 
@@ -631,6 +603,13 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
     @property
     def serializer_name(self) -> str:
         return "self._serialize"
+
+    def decorators(self, builder, async_mode: bool) -> List[str]:
+        """Decorators for the method"""
+        super_decorators = super().decorators(builder, async_mode)
+        if builder.abstract:
+            super_decorators.append("@abc.abstractmethod")
+        return super_decorators
 
     def _response_docstring_type_wrapper(self, builder) -> List[str]:  # pylint: disable=unused-argument, no-self-use
         return []
@@ -710,11 +689,11 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         return [response_str, rtype_str, ":raises: ~azure.core.exceptions.HttpResponseError"]
 
     def want_example_template(self, builder) -> bool:
+        if builder.abstract:
+            return False
         if self.code_model.options['models_mode']:
             return False
         if builder.parameters.has_body:
-            if builder.parameters.multipart or builder.parameters.data_inputs:
-                return True
             body_params = builder.parameters.body
             return any([b for b in body_params if isinstance(b.schema, (DictionarySchema, ListSchema, ObjectSchema))])
         return bool(self._get_json_response_template_to_status_codes(builder))
@@ -723,16 +702,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         return builder.parameters.body[0].serialized_name
 
     def _has_json_example_template(self, builder) -> bool:
-        return (
-            builder.parameters.has_body and
-            not (builder.parameters.multipart or builder.parameters.data_inputs)
-        )
-
-    def _has_files_example_template(self, builder) -> bool:
-        return bool(builder.parameters.multipart)
-
-    def _has_data_example_template(self, builder) -> bool:
-        return bool(builder.parameters.data_inputs)
+        return builder.parameters.has_body
 
     def _serialize_body_call(
         self, builder, body_param: Parameter, send_xml: bool, ser_ctxt: Optional[str], ser_ctxt_name: str
@@ -822,7 +792,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
 
         return retval
 
-    def _call_request_builder_helper(
+    def _call_request_builder_helper(  # pylint: disable=too-many-statements
         self,
         builder,
         request_builder: RequestBuilder,
@@ -880,6 +850,10 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
             high_level_name = cast(RequestBuilderParameter, parameter).name_in_high_level_operation
             retval.append(f"    {parameter.serialized_name}={high_level_name},")
         if not self.code_model.options["version_tolerant"]:
+            if builder.parameters.multipart:
+                retval.append(f"    files=_files,")
+            if builder.parameters.data_inputs:
+                retval.append(f"    data=_data,")
             template_url = template_url or f"self.{builder.name}.metadata['url']"
             retval.append(f"    template_url={template_url},")
         retval.append('    headers=_headers,')
@@ -887,7 +861,7 @@ class _OperationBaseSerializer(_BuilderBaseSerializer):  # pylint: disable=abstr
         retval.append(f")")
         if not self.code_model.options["version_tolerant"]:
             pass_files = ""
-            if "files" in builder.body_kwargs_to_pass_to_request_builder:
+            if builder.parameters.multipart:
                 pass_files = ", _files"
             retval.append(f"request = _convert_request(request{pass_files})")
         if builder.parameters.path:
@@ -1120,6 +1094,15 @@ class _PagingOperationBaseSerializer(_OperationBaseSerializer):  # pylint: disab
     def cls_type_annotation(self, builder) -> str:
         interior = super()._response_type_annotation(builder, modify_if_head_as_boolean=False)
         return f"# type: ClsType[{interior}]"
+
+    def decorators(self, builder, async_mode: bool) -> List[str]:
+        """Decorators for the method"""
+        retval: List[str] = []
+        if self.code_model.options["tracing"] and builder.want_tracing:
+            retval.append("@distributed_trace")
+        if builder.abstract:
+            retval.append("@abc.abstractmethod")
+        return retval
 
     def call_next_link_request_builder(self, builder) -> List[str]:
         if builder.next_request_builder:
@@ -1463,6 +1446,10 @@ class _LROPagingOperationBaseSerializer(_LROOperationBaseSerializer, _PagingOper
         retval.append("        internal_get_next, extract_data")
         retval.append("    )")
         return retval
+
+    def decorators(self, builder, async_mode: bool) -> List[str]:
+        """Decorators for the method"""
+        return _LROOperationBaseSerializer.decorators(self, builder, async_mode)
 
 
 class _SyncLROPagingOperationBaseSerializer(  # pylint: disable=abstract-method

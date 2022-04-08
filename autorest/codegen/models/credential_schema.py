@@ -31,10 +31,6 @@ class CredentialSchema(BaseSchema):
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         raise TypeError("You should not try to get a JSON template representation of a CredentialSchema")
 
-    def get_files_and_data_template_representation(self, **kwargs: Any) -> Any:
-        raise TypeError("You should not try to get a files template representation of a CredentialSchema")
-
-
 class AzureKeyCredentialSchema(CredentialSchema):
 
     @property

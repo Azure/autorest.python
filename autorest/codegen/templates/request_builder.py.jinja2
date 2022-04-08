@@ -1,26 +1,33 @@
 {% import 'keywords.jinja2' as keywords with context %}
 {% import 'operation_tools.jinja2' as op_tools with context %}
-{{ request_builder_serializer.method_signature_and_response_type_annotation(request_builder) }}
+{{ request_builder_serializer.method_signature_and_response_type_annotation(request_builder, False) }}
 {% if code_model.options["builders_visibility"] == "public" %}
     {{ op_tools.description(request_builder, request_builder_serializer) | indent }}
 {% endif %}
-{% if request_builder_serializer.pop_kwargs_from_signature(request_builder) %}
+{% if request_builder.abstract %}
+    raise NotImplementedError(
+        "You need to write a custom operation for '{{ request_builder.name }}'. "
+        "Please refer to https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
+    )
+{% else %}
+    {% if request_builder_serializer.pop_kwargs_from_signature(request_builder) %}
     {{ op_tools.serialize(request_builder_serializer.pop_kwargs_from_signature(request_builder)) | indent }}
-{%- endif -%}
-{% if request_builder_serializer.declare_non_inputtable_constants(request_builder) %}
+    {%- endif -%}
+    {% if request_builder_serializer.declare_non_inputtable_constants(request_builder) %}
     {{ op_tools.serialize(request_builder_serializer.declare_non_inputtable_constants(request_builder)) | indent }}
-{% endif %}
+    {% endif %}
     # Construct URL
     {{ request_builder_serializer.construct_url(request_builder) }}
-{% if request_builder.parameters.path %}
+    {% if request_builder.parameters.path %}
     {{ op_tools.serialize(request_builder_serializer.serialize_path(request_builder)) | indent }}
     _url = _format_url_section(_url, **path_format_arguments)
-{% endif %}
+    {% endif %}
 
-{% if request_builder.parameters.query %}
+    {% if request_builder.parameters.query %}
     {{ op_tools.serialize(request_builder_serializer.serialize_query(request_builder)) | indent }}
-{% endif %}
-{% if request_builder.parameters.headers %}
+    {% endif %}
+    {% if request_builder.parameters.headers %}
     {{ op_tools.serialize(request_builder_serializer.serialize_headers(request_builder)) | indent }}
-{% endif %}
+    {% endif %}
     {{ op_tools.serialize(request_builder_serializer.create_http_request(request_builder)) | indent }}
+{% endif %}

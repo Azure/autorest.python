@@ -31,7 +31,9 @@ class LROOperation(Operation):
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
         want_description_docstring: bool = True,
-        want_tracing: bool = True
+        want_tracing: bool = True,
+        *,
+        abstract: bool = False,
     ) -> None:
         super(LROOperation, self).__init__(
             code_model,
@@ -46,7 +48,8 @@ class LROOperation(Operation):
             responses,
             exceptions,
             want_description_docstring,
-            want_tracing,
+            want_tracing=want_tracing,
+            abstract=abstract,
         )
         self.lro_options = yaml_data.get("extensions", {}).get("x-ms-long-running-operation-options", {})
         self.name = "begin_" + self.name

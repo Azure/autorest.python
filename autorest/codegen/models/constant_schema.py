@@ -86,10 +86,6 @@ class ConstantSchema(BaseSchema):
         kwargs['default_value_declaration'] = self.schema.get_declaration(self.value)
         return self.schema.get_json_template_representation(**kwargs)
 
-    def get_files_and_data_template_representation(self, **kwargs: Any) -> Any:
-        kwargs['default_value_declaration'] = self.schema.get_declaration(self.value)
-        return self.schema.get_files_and_data_template_representation(**kwargs)
-
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.merge(self.schema.imports())

@@ -44,7 +44,7 @@ class BodyFormsDataURLEncoded:
         Use these helper methods to create the request you pass to this method.
 
         >>> from bodyformurlencodeddatalowlevel.rest import formdataurlencoded
-        >>> request = formdataurlencoded.build_update_pet_with_form_request(pet_id, data=data, content=content, **kwargs)
+        >>> request = formdataurlencoded.build_update_pet_with_form_request(pet_id, **kwargs)
         <HttpRequest [POST], url: '/formsdataurlencoded/pet/add/{petId}'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

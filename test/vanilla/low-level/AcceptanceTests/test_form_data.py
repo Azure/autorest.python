@@ -59,6 +59,7 @@ def client():
     ) as client:
         yield client
 
+@pytest.mark.skip("Not generating formdata bodies anymore.")
 def test_file_upload_stream(client):
 
     test_string = "Upload file test case"
@@ -76,6 +77,7 @@ def test_file_upload_stream(client):
                 result.write(data)
     assert result.getvalue().decode() ==  test_string
 
+@pytest.mark.skip("Not generating formdata bodies anymore.")
 def test_file_upload_file_stream(client, dummy_file):
 
     name = os.path.basename(dummy_file)

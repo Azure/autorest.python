@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, TypeVar, Optional
+import logging
 
 from .base_builder import BaseBuilder, create_parameters
 from .request_builder_parameter import RequestBuilderParameter
@@ -13,6 +14,7 @@ from .schema_response import SchemaResponse
 from .imports import FileImport, ImportType, TypingSection
 from .parameter import Parameter
 
+_LOGGER = logging.getLogger(__name__)
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
@@ -31,6 +33,8 @@ class RequestBuilder(BaseBuilder):
         description: str,
         summary: str,
         responses: Optional[List[SchemaResponse]] = None,
+        *,
+        abstract: bool = False,
     ):
         super().__init__(
             code_model=code_model,
@@ -41,6 +45,8 @@ class RequestBuilder(BaseBuilder):
             responses=responses,
             schema_requests=schema_requests,
             summary=summary,
+            abstract=abstract,
+            want_tracing=False,
         )
         self.url = url
         self.method = method
@@ -66,23 +72,25 @@ class RequestBuilder(BaseBuilder):
     def imports(self) -> FileImport:
         file_import = FileImport()
         for parameter in self.parameters.method:
-            if parameter.need_import:
-                file_import.merge(parameter.imports())
+            if self.abstract and (parameter.is_multipart or parameter.is_data_input):
+                continue
+            file_import.merge(parameter.imports())
 
         file_import.add_submodule_import(
             "azure.core.rest",
             "HttpRequest",
             ImportType.AZURECORE,
         )
-        if self.parameters.path:
-            relative_path = ".."
-            if not self.code_model.options["builders_visibility"] == "embedded" and self.operation_group_name:
-                relative_path = "..." if self.operation_group_name else ".."
-            file_import.add_submodule_import(
-                f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
-            )
-        if self.parameters.headers or self.parameters.query:
-            file_import.add_submodule_import("azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE)
+        if not self.abstract:
+            if self.parameters.path:
+                relative_path = ".."
+                if not self.code_model.options["builders_visibility"] == "embedded" and self.operation_group_name:
+                    relative_path = "..." if self.operation_group_name else ".."
+                file_import.add_submodule_import(
+                    f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
+                )
+            if self.parameters.headers or self.parameters.query:
+                file_import.add_submodule_import("azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE)
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
@@ -113,6 +121,20 @@ class RequestBuilder(BaseBuilder):
         parameter_list = RequestBuilderParameterList(
             code_model, parameters + multiple_content_type_parameters, schema_requests
         )
+        abstract = False
+        if (
+            (code_model.options["version_tolerant"] or code_model.options["low_level_client"]) and
+            any(p for p in parameter_list if p.is_multipart or p.is_data_input)
+        ):
+            _LOGGER.warning(
+                'Not going to generate request_builder "%s" because it has multipart / urlencoded '\
+                "body parameters. Multipart / urlencoded body parameters are not supported for version "\
+                "tolerant and low level generations right now. Please write your own custom operation "\
+                "in the _patch.py file following https://aka.ms/azsdk/python/dpcodegen/python/customize.",
+                name
+            )
+            abstract = True
+
         request_builder_class = cls(
             code_model=code_model,
             yaml_data=yaml_data,
@@ -127,6 +149,7 @@ class RequestBuilder(BaseBuilder):
                 SchemaResponse.from_yaml(yaml, code_model=code_model) for yaml in yaml_data.get("responses", [])
             ],
             summary=yaml_data["language"]["python"].get("summary"),
+            abstract=abstract,
         )
         code_model.request_builder_ids[id(yaml_data)] = request_builder_class
         parameter_list.add_body_kwargs()
