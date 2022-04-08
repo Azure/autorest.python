@@ -17,7 +17,7 @@ from .object_schema import ObjectSchema
 from .request_builder import RequestBuilder
 from .schema_request import SchemaRequest
 from .primitive_schemas import IOSchema
-from .utils import import_mutable_mapping, is_or_contain_schema
+from .utils import is_or_contain_schema
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -234,8 +234,6 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                 f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
             )
 
-        if self.use_json_object:
-            import_mutable_mapping(file_import)
         if self.code_model.options["tracing"] and self.want_tracing:
             file_import.add_submodule_import(
                 f"azure.core.tracing.decorator{'_async' if async_mode else ''}",
@@ -304,19 +302,6 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         chosen_parameter.multiple_content_types_type_annot = f"Union[{type_annot}]"
         chosen_parameter.multiple_content_types_docstring_type = docstring_type
         self.parameters.append(chosen_parameter)
-
-    @property
-    def use_json_object(self) -> bool:
-        return self.code_model.options["version_tolerant"] and (
-                self.parameters.has_body or
-                any(r for r in self.responses if r.has_body)
-                ) and (self.has_object_schema(self.parameters.parameters) or
-                self.has_object_schema(self.multiple_content_type_parameters.parameters) or
-                self.has_object_schema(self.responses))
-
-    @staticmethod
-    def has_object_schema(param_or_responses: List) -> bool:
-        return any(is_or_contain_schema(p.schema, ObjectSchema) for p in (param_or_responses or []))
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Operation":

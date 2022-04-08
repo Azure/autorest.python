@@ -6,14 +6,14 @@
 from typing import Any, Dict, List, TypeVar, Optional
 
 from .base_builder import BaseBuilder, create_parameters
-from .object_schema import HiddenModelObjectSchema
+# from .object_schema import HiddenModelObjectSchema
 from .request_builder_parameter import RequestBuilderParameter
 from .request_builder_parameter_list import RequestBuilderParameterList
 from .schema_request import SchemaRequest
 from .schema_response import SchemaResponse
 from .imports import FileImport, ImportType, TypingSection
 from .parameter import Parameter
-from .utils import import_mutable_mapping, is_or_contain_schema
+# from .utils import import_mutable_mapping, is_or_contain_schema
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
@@ -64,9 +64,11 @@ class RequestBuilder(BaseBuilder):
     def builder_group_name(self) -> str:
         return self.yaml_data["language"]["python"]["builderGroupName"]
 
-    def imports(self, async_mode: bool) -> FileImport:
+    def imports(self, is_python3_file: bool) -> FileImport:
         file_import = FileImport()
-        for parameter in self.parameters:
+        for parameter in [*self.parameters.positional,
+                            *self.parameters.keyword_only,
+                            *self.parameters.kwargs_to_pop(is_python3_file)]:
             if parameter.need_import:
                 file_import.merge(parameter.imports())
 
@@ -88,13 +90,6 @@ class RequestBuilder(BaseBuilder):
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
         file_import.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY)
-        if (not async_mode and
-            self.parameters.has_body and
-            any(is_or_contain_schema(p.schema, HiddenModelObjectSchema) for p in self.body_kwargs_to_get) and (
-            self.code_model.options["builders_visibility"] != "embedded" or
-            self.code_model.options["add_python3_operation_files"]
-        )):
-            import_mutable_mapping(file_import)
         return file_import
 
     @classmethod

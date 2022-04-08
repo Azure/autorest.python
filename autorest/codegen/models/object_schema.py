@@ -7,8 +7,7 @@ from typing import Any, Dict, List, Optional, Union, Type
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .property import Property
-from .imports import FileImport, ImportType, TypingSection
-
+from .imports import FileImport, ImportModel, ImportType, TypingSection
 
 class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     """Represents a class ready to be serialized in Python.
@@ -245,6 +244,12 @@ class HiddenModelObjectSchema(ObjectSchema):
         file_import.add_submodule_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if self.xml_metadata:
             file_import.add_submodule_import("xml.etree", "ElementTree", ImportType.STDLIB, alias="ET")
+        file_import.add_import("sys", ImportType.STDLIB)
+        file_import.define_mypy_type("JSON", "MutableMapping[str, Any] # pylint: disable=unsubscriptable-object", None, ((3, 9), ImportModel(
+            TypingSection.CONDITIONAL, ImportType.STDLIB, "collections.abc", submodule_name="MutableMapping"
+        ), ImportModel(
+            TypingSection.CONDITIONAL, ImportType.STDLIB, "typing", submodule_name="MutableMapping"
+        )))
         return file_import
 
 def get_object_schema(code_model) -> Type[ObjectSchema]:
