@@ -6,8 +6,9 @@
 from typing import Any, Dict, List, TypeVar
 from ..utils import _sync_or_async
 
-T = TypeVar('T')
+T = TypeVar("T")
 OrderedSet = Dict[T, None]
+
 
 class MixinOperation:
     def __init__(self, name: str, mixin_operation_metadata: Dict[str, Any]):

@@ -5,12 +5,13 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict
 
+
 class GlobalParameter:
     def __init__(
         self,
         name: str,
         global_parameter_metadata_sync: Dict[str, Any],
-        global_parameter_metadata_async: Dict[str, Any]
+        global_parameter_metadata_async: Dict[str, Any],
     ):
         self.name = name
         self.global_parameter_metadata_sync = global_parameter_metadata_sync

@@ -7,9 +7,9 @@ from abc import abstractmethod
 from typing import List
 from .credential_schema import CredentialSchema
 
-class CredentialSchemaPolicy:
 
-    def __init__(self, credential: CredentialSchema, *args, **kwargs) -> None:  # pylint: disable=unused-argument
+class CredentialSchemaPolicy:
+    def __init__(self, credential: CredentialSchema) -> None:
         self.credential = credential
 
     @abstractmethod
@@ -22,11 +22,8 @@ class CredentialSchemaPolicy:
 
 
 class BearerTokenCredentialPolicy(CredentialSchemaPolicy):
-
     def __init__(
-        self,
-        credential: CredentialSchema,
-        credential_scopes: List[str]
+        self, credential: CredentialSchema, credential_scopes: List[str]
     ) -> None:
         super().__init__(credential)
         self._credential_scopes = credential_scopes
@@ -41,18 +38,14 @@ class BearerTokenCredentialPolicy(CredentialSchemaPolicy):
 
 
 class ARMChallengeAuthenticationPolicy(BearerTokenCredentialPolicy):
-
     def call(self, async_mode: bool) -> str:
         policy_name = f"Async{self.name()}" if async_mode else self.name()
         return f"{policy_name}(self.credential, *self.credential_scopes, **kwargs)"
 
 
 class AzureKeyCredentialPolicy(CredentialSchemaPolicy):
-
     def __init__(
-        self,
-        credential: CredentialSchema,
-        credential_key_header_name: str
+        self, credential: CredentialSchema, credential_key_header_name: str
     ) -> None:
         super().__init__(credential)
         self._credential_key_header_name = credential_key_header_name
@@ -64,14 +57,17 @@ class AzureKeyCredentialPolicy(CredentialSchemaPolicy):
     def call(self, async_mode: bool) -> str:
         return f'policies.AzureKeyCredentialPolicy(self.credential, "{self.credential_key_header_name}", **kwargs)'
 
+
 def get_credential_schema_policy_type(name):
-    policies = [ARMChallengeAuthenticationPolicy, BearerTokenCredentialPolicy, AzureKeyCredentialPolicy]
+    policies = [
+        ARMChallengeAuthenticationPolicy,
+        BearerTokenCredentialPolicy,
+        AzureKeyCredentialPolicy,
+    ]
     try:
         return next(p for p in policies if p.name().lower() == name.lower())
     except StopIteration:
         raise ValueError(
             "The credential policy you pass in with --credential-default-policy-type must be either "
-            "{}".format(
-                " or ".join([p.name() for p in policies])
-            )
+            "{}".format(" or ".join([p.name() for p in policies]))
         )

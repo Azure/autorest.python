@@ -7,8 +7,8 @@ from .imports import FileImport
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 
-class LROPagingOperation(PagingOperation, LROOperation):
 
+class LROPagingOperation(PagingOperation, LROOperation):
     def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         lro_imports = LROOperation.imports(self, async_mode, is_python3_file)
         paging_imports = PagingOperation.imports(self, async_mode, is_python3_file)
@@ -19,6 +19,5 @@ class LROPagingOperation(PagingOperation, LROOperation):
 
     @property
     def success_status_code(self):
-        """The list of all successfull status code.
-        """
+        """The list of all successfull status code."""
         return [200]

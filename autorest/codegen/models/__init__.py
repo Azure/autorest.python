@@ -10,7 +10,12 @@ from .credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
 from .object_schema import ObjectSchema, get_object_schema, HiddenModelObjectSchema
 from .dictionary_schema import DictionarySchema
 from .list_schema import ListSchema
-from .primitive_schemas import get_primitive_schema, AnySchema, PrimitiveSchema, IOSchema
+from .primitive_schemas import (
+    get_primitive_schema,
+    AnySchema,
+    PrimitiveSchema,
+    IOSchema,
+)
 from .enum_schema import EnumSchema, HiddenModelEnumSchema, get_enum_schema
 from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
@@ -66,11 +71,13 @@ __all__ = [
     "GlobalParameterList",
 ]
 
+
 def _generate_as_object_schema(yaml_data: Dict[str, Any]) -> bool:
     if (
-        yaml_data.get('properties') or
-        yaml_data.get('discriminator') or
-        yaml_data.get('parents') and yaml_data['parents'].get('immediate')
+        yaml_data.get("properties")
+        or yaml_data.get("discriminator")
+        or yaml_data.get("parents")
+        and yaml_data["parents"].get("immediate")
     ):
         return True
     return False
@@ -90,7 +97,9 @@ def build_schema(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseSchema
         code_model.primitives[yaml_id] = schema
 
     elif schema_type in ["choice", "sealed-choice"]:
-        schema = get_enum_schema(code_model).from_yaml(yaml_data=yaml_data, code_model=code_model)
+        schema = get_enum_schema(code_model).from_yaml(
+            yaml_data=yaml_data, code_model=code_model
+        )
         code_model.enums[yaml_id] = schema
 
     elif schema_type == "array":

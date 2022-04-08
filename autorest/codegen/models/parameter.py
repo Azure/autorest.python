@@ -50,7 +50,6 @@ class ParameterStyle(Enum):
     multipart = "multipart"
 
 
-
 def get_target_property_name(code_model: "CodeModel", target_property_id: int) -> str:
     for obj in code_model.schemas.values():
         for prop in obj.properties:
@@ -59,7 +58,9 @@ def get_target_property_name(code_model: "CodeModel", target_property_id: int) -
     raise KeyError("Didn't find the target property")
 
 
-class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too-many-public-methods
+class Parameter(
+    BaseModel
+):  # pylint: disable=too-many-instance-attributes, too-many-public-methods
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -73,7 +74,9 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         location: ParameterLocation,
         skip_url_encoding: bool,
         constraints: List[Any],
-        target_property_name: Optional[Union[int, str]] = None,  # first uses id as placeholder
+        target_property_name: Optional[
+            Union[int, str]
+        ] = None,  # first uses id as placeholder
         style: Optional[ParameterStyle] = None,
         explode: Optional[bool] = False,
         *,
@@ -106,12 +109,18 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         self.multiple_content_types_type_annot: Optional[str] = None
         self.multiple_content_types_docstring_type: Optional[str] = None
         self._keyword_only = keyword_only
-        self.is_multipart = yaml_data.get("language", {}).get("python", {}).get("multipart", False)
-        self.is_data_input = yaml_data.get("isPartialBody", False) and not self.is_multipart
+        self.is_multipart = (
+            yaml_data.get("language", {}).get("python", {}).get("multipart", False)
+        )
+        self.is_data_input = (
+            yaml_data.get("isPartialBody", False) and not self.is_multipart
+        )
         self.content_types = content_types or []
         self.body_kwargs: List[Parameter] = []
         self.is_body_kwarg = False
-        self.is_kwarg = (self.rest_api_name == "Content-Type" or (self.constant and self.inputtable_by_user))
+        self.is_kwarg = self.rest_api_name == "Content-Type" or (
+            self.constant and self.inputtable_by_user
+        )
         self.need_import = True
 
     def __hash__(self) -> int:
@@ -130,7 +139,9 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
                     description += " "
                 description += f"Known values are {self.schema.get_declaration(self.schema.value)} or {None}."
             if self.has_default_value and not any(
-                l for l in ["default value is", "default is"] if l in description.lower()
+                l
+                for l in ["default value is", "default is"]
+                if l in description.lower()
             ):
                 description += f" Default value is {self.default_value_declaration}."
             if self.constant:
@@ -173,12 +184,12 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
                 return self.schema.get_declaration(self.schema.value)
             raise ValueError(
                 "Trying to get constant declaration for a schema that is not ConstantSchema"
-                )
+            )
         raise ValueError("Trying to get a declaration for a schema that doesn't exist")
 
     @property
     def serialization_formats(self) -> List[str]:
-        return self.yaml_data.get('serializationFormats', [])
+        return self.yaml_data.get("serializationFormats", [])
 
     @property
     def xml_serialization_ctxt(self) -> str:
@@ -201,7 +212,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
 
     @property
     def in_method_signature(self) -> bool:
-        return not(
+        return not (
             # if not inputtable, don't put in signature
             not self.inputtable_by_user
             # If i'm not in the method code, no point in being in signature
@@ -218,15 +229,20 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
             raise ValueError("Should only be calling if your parameter is grouped")
         try:
             return next(
-                p for p in cast(ObjectSchema, self.grouped_by.schema).properties
-                if any(op for op in p.yaml_data['originalParameter'] if id(op) == self.id)
+                p
+                for p in cast(ObjectSchema, self.grouped_by.schema).properties
+                if any(
+                    op for op in p.yaml_data["originalParameter"] if id(op) == self.id
+                )
             )
         except StopIteration:
-            raise ValueError("There is not a corresponding grouped property for your parameter.")
+            raise ValueError(
+                "There is not a corresponding grouped property for your parameter."
+            )
 
     @property
     def in_method_code(self) -> bool:
-        return self.rest_api_name != '$host'
+        return self.rest_api_name != "$host"
 
     @property
     def implementation(self) -> str:
@@ -242,14 +258,21 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         ) and isinstance(self.schema, IOSchema)
 
     def _default_value(self) -> Tuple[Optional[Any], str, str]:
-        type_annot = self.multiple_content_types_type_annot or self.schema.type_annotation(is_operation_file=True)
+        type_annot = (
+            self.multiple_content_types_type_annot
+            or self.schema.type_annotation(is_operation_file=True)
+        )
         if self._is_io_json:
             type_annot = f"Union[{type_annot}, Any]"
         if not self.required and type_annot != "Any" and not self._is_io_json:
             type_annot = f"Optional[{type_annot}]"
 
         if self.client_default_value is not None:
-            return self.client_default_value, self.schema.get_declaration(self.client_default_value), type_annot
+            return (
+                self.client_default_value,
+                self.schema.get_declaration(self.client_default_value),
+                type_annot,
+            )
 
         if self.multiple_content_types_type_annot:
             # means this parameter has multiple media types. We force default value to be None.
@@ -257,9 +280,11 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
             default_value_declaration = "None"
         else:
             if isinstance(self.schema, ConstantSchema):
-                if (self.required or
-                    self.is_content_type or
-                    not self.code_model.options["default_optional_constants_to_none"]):
+                if (
+                    self.required
+                    or self.is_content_type
+                    or not self.code_model.options["default_optional_constants_to_none"]
+                ):
                     default_value = self.schema.get_declaration(self.schema.value)
                 else:
                     default_value = None
@@ -270,7 +295,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         if default_value is not None and self.required:
             _LOGGER.warning(
                 "Parameter '%s' is required and has a default value, this combination is not recommended",
-                self.rest_api_name
+                self.rest_api_name,
             )
 
         return default_value, default_value_declaration, type_annot
@@ -293,7 +318,9 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     def default_value_declaration(self) -> Optional[Any]:
         return self._default_value()[1]
 
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:  # pylint: disable=unused-argument
+    def type_annotation(
+        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
+    ) -> str:
         return self._default_value()[2]
 
     @property
@@ -302,7 +329,9 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
 
     @property
     def docstring_type(self) -> str:
-        retval = self.multiple_content_types_docstring_type or self.schema.docstring_type
+        retval = (
+            self.multiple_content_types_docstring_type or self.schema.docstring_type
+        )
         if self._is_io_json:
             retval += " or Any"
         return retval
@@ -340,13 +369,18 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
 
     @property
     def is_hidden(self) -> bool:
-        return self.serialized_name in _HIDDEN_KWARGS and self.is_kwarg or (
-            self.yaml_data["implementation"] == "Client" and self.constant
+        return (
+            self.serialized_name in _HIDDEN_KWARGS
+            and self.is_kwarg
+            or (self.yaml_data["implementation"] == "Client" and self.constant)
         )
 
     @property
     def is_content_type(self) -> bool:
-        return self.rest_api_name == "Content-Type" and self.location == ParameterLocation.Header
+        return (
+            self.rest_api_name == "Content-Type"
+            and self.location == ParameterLocation.Header
+        )
 
     @property
     def is_positional(self) -> bool:
@@ -358,15 +392,19 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         *,
-        content_types: Optional[List[str]] = None
+        content_types: Optional[List[str]] = None,
     ) -> "Parameter":
-        http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
-        serialized_name = yaml_data["language"]["python"]["name"]
-        schema = get_schema(
-            code_model, yaml_data.get("schema"), serialized_name
+        http_protocol = yaml_data["protocol"].get(
+            "http", {"in": ParameterLocation.Other}
         )
+        serialized_name = yaml_data["language"]["python"]["name"]
+        schema = get_schema(code_model, yaml_data.get("schema"), serialized_name)
         target_property = yaml_data.get("targetProperty")
-        target_property_name = get_target_property_name(code_model, id(target_property)) if target_property else None
+        target_property_name = (
+            get_target_property_name(code_model, id(target_property))
+            if target_property
+            else None
+        )
 
         return cls(
             yaml_data=yaml_data,
@@ -381,47 +419,56 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
             implementation=yaml_data["implementation"],
             required=yaml_data.get("required", False),
             location=ParameterLocation(http_protocol["in"]),
-            skip_url_encoding=yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
+            skip_url_encoding=yaml_data.get("extensions", {}).get(
+                "x-ms-skip-url-encoding", False
+            ),
             constraints=[],  # FIXME constraints
             target_property_name=target_property_name,
-            style=ParameterStyle(http_protocol["style"]) if "style" in http_protocol else None,
+            style=ParameterStyle(http_protocol["style"])
+            if "style" in http_protocol
+            else None,
             explode=http_protocol.get("explode", False),
             grouped_by=yaml_data.get("groupedBy", None),
             original_parameter=yaml_data.get("originalParameter", None),
             flattened=yaml_data.get("flattened", False),
             client_default_value=yaml_data.get("clientDefaultValue"),
-            content_types=content_types
+            content_types=content_types,
         )
 
     def imports(self) -> FileImport:
         if self.need_import:
             file_import = self.schema.imports()
             if not self.required:
-                file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
+                file_import.add_submodule_import(
+                    "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
+                )
             if self.has_multiple_content_types or self._is_io_json:
-                file_import.add_submodule_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
+                file_import.add_submodule_import(
+                    "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL
+                )
 
             return file_import
         return FileImport()
 
-class ParameterOnlyPathAndBodyPositional(Parameter):
 
+class ParameterOnlyPathAndBodyPositional(Parameter):
     @property
     def is_keyword_only(self) -> bool:
         if self._keyword_only is not None:
             return self._keyword_only
         return self.in_method_signature and not (
-            self.is_hidden or
-            self.location == ParameterLocation.Path or
-            self.location == ParameterLocation.Uri or
-            self.location == ParameterLocation.Body or
-            self.is_kwarg
+            self.is_hidden
+            or self.location == ParameterLocation.Path
+            or self.location == ParameterLocation.Uri
+            or self.location == ParameterLocation.Body
+            or self.is_kwarg
         )
 
     @is_keyword_only.setter
     def is_keyword_only(self, val: bool) -> None:
         self._keyword_only = val
         self.is_kwarg = False
+
 
 def get_parameter(code_model):
     if code_model.options["only_path_and_body_params_positional"]:

@@ -11,16 +11,17 @@ from .imports import FileImport
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
+
 class Rest(BaseModel):
-    """Everything that goes into the request_builders
-    """
+    """Everything that goes into the request_builders"""
+
     def __init__(
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        request_builders: List[RequestBuilder]
+        request_builders: List[RequestBuilder],
     ):
-        super(). __init__(yaml_data=yaml_data, code_model=code_model)
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.request_builders = request_builders
 
     def imports(self, builder_group_name: str) -> FileImport:
@@ -43,5 +44,5 @@ class Rest(BaseModel):
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            request_builders=request_builders
+            request_builders=request_builders,
         )

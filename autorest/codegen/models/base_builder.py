@@ -14,6 +14,7 @@ if TYPE_CHECKING:
 
 _M4_HEADER_PARAMETERS = ["content_type", "accept"]
 
+
 def create_parameters(
     yaml_data: Dict[str, Any], code_model, parameter_creator: Callable
 ):
@@ -43,9 +44,8 @@ def create_parameters(
         )
         if len(body_parameters_name_set) > 1:
             raise ValueError(
-            f"The body parameter with multiple media types has different names: {body_parameters_name_set}"
-        )
-
+                f"The body parameter with multiple media types has different names: {body_parameters_name_set}"
+            )
 
     parameters_index = {id(parameter.yaml_data): parameter for parameter in parameters}
 
@@ -60,6 +60,7 @@ def create_parameters(
             parameter.original_parameter = parameters_index[parameter_original_id]
 
     return parameters, multiple_content_type_parameters
+
 
 class BaseBuilder(BaseModel):
     """Base class for Operations and Request Builders"""
@@ -109,7 +110,9 @@ class BaseBuilder(BaseModel):
     def default_content_type_declaration(self) -> str:
         return f'"{self.parameters.default_content_type}"'
 
-    def get_response_from_status(self, status_code: Optional[Union[str, int]]) -> SchemaResponse:
+    def get_response_from_status(
+        self, status_code: Optional[Union[str, int]]
+    ) -> SchemaResponse:
         for response in self.responses:
             if status_code in response.status_codes:
                 return response
@@ -118,7 +121,12 @@ class BaseBuilder(BaseModel):
     @property
     def success_status_code(self) -> List[Union[str, int]]:
         """The list of all successfull status code."""
-        return [code for response in self.responses for code in response.status_codes if code != "default"]
+        return [
+            code
+            for response in self.responses
+            for code in response.status_codes
+            if code != "default"
+        ]
 
     def method_signature(self, is_python3_file: bool) -> List[str]:
         if self.abstract:

@@ -38,8 +38,7 @@ class Plugin(ABC):
 
 
 class YamlUpdatePlugin(Plugin):
-    """A plugin that update the YAML as input.
-    """
+    """A plugin that update the YAML as input."""
 
     def process(self) -> bool:
         # List the input file, should be only one

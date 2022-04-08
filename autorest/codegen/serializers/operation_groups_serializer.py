@@ -12,10 +12,11 @@ from ..models import (
     OperationGroup,
     FileImport,
     LROOperation,
-    PagingOperation
+    PagingOperation,
 )
 from .import_serializer import FileImportSerializer
 from .builder_serializer import get_operation_serializer, get_request_builder_serializer
+
 
 class OperationGroupsSerializer:
     def __init__(
@@ -38,22 +39,31 @@ class OperationGroupsSerializer:
 
         def _is_paging(operation):
             return isinstance(operation, PagingOperation)
-        operation_groups = [self.operation_group] if self.operation_group else self.code_model.operation_groups
+
+        operation_groups = (
+            [self.operation_group]
+            if self.operation_group
+            else self.code_model.operation_groups
+        )
         imports = FileImport()
         for operation_group in operation_groups:
-            imports.merge(operation_group.imports(
-                async_mode=self.async_mode,
-                is_python3_file=self.is_python3_file,
-            ))
+            imports.merge(
+                operation_group.imports(
+                    async_mode=self.async_mode,
+                    is_python3_file=self.is_python3_file,
+                )
+            )
 
-        template = self.env.get_or_select_template("operation_groups_container.py.jinja2")
+        template = self.env.get_or_select_template(
+            "operation_groups_container.py.jinja2"
+        )
         return template.render(
             code_model=self.code_model,
             operation_groups=operation_groups,
             imports=FileImportSerializer(
                 imports,
                 is_python3_file=self.is_python3_file,
-                async_mode=self.async_mode
+                async_mode=self.async_mode,
             ),
             async_mode=self.async_mode,
             is_python3_file=self.is_python3_file,
@@ -66,6 +76,7 @@ class OperationGroupsSerializer:
                 is_python3_file=self.is_python3_file,
             ),
             request_builder_serializer=get_request_builder_serializer(
-                self.code_model, self.is_python3_file,
+                self.code_model,
+                self.is_python3_file,
             ),
         )

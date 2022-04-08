@@ -38,7 +38,7 @@ class PagingOperation(Operation):
         want_tracing: bool = True,
         *,
         abstract: bool = False,
-        override_success_response_to_200: bool = False
+        override_success_response_to_200: bool = False,
     ) -> None:
         super().__init__(
             yaml_data,
@@ -57,8 +57,12 @@ class PagingOperation(Operation):
             abstract=abstract,
         )
         self._item_name: str = yaml_data["extensions"]["x-ms-pageable"].get("itemName")
-        self._next_link_name: str = yaml_data["extensions"]["x-ms-pageable"].get("nextLinkName")
-        self.operation_name: str = yaml_data["extensions"]["x-ms-pageable"].get("operationName")
+        self._next_link_name: str = yaml_data["extensions"]["x-ms-pageable"].get(
+            "nextLinkName"
+        )
+        self.operation_name: str = yaml_data["extensions"]["x-ms-pageable"].get(
+            "operationName"
+        )
         self.next_operation: Optional[Operation] = None
         self.override_success_response_to_200 = override_success_response_to_200
 
@@ -66,7 +70,8 @@ class PagingOperation(Operation):
         response = self.responses[0]
         if not isinstance(response.schema, ObjectSchema):
             raise ValueError(
-                "The response of a paging operation must be of type " + f"ObjectSchema but {response.schema} is not"
+                "The response of a paging operation must be of type "
+                + f"ObjectSchema but {response.schema} is not"
             )
         return response
 
@@ -89,7 +94,8 @@ class PagingOperation(Operation):
         item_name = self._item_name or "value"
         try:
             return (
-                self._find_python_name(item_name, "itemName") if code_model.options["models_mode"]
+                self._find_python_name(item_name, "itemName")
+                if code_model.options["models_mode"]
                 else item_name
             )
         except ValueError:
@@ -130,12 +136,16 @@ class PagingOperation(Operation):
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = super()._imports_shared(async_mode)
         if async_mode:
-            file_import.add_submodule_import("typing", "AsyncIterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
+            file_import.add_submodule_import(
+                "typing", "AsyncIterable", ImportType.STDLIB, TypingSection.CONDITIONAL
+            )
         else:
-            file_import.add_submodule_import("typing", "Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL)
+            file_import.add_submodule_import(
+                "typing", "Iterable", ImportType.STDLIB, TypingSection.CONDITIONAL
+            )
         if (
-            self.next_request_builder and
-            self.code_model.options["builders_visibility"] == "embedded"
+            self.next_request_builder
+            and self.code_model.options["builders_visibility"] == "embedded"
             and not async_mode
         ):
             file_import.merge(self.next_request_builder.imports())
@@ -146,14 +156,20 @@ class PagingOperation(Operation):
         pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
         pager = self.get_pager(async_mode)
 
-        file_import.add_submodule_import(pager_import_path, pager, ImportType.AZURECORE, TypingSection.CONDITIONAL)
+        file_import.add_submodule_import(
+            pager_import_path, pager, ImportType.AZURECORE, TypingSection.CONDITIONAL
+        )
 
         return file_import
 
     def imports(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         file_import = self._imports_base(async_mode, is_python3_file)
         # operation adds an import for distributed_trace_async, we don't want it
-        file_import.imports = [i for i in file_import.imports if not i.submodule_name == "distributed_trace_async"]
+        file_import.imports = [
+            i
+            for i in file_import.imports
+            if not i.submodule_name == "distributed_trace_async"
+        ]
 
         pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
         pager = self.get_pager(async_mode)
@@ -161,11 +177,15 @@ class PagingOperation(Operation):
         file_import.add_submodule_import(pager_import_path, pager, ImportType.AZURECORE)
 
         if async_mode:
-            file_import.add_submodule_import("azure.core.async_paging", "AsyncList", ImportType.AZURECORE)
+            file_import.add_submodule_import(
+                "azure.core.async_paging", "AsyncList", ImportType.AZURECORE
+            )
 
         if self.code_model.options["tracing"] and self.want_tracing:
             file_import.add_submodule_import(
-                "azure.core.tracing.decorator", "distributed_trace", ImportType.AZURECORE,
+                "azure.core.tracing.decorator",
+                "distributed_trace",
+                ImportType.AZURECORE,
             )
 
         return file_import

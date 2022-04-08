@@ -11,16 +11,15 @@ from ..models.imports import FileImport
 
 
 class ModelPython3Serializer(ModelBaseSerializer):
-
     def __init__(self, code_model: CodeModel, env: Environment) -> None:
-        super().__init__(
-            code_model=code_model, env=env, is_python3_file=True
-        )
+        super().__init__(code_model=code_model, env=env, is_python3_file=True)
 
     def init_line(self, model: ObjectSchema) -> List[str]:
         init_properties_declaration = []
         init_line_parameters = [
-            p for p in model.properties if not p.readonly and not p.is_discriminator and not p.constant
+            p
+            for p in model.properties
+            if not p.readonly and not p.is_discriminator and not p.constant
         ]
         init_line_parameters.sort(key=lambda x: x.required, reverse=True)
         if init_line_parameters:
@@ -58,7 +57,9 @@ class ModelPython3Serializer(ModelBaseSerializer):
     def imports(self) -> FileImport:
         file_import = super(ModelPython3Serializer, self).imports()
         for model in self.code_model.sorted_schemas:
-            init_line_parameters = [p for p in model.properties if not p.readonly and not p.is_discriminator]
+            init_line_parameters = [
+                p for p in model.properties if not p.readonly and not p.is_discriminator
+            ]
             for param in init_line_parameters:
                 file_import.merge(param.model_file_imports())
 

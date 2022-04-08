@@ -24,7 +24,9 @@ class BaseSchema(BaseModel, ABC):
         super().__init__(yaml_data, code_model)
         self.default_value = yaml_data.get("defaultValue", None)
         self.xml_metadata = yaml_data.get("serialization", {}).get("xml", {})
-        self.api_versions = set(value_dict["version"] for value_dict in yaml_data.get("apiVersions", []))
+        self.api_versions = set(
+            value_dict["version"] for value_dict in yaml_data.get("apiVersions", [])
+        )
 
     @classmethod
     def from_yaml(
@@ -79,8 +81,7 @@ class BaseSchema(BaseModel, ABC):
     @property
     @abstractmethod
     def docstring_text(self) -> str:
-        """The names used in rtype documentation
-        """
+        """The names used in rtype documentation"""
         ...
 
     @property
@@ -115,18 +116,21 @@ class BaseSchema(BaseModel, ABC):
 
     @property
     def default_value_declaration(self) -> str:
-        """Return the default value as string using get_declaration.
-        """
+        """Return the default value as string using get_declaration."""
         if self.default_value is None:
             return "None"
         return self.get_declaration(self.default_value)
 
     @property
-    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:  # pylint: disable=no-self-use
+    def validation_map(
+        self,
+    ) -> Optional[Dict[str, Union[bool, int, str]]]:  # pylint: disable=no-self-use
         return None
 
     @property
-    def serialization_constraints(self) -> Optional[List[str]]:  # pylint: disable=no-self-use
+    def serialization_constraints(
+        self,
+    ) -> Optional[List[str]]:  # pylint: disable=no-self-use
         return None
 
     @abstractmethod

@@ -14,10 +14,11 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class LocalAutorestAPI(AutorestAPI):
-    """A local API that will write on local disk.
-    """
+    """A local API that will write on local disk."""
 
-    def __init__(self, reachable_files: List[str] = None, output_folder: str = "generated") -> None:
+    def __init__(
+        self, reachable_files: List[str] = None, output_folder: str = "generated"
+    ) -> None:
         super().__init__()
         if reachable_files is None:
             reachable_files = []

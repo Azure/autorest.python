@@ -10,21 +10,25 @@ from ..models import ObjectSchema, CodeModel, Property
 from ..models.imports import FileImport, ImportType
 from .import_serializer import FileImportSerializer
 
+
 def _documentation_string(
     prop: Property, description_keyword: str, docstring_type_keyword: str
 ) -> List[str]:
     retval: List[str] = []
     sphinx_prefix = f":{description_keyword} {prop.name}:"
     retval.append(
-        f"{sphinx_prefix} {prop.description}" if prop.description
-        else sphinx_prefix
+        f"{sphinx_prefix} {prop.description}" if prop.description else sphinx_prefix
     )
-    retval.append(f":{docstring_type_keyword} {prop.name}: {prop.schema.docstring_type}")
+    retval.append(
+        f":{docstring_type_keyword} {prop.name}: {prop.schema.docstring_type}"
+    )
     return retval
 
 
 class ModelBaseSerializer:
-    def __init__(self, code_model: CodeModel, env: Environment, is_python3_file: bool) -> None:
+    def __init__(
+        self, code_model: CodeModel, env: Environment, is_python3_file: bool
+    ) -> None:
         self.code_model = code_model
         self.env = env
         self.is_python3_file = is_python3_file
@@ -34,7 +38,9 @@ class ModelBaseSerializer:
         template = self.env.get_template("model_container.py.jinja2")
         return template.render(
             code_model=self.code_model,
-            imports=FileImportSerializer(self.imports(), is_python3_file=self.is_python3_file),
+            imports=FileImportSerializer(
+                self.imports(), is_python3_file=self.is_python3_file
+            ),
             str=str,
             init_line=self.init_line,
             init_args=self.init_args,
@@ -53,12 +59,16 @@ class ModelBaseSerializer:
     @staticmethod
     def get_properties_to_initialize(model: ObjectSchema) -> List[Property]:
         if model.base_models:
-            properties_to_initialize = list({
-                p.name: p
-                for bm in model.base_models
-                for p in model.properties
-                if p not in cast(ObjectSchema, bm).properties or p.is_discriminator or p.constant
-            }.values())
+            properties_to_initialize = list(
+                {
+                    p.name: p
+                    for bm in model.base_models
+                    for p in model.properties
+                    if p not in cast(ObjectSchema, bm).properties
+                    or p.is_discriminator
+                    or p.constant
+                }.values()
+            )
         else:
             properties_to_initialize = model.properties
         return properties_to_initialize
@@ -67,7 +77,9 @@ class ModelBaseSerializer:
     def declare_model(model: ObjectSchema) -> str:
         basename = "msrest.serialization.Model"
         if model.base_models:
-            basename = ", ".join([cast(ObjectSchema, m).name for m in model.base_models])
+            basename = ", ".join(
+                [cast(ObjectSchema, m).name for m in model.base_models]
+            )
         return f"class {model.name}({basename}):"
 
     @staticmethod
@@ -82,15 +94,23 @@ class ModelBaseSerializer:
     def init_args(self, model: ObjectSchema) -> List[str]:
         init_args = []
         properties_to_pass_to_super = self.properties_to_pass_to_super(model)
-        init_args.append(f"super({model.name}, self).__init__({properties_to_pass_to_super})")
+        init_args.append(
+            f"super({model.name}, self).__init__({properties_to_pass_to_super})"
+        )
         for prop in ModelBaseSerializer.get_properties_to_initialize(model):
             if prop.is_discriminator:
-                discriminator_value = f"'{model.discriminator_value}'" if model.discriminator_value else None
+                discriminator_value = (
+                    f"'{model.discriminator_value}'"
+                    if model.discriminator_value
+                    else None
+                )
                 if not discriminator_value:
                     typing = "Optional[str]"
                 else:
                     typing = "str"
-                init_args.append(f"self.{prop.name} = {discriminator_value}  # type: {typing}")
+                init_args.append(
+                    f"self.{prop.name} = {discriminator_value}  # type: {typing}"
+                )
             elif prop.readonly:
                 init_args.append(f"self.{prop.name} = None")
             elif not prop.constant:

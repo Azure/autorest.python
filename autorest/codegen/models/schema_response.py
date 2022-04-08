@@ -47,14 +47,12 @@ class SchemaResponse(BaseModel):
 
     @property
     def has_body(self) -> bool:
-        """Tell if that response defines a body.
-        """
+        """Tell if that response defines a body."""
         return bool(self.schema)
 
     @property
     def has_headers(self) -> bool:
-        """Tell if that response defines headers.
-        """
+        """Tell if that response defines headers."""
         return bool(self.headers)
 
     @property
@@ -104,11 +102,15 @@ class SchemaResponse(BaseModel):
     def imports(self, code_model) -> FileImport:
         file_import = FileImport()
         if not code_model.options["models_mode"] and self.is_xml:
-            file_import.add_submodule_import("xml.etree", "ElementTree", ImportType.STDLIB, alias="ET")
+            file_import.add_submodule_import(
+                "xml.etree", "ElementTree", ImportType.STDLIB, alias="ET"
+            )
         return file_import
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "SchemaResponse":
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "SchemaResponse":
         binary = yaml_data.get("binary", False)
         if binary:
             schema: BaseSchema = IOSchema(yaml_data={}, code_model=code_model)
@@ -120,11 +122,15 @@ class SchemaResponse(BaseModel):
             schema=schema,
             content_types=yaml_data["protocol"]["http"].get("mediaTypes", []),
             status_codes=[
-                int(code) if code != "default" else "default" for code in yaml_data["protocol"]["http"]["statusCodes"]
+                int(code) if code != "default" else "default"
+                for code in yaml_data["protocol"]["http"]["statusCodes"]
             ],
             headers=[
                 HeaderResponse(
-                    header_prop["header"], get_schema(code_model, header_prop["schema"], header_prop["header"])
+                    header_prop["header"],
+                    get_schema(
+                        code_model, header_prop["schema"], header_prop["header"]
+                    ),
                 )
                 for header_prop in yaml_data["protocol"]["http"].get("headers", [])
             ],
