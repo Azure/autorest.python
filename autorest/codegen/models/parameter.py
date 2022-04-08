@@ -319,8 +319,8 @@ class Parameter(
         return self._default_value()[1]
 
     def type_annotation(
-        self, *, is_operation_file: bool = False
-    ) -> str:  # pylint: disable=unused-argument
+        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
+    ) -> str:
         return self._default_value()[2]
 
     @property

@@ -314,9 +314,9 @@ class _BuilderBaseSerializer(
         description_list.append("")
         return description_list
 
-    def param_description(
+    def param_description(  # pylint: disable=no-self-use
         self, builder: Union[RequestBuilder, Operation]
-    ) -> List[str]:  # pylint: disable=no-self-use
+    ) -> List[str]:
         description_list: List[str] = []
         for param in [m for m in builder.parameters.method if not m.is_hidden]:
             description_list.extend(
@@ -715,9 +715,9 @@ class _OperationBaseSerializer(
             super_decorators.append("@abc.abstractmethod")
         return super_decorators
 
-    def _response_docstring_type_wrapper(
+    def _response_docstring_type_wrapper(  # pylint: disable=unused-argument, no-self-use
         self, builder
-    ) -> List[str]:  # pylint: disable=unused-argument, no-self-use
+    ) -> List[str]:
         return []
 
     def param_description(self, builder) -> List[str]:  # pylint: disable=no-self-use
@@ -779,9 +779,9 @@ class _OperationBaseSerializer(
     def cls_type_annotation(self, builder) -> str:
         return f"# type: ClsType[{self._response_type_annotation(builder, modify_if_head_as_boolean=False)}]"
 
-    def _response_docstring_text_template(
+    def _response_docstring_text_template(  # pylint: disable=no-self-use, unused-argument
         self, builder
-    ) -> str:  # pylint: disable=no-self-use, unused-argument
+    ) -> str:
         cls_str = f",{self._cls_docstring_rtype}" if self._cls_docstring_rtype else ""
         return "{}" + cls_str
 

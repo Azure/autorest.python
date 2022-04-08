@@ -168,8 +168,8 @@ class Operation(
         )
 
     def _imports_shared(
-        self, async_mode: bool
-    ) -> FileImport:  # pylint: disable=unused-argument
+        self, async_mode: bool  # pylint: disable=unused-argument
+    ) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL

@@ -157,7 +157,10 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
                                 name="additional_properties",
                                 schema=additional_properties_schema,
                                 original_swagger_name="",
-                                description="Unmatched properties from the message are deserialized to this collection.",
+                                description=(
+                                    "Unmatched properties from the message are "
+                                    "deserialized to this collection."
+                                ),
                             )
                         )
                     elif (
@@ -244,8 +247,8 @@ class HiddenModelObjectSchema(ObjectSchema):
         return "object"
 
     def type_annotation(
-        self, *, is_operation_file: bool = False
-    ) -> str:  # pylint: disable=unused-argument
+        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
+    ) -> str:
         if self.xml_metadata:
             return "ET.Element"
         return "JSON"

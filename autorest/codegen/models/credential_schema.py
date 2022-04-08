@@ -41,8 +41,8 @@ class AzureKeyCredentialSchema(CredentialSchema):
         return "~azure.core.credentials.AzureKeyCredential"
 
     def type_annotation(
-        self, *, is_operation_file: bool = False
-    ) -> str:  # pylint: disable=unused-argument
+        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
+    ) -> str:
         return "AzureKeyCredential"
 
     def imports(self) -> FileImport:
@@ -70,8 +70,8 @@ class TokenCredentialSchema(CredentialSchema):
         return self.sync_type
 
     def type_annotation(
-        self, *, is_operation_file: bool = False
-    ) -> str:  # pylint: disable=unused-argument
+        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
+    ) -> str:
         if self.async_mode:
             return '"AsyncTokenCredential"'
         return '"TokenCredential"'

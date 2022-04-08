@@ -470,9 +470,9 @@ class CodeGenerator(Plugin):
 
 
 def main(yaml_model_file: str) -> None:
-    from ..jsonrpc.localapi import (
+    from ..jsonrpc.localapi import (  # pylint: disable=import-outside-toplevel
         LocalAutorestAPI,
-    )  # pylint: disable=import-outside-toplevel
+    )
 
     code_generator = CodeGenerator(
         autorestapi=LocalAutorestAPI(reachable_files=[yaml_model_file])

@@ -9,9 +9,7 @@ from .credential_schema import CredentialSchema
 
 
 class CredentialSchemaPolicy:
-    def __init__(
-        self, credential: CredentialSchema, *args, **kwargs
-    ) -> None:  # pylint: disable=unused-argument
+    def __init__(self, credential: CredentialSchema) -> None:
         self.credential = credential
 
     @abstractmethod
