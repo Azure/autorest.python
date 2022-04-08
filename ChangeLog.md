@@ -1,5 +1,19 @@
 # Change Log
 
+### 2022-xx-xx - 5.16.0
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.6.2`     |
+| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `azure-core` dep of generated code                                      | `1.23.0`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
+
+**Breaking Changes in Version Tolerant Generation**
+
+- We no longer generate operations for operations with multipart or urlencoded bodies. SDK writers must implement these operations in their customized patch file. See https://aka.ms/azsdk/python/dpcodegen/python/customize for how to customize generated code #1223
+
 ### 2022-04-07 - 5.15.0
 
 | Library                                                                 | Min Version |
