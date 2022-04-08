@@ -14,9 +14,12 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
-JSON_REGEXP = re.compile(r'^(application|text)/(.+\+)?json$')
+JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
 
-def get_schema(code_model: "CodeModel", schema: Any, serialized_name: str = "unknown") -> BaseSchema:
+
+def get_schema(
+    code_model: "CodeModel", schema: Any, serialized_name: str = "unknown"
+) -> BaseSchema:
     if not isinstance(schema, dict):
         return schema
     schema_id = id(schema)

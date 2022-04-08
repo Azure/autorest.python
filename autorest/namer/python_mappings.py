@@ -50,6 +50,7 @@ basic_latin_chars = {
     "~": "Tilde",
 }
 
+
 class PadType(Enum):
     Model = "Model"
     Method = "Method"
@@ -58,6 +59,7 @@ class PadType(Enum):
     Property = "Property"
     OperationGroup = "Operations"
     BuilderGroup = "Builders"
+
 
 _always_reserved = [
     "and",
@@ -91,13 +93,11 @@ _always_reserved = [
     "with",
     "yield",
     "async",
-    "await"
+    "await",
 ]
 
 reserved_words = {
-    PadType.Method: [
-        *_always_reserved
-    ],
+    PadType.Method: [*_always_reserved],
     PadType.Parameter: [
         "self",
         # these are kwargs we've reserved for our autorest generated operations
@@ -161,23 +161,11 @@ reserved_words = {
         "retry_backoff_max",
         "retry_mode",
         "retry_on_status_codes",
-        *_always_reserved
+        *_always_reserved,
     ],
-    PadType.Model: [
-        *_always_reserved
-    ],
-    PadType.Property: [
-        "self",
-        *_always_reserved
-    ],
-    PadType.Enum: [
-        "mro",
-        *_always_reserved
-    ],
-    PadType.OperationGroup: [
-        *_always_reserved
-    ],
-    PadType.BuilderGroup: [
-        *_always_reserved
-    ]
+    PadType.Model: [*_always_reserved],
+    PadType.Property: ["self", *_always_reserved],
+    PadType.Enum: ["mro", *_always_reserved],
+    PadType.OperationGroup: [*_always_reserved],
+    PadType.BuilderGroup: [*_always_reserved],
 }

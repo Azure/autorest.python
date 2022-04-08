@@ -20,7 +20,9 @@ class EnumValue:
     :param str description: Optional. The description for this enum value
     """
 
-    def __init__(self, name: str, value: str, description: Optional[str] = None) -> None:
+    def __init__(
+        self, name: str, value: str, description: Optional[str] = None
+    ) -> None:
         self.name = name
         self.value = value
         self.description = description
@@ -98,8 +100,7 @@ class EnumSchema(BaseSchema):
 
     @property
     def docstring_type(self) -> str:
-        """The python type used for RST syntax input and type annotation.
-        """
+        """The python type used for RST syntax input and type annotation."""
         return f"{self.enum_type.type_annotation()} or ~{self.code_model.namespace}.models.{self.name}"
 
     @staticmethod
@@ -124,18 +125,23 @@ class EnumSchema(BaseSchema):
 
     def _template_kwargs(self, **kwargs: Any) -> Any:
         if len(self.values) == 1 and not kwargs.get("default_value_declaration"):
-            kwargs['default_value_declaration'] = self.enum_type.get_declaration(self.values[0].value)
+            kwargs["default_value_declaration"] = self.enum_type.get_declaration(
+                self.values[0].value
+            )
         description = kwargs.pop("description", "")
         kwargs["description"] = description
         return kwargs
 
-
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         # for better display effect, use the only value instead of var type
-        return self.enum_type.get_json_template_representation(**self._template_kwargs(**kwargs))
+        return self.enum_type.get_json_template_representation(
+            **self._template_kwargs(**kwargs)
+        )
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "EnumSchema":
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "EnumSchema":
         """Constructs an EnumSchema from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema
@@ -163,13 +169,14 @@ class EnumSchema(BaseSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_submodule_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        file_import.add_submodule_import(
+            "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
         file_import.merge(self.enum_type.imports())
         return file_import
 
 
 class HiddenModelEnumSchema(EnumSchema):
-
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.merge(self.enum_type.imports())
@@ -185,7 +192,9 @@ class HiddenModelEnumSchema(EnumSchema):
 
     @property
     def docstring_text(self) -> str:
-        return f"{self.enum_type.type_annotation()}. {self.extra_description_information}"
+        return (
+            f"{self.enum_type.type_annotation()}. {self.extra_description_information}"
+        )
 
     @property
     def extra_description_information(self):
@@ -197,17 +206,18 @@ class HiddenModelEnumSchema(EnumSchema):
         if len(possible_values) == 2:
             possible_values_str = " or ".join(possible_values)
         else:
-            possible_values_str = ", ".join(
-                possible_values[: len(possible_values) - 1]
-            ) + f", and {possible_values[-1]}"
+            possible_values_str = (
+                ", ".join(possible_values[: len(possible_values) - 1])
+                + f", and {possible_values[-1]}"
+            )
 
         return "Known values are: {}.".format(possible_values_str)
 
     @property
     def docstring_type(self) -> str:
-        """The python type used for RST syntax input and type annotation.
-        """
+        """The python type used for RST syntax input and type annotation."""
         return self.enum_type.type_annotation()
+
 
 def get_enum_schema(code_model) -> Type[EnumSchema]:
     if code_model.options["models_mode"]:

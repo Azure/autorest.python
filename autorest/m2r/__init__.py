@@ -27,18 +27,16 @@ class AutorestRender(m2r.RestRenderer):
 
 
 class M2R(YamlUpdatePlugin):
-    """A plugin to convert any description and summary from MD to RST.
-    """
+    """A plugin to convert any description and summary from MD to RST."""
+
     def update_yaml(self, yaml_data: Dict[str, Any]) -> None:
-        """Convert in place the YAML str.
-        """
+        """Convert in place the YAML str."""
         self._convert_docstring_no_cycles(yaml_data, set())
 
     def _convert_docstring_no_cycles(
         self, yaml_data: Dict[str, Any], node_list: Set[int]
     ) -> None:
-        """Walk the YAML tree to convert MD to RST.
-        """
+        """Walk the YAML tree to convert MD to RST."""
         if id(yaml_data) in node_list:
             return
         node_list.add(id(yaml_data))
@@ -55,8 +53,7 @@ class M2R(YamlUpdatePlugin):
 
     @staticmethod
     def convert_to_rst(string_to_convert: str) -> str:
-        """Convert that string from MD to RST.
-        """
+        """Convert that string from MD to RST."""
         try:
             return m2r.convert(string_to_convert, renderer=AutorestRender()).strip()
         except Exception:  # pylint: disable=broad-except

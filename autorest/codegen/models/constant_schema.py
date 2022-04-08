@@ -26,7 +26,11 @@ class ConstantSchema(BaseSchema):
     """
 
     def __init__(
-        self, yaml_data: Dict[str, Any], code_model: "CodeModel", schema: PrimitiveSchema, value: Optional[str],
+        self,
+        yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
+        schema: PrimitiveSchema,
+        value: Optional[str],
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.value = value
@@ -36,7 +40,8 @@ class ConstantSchema(BaseSchema):
         if value != self.value:
             _LOGGER.warning(
                 "Passed in value of %s differs from constant value of %s. Choosing constant value",
-                str(value), str(self.value)
+                str(value),
+                str(self.value),
             )
         if self.value is None:
             return "None"
@@ -67,7 +72,9 @@ class ConstantSchema(BaseSchema):
         return self.schema.type_annotation(is_operation_file=is_operation_file)
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "ConstantSchema":
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "ConstantSchema":
         """Constructs a ConstantSchema from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema
@@ -76,17 +83,23 @@ class ConstantSchema(BaseSchema):
         :return: A created ConstantSchema
         :rtype: ~autorest.models.ConstantSchema
         """
-        name = yaml_data["language"]["python"]["name"] if yaml_data["language"]["python"].get("name") else ""
+        name = (
+            yaml_data["language"]["python"]["name"]
+            if yaml_data["language"]["python"].get("name")
+            else ""
+        )
         _LOGGER.debug("Parsing %s constant", name)
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            schema=get_primitive_schema(yaml_data=yaml_data["valueType"], code_model=code_model),
+            schema=get_primitive_schema(
+                yaml_data=yaml_data["valueType"], code_model=code_model
+            ),
             value=yaml_data.get("value", {}).get("value", None),
         )
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
-        kwargs['default_value_declaration'] = self.schema.get_declaration(self.value)
+        kwargs["default_value_declaration"] = self.schema.get_declaration(self.value)
         return self.schema.get_json_template_representation(**kwargs)
 
     def imports(self) -> FileImport:

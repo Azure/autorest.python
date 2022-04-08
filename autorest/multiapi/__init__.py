@@ -32,7 +32,7 @@ class MultiApiScriptPlugin(Plugin):
             output_folder,
             self._autorestapi,
             no_async,
-            user_specified_default_api
+            user_specified_default_api,
         )
         return generator.process()
 
@@ -44,10 +44,12 @@ class MultiAPI:
         output_folder: str,
         autorestapi: AutorestAPI,
         no_async: Optional[bool] = False,
-        user_specified_default_api: Optional[str] = None
+        user_specified_default_api: Optional[str] = None,
     ) -> None:
         if input_package_name is None:
-            raise ValueError("package-name is required, either provide it as args or check your readme configuration")
+            raise ValueError(
+                "package-name is required, either provide it as args or check your readme configuration"
+            )
         self.input_package_name = input_package_name
         _LOGGER.debug("Received package name %s", input_package_name)
 
@@ -64,7 +66,7 @@ class MultiAPI:
             self.mod_to_api_version,
             [p.name for p in self.paths_to_versions],
             self.preview_mode,
-            self.user_specified_default_api
+            self.user_specified_default_api,
         )
 
     @property
@@ -75,7 +77,9 @@ class MultiAPI:
             if self.default_api_version.replace("-", "_") == path_to_version.stem:
                 path_to_default_version = path_to_version
                 break
-        return json.loads(self._autorestapi.read_file(path_to_default_version / "_metadata.json"))
+        return json.loads(
+            self._autorestapi.read_file(path_to_default_version / "_metadata.json")
+        )
 
     @property
     def module_name(self) -> str:
@@ -96,7 +100,11 @@ class MultiAPI:
     def preview_mode(self) -> bool:
         # If True, means the auto-profile will consider preview versions.
         # If not, if it exists a stable API version for a global or RT, will always be used
-        return cast(bool, self.user_specified_default_api and "preview" in self.user_specified_default_api)
+        return cast(
+            bool,
+            self.user_specified_default_api
+            and "preview" in self.user_specified_default_api,
+        )
 
     @property
     def paths_to_versions(self) -> List[Path]:
@@ -105,14 +113,16 @@ class MultiAPI:
         directory.sort()
         for child in directory:
             child_dir = (self.output_folder / child).resolve()
-            if Path(child_dir / '_metadata.json') in child_dir.iterdir():
+            if Path(child_dir / "_metadata.json") in child_dir.iterdir():
                 paths_to_versions.append(Path(child.stem))
         return paths_to_versions
 
     @property
     def version_path_to_metadata(self) -> Dict[Path, Dict[str, Any]]:
         return {
-            version_path: json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
+            version_path: json.loads(
+                self._autorestapi.read_file(version_path / "_metadata.json")
+            )
             for version_path in self.paths_to_versions
         }
 
@@ -120,18 +130,18 @@ class MultiAPI:
     def mod_to_api_version(self) -> Dict[str, str]:
         mod_to_api_version: Dict[str, str] = defaultdict(str)
         for version_path in self.paths_to_versions:
-            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
-            version = metadata_json['chosen_version']
-            total_api_version_list = metadata_json['total_api_version_list']
+            metadata_json = json.loads(
+                self._autorestapi.read_file(version_path / "_metadata.json")
+            )
+            version = metadata_json["chosen_version"]
+            total_api_version_list = metadata_json["total_api_version_list"]
             if not version:
                 if total_api_version_list:
                     sys.exit(
                         f"Unable to match {total_api_version_list} to label {version_path.stem}"
                     )
                 else:
-                    sys.exit(
-                        f"Unable to extract api version of {version_path.stem}"
-                    )
+                    sys.exit(f"Unable to extract api version of {version_path.stem}")
             mod_to_api_version[version_path.name] = version
         return mod_to_api_version
 

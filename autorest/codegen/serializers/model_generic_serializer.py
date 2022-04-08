@@ -10,11 +10,8 @@ from ..models import ObjectSchema, CodeModel, Property
 
 
 class ModelGenericSerializer(ModelBaseSerializer):
-
     def __init__(self, code_model: CodeModel, env: Environment) -> None:
-        super().__init__(
-            code_model=code_model, env=env, is_python3_file=False
-        )
+        super().__init__(code_model=code_model, env=env, is_python3_file=False)
 
     def init_line(self, model: ObjectSchema) -> List[str]:
         return []

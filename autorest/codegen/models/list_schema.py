@@ -35,7 +35,9 @@ class ListSchema(BaseSchema):
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
         if self.element_type.type_annotation() == "ET.Element":
             # this means we're version tolerant XML, we just return the XML element
-            return self.element_type.type_annotation(is_operation_file=is_operation_file)
+            return self.element_type.type_annotation(
+                is_operation_file=is_operation_file
+            )
         return f"List[{self.element_type.type_annotation(is_operation_file=is_operation_file)}]"
 
     @property
@@ -66,7 +68,10 @@ class ListSchema(BaseSchema):
 
     @property
     def has_xml_serialization_ctxt(self) -> bool:
-        return super().has_xml_serialization_ctxt or self.element_type.has_xml_serialization_ctxt
+        return (
+            super().has_xml_serialization_ctxt
+            or self.element_type.has_xml_serialization_ctxt
+        )
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         return [self.element_type.get_json_template_representation(**kwargs)]
@@ -93,7 +98,9 @@ class ListSchema(BaseSchema):
         return ", ".join(attrs_list)
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "ListSchema":
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "ListSchema":
         # TODO: for items, if the type is a primitive is it listed in type instead of $ref?
         element_schema = yaml_data["elementType"]
 
@@ -112,8 +119,13 @@ class ListSchema(BaseSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        if not self.element_type.type_annotation(is_operation_file=True) == "ET.Element":
-            file_import.add_submodule_import("typing", "List", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        if (
+            not self.element_type.type_annotation(is_operation_file=True)
+            == "ET.Element"
+        ):
+            file_import.add_submodule_import(
+                "typing", "List", ImportType.STDLIB, TypingSection.CONDITIONAL
+            )
         file_import.merge(self.element_type.imports())
         return file_import
 

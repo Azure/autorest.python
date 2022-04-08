@@ -4,22 +4,28 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional, TYPE_CHECKING
-from .parameter import ParameterOnlyPathAndBodyPositional, ParameterLocation, ParameterStyle, get_target_property_name
+from .parameter import (
+    ParameterOnlyPathAndBodyPositional,
+    ParameterLocation,
+    ParameterStyle,
+    get_target_property_name,
+)
 from .utils import get_schema
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
+
 
 def _make_public(name):
     if name[0] == "_":
         return name[1:]
     return name
 
-class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
 
+class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
     @property
     def in_method_signature(self) -> bool:
-        return not(
+        return not (
             # if not inputtable, don't put in signature
             not self.inputtable_by_user
             # If i'm not in the method code, no point in being in signature
@@ -72,17 +78,25 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel", *, content_types: Optional[List[str]] = None
+        cls,
+        yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
+        *,
+        content_types: Optional[List[str]] = None,
     ) -> "RequestBuilderParameter":
-        http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
+        http_protocol = yaml_data["protocol"].get(
+            "http", {"in": ParameterLocation.Other}
+        )
         name = yaml_data["language"]["python"]["name"]
         location = ParameterLocation(http_protocol["in"])
         serialized_name = yaml_data["language"]["python"]["name"]
-        schema = get_schema(
-            code_model, yaml_data.get("schema"), serialized_name
-        )
+        schema = get_schema(code_model, yaml_data.get("schema"), serialized_name)
         target_property = yaml_data.get("targetProperty")
-        target_property_name = get_target_property_name(code_model, id(target_property)) if target_property else None
+        target_property_name = (
+            get_target_property_name(code_model, id(target_property))
+            if target_property
+            else None
+        )
         return cls(
             code_model=code_model,
             yaml_data=yaml_data,
@@ -96,10 +110,14 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
             implementation=yaml_data["implementation"],
             required=yaml_data.get("required", False),
             location=location,
-            skip_url_encoding=yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
+            skip_url_encoding=yaml_data.get("extensions", {}).get(
+                "x-ms-skip-url-encoding", False
+            ),
             constraints=[],  # FIXME constraints
             target_property_name=target_property_name,
-            style=ParameterStyle(http_protocol["style"]) if "style" in http_protocol else None,
+            style=ParameterStyle(http_protocol["style"])
+            if "style" in http_protocol
+            else None,
             explode=http_protocol.get("explode", False),
             grouped_by=yaml_data.get("groupedBy", None),
             original_parameter=yaml_data.get("originalParameter", None),

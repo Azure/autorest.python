@@ -9,11 +9,12 @@ from pathlib import Path
 from .imports import FileImport
 from .mixin_operation import MixinOperation
 
+
 class OperationMixinGroup:
     def __init__(
         self,
         version_path_to_metadata: Dict[Path, Dict[str, Any]],
-        default_api_version: str
+        default_api_version: str,
     ):
         self.default_api_version = default_api_version
         self.version_path_to_metadata = version_path_to_metadata
@@ -22,9 +23,9 @@ class OperationMixinGroup:
         imports = FileImport()
         imports_to_load = "async_imports" if async_mode else "sync_imports"
         for metadata_json in self.version_path_to_metadata.values():
-            if not metadata_json.get('operation_mixins'):
+            if not metadata_json.get("operation_mixins"):
                 continue
-            mixin_imports = metadata_json['operation_mixins'][imports_to_load]
+            mixin_imports = metadata_json["operation_mixins"][imports_to_load]
             if mixin_imports != "None":
                 current_version_imports = FileImport(json.loads(mixin_imports))
                 imports.merge(current_version_imports)
@@ -34,19 +35,23 @@ class OperationMixinGroup:
         self, mixin_operations: List[MixinOperation]
     ) -> List[MixinOperation]:
         default_api_version_path = [
-            version_path for version_path in self.version_path_to_metadata.keys()
+            version_path
+            for version_path in self.version_path_to_metadata.keys()
             if version_path.name == self.default_api_version
         ][0]
-        default_version_metadata = self.version_path_to_metadata[default_api_version_path]
+        default_version_metadata = self.version_path_to_metadata[
+            default_api_version_path
+        ]
         if not default_version_metadata.get("operation_mixins"):
             return mixin_operations
-        for name, metadata in default_version_metadata["operation_mixins"]["operations"].items():
+        for name, metadata in default_version_metadata["operation_mixins"][
+            "operations"
+        ].items():
             if name.startswith("_"):
                 continue
             mixin_operation = [mo for mo in mixin_operations if mo.name == name][0]
             mixin_operation.mixin_operation_metadata = metadata
         return mixin_operations
-
 
     @property
     def mixin_operations(self) -> List[MixinOperation]:
@@ -55,14 +60,20 @@ class OperationMixinGroup:
             if not metadata_json.get("operation_mixins"):
                 continue
             mixin_operations_metadata = metadata_json["operation_mixins"]["operations"]
-            for mixin_operation_name, mixin_operation_metadata in mixin_operations_metadata.items():
+            for (
+                mixin_operation_name,
+                mixin_operation_metadata,
+            ) in mixin_operations_metadata.items():
                 if mixin_operation_name.startswith("_"):
                     continue
                 try:
-                    mixin_operation = [mo for mo in mixin_operations if mo.name == mixin_operation_name][0]
+                    mixin_operation = [
+                        mo for mo in mixin_operations if mo.name == mixin_operation_name
+                    ][0]
                 except IndexError:
                     mixin_operation = MixinOperation(
-                        name=mixin_operation_name, mixin_operation_metadata=mixin_operation_metadata
+                        name=mixin_operation_name,
+                        mixin_operation_metadata=mixin_operation_metadata,
                     )
                     mixin_operations.append(mixin_operation)
                 mixin_operation.append_available_api(version_path.name)
