@@ -8,7 +8,6 @@ from typing import Any, TYPE_CHECKING
 import logging
 from .base_schema import BaseSchema
 
-
 if TYPE_CHECKING:
     from .code_model import CodeModel
 

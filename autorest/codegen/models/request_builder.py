@@ -13,6 +13,7 @@ from .schema_response import SchemaResponse
 from .imports import FileImport, ImportType, TypingSection
 from .parameter import Parameter
 
+
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
 
@@ -62,11 +63,9 @@ class RequestBuilder(BaseBuilder):
     def builder_group_name(self) -> str:
         return self.yaml_data["language"]["python"]["builderGroupName"]
 
-    def imports(self, is_python3_file: bool) -> FileImport:
+    def imports(self) -> FileImport:
         file_import = FileImport()
-        for parameter in [*self.parameters.positional,
-                            *self.parameters.keyword_only,
-                            *self.parameters.kwargs_to_pop(is_python3_file)]:
+        for parameter in self.parameters.method:
             if parameter.need_import:
                 file_import.merge(parameter.imports())
 

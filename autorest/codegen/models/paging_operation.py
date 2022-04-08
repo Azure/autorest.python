@@ -133,7 +133,7 @@ class PagingOperation(Operation):
             self.code_model.options["builders_visibility"] == "embedded"
             and not async_mode
         ):
-            file_import.merge(self.next_request_builder.imports(async_mode))
+            file_import.merge(self.next_request_builder.imports())
         return file_import
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:

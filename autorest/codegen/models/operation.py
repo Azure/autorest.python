@@ -226,7 +226,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
                     alias="rest"
                 )
         if self.code_model.options["builders_visibility"] == "embedded" and not async_mode:
-            file_import.merge(self.request_builder.imports(async_mode))
+            file_import.merge(self.request_builder.imports())
         if self.code_model.need_request_converter:
             relative_path = "..." if async_mode else ".."
             file_import.add_submodule_import(
