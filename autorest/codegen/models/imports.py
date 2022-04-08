@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from enum import Enum
-from typing import Dict, List, Optional, Tuple, Union, Set
+from typing import Dict, List, Optional, Tuple, Union, Set, Mapping
 
 class ImportType(str, Enum):
     STDLIB = "stdlib"
@@ -54,11 +54,13 @@ class ImportModel:
 
 class TypeDefinition:
     def __init__(self, sync_definition: str, async_definition: str,
-                version_if_else_imports: Optional[Tuple[Tuple[int, int], ImportModel, ImportModel]] = None):
-        # version_if_else_imports: Tuple[version_info, imports if >= version_info, imports else]
+                    version_imports: Mapping[Optional[Tuple[int, int]], ImportModel] = None):
+        # version_imports: a map of "python version -> ImportModel".
+        #                  The python version is in form of (major, minor), for instance (3, 9) stands for py3.9.
+        #                  If the python version is None, it's a default ImportModel.
         self.sync_definition = sync_definition
         self.async_definition = async_definition
-        self.version_if_else_imports = version_if_else_imports
+        self.version_imports = version_imports
 
 class FileImport:
     def __init__(
@@ -117,9 +119,8 @@ class FileImport:
         ))
 
     def define_mypy_type(self, type_name: str, type_value: str, async_type_value: Optional[str] = None,
-                        version_if_else_imports: Optional[Tuple[Tuple[int, int], ImportModel, ImportModel]] = None):
-        self.type_definitions[type_name] = TypeDefinition(type_value, async_type_value or type_value,
-            version_if_else_imports)
+                        version_imports: Mapping[Optional[Tuple[int, int]], ImportModel] = None):
+        self.type_definitions[type_name] = TypeDefinition(type_value, async_type_value or type_value, version_imports)
 
     def merge(self, file_import: "FileImport") -> None:
         """Merge the given file import format."""

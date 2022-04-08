@@ -73,16 +73,19 @@ class FileImportSerializer:
         def declare_defintion(spacing: str, type_name: str, type_definition: TypeDefinition) -> List[str]:
             ret: List[str] = []
             definition_value = type_definition.async_definition if self.async_mode else type_definition.sync_definition
-            if type_definition.version_if_else_imports is None:
-                ret.append("{}{} = {}".format(spacing, type_name, definition_value))
-            else:
-                ret.append("{}if sys.version_info >= {}:".format(spacing, type_definition.version_if_else_imports[0]))
-                ret.extend(map(lambda x: "    {}{}".format(spacing, x),
-                                _get_import_clauses([type_definition.version_if_else_imports[1]], "\n")))
-                ret.append("{}else:".format(spacing))
-                ret.extend(map(lambda x: "    {}{} # type: ignore".format(spacing, x),
-                                _get_import_clauses([type_definition.version_if_else_imports[2]], "\n")))
-                ret.append("{}{} = {}".format(spacing, type_name, definition_value))
+            if type_definition.version_imports is not None:
+                versions = type_definition.version_imports.keys()
+                for i, version in enumerate(sorted(versions, key=lambda x: x if x is not None else (), reverse = True)):
+                    if version is not None:
+                        ret.append("{}{} sys.version_info >= {}:".format(spacing, "if" if i == 0 else "elif", version))
+                    elif i > 0:
+                        ret.append("{}else:".format(spacing))
+                    for import_clause in _get_import_clauses([type_definition.version_imports[version]], "\n"):
+                        ret.append("{}{}{}".format(
+                                    "    " if len(versions) > 1 or version is not None else "", spacing, import_clause))
+                        if i > 0:
+                            ret[-1] += "  # type: ignore"
+            ret.append("{}{} = {}".format(spacing, type_name, definition_value))
             return ret
 
         if not self.file_import.type_definitions:

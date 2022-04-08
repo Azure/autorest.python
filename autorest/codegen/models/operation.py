@@ -17,7 +17,6 @@ from .object_schema import ObjectSchema
 from .request_builder import RequestBuilder
 from .schema_request import SchemaRequest
 from .primitive_schemas import IOSchema
-from .utils import is_or_contain_schema
 
 _LOGGER = logging.getLogger(__name__)
 

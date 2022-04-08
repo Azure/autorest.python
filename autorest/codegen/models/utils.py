@@ -4,12 +4,10 @@
 # license information.
 # --------------------------------------------------------------------------
 import re
-from typing import Any, TYPE_CHECKING, Type
+from typing import Any, TYPE_CHECKING
 import logging
 from .base_schema import BaseSchema
-from .dictionary_schema import DictionarySchema
-from .list_schema import ListSchema
-from .imports import FileImport, ImportType, TypingSection, ImportModel
+
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -29,16 +27,3 @@ def get_schema(code_model: "CodeModel", schema: Any, serialized_name: str = "unk
     except KeyError:
         _LOGGER.critical("Unable to ref the object")
         raise
-
-def import_mutable_mapping(file_import: FileImport):
-    file_import.add_import("sys", ImportType.STDLIB)
-    file_import.define_mypy_type("JSON", "MutableMapping[str, Any] # pylint: disable=unsubscriptable-object", None, ((3, 9), ImportModel(
-        TypingSection.CONDITIONAL, ImportType.STDLIB, "collections.abc", submodule_name="MutableMapping"
-    ), ImportModel(
-        TypingSection.CONDITIONAL, ImportType.STDLIB, "typing", submodule_name="MutableMapping"
-    )))
-
-def is_or_contain_schema(schema: BaseSchema, t: Type) -> bool:
-    if isinstance(schema, (DictionarySchema, ListSchema)):
-        return is_or_contain_schema(schema.element_type, t)
-    return isinstance(schema, t)
