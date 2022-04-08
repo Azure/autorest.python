@@ -28,7 +28,6 @@ from .. import models as _models
 from .._vendor import _convert_request
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -49,7 +48,9 @@ def build_get_int_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_int_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_int_request(
+    *, json: Optional[_models.IntWrapper] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -80,7 +81,9 @@ def build_get_long_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_long_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_long_request(
+    *, json: Optional[_models.LongWrapper] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -111,7 +114,9 @@ def build_get_float_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_float_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_float_request(
+    *, json: Optional[_models.FloatWrapper] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -142,7 +147,9 @@ def build_get_double_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_double_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_double_request(
+    *, json: Optional[_models.DoubleWrapper] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -173,7 +180,9 @@ def build_get_bool_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_bool_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_bool_request(
+    *, json: Optional[_models.BooleanWrapper] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -204,7 +213,9 @@ def build_get_string_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_string_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_string_request(
+    *, json: Optional[_models.StringWrapper] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -235,7 +246,9 @@ def build_get_date_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_date_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_date_request(
+    *, json: Optional[_models.DateWrapper] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -266,7 +279,9 @@ def build_get_date_time_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_date_time_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_date_time_request(
+    *, json: Optional[_models.DatetimeWrapper] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -297,7 +312,9 @@ def build_get_date_time_rfc1123_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_date_time_rfc1123_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_date_time_rfc1123_request(
+    *, json: Optional[_models.Datetimerfc1123Wrapper] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -328,7 +345,9 @@ def build_get_duration_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_duration_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_duration_request(
+    *, json: Optional[_models.DurationWrapper] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -359,7 +378,9 @@ def build_get_byte_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_byte_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_byte_request(
+    *, json: Optional[_models.ByteWrapper] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]

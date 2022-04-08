@@ -17,7 +17,6 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()

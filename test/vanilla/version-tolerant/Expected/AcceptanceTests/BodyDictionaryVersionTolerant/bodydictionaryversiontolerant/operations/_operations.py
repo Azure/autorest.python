@@ -7,6 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+import sys
 from typing import Any, Callable, Dict, List, Optional, TypeVar, cast
 
 from msrest import Serializer
@@ -24,8 +25,12 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -60,7 +65,9 @@ def build_dictionary_get_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_dictionary_put_empty_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_dictionary_put_empty_request(
+    *, json: Optional[Dict[str, str]] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -148,7 +155,7 @@ def build_dictionary_get_boolean_tfft_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_dictionary_put_boolean_tfft_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Optional[Dict[str, bool]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -209,7 +216,7 @@ def build_dictionary_get_integer_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_dictionary_put_integer_valid_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Optional[Dict[str, int]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -270,7 +277,7 @@ def build_dictionary_get_long_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_dictionary_put_long_valid_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Optional[Dict[str, int]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -331,7 +338,7 @@ def build_dictionary_get_float_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_dictionary_put_float_valid_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Optional[Dict[str, float]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -392,7 +399,7 @@ def build_dictionary_get_double_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_dictionary_put_double_valid_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Optional[Dict[str, float]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -453,7 +460,7 @@ def build_dictionary_get_string_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_dictionary_put_string_valid_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Optional[Dict[str, str]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -514,7 +521,7 @@ def build_dictionary_get_date_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_dictionary_put_date_valid_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Optional[Dict[str, datetime.date]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -575,7 +582,7 @@ def build_dictionary_get_date_time_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_dictionary_put_date_time_valid_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Optional[Dict[str, datetime.datetime]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -636,7 +643,7 @@ def build_dictionary_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpR
 
 
 def build_dictionary_put_date_time_rfc1123_valid_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Optional[Dict[str, datetime.datetime]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -669,7 +676,7 @@ def build_dictionary_get_duration_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_dictionary_put_duration_valid_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Optional[Dict[str, datetime.timedelta]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -702,7 +709,7 @@ def build_dictionary_get_byte_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_dictionary_put_byte_valid_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Optional[Dict[str, bytearray]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -819,7 +826,7 @@ def build_dictionary_get_complex_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_dictionary_put_complex_valid_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Optional[Dict[str, JSON]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -908,7 +915,7 @@ def build_dictionary_get_array_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_dictionary_put_array_valid_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Optional[Dict[str, List[str]]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -997,7 +1004,7 @@ def build_dictionary_get_dictionary_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_dictionary_put_dictionary_valid_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Optional[Dict[str, Dict[str, str]]] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -3392,11 +3399,11 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         return cast(Dict[str, bytes], deserialized)
 
     @distributed_trace
-    def get_complex_null(self, **kwargs: Any) -> Optional[Dict[str, JSONType]]:
+    def get_complex_null(self, **kwargs: Any) -> Optional[Dict[str, JSON]]:
         """Get dictionary of complex type null value.
 
         :return: dict mapping str to JSON object or None
-        :rtype: dict[str, JSONType] or None
+        :rtype: dict[str, JSON] or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3416,7 +3423,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, JSONType]]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[Dict[str, JSON]]]
 
         request = build_dictionary_get_complex_null_request(
             headers=_headers,
@@ -3439,16 +3446,16 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Optional[Dict[str, JSONType]], deserialized), {})
+            return cls(pipeline_response, cast(Optional[Dict[str, JSON]], deserialized), {})
 
-        return cast(Optional[Dict[str, JSONType]], deserialized)
+        return cast(Optional[Dict[str, JSON]], deserialized)
 
     @distributed_trace
-    def get_complex_empty(self, **kwargs: Any) -> Dict[str, JSONType]:
+    def get_complex_empty(self, **kwargs: Any) -> Dict[str, JSON]:
         """Get empty dictionary of complex type {}.
 
         :return: dict mapping str to JSON object
-        :rtype: dict[str, JSONType]
+        :rtype: dict[str, JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3468,7 +3475,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSON]]
 
         request = build_dictionary_get_complex_empty_request(
             headers=_headers,
@@ -3491,17 +3498,17 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, JSONType], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, JSON], deserialized), {})
 
-        return cast(Dict[str, JSONType], deserialized)
+        return cast(Dict[str, JSON], deserialized)
 
     @distributed_trace
-    def get_complex_item_null(self, **kwargs: Any) -> Dict[str, JSONType]:
+    def get_complex_item_null(self, **kwargs: Any) -> Dict[str, JSON]:
         """Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null,
         "2": {"integer": 5, "string": "6"}}.
 
         :return: dict mapping str to JSON object
-        :rtype: dict[str, JSONType]
+        :rtype: dict[str, JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3521,7 +3528,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSON]]
 
         request = build_dictionary_get_complex_item_null_request(
             headers=_headers,
@@ -3544,17 +3551,17 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, JSONType], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, JSON], deserialized), {})
 
-        return cast(Dict[str, JSONType], deserialized)
+        return cast(Dict[str, JSON], deserialized)
 
     @distributed_trace
-    def get_complex_item_empty(self, **kwargs: Any) -> Dict[str, JSONType]:
+    def get_complex_item_empty(self, **kwargs: Any) -> Dict[str, JSON]:
         """Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {},
         "2": {"integer": 5, "string": "6"}}.
 
         :return: dict mapping str to JSON object
-        :rtype: dict[str, JSONType]
+        :rtype: dict[str, JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3574,7 +3581,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSON]]
 
         request = build_dictionary_get_complex_item_empty_request(
             headers=_headers,
@@ -3597,17 +3604,17 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, JSONType], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, JSON], deserialized), {})
 
-        return cast(Dict[str, JSONType], deserialized)
+        return cast(Dict[str, JSON], deserialized)
 
     @distributed_trace
-    def get_complex_valid(self, **kwargs: Any) -> Dict[str, JSONType]:
+    def get_complex_valid(self, **kwargs: Any) -> Dict[str, JSON]:
         """Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3,
         "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         :return: dict mapping str to JSON object
-        :rtype: dict[str, JSONType]
+        :rtype: dict[str, JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -3627,7 +3634,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[Dict[str, JSON]]
 
         request = build_dictionary_get_complex_valid_request(
             headers=_headers,
@@ -3650,19 +3657,19 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, JSONType], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, JSON], deserialized), {})
 
-        return cast(Dict[str, JSONType], deserialized)
+        return cast(Dict[str, JSON], deserialized)
 
     @distributed_trace
     def put_complex_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Dict[str, JSONType], **kwargs: Any
+        self, array_body: Dict[str, JSON], **kwargs: Any
     ) -> None:
         """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
         {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         :param array_body:
-        :type array_body: dict[str, JSONType]
+        :type array_body: dict[str, JSON]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

@@ -24,7 +24,6 @@ from ..._operations._operations import build_get_optional_report_request, build_
 from .._vendor import MixinABC
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import abc
-from typing import Any, List, Optional, TypeVar
+from typing import Any, List, Optional
 
 from msrest import Serializer
 
@@ -14,9 +14,6 @@ from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
 
 from .._vendor import _format_url_section
-
-T = TypeVar("T")
-JSONType = Any
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -53,9 +50,7 @@ def build_operation_with_content_param_request(*, content: Any, **kwargs: Any) -
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_operation_with_json_param_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_operation_with_json_param_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     """Operation with body param called 'json'. Pass in {'hello': 'world'}.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -63,7 +58,7 @@ def build_operation_with_json_param_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Pass in {'hello': 'world'}. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Pass in {'hello': 'world'}. Default value is None.
     :paramtype content: any

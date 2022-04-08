@@ -24,14 +24,13 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_upload_file_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_upload_file_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -77,13 +76,11 @@ class UploadOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def file(  # pylint: disable=inconsistent-return-statements
-        self, file_param: Union[IO, JSONType], **kwargs: Any
-    ) -> None:
+    def file(self, file_param: Union[IO, Any], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Uploading json file.
 
         :param file_param: JSON file with payload { "more": "cowbell" }.
-        :type file_param: IO or JSONType
+        :type file_param: IO or Any
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

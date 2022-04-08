@@ -14,10 +14,7 @@ from azure.core.utils import case_insensitive_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional, TypeVar, Union
-
-    T = TypeVar("T")
-    JSONType = Any
+    from typing import Any, Optional, Union
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -179,7 +176,7 @@ def build_post_parameters_request(
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. I am a body parameter with a new content type. My only
      valid JSON entry is { url: "http://example.org/myimage.jpeg" }. Default value is None.
-    :paramtype json: JSONType
+    :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). I am a body parameter with a new content type. My only valid
      JSON entry is { url: "http://example.org/myimage.jpeg" }. Default value is None.

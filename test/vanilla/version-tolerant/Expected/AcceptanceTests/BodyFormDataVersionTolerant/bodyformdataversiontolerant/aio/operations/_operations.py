@@ -25,7 +25,6 @@ from azure.core.utils import case_insensitive_dict
 from ...operations._operations import build_formdata_upload_file_via_body_request
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 

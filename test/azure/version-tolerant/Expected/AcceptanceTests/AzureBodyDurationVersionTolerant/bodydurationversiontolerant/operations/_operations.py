@@ -25,7 +25,6 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -47,7 +46,7 @@ def build_duration_get_null_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_duration_put_positive_duration_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Any = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 

@@ -27,7 +27,6 @@ from .. import models as _models
 from .._vendor import _convert_request
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -48,7 +47,7 @@ def build_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_valid_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_valid_request(*, json: Optional[_models.Fish] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -121,7 +120,9 @@ def build_get_complicated_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_complicated_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_put_complicated_request(
+    *, json: Optional[_models.Salmon] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -139,7 +140,7 @@ def build_put_complicated_request(*, json: JSONType = None, content: Any = None,
 
 
 def build_put_missing_discriminator_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Optional[_models.Salmon] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -158,7 +159,7 @@ def build_put_missing_discriminator_request(
 
 
 def build_put_valid_missing_required_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
+    *, json: Optional[_models.Fish] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 

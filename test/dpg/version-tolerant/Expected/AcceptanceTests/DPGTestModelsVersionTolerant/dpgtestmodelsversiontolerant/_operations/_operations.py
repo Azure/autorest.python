@@ -30,7 +30,6 @@ from .. import models as _models
 from .._vendor import MixinABC, _format_url_section
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -56,7 +55,9 @@ def build_get_model_request(mode: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_model_request(mode: str, *, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_post_model_request(
+    mode: str, *, json: Optional[_models.Input] = None, content: Any = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]

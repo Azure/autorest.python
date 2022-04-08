@@ -27,7 +27,6 @@ from azure.core.utils import case_insensitive_dict
 from .._vendor import MixinABC, _format_url_section
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -69,9 +68,7 @@ def build_operation_with_content_param_request(*, content: Any, **kwargs: Any) -
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_operation_with_json_param_request(
-    *, json: JSONType = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+def build_operation_with_json_param_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]

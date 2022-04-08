@@ -1,6 +1,6 @@
 # Change Log
 
-### 2022-03-XX - 5.15.0
+### 2022-04-07 - 5.15.0
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -15,6 +15,7 @@
 - Add support for security configurations in the swagger. For more information, see https://github.com/Azure/autorest/blob/main/docs/generate/authentication.md #1161
 - Add support for handwritten customizations of generated code. For more information, see https://aka.ms/azsdk/python/dpcodegen/python/customize #1153
 - Allow `header` and `params` as kwargs in operation and request-build function to hand over REST Header and Query parameters case insensitively #1183
+- Typing operation parameters as JSON, Primitives or Any for `--version-tolerant` #1210
 
 **Bug Fixes**
 

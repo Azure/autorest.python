@@ -26,7 +26,6 @@ from azure.core.utils import case_insensitive_dict
 from .._vendor import _format_url_section
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -35,7 +34,7 @@ _SERIALIZER = Serializer()
 def build_parameter_grouping_post_required_request(
     path: str,
     *,
-    json: JSONType = None,
+    json: Any = None,
     content: Any = None,
     custom_header: Optional[str] = None,
     query: Optional[int] = 30,

@@ -6,14 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import abc
-from typing import Any, Optional, TypeVar
+from typing import Any, Optional
 
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
-
-T = TypeVar("T")
-JSONType = Any
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False

@@ -24,7 +24,6 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
@@ -87,7 +86,7 @@ def build_number_get_invalid_decimal_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_number_put_big_float_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_number_put_big_float_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -118,7 +117,7 @@ def build_number_get_big_float_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_number_put_big_double_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_number_put_big_double_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -213,7 +212,7 @@ def build_number_get_big_double_negative_decimal_request(**kwargs: Any) -> HttpR
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_number_put_big_decimal_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_number_put_big_decimal_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -308,7 +307,7 @@ def build_number_get_big_decimal_negative_decimal_request(**kwargs: Any) -> Http
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_number_put_small_float_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_number_put_small_float_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -339,7 +338,7 @@ def build_number_get_small_float_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_number_put_small_double_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_number_put_small_double_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -370,7 +369,7 @@ def build_number_get_small_double_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_number_put_small_decimal_request(*, json: JSONType = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_number_put_small_decimal_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]

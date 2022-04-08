@@ -11,7 +11,7 @@ from .operation import Operation
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .lro_paging_operation import LROPagingOperation
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -106,6 +106,8 @@ class OperationGroup(BaseModel):
             file_import.add_submodule_import(
                 ".._vendor", "MixinABC", ImportType.LOCAL
             )
+        file_import.add_submodule_import("typing", "TypeVar", ImportType.STDLIB, TypingSection.CONDITIONAL)
+        file_import.define_mypy_type("T", "TypeVar('T')")
         type_value = "Optional[Callable[[PipelineResponse[HttpRequest, {}HttpResponse], T, Dict[str, Any]], Any]]"
         file_import.define_mypy_type(
             "ClsType",

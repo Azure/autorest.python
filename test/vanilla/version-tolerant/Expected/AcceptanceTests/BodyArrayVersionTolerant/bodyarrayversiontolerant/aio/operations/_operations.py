@@ -7,6 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+import sys
 from typing import Any, Callable, Dict, List, Optional, TypeVar, cast
 
 from azure.core.exceptions import (
@@ -94,8 +95,12 @@ from ...operations._operations import (
     build_array_put_uuid_valid_request,
 )
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
-JSONType = Any
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
@@ -2685,11 +2690,11 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return cast(List[bytes], deserialized)
 
     @distributed_trace_async
-    async def get_complex_null(self, **kwargs: Any) -> List[JSONType]:
+    async def get_complex_null(self, **kwargs: Any) -> List[JSON]:
         """Get array of complex type null value.
 
         :return: list of JSON object
-        :rtype: list[JSONType]
+        :rtype: list[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2709,7 +2714,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSON]]
 
         request = build_array_get_complex_null_request(
             headers=_headers,
@@ -2732,16 +2737,16 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSONType], deserialized), {})
+            return cls(pipeline_response, cast(List[JSON], deserialized), {})
 
-        return cast(List[JSONType], deserialized)
+        return cast(List[JSON], deserialized)
 
     @distributed_trace_async
-    async def get_complex_empty(self, **kwargs: Any) -> List[JSONType]:
+    async def get_complex_empty(self, **kwargs: Any) -> List[JSON]:
         """Get empty array of complex type [].
 
         :return: list of JSON object
-        :rtype: list[JSONType]
+        :rtype: list[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2761,7 +2766,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSON]]
 
         request = build_array_get_complex_empty_request(
             headers=_headers,
@@ -2784,17 +2789,17 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSONType], deserialized), {})
+            return cls(pipeline_response, cast(List[JSON], deserialized), {})
 
-        return cast(List[JSONType], deserialized)
+        return cast(List[JSON], deserialized)
 
     @distributed_trace_async
-    async def get_complex_item_null(self, **kwargs: Any) -> List[JSONType]:
+    async def get_complex_item_null(self, **kwargs: Any) -> List[JSON]:
         """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
         'string': '6'}].
 
         :return: list of JSON object
-        :rtype: list[JSONType]
+        :rtype: list[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2814,7 +2819,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSON]]
 
         request = build_array_get_complex_item_null_request(
             headers=_headers,
@@ -2837,17 +2842,17 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSONType], deserialized), {})
+            return cls(pipeline_response, cast(List[JSON], deserialized), {})
 
-        return cast(List[JSONType], deserialized)
+        return cast(List[JSON], deserialized)
 
     @distributed_trace_async
-    async def get_complex_item_empty(self, **kwargs: Any) -> List[JSONType]:
+    async def get_complex_item_empty(self, **kwargs: Any) -> List[JSON]:
         """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
         'string': '6'}].
 
         :return: list of JSON object
-        :rtype: list[JSONType]
+        :rtype: list[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2867,7 +2872,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSON]]
 
         request = build_array_get_complex_item_empty_request(
             headers=_headers,
@@ -2890,17 +2895,17 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSONType], deserialized), {})
+            return cls(pipeline_response, cast(List[JSON], deserialized), {})
 
-        return cast(List[JSONType], deserialized)
+        return cast(List[JSON], deserialized)
 
     @distributed_trace_async
-    async def get_complex_valid(self, **kwargs: Any) -> List[JSONType]:
+    async def get_complex_valid(self, **kwargs: Any) -> List[JSON]:
         """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
         {'integer': 5, 'string': '6'}].
 
         :return: list of JSON object
-        :rtype: list[JSONType]
+        :rtype: list[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2920,7 +2925,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSONType]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[JSON]]
 
         request = build_array_get_complex_valid_request(
             headers=_headers,
@@ -2943,19 +2948,19 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSONType], deserialized), {})
+            return cls(pipeline_response, cast(List[JSON], deserialized), {})
 
-        return cast(List[JSONType], deserialized)
+        return cast(List[JSON], deserialized)
 
     @distributed_trace_async
     async def put_complex_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[JSONType], **kwargs: Any
+        self, array_body: List[JSON], **kwargs: Any
     ) -> None:
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
         'string': '4'}, {'integer': 5, 'string': '6'}].
 
         :param array_body:
-        :type array_body: list[JSONType]
+        :type array_body: list[JSON]
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
