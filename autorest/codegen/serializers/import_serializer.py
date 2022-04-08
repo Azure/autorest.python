@@ -75,7 +75,7 @@ class FileImportSerializer:
             definition_value = type_definition.async_definition if self.async_mode else type_definition.sync_definition
             if type_definition.version_imports is not None:
                 versions = type_definition.version_imports.keys()
-                for i, version in enumerate(sorted(versions, key=lambda x: x if x is not None else (), reverse = True)):
+                for i, version in enumerate(sorted(versions, key=lambda x: x if x is not None else (), reverse=True)):
                     if version is not None:
                         ret.append("{}{} sys.version_info >= {}:".format(spacing, "if" if i == 0 else "elif", version))
                     elif i > 0:
