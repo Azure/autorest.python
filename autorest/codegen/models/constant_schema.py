@@ -4,10 +4,13 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, TYPE_CHECKING
 from .base_schema import BaseSchema
 from .primitive_schemas import get_primitive_schema, PrimitiveSchema
 from .imports import FileImport
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -23,9 +26,9 @@ class ConstantSchema(BaseSchema):
     """
 
     def __init__(
-        self, namespace: str, yaml_data: Dict[str, Any], schema: PrimitiveSchema, value: Optional[str],
+        self, yaml_data: Dict[str, Any], code_model: "CodeModel", schema: PrimitiveSchema, value: Optional[str],
     ) -> None:
-        super(ConstantSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.value = value
         self.schema = schema
 
@@ -64,7 +67,7 @@ class ConstantSchema(BaseSchema):
         return self.schema.type_annotation(is_operation_file=is_operation_file)
 
     @classmethod
-    def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "ConstantSchema":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "ConstantSchema":
         """Constructs a ConstantSchema from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema
@@ -76,9 +79,9 @@ class ConstantSchema(BaseSchema):
         name = yaml_data["language"]["python"]["name"] if yaml_data["language"]["python"].get("name") else ""
         _LOGGER.debug("Parsing %s constant", name)
         return cls(
-            namespace=namespace,
             yaml_data=yaml_data,
-            schema=get_primitive_schema(namespace=namespace, yaml_data=yaml_data["valueType"]),
+            code_model=code_model,
+            schema=get_primitive_schema(yaml_data=yaml_data["valueType"], code_model=code_model),
             value=yaml_data.get("value", {}).get("value", None),
         )
 

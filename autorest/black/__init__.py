@@ -18,7 +18,7 @@ _BLACK_MODE.line_length = 120
 class BlackScriptPlugin(Plugin):
 
     def __init__(self, autorestapi):
-        super(BlackScriptPlugin, self).__init__(autorestapi)
+        super().__init__(autorestapi)
         output_folder_uri = self._autorestapi.get_value("outputFolderUri")
         if output_folder_uri.startswith("file:"):
             output_folder_uri = output_folder_uri[5:]

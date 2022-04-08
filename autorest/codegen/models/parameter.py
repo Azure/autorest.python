@@ -62,8 +62,8 @@ def get_target_property_name(code_model: "CodeModel", target_property_id: int) -
 class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too-many-public-methods
     def __init__(
         self,
-        code_model,
         yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
         schema: BaseSchema,
         rest_api_name: str,
         serialized_name: str,
@@ -84,7 +84,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         keyword_only: Optional[bool] = None,
         content_types: Optional[List[str]] = None,
     ) -> None:
-        super().__init__(yaml_data)
+        super().__init__(yaml_data, code_model)
         self.code_model = code_model
         self.schema = schema
         self.rest_api_name = rest_api_name
@@ -356,8 +356,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
     def from_yaml(
         cls,
         yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
         *,
-        code_model,
         content_types: Optional[List[str]] = None
     ) -> "Parameter":
         http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
@@ -369,8 +369,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes, too
         target_property_name = get_target_property_name(code_model, id(target_property)) if target_property else None
 
         return cls(
-            code_model=code_model,
             yaml_data=yaml_data,
+            code_model=code_model,
             schema=schema,  # FIXME replace by operation model
             # See also https://github.com/Azure/autorest.modelerfour/issues/80
             rest_api_name=yaml_data["language"]["default"].get(

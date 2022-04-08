@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Optional, Set, cast
+from typing import Dict, List, Any, Optional, Set, cast, TYPE_CHECKING
 from .imports import FileImport
 from .operation import Operation
 from .parameter_list import ParameterList
@@ -13,14 +13,17 @@ from .imports import ImportType, TypingSection
 from .base_schema import BaseSchema
 from .schema_request import SchemaRequest
 
+if TYPE_CHECKING:
+    from .code_model import CodeModel
+
 _LOGGER = logging.getLogger(__name__)
 
 
 class LROOperation(Operation):
     def __init__(
         self,
-        code_model,
         yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
         name: str,
         description: str,
         api_versions: Set[str],
@@ -35,9 +38,9 @@ class LROOperation(Operation):
         *,
         abstract: bool = False,
     ) -> None:
-        super(LROOperation, self).__init__(
-            code_model,
+        super().__init__(
             yaml_data,
+            code_model,
             name,
             description,
             api_versions,
@@ -86,8 +89,8 @@ class LROOperation(Operation):
     @property
     def initial_operation(self) -> Operation:
         operation = Operation(
-            self.code_model,
             yaml_data={},
+            code_model=self.code_model,
             name=self.name[5:] + "_initial",
             description="",
             api_versions=self.api_versions,

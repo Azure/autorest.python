@@ -45,7 +45,7 @@ class AutorestHandler(logging.Handler):
         # Initialize this handler with the max loglevel, since
         # autorest is deciding what to show, not us
         # so we want to log everything and let autorest filters.
-        super(AutorestHandler, self).__init__(logging.DEBUG)
+        super().__init__(logging.DEBUG)
         self._autorest_api = autorest_api
 
     @staticmethod

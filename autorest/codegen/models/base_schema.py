@@ -4,10 +4,13 @@
 # license information.
 # --------------------------------------------------------------------------
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Union, TYPE_CHECKING
 
 from .base_model import BaseModel
 from .imports import FileImport
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 
 class BaseSchema(BaseModel, ABC):
@@ -17,18 +20,17 @@ class BaseSchema(BaseModel, ABC):
     :type yaml_data: dict[str, Any]
     """
 
-    def __init__(self, namespace: str, yaml_data: Dict[str, Any]) -> None:
-        super().__init__(yaml_data)
-        self.namespace = namespace
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
+        super().__init__(yaml_data, code_model)
         self.default_value = yaml_data.get("defaultValue", None)
         self.xml_metadata = yaml_data.get("serialization", {}).get("xml", {})
         self.api_versions = set(value_dict["version"] for value_dict in yaml_data.get("apiVersions", []))
 
     @classmethod
     def from_yaml(
-        cls, namespace: str, yaml_data: Dict[str, Any], **kwargs  # pylint: disable=unused-argument
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "BaseSchema":
-        return cls(namespace=namespace, yaml_data=yaml_data)
+        return cls(yaml_data=yaml_data, code_model=code_model)
 
     @property
     def extra_description_information(self) -> str:

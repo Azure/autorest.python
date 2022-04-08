@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
-def _get_operation(code_model, yaml_data: Dict[str, Any]) -> Operation:
+def _get_operation(yaml_data: Dict[str, Any], code_model: "CodeModel") -> Operation:
     lro_operation = yaml_data.get("extensions", {}).get("x-ms-long-running-operation")
     paging_operation = yaml_data.get("extensions", {}).get("x-ms-pageable")
     operation_schema = Operation
@@ -39,15 +39,14 @@ class OperationGroup(BaseModel):
     """
     def __init__(
         self,
-        code_model: "CodeModel",
         yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
         name: str,
         class_name: str,
         operations: List[Operation],
         api_versions: Set[str]
     ) -> None:
-        super().__init__(yaml_data)
-        self.code_model = code_model
+        super().__init__(yaml_data, code_model)
         self.name = name
         self.class_name = class_name
         self.operations = operations
@@ -134,20 +133,20 @@ class OperationGroup(BaseModel):
         return not self.yaml_data["language"]["default"]["name"]
 
     @classmethod
-    def from_yaml(cls, code_model, yaml_data: Dict[str, Any]) -> "OperationGroup":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "OperationGroup":
         name = yaml_data["language"]["python"]["name"]
         _LOGGER.debug("Parsing %s operation group", name)
 
         operations = []
         api_versions: Set[str] = set()
         for operation_yaml in yaml_data["operations"]:
-            operation = _get_operation(code_model, operation_yaml)
+            operation = _get_operation(operation_yaml, code_model)
             operations.append(operation)
             api_versions.update(operation.api_versions)
 
         return cls(
-            code_model=code_model,
             yaml_data=yaml_data,
+            code_model=code_model,
             name=name,
             class_name=yaml_data["language"]["python"]["className"],
             operations=operations,

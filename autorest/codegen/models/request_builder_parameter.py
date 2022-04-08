@@ -3,9 +3,12 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, TYPE_CHECKING
 from .parameter import ParameterOnlyPathAndBodyPositional, ParameterLocation, ParameterStyle, get_target_property_name
 from .utils import get_schema
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 def _make_public(name):
     if name[0] == "_":
@@ -69,7 +72,7 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
 
     @classmethod
     def from_yaml(
-        cls, yaml_data: Dict[str, Any], *, code_model, content_types: Optional[List[str]] = None
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel", *, content_types: Optional[List[str]] = None
     ) -> "RequestBuilderParameter":
         http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
         name = yaml_data["language"]["python"]["name"]

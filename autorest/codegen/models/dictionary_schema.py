@@ -3,9 +3,12 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, TYPE_CHECKING
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType, TypingSection
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 class DictionarySchema(BaseSchema):
     """Schema for dictionaries that will be serialized.
@@ -18,11 +21,11 @@ class DictionarySchema(BaseSchema):
 
     def __init__(
         self,
-        namespace: str,
         yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
         element_type: "BaseSchema"
     ) -> None:
-        super(DictionarySchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.element_type = element_type
 
     @property
@@ -63,7 +66,7 @@ class DictionarySchema(BaseSchema):
         }
 
     @classmethod
-    def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs: Any) -> "DictionarySchema":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "DictionarySchema":
         """Constructs a DictionarySchema from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema
@@ -77,12 +80,12 @@ class DictionarySchema(BaseSchema):
         from . import build_schema  # pylint: disable=import-outside-toplevel
 
         element_type = build_schema(
-            yaml_data=element_schema, **kwargs
+            yaml_data=element_schema, code_model=code_model
         )
 
         return cls(
-            namespace=namespace,
             yaml_data=yaml_data,
+            code_model=code_model,
             element_type=element_type,
         )
 

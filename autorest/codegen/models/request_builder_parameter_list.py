@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from copy import copy
-from typing import List, Optional, Tuple, TypeVar, Dict
+from typing import List, Optional, Tuple, TypeVar, Dict, TYPE_CHECKING
 from .request_builder_parameter import RequestBuilderParameter
 from .parameter_list import ParameterList
 from .parameter import ParameterLocation, Parameter, ParameterStyle
@@ -15,6 +15,9 @@ from .list_schema import ListSchema
 from .object_schema import ObjectSchema
 from .schema_request import SchemaRequest
 from .utils import JSON_REGEXP
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 T = TypeVar('T')
 OrderedSet = Dict[T, None]
@@ -31,11 +34,11 @@ def _kwarg_not_added(body_method_params, serialized_name: str) -> bool:
 class RequestBuilderParameterList(ParameterList):
     def __init__(
         self,
-        code_model,
+        code_model: "CodeModel",
         parameters: Optional[List[RequestBuilderParameter]] = None,
         schema_requests: Optional[List[SchemaRequest]] = None,
     ) -> None:
-        super(RequestBuilderParameterList, self).__init__(
+        super().__init__(
             code_model, parameters, schema_requests  # type: ignore
         )
         self.body_kwarg_names: OrderedSet[str] = {}
@@ -93,7 +96,7 @@ class RequestBuilderParameterList(ParameterList):
             json_kwarg.description
         )
         if not isinstance(body_method_param.schema, (ObjectSchema, DictionarySchema, ListSchema)):
-            json_kwarg.schema = AnySchema(namespace="", yaml_data={})
+            json_kwarg.schema = AnySchema(yaml_data={}, code_model=self.code_model)
         json_kwarg.content_types = [
             c for c in content_types_to_assign
             if JSON_REGEXP.match(c)
@@ -106,7 +109,7 @@ class RequestBuilderParameterList(ParameterList):
     ) -> RequestBuilderParameter:
         content_kwarg = copy(body_method_param)
         self._change_body_param_name(content_kwarg, "content")
-        content_kwarg.schema = AnySchema(namespace="", yaml_data={})
+        content_kwarg.schema = AnySchema(yaml_data={}, code_model=self.code_model)
         content_kwarg.description = (
             "Pass in binary content you want in the body of the request (typically bytes, "
             "a byte iterator, or stream input). " +

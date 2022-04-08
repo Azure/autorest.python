@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, TypeVar, Optional
+from typing import Any, Dict, List, TypeVar, Optional, TYPE_CHECKING
 import logging
 
 from .base_builder import BaseBuilder, create_parameters
@@ -14,6 +14,9 @@ from .schema_response import SchemaResponse
 from .imports import FileImport, ImportType, TypingSection
 from .parameter import Parameter
 
+if TYPE_CHECKING:
+    from .code_model import CodeModel
+
 _LOGGER = logging.getLogger(__name__)
 
 T = TypeVar('T')
@@ -22,8 +25,8 @@ OrderedSet = Dict[T, None]
 class RequestBuilder(BaseBuilder):
     def __init__(
         self,
-        code_model,
         yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
         name: str,
         url: str,
         method: str,
@@ -37,8 +40,8 @@ class RequestBuilder(BaseBuilder):
         abstract: bool = False,
     ):
         super().__init__(
-            code_model=code_model,
             yaml_data=yaml_data,
+            code_model=code_model,
             name=name,
             description=description,
             parameters=parameters,
@@ -98,7 +101,7 @@ class RequestBuilder(BaseBuilder):
         return file_import
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "RequestBuilder":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "RequestBuilder":
 
         # when combine embeded builders into one operation file, we need to avoid duplicated build function name.
         # So add operation group name is effective method
@@ -136,8 +139,8 @@ class RequestBuilder(BaseBuilder):
             abstract = True
 
         request_builder_class = cls(
-            code_model=code_model,
             yaml_data=yaml_data,
+            code_model=code_model,
             name=name,
             url=first_request["protocol"]["http"]["path"],
             method=first_request["protocol"]["http"]["method"].upper(),

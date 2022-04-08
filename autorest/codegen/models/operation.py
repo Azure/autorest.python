@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from itertools import chain
 import logging
-from typing import cast, Dict, List, Any, Optional, Union, Set
+from typing import cast, Dict, List, Any, Optional, Union, Set, TYPE_CHECKING
 
 from .base_builder import BaseBuilder, create_parameters
 from .imports import FileImport, ImportType, TypingSection
@@ -18,6 +18,9 @@ from .request_builder import RequestBuilder
 from .schema_request import SchemaRequest
 from .primitive_schemas import IOSchema
 
+if TYPE_CHECKING:
+    from .code_model import CodeModel
+
 _LOGGER = logging.getLogger(__name__)
 
 class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-many-instance-attributes
@@ -26,8 +29,8 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
 
     def __init__(
         self,
-        code_model,
         yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
         name: str,
         description: str,
         api_versions: Set[str],
@@ -310,7 +313,7 @@ class Operation(BaseBuilder):  # pylint: disable=too-many-public-methods, too-ma
         self.parameters.append(chosen_parameter)
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], *, code_model) -> "Operation":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "Operation":
         name = yaml_data["language"]["python"]["name"]
         _LOGGER.debug("Parsing %s operation", name)
 

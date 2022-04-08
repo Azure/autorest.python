@@ -3,10 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional, Set, Type
+from typing import Any, Dict, List, Optional, Set, Type, TYPE_CHECKING
 from .base_schema import BaseSchema
 from .primitive_schemas import PrimitiveSchema, get_primitive_schema, StringSchema
 from .imports import FileImport, ImportType, TypingSection
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 
 class EnumValue:
@@ -53,14 +56,14 @@ class EnumSchema(BaseSchema):
 
     def __init__(
         self,
-        namespace: str,
         yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
         description: str,
         name: str,
         values: List["EnumValue"],
         enum_type: PrimitiveSchema,
     ) -> None:
-        super(EnumSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.description = description
         self.name = name
         self.values = values
@@ -97,7 +100,7 @@ class EnumSchema(BaseSchema):
     def docstring_type(self) -> str:
         """The python type used for RST syntax input and type annotation.
         """
-        return f"{self.enum_type.type_annotation()} or ~{self.namespace}.models.{self.name}"
+        return f"{self.enum_type.type_annotation()} or ~{self.code_model.namespace}.models.{self.name}"
 
     @staticmethod
     def _get_enum_values(yaml_data: List[Dict[str, Any]]) -> List["EnumValue"]:
@@ -132,7 +135,7 @@ class EnumSchema(BaseSchema):
         return self.enum_type.get_json_template_representation(**self._template_kwargs(**kwargs))
 
     @classmethod
-    def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs: Any) -> "EnumSchema":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "EnumSchema":
         """Constructs an EnumSchema from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema
@@ -145,13 +148,13 @@ class EnumSchema(BaseSchema):
 
         # choice type doesn't always exist. if there is no choiceType, we default to string
         if yaml_data.get("choiceType"):
-            enum_type = get_primitive_schema(namespace, yaml_data["choiceType"])
+            enum_type = get_primitive_schema(yaml_data["choiceType"], code_model)
         else:
-            enum_type = StringSchema(namespace, {"type": "str"})
+            enum_type = StringSchema({"type": "str"}, code_model)
         values = EnumSchema._get_enum_values(yaml_data["choices"])
         return cls(
-            namespace=namespace,
             yaml_data=yaml_data,
+            code_model=code_model,
             description=yaml_data["language"]["python"]["description"],
             name=name,
             values=values,

@@ -3,10 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, Union, TYPE_CHECKING
 from .base_model import BaseModel
 from .schema_response import SchemaResponse
 from .schema_request import SchemaRequest
+
+if TYPE_CHECKING:
+    from .code_model import CodeModel
 
 
 _M4_HEADER_PARAMETERS = ["content_type", "accept"]
@@ -63,8 +66,8 @@ class BaseBuilder(BaseModel):
 
     def __init__(
         self,
-        code_model,
         yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
         name: str,
         description: str,
         parameters,
@@ -75,8 +78,7 @@ class BaseBuilder(BaseModel):
         abstract: bool = False,
         want_tracing: bool = True,
     ) -> None:
-        super().__init__(yaml_data=yaml_data)
-        self.code_model = code_model
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.name = name
         self._description = description
         self.parameters = parameters

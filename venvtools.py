@@ -21,7 +21,7 @@ class ExtendedEnvBuilder(venv.EnvBuilder):
 
     def __init__(self, *args, **kwargs):
         self.context = None
-        super(ExtendedEnvBuilder, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def ensure_directories(self, env_dir):
         self.context = super(ExtendedEnvBuilder, self).ensure_directories(env_dir)
