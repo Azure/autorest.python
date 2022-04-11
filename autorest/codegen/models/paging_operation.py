@@ -7,7 +7,7 @@ import logging
 from typing import cast, Dict, List, Any, Optional, Set, TYPE_CHECKING
 
 from .operation import Operation
-from .schema_response import SchemaResponse
+from .response import Response
 from .request_builder import RequestBuilder
 from .imports import ImportType, FileImport, TypingSection
 from .object_schema import ObjectSchema
@@ -33,8 +33,8 @@ class PagingOperation(Operation):
         multiple_content_type_parameters: ParameterList,
         schema_requests: List[SchemaRequest],
         summary: Optional[str] = None,
-        responses: Optional[List[SchemaResponse]] = None,
-        exceptions: Optional[List[SchemaResponse]] = None,
+        responses: Optional[List[Response]] = None,
+        exceptions: Optional[List[Response]] = None,
         want_description_docstring: bool = True,
         want_tracing: bool = True,
         *,
@@ -68,7 +68,7 @@ class PagingOperation(Operation):
         self.next_operation: Optional[Operation] = None
         self.override_success_response_to_200 = override_success_response_to_200
 
-    def _get_response(self) -> SchemaResponse:
+    def _get_response(self) -> Response:
         response = self.responses[0]
         if not isinstance(response.schema, ObjectSchema):
             raise ValueError(

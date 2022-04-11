@@ -11,6 +11,13 @@ from .object_schema import ObjectSchema, get_object_schema, HiddenModelObjectSch
 from .dictionary_schema import DictionarySchema
 from .list_schema import ListSchema
 from .primitive_schemas import (
+    ByteArraySchema,
+    DateSchema,
+    DatetimeSchema,
+    DurationSchema,
+    NumberSchema,
+    StringSchema,
+    TimeSchema,
     get_primitive_schema,
     AnySchema,
     PrimitiveSchema,
@@ -26,7 +33,7 @@ from .parameter import Parameter, ParameterStyle, ParameterLocation
 from .operation import Operation
 from .property import Property
 from .operation_group import OperationGroup
-from .schema_response import SchemaResponse
+from .response import Response
 from .parameter_list import ParameterList, GlobalParameterList
 from .request_builder import RequestBuilder
 from .base_builder import BaseBuilder
@@ -59,7 +66,7 @@ __all__ = [
     "OperationGroup",
     "Property",
     "RequestBuilder",
-    "SchemaResponse",
+    "Response",
     "TokenCredentialSchema",
     "LROPagingOperation",
     "BaseBuilder",
@@ -82,6 +89,22 @@ def _generate_as_object_schema(yaml_data: Dict[str, Any]) -> bool:
         return True
     return False
 
+TYPE_TO_OBJECT = {
+    "integer": NumberSchema,
+    "string": StringSchema,
+    "model": ObjectSchema,
+    "list": ListSchema,
+    "dict": DictionarySchema,
+    "constant": ConstantSchema,
+    "enum": EnumSchema,
+    "bytes": IOSchema,
+    "any": AnySchema,
+    "datetime": DatetimeSchema,
+    "time": TimeSchema,
+    "duration": DurationSchema,
+    "date": DateSchema,
+    "base64": ByteArraySchema,
+}
 
 def build_schema(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseSchema:
     yaml_id = id(yaml_data)
@@ -90,38 +113,8 @@ def build_schema(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseSchema
     except KeyError:
         # Not created yet, let's create it and add it to the index
         pass
-    schema: BaseSchema
-    schema_type = yaml_data["type"]
-    if schema_type == "constant":
-        schema = ConstantSchema.from_yaml(yaml_data=yaml_data, code_model=code_model)
-        code_model.primitives[yaml_id] = schema
-
-    elif schema_type in ["choice", "sealed-choice"]:
-        schema = get_enum_schema(code_model).from_yaml(
-            yaml_data=yaml_data, code_model=code_model
-        )
-        code_model.enums[yaml_id] = schema
-
-    elif schema_type == "array":
-        schema = ListSchema.from_yaml(yaml_data=yaml_data, code_model=code_model)
-        code_model.primitives[yaml_id] = schema
-
-    elif schema_type == "dictionary":
-        schema = DictionarySchema.from_yaml(yaml_data=yaml_data, code_model=code_model)
-        code_model.primitives[yaml_id] = schema
-
-    elif schema_type in ["object", "and", "group", "any-object"]:
-        if _generate_as_object_schema(yaml_data):
-            # To avoid infinite loop, create the right instance in memory,
-            # put it in the index, and then parse the object.
-            schema = get_object_schema(code_model)(yaml_data, code_model, "_", "")
-            code_model.schemas[yaml_id] = schema
-            schema.fill_instance_from_yaml(yaml_data=yaml_data, code_model=code_model)
-        else:
-            schema = AnySchema.from_yaml(yaml_data=yaml_data, code_model=code_model)
-            code_model.primitives[yaml_id] = schema
-    else:
-        schema = get_primitive_schema(yaml_data=yaml_data, code_model=code_model)
-        code_model.primitives[yaml_id] = schema
-
-    return schema
+    response = TYPE_TO_OBJECT[yaml_data["type"]].from_yaml(
+        yaml_data, code_model
+    )
+    code_model.types_map[yaml_id] = response
+    return response

@@ -73,7 +73,7 @@ class JinjaSerializer:
             self._keep_patch_file(namespace_path / Path("aio") / Path("_patch.py"), env)
 
         if self.code_model.options["models_mode"] and (
-            self.code_model.schemas or self.code_model.enums
+            self.code_model.object_types or self.code_model.enums
         ):
             self._keep_patch_file(
                 namespace_path / Path("models") / Path("_patch.py"), env
@@ -125,7 +125,7 @@ class JinjaSerializer:
                 )
 
         if self.code_model.options["models_mode"] and (
-            self.code_model.schemas or self.code_model.enums
+            self.code_model.object_types or self.code_model.enums
         ):
             self._serialize_and_write_models_folder(
                 env=env, namespace_path=namespace_path
@@ -222,7 +222,7 @@ class JinjaSerializer:
     ) -> None:
         # Write the models folder
         models_path = namespace_path / Path("models")
-        if self.code_model.schemas:
+        if self.code_model.object_types:
             if not self.code_model.options["python3_only"]:
                 self._autorestapi.write_file(
                     models_path

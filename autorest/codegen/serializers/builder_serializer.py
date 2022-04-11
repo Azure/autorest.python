@@ -24,7 +24,7 @@ from ..models import (
     RequestBuilder,
     RequestBuilderParameter,
     EnumSchema,
-    SchemaResponse,
+    Response,
     IOSchema,
     ParameterStyle,
     ParameterLocation,
@@ -407,7 +407,7 @@ class _BuilderBaseSerializer(
         if property_with_discriminator:
             polymorphic_schemas = [
                 s
-                for s in self.code_model.sorted_schemas
+                for s in self.code_model.object_types
                 if s.name in property_with_discriminator.schema.subtype_map.values()
             ]
             num_schemas = min(
@@ -744,7 +744,7 @@ class _OperationBaseSerializer(
         ):
             return "bool"
         response_body_annotations: OrderedSet[str] = {}
-        for response in [r for r in builder.responses if r.has_body]:
+        for response in [r for r in builder.responses if r.types]:
             response_body_annotations[
                 response.type_annotation(is_operation_file=True)
             ] = None
@@ -786,7 +786,7 @@ class _OperationBaseSerializer(
         return "{}" + cls_str
 
     def response_docstring(self, builder) -> List[str]:
-        responses_with_body = [r for r in builder.responses if r.has_body]
+        responses_with_body = [r for r in builder.responses if r.types]
         if (
             builder.request_builder.method.lower() == "head"
             and self.code_model.options["head_as_boolean"]
@@ -1050,7 +1050,7 @@ class _OperationBaseSerializer(
 
     def response_headers_and_deserialization(
         self,
-        response: SchemaResponse,
+        response: Response,
     ) -> List[str]:
         retval: List[str] = [
             (
@@ -1069,7 +1069,7 @@ class _OperationBaseSerializer(
                     else "response.stream_download(self._client._pipeline)"
                 )
             )
-        elif response.has_body:
+        elif response.types:
             if self.code_model.options["models_mode"]:
                 retval.append(
                     f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)"
@@ -1124,7 +1124,7 @@ class _OperationBaseSerializer(
             if len(builder.responses) > 1:
                 for status_code in builder.success_status_code:
                     response = builder.get_response_from_status(status_code)
-                    if response.headers or response.has_body:
+                    if response.headers or response.types:
                         retval.append(f"if response.status_code == {status_code}:")
                         retval.extend(
                             [
@@ -1602,11 +1602,11 @@ class _LROOperationBaseSerializer(
     def get_long_running_output(self, builder) -> List[str]:
         retval = ["def get_long_running_output(pipeline_response):"]
         if builder.lro_response:
-            if builder.lro_response.has_headers:
+            if builder.lro_response.headers:
                 retval.append("    response_headers = {}")
             if (
                 not self.code_model.options["models_mode"]
-                or builder.lro_response.has_headers
+                or builder.lro_response.headers
             ):
                 retval.append("    response = pipeline_response.http_response")
             retval.extend(
@@ -1621,14 +1621,14 @@ class _LROOperationBaseSerializer(
         retval.append(
             "        return cls(pipeline_response, {}, {})".format(
                 "deserialized"
-                if builder.lro_response and builder.lro_response.has_body
+                if builder.lro_response and builder.lro_response.types
                 else "None",
                 "response_headers"
-                if builder.lro_response and builder.lro_response.has_headers
+                if builder.lro_response and builder.lro_response.headers
                 else "{}",
             )
         )
-        if builder.lro_response and builder.lro_response.has_body:
+        if builder.lro_response and builder.lro_response.types:
             retval.append("    return deserialized")
         return retval
 

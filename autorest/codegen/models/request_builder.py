@@ -10,7 +10,7 @@ from .base_builder import BaseBuilder, create_parameters
 from .request_builder_parameter import RequestBuilderParameter
 from .request_builder_parameter_list import RequestBuilderParameterList
 from .schema_request import SchemaRequest
-from .schema_response import SchemaResponse
+from .response import Response
 from .imports import FileImport, ImportType, TypingSection
 from .parameter import Parameter
 
@@ -36,7 +36,7 @@ class RequestBuilder(BaseBuilder):
         parameters: RequestBuilderParameterList,
         description: str,
         summary: str,
-        responses: Optional[List[SchemaResponse]] = None,
+        responses: Optional[List[Response]] = None,
         *,
         abstract: bool = False,
     ):
@@ -163,7 +163,7 @@ class RequestBuilder(BaseBuilder):
             parameters=parameter_list,
             description=yaml_data["language"]["python"]["description"],
             responses=[
-                SchemaResponse.from_yaml(yaml, code_model=code_model)
+                Response.from_yaml(yaml, code_model=code_model)
                 for yaml in yaml_data.get("responses", [])
             ],
             summary=yaml_data["language"]["python"].get("summary"),

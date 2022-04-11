@@ -8,7 +8,7 @@ from typing import Dict, List, Any, Optional, Set, cast, TYPE_CHECKING
 from .imports import FileImport
 from .operation import Operation
 from .parameter_list import ParameterList
-from .schema_response import SchemaResponse
+from .response import Response
 from .imports import ImportType, TypingSection
 from .base_schema import BaseSchema
 from .schema_request import SchemaRequest
@@ -33,8 +33,8 @@ class LROOperation(Operation):
         multiple_content_type_parameters: ParameterList,
         schema_requests: List[SchemaRequest],
         summary: Optional[str] = None,
-        responses: Optional[List[SchemaResponse]] = None,
-        exceptions: Optional[List[SchemaResponse]] = None,
+        responses: Optional[List[Response]] = None,
+        exceptions: Optional[List[Response]] = None,
         want_description_docstring: bool = True,
         want_tracing: bool = True,
         *,
@@ -63,10 +63,10 @@ class LROOperation(Operation):
         self.name = "begin_" + self.name
 
     @property
-    def lro_response(self) -> Optional[SchemaResponse]:
+    def lro_response(self) -> Optional[Response]:
         if not self.responses:
             return None
-        responses_with_bodies = [r for r in self.responses if r.has_body]
+        responses_with_bodies = [r for r in self.responses if r.types]
         num_response_schemas = {r.schema for r in responses_with_bodies}
         response = None
         if len(num_response_schemas) > 1:

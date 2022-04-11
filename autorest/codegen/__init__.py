@@ -194,25 +194,8 @@ class CodeGenerator(Plugin):
 
         code_model = CodeModel(yaml_data, options=options)
         self._handle_credential_model(yaml_data, code_model)
-        code_model.module_name = yaml_data["info"]["python_title"]
-        code_model.class_name = yaml_data["info"]["pascal_case_title"]
-        code_model.description = (
-            yaml_data["info"]["description"]
-            if yaml_data["info"].get("description")
-            else ""
-        )
-
-        # Get my namespace
-        namespace = self._autorestapi.get_value("namespace")
-        _LOGGER.debug("Namespace parameter was %s", namespace)
-        if not namespace:
-            namespace = yaml_data["info"]["python_title"]
-        code_model.namespace = namespace
-
-        if yaml_data.get("schemas"):
-            for type_list in yaml_data["schemas"].values():
-                for schema in type_list:
-                    build_schema(yaml_data=schema, code_model=code_model)
+        for type_yaml in yaml_data.get("types", []):
+            build_schema(yaml_data=type_yaml, code_model=code_model)
 
         # Global parameters
         code_model.global_parameters = GlobalParameterList(

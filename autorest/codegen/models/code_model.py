@@ -64,18 +64,15 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             "rest" if options["builders_visibility"] == "public" else "_rest"
         )
         self.options = options
-        self.module_name: str = ""
-        self.class_name: str = ""
-        self.description: str = ""
-        self.namespace: str = ""
+        self.module_name = yaml_data["client"]["name"].replace(" ", "_").lower()
+        self.class_name = yaml_data["client"]["name"].replace(" ", "")
+        self.description = yaml_data["client"]["description"]
+        self.namespace = yaml_data["client"]["namespace"].lower()
         self.namespace_path: str = ""
-        self.schemas: Dict[int, ObjectSchema] = {}
-        self.sorted_schemas: List[ObjectSchema] = []
-        self.enums: Dict[int, EnumSchema] = {}
-        self.primitives: Dict[int, BaseSchema] = {}
+        self.types_map: Dict[int, BaseSchema] = {} # map yaml id to schema
         self.operation_groups: List[OperationGroup] = []
+        self._object_types: List[ObjectSchema] = []
         params = GlobalParameterList(self)
-        params.code_model = self
         self.service_client: Client = Client(self, params)
         self.request_builders: List[RequestBuilder] = []
         self.package_dependency: Dict[str, str] = {}
@@ -97,11 +94,14 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         :rtype: ~autorest.models.BaseSchema
         :raises: KeyError if schema is not found
         """
-        for attr in [self.schemas, self.enums, self.primitives]:
-            for elt_key, elt_value in attr.items():  # type: ignore
-                if schema_id == elt_key:
-                    return elt_value
-        raise KeyError("Didn't find it!!!!!")
+        try:
+            return next(
+                type
+                for id, type in self.types_map.items()
+                if id == schema_id
+            )
+        except StopIteration:
+            raise KeyError(f"Couldn't find schema with id {schema_id}")
 
     def lookup_request_builder(self, request_builder_id: int) -> RequestBuilder:
         """Find the request builder based off of id"""
@@ -115,17 +115,19 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             raise KeyError(f"No request builder with id {request_builder_id} found.")
 
     @property
-    def exception_ids(self) -> Set[int]:
-        exceptions_set = set()
-        for group in self.yaml_data["operationGroups"]:
-            for operation in group["operations"]:
-                if not operation.get("exceptions"):
-                    continue
-                for exception in operation["exceptions"]:
-                    if not exception.get("schema"):
-                        continue
-                    exceptions_set.add(id(exception["schema"]))
-        return exceptions_set
+    def object_types(self) -> List[ObjectSchema]:
+        if not self._object_types:
+            self._object_types = [t for t in self.types_map.values() if isinstance(t, ObjectSchema)]
+        return self._object_types
+
+    @object_types.setter
+    def object_types(self, val: List[ObjectSchema]) -> None:
+        self._object_types = val
+
+    @property
+    def enums(self) -> List[EnumSchema]:
+        return [t for t in self.types_map.values() if isinstance(t, EnumSchema)]
+
 
     @staticmethod
     def _sort_schemas_helper(current, seen_schema_names, seen_schema_yaml_ids):
@@ -161,14 +163,14 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         """
         seen_schema_names: Set[str] = set()
         seen_schema_yaml_ids: Set[int] = set()
-        sorted_schemas: List[ObjectSchema] = []
-        for schema in sorted(self.schemas.values(), key=lambda x: x.name.lower()):
-            sorted_schemas.extend(
+        sorted_object_schemas: List[ObjectSchema] = []
+        for schema in sorted(self.object_types, key=lambda x: x.name.lower()):
+            sorted_object_schemas.extend(
                 CodeModel._sort_schemas_helper(
                     schema, seen_schema_names, seen_schema_yaml_ids
                 )
             )
-        self.sorted_schemas = sorted_schemas
+        self.object_types = sorted_object_schemas
 
     def setup_client_input_parameters(self, yaml_data: Dict[str, Any]):
         dollar_host = [
@@ -242,7 +244,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
 
     @property
     def has_schemas(self):
-        return self.schemas or self.enums
+        return self.object_types or self.enums
 
     @property
     def credential_model(self) -> CredentialModel:
@@ -295,7 +297,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         :return: None
         :rtype: None
         """
-        for schema in self.schemas.values():
+        for schema in self.object_types.values():
             schema.properties = CodeModel._add_properties_from_inheritance_helper(
                 schema, schema.properties
             )
@@ -318,7 +320,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         :return: None
         :rtype: None
         """
-        for schema in self.schemas.values():
+        for schema in self.object_types.values():
             schema.is_exception = CodeModel._add_exceptions_from_inheritance_helper(
                 schema
             )
@@ -329,17 +331,17 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         :return: None
         :rtype: None
         """
-        for schema in self.schemas.values():
+        for schema in self.object_types.values():
             if schema.base_models:
                 # right now, the base model property just holds the name of the parent class
                 schema.base_models = [
-                    b for b in self.schemas.values() if b.id in schema.base_models
+                    b for b in self.object_types.values() if b.id in schema.base_models
                 ]
         self._add_properties_from_inheritance()
         self._add_exceptions_from_inheritance()
 
     def _populate_target_property(self, parameter: Parameter) -> None:
-        for obj in self.schemas.values():
+        for obj in self.object_types.values():
             for prop in obj.properties:
                 if prop.id == parameter.target_property_name:
                     parameter.target_property_name = prop.name

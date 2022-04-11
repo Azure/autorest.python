@@ -107,7 +107,7 @@ class Client:
                 ImportType.LOCAL,
             )
 
-        if self.code_model.sorted_schemas:
+        if self.code_model.object_types:
             path_to_models = ".." if async_mode else "."
             file_import.add_submodule_import(path_to_models, "models", ImportType.LOCAL)
         else:

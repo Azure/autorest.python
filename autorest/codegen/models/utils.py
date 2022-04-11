@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import re
-from typing import Any, TYPE_CHECKING
+from typing import Any, TypeVar, Dict, TYPE_CHECKING
 import logging
 from .base_schema import BaseSchema
 
@@ -15,6 +15,9 @@ if TYPE_CHECKING:
 _LOGGER = logging.getLogger(__name__)
 
 JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
+
+T = TypeVar("T")
+OrderedSet = Dict[T, None]
 
 
 def get_schema(

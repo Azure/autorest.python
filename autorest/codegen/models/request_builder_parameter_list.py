@@ -14,14 +14,10 @@ from .base_schema import BaseSchema
 from .list_schema import ListSchema
 from .object_schema import ObjectSchema
 from .schema_request import SchemaRequest
-from .utils import JSON_REGEXP
+from .utils import JSON_REGEXP, OrderedSet
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
-
-T = TypeVar("T")
-OrderedSet = Dict[T, None]
-
 
 def _update_content_types(content_types_to_assign: List[str], param: Parameter):
     return [c for c in content_types_to_assign if c not in param.content_types]

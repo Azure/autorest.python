@@ -110,7 +110,7 @@ class ClientSerializer:
 
     def serializers_and_operation_groups_properties(self) -> List[str]:
         retval = []
-        if self.code_model.sorted_schemas:
+        if self.code_model.object_types:
             client_models_value = (
                 "{k: v for k, v in models.__dict__.items() if isinstance(v, type)}"
             )

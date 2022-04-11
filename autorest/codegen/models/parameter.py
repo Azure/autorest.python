@@ -51,7 +51,7 @@ class ParameterStyle(Enum):
 
 
 def get_target_property_name(code_model: "CodeModel", target_property_id: int) -> str:
-    for obj in code_model.schemas.values():
+    for obj in code_model.object_types.values():
         for prop in obj.properties:
             if prop.id == target_property_id:
                 return prop.name

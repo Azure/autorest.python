@@ -38,11 +38,11 @@ def test_pet_cat_kitten_horse_wood():
     cat = get_object_schema("Cat", [pet])
     kitten = get_object_schema("Kitten", [cat])
     wood = get_object_schema("Wood", None)
-    code_model.schemas = get_schemas_in_dict_form(
+    code_model.object_types = get_schemas_in_dict_form(
         [wood, horse, cat, pet, kitten]
     )
     code_model.sort_schemas()
-    sorted_schemas = code_model.sorted_schemas
+    sorted_schemas = code_model.object_types
     # assert pet is before cat
     assert sorted_schemas.index(pet) < sorted_schemas.index(cat)
     # assert pet is before horse
@@ -65,11 +65,11 @@ def test_multiple_inheritance():
     teacher = get_object_schema("Teacher", [person, employee])
     kid = get_object_schema("Kid", [person])
 
-    code_model.schemas = get_schemas_in_dict_form(
+    code_model.object_types = get_schemas_in_dict_form(
         [kid, person, teacher, carbon_object, employee, object_on_earth]
     )
     code_model.sort_schemas()
-    sorted_schemas = code_model.sorted_schemas
+    sorted_schemas = code_model.object_types
     # assert carbon object and object on earth is in front of person
     assert sorted_schemas.index(carbon_object) < sorted_schemas.index(person)
     assert sorted_schemas.index(object_on_earth) < sorted_schemas.index(person)

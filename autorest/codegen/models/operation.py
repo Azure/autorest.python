@@ -9,7 +9,7 @@ from typing import cast, Dict, List, Any, Optional, Union, Set, TYPE_CHECKING
 
 from .base_builder import BaseBuilder, create_parameters
 from .imports import FileImport, ImportType, TypingSection
-from .schema_response import SchemaResponse
+from .response import Response
 from .parameter import Parameter, get_parameter, ParameterLocation
 from .parameter_list import ParameterList
 from .base_schema import BaseSchema
@@ -41,8 +41,8 @@ class Operation(
         multiple_content_type_parameters: ParameterList,
         schema_requests: List[SchemaRequest],
         summary: Optional[str] = None,
-        responses: Optional[List[SchemaResponse]] = None,
-        exceptions: Optional[List[SchemaResponse]] = None,
+        responses: Optional[List[Response]] = None,
+        exceptions: Optional[List[Response]] = None,
         want_description_docstring: bool = True,
         want_tracing: bool = True,
         *,
@@ -91,7 +91,7 @@ class Operation(
         status_codes_for_responses_with_bodies = [
             code
             for code in self.success_status_code
-            if isinstance(code, int) and self.get_response_from_status(code).has_body
+            if isinstance(code, int) and self.get_response_from_status(code).types
         ]
 
         successful_responses = [
@@ -116,13 +116,13 @@ class Operation(
     def has_response_body(self) -> bool:
         """Tell if at least one response has a body."""
         return any(
-            response.has_body or response.is_stream_response
+            response.types or response.is_stream_response
             for response in self.responses
         )
 
     @property
     def any_response_has_headers(self) -> bool:
-        return any(response.has_headers for response in self.responses)
+        return any(response.headers for response in self.responses)
 
     @property
     def default_exception(self) -> Optional[str]:
@@ -141,7 +141,7 @@ class Operation(
         return "'object'"
 
     @property
-    def status_code_exceptions(self) -> List[SchemaResponse]:
+    def status_code_exceptions(self) -> List[Response]:
         return [
             excp for excp in self.exceptions if list(excp.status_codes) != ["default"]
         ]
@@ -172,13 +172,13 @@ class Operation(
 
         for response in self.responses:
             file_import.merge(response.imports(self.code_model))
-            if response.has_body:
+            if response.types:
                 file_import.merge(cast(BaseSchema, response.schema).imports())
 
         response_types = [
             r.type_annotation(is_operation_file=True)
             for r in self.responses
-            if r.has_body
+            if r.types
         ]
         if len(set(response_types)) > 1:
             file_import.add_submodule_import(
@@ -451,12 +451,12 @@ class Operation(
             schema_requests=schema_requests,
             summary=yaml_data["language"]["python"].get("summary"),
             responses=[
-                SchemaResponse.from_yaml(yaml, code_model=code_model)
+                Response.from_yaml(yaml, code_model=code_model)
                 for yaml in yaml_data.get("responses", [])
             ],
             # Exception with no schema means default exception, we don't store them
             exceptions=[
-                SchemaResponse.from_yaml(yaml, code_model=code_model)
+                Response.from_yaml(yaml, code_model=code_model)
                 for yaml in yaml_data.get("exceptions", [])
                 if "schema" in yaml
             ],

@@ -6,7 +6,7 @@
 
 import pytest
 from autorest.codegen.models import (
-    Operation, LROOperation, PagingOperation, SchemaResponse, ParameterList, CodeModel, SchemaRequest, RequestBuilder
+    Operation, LROOperation, PagingOperation, Response, ParameterList, CodeModel, SchemaRequest, RequestBuilder
 )
 
 @pytest.fixture
@@ -82,13 +82,13 @@ def paging_operation(code_model, request_builder, schema_requests):
 
 def test_success_with_body_and_fail_no_body(code_model, operation):
     operation.responses = [
-        SchemaResponse(
+        Response(
             yaml_data={}, code_model=code_model, content_types=["application/xml", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=[200]
         ),
-        SchemaResponse(
+        Response(
             yaml_data={}, code_model=code_model, content_types=["application/xml", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=[202]
         ),
-        SchemaResponse(
+        Response(
             yaml_data={}, code_model=code_model, content_types=["application/json", "text/json"], headers=[], binary=False, schema=None, status_codes=["default"]
         )
     ]
@@ -97,10 +97,10 @@ def test_success_with_body_and_fail_no_body(code_model, operation):
 
 def test_success_no_body_fail_with_body(code_model, operation):
     operation.responses = [
-        SchemaResponse(
+        Response(
             yaml_data={}, code_model=code_model, content_types=["application/xml", "text/json"], headers=[], binary=False, schema=None, status_codes=[200]
         ),
-        SchemaResponse(
+        Response(
             yaml_data={}, code_model=code_model, content_types=["application/json", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=["default"]
         )
     ]
@@ -109,13 +109,13 @@ def test_success_no_body_fail_with_body(code_model, operation):
 
 def test_optional_return_type_operation(code_model, operation):
     operation.responses = [
-        SchemaResponse(
+        Response(
             yaml_data={}, code_model=code_model, content_types=["application/xml", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=[200]
         ),
-        SchemaResponse(
+        Response(
             yaml_data={}, code_model=code_model, content_types=["application/json", "text/json"], headers=[], binary=False, schema=None, status_codes=[202]
         ),
-        SchemaResponse(
+        Response(
             yaml_data={}, code_model=code_model, content_types=["application/json", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=["default"]
         )
     ]
@@ -124,13 +124,13 @@ def test_optional_return_type_operation(code_model, operation):
 
 def test_lro_operation(code_model, lro_operation):
     lro_operation.responses = [
-        SchemaResponse(
+        Response(
             yaml_data={}, code_model=code_model, content_types=["application/xml", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=[200]
         ),
-        SchemaResponse(
+        Response(
             yaml_data={}, code_model=code_model, content_types=["application/json", "text/json"], headers=[], binary=False, schema=None, status_codes=[202]
         ),
-        SchemaResponse(
+        Response(
             yaml_data={}, code_model=code_model, content_types=["application/json", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=["default"]
         )
     ]
@@ -139,13 +139,13 @@ def test_lro_operation(code_model, lro_operation):
 
 def test_paging_operation(code_model, paging_operation):
     paging_operation.responses = [
-        SchemaResponse(
+        Response(
             yaml_data={}, code_model=code_model, content_types=["application/xml", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=[200]
         ),
-        SchemaResponse(
+        Response(
             yaml_data={}, code_model=code_model, content_types=["application/json", "text/json"], headers=[], binary=False, schema=None, status_codes=[202]
         ),
-        SchemaResponse(
+        Response(
             yaml_data={}, code_model=code_model, content_types=["application/json", "text/json"], headers=[], binary=False, schema={"a": "b"}, status_codes=["default"]
         )
     ]

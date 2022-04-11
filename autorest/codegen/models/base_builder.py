@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, List, Optional, Union, TYPE_CHECKING
 from .base_model import BaseModel
-from .schema_response import SchemaResponse
+from .response import Response
 from .schema_request import SchemaRequest
 
 if TYPE_CHECKING:
@@ -70,22 +70,16 @@ class BaseBuilder(BaseModel):
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         name: str,
-        description: str,
         parameters,
-        schema_requests: List[SchemaRequest],
-        responses: Optional[List[SchemaResponse]] = None,
-        summary: Optional[str] = None,
         *,
         abstract: bool = False,
         want_tracing: bool = True,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.name = name
-        self._description = description
+        self._description = yaml_data.get("description", "")
         self.parameters = parameters
-        self.responses = responses or []
-        self._summary = summary
-        self.schema_requests = schema_requests
+        self._summary = yaml_data.get("summary", "")
         # for operations where we don't know what to do, we mark them as abstract so users implement
         # in patch.py
         self.abstract = abstract
@@ -112,7 +106,7 @@ class BaseBuilder(BaseModel):
 
     def get_response_from_status(
         self, status_code: Optional[Union[str, int]]
-    ) -> SchemaResponse:
+    ) -> Response:
         for response in self.responses:
             if status_code in response.status_codes:
                 return response

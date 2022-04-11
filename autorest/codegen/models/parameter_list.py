@@ -16,8 +16,7 @@ if TYPE_CHECKING:
     from .schema_request import SchemaRequest
     from .code_model import CodeModel
 
-T = TypeVar("T")
-OrderedSet = Dict[T, None]
+
 
 _LOGGER = logging.getLogger(__name__)
 

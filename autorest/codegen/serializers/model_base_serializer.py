@@ -52,7 +52,7 @@ class ModelBaseSerializer:
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.add_import("msrest.serialization", ImportType.AZURECORE)
-        for model in self.code_model.sorted_schemas:
+        for model in self.code_model.object_types:
             file_import.merge(model.imports())
         return file_import
 

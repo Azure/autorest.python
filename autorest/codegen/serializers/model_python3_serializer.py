@@ -56,7 +56,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
 
     def imports(self) -> FileImport:
         file_import = super(ModelPython3Serializer, self).imports()
-        for model in self.code_model.sorted_schemas:
+        for model in self.code_model.object_types:
             init_line_parameters = [
                 p for p in model.properties if not p.readonly and not p.is_discriminator
             ]
