@@ -23,9 +23,6 @@
         "url": "https://github.com/Azure/autorest.python/issues"
     },
     "homepage": "https://github.com/Azure/autorest.python/blob/autorestv3/README.md",
-    "dependencies": {
-        "@azure-tools/extension": "~3.2.1"
-    },
     "devDependencies": {
         "@microsoft.azure/autorest.testserver": "3.3.23"
     },
