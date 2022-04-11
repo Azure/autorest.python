@@ -12,6 +12,7 @@ from .schema_response import SchemaResponse
 from .imports import ImportType, TypingSection
 from .base_schema import BaseSchema
 from .schema_request import SchemaRequest
+from .request_builder import RequestBuilder
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -24,6 +25,7 @@ class LROOperation(Operation):
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
+        request_builder: RequestBuilder,
         name: str,
         description: str,
         api_versions: Set[str],
@@ -41,6 +43,7 @@ class LROOperation(Operation):
         super().__init__(
             yaml_data,
             code_model,
+            request_builder,
             name,
             description,
             api_versions,
@@ -95,6 +98,7 @@ class LROOperation(Operation):
         operation = Operation(
             yaml_data={},
             code_model=self.code_model,
+            request_builder=self.code_model.lookup_request_builder(id(self.yaml_data)),
             name=self.name[5:] + "_initial",
             description="",
             api_versions=self.api_versions,

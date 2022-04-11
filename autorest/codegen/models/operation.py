@@ -33,6 +33,7 @@ class Operation(
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
+        request_builder: RequestBuilder,
         name: str,
         description: str,
         api_versions: Set[str],
@@ -64,25 +65,12 @@ class Operation(
         self.multiple_content_type_parameters = multiple_content_type_parameters
         self.exceptions = exceptions or []
         self.want_description_docstring = want_description_docstring
-        self._request_builder: Optional[RequestBuilder] = None
+        self.request_builder = request_builder
         self.deprecated = False
 
     @property
     def python_name(self) -> str:
         return self.name
-
-    @property
-    def request_builder(self) -> RequestBuilder:
-        if not self._request_builder:
-            raise ValueError(
-                "You're calling request_builder when you haven't linked up operation to its "
-                "request builder through the code model"
-            )
-        return self._request_builder
-
-    @request_builder.setter
-    def request_builder(self, r: RequestBuilder) -> None:
-        self._request_builder = r
 
     @property
     def is_stream_response(self) -> bool:
@@ -447,10 +435,12 @@ class Operation(
             for p in parameter_list.parameters:
                 if p.rest_api_name == "Content-Type":
                     p.is_keyword_only = True
+        request_builder = code_model.lookup_request_builder(id(yaml_data))
 
         return cls(
             code_model=code_model,
             yaml_data=yaml_data,
+            request_builder=request_builder,
             name=name,
             description=yaml_data["language"]["python"]["description"],
             api_versions=set(

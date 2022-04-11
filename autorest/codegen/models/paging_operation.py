@@ -25,6 +25,7 @@ class PagingOperation(Operation):
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
+        request_builder: RequestBuilder,
         name: str,
         description: str,
         api_versions: Set[str],
@@ -43,6 +44,7 @@ class PagingOperation(Operation):
         super().__init__(
             yaml_data,
             code_model,
+            request_builder,
             name,
             description,
             api_versions,

@@ -18,10 +18,10 @@ from .model_python3_serializer import ModelPython3Serializer
 from .operations_init_serializer import OperationsInitSerializer
 from .operation_groups_serializer import OperationGroupsSerializer
 from .metadata_serializer import MetadataSerializer
-from .rest_serializer import (
-    RestPython3Serializer,
-    RestGenericSerializer,
-    RestSerializer,
+from .request_builders_serializer import (
+    RequestBuildersPython3Serializer,
+    RequestBuildersGenericSerializer,
+    RequestBuildersSerializer,
 )
 from .patch_serializer import PatchSerializer
 
@@ -49,7 +49,7 @@ class JinjaSerializer:
     @property
     def has_aio_folder(self) -> bool:
         return not self.code_model.options["no_async"] and bool(
-            self.code_model.rest.request_builders
+            self.code_model.request_builders
         )
 
     def serialize(self) -> None:
@@ -101,7 +101,7 @@ class JinjaSerializer:
             env=env, namespace_path=namespace_path
         )
 
-        if self.code_model.rest.request_builders:
+        if self.code_model.request_builders:
             if self.code_model.options["builders_visibility"] != "embedded":
                 self._serialize_and_write_rest_layer(
                     env=env, namespace_path=namespace_path
@@ -255,13 +255,13 @@ class JinjaSerializer:
     ) -> None:
         rest_path = namespace_path / Path(self.code_model.rest_layer_name)
         operation_group_names = {
-            rb.operation_group_name for rb in self.code_model.rest.request_builders
+            rb.operation_group_name for rb in self.code_model.request_builders
         }
 
         for operation_group_name in operation_group_names:
             request_builders = [
                 r
-                for r in self.code_model.rest.request_builders
+                for r in self.code_model.request_builders
                 if r.operation_group_name == operation_group_name
             ]
             self._serialize_and_write_single_rest_layer(
@@ -283,7 +283,7 @@ class JinjaSerializer:
         # write generic request builders file
         self._autorestapi.write_file(
             output_path / Path("_request_builders.py"),
-            RestGenericSerializer(
+            RequestBuildersGenericSerializer(
                 code_model=self.code_model, env=env, request_builders=request_builders
             ).serialize_request_builders(),
         )
@@ -291,7 +291,7 @@ class JinjaSerializer:
         # write python3 request builders file
         self._autorestapi.write_file(
             output_path / Path("_request_builders_py3.py"),
-            RestPython3Serializer(
+            RequestBuildersPython3Serializer(
                 code_model=self.code_model, env=env, request_builders=request_builders
             ).serialize_request_builders(),
         )
@@ -299,7 +299,7 @@ class JinjaSerializer:
         # write rest init file
         self._autorestapi.write_file(
             output_path / Path("__init__.py"),
-            RestSerializer(
+            RequestBuildersSerializer(
                 code_model=self.code_model, env=env, request_builders=request_builders
             ).serialize_init(),
         )
@@ -449,7 +449,7 @@ class JinjaSerializer:
             p = p.parent
 
         # Write the service client
-        if self.code_model.rest.request_builders:
+        if self.code_model.request_builders:
             self._autorestapi.write_file(
                 namespace_path / Path(f"{self.code_model.service_client.filename}.py"),
                 general_serializer.serialize_service_client_file(),
@@ -469,7 +469,7 @@ class JinjaSerializer:
         )
 
         # Write the config file
-        if self.code_model.rest.request_builders:
+        if self.code_model.request_builders:
             self._autorestapi.write_file(
                 namespace_path / Path("_configuration.py"),
                 general_serializer.serialize_config_file(),
@@ -496,7 +496,7 @@ class JinjaSerializer:
         )
 
         # Write the service client
-        if self.code_model.rest.request_builders:
+        if self.code_model.request_builders:
             self._autorestapi.write_file(
                 aio_path / Path(f"{self.code_model.service_client.filename}.py"),
                 aio_general_serializer.serialize_service_client_file(),

@@ -92,11 +92,11 @@ class OperationGroup(BaseModel):
                 )
                 operation_group_builders = [
                     r
-                    for r in self.code_model.rest.request_builders
+                    for r in self.code_model.request_builders
                     if r.operation_group_name == operation_group_name
                 ]
             else:
-                operation_group_builders = self.code_model.rest.request_builders
+                operation_group_builders = self.code_model.request_builders
             for request_builder in operation_group_builders:
                 if request_builder.abstract:
                     continue

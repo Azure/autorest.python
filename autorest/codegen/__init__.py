@@ -11,11 +11,10 @@ import yaml
 
 from .. import Plugin
 from .models.code_model import CodeModel
-from .models import build_schema
+from .models import build_schema, RequestBuilder
 from .models.operation_group import OperationGroup
 from .models.parameter import Parameter
 from .models.parameter_list import GlobalParameterList
-from .models.rest import Rest
 from .serializers import JinjaSerializer
 from .models.credential_schema_policy import (
     CredentialSchemaPolicy,
@@ -211,7 +210,6 @@ class CodeGenerator(Plugin):
         code_model.namespace = namespace
 
         if yaml_data.get("schemas"):
-
             for type_list in yaml_data["schemas"].values():
                 for schema in type_list:
                     build_schema(yaml_data=schema, code_model=code_model)
@@ -228,7 +226,13 @@ class CodeGenerator(Plugin):
         # Custom URL
         code_model.setup_client_input_parameters(yaml_data)
 
-        code_model.rest = Rest.from_yaml(yaml_data, code_model=code_model)
+        # Build request builders
+        if yaml_data.get("operationGroups"):
+            code_model.request_builders = [
+                RequestBuilder.from_yaml(operation_yaml, code_model=code_model)
+                for og_group in yaml_data["operationGroups"]
+                for operation_yaml in og_group["operations"]
+            ]
         _build_convenience_layer(yaml_data=yaml_data, code_model=code_model)
 
         if options["credential"]:
