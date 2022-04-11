@@ -18,7 +18,6 @@ from .client import Client
 from .parameter_list import GlobalParameterList
 from .property import Property
 from .request_builder import RequestBuilder
-from .rest import Rest
 from .credential_model import CredentialModel
 
 _LOGGER = logging.getLogger(__name__)
@@ -78,8 +77,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         params = GlobalParameterList(self)
         params.code_model = self
         self.service_client: Client = Client(self, params)
-        self._rest: Optional[Rest] = None
-        self.request_builder_ids: Dict[int, RequestBuilder] = {}
+        self.request_builders: List[RequestBuilder] = []
         self.package_dependency: Dict[str, str] = {}
         self._credential_model: Optional[CredentialModel] = None
 
@@ -90,16 +88,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     @global_parameters.setter
     def global_parameters(self, val: GlobalParameterList) -> None:
         self.service_client.parameters = val
-
-    @property
-    def rest(self) -> Rest:
-        if not self._rest:
-            raise ValueError("rest is None. Can not call it, you first have to set it.")
-        return self._rest
-
-    @rest.setter
-    def rest(self, p: Rest) -> None:
-        self._rest = p
 
     def lookup_schema(self, schema_id: int) -> BaseSchema:
         """Looks to see if the schema has already been created.
@@ -114,6 +102,17 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
                 if schema_id == elt_key:
                     return elt_value
         raise KeyError("Didn't find it!!!!!")
+
+    def lookup_request_builder(self, request_builder_id: int) -> RequestBuilder:
+        """Find the request builder based off of id"""
+        try:
+            return next(
+                rb
+                for rb in self.request_builders
+                if id(rb.yaml_data) == request_builder_id
+            )
+        except StopIteration:
+            raise KeyError(f"No request builder with id {request_builder_id} found.")
 
     @property
     def exception_ids(self) -> Set[int]:
@@ -364,13 +363,13 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     def need_request_converter(self) -> bool:
         return (
             self.options["show_operations"]
-            and bool(self.rest.request_builders)
+            and bool(self.request_builders)
             and not self.options["version_tolerant"]
         )
 
     @property
     def need_format_url(self) -> bool:
-        return any(rq for rq in self.rest.request_builders if rq.parameters.path)
+        return any(rq for rq in self.request_builders if rq.parameters.path)
 
     @property
     def need_mixin_abc(self) -> bool:
@@ -390,23 +389,10 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             ]
         )
 
-    def _lookup_request_builder(self, schema_id: int) -> RequestBuilder:
-        """Looks to see if the schema has already been created.
-
-        :param int schema_id: The yaml id of the schema
-        :return: If created, we return the created schema, otherwise, we throw.
-        :rtype: ~autorest.models.RequestBuilder
-        :raises: KeyError if schema is not found
-        """
-        for elt_key, elt_value in self.request_builder_ids.items():  # type: ignore
-            if schema_id == elt_key:
-                return elt_value
-        raise KeyError("Didn't find it!!!!!")
-
     def link_operation_to_request_builder(self) -> None:
         for operation_group in self.operation_groups:
             for operation in operation_group.operations:
-                request_builder = self._lookup_request_builder(id(operation.yaml_data))
+                request_builder = operation.request_builder
                 if isinstance(operation, LROOperation):
                     request_builder.name = request_builder.name + "_initial"
                 operation.request_builder = request_builder

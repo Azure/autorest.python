@@ -169,6 +169,5 @@ class RequestBuilder(BaseBuilder):
             summary=yaml_data["language"]["python"].get("summary"),
             abstract=abstract,
         )
-        code_model.request_builder_ids[id(yaml_data)] = request_builder_class
         parameter_list.add_body_kwargs()
         return request_builder_class
