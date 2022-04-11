@@ -6,7 +6,7 @@
 
 import pytest
 from autorest.codegen.models import (
-    Operation, LROOperation, PagingOperation, SchemaResponse, ParameterList, CodeModel, SchemaRequest
+    Operation, LROOperation, PagingOperation, SchemaResponse, ParameterList, CodeModel, SchemaRequest, RequestBuilder
 )
 
 @pytest.fixture
@@ -20,42 +20,64 @@ def code_model():
     )
 
 @pytest.fixture
-def operation(code_model):
+def schema_requests(code_model):
+    return [SchemaRequest({}, code_model, ["application/json"], ParameterList(code_model))]
+
+@pytest.fixture
+def request_builder(code_model, schema_requests):
+    return RequestBuilder(
+        yaml_data={},
+        code_model=code_model,
+        name="optional_return_type_test",
+        url="http://fake.com",
+        method="GET",
+        multipart=False,
+        schema_requests=schema_requests,
+        parameters=ParameterList(code_model),
+        description="",
+        summary="",
+    )
+
+@pytest.fixture
+def operation(code_model, request_builder, schema_requests):
     return Operation(
         yaml_data={},
         code_model=code_model,
+        request_builder=request_builder,
         name="optional_return_type_test",
         description="Operation to test optional return types",
         api_versions=set(["2020-05-01"]),
         parameters=ParameterList(code_model),
         multiple_content_type_parameters=ParameterList(code_model),
-        schema_requests=[SchemaRequest({}, code_model, ["application/json"], ParameterList(code_model))]
+        schema_requests=schema_requests
     )
 
 @pytest.fixture
-def lro_operation(code_model):
+def lro_operation(code_model, request_builder, schema_requests):
     return LROOperation(
         yaml_data={},
         code_model=code_model,
+        request_builder=request_builder,
         name="lro_optional_return_type_test",
         description="LRO Operation to test optional return types",
         api_versions=set(["2020-05-01"]),
         parameters=ParameterList(code_model),
         multiple_content_type_parameters=ParameterList(code_model),
-        schema_requests=[SchemaRequest({}, code_model, ["application/json"], ParameterList(code_model))]
+        schema_requests=schema_requests
     )
 
 @pytest.fixture
-def paging_operation(code_model):
+def paging_operation(code_model, request_builder, schema_requests):
     return PagingOperation(
         yaml_data={"extensions": {"x-ms-pageable": {}}},
         code_model=code_model,
+        request_builder=request_builder,
         name="paging_optional_return_type_test",
         description="Paging Operation to test optional return types",
         api_versions=set(["2020-05-01"]),
         parameters=ParameterList(code_model),
         multiple_content_type_parameters=ParameterList(code_model),
-        schema_requests=[SchemaRequest({}, code_model, ["application/json"], ParameterList(code_model))]
+        schema_requests=schema_requests
     )
 
 def test_success_with_body_and_fail_no_body(code_model, operation):
