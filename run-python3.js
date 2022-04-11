@@ -7,7 +7,7 @@
 // Invoke it like so: "node run-python3.js script.py"
 
 const cp = require("child_process");
-const extension = require("@azure-tools/extension");
+const extension = require("python");
 
 async function runPython3(scriptName, debug = "") {
   const command = ["python", scriptName, debug];
