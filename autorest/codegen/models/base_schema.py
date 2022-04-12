@@ -20,48 +20,14 @@ class BaseSchema(BaseModel, ABC):
     :type yaml_data: dict[str, Any]
     """
 
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
-        super().__init__(yaml_data, code_model)
-        self.default_value = yaml_data.get("defaultValue", None)
-        self.xml_metadata = yaml_data.get("serialization", {}).get("xml", {})
-        self.api_versions = set(
-            value_dict["version"] for value_dict in yaml_data.get("apiVersions", [])
-        )
-
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "BaseSchema":
         return cls(yaml_data=yaml_data, code_model=code_model)
 
-    @property
-    def extra_description_information(self) -> str:
-        return ""
-
-    @property
-    def has_xml_serialization_ctxt(self) -> bool:
-        return bool(self.xml_metadata)
-
-    def xml_serialization_ctxt(self) -> Optional[str]:
-        """Return the serialization context in case this schema is used in an operation."""
-        attrs_list = []
-        if self.xml_metadata.get("name"):
-            attrs_list.append(f"'name': '{self.xml_metadata['name']}'")
-        if self.xml_metadata.get("attribute", False):
-            attrs_list.append("'attr': True")
-        if self.xml_metadata.get("prefix", False):
-            attrs_list.append(f"'prefix': '{self.xml_metadata['prefix']}'")
-        if self.xml_metadata.get("namespace", False):
-            attrs_list.append(f"'ns': '{self.xml_metadata['namespace']}'")
-        if self.xml_metadata.get("text"):
-            attrs_list.append(f"'text': True")
-        return ", ".join(attrs_list)
-
-    def imports(self) -> FileImport:  # pylint: disable=no-self-use
+    def imports(self, *, is_operation_file: bool) -> FileImport:  # pylint: disable=no-self-use
         return FileImport()
-
-    def model_file_imports(self) -> FileImport:
-        return self.imports()
 
     @property
     @abstractmethod
@@ -76,6 +42,11 @@ class BaseSchema(BaseModel, ABC):
         If list: '[str]'
         If dict: '{str}'
         """
+        ...
+
+    @abstractmethod
+    def description(self, *, is_operation_file: bool) -> str:
+        """The description"""
         ...
 
     @property
@@ -113,25 +84,6 @@ class BaseSchema(BaseModel, ABC):
         By default, return value, since it works sometimes (integer)
         """
         return str(value)
-
-    @property
-    def default_value_declaration(self) -> str:
-        """Return the default value as string using get_declaration."""
-        if self.default_value is None:
-            return "None"
-        return self.get_declaration(self.default_value)
-
-    @property
-    def validation_map(
-        self,
-    ) -> Optional[Dict[str, Union[bool, int, str]]]:  # pylint: disable=no-self-use
-        return None
-
-    @property
-    def serialization_constraints(
-        self,
-    ) -> Optional[List[str]]:  # pylint: disable=no-self-use
-        return None
 
     @abstractmethod
     def get_json_template_representation(self, **kwargs: Any) -> Any:

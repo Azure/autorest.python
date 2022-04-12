@@ -17,16 +17,12 @@ class ListSchema(BaseSchema):
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         element_type: BaseSchema,
-        *,
-        max_items: Optional[int] = None,
-        min_items: Optional[int] = None,
-        unique_items: Optional[int] = None,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.element_type = element_type
-        self.max_items = max_items
-        self.min_items = min_items
-        self.unique_items = unique_items
+        self.max_items = yaml_data.get("maxItems")
+        self.min_items = yaml_data.get("minItems")
+        self.unique_items = yaml_data.get("uniqueItems")
 
     @property
     def serialization_type(self) -> str:
@@ -39,6 +35,9 @@ class ListSchema(BaseSchema):
                 is_operation_file=is_operation_file
             )
         return f"List[{self.element_type.type_annotation(is_operation_file=is_operation_file)}]"
+
+    def description(self, *, is_operation_file: bool) -> str:
+        return "" if is_operation_file else self.yaml_data["description"]
 
     @property
     def docstring_type(self) -> str:
@@ -66,58 +65,21 @@ class ListSchema(BaseSchema):
             validation_map["unique"] = True
         return validation_map or None
 
-    @property
-    def has_xml_serialization_ctxt(self) -> bool:
-        return (
-            super().has_xml_serialization_ctxt
-            or self.element_type.has_xml_serialization_ctxt
-        )
-
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         return [self.element_type.get_json_template_representation(**kwargs)]
-
-    def xml_serialization_ctxt(self) -> Optional[str]:
-        attrs_list = []
-        base_xml_map = super().xml_serialization_ctxt()
-        if base_xml_map:
-            attrs_list.append(base_xml_map)
-
-        # Attribute at the list level
-        if self.xml_metadata.get("wrapped", False):
-            attrs_list.append("'wrapped': True")
-
-        # Attributes of the items
-        item_xml_metadata = self.element_type.xml_metadata
-        if item_xml_metadata.get("name"):
-            attrs_list.append(f"'itemsName': '{item_xml_metadata['name']}'")
-        if item_xml_metadata.get("prefix", False):
-            attrs_list.append(f"'itemsPrefix': '{item_xml_metadata['prefix']}'")
-        if item_xml_metadata.get("namespace", False):
-            attrs_list.append(f"'itemsNs': '{item_xml_metadata['namespace']}'")
-
-        return ", ".join(attrs_list)
 
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "ListSchema":
-        # TODO: for items, if the type is a primitive is it listed in type instead of $ref?
-        element_schema = yaml_data["elementType"]
-
-        from . import build_schema  # pylint: disable=import-outside-toplevel
-
-        element_type = build_schema(yaml_data=element_schema, code_model=code_model)
-
+        from . import build_schema
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            element_type=element_type,
-            max_items=yaml_data.get("maxItems"),
-            min_items=yaml_data.get("minItems"),
-            unique_items=yaml_data.get("uniqueItems"),
+            element_type=build_schema(yaml_data=yaml_data["elementType"], code_model=code_model),
         )
 
-    def imports(self) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:
         file_import = FileImport()
         if (
             not self.element_type.type_annotation(is_operation_file=True)
@@ -126,10 +88,5 @@ class ListSchema(BaseSchema):
             file_import.add_submodule_import(
                 "typing", "List", ImportType.STDLIB, TypingSection.CONDITIONAL
             )
-        file_import.merge(self.element_type.imports())
-        return file_import
-
-    def model_file_imports(self) -> FileImport:
-        file_import = self.imports()
-        file_import.merge(self.element_type.model_file_imports())
+        file_import.merge(self.element_type.imports(is_operation_file=is_operation_file))
         return file_import

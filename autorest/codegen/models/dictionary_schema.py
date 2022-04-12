@@ -24,7 +24,7 @@ class DictionarySchema(BaseSchema):
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        element_type: "BaseSchema",
+        element_type: BaseSchema,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.element_type = element_type
@@ -45,6 +45,9 @@ class DictionarySchema(BaseSchema):
         :rtype: str
         """
         return f"Dict[str, {self.element_type.type_annotation(is_operation_file=is_operation_file)}]"
+
+    def description(self, *, is_operation_file: bool) -> str:
+        return "" if is_operation_file else self.yaml_data["description"]
 
     @property
     def docstring_text(self) -> str:
@@ -92,15 +95,10 @@ class DictionarySchema(BaseSchema):
             element_type=element_type,
         )
 
-    def imports(self) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
             "typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        file_import.merge(self.element_type.imports())
-        return file_import
-
-    def model_file_imports(self) -> FileImport:
-        file_import = self.imports()
-        file_import.merge(self.element_type.model_file_imports())
+        file_import.merge(self.element_type.imports(is_operation_file=is_operation_file))
         return file_import

@@ -4,60 +4,19 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Optional, Set, cast, TYPE_CHECKING
+from typing import Optional, cast
 from .imports import FileImport
 from .operation import Operation
-from .parameter_list import ParameterList
 from .response import Response
 from .imports import ImportType, TypingSection
 from .base_schema import BaseSchema
-from .schema_request import SchemaRequest
-from .request_builder import RequestBuilder
-
-if TYPE_CHECKING:
-    from .code_model import CodeModel
-
 _LOGGER = logging.getLogger(__name__)
 
 
 class LROOperation(Operation):
-    def __init__(
-        self,
-        yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
-        request_builder: RequestBuilder,
-        name: str,
-        description: str,
-        api_versions: Set[str],
-        parameters: ParameterList,
-        multiple_content_type_parameters: ParameterList,
-        schema_requests: List[SchemaRequest],
-        summary: Optional[str] = None,
-        responses: Optional[List[Response]] = None,
-        exceptions: Optional[List[Response]] = None,
-        want_description_docstring: bool = True,
-        want_tracing: bool = True,
-        *,
-        abstract: bool = False,
-    ) -> None:
-        super().__init__(
-            yaml_data,
-            code_model,
-            request_builder,
-            name,
-            description,
-            api_versions,
-            parameters,
-            multiple_content_type_parameters,
-            schema_requests,
-            summary,
-            responses,
-            exceptions,
-            want_description_docstring,
-            want_tracing=want_tracing,
-            abstract=abstract,
-        )
-        self.lro_options = yaml_data.get("extensions", {}).get(
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.lro_options = self.yaml_data.get("extensions", {}).get(
             "x-ms-long-running-operation-options", {}
         )
         self.name = "begin_" + self.name
@@ -67,7 +26,7 @@ class LROOperation(Operation):
         if not self.responses:
             return None
         responses_with_bodies = [r for r in self.responses if r.types]
-        num_response_schemas = {r.schema for r in responses_with_bodies}
+        num_response_schemas = {t for r in responses_with_bodies for t in r.types}
         response = None
         if len(num_response_schemas) > 1:
             # choose the response that has a status code of 200
@@ -76,8 +35,8 @@ class LROOperation(Operation):
             ]
             try:
                 response = responses_with_200_status_codes[0]
-                schema_types = {r.schema for r in responses_with_bodies}
-                response_schema = cast(BaseSchema, response.schema).serialization_type
+                schema_types = {t for r in responses_with_bodies for t in r.types}
+                response_schema = cast(BaseSchema, response.types[0]).serialization_type
                 _LOGGER.warning(
                     "Multiple schema types in responses: %s. Choosing: %s",
                     schema_types,
@@ -86,7 +45,7 @@ class LROOperation(Operation):
             except IndexError:
                 raise ValueError(
                     f"Your swagger is invalid because you have multiple response schemas for LRO"
-                    + f" method {self.python_name} and none of them have a 200 status code."
+                    + f" method {self.name} and none of them have a 200 status code."
                 )
 
         elif num_response_schemas:
@@ -95,23 +54,17 @@ class LROOperation(Operation):
 
     @property
     def initial_operation(self) -> Operation:
-        operation = Operation(
-            yaml_data={},
+        return Operation(
+            yaml_data=self.yaml_data,
             code_model=self.code_model,
             request_builder=self.code_model.lookup_request_builder(id(self.yaml_data)),
             name=self.name[5:] + "_initial",
-            description="",
-            api_versions=self.api_versions,
+            overloads=self.overloads,
             parameters=self.parameters,
-            schema_requests=self.schema_requests,
-            multiple_content_type_parameters=self.multiple_content_type_parameters,
-            summary=self.summary,
             responses=self.responses,
             want_description_docstring=False,
             want_tracing=False,
         )
-        operation.request_builder = self.request_builder
-        return operation
 
     @property
     def has_optional_return_type(self) -> bool:

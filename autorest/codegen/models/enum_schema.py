@@ -4,6 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional, Set, Type, TYPE_CHECKING
+
+from autorest.codegen.models.base_model import BaseModel
 from .base_schema import BaseSchema
 from .primitive_schemas import PrimitiveSchema, get_primitive_schema, StringSchema
 from .imports import FileImport, ImportType, TypingSection
@@ -11,8 +13,7 @@ from .imports import FileImport, ImportType, TypingSection
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
-
-class EnumValue:
+class EnumValue(BaseModel):
     """Model containing necessary information for a single value of an enum.
 
     :param str name: The name of this enum value
@@ -21,14 +22,15 @@ class EnumValue:
     """
 
     def __init__(
-        self, name: str, value: str, description: Optional[str] = None
+        self, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> None:
-        self.name = name
-        self.value = value
-        self.description = description
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
+        self.name = self.yaml_data["name"]
+        self.value = self.yaml_data["value"]
+        self.description = self.yaml_data.get("description")
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "EnumValue":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "EnumValue":
         """Constructs an EnumValue from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this object
@@ -38,9 +40,8 @@ class EnumValue:
         :rtype: ~autorest.models.EnumValue
         """
         return cls(
-            name=yaml_data["language"]["python"]["name"],
-            value=yaml_data["value"],
-            description=yaml_data["language"]["python"].get("description"),
+            yaml_data=yaml_data,
+            code_model=code_model,
         )
 
 
@@ -60,16 +61,13 @@ class EnumSchema(BaseSchema):
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        description: str,
-        name: str,
         values: List["EnumValue"],
-        enum_type: PrimitiveSchema,
+        value_type: BaseSchema,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.description = description
-        self.name = name
+        self.name = yaml_data["name"]
         self.values = values
-        self.enum_type = enum_type
+        self.value_type = value_type
 
     def __lt__(self, other):
         return self.name.lower() < other.name.lower()
@@ -81,7 +79,25 @@ class EnumSchema(BaseSchema):
         :return: The serialization value for msrest
         :rtype: str
         """
-        return self.enum_type.serialization_type
+        return self.value_type.serialization_type
+
+    def description(self, *, is_operation_file: bool) -> str:
+        possible_values = [self.get_declaration(v.value) for v in self.values]
+        if not possible_values:
+            return ""
+        if len(possible_values) == 1:
+            return possible_values[0]
+        if len(possible_values) == 2:
+            possible_values_str = " or ".join(possible_values)
+        else:
+            possible_values_str = ", ".join(
+                possible_values[: len(possible_values) - 1]
+            ) + f", and {possible_values[-1]}"
+
+        enum_description = f"Known values are: {possible_values_str}."
+        if is_operation_file:
+            return enum_description
+        return self.yaml_data["description"] + ". " + enum_description
 
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
         """The python type used for type annotation
@@ -89,53 +105,35 @@ class EnumSchema(BaseSchema):
         :return: The type annotation for this schema
         :rtype: str
         """
-        return f'Union[{self.enum_type.type_annotation(is_operation_file=is_operation_file)}, "_models.{self.name}"]'
+        if self.code_model.options["models_mode"]:
+            return f'Union[{self.value_type.type_annotation(is_operation_file=is_operation_file)}, "_models.{self.name}"]'
+        return self.value_type.type_annotation(is_operation_file=is_operation_file)
 
     def get_declaration(self, value: Any) -> str:
-        return self.enum_type.get_declaration(value)
+        return self.value_type.get_declaration(value)
 
     @property
     def docstring_text(self) -> str:
-        return self.name
+        if self.code_model.options["models_mode"]:
+            return self.name
+        return self.value_type.type_annotation()
 
     @property
     def docstring_type(self) -> str:
         """The python type used for RST syntax input and type annotation."""
-        return f"{self.enum_type.type_annotation()} or ~{self.code_model.namespace}.models.{self.name}"
-
-    @staticmethod
-    def _get_enum_values(yaml_data: List[Dict[str, Any]]) -> List["EnumValue"]:
-        """Creates the list of values for this enum.
-
-        :param yaml_data: yaml data about the enum's values
-        :type yaml_data: dict[str, Any]
-        :return: The list of values for this enum
-        :rtype: list[~autorest.models.EnumValue]
-        """
-        values = []
-        seen_enums: Set[str] = set()
-
-        for enum in yaml_data:
-            enum_name = enum["language"]["python"]["name"]
-            if enum_name in seen_enums:
-                continue
-            values.append(EnumValue.from_yaml(enum))
-            seen_enums.add(enum_name)
-        return values
-
-    def _template_kwargs(self, **kwargs: Any) -> Any:
-        if len(self.values) == 1 and not kwargs.get("default_value_declaration"):
-            kwargs["default_value_declaration"] = self.enum_type.get_declaration(
-                self.values[0].value
-            )
-        description = kwargs.pop("description", "")
-        kwargs["description"] = description
-        return kwargs
+        if self.code_model.options["models_mode"]:
+            return f"{self.value_type.type_annotation()} or ~{self.code_model.namespace}.models.{self.name}"
+        return self.value_type.type_annotation()
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         # for better display effect, use the only value instead of var type
-        return self.enum_type.get_json_template_representation(
-            **self._template_kwargs(**kwargs)
+        description = kwargs.pop("description", "")
+        if description:
+            description += f" {self.description(is_operation_file=True)}"
+        else:
+            description = self.description(is_operation_file=True)
+        return self.value_type.get_json_template_representation(
+            description=description
         )
 
     @classmethod
@@ -150,76 +148,21 @@ class EnumSchema(BaseSchema):
         :return: A created EnumSchema
         :rtype: ~autorest.models.EnumSchema
         """
-        name = yaml_data["language"]["python"]["name"]
-
-        # choice type doesn't always exist. if there is no choiceType, we default to string
-        if yaml_data.get("choiceType"):
-            enum_type = get_primitive_schema(yaml_data["choiceType"], code_model)
-        else:
-            enum_type = StringSchema({"type": "str"}, code_model)
-        values = EnumSchema._get_enum_values(yaml_data["choices"])
+        from . import build_schema
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            description=yaml_data["language"]["python"]["description"],
-            name=name,
-            values=values,
-            enum_type=enum_type,
+            value_type=build_schema(yaml_data["valueType"], code_model),
+            values=[
+                EnumValue.from_yaml(value, code_model) for value in yaml_data["values"]
+            ]
         )
 
-    def imports(self) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:
         file_import = FileImport()
-        file_import.add_submodule_import(
-            "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL
-        )
-        file_import.merge(self.enum_type.imports())
-        return file_import
-
-
-class HiddenModelEnumSchema(EnumSchema):
-    def imports(self) -> FileImport:
-        file_import = FileImport()
-        file_import.merge(self.enum_type.imports())
-        return file_import
-
-    def type_annotation(self, *, is_operation_file: bool = False) -> str:
-        """The python type used for type annotation
-
-        :return: The type annotation for this schema
-        :rtype: str
-        """
-        return self.enum_type.type_annotation(is_operation_file=is_operation_file)
-
-    @property
-    def docstring_text(self) -> str:
-        return (
-            f"{self.enum_type.type_annotation()}. {self.extra_description_information}"
-        )
-
-    @property
-    def extra_description_information(self):
-        possible_values = [self.get_declaration(v.value) for v in self.values]
-        if not possible_values:
-            return ""
-        if len(possible_values) == 1:
-            return possible_values[0]
-        if len(possible_values) == 2:
-            possible_values_str = " or ".join(possible_values)
-        else:
-            possible_values_str = (
-                ", ".join(possible_values[: len(possible_values) - 1])
-                + f", and {possible_values[-1]}"
+        if self.code_model.options["models_mode"]:
+            file_import.add_submodule_import(
+                "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL
             )
-
-        return "Known values are: {}.".format(possible_values_str)
-
-    @property
-    def docstring_type(self) -> str:
-        """The python type used for RST syntax input and type annotation."""
-        return self.enum_type.type_annotation()
-
-
-def get_enum_schema(code_model) -> Type[EnumSchema]:
-    if code_model.options["models_mode"]:
-        return EnumSchema
-    return HiddenModelEnumSchema
+        file_import.merge(self.value_type.imports(is_operation_file=is_operation_file))
+        return file_import

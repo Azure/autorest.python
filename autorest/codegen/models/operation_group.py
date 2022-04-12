@@ -8,9 +8,6 @@ from typing import Dict, List, Any, Set, TYPE_CHECKING
 
 from .base_model import BaseModel
 from .operation import Operation
-from .lro_operation import LROOperation
-from .paging_operation import PagingOperation
-from .lro_paging_operation import LROPagingOperation
 from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
@@ -19,21 +16,6 @@ if TYPE_CHECKING:
 
 _LOGGER = logging.getLogger(__name__)
 
-
-def _get_operation(yaml_data: Dict[str, Any], code_model: "CodeModel") -> Operation:
-    lro_operation = yaml_data.get("extensions", {}).get("x-ms-long-running-operation")
-    paging_operation = yaml_data.get("extensions", {}).get("x-ms-pageable")
-    operation_schema = Operation
-    if lro_operation and paging_operation:
-        operation_schema = LROPagingOperation
-    elif lro_operation:
-        operation_schema = LROOperation
-    elif paging_operation:
-        operation_schema = PagingOperation
-    operation = operation_schema.from_yaml(yaml_data, code_model=code_model)
-    return operation
-
-
 class OperationGroup(BaseModel):
     """Represent an operation group."""
 
@@ -41,16 +23,12 @@ class OperationGroup(BaseModel):
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        name: str,
-        class_name: str,
         operations: List[Operation],
-        api_versions: Set[str],
     ) -> None:
         super().__init__(yaml_data, code_model)
-        self.name = name
-        self.class_name = class_name
+        self.name = yaml_data["name"]
+        self.class_name = yaml_data["className"]
         self.operations = operations
-        self.api_versions = api_versions
 
     @property
     def has_abstract_operations(self) -> bool:
@@ -146,21 +124,10 @@ class OperationGroup(BaseModel):
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "OperationGroup":
-        name = yaml_data["language"]["python"]["name"]
-        _LOGGER.debug("Parsing %s operation group", name)
-
-        operations = []
-        api_versions: Set[str] = set()
-        for operation_yaml in yaml_data["operations"]:
-            operation = _get_operation(operation_yaml, code_model)
-            operations.append(operation)
-            api_versions.update(operation.api_versions)
-
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            name=name,
-            class_name=yaml_data["language"]["python"]["className"],
-            operations=operations,
-            api_versions=api_versions,
+            operations=[
+                Operation.from_yaml(o, code_model) for o in yaml_data["operations"]
+            ],
         )

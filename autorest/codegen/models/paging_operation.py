@@ -3,66 +3,53 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import logging
-from typing import cast, Dict, List, Any, Optional, Set, TYPE_CHECKING
+from typing import cast, Dict, List, Any, Optional, TYPE_CHECKING
 
 from .operation import Operation
 from .response import Response
 from .request_builder import RequestBuilder
 from .imports import ImportType, FileImport, TypingSection
 from .object_schema import ObjectSchema
-from .schema_request import SchemaRequest
 from .parameter_list import ParameterList
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
-
-_LOGGER = logging.getLogger(__name__)
-
 
 class PagingOperation(Operation):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        request_builder: RequestBuilder,
         name: str,
-        description: str,
-        api_versions: Set[str],
+        request_builder: RequestBuilder,
         parameters: ParameterList,
-        multiple_content_type_parameters: ParameterList,
-        schema_requests: List[SchemaRequest],
-        summary: Optional[str] = None,
-        responses: Optional[List[Response]] = None,
-        exceptions: Optional[List[Response]] = None,
+        responses: List[Response],
+        overloads: List["Operation"],
+        *,
+        next_operation: Optional[Operation] = None,
         want_description_docstring: bool = True,
         want_tracing: bool = True,
-        *,
         abstract: bool = False,
         override_success_response_to_200: bool = False,
     ) -> None:
         super().__init__(
-            yaml_data,
-            code_model,
-            request_builder,
-            name,
-            description,
-            api_versions,
-            parameters,
-            multiple_content_type_parameters,
-            schema_requests,
-            summary,
-            responses,
-            exceptions,
-            want_description_docstring,
+            code_model=code_model,
+            yaml_data=yaml_data,
+            name=name,
+            request_builder=request_builder,
+            parameters=parameters,
+            responses=responses,
+            overloads=overloads,
+            want_description_docstring=want_description_docstring,
             want_tracing=want_tracing,
             abstract=abstract,
         )
-        self._item_name: str = yaml_data["extensions"]["x-ms-pageable"].get("itemName")
-        self._next_link_name: str = yaml_data["extensions"]["x-ms-pageable"].get(
+        self.next_operation = next_operation
+        self._item_name: str = self.yaml_data["extensions"]["x-ms-pageable"].get("itemName")
+        self._next_link_name: str = self.yaml_data["extensions"]["x-ms-pageable"].get(
             "nextLinkName"
         )
-        self.operation_name: str = yaml_data["extensions"]["x-ms-pageable"].get(
+        self.operation_name: str = self.yaml_data["extensions"]["x-ms-pageable"].get(
             "operationName"
         )
         self.next_operation: Optional[Operation] = None

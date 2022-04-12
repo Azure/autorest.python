@@ -7,39 +7,37 @@ from typing import Any, Dict
 from .base_model import BaseModel
 from .code_model import CodeModel
 from .credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
-from .object_schema import ObjectSchema, get_object_schema, HiddenModelObjectSchema
+from .object_schema import ObjectSchema
 from .dictionary_schema import DictionarySchema
 from .list_schema import ListSchema
 from .primitive_schemas import (
-    ByteArraySchema,
+    Base64Schema,
     DateSchema,
     DatetimeSchema,
     DurationSchema,
     NumberSchema,
     StringSchema,
     TimeSchema,
-    get_primitive_schema,
     AnySchema,
     PrimitiveSchema,
     IOSchema,
 )
-from .enum_schema import EnumSchema, HiddenModelEnumSchema, get_enum_schema
+from .enum_schema import EnumSchema
 from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
 from .imports import FileImport, ImportType, TypingSection
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
-from .parameter import Parameter, ParameterStyle, ParameterLocation
+from .parameter import Parameter
 from .operation import Operation
 from .property import Property
 from .operation_group import OperationGroup
 from .response import Response
-from .parameter_list import ParameterList, GlobalParameterList
+from .parameter_list import ParameterList, ClientGlobalParameterList, ConfigGlobalParameterList
 from .request_builder import RequestBuilder
 from .base_builder import BaseBuilder
 from .lro_paging_operation import LROPagingOperation
 from .request_builder_parameter import RequestBuilderParameter
-from .schema_request import SchemaRequest
 
 __all__ = [
     "AzureKeyCredentialSchema",
@@ -52,7 +50,6 @@ __all__ = [
     "DictionarySchema",
     "ListSchema",
     "EnumSchema",
-    "HiddenModelEnumSchema",
     "FileImport",
     "ImportType",
     "TypingSection",
@@ -62,7 +59,6 @@ __all__ = [
     "PagingOperation",
     "Parameter",
     "ParameterList",
-    "ParameterLocation",
     "OperationGroup",
     "Property",
     "RequestBuilder",
@@ -70,24 +66,11 @@ __all__ = [
     "TokenCredentialSchema",
     "LROPagingOperation",
     "BaseBuilder",
-    "SchemaRequest",
     "RequestBuilderParameter",
-    "HiddenModelObjectSchema",
-    "ParameterStyle",
     "IOSchema",
-    "GlobalParameterList",
+    "ClientGlobalParameterList",
+    "ConfigGlobalParameterList",
 ]
-
-
-def _generate_as_object_schema(yaml_data: Dict[str, Any]) -> bool:
-    if (
-        yaml_data.get("properties")
-        or yaml_data.get("discriminator")
-        or yaml_data.get("parents")
-        and yaml_data["parents"].get("immediate")
-    ):
-        return True
-    return False
 
 TYPE_TO_OBJECT = {
     "integer": NumberSchema,
@@ -103,7 +86,7 @@ TYPE_TO_OBJECT = {
     "time": TimeSchema,
     "duration": DurationSchema,
     "date": DateSchema,
-    "base64": ByteArraySchema,
+    "base64": Base64Schema,
 }
 
 def build_schema(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseSchema:

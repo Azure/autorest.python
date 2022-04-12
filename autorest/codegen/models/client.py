@@ -3,8 +3,10 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Optional, TYPE_CHECKING
-from .parameter_list import GlobalParameterList
+from typing import Any, Dict, List, Optional, TYPE_CHECKING
+
+from .parameter import Parameter
+from .parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
 from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
@@ -14,15 +16,11 @@ if TYPE_CHECKING:
 class Client:
     """A service client."""
 
-    def __init__(self, code_model: "CodeModel", parameters: GlobalParameterList):
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel", parameters: List[Parameter]):
+        self.yaml_data = yaml_data
         self.code_model = code_model
-        self.parameters = parameters
-        self.parameterized_host_template: Optional[str] = None
-        self._config_parameters = parameters
-
-    @property
-    def has_parameterized_host(self) -> bool:
-        return bool(self.parameterized_host_template)
+        self.client_parameters = ClientGlobalParameterList(code_model, parameters)
+        self.config_parameters = ConfigGlobalParameterList(code_model, parameters)
 
     def pipeline_class(self, async_mode: bool) -> str:
         if self.code_model.options["azure_arm"]:
@@ -44,7 +42,7 @@ class Client:
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
 
-        any_optional_gp = any(not gp.required for gp in self.parameters)
+        any_optional_gp = any(not gp.required for gp in self.client_parameters)
 
         legacy = not any(
             g
@@ -140,7 +138,7 @@ class Client:
             if is_python3_file
             else "request,  # type: HttpRequest"
         ]
-        return request_signature + self.parameters.method_signature_kwargs(
+        return request_signature + self.client_parameters.method_signature_kwargs(
             is_python3_file
         )
 

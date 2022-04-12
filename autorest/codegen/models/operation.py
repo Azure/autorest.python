@@ -5,112 +5,107 @@
 # --------------------------------------------------------------------------
 from itertools import chain
 import logging
-from typing import cast, Dict, List, Any, Optional, Union, Set, TYPE_CHECKING
+from typing import Dict, List, Any, Optional, Union, TYPE_CHECKING, cast
 
-from .base_builder import BaseBuilder, create_parameters
+from .base_builder import BaseBuilder, create_parameters_and_overloads
 from .imports import FileImport, ImportType, TypingSection
 from .response import Response
-from .parameter import Parameter, get_parameter, ParameterLocation
-from .parameter_list import ParameterList
-from .base_schema import BaseSchema
+from .parameter import MultipartBodyParameter, OverloadBodyParameter, Parameter, BodyParameter, UrlEncodedBodyParameter, ParameterLocation
+from .parameter_list import OverloadBaseParameterList, ParameterList
 from .object_schema import ObjectSchema
 from .request_builder import RequestBuilder
-from .schema_request import SchemaRequest
-from .primitive_schemas import IOSchema
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
 _LOGGER = logging.getLogger(__name__)
 
+def _get_operation_class(operation_type):
+    if operation_type == "paging":
+        from .paging_operation import PagingOperation
+        return PagingOperation
+    if operation_type == "lro":
+        from .lro_operation import LROOperation
+        return LROOperation
+    if operation_type == "lropaging":
+        from .lro_paging_operation import LROPagingOperation
+        return LROPagingOperation
+    return Operation
 
-class Operation(
-    BaseBuilder
-):  # pylint: disable=too-many-public-methods, too-many-instance-attributes
-    """Represent an self."""
+def _get_overloads(
+    overload_body_parameters: List[OverloadBodyParameter],
+    yaml_data: Dict[str, Any],
+    code_model: "CodeModel",
+    request_builder: RequestBuilder,
+    parameters: List[Parameter],
+    responses: List[Response],
+):
+    overloads: List[Operation] = []
+    if overload_body_parameters:
+        # we have overloads now, one for each type
+        for obp in overload_body_parameters:
+            overloads.append(Operation(
+                yaml_data=yaml_data,
+                code_model=code_model,
+                name=yaml_data["name"],
+                request_builder=request_builder,
+                parameters=ParameterList(
+                    code_model=code_model,
+                    parameters=parameters,
+                    body_parameter=obp
+                ),
+                responses=responses,
+                overloads=[],
+                want_tracing=False,
+            ))
+    return overloads
 
+
+class Operation(BaseBuilder):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        request_builder: RequestBuilder,
         name: str,
-        description: str,
-        api_versions: Set[str],
+        request_builder: RequestBuilder,
         parameters: ParameterList,
-        multiple_content_type_parameters: ParameterList,
-        schema_requests: List[SchemaRequest],
-        summary: Optional[str] = None,
-        responses: Optional[List[Response]] = None,
-        exceptions: Optional[List[Response]] = None,
+        responses: List[Response],
+        overloads: List["Operation"],
+        *,
         want_description_docstring: bool = True,
         want_tracing: bool = True,
-        *,
         abstract: bool = False,
     ) -> None:
         super().__init__(
             code_model=code_model,
             yaml_data=yaml_data,
             name=name,
-            description=description,
             parameters=parameters,
-            responses=responses,
-            schema_requests=schema_requests,
-            summary=summary,
+            overloads=overloads,
             abstract=abstract,
             want_tracing=want_tracing,
         )
-        self.multiple_content_type_parameters = multiple_content_type_parameters
-        self.api_versions = api_versions
-        self.multiple_content_type_parameters = multiple_content_type_parameters
-        self.exceptions = exceptions or []
+        self.overloads = overloads or []
+        self.responses = responses
         self.want_description_docstring = want_description_docstring
         self.request_builder = request_builder
         self.deprecated = False
-
-    @property
-    def python_name(self) -> str:
-        return self.name
-
-    @property
-    def is_stream_response(self) -> bool:
-        """Is the response expected to be streamable, like a download."""
-        return any(response.is_stream_response for response in self.responses)
-
-    @property
-    def body_kwargs_to_pass_to_request_builder(self) -> List[str]:
-        return [p.serialized_name for p in self.request_builder.body_kwargs_to_get]
+        self.operation_type = "operation"
 
     @property
     def has_optional_return_type(self) -> bool:
         """Has optional return type if there are multiple successful response types where some have
         bodies and some are None
         """
-
-        # successful status codes of responses that have bodies
-        status_codes_for_responses_with_bodies = [
-            code
-            for code in self.success_status_code
-            if isinstance(code, int) and self.get_response_from_status(code).types
-        ]
-
-        successful_responses = [
-            response
-            for response in self.responses
-            if any(code in self.success_status_code for code in response.status_codes)
-        ]
-
-        return (
-            self.has_response_body
-            and len(successful_responses) > 1
-            and len(self.success_status_code)
-            != len(status_codes_for_responses_with_bodies)
+        # means if we have at least one successful response with a body and one without
+        successful_responses = [r for r in self.responses if not r.is_error]
+        successful_response_with_body = any(
+            r for r in successful_responses if r.types
         )
-
-    @property
-    def serialization_context(self) -> str:
-        # FIXME Do the serialization context (XML)
-        return ""
+        successful_response_without_body = any(
+            r for r in successful_responses if not r.types
+        )
+        return successful_response_with_body and successful_response_without_body
 
     @property
     def has_response_body(self) -> bool:
@@ -125,33 +120,32 @@ class Operation(
         return any(response.headers for response in self.responses)
 
     @property
-    def default_exception(self) -> Optional[str]:
-        default_excp = [
-            excp
-            for excp in self.exceptions
-            for code in excp.status_codes
-            if code == "default"
+    def default_error_deserialization(self) -> Optional[str]:
+        retval = [
+            r for r in self.responses
+            if r.is_error and "*" in r.status_codes
         ]
-        if not default_excp:
+        if not retval:
             return None
-        excep_schema = default_excp[0].schema
+        excep_schema = retval[0].types[0]
         if isinstance(excep_schema, ObjectSchema):
             return f"_models.{excep_schema.name}"
         # in this case, it's just an AnySchema
         return "'object'"
 
+
     @property
-    def status_code_exceptions(self) -> List[Response]:
+    def non_default_errors(self) -> List[Response]:
         return [
-            excp for excp in self.exceptions if list(excp.status_codes) != ["default"]
+            r for r in self.responses if r.is_error and "*" not in r.status_codes
         ]
 
     @property
-    def status_code_exceptions_status_codes(self) -> List[Union[str, int]]:
+    def non_default_error_status_codes(self) -> List[Union[str, int]]:
         """Actually returns all of the status codes from exceptions (besides default)"""
         return list(
             chain.from_iterable(
-                [excp.status_codes for excp in self.status_code_exceptions]
+                [error.status_codes for error in self.non_default_errors]
             )
         )
 
@@ -163,31 +157,21 @@ class Operation(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
         for param in self.parameters.method:
-            if self.abstract and (param.is_multipart or param.is_data_input):
+            if self.abstract and isinstance(param, (MultipartBodyParameter, UrlEncodedBodyParameter)):
                 continue
-            file_import.merge(param.imports())
-
-        for param in self.multiple_content_type_parameters:
             file_import.merge(param.imports())
 
         for response in self.responses:
             file_import.merge(response.imports(self.code_model))
-            if response.types:
-                file_import.merge(cast(BaseSchema, response.schema).imports())
 
         response_types = [
-            r.type_annotation(is_operation_file=True)
+            r.type_annotation()
             for r in self.responses
             if r.types
         ]
         if len(set(response_types)) > 1:
             file_import.add_submodule_import(
                 "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL
-            )
-
-        if self.is_stream_response:
-            file_import.add_submodule_import(
-                "typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL
             )
         return file_import
 
@@ -248,9 +232,9 @@ class Operation(
 
             kwargs_to_pop = self.parameters.kwargs_to_pop(is_python3_file)
             if self.has_kwargs_to_pop_with_default(
-                kwargs_to_pop, ParameterLocation.Header
+                kwargs_to_pop, ParameterLocation.HEADER
             ) or self.has_kwargs_to_pop_with_default(
-                kwargs_to_pop, ParameterLocation.Query
+                kwargs_to_pop, ParameterLocation.QUERY
             ):
                 file_import.add_submodule_import(
                     "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
@@ -321,107 +305,45 @@ class Operation(
 
         return file_import
 
-    def _get_body_param_from_body_kwarg(self, body_kwarg: Parameter) -> Parameter:
-        # determine which of the body parameters returned from m4 corresponds to this body_kwarg
-        if not self.multiple_content_type_parameters.has_body:
-            return self.parameters.body[0]
-        if body_kwarg.serialized_name == "json":
-            # first check if there's any non-binary. In the case of multiple content types, there's
-            # usually one binary (for content), and one schema parameter (for json)
-            try:
-                return next(
-                    p
-                    for p in self.multiple_content_type_parameters.body
-                    if not isinstance(p.schema, IOSchema)
-                )
-            except StopIteration:
-                return next(
-                    p
-                    for p in self.multiple_content_type_parameters.body
-                    if p.is_json_parameter
-                )
-        return self.multiple_content_type_parameters.body[0]
-
-    def link_body_kwargs_to_body_params(self) -> None:
-        if not self.parameters.has_body:
-            return
-        body_kwargs = [
-            p for p in self.request_builder.parameters.body if p.content_types
-        ]
-        if len(body_kwargs) == 1:
-            self.parameters.body[0].body_kwargs = [body_kwargs[0]]
-            return
-        for body_kwarg in body_kwargs:
-            body_param = self._get_body_param_from_body_kwarg(body_kwarg)
-            body_param.body_kwargs.append(body_kwarg)
-
-    def convert_multiple_content_type_parameters(self) -> None:
-        type_annot = ", ".join(
-            [
-                param.schema.type_annotation(is_operation_file=True)
-                for param in self.multiple_content_type_parameters
-            ]
-        )
-        docstring_type = " or ".join(
-            [
-                param.schema.docstring_type
-                for param in self.multiple_content_type_parameters
-            ]
-        )
+    def get_response_from_status(
+        self, status_code: Optional[Union[str, int]]
+    ) -> Response:
         try:
-            # get an optional param with object first. These params are the top choice
-            # bc they have more info about how to serialize the body
-            chosen_parameter = next(
-                p
-                for p in self.multiple_content_type_parameters
-                if not p.required and isinstance(p.schema, ObjectSchema)
-            )
-        except StopIteration:  # pylint: disable=broad-except
-            # otherwise, we get the first optional param, if that exists. If not, we just grab the first one
-            optional_parameters = [
-                p for p in self.multiple_content_type_parameters if not p.required
-            ]
-            chosen_parameter = (
-                optional_parameters[0]
-                if optional_parameters
-                else self.multiple_content_type_parameters[0]
-            )
-        if not chosen_parameter:
-            raise ValueError(
-                "You are missing a parameter that has multiple media types"
-            )
-        chosen_parameter.multiple_content_types_type_annot = f"Union[{type_annot}]"
-        chosen_parameter.multiple_content_types_docstring_type = docstring_type
-        self.parameters.append(chosen_parameter)
+            return next(r for r in self.responses if status_code in r.status_codes)
+        except StopIteration:
+            raise ValueError(f"Incorrect status code {status_code}, operation {self.name}")
+
+    @property
+    def success_status_codes(self) -> List[Union[str, int]]:
+        """The list of all successfull status code."""
+        return [
+            code
+            for response in self.responses
+            for code in response.status_codes
+            if not response.is_error
+        ]
 
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "Operation":
-        name = yaml_data["language"]["python"]["name"]
-        _LOGGER.debug("Parsing %s operation", name)
-
-        parameter_creator = get_parameter(code_model).from_yaml
-        schema_requests = [
-            SchemaRequest.from_yaml(yaml, code_model=code_model)
-            for yaml in yaml_data["requests"]
-        ]
-        parameters, multiple_content_type_parameters = create_parameters(
-            yaml_data, code_model, parameter_creator
-        )
-        parameter_list = ParameterList(code_model, parameters, schema_requests)
-        multiple_content_type_parameter_list = ParameterList(
-            code_model, multiple_content_type_parameters, schema_requests
-        )
+        name = yaml_data["name"]
+        parameters = [Parameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
         abstract = False
-        if code_model.options["version_tolerant"] and (
-            any(p for p in parameter_list if p.is_multipart or p.is_data_input)
-            or any(
-                p
-                for p in multiple_content_type_parameter_list
-                if p.is_multipart or p.is_data_input
-            )
-        ):
+        request_builder = code_model.lookup_request_builder(id(yaml_data))
+        responses = [Response.from_yaml(r, code_model) for r in yaml_data["responses"]]
+        parameter_list, overload_body_parameters = create_parameters_and_overloads(
+            yaml_data, code_model, is_operation=True
+        )
+        overloads = _get_overloads(
+            cast(List[OverloadBodyParameter], overload_body_parameters),
+            yaml_data,
+            code_model,
+            request_builder,
+            parameters,
+            responses,
+        )
+        if code_model.options["version_tolerant"] and any(p for p in parameter_list if p.is_multipart or p.is_data_input):
             _LOGGER.warning(
                 'Not going to generate operation "%s" because it has multipart / urlencoded body parameters. '
                 "Multipart / urlencoded body parameters are not supported for version tolerant generation right now. "
@@ -431,34 +353,14 @@ class Operation(
             )
             abstract = True
 
-        if len(parameter_list.content_types) > 1:
-            for p in parameter_list.parameters:
-                if p.rest_api_name == "Content-Type":
-                    p.is_keyword_only = True
-        request_builder = code_model.lookup_request_builder(id(yaml_data))
-
-        return cls(
-            code_model=code_model,
+        op_cls = _get_operation_class(yaml_data["operationType"])
+        return op_cls(
             yaml_data=yaml_data,
+            code_model=code_model,
             request_builder=request_builder,
+            overloads=overloads,
             name=name,
-            description=yaml_data["language"]["python"]["description"],
-            api_versions=set(
-                value_dict["version"] for value_dict in yaml_data["apiVersions"]
-            ),
             parameters=parameter_list,
-            multiple_content_type_parameters=multiple_content_type_parameter_list,
-            schema_requests=schema_requests,
-            summary=yaml_data["language"]["python"].get("summary"),
-            responses=[
-                Response.from_yaml(yaml, code_model=code_model)
-                for yaml in yaml_data.get("responses", [])
-            ],
-            # Exception with no schema means default exception, we don't store them
-            exceptions=[
-                Response.from_yaml(yaml, code_model=code_model)
-                for yaml in yaml_data.get("exceptions", [])
-                if "schema" in yaml
-            ],
+            responses=responses,
             abstract=abstract,
         )

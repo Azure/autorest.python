@@ -9,6 +9,7 @@ from .base_model import BaseModel
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType
 from .primitive_schemas import IOSchema
+from .utils import MultipleTypeModel
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -32,7 +33,7 @@ class ResponseHeader(BaseModel):
             type=code_model.lookup_schema(id(yaml_data["type"]))
         )
 
-class Response(BaseModel):
+class Response(BaseModel, MultipleTypeModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -41,45 +42,10 @@ class Response(BaseModel):
         headers: List[ResponseHeader] = [],
         content_type_to_type: Optional[Dict[str, BaseSchema]] = None
     ) -> None:
-        super().__init__(yaml_data, code_model)
-        self.status_code = yaml_data["statusCode"]
+        super().__init__(yaml_data=yaml_data, code_model=code_model, content_type_to_type=content_type_to_type)
+        self.status_codes = yaml_data["statusCodes"]
         self.headers = headers
         self.is_error = yaml_data["isError"]
-        self.content_type_to_type = content_type_to_type or {}
-        self.types = self._get_types()
-
-    def _get_types(self):
-        types: List[BaseSchema] = []
-        seen_ids: Set[int] = set()
-        for type in self.content_type_to_type.values():
-            if id(type.yaml_data) not in seen_ids:
-                types.append(type)
-            seen_ids.add(id(type.yaml_data))
-        return types
-
-    def serialization_type(self, content_type: str) -> str:
-        if self.content_type_to_type:
-            return self.content_type_to_type[content_type].serialization_type
-        return "None"
-
-    def type_annotation(self) -> str:
-        if not self.types:
-            return "None"
-        if len(self.types) > 1:
-            return f'Union[{", ".join(type.type_annotation(is_operation_file=True) for type in self.types)}]'
-        return self.types[0].type_annotation(is_operation_file=True)
-
-    @property
-    def docstring_text(self) -> str:
-        # if self.nullable:
-        #     return f"{self.schema.docstring_text} or None"
-        return " or ".join(t.docstring_text for t in self.types) or "None"
-
-    @property
-    def docstring_type(self) -> str:
-        # if self.nullable:
-        #     return f"{self.schema.docstring_type} or None"
-        return " or ".join(t.docstring_type for t in self.types) or "None"
 
     @property
     def is_stream_response(self) -> bool:
@@ -91,10 +57,6 @@ class Response(BaseModel):
         if not code_model.options["models_mode"] and any(t for t in self.types if getattr(t, "is_xml")):
             file_import.add_submodule_import(
                 "xml.etree", "ElementTree", ImportType.STDLIB, alias="ET"
-            )
-        if len(self.types) > 1:
-            file_import.add_submodule_import(
-                "typing", "Union", ImportType.STDLIB
             )
         return file_import
 
@@ -113,4 +75,4 @@ class Response(BaseModel):
         )
 
     def __repr__(self) -> str:
-        return f"<{self.__class__.__name__} {self.status_code}>"
+        return f"<{self.__class__.__name__} {self.status_codes}>"

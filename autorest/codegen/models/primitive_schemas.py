@@ -440,56 +440,14 @@ class DurationSchema(PrimitiveSchema):
         return self.get_declaration(datetime.timedelta(1))
 
 
-class ByteArraySchema(PrimitiveSchema):
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
-        super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.format = self.Formats(yaml_data["format"])
-
-    class Formats(str, Enum):
-        base64url = "base64url"
-        byte = "byte"
-
+class Base64Schema(PrimitiveSchema):
     @property
     def serialization_type(self) -> str:
-        if self.format == ByteArraySchema.Formats.base64url:
-            return "base64"
-        return "bytearray"
+        return "base64"
 
     @property
     def docstring_type(self) -> str:
-        if self.format == ByteArraySchema.Formats.base64url:
-            return "bytes"
-        return "bytearray"
+        return "base64 encoded bytes"
 
     def get_declaration(self, value: str) -> str:
-        if self.format == ByteArraySchema.Formats.base64url:
-            return f'bytes("{value}", encoding="utf-8")'
-        return f'bytearray("{value}", encoding="utf-8")'
-
-
-def get_primitive_schema(
-    yaml_data: Dict[str, Any], code_model: "CodeModel"
-) -> "PrimitiveSchema":
-    mapping = {
-        "integer": NumberSchema,
-        "number": NumberSchema,
-        "string": StringSchema,
-        "char": StringSchema,
-        "date-time": DatetimeSchema,
-        "time": TimeSchema,
-        "unixtime": UnixTimeSchema,
-        "date": DateSchema,
-        "duration": DurationSchema,
-        "byte-array": ByteArraySchema,
-        "any": AnySchema,
-        "any-object": AnySchema,
-        "binary": IOSchema,
-    }
-    schema_type = yaml_data["type"]
-    primitive_schema = cast(
-        PrimitiveSchema,
-        mapping.get(schema_type, PrimitiveSchema).from_yaml(
-            yaml_data=yaml_data, code_model=code_model
-        ),
-    )
-    return primitive_schema
+        return f'bytes("{value}", encoding="utf-8")'

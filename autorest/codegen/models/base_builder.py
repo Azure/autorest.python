@@ -3,63 +3,46 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Callable, Dict, List, Optional, Union, TYPE_CHECKING
+from typing import Any, Dict, List, Optional, Union, TYPE_CHECKING, NamedTuple
 from .base_model import BaseModel
-from .response import Response
-from .schema_request import SchemaRequest
+from .parameter import (
+    Parameter, BodyParameter, OverloadBodyParameter
+)
+from .parameter_list import ParameterList, OverloadBaseParameterList
+from .request_builder_parameter import RequestBuilderBodyParameter, RequestBuilderOverloadBodyParameter, RequestBuilderParameter
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
+    from .operation import Operation
+    from .request_builder import RequestBuilder
 
+class ParamAndOverloadsResponse(NamedTuple):
+    parameter_list: Union[ParameterList, OverloadBaseParameterList]
+    overload_body_parameters: Union[List[OverloadBodyParameter], List[RequestBuilderBodyParameter]]
 
-_M4_HEADER_PARAMETERS = ["content_type", "accept"]
-
-
-def create_parameters(
-    yaml_data: Dict[str, Any], code_model, parameter_creator: Callable
-):
-    multiple_requests = len(yaml_data["requests"]) > 1
-
-    multiple_content_type_parameters = []
-    parameters = [
-        parameter_creator(yaml, code_model=code_model)
-        for yaml in yaml_data.get("parameters", [])
-    ]
-
-    for request in yaml_data["requests"]:
-        for yaml in request.get("parameters", []):
-            parameter = parameter_creator(yaml, code_model=code_model)
-            name = yaml["language"]["python"]["name"]
-            if name in _M4_HEADER_PARAMETERS:
-                parameters.append(parameter)
-            elif multiple_requests:
-                parameter.has_multiple_content_types = True
-                multiple_content_type_parameters.append(parameter)
-            else:
-                parameters.append(parameter)
-
-    if multiple_content_type_parameters:
-        body_parameters_name_set = set(
-            p.serialized_name for p in multiple_content_type_parameters
-        )
-        if len(body_parameters_name_set) > 1:
-            raise ValueError(
-                f"The body parameter with multiple media types has different names: {body_parameters_name_set}"
-            )
-
-    parameters_index = {id(parameter.yaml_data): parameter for parameter in parameters}
-
-    # Need to connect the groupBy and originalParameter
-    for parameter in parameters:
-        parameter_grouped_by_id = id(parameter.grouped_by)
-        if parameter_grouped_by_id in parameters_index:
-            parameter.grouped_by = parameters_index[parameter_grouped_by_id]
-
-        parameter_original_id = id(parameter.original_parameter)
-        if parameter_original_id in parameters_index:
-            parameter.original_parameter = parameters_index[parameter_original_id]
-
-    return parameters, multiple_content_type_parameters
+def create_parameters_and_overloads(
+    yaml_data: Dict[str, Any], code_model: "CodeModel", is_operation: bool
+) -> ParamAndOverloadsResponse:
+    parameter_creator = Parameter if is_operation else RequestBuilderParameter
+    parameters = [parameter_creator.from_yaml(p, code_model) for p in yaml_data["parameters"]]
+    body_parameter_creator = BodyParameter if is_operation else RequestBuilderBodyParameter
+    body_parameter = body_parameter_creator.from_yaml(yaml_data["requestBody"], code_model) if yaml_data.get("requestBody") else None
+    overload_body_parameters: Union[List[OverloadBodyParameter], List[RequestBuilderBodyParameter]] = []
+    if body_parameter and len(body_parameter.types) > 1:
+        # we have overloads now, one for each type
+        parameter_list_creator = OverloadBaseParameterList if is_operation else ParameterList
+        parameter_list = parameter_list_creator(code_model, parameters, body_parameter=body_parameter)
+        for type in body_parameter.types:
+            overload_body_parameter_creator = OverloadBodyParameter if is_operation else RequestBuilderOverloadBodyParameter
+            overload_body_parameters.append(overload_body_parameter_creator(
+                body_parameter.yaml_data,
+                body_parameter.code_model,
+                type=type,
+                content_types=body_parameter.type_to_content_types(id(type.yaml_data))
+            ))
+    else:
+        parameter_list = ParameterList(code_model, parameters, body_parameter=body_parameter)
+    return ParamAndOverloadsResponse(parameter_list, overload_body_parameters)
 
 
 class BaseBuilder(BaseModel):
@@ -70,7 +53,8 @@ class BaseBuilder(BaseModel):
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         name: str,
-        parameters,
+        parameters: ParameterList,
+        overloads: Union[List["Operation"], List["RequestBuilder"]],
         *,
         abstract: bool = False,
         want_tracing: bool = True,
@@ -79,6 +63,7 @@ class BaseBuilder(BaseModel):
         self.name = name
         self._description = yaml_data.get("description", "")
         self.parameters = parameters
+        self.overloads = overloads
         self._summary = yaml_data.get("summary", "")
         # for operations where we don't know what to do, we mark them as abstract so users implement
         # in patch.py
@@ -99,28 +84,6 @@ class BaseBuilder(BaseModel):
                 "https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
             )
         return self._description
-
-    @property
-    def default_content_type_declaration(self) -> str:
-        return f'"{self.parameters.default_content_type}"'
-
-    def get_response_from_status(
-        self, status_code: Optional[Union[str, int]]
-    ) -> Response:
-        for response in self.responses:
-            if status_code in response.status_codes:
-                return response
-        raise ValueError(f"Incorrect status code {status_code}, operation {self.name}")
-
-    @property
-    def success_status_code(self) -> List[Union[str, int]]:
-        """The list of all successfull status code."""
-        return [
-            code
-            for response in self.responses
-            for code in response.status_codes
-            if code != "default"
-        ]
 
     def method_signature(self, is_python3_file: bool) -> List[str]:
         if self.abstract:

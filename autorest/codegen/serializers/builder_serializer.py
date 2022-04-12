@@ -356,7 +356,7 @@ class _BuilderBaseSerializer(
             response
             for response in builder.responses
             if any(
-                code in builder.success_status_code for code in response.status_codes
+                code in builder.success_status_codes for code in response.status_codes
             )
             and isinstance(
                 response.schema,
@@ -1091,7 +1091,7 @@ class _OperationBaseSerializer(
         ...
 
     def handle_error_response(self, builder) -> List[str]:
-        retval = [f"if response.status_code not in {str(builder.success_status_code)}:"]
+        retval = [f"if response.status_code not in {str(builder.success_status_codes)}:"]
         retval.append(
             "    map_error(status_code=response.status_code, response=response, error_map=error_map)"
         )
@@ -1122,7 +1122,7 @@ class _OperationBaseSerializer(
             retval.append("response_headers = {}")
         if builder.has_response_body or builder.any_response_has_headers:
             if len(builder.responses) > 1:
-                for status_code in builder.success_status_code:
+                for status_code in builder.success_status_codes:
                     response = builder.get_response_from_status(status_code)
                     if response.headers or response.types:
                         retval.append(f"if response.status_code == {status_code}:")

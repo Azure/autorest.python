@@ -3,16 +3,15 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, TypeVar, Optional, TYPE_CHECKING
+from typing import Any, Dict, List, TypeVar, TYPE_CHECKING, cast
 import logging
 
-from .base_builder import BaseBuilder, create_parameters
-from .request_builder_parameter import RequestBuilderParameter
-from .request_builder_parameter_list import RequestBuilderParameterList
-from .schema_request import SchemaRequest
-from .response import Response
+
+from .base_builder import BaseBuilder, create_parameters_and_overloads
+from .parameter_list import ParameterList, RequestBuilderParameterList
 from .imports import FileImport, ImportType, TypingSection
-from .parameter import Parameter
+from .parameter import MultipartBodyParameter, UrlEncodedBodyParameter
+from .request_builder_parameter import RequestBuilderOverloadBodyParameter, RequestBuilderParameter
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -22,6 +21,31 @@ _LOGGER = logging.getLogger(__name__)
 T = TypeVar("T")
 OrderedSet = Dict[T, None]
 
+def _get_overloads(
+    overload_body_parameters: List[RequestBuilderOverloadBodyParameter],
+    yaml_data: Dict[str, Any],
+    code_model: "CodeModel",
+    parameters: List[RequestBuilderParameter],
+    name: str,
+):
+    overloads: List[RequestBuilder] = []
+    if overload_body_parameters:
+        # we have overloads now, one for each type
+        for obp in overload_body_parameters:
+            overloads.append(RequestBuilder(
+                yaml_data=yaml_data,
+                code_model=code_model,
+                name=name,
+                parameters=RequestBuilderParameterList(
+                    code_model=code_model,
+                    parameters=parameters,
+                    body_parameter=obp
+                ),
+                overloads=[],
+                want_tracing=False,
+            ))
+    return overloads
+
 
 class RequestBuilder(BaseBuilder):
     def __init__(
@@ -29,54 +53,36 @@ class RequestBuilder(BaseBuilder):
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         name: str,
-        url: str,
-        method: str,
-        multipart: bool,
-        schema_requests: List[SchemaRequest],
-        parameters: RequestBuilderParameterList,
-        description: str,
-        summary: str,
-        responses: Optional[List[Response]] = None,
+        parameters: ParameterList,
+        overloads: List["RequestBuilder"],
         *,
+        want_tracing: bool = True,
         abstract: bool = False,
-    ):
+    ) -> None:
         super().__init__(
-            yaml_data=yaml_data,
             code_model=code_model,
+            yaml_data=yaml_data,
             name=name,
-            description=description,
             parameters=parameters,
-            responses=responses,
-            schema_requests=schema_requests,
-            summary=summary,
+            overloads=overloads,
             abstract=abstract,
-            want_tracing=False,
+            want_tracing=want_tracing,
         )
-        self.url = url
-        self.method = method
-        self.multipart = multipart
-
-    @property
-    def is_stream(self) -> bool:
-        """Is the request we're preparing a stream, like an upload."""
-        return any(request.is_stream_request for request in self.schema_requests)
-
-    @property
-    def body_kwargs_to_get(self) -> List[Parameter]:
-        return self.parameters.body_kwargs_to_get
+        self.url = yaml_data["url"]
+        self.method = yaml_data["method"]
 
     @property
     def operation_group_name(self) -> str:
-        return self.yaml_data["language"]["python"]["operationGroupName"]
+        return self.yaml_data["groupName"]
 
     @property
     def builder_group_name(self) -> str:
-        return self.yaml_data["language"]["python"]["builderGroupName"]
+        return self.yaml_data["builderGroupName"]
 
     def imports(self) -> FileImport:
         file_import = FileImport()
         for parameter in self.parameters.method:
-            if self.abstract and (parameter.is_multipart or parameter.is_data_input):
+            if self.abstract and isinstance(parameter, (MultipartBodyParameter, UrlEncodedBodyParameter)):
                 continue
             file_import.merge(parameter.imports())
 
@@ -127,18 +133,18 @@ class RequestBuilder(BaseBuilder):
         ]
         name = "_".join([n for n in names if n])
 
-        first_request = yaml_data["requests"][0]
-        schema_requests = [
-            SchemaRequest.from_yaml(yaml, code_model=code_model)
-            for yaml in yaml_data["requests"]
-        ]
-        parameters, multiple_content_type_parameters = create_parameters(
-            yaml_data, code_model, RequestBuilderParameter.from_yaml
-        )
-        parameter_list = RequestBuilderParameterList(
-            code_model, parameters + multiple_content_type_parameters, schema_requests
-        )
+        parameters = [RequestBuilderParameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
         abstract = False
+        parameter_list, overload_body_parameters = create_parameters_and_overloads(
+            yaml_data, code_model, is_operation=True
+        )
+        overloads = _get_overloads(
+            cast(List[RequestBuilderOverloadBodyParameter], overload_body_parameters),
+            yaml_data,
+            code_model,
+            parameters,
+            name,
+        )
         if (
             code_model.options["version_tolerant"]
             or code_model.options["low_level_client"]
@@ -152,22 +158,11 @@ class RequestBuilder(BaseBuilder):
             )
             abstract = True
 
-        request_builder_class = cls(
+        return cls(
             yaml_data=yaml_data,
             code_model=code_model,
             name=name,
-            url=first_request["protocol"]["http"]["path"],
-            method=first_request["protocol"]["http"]["method"].upper(),
-            multipart=first_request["protocol"]["http"].get("multipart", False),
-            schema_requests=schema_requests,
             parameters=parameter_list,
-            description=yaml_data["language"]["python"]["description"],
-            responses=[
-                Response.from_yaml(yaml, code_model=code_model)
-                for yaml in yaml_data.get("responses", [])
-            ],
-            summary=yaml_data["language"]["python"].get("summary"),
+            overloads=overloads,
             abstract=abstract,
         )
-        parameter_list.add_body_kwargs()
-        return request_builder_class

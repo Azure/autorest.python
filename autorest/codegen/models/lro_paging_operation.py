@@ -18,6 +18,6 @@ class LROPagingOperation(PagingOperation, LROOperation):
         return file_import
 
     @property
-    def success_status_code(self):
+    def success_status_codes(self):
         """The list of all successfull status code."""
         return [200]
