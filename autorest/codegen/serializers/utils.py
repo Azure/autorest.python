@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from enum import Enum, auto
 from typing import List
-from ..models import ParameterStyle, ListSchema, Parameter, ParameterLocation
+from ..models import ListSchema, Parameter
 
 
 def serialize_method(

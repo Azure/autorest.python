@@ -26,8 +26,6 @@ from ..models import (
     EnumSchema,
     Response,
     IOSchema,
-    ParameterStyle,
-    ParameterLocation,
 )
 from . import utils
 

@@ -3,11 +3,10 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional, Set, Type, TYPE_CHECKING
+from typing import Any, Dict, List, TYPE_CHECKING
 
 from autorest.codegen.models.base_model import BaseModel
 from .base_schema import BaseSchema
-from .primitive_schemas import PrimitiveSchema, get_primitive_schema, StringSchema
 from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:

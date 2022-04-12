@@ -1,0 +1,325 @@
+# -------------------------------------------------------------------------
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License. See License.txt in the project root for
+# license information.
+# --------------------------------------------------------------------------
+"""The reformatter autorest plugin.
+"""
+import re
+from typing import Dict, Any, List, Optional
+
+from .. import YamlUpdatePlugin
+
+ORIGINAL_ID_TO_UPDATED_TYPE: Dict[int, Dict[str, Any]] = {}
+
+def _to_python_case(name: str) -> str:
+    def replace_upper_characters(m: re.Match[str]) -> str:
+        match_str = m.group().lower()
+        if m.start() > 0 and name[m.start() - 1] == "_":
+            # we are good if a '_' already exists
+            return match_str
+        # the first letter should not have _
+        prefix = "_" if m.start() > 0 else ""
+
+        # we will add an extra _ if there are multiple upper case chars together
+        next_non_upper_case_char_location = m.start() + len(match_str)
+        if (
+            len(match_str) > 2
+            and len(name) - next_non_upper_case_char_location > 1
+            and name[next_non_upper_case_char_location].isalpha()
+        ):
+
+            return (
+                prefix
+                + match_str[: len(match_str) - 1]
+                + "_"
+                + match_str[len(match_str) - 1]
+            )
+
+        return prefix + match_str
+
+    return re.sub("[A-Z]+", replace_upper_characters, name)
+
+def update_list(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    return {
+        "type": "list",
+        "elementType": update_type(yaml_data["elementType"])
+    }
+
+def update_dict(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    return {
+        "type": "dict",
+        "elementType": update_type(yaml_data["elementType"])
+    }
+
+def update_constant(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    return {
+        "type": "constant",
+        "valueType": update_type(yaml_data["valueType"]),
+        "value": yaml_data["value"]["value"]
+    }
+
+def update_enum_value(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    return {
+        "name": yaml_data["language"]["default"]["name"],
+        "value": yaml_data["value"],
+        "description": yaml_data["language"]["default"]["description"]
+    }
+
+
+def update_enum(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    return {
+        "type": "enum",
+        "valueType": update_type(yaml_data["choiceType"]),
+        "values": [update_enum_value(v) for v in yaml_data["choices"]]
+    }
+
+def update_property(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    return {
+        "serializedName": yaml_data["language"]["default"]["name"],
+        "restApiName": yaml_data["serializedName"],
+        "type": update_type(yaml_data["schema"]),
+        "optional": not yaml_data.get("required"),
+        "description": yaml_data["language"]["default"]["description"],
+        "isDiscriminator": yaml_data.get("isDiscriminator")
+    }
+
+def update_discriminator_subtype_dict(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    return {
+        obj["discriminatorValue"]: update_type(obj)
+        for obj in yaml_data.get("discriminator", {}).get("immediate", {}).values()
+    }
+
+def create_model(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    return {
+        "type": "model",
+        "name": yaml_data["language"]["default"]["name"],
+        "description": yaml_data["language"]["default"]["description"],
+
+    }
+
+def fill_model(yaml_data: Dict[str, Any], current_model: Dict[str, Any]) -> Dict[str, Any]:
+    current_model.update({
+        "properties": [update_property(p) for p in yaml_data.get("properties", [])],
+        "parents": [update_type(yaml_data=p) for p in yaml_data.get("parents", {}).get("immediate", [])],
+        "discriminatorSubtypeDict": update_discriminator_subtype_dict(yaml_data),
+        "discriminatorValue": yaml_data.get("discriminatorValue"),
+    })
+    return current_model
+
+
+def update_primitive(type_group: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    if type_group == "integer":
+        return {"type": "integer"}
+    if type_group == "number":
+        return {"type": "float"}
+    if type_group == "string":
+        return {"type": "string"}
+    if type_group == "byte-array":
+        return {"type": "bytes"}
+    if type_group == "any":
+        return {"type": "any"}
+    if type_group == "date-time":
+        return {"type": "datetime"}
+    if type_group == "duration":
+        return {"type": "duration"}
+    if type_group == "date":
+        return {"type": "date"}
+    if type_group == "base64":
+        return {"type": "base64"}
+    if type_group == "boolean":
+        return {"type": "bool"}
+    raise ValueError(f"Unknown type group {type_group}")
+
+def update_type(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    if id(yaml_data) in ORIGINAL_ID_TO_UPDATED_TYPE:
+        return ORIGINAL_ID_TO_UPDATED_TYPE[id(yaml_data)]
+    type_group = yaml_data["type"]
+    if type_group == "array":
+        updated_type = update_list(yaml_data)
+    elif type_group == "dictionary":
+        updated_type = update_dict(yaml_data)
+    elif type_group == "constant":
+        updated_type = update_constant(yaml_data)
+    elif type_group in ("choice", "sealed-choice"):
+        updated_type = update_enum(yaml_data)
+    elif type_group == "object":
+        # avoiding infinite loop
+        initial_model = create_model(yaml_data)
+        ORIGINAL_ID_TO_UPDATED_TYPE[id(yaml_data)] = initial_model
+        updated_type = fill_model(yaml_data, initial_model)
+    else:
+        updated_type = update_primitive(type_group, yaml_data)
+    ORIGINAL_ID_TO_UPDATED_TYPE[id(yaml_data)] = updated_type
+    return updated_type
+
+def update_parameter_base(
+    yaml_data: Dict[str, Any], *, serialized_name: Optional[str] = None
+) -> Dict[str, Any]:
+    return {
+        "optional": not yaml_data["required"],
+        "description": yaml_data["language"]["default"]["description"],
+        "serializedName": serialized_name or yaml_data["language"]["default"]["name"],
+        "clientDefaultValue": yaml_data.get("clientDefaultValue")
+    }
+
+def update_parameter(yaml_data: Dict[str, Any], *, serialized_name: Optional[str] = None) -> Dict[str, Any]:
+    param_base = update_parameter_base(yaml_data, serialized_name=serialized_name)
+    location = yaml_data["protocol"]["http"]["in"]
+    if location == "uri":
+        location = "path"
+    param_base.update({
+        "restApiName": yaml_data["language"]["default"]["name"],
+        "location": location,
+        "type": ORIGINAL_ID_TO_UPDATED_TYPE[id(yaml_data["schema"])],
+        "implementation": "Client"
+    })
+    return param_base
+
+def update_body_parameter(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    base_body_param = next(
+        p
+        for sr in yaml_data.values()
+        for p in sr["parameters"]
+        if p["protocol"]["http"]["in"] == "body"
+    )
+    param_base = update_parameter_base(base_body_param)
+    content_type_to_type: Dict[str, Dict[str, Any]] = {}
+    for content_type, schema_request in yaml_data.items():
+        curr_body_param = next(p for p in schema_request["parameters"] if p["protocol"]["http"]["in"] == "body")
+        content_type_to_type[content_type] = update_type(curr_body_param["schema"])
+    param_base["contentTypeToType"] = content_type_to_type
+    return param_base
+
+def update_parameters(yaml_data: Dict[str, Any]) -> List[Dict[str, Any]]:
+    retval: List[Dict[str, Any]] = []
+    for param in yaml_data["parameters"]:
+        if param["language"]["default"]["name"] == "$host":
+            continue
+        retval.append(update_parameter(param))
+
+    # now we handle content type and accept headers.
+    # We only care about the content types on the body parameter itself,
+    # so ignoring the different content types for now
+    for request in yaml_data["requests"]:
+        for param in request["parameters"]:
+            if param["protocol"]["http"]["in"] != "body":
+                param = update_parameter(param)
+                param["type"] = {"type": "string"}  # override to string type
+                retval.append(param)
+    return retval
+
+def update_response_header(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    return {
+        "restApiName": yaml_data["header"]["name"],
+        "type": update_type(yaml_data["schema"])
+    }
+
+def update_response(
+    operation_group_yaml_data: Dict[str, Any],
+    yaml_data: Dict[str, Any],
+) -> Dict[str, Any]:
+    content_type_to_type = {}
+    if yaml_data.get("schema"):
+        # means this response has a body and there will be an accept response
+        type = update_type(yaml_data["schema"])
+        accept_param = next(
+            p for p in operation_group_yaml_data["requests"][0]["parameters"] if p["language"]["default"].get("serializedName", "") == "Accept"
+        )
+        # we know it will be a constant value
+        accept_type = accept_param["schema"]["value"]["value"]
+        content_type_to_type[accept_type] = type
+
+    return {
+        "headers": [update_response_header(h) for h in yaml_data["protocol"]["http"].get("headers", [])],
+        "statusCodes": [
+            int(code) if code != "default" else "default"
+            for code in yaml_data["protocol"]["http"]["statusCodes"]
+        ],
+        "isError": any(e for e in operation_group_yaml_data.get("exceptions", []) if id(e) == id(yaml_data)),
+        "contentTypeToType": content_type_to_type
+    }
+
+def update_operation_group_class_name(yaml_data: Dict[str, Any], operation_group_yaml_data: Dict[str, Any]) -> str:
+    name = operation_group_yaml_data["language"]["default"]["name"]
+    if operation_group_yaml_data["language"] == "":
+        # i'm a mixin
+        return yaml_data["default"]["name"] + "OperationsMixin"
+    if name == "Operations":
+        return "Operations"
+    return name + "Operations"
+
+def update_operation(group_name: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    return {
+        "name": yaml_data["language"]["default"]["name"],
+        "description": yaml_data["language"]["default"]["description"],
+        "url": yaml_data["requests"][0]["protocol"]["http"]["path"],
+        "method": yaml_data["requests"][0]["protocol"]["http"]["method"].upper(),
+        "parameters": update_parameters(yaml_data),
+        "bodyParameter": update_body_parameter(yaml_data["requestMediaTypes"]) if yaml_data.get("requestMediaTypes") else None,
+        "responses": [update_response(yaml_data, r) for r in yaml_data["responses"]],
+        "groupName": group_name,
+        "operationType": "basic",
+    }
+
+def update_operation_group(yaml_data: Dict[str, Any], operation_group_yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    class_name = update_operation_group_class_name(yaml_data, operation_group_yaml_data)
+    return {
+        "propertyName": _to_python_case(operation_group_yaml_data["language"]["default"]["name"]),
+        "className": class_name,
+        "operations": [
+            update_operation(class_name, o) for o in operation_group_yaml_data["operations"]
+        ]
+    }
+
+def update_client_url(yaml_data: Dict[str, Any]) -> str:
+    if any(p for p in yaml_data["globalParameters"] if p["language"]["default"]["name"] == "$host"):
+        # this means we DO NOT have a parameterized host
+        # in order to share code better, going to make it a "parameterized host" of
+        # just the endpoint parameter
+        return "{endpoint}"
+    # we have a parameterized host. Return first url from first request, quite gross
+    return yaml_data["operationGroups"][0]["operations"][0]["requests"][0]["protocol"]["http"]["uri"]
+
+class Reformatter(YamlUpdatePlugin):
+    """Add Python naming information."""
+
+    def update_global_parameters(self, yaml_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        global_params: List[Dict[str, Any]] = []
+        for global_parameter in yaml_data:
+            serialized_name: Optional[str] = None
+            if global_parameter["language"]["default"]["name"] == "$host":
+                # I am the non-parameterized endpoint. Modify name based off of flag
+                version_tolerant = self._autorestapi.get_boolean_value("version-tolerant", False)
+                low_level_client = self._autorestapi.get_boolean_value("low-level-client", False)
+                serialized_name = "endpoint" if (version_tolerant or low_level_client) else "base_url"
+            global_params.append(update_parameter(global_parameter, serialized_name=serialized_name))
+        return global_params
+
+
+    def update_client(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+        return {
+            "name": yaml_data["language"]["default"]["name"],
+            "description": yaml_data["info"]["description"],
+            "parameters": self.update_global_parameters(yaml_data["globalParameters"]),
+            "security": yaml_data["security"],
+            "url": update_client_url(yaml_data),
+            "namespace": self._autorestapi.get_value("namespace") or yaml_data["language"]["default"]["name"]
+        }
+
+    def update_yaml(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Convert in place the YAML str."""
+        # First we update the types, so we can access for when we're creating parameters etc.
+        types: List[Dict[str, Any]] = [
+            update_type(t)
+            for types in yaml_data["schemas"].values()
+            for t in types
+        ]
+        return {
+            "client": self.update_client(yaml_data),
+            "operationGroups": [
+                update_operation_group(yaml_data, og)
+                for og in yaml_data["operationGroups"]
+            ],
+            "types": types
+        }

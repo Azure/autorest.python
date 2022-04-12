@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional, TYPE_CHECKING
 
+from .base_model import BaseModel
 from .parameter import Parameter
 from .parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
 from .imports import FileImport, ImportType, TypingSection
@@ -13,14 +14,22 @@ if TYPE_CHECKING:
     from .code_model import CodeModel
 
 
-class Client:
+class Client(BaseModel):
     """A service client."""
 
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel", parameters: List[Parameter]):
-        self.yaml_data = yaml_data
-        self.code_model = code_model
-        self.client_parameters = ClientGlobalParameterList(code_model, parameters)
-        self.config_parameters = ConfigGlobalParameterList(code_model, parameters)
+    def __init__(
+        self,
+        yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
+        client_parameters: ClientGlobalParameterList,
+        config_parameters: ConfigGlobalParameterList,
+    ):
+        super().__init__(yaml_data, code_model)
+        self.client_parameters = client_parameters
+        self.config_parameters = config_parameters
+        self.name = self.yaml_data["name"]
+        self.description = self.yaml_data["description"]
+        self.url = self.yaml_data["url"]
 
     def pipeline_class(self, async_mode: bool) -> str:
         if self.code_model.options["azure_arm"]:
@@ -150,3 +159,13 @@ class Client:
         ):
             return "_client"
         return f"_{self.code_model.module_name}"
+
+    @classmethod
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "Client":
+        parameters = [Parameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
+        return cls(
+            yaml_data=yaml_data,
+            code_model=code_model,
+            client_parameters=ClientGlobalParameterList(code_model, parameters),
+            config_parameters=ConfigGlobalParameterList(code_model, parameters)
+        )

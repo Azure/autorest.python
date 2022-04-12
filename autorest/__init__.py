@@ -50,7 +50,7 @@ class YamlUpdatePlugin(Plugin):
         file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
         yaml_data = yaml.safe_load(file_content)
 
-        self.update_yaml(yaml_data)
+        yaml_data = self.update_yaml(yaml_data)
 
         yaml_string = yaml.safe_dump(yaml_data)
 
@@ -58,10 +58,10 @@ class YamlUpdatePlugin(Plugin):
         return True
 
     @abstractmethod
-    def update_yaml(self, yaml_data: Dict[str, Any]) -> None:
+    def update_yaml(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         """The code-model-v4-no-tags yaml model tree.
 
-        :rtype: None
+        :rtype: updated yaml
         :raises Exception: Could raise any exception, stacktrace will be sent to autorest API
         """
         raise NotImplementedError()

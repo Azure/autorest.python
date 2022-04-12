@@ -13,9 +13,7 @@ from .operation_group import OperationGroup
 from .operation import Operation
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
-from .parameter import Parameter
 from .client import Client
-from .parameter_list import GlobalParameterList
 from .property import Property
 from .request_builder import RequestBuilder
 from .credential_model import CredentialModel
@@ -72,19 +70,10 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         self.types_map: Dict[int, BaseSchema] = {} # map yaml id to schema
         self.operation_groups: List[OperationGroup] = []
         self._object_types: List[ObjectSchema] = []
-        params = GlobalParameterList(self)
-        self.service_client: Client = Client(self, params)
+        self.service_client: Client = Client(self)
         self.request_builders: List[RequestBuilder] = []
         self.package_dependency: Dict[str, str] = {}
         self._credential_model: Optional[CredentialModel] = None
-
-    @property
-    def global_parameters(self) -> GlobalParameterList:
-        return self.service_client.parameters
-
-    @global_parameters.setter
-    def global_parameters(self, val: GlobalParameterList) -> None:
-        self.service_client.parameters = val
 
     def lookup_schema(self, schema_id: int) -> BaseSchema:
         """Looks to see if the schema has already been created.

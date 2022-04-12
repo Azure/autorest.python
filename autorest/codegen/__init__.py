@@ -14,7 +14,7 @@ from .models.code_model import CodeModel
 from .models import build_schema, RequestBuilder
 from .models.operation_group import OperationGroup
 from .models.parameter import Parameter
-from .models.parameter_list import GlobalParameterList
+from .models.parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
 from .serializers import JinjaSerializer
 from .models.credential_schema_policy import (
     CredentialSchemaPolicy,
@@ -198,7 +198,14 @@ class CodeGenerator(Plugin):
             build_schema(yaml_data=type_yaml, code_model=code_model)
 
         # Global parameters
-        code_model.global_parameters = GlobalParameterList(
+        code_model.service_client.client_parameters = ClientGlobalParameterList(
+            code_model,
+            [
+                Parameter.from_yaml(param, code_model=code_model)
+                for param in yaml_data.get("globalParameters", [])
+            ],
+        )
+        code_model.service_client.config_parameters = ConfigGlobalParameterList(
             code_model,
             [
                 Parameter.from_yaml(param, code_model=code_model)

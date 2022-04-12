@@ -19,7 +19,7 @@ from ..models import (
     ParameterList,
     TypingSection,
     ImportType,
-    GlobalParameterList,
+    ClientGlobalParameterList,
 )
 from .builder_serializer import get_operation_serializer
 
@@ -106,7 +106,7 @@ class MetadataSerializer:
 
         return chosen_version, total_api_version_list
 
-    def _make_async_copy_of_global_parameters(self) -> GlobalParameterList:
+    def _make_async_copy_of_global_parameters(self) -> ClientGlobalParameterList:
         global_parameters = copy.deepcopy(self.code_model.global_parameters)
         _correct_credential_parameter(global_parameters, True)
         return global_parameters

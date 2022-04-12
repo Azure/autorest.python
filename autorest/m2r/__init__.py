@@ -29,9 +29,10 @@ class AutorestRender(m2r.RestRenderer):
 class M2R(YamlUpdatePlugin):
     """A plugin to convert any description and summary from MD to RST."""
 
-    def update_yaml(self, yaml_data: Dict[str, Any]) -> None:
+    def update_yaml(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         """Convert in place the YAML str."""
         self._convert_docstring_no_cycles(yaml_data, set())
+        return yaml_data
 
     def _convert_docstring_no_cycles(
         self, yaml_data: Dict[str, Any], node_list: Set[int]
