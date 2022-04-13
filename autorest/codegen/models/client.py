@@ -59,7 +59,7 @@ class Client(BaseModel):
             if g in self.code_model.options
         )
         if any_optional_gp or (
-            legacy and self.code_model.service_client.parameters.host
+            legacy and self.code_model.client.parameters.host
         ):
             file_import.add_submodule_import(
                 "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL

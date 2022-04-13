@@ -26,11 +26,10 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        name: str,
         **kwargs,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.name = name
+        self.name = self.yaml_data["name"]
         self.max_properties: Optional[int] = kwargs.pop("max_properties", None)
         self.min_properties: Optional[int] = kwargs.pop("min_properties", None)
         self.properties: List[Property] = kwargs.pop("properties", [])

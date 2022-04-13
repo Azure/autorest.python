@@ -18,7 +18,7 @@ class ClientSerializer:
             function_def="def",
             method_name="__init__",
             is_in_class=True,
-            method_param_signatures=self.code_model.service_client.parameters.client_method_signature(
+            method_param_signatures=self.code_model.client.parameters.client_method_signature(
                 async_mode or self.is_python3_file
             ),
         )
@@ -33,7 +33,7 @@ class ClientSerializer:
 
     def pop_kwargs_from_signature(self, async_mode: bool) -> List[str]:
         return utils.pop_kwargs_from_signature(
-            self.code_model.service_client.parameters.kwargs_to_pop(
+            self.code_model.client.parameters.kwargs_to_pop(
                 async_mode or self.is_python3_file,
             ),
             check_kwarg_dict=False,
@@ -70,7 +70,7 @@ class ClientSerializer:
             retval.append(
                 f":vartype {og.name}: {self.code_model.namespace}{operations_folder}{og.class_name}"
             )
-        for param in self.code_model.service_client.parameters.client_method:
+        for param in self.code_model.client.parameters.client_method:
             retval.append(
                 f":{param.description_keyword} {param.serialized_name}: {param.description}"
             )
@@ -90,7 +90,7 @@ class ClientSerializer:
         config_call = ", ".join(
             [
                 f"{p.serialized_name}={p.serialized_name}"
-                for p in self.code_model.service_client.parameters.config_method
+                for p in self.code_model.client.parameters.config_method
                 if not p.is_kwarg
             ]
             + ["**kwargs"]
@@ -99,13 +99,13 @@ class ClientSerializer:
 
     def initialize_pipeline_client(self, async_mode: bool) -> str:
         host_variable_name = (
-            self.code_model.service_client.parameters.host_variable_name
+            self.code_model.client.parameters.host_variable_name
         )
-        if self.code_model.service_client.has_parameterized_host:
+        if self.code_model.client.has_parameterized_host:
             host_variable_name = (
                 "_" + host_variable_name
             )  # we don't want potential conflicts with input params
-        pipeline_client_name = self.code_model.service_client.pipeline_class(async_mode)
+        pipeline_client_name = self.code_model.client.pipeline_class(async_mode)
         return f"self._client = {pipeline_client_name}(base_url={host_variable_name}, config=self._config, **kwargs)"
 
     def serializers_and_operation_groups_properties(self) -> List[str]:
@@ -150,7 +150,7 @@ class ClientSerializer:
             function_def="def",
             method_name=self.code_model.send_request_name,
             is_in_class=True,
-            method_param_signatures=self.code_model.service_client.send_request_signature(
+            method_param_signatures=self.code_model.client.send_request_signature(
                 async_mode or self.is_python3_file
             ),
         )

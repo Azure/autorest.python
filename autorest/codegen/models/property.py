@@ -8,6 +8,7 @@ from typing import Any, Dict, Optional, TYPE_CHECKING
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
 from .base_schema import BaseSchema
+from .utils import UNDEFINED
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -19,16 +20,15 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         type: BaseSchema,
-        *,
-        client_default_value: Optional[Any] = None,
     ) -> None:
         super().__init__(yaml_data, code_model)
-        self.name = self.yaml_data["name"]
+        self.rest_api_name = self.yaml_data["restApiName"]
+        self.client_name = self.yaml_data["clientName"]
         self.type = type
         self.optional: bool = self.yaml_data["optional"]
-        self.readonly: bool = self.yaml_data["readonly"]
+        self.readonly: bool = self.yaml_data.get("readonly")
         self.is_discriminator: bool = yaml_data.get("isDiscriminator", False)
-        self.client_default_value = client_default_value
+        self.client_default_value = yaml_data.get("clientDefaultValue", UNDEFINED)
 
     def description(self, *, is_operation_file: bool) -> str:
         if is_operation_file:
@@ -43,19 +43,6 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             isinstance(self.type, ConstantSchema)
             and not self.optional
             and not self.is_discriminator
-        )
-
-    @classmethod
-    def from_yaml(
-        cls,
-        yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
-    ) -> "Property":
-        from . import build_schema  # pylint: disable=import-outside-toplevel
-        return cls(
-            yaml_data=yaml_data,
-            code_model=code_model,
-            type=build_schema(yaml_data["type"], code_model)
         )
 
     @property
@@ -80,3 +67,16 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.description(is_operation_file=False):
             kwargs["description"] = self.description
         return self.type.get_json_template_representation(**kwargs)
+
+    @classmethod
+    def from_yaml(
+        cls,
+        yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
+    ) -> "Property":
+        from . import build_schema  # pylint: disable=import-outside-toplevel
+        return cls(
+            yaml_data=yaml_data,
+            code_model=code_model,
+            type=build_schema(yaml_data["type"], code_model)
+        )

@@ -11,11 +11,11 @@
 
     {{ op_tools.serialize_with_wrap(serializer.property_descriptions(async_mode), "\n ") | indent }}
     {{ serializer.init_signature_and_response_type_annotation(async_mode) | indent }}
-    {% if code_model.service_client.parameters.kwargs_to_pop(async_mode) %}
+    {% if code_model.client.parameters.kwargs_to_pop(async_mode) %}
         {{ op_tools.serialize(serializer.pop_kwargs_from_signature(async_mode)) | indent(8) }}
     {% endif %}
-        {% if code_model.service_client.has_parameterized_host %}
-        _{{ code_model.service_client.parameters.host_variable_name }} = {{ keywords.escape_str(code_model.service_client.parameterized_host_template) }}
+        {% if code_model.client.has_parameterized_host %}
+        _{{ code_model.client.parameters.host_variable_name }} = {{ keywords.escape_str(code_model.client.parameterized_host_template) }}
         {% endif %}
         {{ serializer.initialize_config() }}
         {{ serializer.initialize_pipeline_client(async_mode) }}

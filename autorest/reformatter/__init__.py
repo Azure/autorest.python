@@ -69,6 +69,7 @@ def update_enum_value(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
 
 def update_enum(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
+        "name": yaml_data["language"]["default"]["name"],
         "type": "enum",
         "valueType": update_type(yaml_data["choiceType"]),
         "values": [update_enum_value(v) for v in yaml_data["choices"]]
@@ -76,12 +77,13 @@ def update_enum(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
 
 def update_property(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
-        "serializedName": yaml_data["language"]["default"]["name"],
+        "clientName": yaml_data["language"]["default"]["name"],
         "restApiName": yaml_data["serializedName"],
         "type": update_type(yaml_data["schema"]),
         "optional": not yaml_data.get("required"),
         "description": yaml_data["language"]["default"]["description"],
-        "isDiscriminator": yaml_data.get("isDiscriminator")
+        "isDiscriminator": yaml_data.get("isDiscriminator"),
+        "readonly": yaml_data.get("readOnly", False)
     }
 
 def update_discriminator_subtype_dict(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
@@ -159,7 +161,7 @@ def update_parameter_base(
     return {
         "optional": not yaml_data["required"],
         "description": yaml_data["language"]["default"]["description"],
-        "serializedName": serialized_name or yaml_data["language"]["default"]["name"],
+        "clientName": serialized_name or yaml_data["language"]["default"]["name"],
         "clientDefaultValue": yaml_data.get("clientDefaultValue")
     }
 

@@ -147,7 +147,7 @@ class MetadataSerializer:
                 ImportType.LOCAL,
             )
         file_import.merge(
-            self.code_model.service_client.imports_for_multiapi(async_mode=async_mode)
+            self.code_model.client.imports_for_multiapi(async_mode=async_mode)
         )
         return _json_serialize_imports(file_import.to_dict())
 
@@ -199,9 +199,9 @@ class MetadataSerializer:
         self.code_model.options["package_version"] = "0.1.0"
         if (
             self.code_model.options["azure_arm"]
-            and not self.code_model.service_client.parameters.host
+            and not self.code_model.client.parameters.host
         ):
-            self.code_model.service_client.parameters.add_host(
+            self.code_model.client.parameters.add_host(
                 "https://management.azure.com"
             )
         return template.render(

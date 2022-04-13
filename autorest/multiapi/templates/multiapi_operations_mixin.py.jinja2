@@ -14,7 +14,7 @@ from msrest import Serializer, Deserializer
 {% endif %}
 
 
-class {{ code_model.service_client.name }}OperationsMixin(object):
+class {{ code_model.client.name }}OperationsMixin(object):
 {% for mixin_operation in code_model.operation_mixin_group.mixin_operations %}
 
     {{ mixin_operation.signature(async_mode) | indent }}        {{ mixin_operation.description(async_mode) | indent(8) }}
@@ -22,7 +22,7 @@ class {{ code_model.service_client.name }}OperationsMixin(object):
         {% for api in mixin_operation.available_apis|sort %}
         {% set if_statement = "if" if loop.first else "elif" %}
         {{ if_statement }} api_version == '{{ code_model.mod_to_api_version[api] }}':
-            from {{ ".." if async_mode else "." }}{{ api }}{{ ".aio" if async_mode else "" }}.operations import {{ code_model.service_client.name }}OperationsMixin as OperationClass
+            from {{ ".." if async_mode else "." }}{{ api }}{{ ".aio" if async_mode else "" }}.operations import {{ code_model.client.name }}OperationsMixin as OperationClass
         {% endfor %}
         else:
             raise ValueError("API version {} does not have operation '{{ mixin_operation.name }}'".format(api_version))
@@ -30,7 +30,7 @@ class {{ code_model.service_client.name }}OperationsMixin(object):
         mixin_instance._client = self._client
         mixin_instance._config = self._config
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
-        {% if not code_model.service_client.client_side_validation %}
+        {% if not code_model.client.client_side_validation %}
         mixin_instance._serialize.client_side_validation = False
         {% endif %}
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))

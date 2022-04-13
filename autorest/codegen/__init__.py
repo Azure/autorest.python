@@ -10,6 +10,7 @@ from pathlib import Path
 import yaml
 
 from .. import Plugin
+from .models.client import Client
 from .models.code_model import CodeModel
 from .models import build_schema, RequestBuilder
 from .models.operation_group import OperationGroup
@@ -197,15 +198,17 @@ class CodeGenerator(Plugin):
         for type_yaml in yaml_data.get("types", []):
             build_schema(yaml_data=type_yaml, code_model=code_model)
 
+        code_model.client = Client.from_yaml(yaml_data["client"], code_model)
+
         # Global parameters
-        code_model.service_client.client_parameters = ClientGlobalParameterList(
+        code_model.client.client_parameters = ClientGlobalParameterList(
             code_model,
             [
                 Parameter.from_yaml(param, code_model=code_model)
                 for param in yaml_data.get("globalParameters", [])
             ],
         )
-        code_model.service_client.config_parameters = ConfigGlobalParameterList(
+        code_model.client.config_parameters = ConfigGlobalParameterList(
             code_model,
             [
                 Parameter.from_yaml(param, code_model=code_model)

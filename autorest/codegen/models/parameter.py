@@ -12,7 +12,7 @@ from .imports import FileImport, ImportType, TypingSection
 from .base_model import BaseModel
 from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
-from .utils import MultipleTypeModel
+from .utils import MultipleTypeModel, UNDEFINED
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -36,9 +36,10 @@ class _BaseParameter(BaseModel):
         code_model: "CodeModel"
     ) -> None:
         super().__init__(yaml_data, code_model)
-        self.serialized_name = yaml_data["serializedName"]
+        self.client_name = yaml_data["clientName"]
         self.optional = yaml_data["optional"]
         self.description = yaml_data["description"]
+        self.client_default_value = yaml_data.get("clientDefaultValue", UNDEFINED)
 
     @property
     def method_location(self) -> ParameterMethodLocation:

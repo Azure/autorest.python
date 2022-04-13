@@ -70,7 +70,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         self.types_map: Dict[int, BaseSchema] = {} # map yaml id to schema
         self.operation_groups: List[OperationGroup] = []
         self._object_types: List[ObjectSchema] = []
-        self.service_client: Client = Client(self)
+        self._client: Optional[Client] = None
         self.request_builders: List[RequestBuilder] = []
         self.package_dependency: Dict[str, str] = {}
         self._credential_model: Optional[CredentialModel] = None
@@ -91,6 +91,16 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             )
         except StopIteration:
             raise KeyError(f"Couldn't find schema with id {schema_id}")
+
+    @property
+    def client(self) -> Client:
+        if not self._client:
+            raise ValueError("You haven't linked the client yet")
+        return self._client
+
+    @client.setter
+    def client(self, val: Client) -> None:
+        self._client = val
 
     def lookup_request_builder(self, request_builder_id: int) -> RequestBuilder:
         """Find the request builder based off of id"""
@@ -175,13 +185,13 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
                 first_req_of_first_op_of_first_grp = yaml_data["operationGroups"][0][
                     "operations"
                 ][0]["requests"][0]
-                self.service_client.parameterized_host_template = (
+                self.client.parameterized_host_template = (
                     first_req_of_first_op_of_first_grp["protocol"]["http"]["uri"]
                 )
         else:
             for host in dollar_host:
                 self.global_parameters.remove(host)
-            self.service_client.parameters.add_host(
+            self.client.parameters.add_host(
                 dollar_host[0].yaml_data["clientDefaultValue"]
             )
 

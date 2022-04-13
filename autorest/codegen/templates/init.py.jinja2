@@ -3,7 +3,7 @@
 {{ code_model.options['license_header'] }}
 
 {% if code_model.request_builders %}
-from .{{ code_model.service_client.filename }} import {{ code_model.class_name }}
+from .{{ code_model.client.filename }} import {{ code_model.class_name }}
 {% endif %}
 {% if not async_mode and code_model.options['package_version']%}
 from ._version import VERSION

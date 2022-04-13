@@ -15,12 +15,14 @@ from .primitive_schemas import (
     DateSchema,
     DatetimeSchema,
     DurationSchema,
-    NumberSchema,
+    IntegerSchema,
+    FloatSchema,
     StringSchema,
     TimeSchema,
     AnySchema,
     PrimitiveSchema,
     IOSchema,
+    BooleanSchema,
 )
 from .enum_schema import EnumSchema
 from .base_schema import BaseSchema
@@ -73,9 +75,9 @@ __all__ = [
 ]
 
 TYPE_TO_OBJECT = {
-    "integer": NumberSchema,
+    "integer": IntegerSchema,
+    "float": FloatSchema,
     "string": StringSchema,
-    "model": ObjectSchema,
     "list": ListSchema,
     "dict": DictionarySchema,
     "constant": ConstantSchema,
@@ -87,6 +89,7 @@ TYPE_TO_OBJECT = {
     "duration": DurationSchema,
     "date": DateSchema,
     "base64": Base64Schema,
+    "bool": BooleanSchema,
 }
 
 def build_schema(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseSchema:
@@ -96,8 +99,14 @@ def build_schema(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseSchema
     except KeyError:
         # Not created yet, let's create it and add it to the index
         pass
-    response = TYPE_TO_OBJECT[yaml_data["type"]].from_yaml(
-        yaml_data, code_model
-    )
+    if yaml_data["type"] == "model":
+        # need to special case model to avoid recursion
+        response = ObjectSchema(yaml_data, code_model)
+        code_model.types_map[yaml_id] = response
+        response.fill_instance_from_yaml(yaml_data, code_model)
+    else:
+        response = TYPE_TO_OBJECT[yaml_data["type"]].from_yaml(
+            yaml_data, code_model
+        )
     code_model.types_map[yaml_id] = response
     return response

@@ -75,7 +75,7 @@ class GeneralSerializer:
 
     def serialize_service_client_file(self) -> str:
 
-        template = self.env.get_template("service_client.py.jinja2")
+        template = self.env.get_template("client.py.jinja2")
 
         if self.code_model.options["credential"] and isinstance(
             self.code_model.credential_model.credential_schema_policy.credential,
@@ -89,7 +89,7 @@ class GeneralSerializer:
             async_mode=self.async_mode,
             serializer=ClientSerializer(self.code_model, is_python3_file=python3_only),
             imports=FileImportSerializer(
-                self.code_model.service_client.imports(self.async_mode),
+                self.code_model.client.imports(self.async_mode),
                 is_python3_file=self.async_mode or python3_only,
             ),
         )

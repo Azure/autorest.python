@@ -1,6 +1,6 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% import 'keywords.jinja2' as keywords %}
-{% set service_client = code_model.service_client %}
+{% set client = code_model.client %}
 {
     "chosen_version": {{ chosen_version | tojson }},
     "total_api_version_list": {{ total_api_version_list | tojson }},
@@ -8,8 +8,8 @@
         "name": {{ code_model.class_name | tojson }},
         "filename": {{ ("_" + code_model.module_name) | tojson }},
         "description": {{ code_model.description | tojson }},
-        "host_value": {{ (service_client.parameters.host.default_value_declaration if not service_client.has_parameterized_host else None) | tojson }},
-        "parameterized_host_template": {{ (keywords.escape_str(service_client.parameterized_host_template) if service_client.has_parameterized_host else None) | tojson }},
+        "host_value": {{ (client.parameters.host.default_value_declaration if not client.has_parameterized_host else None) | tojson }},
+        "parameterized_host_template": {{ (keywords.escape_str(client.parameterized_host_template) if client.has_parameterized_host else None) | tojson }},
         "azure_arm": {{ code_model.options["azure_arm"]  | tojson }},
         "has_lro_operations": {{ code_model.has_lro_operations | tojson }},
         "client_side_validation": {{ code_model.options["client_side_validation"] | tojson }},
@@ -51,9 +51,9 @@
                     "docstring_type": "str",
                     "required": false
                 },
-                {% if not service_client.has_parameterized_host %}
+                {% if not client.has_parameterized_host %}
                 "base_url": {
-                    "signature": {{ service_client.parameters.host.method_signature(False) | tojson }},
+                    "signature": {{ client.parameters.host.method_signature(False) | tojson }},
                     "description": "Service URL",
                     "docstring_type": "str",
                     "required": false
@@ -73,9 +73,9 @@
                     "docstring_type": "str",
                     "required": false
                 },
-                {% if not service_client.has_parameterized_host %}
+                {% if not client.has_parameterized_host %}
                 "base_url": {
-                    "signature": {{ service_client.parameters.host.method_signature(True) | tojson }},
+                    "signature": {{ client.parameters.host.method_signature(True) | tojson }},
                     "description": "Service URL",
                     "docstring_type": "str",
                     "required": false

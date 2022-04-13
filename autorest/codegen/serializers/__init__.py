@@ -451,7 +451,7 @@ class JinjaSerializer:
         # Write the service client
         if self.code_model.request_builders:
             self._autorestapi.write_file(
-                namespace_path / Path(f"{self.code_model.service_client.filename}.py"),
+                namespace_path / Path(f"{self.code_model.client.filename}.py"),
                 general_serializer.serialize_service_client_file(),
             )
 
@@ -498,7 +498,7 @@ class JinjaSerializer:
         # Write the service client
         if self.code_model.request_builders:
             self._autorestapi.write_file(
-                aio_path / Path(f"{self.code_model.service_client.filename}.py"),
+                aio_path / Path(f"{self.code_model.client.filename}.py"),
                 aio_general_serializer.serialize_service_client_file(),
             )
 

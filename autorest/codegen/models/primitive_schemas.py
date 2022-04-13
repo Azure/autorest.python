@@ -27,20 +27,9 @@ class RawString(object):
 
 
 class PrimitiveSchema(BaseSchema):
-    _TYPE_MAPPINGS = {
-        "boolean": "bool",
-    }
 
-    def _to_python_type(self) -> str:
-        return self._TYPE_MAPPINGS.get(self.yaml_data["type"], "str")
-
-    @property
-    def serialization_type(self) -> str:
-        return self._to_python_type()
-
-    @property
-    def docstring_type(self) -> str:
-        return self._to_python_type()
+    def description(self, *, is_operation_file: bool) -> str:
+        return ""
 
     def type_annotation(
         self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
@@ -81,6 +70,16 @@ class PrimitiveSchema(BaseSchema):
     @property
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(self.docstring_type)
+
+class BooleanSchema(PrimitiveSchema):
+
+    @property
+    def serialization_type(self) -> str:
+        return "bool"
+
+    @property
+    def docstring_type(self) -> str:
+        return "bool"
 
 
 class IOSchema(PrimitiveSchema):
@@ -146,7 +145,7 @@ class AnySchema(PrimitiveSchema):
 class NumberSchema(PrimitiveSchema):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.precision = cast(int, yaml_data["precision"])
+        self.precision = cast(int, yaml_data.get("precision"))
         self.multiple = cast(int, yaml_data.get("multipleOf"))
         self.maximum = cast(int, yaml_data.get("maximum"))
         self.minimum = cast(int, yaml_data.get("minimum"))
@@ -189,34 +188,49 @@ class NumberSchema(PrimitiveSchema):
             validation_map["multiple"] = self.multiple
         return validation_map or None
 
-    @property
-    def serialization_type(self) -> str:
-        if self.yaml_data["type"] == "integer":
-            if self.precision == 64:
-                return "long"
-            return "int"
-        return "float"
-
-    @property
-    def docstring_type(self) -> str:
-        if self.yaml_data["type"] == "integer":
-            if self.precision == 64:
-                return "long"
-            return "int"
-        return "float"
-
-    def type_annotation(
-        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
-    ) -> str:
-        python_type = self.docstring_type
-        if python_type == "long":
-            return "int"
-        return python_type
 
     @property
     def default_template_representation_declaration(self) -> str:
         default_value = 0 if self.docstring_type == "int" else 0.0
         return self.get_declaration(default_value)
+
+class IntegerSchema(NumberSchema):
+
+    @property
+    def serialization_type(self) -> str:
+        return "int"
+
+    @property
+    def docstring_type(self) -> str:
+        return "int"
+
+    def type_annotation(
+        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
+    ) -> str:
+        return "int"
+
+    @property
+    def default_template_representation_declaration(self) -> str:
+        return self.get_declaration(0)
+
+class FloatSchema(NumberSchema):
+
+    @property
+    def serialization_type(self) -> str:
+        return "float"
+
+    @property
+    def docstring_type(self) -> str:
+        return "float"
+
+    def type_annotation(
+        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
+    ) -> str:
+        return "float"
+
+    @property
+    def default_template_representation_declaration(self) -> str:
+        return self.get_declaration(0.0)
 
 
 class StringSchema(PrimitiveSchema):
@@ -256,6 +270,14 @@ class StringSchema(PrimitiveSchema):
 
     def get_declaration(self, value) -> str:
         return f'"{value}"'
+
+    @property
+    def serialization_type(self) -> str:
+        return "str"
+
+    @property
+    def docstring_type(self) -> str:
+        return "str"
 
 
 class DatetimeSchema(PrimitiveSchema):

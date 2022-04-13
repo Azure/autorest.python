@@ -21,6 +21,8 @@ JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
 T = TypeVar("T")
 OrderedSet = Dict[T, None]
 
+UNDEFINED = object()
+
 def _create_types_property(content_type_to_type: Dict[str, BaseSchema], code_model: "CodeModel") -> List[BaseSchema]:
     types: List[BaseSchema] = []
     seen_ids: Set[int] = set()
