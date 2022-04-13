@@ -6,9 +6,9 @@
 from typing import Dict, Optional, List, Set, Any, TYPE_CHECKING
 
 from .base_model import BaseModel
-from .base_schema import BaseSchema
+from .base_type import BaseType
 from .imports import FileImport, ImportType
-from .primitive_schemas import IOSchema
+from .primitive_types import IOType
 from .utils import MultipleTypeModel
 
 if TYPE_CHECKING:
@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 
 class ResponseHeader(BaseModel):
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel", type: BaseSchema) -> None:
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel", type: BaseType) -> None:
         super().__init__(yaml_data, code_model)
         self.name = yaml_data["name"]
         self.type = type
@@ -40,7 +40,7 @@ class Response(BaseModel, MultipleTypeModel):
         code_model: "CodeModel",
         *,
         headers: List[ResponseHeader] = [],
-        content_type_to_type: Optional[Dict[str, BaseSchema]] = None
+        content_type_to_type: Optional[Dict[str, BaseType]] = None
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model, content_type_to_type=content_type_to_type)
         self.status_codes = yaml_data["statusCodes"]
@@ -50,7 +50,7 @@ class Response(BaseModel, MultipleTypeModel):
     @property
     def is_stream_response(self) -> bool:
         """Is the response expected to be streamable, like a download."""
-        return isinstance(self.types[0], IOSchema)
+        return isinstance(self.types[0], IOType)
 
     def imports(self, code_model) -> FileImport:
         file_import = FileImport()

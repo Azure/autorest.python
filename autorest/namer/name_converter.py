@@ -327,7 +327,7 @@ class NameConverter:
         NameConverter._convert_language_default_pascal_case(schema)
         schema_description = schema["language"]["python"]["description"]
         if not schema_description:
-            # what is being used for empty ObjectSchema descriptions
+            # what is being used for empty ModelType descriptions
             schema_description = schema["language"]["python"]["name"]
         if schema_description and schema_description[-1] != ".":
             schema_description += "."

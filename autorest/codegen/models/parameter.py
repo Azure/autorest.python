@@ -10,8 +10,8 @@ from typing import Dict, Any, TYPE_CHECKING, List
 
 from .imports import FileImport, ImportType, TypingSection
 from .base_model import BaseModel
-from .base_schema import BaseSchema
-from .constant_schema import ConstantSchema
+from .base_type import BaseType
+from .constant_type import ConstantType
 from .utils import MultipleTypeModel, UNDEFINED
 
 if TYPE_CHECKING:
@@ -54,7 +54,7 @@ class _BaseParameter(BaseModel):
         return "type" if self.method_location == ParameterMethodLocation.POSITIONAL else "paramtype"
 
 class BodyParameter(_BaseParameter, MultipleTypeModel):
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel", content_type_to_type: Dict[str, BaseSchema]):
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel", content_type_to_type: Dict[str, BaseType]):
         super().__init__(
             yaml_data=yaml_data, code_model=code_model, content_type_to_type=content_type_to_type
         )
@@ -85,7 +85,7 @@ class OverloadBodyParameter(_BaseParameter):
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        type: BaseSchema,
+        type: BaseType,
         content_types: List[str],
     ) -> None:
         super().__init__(yaml_data, code_model)
@@ -108,7 +108,7 @@ class Parameter(_BaseParameter):
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        type: BaseSchema,
+        type: BaseType,
     ) -> None:
         super().__init__(yaml_data, code_model)
         self.type = type
@@ -150,7 +150,7 @@ class Parameter(_BaseParameter):
         Checking to see if it's required, because if not, we don't consider it
         a constant because it can have a value of None.
         """
-        return not self.optional and isinstance(self.type, ConstantSchema)
+        return not self.optional and isinstance(self.type, ConstantType)
 
     @property
     def in_method_signature(self) -> bool:

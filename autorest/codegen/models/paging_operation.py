@@ -9,7 +9,7 @@ from .operation import Operation
 from .response import Response
 from .request_builder import RequestBuilder
 from .imports import ImportType, FileImport, TypingSection
-from .object_schema import ObjectSchema
+from .model_type import ModelType
 from .parameter_list import ParameterList
 
 if TYPE_CHECKING:
@@ -57,16 +57,16 @@ class PagingOperation(Operation):
 
     def _get_response(self) -> Response:
         response = self.responses[0]
-        if not isinstance(response.schema, ObjectSchema):
+        if not isinstance(response.schema, ModelType):
             raise ValueError(
                 "The response of a paging operation must be of type "
-                + f"ObjectSchema but {response.schema} is not"
+                + f"ModelType but {response.schema} is not"
             )
         return response
 
     def _find_python_name(self, rest_api_name: str, log_name: str) -> str:
         response = self.responses[0]
-        response_schema = cast(ObjectSchema, response.schema)
+        response_schema = cast(ModelType, response.schema)
         if response_schema:
             for prop in response_schema.properties:
                 if prop.original_swagger_name == rest_api_name:
@@ -91,7 +91,7 @@ class PagingOperation(Operation):
             response = self._get_response()
             raise ValueError(
                 f"While scanning x-ms-pageable, itemName was not defined and object"
-                + f" {cast(ObjectSchema, response.schema).name} has no array called 'value'"
+                + f" {cast(ModelType, response.schema).name} has no array called 'value'"
             )
 
     @property

@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from enum import Enum, auto
 from typing import List
-from ..models import ListSchema, Parameter
+from ..models import ListType, Parameter
 
 
 def serialize_method(
@@ -51,7 +51,7 @@ def build_serialize_data_call(
         optional_parameters.append(f"div='{div_char}'")
 
     if parameter.explode:
-        if not isinstance(parameter.schema, ListSchema):
+        if not isinstance(parameter.schema, ListType):
             raise ValueError("Got a explode boolean on a non-array schema")
         serialization_schema = parameter.schema.element_type
     else:

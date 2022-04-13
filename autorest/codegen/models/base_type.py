@@ -13,7 +13,7 @@ if TYPE_CHECKING:
     from .code_model import CodeModel
 
 
-class BaseSchema(BaseModel, ABC):
+class BaseType(BaseModel, ABC):
     """This is the base class for all schema models.
 
     :param yaml_data: the yaml data for this schema
@@ -23,7 +23,7 @@ class BaseSchema(BaseModel, ABC):
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "BaseSchema":
+    ) -> "BaseType":
         return cls(yaml_data=yaml_data, code_model=code_model)
 
     def imports(self, *, is_operation_file: bool) -> FileImport:  # pylint: disable=no-self-use

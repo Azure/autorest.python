@@ -13,9 +13,9 @@ from .parameter import (
     Parameter,
     OverloadBodyParameter
 )
-from .object_schema import ObjectSchema
-from .list_schema import ListSchema
-from .dictionary_schema import DictionarySchema
+from .model_type import ModelType
+from .list_type import ListType
+from .dictionary_type import DictionaryType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -29,7 +29,7 @@ class RequestBuilderOverloadBodyParameter(OverloadBodyParameter):
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
-        if isinstance(self.type, (ObjectSchema, ListSchema, DictionarySchema)):
+        if isinstance(self.type, (ModelType, ListType, DictionaryType)):
             self.serialized_name = "json"
         else:
             self.serialized_name = "content"

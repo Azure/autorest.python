@@ -40,7 +40,7 @@
 
 **Breaking Changes in Version Tolerant Generation**
 
-- Change client filenames to `_client.py`  #1206
+- Change client filenames to `_client.py` #1206
 - Change the models filename from `_models_py3.py` to `_models.py` #1204
 - Change the enums filename to `_enums.py` #1204
 
@@ -711,7 +711,7 @@ Modelerfour version: 4.13.351
 **Bug Fixes**
 
 - Corrected ordering of summary and description in generated methods #640
-- Have `IOSchema` call super init to get all of the properties shared in `BaseSchema` #642
+- Have `IOSchema` call super init to get all of the properties shared in `BaseType` #642
 
 ### 2020-05-15 - 5.0.0-preview.7
 
@@ -856,7 +856,7 @@ Modelerfour version: 4.12.276
 
 - Will no longer permit generated enums and models to have the same name #504
 - No longer exposing models from operation groups without importing them #486
-- Now correctly deserializes error's that have an empty object (AnySchema) as a model #516
+- Now correctly deserializes error's that have an empty object (AnyType) as a model #516
 - Added a list of parameter names to reserved parameter words, so there won't be clashes #525
 - If a property's schema is readonly, we will show that property as being readonly (taken from m4 update #234)
 - Remove `"azure-"` prefix from user agent name #523

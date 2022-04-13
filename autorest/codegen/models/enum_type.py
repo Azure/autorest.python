@@ -6,7 +6,7 @@
 from typing import Any, Dict, List, TYPE_CHECKING
 
 from autorest.codegen.models.base_model import BaseModel
-from .base_schema import BaseSchema
+from .base_type import BaseType
 from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
@@ -44,14 +44,14 @@ class EnumValue(BaseModel):
         )
 
 
-class EnumSchema(BaseSchema):
+class EnumType(BaseType):
     """Schema for enums that will be serialized.
 
     :param yaml_data: the yaml data for this schema
     :type yaml_data: dict[str, Any]
     :param str description: The description of this enum
     :param str name: The name of the enum.
-    :type element_type: ~autorest.models.PrimitiveSchema
+    :type element_type: ~autorest.models.PrimitiveType
     :param values: List of the values for this enum
     :type values: list[~autorest.models.EnumValue]
     """
@@ -61,7 +61,7 @@ class EnumSchema(BaseSchema):
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         values: List["EnumValue"],
-        value_type: BaseSchema,
+        value_type: BaseType,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.name = yaml_data["name"]
@@ -138,20 +138,20 @@ class EnumSchema(BaseSchema):
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "EnumSchema":
-        """Constructs an EnumSchema from yaml data.
+    ) -> "EnumType":
+        """Constructs an EnumType from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema
         :type yaml_data: dict[str, Any]
 
-        :return: A created EnumSchema
-        :rtype: ~autorest.models.EnumSchema
+        :return: A created EnumType
+        :rtype: ~autorest.models.EnumType
         """
-        from . import build_schema
+        from . import build_type
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            value_type=build_schema(yaml_data["valueType"], code_model),
+            value_type=build_type(yaml_data["valueType"], code_model),
             values=[
                 EnumValue.from_yaml(value, code_model) for value in yaml_data["values"]
             ]

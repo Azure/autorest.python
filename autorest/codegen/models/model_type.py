@@ -4,8 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional, Union, Type, TYPE_CHECKING
-from .base_schema import BaseSchema
-from .dictionary_schema import DictionarySchema
+from .base_type import BaseType
+from .dictionary_type import DictionaryType
 from .property import Property
 from .imports import FileImport, ImportModel, ImportType, TypingSection
 
@@ -13,7 +13,7 @@ if TYPE_CHECKING:
     from .code_model import CodeModel
 
 
-class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
+class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
     """Represents a class ready to be serialized in Python.
 
     :param str name: The name of the class.
@@ -33,7 +33,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         self.max_properties: Optional[int] = kwargs.pop("max_properties", None)
         self.min_properties: Optional[int] = kwargs.pop("min_properties", None)
         self.properties: List[Property] = kwargs.pop("properties", [])
-        self.base_models: Union[List[int], List["ObjectSchema"]] = kwargs.pop(
+        self.base_models: Union[List[int], List["ModelType"]] = kwargs.pop(
             "base_models", []
         )
         self.subtype_map: Optional[Dict[str, str]] = kwargs.pop("subtype_map", None)
@@ -105,7 +105,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "ObjectSchema":
+    ) -> "ModelType":
         """Returns a ClassType from the dict object constructed from a yaml file.
 
         WARNING: This guy might create an infinite loop.
@@ -126,7 +126,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         name = yaml_data["name"]
         # checking to see if there is a parent class and / or additional properties
         base_models = [
-            ObjectSchema.from_yaml(bm, code_model)
+            ModelType.from_yaml(bm, code_model)
             for bm in yaml_data.get("baseModels", [])
         ]
         properties = [

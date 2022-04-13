@@ -69,14 +69,14 @@ pipeline:
   python/m2r:
     input: python
 
-  python/namer:
+  python/m4reformatter:
     input: python/m2r
 
-  python/reformatter:
-    input: python/namer
+  python/namer:
+    input: python/m4reformatter
 
   python/codegen:
-    input: python/reformatter
+    input: python/namer
     output-artifact: python-files
 
   python/codegen/emitter:

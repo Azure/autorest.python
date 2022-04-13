@@ -12,7 +12,7 @@ import yaml
 from .. import Plugin
 from .models.client import Client
 from .models.code_model import CodeModel
-from .models import build_schema, RequestBuilder
+from .models import build_type, RequestBuilder
 from .models.operation_group import OperationGroup
 from .models.parameter import Parameter
 from .models.parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
@@ -196,7 +196,7 @@ class CodeGenerator(Plugin):
         code_model = CodeModel(yaml_data, options=options)
         self._handle_credential_model(yaml_data, code_model)
         for type_yaml in yaml_data.get("types", []):
-            build_schema(yaml_data=type_yaml, code_model=code_model)
+            build_type(yaml_data=type_yaml, code_model=code_model)
 
         code_model.client = Client.from_yaml(yaml_data["client"], code_model)
 

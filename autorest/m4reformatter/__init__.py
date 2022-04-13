@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-"""The reformatter autorest plugin.
+"""The modelerfour reformatter autorest plugin.
 """
 import re
 from typing import Dict, Any, List, Optional
@@ -122,7 +122,7 @@ def update_primitive(type_group: str, yaml_data: Dict[str, Any]) -> Dict[str, An
     if type_group == "any":
         return {"type": "any"}
     if type_group == "date-time":
-        return {"type": "datetime"}
+        return {"type": "datetime", "format": yaml_data["format"]}
     if type_group == "duration":
         return {"type": "duration"}
     if type_group == "date":
@@ -283,7 +283,7 @@ def update_client_url(yaml_data: Dict[str, Any]) -> str:
     # we have a parameterized host. Return first url from first request, quite gross
     return yaml_data["operationGroups"][0]["operations"][0]["requests"][0]["protocol"]["http"]["uri"]
 
-class Reformatter(YamlUpdatePlugin):
+class M4Reformatter(YamlUpdatePlugin):
     """Add Python naming information."""
 
     def update_global_parameters(self, yaml_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:

@@ -12,7 +12,7 @@ from .imports import FileImport, ImportType, TypingSection
 from .response import Response
 from .parameter import MultipartBodyParameter, OverloadBodyParameter, Parameter, BodyParameter, UrlEncodedBodyParameter, ParameterLocation
 from .parameter_list import OverloadBaseParameterList, ParameterList
-from .object_schema import ObjectSchema
+from .model_type import ModelType
 from .request_builder import RequestBuilder
 
 if TYPE_CHECKING:
@@ -128,9 +128,9 @@ class Operation(BaseBuilder):
         if not retval:
             return None
         excep_schema = retval[0].types[0]
-        if isinstance(excep_schema, ObjectSchema):
+        if isinstance(excep_schema, ModelType):
             return f"_models.{excep_schema.name}"
-        # in this case, it's just an AnySchema
+        # in this case, it's just an AnyType
         return "'object'"
 
 

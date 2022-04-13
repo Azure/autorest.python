@@ -6,7 +6,7 @@
 from abc import abstractmethod
 from typing import cast, List
 from jinja2 import Environment
-from ..models import ObjectSchema, CodeModel, Property
+from ..models import ModelType, CodeModel, Property
 from ..models.imports import FileImport, ImportType
 from .import_serializer import FileImportSerializer
 
@@ -57,14 +57,14 @@ class ModelBaseSerializer:
         return file_import
 
     @staticmethod
-    def get_properties_to_initialize(model: ObjectSchema) -> List[Property]:
+    def get_properties_to_initialize(model: ModelType) -> List[Property]:
         if model.base_models:
             properties_to_initialize = list(
                 {
                     p.name: p
                     for bm in model.base_models
                     for p in model.properties
-                    if p not in cast(ObjectSchema, bm).properties
+                    if p not in cast(ModelType, bm).properties
                     or p.is_discriminator
                     or p.constant
                 }.values()
@@ -74,11 +74,11 @@ class ModelBaseSerializer:
         return properties_to_initialize
 
     @staticmethod
-    def declare_model(model: ObjectSchema) -> str:
+    def declare_model(model: ModelType) -> str:
         basename = "msrest.serialization.Model"
         if model.base_models:
             basename = ", ".join(
-                [cast(ObjectSchema, m).name for m in model.base_models]
+                [cast(ModelType, m).name for m in model.base_models]
             )
         return f"class {model.name}({basename}):"
 
@@ -91,7 +91,7 @@ class ModelBaseSerializer:
     def variable_documentation_string(prop: Property) -> List[str]:
         return _documentation_string(prop, "ivar", "vartype")
 
-    def init_args(self, model: ObjectSchema) -> List[str]:
+    def init_args(self, model: ModelType) -> List[str]:
         init_args = []
         properties_to_pass_to_super = self.properties_to_pass_to_super(model)
         init_args.append(
@@ -123,11 +123,11 @@ class ModelBaseSerializer:
         return self.optional_property_init(prop)
 
     @abstractmethod
-    def init_line(self, model: ObjectSchema) -> List[str]:
+    def init_line(self, model: ModelType) -> List[str]:
         ...
 
     @abstractmethod
-    def properties_to_pass_to_super(self, model: ObjectSchema) -> str:
+    def properties_to_pass_to_super(self, model: ModelType) -> str:
         ...
 
     @abstractmethod

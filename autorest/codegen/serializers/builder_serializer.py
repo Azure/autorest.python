@@ -16,16 +16,16 @@ from ..models import (
     PagingOperation,
     LROOperation,
     LROPagingOperation,
-    ObjectSchema,
-    DictionarySchema,
-    ListSchema,
-    BaseSchema,
+    ModelType,
+    DictionaryType,
+    ListType,
+    BaseType,
     Parameter,
     RequestBuilder,
     RequestBuilderParameter,
-    EnumSchema,
+    EnumType,
     Response,
-    IOSchema,
+    IOType,
 )
 from . import utils
 
@@ -117,7 +117,7 @@ def _serialize_flattened_body(builder) -> List[str]:
             if param.target_property_name
         ]
     )
-    object_schema = cast(ObjectSchema, builder.parameters.body[0].schema)
+    object_schema = cast(ModelType, builder.parameters.body[0].schema)
     retval.append(
         f"{builder.parameters.body[0].serialized_name} = _models.{object_schema.name}({parameter_string})"
     )
@@ -358,14 +358,14 @@ class _BuilderBaseSerializer(
             )
             and isinstance(
                 response.schema,
-                (DictionarySchema, ListSchema, ObjectSchema, EnumSchema),
+                (DictionaryType, ListType, ModelType, EnumType),
             )
         ]
         retval = defaultdict(list)
         for response in responses:
             status_codes = [str(status_code) for status_code in response.status_codes]
             response_json = _json_dumps_template(
-                cast(BaseSchema, response.schema).get_json_template_representation()
+                cast(BaseType, response.schema).get_json_template_representation()
             )
             retval[response_json].extend(status_codes)
         return retval
@@ -383,7 +383,7 @@ class _BuilderBaseSerializer(
     def _get_json_example_template(self, builder) -> List[str]:
         template = []
         json_body = builder.parameters.json_body
-        object_schema = cast(ObjectSchema, json_body)
+        object_schema = cast(ModelType, json_body)
         try:
             discriminator_name = object_schema.discriminator_name
             subtype_map = object_schema.subtype_map
@@ -827,7 +827,7 @@ class _OperationBaseSerializer(
                     b
                     for b in body_params
                     if isinstance(
-                        b.schema, (DictionarySchema, ListSchema, ObjectSchema)
+                        b.schema, (DictionaryType, ListType, ModelType)
                     )
                 ]
             )
@@ -864,7 +864,7 @@ class _OperationBaseSerializer(
         send_xml = bool(
             builder.parameters.has_body
             and any(["xml" in ct for ct in builder.parameters.content_types])
-            and not isinstance(body_param.schema, IOSchema)
+            and not isinstance(body_param.schema, IOType)
         )
         ser_ctxt_name = "serialization_ctxt"
         ser_ctxt = (
@@ -1173,7 +1173,7 @@ class _OperationBaseSerializer(
             for excep in builder.status_code_exceptions:
                 error_model_str = ""
                 if (
-                    isinstance(excep.schema, ObjectSchema)
+                    isinstance(excep.schema, ModelType)
                     and excep.is_exception
                     and self.code_model.options["models_mode"]
                 ):

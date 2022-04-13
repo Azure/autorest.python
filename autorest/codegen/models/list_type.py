@@ -4,19 +4,19 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict, Optional, Union, TYPE_CHECKING
-from .base_schema import BaseSchema
+from .base_type import BaseType
 from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
 
-class ListSchema(BaseSchema):
+class ListType(BaseType):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        element_type: BaseSchema,
+        element_type: BaseType,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.element_type = element_type
@@ -71,12 +71,12 @@ class ListSchema(BaseSchema):
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "ListSchema":
-        from . import build_schema
+    ) -> "ListType":
+        from . import build_type
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            element_type=build_schema(yaml_data=yaml_data["elementType"], code_model=code_model),
+            element_type=build_type(yaml_data=yaml_data["elementType"], code_model=code_model),
         )
 
     def imports(self, *, is_operation_file: bool) -> FileImport:

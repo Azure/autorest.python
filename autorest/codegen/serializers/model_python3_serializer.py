@@ -6,7 +6,7 @@
 from typing import cast, List
 from jinja2 import Environment
 from .model_base_serializer import ModelBaseSerializer
-from ..models import ObjectSchema, CodeModel, Property
+from ..models import ModelType, CodeModel, Property
 from ..models.imports import FileImport
 
 
@@ -14,7 +14,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
     def __init__(self, code_model: CodeModel, env: Environment) -> None:
         super().__init__(code_model=code_model, env=env, is_python3_file=True)
 
-    def init_line(self, model: ObjectSchema) -> List[str]:
+    def init_line(self, model: ModelType) -> List[str]:
         init_properties_declaration = []
         init_line_parameters = [
             p
@@ -29,10 +29,10 @@ class ModelPython3Serializer(ModelBaseSerializer):
 
         return init_properties_declaration
 
-    def properties_to_pass_to_super(self, model: ObjectSchema) -> str:
+    def properties_to_pass_to_super(self, model: ModelType) -> str:
         properties_to_pass_to_super = []
         for uncast_base_model in model.base_models:
-            base_model = cast(ObjectSchema, uncast_base_model)
+            base_model = cast(ModelType, uncast_base_model)
             for prop in model.properties:
                 if (
                     prop in base_model.properties

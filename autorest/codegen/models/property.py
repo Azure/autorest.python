@@ -6,8 +6,8 @@
 from typing import Any, Dict, Optional, TYPE_CHECKING
 
 from .base_model import BaseModel
-from .constant_schema import ConstantSchema
-from .base_schema import BaseSchema
+from .constant_type import ConstantType
+from .base_type import BaseType
 from .utils import UNDEFINED
 
 if TYPE_CHECKING:
@@ -19,7 +19,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        type: BaseSchema,
+        type: BaseType,
     ) -> None:
         super().__init__(yaml_data, code_model)
         self.rest_api_name = self.yaml_data["restApiName"]
@@ -40,7 +40,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         # this bool doesn't consider you to be constant if you are a discriminator
         # you also have to be required to be considered a constant
         return (
-            isinstance(self.type, ConstantSchema)
+            isinstance(self.type, ConstantType)
             and not self.optional
             and not self.is_discriminator
         )
@@ -74,9 +74,9 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
     ) -> "Property":
-        from . import build_schema  # pylint: disable=import-outside-toplevel
+        from . import build_type  # pylint: disable=import-outside-toplevel
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            type=build_schema(yaml_data["type"], code_model)
+            type=build_type(yaml_data["type"], code_model)
         )

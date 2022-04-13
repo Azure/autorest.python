@@ -4,27 +4,27 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict, Optional, TYPE_CHECKING
-from .base_schema import BaseSchema
+from .base_type import BaseType
 from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
 
-class DictionarySchema(BaseSchema):
+class DictionaryType(BaseType):
     """Schema for dictionaries that will be serialized.
 
     :param yaml_data: the yaml data for this schema
     :type yaml_data: dict[str, Any]
     :param element_type: The type of the value for the dictionary
-    :type element_type: ~autorest.models.BaseSchema
+    :type element_type: ~autorest.models.BaseType
     """
 
     def __init__(
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        element_type: BaseSchema,
+        element_type: BaseType,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.element_type = element_type
@@ -74,20 +74,20 @@ class DictionarySchema(BaseSchema):
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "DictionarySchema":
-        """Constructs a DictionarySchema from yaml data.
+    ) -> "DictionaryType":
+        """Constructs a DictionaryType from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema
         :type yaml_data: dict[str, Any]
 
-        :return: A created DictionarySchema
-        :rtype: ~autorest.models.DictionarySchema
+        :return: A created DictionaryType
+        :rtype: ~autorest.models.DictionaryType
         """
         element_schema = yaml_data["elementType"]
 
-        from . import build_schema  # pylint: disable=import-outside-toplevel
+        from . import build_type  # pylint: disable=import-outside-toplevel
 
-        element_type = build_schema(yaml_data=element_schema, code_model=code_model)
+        element_type = build_type(yaml_data=element_schema, code_model=code_model)
 
         return cls(
             yaml_data=yaml_data,

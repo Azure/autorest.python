@@ -5,11 +5,11 @@
 # --------------------------------------------------------------------------
 from abc import abstractmethod
 from typing import List
-from .credential_schema import CredentialSchema
+from .credential_type import CredentialType
 
 
 class CredentialSchemaPolicy:
-    def __init__(self, credential: CredentialSchema) -> None:
+    def __init__(self, credential: CredentialType) -> None:
         self.credential = credential
 
     @abstractmethod
@@ -23,7 +23,7 @@ class CredentialSchemaPolicy:
 
 class BearerTokenCredentialPolicy(CredentialSchemaPolicy):
     def __init__(
-        self, credential: CredentialSchema, credential_scopes: List[str]
+        self, credential: CredentialType, credential_scopes: List[str]
     ) -> None:
         super().__init__(credential)
         self._credential_scopes = credential_scopes
@@ -45,7 +45,7 @@ class ARMChallengeAuthenticationPolicy(BearerTokenCredentialPolicy):
 
 class AzureKeyCredentialPolicy(CredentialSchemaPolicy):
     def __init__(
-        self, credential: CredentialSchema, credential_key_header_name: str
+        self, credential: CredentialType, credential_key_header_name: str
     ) -> None:
         super().__init__(credential)
         self._credential_key_header_name = credential_key_header_name

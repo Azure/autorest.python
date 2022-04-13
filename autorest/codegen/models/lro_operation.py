@@ -9,7 +9,7 @@ from .imports import FileImport
 from .operation import Operation
 from .response import Response
 from .imports import ImportType, TypingSection
-from .base_schema import BaseSchema
+from .base_type import BaseType
 _LOGGER = logging.getLogger(__name__)
 
 
@@ -36,7 +36,7 @@ class LROOperation(Operation):
             try:
                 response = responses_with_200_status_codes[0]
                 schema_types = {t for r in responses_with_bodies for t in r.types}
-                response_schema = cast(BaseSchema, response.types[0]).serialization_type
+                response_schema = cast(BaseType, response.types[0]).serialization_type
                 _LOGGER.warning(
                     "Multiple schema types in responses: %s. Choosing: %s",
                     schema_types,

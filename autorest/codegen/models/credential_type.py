@@ -4,11 +4,11 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any
-from .base_schema import BaseSchema
+from .base_type import BaseType
 from .imports import FileImport, ImportType, TypingSection
 
 
-class CredentialSchema(BaseSchema):
+class CredentialType(BaseType):
     def __init__(self) -> None:  # pylint: disable=super-init-not-called
         self.default_value = None
 
@@ -26,16 +26,16 @@ class CredentialSchema(BaseSchema):
     @property
     def serialization_type(self) -> str:
         # this property is added, because otherwise pylint says that
-        # abstract serialization_type in BaseSchema is not overridden
+        # abstract serialization_type in BaseType is not overridden
         pass
 
     def get_json_template_representation(self, **kwargs: Any) -> Any:
         raise TypeError(
-            "You should not try to get a JSON template representation of a CredentialSchema"
+            "You should not try to get a JSON template representation of a CredentialType"
         )
 
 
-class AzureKeyCredentialSchema(CredentialSchema):
+class AzureKeyCredentialSchema(CredentialType):
     @property
     def serialization_type(self) -> str:
         return "~azure.core.credentials.AzureKeyCredential"
@@ -56,7 +56,7 @@ class AzureKeyCredentialSchema(CredentialSchema):
         return file_import
 
 
-class TokenCredentialSchema(CredentialSchema):
+class TokenCredentialSchema(CredentialType):
     def __init__(self, async_mode) -> None:
         super().__init__()
         self.async_mode = async_mode

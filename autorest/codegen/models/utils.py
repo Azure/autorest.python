@@ -8,7 +8,7 @@ from typing import Any, TypeVar, Dict, TYPE_CHECKING, List, Set
 import logging
 
 from .imports import FileImport, ImportType
-from .base_schema import BaseSchema
+from .base_type import BaseType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -23,8 +23,8 @@ OrderedSet = Dict[T, None]
 
 UNDEFINED = object()
 
-def _create_types_property(content_type_to_type: Dict[str, BaseSchema], code_model: "CodeModel") -> List[BaseSchema]:
-    types: List[BaseSchema] = []
+def _create_types_property(content_type_to_type: Dict[str, BaseType], code_model: "CodeModel") -> List[BaseType]:
+    types: List[BaseType] = []
     seen_ids: Set[int] = set()
     for type in content_type_to_type.values():
         if id(type.yaml_data) not in seen_ids:
@@ -35,7 +35,7 @@ def _create_types_property(content_type_to_type: Dict[str, BaseSchema], code_mod
 
 def get_schema(
     code_model: "CodeModel", schema: Any, serialized_name: str = "unknown"
-) -> BaseSchema:
+) -> BaseType:
     if not isinstance(schema, dict):
         return schema
     schema_id = id(schema)
@@ -47,12 +47,12 @@ def get_schema(
         raise
 
 class MultipleTypeModel:
-    def __init__(self, content_type_to_type: Dict[str, BaseSchema]):
+    def __init__(self, content_type_to_type: Dict[str, BaseType]):
         self.content_type_to_type = content_type_to_type
         self.types = self._create_types_property()
 
-    def _create_types_property(self) -> List[BaseSchema]:
-        types: List[BaseSchema] = []
+    def _create_types_property(self) -> List[BaseType]:
+        types: List[BaseType] = []
         seen_ids: Set[int] = set()
         for type in self.content_type_to_type.values():
             if id(type.yaml_data) not in seen_ids:

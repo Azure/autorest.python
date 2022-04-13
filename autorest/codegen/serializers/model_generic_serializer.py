@@ -6,17 +6,17 @@
 from typing import List
 from jinja2 import Environment
 from .model_base_serializer import ModelBaseSerializer
-from ..models import ObjectSchema, CodeModel, Property
+from ..models import ModelType, CodeModel, Property
 
 
 class ModelGenericSerializer(ModelBaseSerializer):
     def __init__(self, code_model: CodeModel, env: Environment) -> None:
         super().__init__(code_model=code_model, env=env, is_python3_file=False)
 
-    def init_line(self, model: ObjectSchema) -> List[str]:
+    def init_line(self, model: ModelType) -> List[str]:
         return []
 
-    def properties_to_pass_to_super(self, model: ObjectSchema) -> str:
+    def properties_to_pass_to_super(self, model: ModelType) -> str:
         return "**kwargs"
 
     def required_property_no_default_init(self, prop: Property) -> str:

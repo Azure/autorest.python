@@ -8,7 +8,7 @@ import datetime
 from enum import Enum
 from typing import cast, Any, Dict, List, Optional, Union, TYPE_CHECKING
 
-from .base_schema import BaseSchema
+from .base_type import BaseType
 from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
@@ -26,7 +26,7 @@ class RawString(object):
         return "r'{}'".format(self.string.replace("'", "\\'"))
 
 
-class PrimitiveSchema(BaseSchema):
+class PrimitiveType(BaseType):
 
     def description(self, *, is_operation_file: bool) -> str:
         return ""
@@ -71,7 +71,7 @@ class PrimitiveSchema(BaseSchema):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(self.docstring_type)
 
-class BooleanSchema(PrimitiveSchema):
+class BooleanType(PrimitiveType):
 
     @property
     def serialization_type(self) -> str:
@@ -82,7 +82,7 @@ class BooleanSchema(PrimitiveSchema):
         return "bool"
 
 
-class IOSchema(PrimitiveSchema):
+class IOType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.type = "IO"
@@ -116,7 +116,7 @@ class IOSchema(PrimitiveSchema):
         return file_import
 
 
-class AnySchema(PrimitiveSchema):
+class AnyType(PrimitiveType):
     @property
     def serialization_type(self) -> str:
         return "object"
@@ -142,7 +142,7 @@ class AnySchema(PrimitiveSchema):
         return file_import
 
 
-class NumberSchema(PrimitiveSchema):
+class NumberType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.precision = cast(int, yaml_data.get("precision"))
@@ -194,7 +194,7 @@ class NumberSchema(PrimitiveSchema):
         default_value = 0 if self.docstring_type == "int" else 0.0
         return self.get_declaration(default_value)
 
-class IntegerSchema(NumberSchema):
+class IntegerType(NumberType):
 
     @property
     def serialization_type(self) -> str:
@@ -213,7 +213,7 @@ class IntegerSchema(NumberSchema):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(0)
 
-class FloatSchema(NumberSchema):
+class FloatType(NumberType):
 
     @property
     def serialization_type(self) -> str:
@@ -233,7 +233,7 @@ class FloatSchema(NumberSchema):
         return self.get_declaration(0.0)
 
 
-class StringSchema(PrimitiveSchema):
+class StringType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.max_length = cast(int, yaml_data.get("maxLength"))
@@ -280,7 +280,7 @@ class StringSchema(PrimitiveSchema):
         return "str"
 
 
-class DatetimeSchema(PrimitiveSchema):
+class DatetimeType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.format = self.Formats(yaml_data["format"])
@@ -326,7 +326,7 @@ class DatetimeSchema(PrimitiveSchema):
         return self.get_declaration(datetime.datetime(2020, 2, 20))
 
 
-class TimeSchema(PrimitiveSchema):
+class TimeType(PrimitiveType):
     @property
     def serialization_type(self) -> str:
         return "time"
@@ -360,7 +360,7 @@ class TimeSchema(PrimitiveSchema):
         return self.get_declaration(datetime.time(12, 30, 0))
 
 
-class UnixTimeSchema(PrimitiveSchema):
+class UnixTimeType(PrimitiveType):
     @property
     def serialization_type(self) -> str:
         return "unix-time"
@@ -394,7 +394,7 @@ class UnixTimeSchema(PrimitiveSchema):
         return self.get_declaration(datetime.datetime(2020, 2, 20))
 
 
-class DateSchema(PrimitiveSchema):
+class DateType(PrimitiveType):
     @property
     def serialization_type(self) -> str:
         return "date"
@@ -428,7 +428,7 @@ class DateSchema(PrimitiveSchema):
         return self.get_declaration(datetime.date(2020, 2, 20))
 
 
-class DurationSchema(PrimitiveSchema):
+class DurationType(PrimitiveType):
     @property
     def serialization_type(self) -> str:
         return "duration"
@@ -462,7 +462,7 @@ class DurationSchema(PrimitiveSchema):
         return self.get_declaration(datetime.timedelta(1))
 
 
-class Base64Schema(PrimitiveSchema):
+class Base64Type(PrimitiveType):
     @property
     def serialization_type(self) -> str:
         return "base64"

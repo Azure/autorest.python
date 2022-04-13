@@ -6,9 +6,9 @@
 import logging
 from typing import cast, List, Dict, Optional, Any, Set
 
-from .base_schema import BaseSchema
-from .enum_schema import EnumSchema
-from .object_schema import ObjectSchema
+from .base_type import BaseType
+from .enum_type import EnumType
+from .model_type import ModelType
 from .operation_group import OperationGroup
 from .operation import Operation
 from .lro_operation import LROOperation
@@ -32,15 +32,15 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     :param str description: The description of the client
     :param str namespace: The namespace of our module
     :param schemas: The list of schemas we are going to serialize in the models files. Maps their yaml
-     id to our created ObjectSchema.
-    :type schemas: dict[int, ~autorest.models.ObjectSchema]
+     id to our created ModelType.
+    :type schemas: dict[int, ~autorest.models.ModelType]
     :param sorted_schemas: Our schemas in order by inheritance and alphabet
-    :type sorted_schemas: list[~autorest.models.ObjectSchema]
-    :param enums: The enums, if any, we are going to serialize. Maps their yaml id to our created EnumSchema.
-    :type enums: Dict[int, ~autorest.models.EnumSchema]
+    :type sorted_schemas: list[~autorest.models.ModelType]
+    :param enums: The enums, if any, we are going to serialize. Maps their yaml id to our created EnumType.
+    :type enums: Dict[int, ~autorest.models.EnumType]
     :param primitives: List of schemas we've created that are not EnumSchemas or ObjectSchemas. Maps their
      yaml id to our created schemas.
-    :type primitives: Dict[int, ~autorest.models.BaseSchema]
+    :type primitives: Dict[int, ~autorest.models.BaseType]
     :param operation_groups: The operation groups we are going to serialize
     :type operation_groups: list[~autorest.models.OperationGroup]
     :param package_dependency: All the dependencies needed in setup.py
@@ -67,20 +67,20 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         self.description = yaml_data["client"]["description"]
         self.namespace = yaml_data["client"]["namespace"].lower()
         self.namespace_path: str = ""
-        self.types_map: Dict[int, BaseSchema] = {} # map yaml id to schema
+        self.types_map: Dict[int, BaseType] = {} # map yaml id to schema
         self.operation_groups: List[OperationGroup] = []
-        self._object_types: List[ObjectSchema] = []
+        self._object_types: List[ModelType] = []
         self._client: Optional[Client] = None
         self.request_builders: List[RequestBuilder] = []
         self.package_dependency: Dict[str, str] = {}
         self._credential_model: Optional[CredentialModel] = None
 
-    def lookup_schema(self, schema_id: int) -> BaseSchema:
+    def lookup_schema(self, schema_id: int) -> BaseType:
         """Looks to see if the schema has already been created.
 
         :param int schema_id: The yaml id of the schema
         :return: If created, we return the created schema, otherwise, we throw.
-        :rtype: ~autorest.models.BaseSchema
+        :rtype: ~autorest.models.BaseType
         :raises: KeyError if schema is not found
         """
         try:
@@ -114,18 +114,18 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             raise KeyError(f"No request builder with id {request_builder_id} found.")
 
     @property
-    def object_types(self) -> List[ObjectSchema]:
+    def object_types(self) -> List[ModelType]:
         if not self._object_types:
-            self._object_types = [t for t in self.types_map.values() if isinstance(t, ObjectSchema)]
+            self._object_types = [t for t in self.types_map.values() if isinstance(t, ModelType)]
         return self._object_types
 
     @object_types.setter
-    def object_types(self, val: List[ObjectSchema]) -> None:
+    def object_types(self, val: List[ModelType]) -> None:
         self._object_types = val
 
     @property
-    def enums(self) -> List[EnumSchema]:
-        return [t for t in self.types_map.values() if isinstance(t, EnumSchema)]
+    def enums(self) -> List[EnumType]:
+        return [t for t in self.types_map.values() if isinstance(t, EnumType)]
 
 
     @staticmethod
@@ -139,7 +139,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         ancestors = [current]
         if current.base_models:
             for base_model in current.base_models:
-                parent = cast(ObjectSchema, base_model)
+                parent = cast(ModelType, base_model)
                 if parent.id in seen_schema_yaml_ids:
                     continue
                 seen_schema_names.add(current.name)
@@ -162,7 +162,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         """
         seen_schema_names: Set[str] = set()
         seen_schema_yaml_ids: Set[int] = set()
-        sorted_object_schemas: List[ObjectSchema] = []
+        sorted_object_schemas: List[ModelType] = []
         for schema in sorted(self.object_types, key=lambda x: x.name.lower()):
             sorted_object_schemas.extend(
                 CodeModel._sort_schemas_helper(
@@ -263,7 +263,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             return properties
         if schema.base_models:
             for base_model in schema.base_models:
-                parent = cast(ObjectSchema, base_model)
+                parent = cast(ModelType, base_model)
                 # need to make sure that the properties we choose from our parent also don't contain
                 # any of our own properties
                 schema_property_names = set(
@@ -307,7 +307,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             return True
         parent_is_exception: List[bool] = []
         for base_model in schema.base_models:
-            parent = cast(ObjectSchema, base_model)
+            parent = cast(ModelType, base_model)
             parent_is_exception.append(
                 CodeModel._add_exceptions_from_inheritance_helper(parent)
             )

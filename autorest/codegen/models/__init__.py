@@ -6,27 +6,27 @@
 from typing import Any, Dict
 from .base_model import BaseModel
 from .code_model import CodeModel
-from .credential_schema import AzureKeyCredentialSchema, TokenCredentialSchema
-from .object_schema import ObjectSchema
-from .dictionary_schema import DictionarySchema
-from .list_schema import ListSchema
-from .primitive_schemas import (
-    Base64Schema,
-    DateSchema,
-    DatetimeSchema,
-    DurationSchema,
-    IntegerSchema,
-    FloatSchema,
-    StringSchema,
-    TimeSchema,
-    AnySchema,
-    PrimitiveSchema,
-    IOSchema,
-    BooleanSchema,
+from .credential_type import AzureKeyCredentialSchema, TokenCredentialSchema
+from .model_type import ModelType
+from .dictionary_type import DictionaryType
+from .list_type import ListType
+from .primitive_types import (
+    Base64Type,
+    DateType,
+    DatetimeType,
+    DurationType,
+    IntegerType,
+    FloatType,
+    StringType,
+    TimeType,
+    AnyType,
+    PrimitiveType,
+    IOType,
+    BooleanType,
 )
-from .enum_schema import EnumSchema
-from .base_schema import BaseSchema
-from .constant_schema import ConstantSchema
+from .enum_type import EnumType
+from .base_type import BaseType
+from .constant_type import ConstantType
 from .imports import FileImport, ImportType, TypingSection
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
@@ -43,19 +43,19 @@ from .request_builder_parameter import RequestBuilderParameter
 
 __all__ = [
     "AzureKeyCredentialSchema",
-    "AnySchema",
+    "AnyType",
     "BaseModel",
-    "BaseSchema",
+    "BaseType",
     "CodeModel",
-    "ConstantSchema",
-    "ObjectSchema",
-    "DictionarySchema",
-    "ListSchema",
-    "EnumSchema",
+    "ConstantType",
+    "ModelType",
+    "DictionaryType",
+    "ListType",
+    "EnumType",
     "FileImport",
     "ImportType",
     "TypingSection",
-    "PrimitiveSchema",
+    "PrimitiveType",
     "LROOperation",
     "Operation",
     "PagingOperation",
@@ -69,30 +69,30 @@ __all__ = [
     "LROPagingOperation",
     "BaseBuilder",
     "RequestBuilderParameter",
-    "IOSchema",
+    "IOType",
     "ClientGlobalParameterList",
     "ConfigGlobalParameterList",
 ]
 
 TYPE_TO_OBJECT = {
-    "integer": IntegerSchema,
-    "float": FloatSchema,
-    "string": StringSchema,
-    "list": ListSchema,
-    "dict": DictionarySchema,
-    "constant": ConstantSchema,
-    "enum": EnumSchema,
-    "bytes": IOSchema,
-    "any": AnySchema,
-    "datetime": DatetimeSchema,
-    "time": TimeSchema,
-    "duration": DurationSchema,
-    "date": DateSchema,
-    "base64": Base64Schema,
-    "bool": BooleanSchema,
+    "integer": IntegerType,
+    "float": FloatType,
+    "string": StringType,
+    "list": ListType,
+    "dict": DictionaryType,
+    "constant": ConstantType,
+    "enum": EnumType,
+    "bytes": IOType,
+    "any": AnyType,
+    "datetime": DatetimeType,
+    "time": TimeType,
+    "duration": DurationType,
+    "date": DateType,
+    "base64": Base64Type,
+    "bool": BooleanType,
 }
 
-def build_schema(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseSchema:
+def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
     yaml_id = id(yaml_data)
     try:
         return code_model.lookup_schema(yaml_id)
@@ -101,7 +101,7 @@ def build_schema(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseSchema
         pass
     if yaml_data["type"] == "model":
         # need to special case model to avoid recursion
-        response = ObjectSchema(yaml_data, code_model)
+        response = ModelType(yaml_data, code_model)
         code_model.types_map[yaml_id] = response
         response.fill_instance_from_yaml(yaml_data, code_model)
     else:

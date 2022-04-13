@@ -9,7 +9,7 @@ from .credential_schema_policy import (
     BearerTokenCredentialPolicy,
 )
 from .credential_schema_policy import ARMChallengeAuthenticationPolicy
-from .credential_schema import TokenCredentialSchema, AzureKeyCredentialSchema
+from .credential_type import TokenCredentialSchema, AzureKeyCredentialSchema
 
 
 class CredentialModel:

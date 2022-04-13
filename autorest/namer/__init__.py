@@ -20,5 +20,6 @@ class Namer(YamlUpdatePlugin):
 
     def update_yaml(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         """Convert in place the YAML str."""
-        NameConverter.convert_yaml_names(yaml_data)
         return yaml_data
+        # NameConverter.convert_yaml_names(yaml_data)
+        # return yaml_data
