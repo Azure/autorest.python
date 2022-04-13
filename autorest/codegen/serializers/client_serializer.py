@@ -42,7 +42,7 @@ class ClientSerializer:
         )
 
     def class_definition(self, async_mode) -> str:
-        class_name = self.code_model.class_name
+        class_name = self.code_model.client.name
         has_mixin_og = any(
             og for og in self.code_model.operation_groups if og.is_empty_operation_group
         )
@@ -86,7 +86,7 @@ class ClientSerializer:
         return retval
 
     def initialize_config(self) -> str:
-        config_name = f"{self.code_model.class_name}Configuration"
+        config_name = f"{self.code_model.client.name}Configuration"
         config_call = ", ".join(
             [
                 f"{p.serialized_name}={p.serialized_name}"
@@ -146,13 +146,20 @@ class ClientSerializer:
         return retval
 
     def _send_request_signature(self, async_mode: bool) -> str:
+        is_python3_file = async_mode or self.code_model.options["python3_only"]
+        request_signature = [
+            "request: HttpRequest,"
+            if is_python3_file
+            else "request,  # type: HttpRequest"
+        ]
+        send_request_signature = request_signature + self.code_model.client.client_parameters.method_signature_kwargs(
+            is_python3_file
+        )
         return utils.serialize_method(
             function_def="def",
-            method_name=self.code_model.send_request_name,
+            method_name=self.code_model.client.send_request_name,
             is_in_class=True,
-            method_param_signatures=self.code_model.client.send_request_signature(
-                async_mode or self.is_python3_file
-            ),
+            method_param_signatures=send_request_signature,
         )
 
     def send_request_signature_and_response_type_annotation(
@@ -170,7 +177,7 @@ class ClientSerializer:
     def _example_make_call(self, async_mode: bool) -> List[str]:
         http_response = "AsyncHttpResponse" if async_mode else "HttpResponse"
         retval = [
-            f">>> response = {'await ' if async_mode else ''}client.{self.code_model.send_request_name}(request)"
+            f">>> response = {'await ' if async_mode else ''}client.{self.code_model.client.send_request_name}(request)"
         ]
         retval.append(f"<{http_response}: 200 OK>")
         return retval

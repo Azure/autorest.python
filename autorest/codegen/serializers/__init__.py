@@ -254,20 +254,20 @@ class JinjaSerializer:
         self, env: Environment, namespace_path: Path
     ) -> None:
         rest_path = namespace_path / Path(self.code_model.rest_layer_name)
-        operation_group_names = {
-            rb.operation_group_name for rb in self.code_model.request_builders
+        group_names = {
+            rb.group_name for rb in self.code_model.request_builders
         }
 
-        for operation_group_name in operation_group_names:
+        for group_name in group_names:
             request_builders = [
                 r
                 for r in self.code_model.request_builders
-                if r.operation_group_name == operation_group_name
+                if r.group_name == group_name
             ]
             self._serialize_and_write_single_rest_layer(
                 env, rest_path, request_builders
             )
-        if not "" in operation_group_names:
+        if not "" in group_names:
             self._autorestapi.write_file(
                 rest_path / Path("__init__.py"),
                 self.code_model.options["license_header"],

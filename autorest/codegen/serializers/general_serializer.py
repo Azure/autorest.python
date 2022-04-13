@@ -120,7 +120,7 @@ class GeneralSerializer:
             )
             file_import.add_submodule_import(
                 "._configuration",
-                f"{self.code_model.class_name}Configuration",
+                f"{self.code_model.client.name}Configuration",
                 ImportType.LOCAL,
             )
             file_import.add_submodule_import(
@@ -145,7 +145,7 @@ class GeneralSerializer:
         if package_name and package_name.startswith("azure-"):
             package_name = package_name[len("azure-") :]
         sdk_moniker = (
-            package_name if package_name else self.code_model.class_name.lower()
+            package_name if package_name else self.code_model.client.name.lower()
         )
 
         if self.code_model.options["credential"] and isinstance(

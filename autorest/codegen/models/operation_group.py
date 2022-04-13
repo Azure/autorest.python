@@ -28,6 +28,7 @@ class OperationGroup(BaseModel):
         super().__init__(yaml_data, code_model)
         self.name = yaml_data["name"]
         self.class_name = yaml_data["className"]
+        self.property_name = yaml_data["propertyName"]
         self.operations = operations
 
     @property
@@ -59,19 +60,16 @@ class OperationGroup(BaseModel):
         for operation in self.operations:
             file_import.merge(operation.imports(async_mode, is_python3_file))
         local_path = "..." if async_mode else ".."
-        if self.code_model.has_schemas and self.code_model.options["models_mode"]:
+        if (self.code_model.object_types or self.code_model.enums) and self.code_model.options["models_mode"]:
             file_import.add_submodule_import(
                 local_path, "models", ImportType.LOCAL, alias="_models"
             )
         if self.code_model.options["builders_visibility"] == "embedded" and async_mode:
             if not self.code_model.options["combine_operation_files"]:
-                operation_group_name = (
-                    "" if self.is_empty_operation_group else self.name
-                )
                 operation_group_builders = [
                     r
                     for r in self.code_model.request_builders
-                    if r.operation_group_name == operation_group_name
+                    if r.group_name == self.property_name
                 ]
             else:
                 operation_group_builders = self.code_model.request_builders

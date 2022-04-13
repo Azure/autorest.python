@@ -133,7 +133,7 @@ class MetadataSerializer:
         )
         file_import.add_submodule_import(
             "._configuration",
-            f"{self.code_model.class_name}Configuration",
+            f"{self.code_model.client.name}Configuration",
             ImportType.LOCAL,
         )
         # api_version and potentially endpoint require Optional typing
@@ -143,7 +143,7 @@ class MetadataSerializer:
         if mixin_operation_group:
             file_import.add_submodule_import(
                 "._operations_mixin",
-                f"{self.code_model.class_name}OperationsMixin",
+                f"{self.code_model.client.name}OperationsMixin",
                 ImportType.LOCAL,
             )
         file_import.merge(

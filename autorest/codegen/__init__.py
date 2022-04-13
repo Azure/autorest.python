@@ -38,14 +38,11 @@ def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -
             OperationGroup.from_yaml(op_group, code_model)
             for op_group in yaml_data["operationGroups"]
         ]
-    if yaml_data.get("schemas"):
-        code_model.add_inheritance_to_models()
+    if yaml_data.get("types"):
         if code_model.options["models_mode"]:
             code_model.sort_schemas()
 
     if code_model.options["show_operations"]:
-        code_model.generate_single_parameter_from_multiple_content_types_operation()
-        code_model.link_operation_to_request_builder()
         # LRO operation
         code_model.format_lro_operations()
         code_model.remove_next_operation()
@@ -215,9 +212,6 @@ class CodeGenerator(Plugin):
                 for param in yaml_data.get("globalParameters", [])
             ],
         )
-
-        # Custom URL
-        code_model.setup_client_input_parameters(yaml_data)
 
         # Build request builders
         if yaml_data.get("operationGroups"):

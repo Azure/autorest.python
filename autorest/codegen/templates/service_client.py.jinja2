@@ -7,7 +7,7 @@
 {{ imports }}
 
 {{ serializer.class_definition(async_mode) }}
-    """{{ op_tools.wrap_string(code_model.description, "\n") | indent }}
+    """{{ op_tools.wrap_string(code_model.client.description, "\n") | indent }}
 
     {{ op_tools.serialize_with_wrap(serializer.property_descriptions(async_mode), "\n ") | indent }}
     {{ serializer.init_signature_and_response_type_annotation(async_mode) | indent }}
@@ -40,9 +40,9 @@
         {% endif %}
         {{ keywords.await }}self._client.close()
 
-    {{ keywords.def }} __{{ keywords.async_prefix }}enter__(self){{ (" -> \"" + code_model.class_name + "\"") if async_mode else "" }}:
+    {{ keywords.def }} __{{ keywords.async_prefix }}enter__(self){{ (" -> \"" + code_model.client.name + "\"") if async_mode else "" }}:
         {% if not async_mode %}
-        # type: () -> {{ code_model.class_name }}
+        # type: () -> {{ code_model.client.name }}
         {% endif %}
         {{ keywords.await }}self._client.__{{ keywords.async_prefix }}enter__()
         return self

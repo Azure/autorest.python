@@ -7,7 +7,7 @@ class {{ operation_group.class_name }}{{ base_class }}:{{ disable }}
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`{{ "~" + code_model.namespace + (".aio." if async_mode else ".") + code_model.class_name }}`'s
+        :class:`{{ "~" + code_model.namespace + (".aio." if async_mode else ".") + code_model.client.name }}`'s
         :attr:`{{ operation_group.name }}` attribute.
     """
 

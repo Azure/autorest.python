@@ -7,11 +7,11 @@ from collections.abc import MutableSequence
 from enum import Enum
 import logging
 from typing import List, Optional, TYPE_CHECKING, Union, Generic, TypeVar
-from .request_builder_parameter import RequestBuilderParameter
+from .request_builder_parameter import RequestBuilderBodyParameter, RequestBuilderParameter
 from .parameter import OverloadBodyParameter, Parameter, ParameterMethodLocation, BodyParameter
 
 ParameterType = TypeVar("ParameterType", bound=Union[Parameter, RequestBuilderParameter])
-
+BodyParameterType = TypeVar("BodyParameterType", bound=Union[BodyParameter, RequestBuilderBodyParameter])
 
 
 if TYPE_CHECKING:
@@ -36,12 +36,12 @@ def _sort(params):
     )
 
 
-class _ParameterListBase(MutableSequence, Generic[ParameterType]):  # pylint: disable=too-many-public-methods
+class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterType]):  # pylint: disable=too-many-public-methods
     def __init__(
         self,
         code_model: "CodeModel",
         parameters: List[ParameterType],
-        body_parameter: Optional[Union[BodyParameter, OverloadBodyParameter]] = None,
+        body_parameter: Optional[BodyParameterType] = None,
     ) -> None:
         self.code_model = code_model
         self.parameters = parameters or []
@@ -143,7 +143,7 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType]):  # pylint: di
         retval.append("**kwargs")
         return retval
 
-class ParameterList(_ParameterListBase[Parameter]):
+class ParameterList(_ParameterListBase[Parameter, BodyParameter]):
     ...
 
 class OverloadBaseParameterList(ParameterList):
@@ -151,7 +151,7 @@ class OverloadBaseParameterList(ParameterList):
     def method_signature(self) -> str:
         return "*args, **kwargs"
 
-class RequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter]):
+class RequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, RequestBuilderBodyParameter]):
 
     def method(self):
         ...

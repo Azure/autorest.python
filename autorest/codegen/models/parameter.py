@@ -38,8 +38,11 @@ class _BaseParameter(BaseModel):
         super().__init__(yaml_data, code_model)
         self.client_name = yaml_data["clientName"]
         self.optional = yaml_data["optional"]
-        self.description = yaml_data["description"]
         self.client_default_value = yaml_data.get("clientDefaultValue", UNDEFINED)
+
+    @property
+    def description(self) -> str:
+        return self.yaml_data["description"]
 
     @property
     def method_location(self) -> ParameterMethodLocation:
@@ -113,12 +116,8 @@ class Parameter(_BaseParameter):
         super().__init__(yaml_data, code_model)
         self.type = type
         self.rest_api_name = yaml_data["restApiName"]
-        self._description = yaml_data["description"]
         self.location = None  # discriminator
         self.implementation = yaml_data["implementation"]
-
-    def __hash__(self) -> int:
-        return hash(self.serialized_name)
 
     @property
     def constraints(self):
@@ -129,16 +128,8 @@ class Parameter(_BaseParameter):
         raise NotImplementedError("Haven't done parameter grouping yet")
 
     @property
-    def client_default_value(self):
-        raise NotImplementedError("Don't have client default value yet")
-
-    @property
-    def client_default_value_declaration(self):
-        raise NotImplementedError("Don't have client default declaration yet")
-
-    @property
     def description(self):
-        description = self._description
+        description = super().description
         description += self.type.description(is_operation_file=True)
         if self.constant:
             description += " Note that overriding this default value may result in unsuported behavior."
@@ -171,17 +162,17 @@ class Parameter(_BaseParameter):
         type_annot = self.type_annotation()
         if is_python3_file:
             if self.optional:
-                return f"{self.serialized_name}: {type_annot} = None,"
-            return f"{self.serialized_name}: {type_annot},"
+                return f"{self.client_name}: {type_annot} = None,"
+            return f"{self.client_name}: {type_annot},"
         if self.optional:
-            return f"{self.serialized_name}=None,  # type: {type_annot}"
-        return f"{self.serialized_name},  # type: {type_annot}"
+            return f"{self.client_name}=None,  # type: {type_annot}"
+        return f"{self.client_name},  # type: {type_annot}"
 
     @property
-    def full_serialized_name(self) -> str:
+    def full_client_name(self) -> str:
         if self.implementation == "Client":
-            return f"self._config.{self.serialized_name}"
-        return self.serialized_name
+            return f"self._config.{self.client_name}"
+        return self.client_name
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "Parameter":
@@ -243,7 +234,7 @@ class HeaderParameter(Parameter):
     @property
     def method_location(self) -> ParameterMethodLocation:
         if not self.in_method_signature:
-            raise ValueError(f"Parameter '{self.serialized_name}' is not in the method.")
+            raise ValueError(f"Parameter '{self.client_name}' is not in the method.")
         if self.code_model.options["only_path_and_body_params_positional"]:
             return ParameterMethodLocation.KEYWORD_ONLY
         return ParameterMethodLocation.POSITIONAL

@@ -55,18 +55,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         options: Dict[str, Any],
     ) -> None:
         self.yaml_data = yaml_data
-        self.send_request_name = (
-            "send_request" if options["show_send_request"] else "_send_request"
-        )
-        self.rest_layer_name = (
-            "rest" if options["builders_visibility"] == "public" else "_rest"
-        )
         self.options = options
-        self.module_name = yaml_data["client"]["name"].replace(" ", "_").lower()
-        self.class_name = yaml_data["client"]["name"].replace(" ", "")
-        self.description = yaml_data["client"]["description"]
-        self.namespace = yaml_data["client"]["namespace"].lower()
-        self.namespace_path: str = ""
         self.types_map: Dict[int, BaseType] = {} # map yaml id to schema
         self.operation_groups: List[OperationGroup] = []
         self._object_types: List[ModelType] = []
@@ -74,6 +63,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         self.request_builders: List[RequestBuilder] = []
         self.package_dependency: Dict[str, str] = {}
         self._credential_model: Optional[CredentialModel] = None
+        self.namespace = yaml_data["client"]["namespace"].lower()
+        self.module_name = self.yaml_data["client"]["name"].replace(" ", "_").lower()
 
     def lookup_schema(self, schema_id: int) -> BaseType:
         """Looks to see if the schema has already been created.
@@ -127,7 +118,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     def enums(self) -> List[EnumType]:
         return [t for t in self.types_map.values() if isinstance(t, EnumType)]
 
-
     @staticmethod
     def _sort_schemas_helper(current, seen_schema_names, seen_schema_yaml_ids):
         if current.id in seen_schema_yaml_ids:
@@ -170,30 +160,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
                 )
             )
         self.object_types = sorted_object_schemas
-
-    def setup_client_input_parameters(self, yaml_data: Dict[str, Any]):
-        dollar_host = [
-            parameter
-            for parameter in self.global_parameters
-            if parameter.rest_api_name == "$host"
-        ]
-        if not dollar_host:
-            # We don't want to support multi-api customurl YET (will see if that goes well....)
-            # So far now, let's get the first one in the first operation
-            # UGLY as hell.....
-            if yaml_data.get("operationGroups"):
-                first_req_of_first_op_of_first_grp = yaml_data["operationGroups"][0][
-                    "operations"
-                ][0]["requests"][0]
-                self.client.parameterized_host_template = (
-                    first_req_of_first_op_of_first_grp["protocol"]["http"]["uri"]
-                )
-        else:
-            for host in dollar_host:
-                self.global_parameters.remove(host)
-            self.client.parameters.add_host(
-                dollar_host[0].yaml_data["clientDefaultValue"]
-            )
 
     def format_lro_operations(self) -> None:
         """Adds operations and attributes needed for LROs.
@@ -242,10 +208,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             ]
 
     @property
-    def has_schemas(self):
-        return self.object_types or self.enums
-
-    @property
     def credential_model(self) -> CredentialModel:
         if not self._credential_model:
             raise ValueError(
@@ -257,30 +219,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     def credential_model(self, val: CredentialModel) -> None:
         self._credential_model = val
 
-    @staticmethod
-    def _add_properties_from_inheritance_helper(schema, properties) -> List[Property]:
-        if not schema.base_models:
-            return properties
-        if schema.base_models:
-            for base_model in schema.base_models:
-                parent = cast(ModelType, base_model)
-                # need to make sure that the properties we choose from our parent also don't contain
-                # any of our own properties
-                schema_property_names = set(
-                    [p.name for p in properties] + [p.name for p in schema.properties]
-                )
-                chosen_parent_properties = [
-                    p for p in parent.properties if p.name not in schema_property_names
-                ]
-                properties = (
-                    CodeModel._add_properties_from_inheritance_helper(
-                        parent, chosen_parent_properties
-                    )
-                    + properties
-                )
-
-        return properties
-
     @property
     def operations_folder_name(self) -> str:
         name = "operations"
@@ -289,44 +227,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         ):
             name = f"_{name}"
         return name
-
-    def _add_properties_from_inheritance(self) -> None:
-        """Adds properties from base classes to schemas with parents.
-
-        :return: None
-        :rtype: None
-        """
-        for schema in self.object_types.values():
-            schema.properties = CodeModel._add_properties_from_inheritance_helper(
-                schema, schema.properties
-            )
-
-    @staticmethod
-    def _add_exceptions_from_inheritance_helper(schema) -> bool:
-        if schema.is_exception:
-            return True
-        parent_is_exception: List[bool] = []
-        for base_model in schema.base_models:
-            parent = cast(ModelType, base_model)
-            parent_is_exception.append(
-                CodeModel._add_exceptions_from_inheritance_helper(parent)
-            )
-        return any(parent_is_exception)
-
-
-    def add_inheritance_to_models(self) -> None:
-        """Adds base classes and properties from base classes to schemas with parents.
-
-        :return: None
-        :rtype: None
-        """
-        for schema in self.object_types:
-            if schema.base_models:
-                # right now, the base model property just holds the name of the parent class
-                schema.base_models = [
-                    b for b in self.object_types if b.id in schema.base_models
-                ]
-        self._add_properties_from_inheritance()
 
     def need_vendored_code(self, async_mode: bool) -> bool:
         if async_mode:
@@ -365,15 +265,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             ]
         )
 
-    def link_operation_to_request_builder(self) -> None:
-        for operation_group in self.operation_groups:
-            for operation in operation_group.operations:
-                request_builder = operation.request_builder
-                if isinstance(operation, LROOperation):
-                    request_builder.name = request_builder.name + "_initial"
-                operation.request_builder = request_builder
-                operation.link_body_kwargs_to_body_params()
-
     def get_models_filename(self, is_python3_file: bool) -> str:
         if (
             self.options["version_tolerant"] or self.options["low_level_client"]
@@ -388,3 +279,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         if self.options["version_tolerant"] or self.options["low_level_client"]:
             return "_enums"
         return f"_{self.module_name}_enums"
+
+    @property
+    def rest_layer_name(self) -> str:
+        return "rest" if self.options["builders_visibility"] == "public" else "_rest"

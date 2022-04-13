@@ -450,7 +450,7 @@ class _BuilderBaseSerializer(
             retval = [set_parameter]
         else:
             retval = [
-                f"if {param.full_serialized_name} is not None:",
+                f"if {param.full_client_name} is not None:",
                 f"    {set_parameter}",
             ]
         return retval

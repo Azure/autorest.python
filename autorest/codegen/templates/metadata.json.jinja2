@@ -5,9 +5,9 @@
     "chosen_version": {{ chosen_version | tojson }},
     "total_api_version_list": {{ total_api_version_list | tojson }},
     "client": {
-        "name": {{ code_model.class_name | tojson }},
+        "name": {{ code_model.client.name | tojson }},
         "filename": {{ ("_" + code_model.module_name) | tojson }},
-        "description": {{ code_model.description | tojson }},
+        "description": {{ code_model.client.description | tojson }},
         "host_value": {{ (client.parameters.host.default_value_declaration if not client.has_parameterized_host else None) | tojson }},
         "parameterized_host_template": {{ (keywords.escape_str(client.parameterized_host_template) if client.has_parameterized_host else None) | tojson }},
         "azure_arm": {{ code_model.options["azure_arm"]  | tojson }},

@@ -3,7 +3,7 @@
 {{ code_model.options['license_header'] }}
 
 {% if code_model.request_builders %}
-from .{{ code_model.client.filename }} import {{ code_model.class_name }}
+from .{{ code_model.client.filename }} import {{ code_model.client.name }}
 {% endif %}
 {% if not async_mode and code_model.options['package_version']%}
 from ._version import VERSION
@@ -12,7 +12,7 @@ __version__ = VERSION
 {% endif %}
 
 {{ keywords.patch_imports(try_except=True) }}
-__all__ = [{{("'" + code_model.class_name + "'") if code_model.request_builders else ""}}]
+__all__ = [{{("'" + code_model.client.name + "'") if code_model.request_builders else ""}}]
 {{ keywords.extend_all }}
 
 _patch_sdk()

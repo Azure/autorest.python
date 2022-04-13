@@ -11,8 +11,8 @@
 VERSION = "unknown"
 {% endif %}
 
-class {{ code_model.class_name }}Configuration(Configuration):  # pylint: disable=too-many-instance-attributes
-    """Configuration for {{ code_model.class_name }}.
+class {{ code_model.client.name }}Configuration(Configuration):  # pylint: disable=too-many-instance-attributes
+    """Configuration for {{ code_model.client.name }}.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
@@ -21,7 +21,7 @@ class {{ code_model.class_name }}Configuration(Configuration):  # pylint: disabl
 {% endif %}
     {{ op_tools.serialize_with_wrap(serializer.property_descriptions(), "\n ") | indent }}
     {{ serializer.init_signature_and_response_type_annotation(async_mode) | indent }}
-        super({{ code_model.class_name }}Configuration, self).__init__(**kwargs)
+        super({{ code_model.client.name }}Configuration, self).__init__(**kwargs)
     {% if code_model.client.parameters.config_kwargs_to_pop(async_mode) %}
         {{ op_tools.serialize(serializer.pop_kwargs_from_signature(async_mode)) | indent(8) }}
     {% endif %}

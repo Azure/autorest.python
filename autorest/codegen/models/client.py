@@ -78,7 +78,7 @@ class Client(BaseModel):
             file_import.merge(gp.imports())
         file_import.add_submodule_import(
             "._configuration",
-            f"{self.code_model.class_name}Configuration",
+            f"{self.code_model.client.name}Configuration",
             ImportType.LOCAL,
         )
 
@@ -141,16 +141,6 @@ class Client(BaseModel):
             pass
         return file_import
 
-    def send_request_signature(self, is_python3_file: bool) -> List[str]:
-        request_signature = [
-            "request: HttpRequest,"
-            if is_python3_file
-            else "request,  # type: HttpRequest"
-        ]
-        return request_signature + self.client_parameters.method_signature_kwargs(
-            is_python3_file
-        )
-
     @property
     def filename(self) -> str:
         if (
@@ -159,6 +149,10 @@ class Client(BaseModel):
         ):
             return "_client"
         return f"_{self.code_model.module_name}"
+
+    @property
+    def send_request_name(self) -> str:
+        return "send_request" if self.code_model.options["show_send_request"] else "_send_request"
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "Client":

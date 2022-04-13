@@ -12,33 +12,7 @@ from .. import YamlUpdatePlugin
 
 ORIGINAL_ID_TO_UPDATED_TYPE: Dict[int, Dict[str, Any]] = {}
 
-def _to_python_case(name: str) -> str:
-    def replace_upper_characters(m: re.Match[str]) -> str:
-        match_str = m.group().lower()
-        if m.start() > 0 and name[m.start() - 1] == "_":
-            # we are good if a '_' already exists
-            return match_str
-        # the first letter should not have _
-        prefix = "_" if m.start() > 0 else ""
 
-        # we will add an extra _ if there are multiple upper case chars together
-        next_non_upper_case_char_location = m.start() + len(match_str)
-        if (
-            len(match_str) > 2
-            and len(name) - next_non_upper_case_char_location > 1
-            and name[next_non_upper_case_char_location].isalpha()
-        ):
-
-            return (
-                prefix
-                + match_str[: len(match_str) - 1]
-                + "_"
-                + match_str[len(match_str) - 1]
-            )
-
-        return prefix + match_str
-
-    return re.sub("[A-Z]+", replace_upper_characters, name)
 
 def update_list(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
@@ -86,7 +60,7 @@ def update_property(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         "readonly": yaml_data.get("readOnly", False)
     }
 
-def update_discriminator_subtype_dict(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+def update_discriminated_subtypes(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
         obj["discriminatorValue"]: update_type(obj)
         for obj in yaml_data.get("discriminator", {}).get("immediate", {}).values()
@@ -101,10 +75,24 @@ def create_model(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 def fill_model(yaml_data: Dict[str, Any], current_model: Dict[str, Any]) -> Dict[str, Any]:
+    properties = [update_property(p) for p in yaml_data.get("properties", [])]
+    yaml_parents = yaml_data.get("parents", {}).get("immediate", [])
+    dict_parents = [p for p in yaml_parents if p["type"] == "dict"]
+    if dict_parents:
+        # add additional properties property
+        properties.append({
+            "clientName": "additional_properties",
+            "restApiName": "",
+            "type": dict_parents[0],
+            "optional": True,
+            "description": "Unmatched properties from the message are deserialized to this collection.",
+            "isDiscriminator": False,
+            "readonly": False
+        })
     current_model.update({
-        "properties": [update_property(p) for p in yaml_data.get("properties", [])],
-        "parents": [update_type(yaml_data=p) for p in yaml_data.get("parents", {}).get("immediate", [])],
-        "discriminatorSubtypeDict": update_discriminator_subtype_dict(yaml_data),
+        "properties": properties,
+        "parents": [update_type(yaml_data=p) for p in yaml_parents if p["type"] == "model"],
+        "discriminatedSubtypes": update_discriminated_subtypes(yaml_data),
         "discriminatorValue": yaml_data.get("discriminatorValue"),
     })
     return current_model
@@ -265,12 +253,12 @@ def update_operation(group_name: str, yaml_data: Dict[str, Any]) -> Dict[str, An
     }
 
 def update_operation_group(yaml_data: Dict[str, Any], operation_group_yaml_data: Dict[str, Any]) -> Dict[str, Any]:
-    class_name = update_operation_group_class_name(yaml_data, operation_group_yaml_data)
+    property_name = operation_group_yaml_data["language"]["default"]["name"]
     return {
-        "propertyName": _to_python_case(operation_group_yaml_data["language"]["default"]["name"]),
-        "className": class_name,
+        "propertyName": property_name,
+        "className": update_operation_group_class_name(yaml_data, operation_group_yaml_data),
         "operations": [
-            update_operation(class_name, o) for o in operation_group_yaml_data["operations"]
+            update_operation(property_name, o) for o in operation_group_yaml_data["operations"]
         ]
     }
 

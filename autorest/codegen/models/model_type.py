@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional, Union, Type, TYPE_CHECKING
+from typing import Any, Dict, List, Optional, Union, Type, TYPE_CHECKING, cast
 from .base_type import BaseType
 from .dictionary_type import DictionaryType
 from .property import Property
@@ -11,6 +11,19 @@ from .imports import FileImport, ImportModel, ImportType, TypingSection
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
+
+def _get_properties_from_parents(type: "ModelType", properties: List[Property]) -> List[Property]:
+    for parent in type.parents:
+        # here we're adding the properties from our parents
+
+        # need to make sure that the properties we choose from our parent also don't contain
+        # any of our own properties
+        property_names = set([p.client_name for p in properties] + [p.client_name for p in type.properties])
+        chosen_parent_properties = [p for p in parent.properties if p.client_name not in property_names]
+        properties = (
+            _get_properties_from_parents(parent, chosen_parent_properties) + properties
+        )
+    return properties
 
 
 class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
@@ -26,21 +39,19 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        **kwargs,
+        *,
+        properties: Optional[List[Property]] = None,
+        parents: Optional[List["ModelType"]] = None,
+        discriminated_subtypes: Optional[Dict[str, "ModelType"]] = None,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.name = self.yaml_data["name"]
-        self.max_properties: Optional[int] = kwargs.pop("max_properties", None)
-        self.min_properties: Optional[int] = kwargs.pop("min_properties", None)
-        self.properties: List[Property] = kwargs.pop("properties", [])
-        self.base_models: Union[List[int], List["ModelType"]] = kwargs.pop(
-            "base_models", []
-        )
-        self.subtype_map: Optional[Dict[str, str]] = kwargs.pop("subtype_map", None)
-        self.discriminator_name: Optional[str] = kwargs.pop("discriminator_name", None)
-        self.discriminator_value: Optional[str] = kwargs.pop(
-            "discriminator_value", None
-        )
+        self.max_properties: Optional[int] = self.yaml_data.get("maxProperties")
+        self.min_properties: Optional[int] = self.yaml_data.get("minProperties")
+        self.properties = properties or []
+        self.parents = parents or []
+        self.discriminated_subtypes = discriminated_subtypes or {}
+        self.discriminator_value = self.yaml_data.get("discriminatorValue")
         self._created_json_template_representation = False
 
     @property
@@ -106,68 +117,40 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "ModelType":
-        """Returns a ClassType from the dict object constructed from a yaml file.
-
-        WARNING: This guy might create an infinite loop.
-
-        :param str name: The name of the class type.
-        :param yaml_data: A representation of the schema of a class type from a yaml file.
-        :type yaml_data: dict(str, str)
-        :returns: A ClassType.
-        :rtype: ~autorest.models.schema.ClassType
-        """
-        obj = cls(yaml_data, code_model, "", description="")
-        obj.fill_instance_from_yaml(yaml_data, code_model)
-        return obj
+        raise ValueError(
+            "You shouldn't call from_yaml for ModelType to avoid recursion. "
+            "Please initial a blank ModelType, then call .fill_instance_from_yaml on the created type."
+        )
 
     def fill_instance_from_yaml(
         self, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> None:
-        name = yaml_data["name"]
-        # checking to see if there is a parent class and / or additional properties
-        base_models = [
-            ModelType.from_yaml(bm, code_model)
-            for bm in yaml_data.get("baseModels", [])
+        from . import build_type
+        self.parents = [
+            cast(ModelType, build_type(bm, code_model))
+            for bm in yaml_data.get("parents", [])
         ]
-        properties = [
+        self.properties = [
             Property.from_yaml(p, code_model) for p in yaml_data["properties"]
         ]
-
+        try:
+            self.properties += _get_properties_from_parents(self, self.properties)
+        except AttributeError:
+            a = "b"
         # checking to see if this is a polymorphic class
-        subtype_map = None
-        if yaml_data.get("discriminator"):
-            subtype_map = {}
-            # map of discriminator value to child's name
-            for children_yaml in yaml_data["discriminator"]["immediate"].values():
-                subtype_map[children_yaml["discriminatorValue"]] = children_yaml[
-                    "language"
-                ]["python"]["name"]
-        # this is to ensure that the attribute map type and property type are generated correctly
-
-        self.yaml_data = yaml_data
-        self.name = name
-        self.properties = properties
-        self.base_models = base_models
-        self.subtype_map = subtype_map
-        self.discriminator_name = (
-            yaml_data["discriminator"]["property"]["language"]["python"]["name"]
-            if yaml_data.get("discriminator")
-            else None
-        )
-        self.discriminator_value = yaml_data.get("discriminatorValue", None)
+        self.discriminated_subtypes = {
+            discriminator_value: cast(ModelType, build_type(subtype_yaml_data, code_model))
+            for discriminator_value, subtype_yaml_data in yaml_data["discriminatedSubtypes"].items()
+        }
 
     @property
     def has_readonly_or_constant_property(self) -> bool:
         return any(x.readonly or x.constant for x in self.properties)
 
     @property
-    def property_with_discriminator(self) -> Any:
+    def discriminator(self) -> Optional[Property]:
         try:
-            return next(
-                p
-                for p in self.properties
-                if getattr(p.type, "discriminator_name", None)
-            )
+            return next(p for p in self.properties if p.is_discriminator)
         except StopIteration:
             return None
 

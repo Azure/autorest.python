@@ -61,7 +61,7 @@ def build_serialize_data_call(
     if serialization_constraints:
         optional_parameters += serialization_constraints
 
-    origin_name = parameter.full_serialized_name
+    origin_name = parameter.full_client_name
 
     parameters = [
         f'"{origin_name.lstrip("_")}"',

@@ -47,13 +47,13 @@ def _get_overloads(
     return overloads
 
 
-class RequestBuilder(BaseBuilder):
+class RequestBuilder(BaseBuilder[RequestBuilderParameterList]):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         name: str,
-        parameters: ParameterList,
+        parameters: RequestBuilderParameterList,
         overloads: List["RequestBuilder"],
         *,
         want_tracing: bool = True,
@@ -71,19 +71,9 @@ class RequestBuilder(BaseBuilder):
         self.url = yaml_data["url"]
         self.method = yaml_data["method"]
 
-    @property
-    def operation_group_name(self) -> str:
-        return self.yaml_data["groupName"]
-
-    @property
-    def builder_group_name(self) -> str:
-        return self.yaml_data["builderGroupName"]
-
     def imports(self) -> FileImport:
         file_import = FileImport()
         for parameter in self.parameters.method:
-            if self.abstract and isinstance(parameter, (MultipartBodyParameter, UrlEncodedBodyParameter)):
-                continue
             file_import.merge(parameter.imports())
 
         file_import.add_submodule_import(
@@ -96,9 +86,9 @@ class RequestBuilder(BaseBuilder):
                 relative_path = ".."
                 if (
                     not self.code_model.options["builders_visibility"] == "embedded"
-                    and self.operation_group_name
+                    and self.group_name
                 ):
-                    relative_path = "..." if self.operation_group_name else ".."
+                    relative_path = "..." if self.group_name else ".."
                 file_import.add_submodule_import(
                     f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
                 )
@@ -124,7 +114,7 @@ class RequestBuilder(BaseBuilder):
             code_model.options["combine_operation_files"]
             and code_model.options["builders_visibility"] == "embedded"
         ):
-            additional_mark = yaml_data["language"]["python"]["builderGroupName"]
+            additional_mark = yaml_data["groupName"]
         names = [
             "build",
             additional_mark,
