@@ -30,7 +30,7 @@ from .constant_type import ConstantType
 from .imports import FileImport, ImportType, TypingSection
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
-from .parameter import Parameter
+from .parameter import Parameter, ParameterMethodLocation, ParameterLocation
 from .operation import Operation
 from .property import Property
 from .operation_group import OperationGroup
@@ -72,6 +72,8 @@ __all__ = [
     "IOType",
     "ClientGlobalParameterList",
     "ConfigGlobalParameterList",
+    "ParameterMethodLocation",
+    "ParameterLocation",
 ]
 
 TYPE_TO_OBJECT = {

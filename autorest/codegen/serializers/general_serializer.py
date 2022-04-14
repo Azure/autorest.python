@@ -15,40 +15,6 @@ from ..models import (
 from .client_serializer import ClientSerializer, ConfigSerializer
 
 
-def config_imports(
-    code_model, global_parameters: ParameterList, async_mode: bool
-) -> FileImport:
-    file_import = FileImport()
-    file_import.add_submodule_import(
-        "azure.core.configuration", "Configuration", ImportType.AZURECORE
-    )
-    file_import.add_submodule_import(
-        "azure.core.pipeline", "policies", ImportType.AZURECORE
-    )
-    file_import.add_submodule_import(
-        "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
-    )
-    if code_model.options["package_version"]:
-        file_import.add_submodule_import(
-            ".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL
-        )
-    for gp in global_parameters:
-        file_import.merge(gp.imports())
-    if code_model.options["azure_arm"]:
-        policy = (
-            "AsyncARMChallengeAuthenticationPolicy"
-            if async_mode
-            else "ARMChallengeAuthenticationPolicy"
-        )
-        file_import.add_submodule_import(
-            "azure.mgmt.core.policies", "ARMHttpLoggingPolicy", ImportType.AZURECORE
-        )
-        file_import.add_submodule_import(
-            "azure.mgmt.core.policies", policy, ImportType.AZURECORE
-        )
-    return file_import
-
-
 class GeneralSerializer:
     def __init__(
         self, code_model: CodeModel, env: Environment, async_mode: bool
@@ -68,7 +34,7 @@ class GeneralSerializer:
     def _correct_credential_parameter(self):
         credential_param = [
             gp
-            for gp in self.code_model.global_parameters.parameters
+            for gp in self.code_model.client.parameters
             if isinstance(gp.schema, TokenCredentialSchema)
         ][0]
         credential_param.schema = TokenCredentialSchema(async_mode=self.async_mode)
@@ -160,9 +126,7 @@ class GeneralSerializer:
             code_model=self.code_model,
             async_mode=self.async_mode,
             imports=FileImportSerializer(
-                config_imports(
-                    self.code_model, self.code_model.global_parameters, self.async_mode
-                ),
+                self.code_model.config.imports(self.async_mode),
                 is_python3_file=self.async_mode or python3_only,
             ),
             serializer=ConfigSerializer(self.code_model, is_python3_file=python3_only),

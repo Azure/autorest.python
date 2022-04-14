@@ -8,7 +8,6 @@ import copy
 import json
 from typing import List, Optional, Set, Tuple, Dict, Union
 from jinja2 import Environment
-from .general_serializer import config_imports
 from ..models import (
     CodeModel,
     FileImport,
@@ -162,7 +161,7 @@ class MetadataSerializer:
             (
                 operation_group
                 for operation_group in self.code_model.operation_groups
-                if operation_group.is_empty_operation_group
+                if operation_group.is_mixin
             ),
             None,
         )
@@ -220,14 +219,10 @@ class MetadataSerializer:
             sync_client_imports=sync_client_imports,
             async_client_imports=async_client_imports,
             sync_config_imports=_json_serialize_imports(
-                config_imports(
-                    self.code_model, self.code_model.global_parameters, async_mode=False
-                ).to_dict()
+                self.code_model.config.imports(async_mode=False).to_dict()
             ),
             async_config_imports=_json_serialize_imports(
-                config_imports(
-                    self.code_model, async_global_parameters, async_mode=True
-                ).to_dict()
+                self.code_model.config.imports(async_mode=True).to_dict()
             ),
             get_async_operation_serializer=functools.partial(
                 get_operation_serializer,

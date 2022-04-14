@@ -8,7 +8,7 @@ from enum import Enum
 import logging
 from typing import List, Optional, TYPE_CHECKING, Union, Generic, TypeVar
 from .request_builder_parameter import RequestBuilderBodyParameter, RequestBuilderParameter
-from .parameter import OverloadBodyParameter, Parameter, ParameterMethodLocation, BodyParameter
+from .parameter import OverloadBodyParameter, Parameter, ParameterMethodLocation, BodyParameter, ClientParameter, ConfigParameter
 
 ParameterType = TypeVar("ParameterType", bound=Union[Parameter, RequestBuilderParameter])
 BodyParameterType = TypeVar("BodyParameterType", bound=Union[BodyParameter, RequestBuilderBodyParameter])
@@ -24,15 +24,15 @@ class ParameterImplementation(Enum):
 _LOGGER = logging.getLogger(__name__)
 
 
-def _method_signature_helper(
+def method_signature_helper(
     positional: List[str], keyword_only: Optional[List[str]], kwarg_params: List[str]
 ):
     keyword_only = keyword_only or []
     return positional + keyword_only + kwarg_params
 
-def _sort(params):
+def _sort(params: List[ParameterType]):
     return sorted(
-        params, key=lambda x: not x.default_value and x.required, reverse=True
+        params, key=lambda x: not (x.client_default_value or x.optional), reverse=True
     )
 
 
@@ -89,23 +89,40 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
         raise NotImplementedError("No parameter grouping")
 
     @property
+    def constant(self) -> List[ParameterType]:
+        return [p for p in self.parameters if p.constant]
+
+    @property
     def positional(self) -> List[ParameterType]:
-        return _sort([p for p in self.parameters if p.method_location == ParameterMethodLocation.POSITIONAL])
+        return _sort([
+            p for p in self.method if p.method_location == ParameterMethodLocation.POSITIONAL
+        ])
 
     @property
     def keyword_only(self) -> List[ParameterType]:
-        return _sort([p for p in self.parameters if p.method_location == ParameterMethodLocation.KEYWORD_ONLY])
+        return _sort([
+            p for p in self.method if p.method_location == ParameterMethodLocation.KEYWORD_ONLY
+        ])
 
     @property
     def kwarg(self) -> List[ParameterType]:
-        return _sort([p for p in self.parameters if p.method_location == ParameterMethodLocation.KWARG])
+        return _sort([
+            p for p in self.method if p.method_location == ParameterMethodLocation.KWARG
+        ])
+
+    @property
+    def implementation(self) -> str:
+        return "Method"
 
     @property
     def method(self) -> List[ParameterType]:
-        return self.positional + self.keyword_only + self.kwarg
+        method_params = [p for p in self.parameters if p.in_method_signature and p.implementation == self.implementation]
+        if self.body_parameter:
+            method_params.append(self.body_parameter)
+        return method_params
 
     def method_signature(self, is_python3_file: bool) -> List[str]:
-        return _method_signature_helper(
+        return method_signature_helper(
             positional=self.method_signature_positional(is_python3_file),
             keyword_only=self.method_signature_keyword_only(is_python3_file),
             kwarg_params=self.method_signature_kwargs(is_python3_file),
@@ -129,16 +146,16 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
         return ["**kwargs: Any"] if is_python3_file else ["**kwargs  # type: Any"]
 
     def kwargs_to_pop(self, is_python3_file: bool) -> List[ParameterType]:
-        kwargs_to_pop = [p for p in self.parameters if p.method_location == ParameterMethodLocation.KWARG]
+        kwargs_to_pop = [p for p in self.method if p.method_location == ParameterMethodLocation.KWARG]
         if not is_python3_file:
-            kwargs_to_pop += [p for p in self.parameters if p.method_location == ParameterMethodLocation.KEYWORD_ONLY]
+            kwargs_to_pop += [p for p in self.method if p.method_location == ParameterMethodLocation.KEYWORD_ONLY]
         return kwargs_to_pop
 
     @property
     def call(self) -> List[str]:
-        retval = [p.serialized_name for p in self.parameters if p.method_location == ParameterMethodLocation.POSITIONAL]
+        retval = [p.client_name for p in self.method if p.method_location == ParameterMethodLocation.POSITIONAL]
         retval.extend(
-            [f"{p.serialized_name}={p.serialized_name}" for p in self.parameters if p.method_location == ParameterMethodLocation.KEYWORD_ONLY]
+            [f"{p.client_name}={p.client_name}" for p in self.method if p.method_location == ParameterMethodLocation.KEYWORD_ONLY]
         )
         retval.append("**kwargs")
         return retval
@@ -152,12 +169,16 @@ class OverloadBaseParameterList(ParameterList):
         return "*args, **kwargs"
 
 class RequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, RequestBuilderBodyParameter]):
-
-    def method(self):
-        ...
-
-class ClientGlobalParameterList(ParameterList):
     ...
 
-class ConfigGlobalParameterList(ParameterList):
-    ...
+
+class ClientGlobalParameterList(_ParameterListBase[ClientParameter, BodyParameter]):
+    @property
+    def implementation(self) -> str:
+        return "Client"
+
+
+class ConfigGlobalParameterList(_ParameterListBase[ConfigParameter, BodyParameter]):
+    @property
+    def implementation(self) -> str:
+        return "Client"

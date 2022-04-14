@@ -13,7 +13,7 @@ from .operation_group import OperationGroup
 from .operation import Operation
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
-from .client import Client
+from .client import Client, Config
 from .property import Property
 from .request_builder import RequestBuilder
 from .credential_model import CredentialModel
@@ -60,6 +60,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         self.operation_groups: List[OperationGroup] = []
         self._object_types: List[ModelType] = []
         self._client: Optional[Client] = None
+        self._config: Optional[Config] = None
         self.request_builders: List[RequestBuilder] = []
         self.package_dependency: Dict[str, str] = {}
         self._credential_model: Optional[CredentialModel] = None
@@ -92,6 +93,16 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     @client.setter
     def client(self, val: Client) -> None:
         self._client = val
+
+    @property
+    def config(self) -> Config:
+        if not self._config:
+            raise ValueError("You haven't linked the config yet")
+        return self._config
+
+    @config.setter
+    def config(self, val: Config) -> None:
+        self._config = val
 
     def lookup_request_builder(self, request_builder_id: int) -> RequestBuilder:
         """Find the request builder based off of id"""
@@ -185,27 +196,27 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
                         return operation
             raise KeyError("Didn't find it!!!!!")
 
-        for operation_group in self.operation_groups:
-            next_operations = []
-            for operation in operation_group.operations:
-                # when we add in "LRO" functions we don't include yaml_data, so yaml_data can be empty in these cases
-                next_link_yaml = None
-                if operation.yaml_data and operation.yaml_data["language"][
-                    "python"
-                ].get("paging"):
-                    next_link_yaml = operation.yaml_data["language"]["python"][
-                        "paging"
-                    ].get("nextLinkOperation")
-                if isinstance(operation, PagingOperation) and next_link_yaml:
-                    next_operation = _lookup_operation(id(next_link_yaml))
-                    operation.next_operation = next_operation
-                    next_operations.append(next_operation)
+        # for operation_group in self.operation_groups:
+        #     next_operations = []
+        #     for operation in operation_group.operations:
+        #         # when we add in "LRO" functions we don't include yaml_data, so yaml_data can be empty in these cases
+        #         next_link_yaml = None
+        #         if operation.yaml_data and operation.yaml_data["language"][
+        #             "python"
+        #         ].get("paging"):
+        #             next_link_yaml = operation.yaml_data["language"]["python"][
+        #                 "paging"
+        #             ].get("nextLinkOperation")
+        #         if isinstance(operation, PagingOperation) and next_link_yaml:
+        #             next_operation = _lookup_operation(id(next_link_yaml))
+        #             operation.next_operation = next_operation
+        #             next_operations.append(next_operation)
 
-            operation_group.operations = [
-                operation
-                for operation in operation_group.operations
-                if operation not in next_operations
-            ]
+        #     operation_group.operations = [
+        #         operation
+        #         for operation in operation_group.operations
+        #         if operation not in next_operations
+        #     ]
 
     @property
     def credential_model(self) -> CredentialModel:
@@ -223,7 +234,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     def operations_folder_name(self) -> str:
         name = "operations"
         if self.options["version_tolerant"] and not any(
-            og for og in self.operation_groups if not og.is_empty_operation_group
+            og for og in self.operation_groups if not og.is_mixin
         ):
             name = f"_{name}"
         return name
@@ -252,7 +263,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         return any(
             o
             for o in self.operation_groups
-            if o.is_empty_operation_group and self.options["python3_only"]
+            if o.is_mixin and self.options["python3_only"]
         )
 
     @property

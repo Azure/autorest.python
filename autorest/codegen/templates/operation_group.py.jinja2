@@ -1,14 +1,14 @@
 {% set disable = "  # pylint: disable=too-many-public-methods" if operation_group.operations | length > 20 else "" %}
 {% set base_class = ("(" + operation_group.base_class(async_mode) + ")") if operation_group.base_class(async_mode) else "" %}
 class {{ operation_group.class_name }}{{ base_class }}:{{ disable }}
-{% if not operation_group.is_empty_operation_group %}
+{% if not operation_group.is_mixin %}
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`{{ "~" + code_model.namespace + (".aio." if async_mode else ".") + code_model.client.name }}`'s
-        :attr:`{{ operation_group.name }}` attribute.
+        :attr:`{{ operation_group.property_name }}` attribute.
     """
 
 {% if code_model.object_types and code_model.options["models_mode"] %}

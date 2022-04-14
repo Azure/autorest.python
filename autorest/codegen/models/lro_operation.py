@@ -25,8 +25,8 @@ class LROOperation(Operation):
     def lro_response(self) -> Optional[Response]:
         if not self.responses:
             return None
-        responses_with_bodies = [r for r in self.responses if r.types]
-        num_response_schemas = {t for r in responses_with_bodies for t in r.types}
+        responses_with_bodies = [r for r in self.responses if r.type]
+        num_response_schemas = {t for r in responses_with_bodies for t in r.type}
         response = None
         if len(num_response_schemas) > 1:
             # choose the response that has a status code of 200
@@ -35,8 +35,8 @@ class LROOperation(Operation):
             ]
             try:
                 response = responses_with_200_status_codes[0]
-                schema_types = {t for r in responses_with_bodies for t in r.types}
-                response_schema = cast(BaseType, response.types[0]).serialization_type
+                schema_types = {t for r in responses_with_bodies for t in r.type}
+                response_schema = cast(BaseType, response.type).serialization_type
                 _LOGGER.warning(
                     "Multiple schema types in responses: %s. Choosing: %s",
                     schema_types,

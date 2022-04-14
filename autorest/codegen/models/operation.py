@@ -5,18 +5,20 @@
 # --------------------------------------------------------------------------
 from itertools import chain
 import logging
-from typing import Dict, List, Any, Optional, Union, TYPE_CHECKING, cast
+from typing import Dict, List, Any, Optional, Union, TYPE_CHECKING, cast, TypeVar, Generic
 
-from .base_builder import BaseBuilder, create_parameters_and_overloads
+from .base_builder import BaseBuilder
 from .imports import FileImport, ImportType, TypingSection
 from .response import Response
 from .parameter import MultipartBodyParameter, OverloadBodyParameter, Parameter, BodyParameter, UrlEncodedBodyParameter, ParameterLocation
-from .parameter_list import OverloadBaseParameterList, ParameterList
+from .parameter_list import ParameterList, OverloadBaseParameterList
 from .model_type import ModelType
 from .request_builder import RequestBuilder
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
+
+ParameterListType = TypeVar("ParameterListType", bound=Union[ParameterList, OverloadBaseParameterList])
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -39,12 +41,12 @@ def _get_overloads(
     request_builder: RequestBuilder,
     parameters: List[Parameter],
     responses: List[Response],
-):
-    overloads: List[Operation] = []
+) -> List["OperationOverload"]:
+    overloads: List[OperationOverload] = []
     if overload_body_parameters:
         # we have overloads now, one for each type
         for obp in overload_body_parameters:
-            overloads.append(Operation(
+            overloads.append(OperationOverload(
                 yaml_data=yaml_data,
                 code_model=code_model,
                 name=yaml_data["name"],
@@ -60,17 +62,16 @@ def _get_overloads(
             ))
     return overloads
 
-
-class Operation(BaseBuilder):
+class _OperationBase(BaseBuilder[ParameterListType]):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         name: str,
         request_builder: RequestBuilder,
-        parameters: ParameterList,
+        parameters: ParameterListType,
         responses: List[Response],
-        overloads: List["Operation"],
+        overloads: List["OperationOverload"],
         *,
         want_description_docstring: bool = True,
         want_tracing: bool = True,
@@ -100,10 +101,10 @@ class Operation(BaseBuilder):
         # means if we have at least one successful response with a body and one without
         successful_responses = [r for r in self.responses if not r.is_error]
         successful_response_with_body = any(
-            r for r in successful_responses if r.types
+            r for r in successful_responses if r.type
         )
         successful_response_without_body = any(
-            r for r in successful_responses if not r.types
+            r for r in successful_responses if not r.type
         )
         return successful_response_with_body and successful_response_without_body
 
@@ -111,7 +112,7 @@ class Operation(BaseBuilder):
     def has_response_body(self) -> bool:
         """Tell if at least one response has a body."""
         return any(
-            response.types or response.is_stream_response
+            response.type
             for response in self.responses
         )
 
@@ -127,7 +128,7 @@ class Operation(BaseBuilder):
         ]
         if not retval:
             return None
-        excep_schema = retval[0].types[0]
+        excep_schema = retval[0].type
         if isinstance(excep_schema, ModelType):
             return f"_models.{excep_schema.name}"
         # in this case, it's just an AnyType
@@ -162,12 +163,12 @@ class Operation(BaseBuilder):
             file_import.merge(param.imports())
 
         for response in self.responses:
-            file_import.merge(response.imports(self.code_model))
+            file_import.merge(response.imports())
 
         response_types = [
             r.type_annotation()
             for r in self.responses
-            if r.types
+            if r.type
         ]
         if len(set(response_types)) > 1:
             file_import.add_submodule_import(
@@ -197,7 +198,7 @@ class Operation(BaseBuilder):
         kwargs_to_pop: List[Parameter], location: ParameterLocation
     ) -> bool:
         return any(
-            kwarg.has_default_value and kwarg.location == location
+            (kwarg.client_default_value or kwarg.optional) and kwarg.location == location
             for kwarg in kwargs_to_pop
         )
 
@@ -242,7 +243,7 @@ class Operation(BaseBuilder):
             if self.deprecated:
                 file_import.add_import("warnings", ImportType.STDLIB)
             if self.code_model.options["builders_visibility"] != "embedded":
-                builder_group_name = self.request_builder.builder_group_name
+                builder_group_name = self.request_builder.group_name
                 rest_import_path = "..." if async_mode else ".."
                 if builder_group_name:
                     file_import.add_submodule_import(
@@ -326,13 +327,13 @@ class Operation(BaseBuilder):
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "Operation":
+    ) -> "_OperationBase":
         name = yaml_data["name"]
         parameters = [Parameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
         abstract = False
         request_builder = code_model.lookup_request_builder(id(yaml_data))
         responses = [Response.from_yaml(r, code_model) for r in yaml_data["responses"]]
-        parameter_list, overload_body_parameters = create_parameters_and_overloads(
+        parameter_list, overload_body_parameters = cls.create_parameters_and_overloads(
             yaml_data, code_model, is_operation=True
         )
         overloads = _get_overloads(
@@ -343,15 +344,15 @@ class Operation(BaseBuilder):
             parameters,
             responses,
         )
-        if code_model.options["version_tolerant"] and any(p for p in parameter_list if p.is_multipart or p.is_data_input):
-            _LOGGER.warning(
-                'Not going to generate operation "%s" because it has multipart / urlencoded body parameters. '
-                "Multipart / urlencoded body parameters are not supported for version tolerant generation right now. "
-                'Please write your own custom operation in the "_patch.py" file '
-                "following https://aka.ms/azsdk/python/dpcodegen/python/customize",
-                name,
-            )
-            abstract = True
+        # if code_model.options["version_tolerant"] and any(p for p in parameter_list if p.is_multipart or p.is_data_input):
+        #     _LOGGER.warning(
+        #         'Not going to generate operation "%s" because it has multipart / urlencoded body parameters. '
+        #         "Multipart / urlencoded body parameters are not supported for version tolerant generation right now. "
+        #         'Please write your own custom operation in the "_patch.py" file '
+        #         "following https://aka.ms/azsdk/python/dpcodegen/python/customize",
+        #         name,
+        #     )
+        #     abstract = True
 
         op_cls = _get_operation_class(yaml_data["operationType"])
         return op_cls(
@@ -364,3 +365,9 @@ class Operation(BaseBuilder):
             responses=responses,
             abstract=abstract,
         )
+
+class Operation(_OperationBase[ParameterList]):
+    ...
+
+class OperationOverload(_OperationBase[OverloadBaseParameterList]):
+    ...

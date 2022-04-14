@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional, Tuple, TypeVar, Union, TYPE_CHECKING, NamedTuple, Generic
+from typing import Any, Dict, List, Optional, Tuple, cast, TypeVar, Union, TYPE_CHECKING, NamedTuple, Generic
 from .base_model import BaseModel
 from .parameter import (
     Parameter, BodyParameter, OverloadBodyParameter
@@ -16,17 +16,9 @@ OverloadBodyParameterType = TypeVar(
     "OverloadBodyParameterType", bound=Union[OverloadBodyParameter, RequestBuilderOverloadBodyParameter], contravariant=True
 )
 
+
 if TYPE_CHECKING:
     from .code_model import CodeModel
-    from .operation import Operation
-    from .request_builder import RequestBuilder
-
-class ParamAndOverloadsResponse(NamedTuple):
-    parameter_list: Union[ParameterList, OverloadBaseParameterList]
-    overload_body_parameters: Union[List[OverloadBodyParameter], List[RequestBuilderBodyParameter]]
-
-
-
 
 class BaseBuilder(BaseModel, Generic[ParameterListType]):
     """Base class for Operations and Request Builders"""
@@ -37,7 +29,7 @@ class BaseBuilder(BaseModel, Generic[ParameterListType]):
         code_model: "CodeModel",
         name: str,
         parameters: ParameterListType,
-        overloads: Union[List["Operation"], List["RequestBuilder"]],
+        overloads,
         *,
         abstract: bool = False,
         want_tracing: bool = True,
@@ -61,7 +53,7 @@ class BaseBuilder(BaseModel, Generic[ParameterListType]):
         parameter_creator = Parameter if is_operation else RequestBuilderParameter
         parameters = [parameter_creator.from_yaml(p, code_model) for p in yaml_data["parameters"]]
         body_parameter_creator = BodyParameter if is_operation else RequestBuilderBodyParameter
-        body_parameter = body_parameter_creator.from_yaml(yaml_data["requestBody"], code_model) if yaml_data.get("requestBody") else None
+        body_parameter = body_parameter_creator.from_yaml(yaml_data["bodyParameter"], code_model) if yaml_data.get("bodyParameter") else None
         overload_body_parameters: List[OverloadBodyParameterType] = []
         if body_parameter and len(body_parameter.types) > 1:
             # we have overloads now, one for each type
@@ -69,12 +61,12 @@ class BaseBuilder(BaseModel, Generic[ParameterListType]):
             parameter_list = parameter_list_creator(code_model, parameters, body_parameter=body_parameter)
             for type in body_parameter.types:
                 overload_body_parameter_creator = OverloadBodyParameter if is_operation else RequestBuilderOverloadBodyParameter
-                overload_body_parameters.append(overload_body_parameter_creator(
+                overload_body_parameters.append(cast(OverloadBodyParameterType, overload_body_parameter_creator(
                     body_parameter.yaml_data,
                     body_parameter.code_model,
                     type=type,
                     content_types=body_parameter.type_to_content_types(id(type.yaml_data))
-                ))
+                )))
         else:
             parameter_list = ParameterList(code_model, parameters, body_parameter=body_parameter)
         return parameter_list, overload_body_parameters
@@ -92,7 +84,7 @@ class BaseBuilder(BaseModel, Generic[ParameterListType]):
                 f'You need to write a custom operation for "{self.name}". Please refer to '
                 "https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize."
             )
-        return self._description
+        return self._description or self.name
 
     def method_signature(self, is_python3_file: bool) -> List[str]:
         if self.abstract:

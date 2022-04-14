@@ -9,7 +9,6 @@ from .base_model import BaseModel
 from .base_type import BaseType
 from .imports import FileImport, ImportType
 from .primitive_types import IOType
-from .utils import MultipleTypeModel
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -33,31 +32,52 @@ class ResponseHeader(BaseModel):
             type=code_model.lookup_schema(id(yaml_data["type"]))
         )
 
-class Response(BaseModel, MultipleTypeModel):
+class Response(BaseModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         *,
         headers: List[ResponseHeader] = [],
-        content_type_to_type: Optional[Dict[str, BaseType]] = None
+        type: Optional[BaseType] = None,
     ) -> None:
-        super().__init__(yaml_data=yaml_data, code_model=code_model, content_type_to_type=content_type_to_type)
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.status_codes = yaml_data["statusCodes"]
         self.headers = headers
         self.is_error = yaml_data["isError"]
+        self.type = type
 
     @property
     def is_stream_response(self) -> bool:
         """Is the response expected to be streamable, like a download."""
-        return isinstance(self.types[0], IOType)
+        return isinstance(self.type, IOType)
 
-    def imports(self, code_model) -> FileImport:
+    def serialization_type(self, content_type: str) -> str:
+        if self.type:
+            return self.type.serialization_type
+        return "None"
+
+    def type_annotation(self) -> str:
+        if self.type:
+            return self.type.type_annotation(is_operation_file=True)
+        return "None"
+
+    @property
+    def docstring_text(self) -> str:
+        # if self.nullable:
+        #     return f"{self.schema.docstring_text} or None"
+        return self.type.docstring_text if self.type else ""
+
+    @property
+    def docstring_type(self) -> str:
+        # if self.nullable:
+        #     return f"{self.schema.docstring_type} or None"
+        return self.type.docstring_type if self.type else ""
+
+    def imports(self) -> FileImport:
         file_import = FileImport()
-        if not code_model.options["models_mode"] and any(t for t in self.types if getattr(t, "is_xml")):
-            file_import.add_submodule_import(
-                "xml.etree", "ElementTree", ImportType.STDLIB, alias="ET"
-            )
+        if self.type:
+            file_import.merge(self.type.imports(is_operation_file=True))
         return file_import
 
     @classmethod
@@ -68,10 +88,7 @@ class Response(BaseModel, MultipleTypeModel):
             yaml_data=yaml_data,
             code_model=code_model,
             headers=[ResponseHeader(header, code_model, code_model.lookup_schema(header["type"])) for header in yaml_data["headers"]],
-            content_type_to_type={
-                content_type: code_model.lookup_schema(id(type_yaml_data))
-                for content_type, type_yaml_data in yaml_data.get("contentTypeToType", {}).items()
-            }
+            type=code_model.lookup_schema(id(yaml_data["type"])) if yaml_data.get("type") else None
         )
 
     def __repr__(self) -> str:

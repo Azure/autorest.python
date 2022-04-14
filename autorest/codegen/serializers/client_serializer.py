@@ -4,8 +4,9 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import List
+
 from . import utils
-from ..models import CodeModel
+from ..models import CodeModel, ParameterMethodLocation
 
 
 class ClientSerializer:
@@ -17,8 +18,8 @@ class ClientSerializer:
         return utils.serialize_method(
             function_def="def",
             method_name="__init__",
-            is_in_class=True,
-            method_param_signatures=self.code_model.client.parameters.client_method_signature(
+            _need_self_param=True,
+            method_param_signatures=self.code_model.client.parameters.method_signature(
                 async_mode or self.is_python3_file
             ),
         )
@@ -44,7 +45,7 @@ class ClientSerializer:
     def class_definition(self, async_mode) -> str:
         class_name = self.code_model.client.name
         has_mixin_og = any(
-            og for og in self.code_model.operation_groups if og.is_empty_operation_group
+            og for og in self.code_model.operation_groups if og.is_mixin
         )
         base_class = ""
         if has_mixin_og:
@@ -64,18 +65,18 @@ class ClientSerializer:
         for og in [
             og
             for og in self.code_model.operation_groups
-            if not og.is_empty_operation_group
+            if not og.is_mixin
         ]:
-            retval.append(f":ivar {og.name}: {og.class_name} operations")
+            retval.append(f":ivar {og.property_name}: {og.class_name} operations")
             retval.append(
-                f":vartype {og.name}: {self.code_model.namespace}{operations_folder}{og.class_name}"
+                f":vartype {og.property_name}: {self.code_model.namespace}{operations_folder}{og.class_name}"
             )
-        for param in self.code_model.client.parameters.client_method:
+        for param in self.code_model.client.parameters.method:
             retval.append(
-                f":{param.description_keyword} {param.serialized_name}: {param.description}"
+                f":{param.description_keyword} {param.client_name}: {param.description}"
             )
             retval.append(
-                f":{param.docstring_type_keyword} {param.serialized_name}: {param.docstring_type}"
+                f":{param.docstring_type_keyword} {param.client_name}: {param.docstring_type}"
             )
         if self.code_model.has_lro_operations:
             retval.append(
@@ -89,22 +90,19 @@ class ClientSerializer:
         config_name = f"{self.code_model.client.name}Configuration"
         config_call = ", ".join(
             [
-                f"{p.serialized_name}={p.serialized_name}"
-                for p in self.code_model.client.parameters.config_method
-                if not p.is_kwarg
+                f"{p.client_name}={p.client_name}"
+                for p in self.code_model.config.parameters.method
+                if p.method_location != ParameterMethodLocation.KWARG
             ]
             + ["**kwargs"]
         )
         return f"self._config = {config_name}({config_call})"
 
     def initialize_pipeline_client(self, async_mode: bool) -> str:
-        host_variable_name = (
-            self.code_model.client.parameters.host_variable_name
-        )
-        if self.code_model.client.has_parameterized_host:
-            host_variable_name = (
-                "_" + host_variable_name
-            )  # we don't want potential conflicts with input params
+        try:
+            host_variable_name = next(p for p in self.code_model.client.parameters if p.is_host).client_name
+        except StopIteration:
+            host_variable_name = "_endpoint"
         pipeline_client_name = self.code_model.client.pipeline_class(async_mode)
         return f"self._client = {pipeline_client_name}(base_url={host_variable_name}, config=self._config, **kwargs)"
 
@@ -128,7 +126,7 @@ class ClientSerializer:
         operation_groups = [
             og
             for og in self.code_model.operation_groups
-            if not og.is_empty_operation_group
+            if not og.is_mixin
         ]
         for og in operation_groups:
             disable_check = (
@@ -138,7 +136,7 @@ class ClientSerializer:
             )
             retval.extend(
                 [
-                    f"self.{og.name} = {og.class_name}({disable_check}",
+                    f"self.{og.property_name} = {og.class_name}({disable_check}",
                     "    self._client, self._config, self._serialize, self._deserialize",
                     ")",
                 ]
@@ -152,13 +150,13 @@ class ClientSerializer:
             if is_python3_file
             else "request,  # type: HttpRequest"
         ]
-        send_request_signature = request_signature + self.code_model.client.client_parameters.method_signature_kwargs(
+        send_request_signature = request_signature + self.code_model.client.parameters.method_signature_kwargs(
             is_python3_file
         )
         return utils.serialize_method(
             function_def="def",
             method_name=self.code_model.client.send_request_name,
-            is_in_class=True,
+            _need_self_param=True,
             method_param_signatures=send_request_signature,
         )
 
@@ -194,10 +192,10 @@ class ClientSerializer:
 
         request_builder = self.code_model.request_builders[0]
         request_builder_signature = ", ".join(request_builder.parameters.call)
-        if request_builder.builder_group_name:
-            rest_imported = request_builder.builder_group_name
+        if request_builder.group_name:
+            rest_imported = request_builder.group_name
             request_builder_name = (
-                f"{request_builder.builder_group_name}.{request_builder.name}"
+                f"{request_builder.group_name}.{request_builder.name}"
             )
         else:
             rest_imported = request_builder.name
@@ -248,7 +246,7 @@ class ClientSerializer:
 
     def serialize_path(self) -> List[str]:
         return utils.serialize_path(
-            self.code_model.global_parameters.path, "self._serialize"
+            self.code_model.client.parameters.path, "self._serialize"
         )
 
 
@@ -261,8 +259,8 @@ class ConfigSerializer:
         return utils.serialize_method(
             function_def="def",
             method_name="__init__",
-            is_in_class=True,
-            method_param_signatures=self.code_model.global_parameters.config_method_signature(
+            _need_self_param=True,
+            method_param_signatures=self.code_model.config.parameters.method_signature(
                 async_mode or self.is_python3_file
             ),
         )
@@ -277,7 +275,7 @@ class ConfigSerializer:
 
     def pop_kwargs_from_signature(self, async_mode: bool) -> List[str]:
         return utils.pop_kwargs_from_signature(
-            self.code_model.global_parameters.config_kwargs_to_pop(
+            self.code_model.config.parameters.kwargs_to_pop(
                 async_mode or self.is_python3_file
             ),
             check_kwarg_dict=False,
@@ -288,26 +286,26 @@ class ConfigSerializer:
     def set_constants(self) -> List[str]:
         return [
             f"self.{p.serialized_name} = {p.constant_declaration}"
-            for p in self.code_model.global_parameters.constant
-            if p not in self.code_model.global_parameters.method
+            for p in self.code_model.config.parameters.constant
+            if p not in self.code_model.config.parameters.method
         ]
 
     def check_required_parameters(self) -> List[str]:
         return [
-            f"if {p.serialized_name} is None:\n"
-            f"    raise ValueError(\"Parameter '{p.serialized_name}' must not be None.\")"
-            for p in self.code_model.global_parameters.config_method
-            if p.required and not p.constant
+            f"if {p.client_name} is None:\n"
+            f"    raise ValueError(\"Parameter '{p.client_name}' must not be None.\")"
+            for p in self.code_model.config.parameters.method
+            if not (p.optional or p.constant)
         ]
 
     def property_descriptions(self) -> List[str]:
         retval: List[str] = []
-        for p in self.code_model.global_parameters.config_method:
+        for p in self.code_model.config.parameters.method:
             retval.append(
-                f":{p.description_keyword} {p.serialized_name}: {p.description}"
+                f":{p.description_keyword} {p.client_name}: {p.description}"
             )
             retval.append(
-                f":{p.docstring_type_keyword} {p.serialized_name}: {p.docstring_type}"
+                f":{p.docstring_type_keyword} {p.client_name}: {p.docstring_type}"
             )
         retval.append('"""')
         return retval

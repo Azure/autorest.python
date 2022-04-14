@@ -4,15 +4,16 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
+import abc
 from enum import Enum, auto
 
-from typing import Dict, Any, TYPE_CHECKING, List
+from typing import Dict, Any, TYPE_CHECKING, List, Set
 
 from .imports import FileImport, ImportType, TypingSection
 from .base_model import BaseModel
 from .base_type import BaseType
 from .constant_type import ConstantType
-from .utils import MultipleTypeModel, UNDEFINED
+from .utils import UNDEFINED
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -29,7 +30,7 @@ class ParameterMethodLocation(Enum):
     KEYWORD_ONLY = auto()
     KWARG = auto()
 
-class _BaseParameter(BaseModel):
+class _BaseParameter(BaseModel, abc.ABC):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -56,11 +57,86 @@ class _BaseParameter(BaseModel):
     def docstring_type_keyword(self) -> str:
         return "type" if self.method_location == ParameterMethodLocation.POSITIONAL else "paramtype"
 
-class BodyParameter(_BaseParameter, MultipleTypeModel):
+    @abc.abstractmethod
+    def type_annotation(self) -> str:
+        ...
+
+    @property
+    @abc.abstractmethod
+    def client_default_value_declaration(self) -> str:
+        ...
+
+    @property
+    @abc.abstractmethod
+    def in_method_signature(self) -> bool:
+        ...
+
+    def method_signature(self, is_python3_file: bool) -> str:
+        type_annot = self.type_annotation()
+        if is_python3_file:
+            if self.client_default_value:
+                return f"{self.client_name}: {type_annot} = {self.client_default_value_declaration},"
+            return f"{self.client_name}: {type_annot},"
+        if self.client_default_value:
+            return f"{self.client_name}={self.client_default_value_declaration},  # type: {type_annot}"
+        return f"{self.client_name},  # type: {type_annot}"
+
+class BodyParameter(_BaseParameter):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel", content_type_to_type: Dict[str, BaseType]):
-        super().__init__(
-            yaml_data=yaml_data, code_model=code_model, content_type_to_type=content_type_to_type
-        )
+        super().__init__(yaml_data, code_model)
+        self.content_type_to_type = content_type_to_type
+        self.types = self._create_types_property()
+
+    def _create_types_property(self) -> List[BaseType]:
+        types: List[BaseType] = []
+        seen_ids: Set[int] = set()
+        for type in self.content_type_to_type.values():
+            if id(type.yaml_data) not in seen_ids:
+                types.append(type)
+            seen_ids.add(id(type.yaml_data))
+        return types
+
+    def serialization_type(self, content_type: str) -> str:
+        if self.content_type_to_type:
+            return self.content_type_to_type[content_type].serialization_type
+        return "None"
+
+    def type_annotation(self) -> str:
+        if not self.types:
+            return "None"
+        if len(self.types) > 1:
+            return f'Union[{", ".join(type.type_annotation(is_operation_file=True) for type in self.types)}]'
+        return self.types[0].type_annotation(is_operation_file=True)
+
+    @property
+    def docstring_text(self) -> str:
+        # if self.nullable:
+        #     return f"{self.schema.docstring_text} or None"
+        return " or ".join(t.docstring_text for t in self.types) or "None"
+
+    @property
+    def docstring_type(self) -> str:
+        # if self.nullable:
+        #     return f"{self.schema.docstring_type} or None"
+        return " or ".join(t.docstring_type for t in self.types) or "None"
+
+    @property
+    def client_default_value_declaration(self):
+        return self.types[0].get_declaration(self.client_default_value)
+
+    def type_to_content_types(self, yaml_id: int) -> List[str]:
+        return [
+            k for k, v in self.content_type_to_type.items()
+            if id(v.yaml_data) == yaml_id
+        ]
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        if len(self.types) > 1:
+            file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
+        for type in self.types:
+            file_import.merge(type.imports(is_operation_file=True))
+        return file_import
 
     @property
     def method_location(self) -> ParameterMethodLocation:
@@ -70,6 +146,14 @@ class BodyParameter(_BaseParameter, MultipleTypeModel):
     def flattened(self) -> bool:
         raise NotImplementedError("Haven't implemented flattening yet")
 
+    @property
+    def constant(self) -> bool:
+        return not self.optional and all(t for t in self.types if isinstance(t, ConstantType))
+
+    @property
+    def in_method_signature(self) -> bool:
+        return True
+
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "BodyParameter":
         return cls(
@@ -77,7 +161,7 @@ class BodyParameter(_BaseParameter, MultipleTypeModel):
             code_model=code_model,
             content_type_to_type={
                 k: code_model.lookup_schema(id(v))
-                for k, v in yaml_data["content"].items()
+                for k, v in yaml_data["contentTypeToType"].items()
             }
         )
 
@@ -103,10 +187,6 @@ class UrlEncodedBodyParameter(BodyParameter):
     ...
 
 class Parameter(_BaseParameter):
-    """Polymorphic parent of QueryParameter, HeaderParameter, and PathParameter.
-
-    Delegates to them based off of knowledge.
-    """
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -118,6 +198,7 @@ class Parameter(_BaseParameter):
         self.rest_api_name = yaml_data["restApiName"]
         self.location = None  # discriminator
         self.implementation = yaml_data["implementation"]
+        self.skip_url_encoding = self.yaml_data.get("skipUrlEncoding", False)
 
     @property
     def constraints(self):
@@ -130,7 +211,7 @@ class Parameter(_BaseParameter):
     @property
     def description(self):
         description = super().description
-        description += self.type.description(is_operation_file=True)
+        description += (". " + self.type.description(is_operation_file=True))
         if self.constant:
             description += " Note that overriding this default value may result in unsuported behavior."
         return description
@@ -145,10 +226,14 @@ class Parameter(_BaseParameter):
 
     @property
     def in_method_signature(self) -> bool:
-        return True
+        return self.rest_api_name != "Accept"  # hiding accept header from users
 
     def type_annotation(self) -> str:
         return self.type.type_annotation(is_operation_file=True)
+
+    @property
+    def client_default_value_declaration(self):
+        return self.type.get_declaration(self.client_default_value)
 
     @property
     def serialization_type(self) -> str:
@@ -158,32 +243,38 @@ class Parameter(_BaseParameter):
     def docstring_type(self) -> str:
         return self.type.docstring_type
 
-    def method_signature(self, is_python3_file: bool) -> str:
-        type_annot = self.type_annotation()
-        if is_python3_file:
-            if self.optional:
-                return f"{self.client_name}: {type_annot} = None,"
-            return f"{self.client_name}: {type_annot},"
-        if self.optional:
-            return f"{self.client_name}=None,  # type: {type_annot}"
-        return f"{self.client_name},  # type: {type_annot}"
-
     @property
     def full_client_name(self) -> str:
         if self.implementation == "Client":
             return f"self._config.{self.client_name}"
         return self.client_name
 
+    @property
+    def explode(self):
+        raise NotImplementedError("Haven't implemented explode yet")
+
+    @property
+    def method_location(self) -> ParameterMethodLocation:
+        if not self.in_method_signature:
+            raise ValueError(f"Parameter '{self.client_name}' is not in the method.")
+        if self.constant:
+            return ParameterMethodLocation.KWARG
+        if self.location == ParameterLocation.QUERY:
+            if self.code_model.options["only_path_and_body_params_positional"]:
+                return ParameterMethodLocation.KEYWORD_ONLY
+            return ParameterMethodLocation.POSITIONAL
+        if self.location == ParameterLocation.PATH:
+            return ParameterMethodLocation.POSITIONAL
+        # i'm a header
+        if self.rest_api_name == "Content-Type":
+            return ParameterMethodLocation.KWARG
+        if self.code_model.options["only_path_and_body_params_positional"]:
+            return ParameterMethodLocation.KEYWORD_ONLY
+        return ParameterMethodLocation.POSITIONAL
+
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "Parameter":
-        parameter_class = cls
-        if yaml_data["location"] == "header":
-            parameter_class = HeaderParameter
-        elif yaml_data["location"] == "query":
-            parameter_class = QueryParameter
-        elif yaml_data["location"] == "path":
-            parameter_class = PathParameter
-        return parameter_class(
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
+        return cls(
             yaml_data=yaml_data,
             code_model=code_model,
             type=code_model.lookup_schema(id(yaml_data["type"]))
@@ -197,44 +288,36 @@ class Parameter(_BaseParameter):
             )
         return file_import
 
-class QueryParameter(Parameter):
-    def __init__(self, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-        self.location = "query"
+class ClientParameter(Parameter):
 
     @property
-    def explode(self):
-        raise NotImplementedError("Haven't implemented explode yet")
+    def is_host(self) -> bool:
+        return self.rest_api_name == "$host"
 
     @property
     def method_location(self) -> ParameterMethodLocation:
-        if self.code_model.options["only_path_and_body_params_positional"]:
+        if self.constant:
+            return ParameterMethodLocation.KWARG
+        if (
+            self.is_host and
+            (self.code_model.options["version_tolerant"] or self.code_model.options["low_level_client"])
+        ):
+            # this means i am the base url
             return ParameterMethodLocation.KEYWORD_ONLY
         return ParameterMethodLocation.POSITIONAL
 
-class PathParameter(Parameter):
-    def __init__(self, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-        self.location = "path"
-        self.skip_url_encoding = self.yaml_data.get("skipUrlEncoding", False)
-
-    @property
-    def method_location(self) -> ParameterMethodLocation:
-        return ParameterMethodLocation.POSITIONAL
-
-class HeaderParameter(Parameter):
-    def __init__(self, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-        self.location = "header"
+class ConfigParameter(Parameter):
 
     @property
     def in_method_signature(self) -> bool:
-        return self.rest_api_name != "Accept"  # don't allow users to change accept header right now
+        return not self.is_host
+
+    @property
+    def is_host(self) -> bool:
+        return self.rest_api_name == "$host"
 
     @property
     def method_location(self) -> ParameterMethodLocation:
-        if not self.in_method_signature:
-            raise ValueError(f"Parameter '{self.client_name}' is not in the method.")
-        if self.code_model.options["only_path_and_body_params_positional"]:
-            return ParameterMethodLocation.KEYWORD_ONLY
+        if self.constant:
+            return ParameterMethodLocation.KWARG
         return ParameterMethodLocation.POSITIONAL

@@ -3,33 +3,51 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional, TYPE_CHECKING
+from typing import Any, Dict, List, Optional, TYPE_CHECKING, TypeVar, Generic, Union
 
 from .base_model import BaseModel
-from .parameter import Parameter
+from .parameter import ClientParameter, ConfigParameter
 from .parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
 from .imports import FileImport, ImportType, TypingSection
+
+ParameterListType = TypeVar(
+    "ParameterListType",
+    bound=Union[ClientGlobalParameterList, ConfigGlobalParameterList]
+)
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
 
-class Client(BaseModel):
+class _ClientConfigBase(BaseModel, Generic[ParameterListType]):
     """A service client."""
 
     def __init__(
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        client_parameters: ClientGlobalParameterList,
-        config_parameters: ConfigGlobalParameterList,
+        parameters: ParameterListType,
     ):
         super().__init__(yaml_data, code_model)
-        self.client_parameters = client_parameters
-        self.config_parameters = config_parameters
-        self.name = self.yaml_data["name"]
-        self.description = self.yaml_data["description"]
+        self.parameters = parameters
         self.url = self.yaml_data["url"]
+
+    @property
+    def description(self) -> str:
+        return self.yaml_data["description"]
+
+    @property
+    def name(self) -> str:
+        return self.yaml_data["name"]
+
+class Client(_ClientConfigBase[ClientGlobalParameterList]):
+    def __init__(
+        self,
+        yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
+        parameters: ClientGlobalParameterList
+    ):
+        super().__init__(yaml_data, code_model, parameters)
 
     def pipeline_class(self, async_mode: bool) -> str:
         if self.code_model.options["azure_arm"]:
@@ -39,6 +57,19 @@ class Client(BaseModel):
         if async_mode:
             return "AsyncPipelineClient"
         return "PipelineClient"
+
+    @property
+    def send_request_name(self) -> str:
+        return "send_request" if self.code_model.options["show_send_request"] else "_send_request"
+
+    @property
+    def filename(self) -> str:
+        if (
+            self.code_model.options["version_tolerant"]
+            or self.code_model.options["low_level_client"]
+        ):
+            return "_client"
+        return f"_{self.code_model.module_name}"
 
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
@@ -51,16 +82,10 @@ class Client(BaseModel):
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
 
-        any_optional_gp = any(not gp.required for gp in self.client_parameters)
-
-        legacy = not any(
-            g
-            for g in ["low_level_client", "version_tolerant"]
-            if g in self.code_model.options
-        )
-        if any_optional_gp or (
-            legacy and self.code_model.client.parameters.host
-        ):
+        any_optional_gp = any(gp.optional for gp in self.parameters)
+        legacy = not (self.code_model.options["low_level_client"] and self.code_model.options["version_tolerant"])
+        has_host = any(p for p in self.parameters if p.is_host)
+        if any_optional_gp or (legacy and has_host):
             file_import.add_submodule_import(
                 "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
             )
@@ -74,7 +99,7 @@ class Client(BaseModel):
                 "azure.core", self.pipeline_class(async_mode), ImportType.AZURECORE
             )
 
-        for gp in self.code_model.global_parameters:
+        for gp in self.parameters:
             file_import.merge(gp.imports())
         file_import.add_submodule_import(
             "._configuration",
@@ -114,7 +139,7 @@ class Client(BaseModel):
                 ImportType.LOCAL,
             )
 
-        if self.code_model.object_types:
+        if self.code_model.object_types and self.code_model.options["models_mode"]:
             path_to_models = ".." if async_mode else "."
             file_import.add_submodule_import(path_to_models, "models", ImportType.LOCAL)
         else:
@@ -132,7 +157,7 @@ class Client(BaseModel):
             mixin_operation = next(
                 og
                 for og in self.code_model.operation_groups
-                if og.is_empty_operation_group
+                if og.is_mixin
             )
             file_import.add_submodule_import(
                 "._operations_mixin", mixin_operation.class_name, ImportType.LOCAL
@@ -141,25 +166,66 @@ class Client(BaseModel):
             pass
         return file_import
 
-    @property
-    def filename(self) -> str:
-        if (
-            self.code_model.options["version_tolerant"]
-            or self.code_model.options["low_level_client"]
-        ):
-            return "_client"
-        return f"_{self.code_model.module_name}"
-
-    @property
-    def send_request_name(self) -> str:
-        return "send_request" if self.code_model.options["show_send_request"] else "_send_request"
-
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "Client":
-        parameters = [Parameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
+        parameters = [ClientParameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            client_parameters=ClientGlobalParameterList(code_model, parameters),
-            config_parameters=ConfigGlobalParameterList(code_model, parameters)
+            parameters=ClientGlobalParameterList(code_model, parameters),
+        )
+
+
+class Config(_ClientConfigBase[ConfigGlobalParameterList]):
+
+    @property
+    def description(self) -> str:
+        return (
+            f"Configuration for {self.yaml_data['name']}.\n\n."
+            "Note that all parameters used to create this instance are saved as instance attributes."
+        )
+
+    @property
+    def name(self) -> str:
+        return f"{super().name}Configuration"
+
+    def imports(self, async_mode: bool) -> FileImport:
+        file_import = FileImport()
+        file_import.add_submodule_import(
+            "azure.core.configuration", "Configuration", ImportType.AZURECORE
+        )
+        file_import.add_submodule_import(
+            "azure.core.pipeline", "policies", ImportType.AZURECORE
+        )
+        file_import.add_submodule_import(
+            "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
+        if self.code_model.options["package_version"]:
+            file_import.add_submodule_import(
+                ".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL
+            )
+        for gp in self.parameters:
+            file_import.merge(gp.imports())
+        if self.code_model.options["azure_arm"]:
+            policy = (
+                "AsyncARMChallengeAuthenticationPolicy"
+                if async_mode
+                else "ARMChallengeAuthenticationPolicy"
+            )
+            file_import.add_submodule_import(
+                "azure.mgmt.core.policies", "ARMHttpLoggingPolicy", ImportType.AZURECORE
+            )
+            file_import.add_submodule_import(
+                "azure.mgmt.core.policies", policy, ImportType.AZURECORE
+            )
+        return file_import
+
+
+    @classmethod
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "Config":
+        parameters = [ConfigParameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
+        return cls(
+            yaml_data=yaml_data,
+            code_model=code_model,
+            parameters=ConfigGlobalParameterList(code_model, parameters),
         )

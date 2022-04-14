@@ -35,7 +35,7 @@ class ConstantType(BaseType):
         self.value_type = value_type
         self.value = value
 
-    def get_declaration(self, value: Any):
+    def get_declaration(self, value = None):
         if value != self.value:
             _LOGGER.warning(
                 "Passed in value of %s differs from constant value of %s. Choosing constant value",
@@ -47,7 +47,7 @@ class ConstantType(BaseType):
         return self.value_type.get_declaration(self.value)
 
     def description(self, *, is_operation_file: bool) -> str:
-        constant_description = f'Constant value of "{self.value}"'
+        constant_description = f'Default value of "{self.value}".'
         if is_operation_file:
             return constant_description
         return self.yaml_data["description"] + ". " + constant_description

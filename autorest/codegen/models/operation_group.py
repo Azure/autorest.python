@@ -26,7 +26,6 @@ class OperationGroup(BaseModel):
         operations: List[Operation],
     ) -> None:
         super().__init__(yaml_data, code_model)
-        self.name = yaml_data["name"]
         self.class_name = yaml_data["className"]
         self.property_name = yaml_data["propertyName"]
         self.operations = operations
@@ -37,7 +36,7 @@ class OperationGroup(BaseModel):
 
     def base_class(self, async_mode: bool) -> str:
         base_classes: List[str] = []
-        if self.is_empty_operation_group and self.code_model.need_mixin_abc:
+        if self.is_mixin and self.code_model.need_mixin_abc:
             base_classes.append("MixinABC")
         if not (async_mode or self.code_model.options["python3_only"]):
             base_classes.append("object")
@@ -102,8 +101,8 @@ class OperationGroup(BaseModel):
 
     @property
     def filename(self) -> str:
-        basename = self.name
-        if self.is_empty_operation_group:
+        basename = self.property_name
+        if self.is_mixin:
             basename = self.code_model.module_name
 
         if (
@@ -114,9 +113,9 @@ class OperationGroup(BaseModel):
         return f"_{basename}_operations"
 
     @property
-    def is_empty_operation_group(self) -> bool:
+    def is_mixin(self) -> bool:
         """The operation group with no name is the direct client methods."""
-        return not self.yaml_data["language"]["default"]["name"]
+        return self.property_name == ""
 
     @classmethod
     def from_yaml(

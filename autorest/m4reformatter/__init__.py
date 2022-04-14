@@ -11,9 +11,6 @@ from typing import Dict, Any, List, Optional
 from .. import YamlUpdatePlugin
 
 ORIGINAL_ID_TO_UPDATED_TYPE: Dict[int, Dict[str, Any]] = {}
-
-
-
 def update_list(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
         "type": "list",
@@ -144,25 +141,25 @@ def update_type(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return updated_type
 
 def update_parameter_base(
-    yaml_data: Dict[str, Any], *, serialized_name: Optional[str] = None
+    yaml_data: Dict[str, Any], *, client_name: Optional[str] = None
 ) -> Dict[str, Any]:
     return {
         "optional": not yaml_data["required"],
         "description": yaml_data["language"]["default"]["description"],
-        "clientName": serialized_name or yaml_data["language"]["default"]["name"],
+        "clientName": client_name or yaml_data["language"]["default"]["name"],
         "clientDefaultValue": yaml_data.get("clientDefaultValue")
     }
 
-def update_parameter(yaml_data: Dict[str, Any], *, serialized_name: Optional[str] = None) -> Dict[str, Any]:
-    param_base = update_parameter_base(yaml_data, serialized_name=serialized_name)
+def update_parameter(yaml_data: Dict[str, Any], implementation: str, *, client_name: Optional[str] = None) -> Dict[str, Any]:
+    param_base = update_parameter_base(yaml_data, client_name=client_name)
     location = yaml_data["protocol"]["http"]["in"]
     if location == "uri":
         location = "path"
     param_base.update({
-        "restApiName": yaml_data["language"]["default"]["name"],
+        "restApiName": yaml_data["language"]["default"]["serializedName"],
         "location": location,
         "type": ORIGINAL_ID_TO_UPDATED_TYPE[id(yaml_data["schema"])],
-        "implementation": "Client"
+        "implementation": implementation
     })
     return param_base
 
@@ -186,7 +183,7 @@ def update_parameters(yaml_data: Dict[str, Any]) -> List[Dict[str, Any]]:
     for param in yaml_data["parameters"]:
         if param["language"]["default"]["name"] == "$host":
             continue
-        retval.append(update_parameter(param))
+        retval.append(update_parameter(param, "Method"))
 
     # now we handle content type and accept headers.
     # We only care about the content types on the body parameter itself,
@@ -194,8 +191,9 @@ def update_parameters(yaml_data: Dict[str, Any]) -> List[Dict[str, Any]]:
     for request in yaml_data["requests"]:
         for param in request["parameters"]:
             if param["protocol"]["http"]["in"] != "body":
-                param = update_parameter(param)
-                param["type"] = {"type": "string"}  # override to string type
+                param = update_parameter(param, "Method")
+                # find a string type
+                param["type"] = next(t for t in ORIGINAL_ID_TO_UPDATED_TYPE.values() if t["type"] == "string")  # override to string type
                 retval.append(param)
     return retval
 
@@ -209,17 +207,7 @@ def update_response(
     operation_group_yaml_data: Dict[str, Any],
     yaml_data: Dict[str, Any],
 ) -> Dict[str, Any]:
-    content_type_to_type = {}
-    if yaml_data.get("schema"):
-        # means this response has a body and there will be an accept response
-        type = update_type(yaml_data["schema"])
-        accept_param = next(
-            p for p in operation_group_yaml_data["requests"][0]["parameters"] if p["language"]["default"].get("serializedName", "") == "Accept"
-        )
-        # we know it will be a constant value
-        accept_type = accept_param["schema"]["value"]["value"]
-        content_type_to_type[accept_type] = type
-
+    type = update_type(yaml_data["schema"]) if yaml_data.get("schema") else None
     return {
         "headers": [update_response_header(h) for h in yaml_data["protocol"]["http"].get("headers", [])],
         "statusCodes": [
@@ -227,7 +215,7 @@ def update_response(
             for code in yaml_data["protocol"]["http"]["statusCodes"]
         ],
         "isError": any(e for e in operation_group_yaml_data.get("exceptions", []) if id(e) == id(yaml_data)),
-        "contentTypeToType": content_type_to_type
+        "type": type
     }
 
 def update_operation_group_class_name(yaml_data: Dict[str, Any], operation_group_yaml_data: Dict[str, Any]) -> str:
@@ -277,13 +265,14 @@ class M4Reformatter(YamlUpdatePlugin):
     def update_global_parameters(self, yaml_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         global_params: List[Dict[str, Any]] = []
         for global_parameter in yaml_data:
-            serialized_name: Optional[str] = None
-            if global_parameter["language"]["default"]["name"] == "$host":
+            client_name: Optional[str] = None
+            name = global_parameter["language"]["default"]["name"]
+            if name == "$host":
                 # I am the non-parameterized endpoint. Modify name based off of flag
                 version_tolerant = self._autorestapi.get_boolean_value("version-tolerant", False)
                 low_level_client = self._autorestapi.get_boolean_value("low-level-client", False)
-                serialized_name = "endpoint" if (version_tolerant or low_level_client) else "base_url"
-            global_params.append(update_parameter(global_parameter, serialized_name=serialized_name))
+                client_name = "endpoint" if (version_tolerant or low_level_client) else "base_url"
+            global_params.append(update_parameter(global_parameter, "Client", client_name=client_name))
         return global_params
 
 

@@ -3,11 +3,11 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, TypeVar, TYPE_CHECKING, cast
+from typing import Any, Dict, List, TypeVar, TYPE_CHECKING, cast, Union
 import logging
 
 
-from .base_builder import BaseBuilder, create_parameters_and_overloads
+from .base_builder import BaseBuilder
 from .parameter_list import ParameterList, RequestBuilderParameterList
 from .imports import FileImport, ImportType, TypingSection
 from .parameter import MultipartBodyParameter, UrlEncodedBodyParameter
@@ -56,7 +56,6 @@ class RequestBuilder(BaseBuilder[RequestBuilderParameterList]):
         parameters: RequestBuilderParameterList,
         overloads: List["RequestBuilder"],
         *,
-        want_tracing: bool = True,
         abstract: bool = False,
     ) -> None:
         super().__init__(
@@ -66,7 +65,7 @@ class RequestBuilder(BaseBuilder[RequestBuilderParameterList]):
             parameters=parameters,
             overloads=overloads,
             abstract=abstract,
-            want_tracing=want_tracing,
+            want_tracing=False,
         )
         self.url = yaml_data["url"]
         self.method = yaml_data["method"]
@@ -118,14 +117,14 @@ class RequestBuilder(BaseBuilder[RequestBuilderParameterList]):
         names = [
             "build",
             additional_mark,
-            yaml_data["language"]["python"]["name"],
+            yaml_data["name"],
             "request",
         ]
         name = "_".join([n for n in names if n])
 
         parameters = [RequestBuilderParameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
         abstract = False
-        parameter_list, overload_body_parameters = create_parameters_and_overloads(
+        parameter_list, overload_body_parameters = cls.create_parameters_and_overloads(
             yaml_data, code_model, is_operation=True
         )
         overloads = _get_overloads(
@@ -135,18 +134,18 @@ class RequestBuilder(BaseBuilder[RequestBuilderParameterList]):
             parameters,
             name,
         )
-        if (
-            code_model.options["version_tolerant"]
-            or code_model.options["low_level_client"]
-        ) and any(p for p in parameter_list if p.is_multipart or p.is_data_input):
-            _LOGGER.warning(
-                'Not going to generate request_builder "%s" because it has multipart / urlencoded '
-                "body parameters. Multipart / urlencoded body parameters are not supported for version "
-                "tolerant and low level generations right now. Please write your own custom operation "
-                "in the _patch.py file following https://aka.ms/azsdk/python/dpcodegen/python/customize.",
-                name,
-            )
-            abstract = True
+        # if (
+        #     code_model.options["version_tolerant"]
+        #     or code_model.options["low_level_client"]
+        # ) and any(p for p in parameter_list if p.is_multipart or p.is_data_input):
+        #     _LOGGER.warning(
+        #         'Not going to generate request_builder "%s" because it has multipart / urlencoded '
+        #         "body parameters. Multipart / urlencoded body parameters are not supported for version "
+        #         "tolerant and low level generations right now. Please write your own custom operation "
+        #         "in the _patch.py file following https://aka.ms/azsdk/python/dpcodegen/python/customize.",
+        #         name,
+        #     )
+        #     abstract = True
 
         return cls(
             yaml_data=yaml_data,

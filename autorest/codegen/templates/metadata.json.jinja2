@@ -99,7 +99,7 @@
         "async_imports": {{ async_config_imports | tojson }}
     },
     "operation_groups": {
-        {% for operation_group in code_model.operation_groups | rejectattr('is_empty_operation_group') %}
+        {% for operation_group in code_model.operation_groups | rejectattr('is_mixin') %}
         {{ operation_group.name | tojson }}: {{ operation_group.class_name | tojson }}{{ "," if not loop.last else "" }}
         {% endfor %}
     }{{ "," if mixin_operations }}

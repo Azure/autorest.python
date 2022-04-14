@@ -16,21 +16,21 @@ class {{ code_model.client.name }}Configuration(Configuration):  # pylint: disab
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
-{% if code_model.global_parameters.config_method | first %}
+{% if code_model.config.parameters.method | first %}
 
 {% endif %}
     {{ op_tools.serialize_with_wrap(serializer.property_descriptions(), "\n ") | indent }}
     {{ serializer.init_signature_and_response_type_annotation(async_mode) | indent }}
         super({{ code_model.client.name }}Configuration, self).__init__(**kwargs)
-    {% if code_model.client.parameters.config_kwargs_to_pop(async_mode) %}
+    {% if code_model.config.parameters.kwargs_to_pop(async_mode) %}
         {{ op_tools.serialize(serializer.pop_kwargs_from_signature(async_mode)) | indent(8) }}
     {% endif %}
 {% if serializer.check_required_parameters() %}
         {{ op_tools.serialize(serializer.check_required_parameters()) | indent(8) -}}
 {% endif %}
 
-{% for parameter in code_model.global_parameters.config_method %}
-        self.{{ parameter.serialized_name }} = {{ parameter.serialized_name }}
+{% for parameter in code_model.config.parameters.method %}
+        self.{{ parameter.client_name }} = {{ parameter.client_name }}
 {% endfor %}
 {% if serializer.set_constants() %}
         {{ op_tools.serialize(serializer.set_constants()) | indent(8) -}}
