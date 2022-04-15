@@ -203,7 +203,11 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
             new_kwarg_params = []
             for k in kwarg_params:
                 if k.rest_api_name == "Content-Type":
-                    if not seen_content_type and k.default_value_declaration == f'"{self.default_content_type}"':
+                    if (
+                        not seen_content_type
+                        and k.default_value_declaration
+                        == f'"{self.default_content_type}"'
+                    ):
                         new_kwarg_params.append(k)
                         seen_content_type = True
                     else:

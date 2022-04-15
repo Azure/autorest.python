@@ -308,7 +308,11 @@ class Parameter(
         return (
             "keyword"
             if self.method_location
-            in (ParameterMethodLocation.KWARG, ParameterMethodLocation.HIDDEN_KWARG, ParameterMethodLocation.KEYWORD_ONLY)
+            in (
+                ParameterMethodLocation.KWARG,
+                ParameterMethodLocation.HIDDEN_KWARG,
+                ParameterMethodLocation.KEYWORD_ONLY,
+            )
             else "param"
         )
 
@@ -317,7 +321,11 @@ class Parameter(
         return (
             "paramtype"
             if self.method_location
-            in (ParameterMethodLocation.KWARG, ParameterMethodLocation.HIDDEN_KWARG, ParameterMethodLocation.KEYWORD_ONLY)
+            in (
+                ParameterMethodLocation.KWARG,
+                ParameterMethodLocation.HIDDEN_KWARG,
+                ParameterMethodLocation.KEYWORD_ONLY,
+            )
             else "type"
         )
 
