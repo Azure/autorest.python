@@ -309,12 +309,12 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
             kwargs_to_pop += self.keyword_only
         return kwargs_to_pop
 
-    @property
-    def call(self) -> List[str]:
+    def call(self, is_python3_file: bool) -> List[str]:
         retval = [p.serialized_name for p in self.positional]
-        retval.extend(
-            [f"{p.serialized_name}={p.serialized_name}" for p in self.keyword_only]
-        )
+        if is_python3_file:
+            retval.extend(
+                [f"{p.serialized_name}={p.serialized_name}" for p in self.keyword_only]
+            )
         retval.append("**kwargs")
         return retval
 

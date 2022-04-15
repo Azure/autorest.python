@@ -189,7 +189,9 @@ class ClientSerializer:
         retval.append("")
 
         request_builder = self.code_model.request_builders[0]
-        request_builder_signature = ", ".join(request_builder.parameters.call)
+        request_builder_signature = ", ".join(
+            request_builder.parameters.call(async_mode)
+        )
         if request_builder.builder_group_name:
             rest_imported = request_builder.builder_group_name
             request_builder_name = (
