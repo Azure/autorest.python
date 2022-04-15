@@ -26,6 +26,13 @@ _LOGGER = logging.getLogger(__name__)
 _HIDDEN_KWARGS = ["content_type"]
 
 
+class ParameterMethodLocation(str, Enum):
+    POSITIONAL = "positional"
+    KEYWORD_ONLY = "keyword_only"
+    KWARG = "kwarg"
+    HIDDEN_KWARG = "hidden_kwarg"
+
+
 class ParameterLocation(Enum):
     Path = "path"
     Body = "body"
@@ -84,7 +91,6 @@ class Parameter(
         grouped_by: Optional["Parameter"] = None,
         original_parameter: Optional["Parameter"] = None,
         client_default_value: Optional[Any] = None,
-        keyword_only: Optional[bool] = None,
         content_types: Optional[List[str]] = None,
     ) -> None:
         super().__init__(yaml_data, code_model)
@@ -108,7 +114,6 @@ class Parameter(
         self.has_multiple_content_types: bool = False
         self.multiple_content_types_type_annot: Optional[str] = None
         self.multiple_content_types_docstring_type: Optional[str] = None
-        self._keyword_only = keyword_only
         self.is_multipart = (
             yaml_data.get("language", {}).get("python", {}).get("multipart", False)
         )
@@ -118,10 +123,8 @@ class Parameter(
         self.content_types = content_types or []
         self.body_kwargs: List[Parameter] = []
         self.is_body_kwarg = False
-        self.is_kwarg = self.rest_api_name == "Content-Type" or (
-            self.constant and self.inputtable_by_user
-        )
         self.need_import = True
+        self._method_location: Optional[ParameterMethodLocation] = None
 
     def __hash__(self) -> int:
         return hash(self.serialized_name)
@@ -302,11 +305,21 @@ class Parameter(
 
     @property
     def description_keyword(self) -> str:
-        return "keyword" if self.is_kwarg or self.is_keyword_only else "param"
+        return (
+            "keyword"
+            if self.method_location
+            in (ParameterMethodLocation.KWARG, ParameterMethodLocation.HIDDEN_KWARG, ParameterMethodLocation.KEYWORD_ONLY)
+            else "param"
+        )
 
     @property
     def docstring_type_keyword(self) -> str:
-        return "paramtype" if self.is_kwarg or self.is_keyword_only else "type"
+        return (
+            "paramtype"
+            if self.method_location
+            in (ParameterMethodLocation.KWARG, ParameterMethodLocation.HIDDEN_KWARG, ParameterMethodLocation.KEYWORD_ONLY)
+            else "type"
+        )
 
     @property
     def default_value(self) -> Optional[Any]:
@@ -358,24 +371,6 @@ class Parameter(
         return origin_name
 
     @property
-    def is_keyword_only(self) -> bool:
-        # this means in async mode, I am documented like def hello(positional_1, *, me!)
-        return self._keyword_only or False
-
-    @is_keyword_only.setter
-    def is_keyword_only(self, val: bool) -> None:
-        self._keyword_only = val
-        self.is_kwarg = False
-
-    @property
-    def is_hidden(self) -> bool:
-        return (
-            self.serialized_name in _HIDDEN_KWARGS
-            and self.is_kwarg
-            or (self.yaml_data["implementation"] == "Client" and self.constant)
-        )
-
-    @property
     def is_content_type(self) -> bool:
         return (
             self.rest_api_name == "Content-Type"
@@ -383,8 +378,20 @@ class Parameter(
         )
 
     @property
-    def is_positional(self) -> bool:
-        return self.in_method_signature and not (self.is_keyword_only or self.is_kwarg)
+    def method_location(self) -> ParameterMethodLocation:
+        if self._method_location:
+            return self._method_location
+        if self.serialized_name in _HIDDEN_KWARGS or (
+            self._implementation == "Client" and self.constant
+        ):
+            return ParameterMethodLocation.HIDDEN_KWARG
+        if self.constant and self.inputtable_by_user:
+            return ParameterMethodLocation.KWARG
+        return ParameterMethodLocation.POSITIONAL
+
+    @method_location.setter
+    def method_location(self, val: ParameterMethodLocation) -> None:
+        self._method_location = val
 
     @classmethod
     def from_yaml(
@@ -453,21 +460,26 @@ class Parameter(
 
 class ParameterOnlyPathAndBodyPositional(Parameter):
     @property
-    def is_keyword_only(self) -> bool:
-        if self._keyword_only is not None:
-            return self._keyword_only
-        return self.in_method_signature and not (
-            self.is_hidden
-            or self.location == ParameterLocation.Path
-            or self.location == ParameterLocation.Uri
-            or self.location == ParameterLocation.Body
-            or self.is_kwarg
-        )
+    def method_location(self) -> ParameterMethodLocation:
+        super_method_location = super().method_location
+        if super_method_location in (
+            ParameterMethodLocation.KWARG,
+            ParameterMethodLocation.HIDDEN_KWARG,
+        ):
+            return super_method_location
+        if self._method_location:
+            return self._method_location
+        if self.location not in (
+            ParameterLocation.Path,
+            ParameterLocation.Uri,
+            ParameterLocation.Body,
+        ):
+            return ParameterMethodLocation.KEYWORD_ONLY
+        return super_method_location
 
-    @is_keyword_only.setter
-    def is_keyword_only(self, val: bool) -> None:
-        self._keyword_only = val
-        self.is_kwarg = False
+    @method_location.setter
+    def method_location(self, val: ParameterMethodLocation) -> None:
+        self._method_location = val
 
 
 def get_parameter(code_model):

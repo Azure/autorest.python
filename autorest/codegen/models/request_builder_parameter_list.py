@@ -7,7 +7,12 @@ from copy import copy
 from typing import List, Optional, Tuple, TypeVar, Dict, TYPE_CHECKING
 from .request_builder_parameter import RequestBuilderParameter
 from .parameter_list import ParameterList
-from .parameter import ParameterLocation, Parameter, ParameterStyle
+from .parameter import (
+    ParameterLocation,
+    Parameter,
+    ParameterMethodLocation,
+    ParameterStyle,
+)
 from .primitive_schemas import AnySchema
 from .dictionary_schema import DictionarySchema
 from .base_schema import BaseSchema
@@ -230,7 +235,10 @@ class RequestBuilderParameterList(ParameterList):
         signature_parameters = (
             signature_parameters_no_default_value + signature_parameters_default_value
         )
-        signature_parameters.sort(key=lambda item: item.is_keyword_only)
+        signature_parameters.sort(
+            key=lambda item: item.method_location
+            == ParameterMethodLocation.KEYWORD_ONLY
+        )
         signature_parameters = self._filter_out_multiple_content_type(
             signature_parameters
         )

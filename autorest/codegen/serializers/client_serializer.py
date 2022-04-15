@@ -4,8 +4,10 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import List
+
 from . import utils
 from ..models import CodeModel
+from ..models.parameter import ParameterMethodLocation
 
 
 class ClientSerializer:
@@ -91,7 +93,8 @@ class ClientSerializer:
             [
                 f"{p.serialized_name}={p.serialized_name}"
                 for p in self.code_model.service_client.parameters.config_method
-                if not p.is_kwarg
+                if not p.method_location
+                in (ParameterMethodLocation.KWARG, ParameterMethodLocation.HIDDEN_KWARG)
             ]
             + ["**kwargs"]
         )

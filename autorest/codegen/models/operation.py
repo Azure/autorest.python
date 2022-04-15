@@ -10,7 +10,12 @@ from typing import cast, Dict, List, Any, Optional, Union, Set, TYPE_CHECKING
 from .base_builder import BaseBuilder, create_parameters
 from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
-from .parameter import Parameter, get_parameter, ParameterLocation
+from .parameter import (
+    Parameter,
+    ParameterMethodLocation,
+    get_parameter,
+    ParameterLocation,
+)
 from .parameter_list import ParameterList
 from .base_schema import BaseSchema
 from .object_schema import ObjectSchema
@@ -434,7 +439,7 @@ class Operation(
         if len(parameter_list.content_types) > 1:
             for p in parameter_list.parameters:
                 if p.rest_api_name == "Content-Type":
-                    p.is_keyword_only = True
+                    p.method_location = ParameterMethodLocation.KEYWORD_ONLY
         request_builder = code_model.lookup_request_builder(id(yaml_data))
 
         return cls(

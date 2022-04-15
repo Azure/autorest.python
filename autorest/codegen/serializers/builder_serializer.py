@@ -10,6 +10,7 @@ from collections import defaultdict
 from abc import abstractmethod, ABC
 from typing import Any, List, TypeVar, Dict, Union, Optional, cast
 
+
 from ..models import (
     Operation,
     CodeModel,
@@ -28,6 +29,7 @@ from ..models import (
     IOSchema,
     ParameterStyle,
     ParameterLocation,
+    ParameterMethodLocation,
 )
 from . import utils
 
@@ -318,7 +320,11 @@ class _BuilderBaseSerializer(
         self, builder: Union[RequestBuilder, Operation]
     ) -> List[str]:
         description_list: List[str] = []
-        for param in [m for m in builder.parameters.method if not m.is_hidden]:
+        for param in [
+            m
+            for m in builder.parameters.method
+            if m.method_location != ParameterMethodLocation.HIDDEN_KWARG
+        ]:
             description_list.extend(
                 f":{param.description_keyword} { param.serialized_name }: { param.description }".replace(
                     "\n", "\n "
