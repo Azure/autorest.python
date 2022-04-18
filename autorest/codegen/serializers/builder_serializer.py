@@ -10,7 +10,6 @@ from collections import defaultdict
 from abc import abstractmethod, ABC
 from typing import Any, List, TypeVar, Dict, Union, Optional, cast
 
-from autorest.codegen.models.parameter import ParameterMethodLocation
 
 from ..models import (
     Operation,
@@ -29,6 +28,7 @@ from ..models import (
     Response,
     BinaryType,
     SingleTypeBodyParameter,
+    ParameterMethodLocation,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from . import utils

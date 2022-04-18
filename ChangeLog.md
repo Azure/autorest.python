@@ -1,6 +1,6 @@
 # Change Log
 
-### 2022-xx-xx - 5.16.0
+### 2022-04-18 - 5.16.0
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -13,6 +13,11 @@
 **Breaking Changes in Version Tolerant Generation**
 
 - We no longer generate operations for operations with multipart or urlencoded bodies. SDK writers must implement these operations in their customized patch file. See https://aka.ms/azsdk/python/dpcodegen/python/customize for how to customize generated code #1223
+
+**Bug Fixes**
+
+- Drop package dependency on "@azure-tools/extension", switch to "@autorest/system-requirements" #1229
+- Fix `content_type` generation in multiapi SDKs with multiple content types for bodies #1232
 
 ### 2022-04-07 - 5.15.0
 

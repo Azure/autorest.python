@@ -63,7 +63,7 @@ class StorageManagementClient:
         Use these helper methods to create the request you pass to this method.
 
         >>> from storagelowlevel.rest import storage_accounts
-        >>> request = storage_accounts.build_check_name_availability_request(subscription_id, json=json, content=content, **kwargs)
+        >>> request = storage_accounts.build_check_name_availability_request(subscription_id, **kwargs)
         <HttpRequest [POST], url: '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

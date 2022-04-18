@@ -127,7 +127,8 @@
                         {% set sync_return_type_wrapper = "" %}
                     {% endif %}
                     "signature": {{ (operation_serializer.method_signature_and_response_type_annotation(operation, False, want_decorators=False) + "\n") | tojson }},
-                    "doc": {{ op_tools.description(operation, operation_serializer).rstrip("\n") | tojson }}
+                    "doc": {{ op_tools.description(operation, operation_serializer).rstrip("\n") | tojson }},
+                    "call": {{ operation.parameters.call(is_python3_file=False) | join(', ') | tojson }}
                 },
                 "async": {
                     {% set coroutine = False if (is_paging(operation) and not is_lro(operation)) else True %}
@@ -147,9 +148,9 @@
                         {% set async_return_type_wrapper = "" %}
                     {% endif %}
                     "signature": {{ (operation_serializer.method_signature_and_response_type_annotation(operation, True, want_decorators=False) + "\n") | tojson }},
-                    "doc": {{ op_tools.description(operation, operation_serializer).rstrip("\n") | tojson }}
-                },
-                "call": {{ operation.parameters.method | rejectattr("is_kwarg") | map(attribute="serialized_name") | rejectattr("is_kwarg") | join(', ') | tojson }}
+                    "doc": {{ op_tools.description(operation, operation_serializer).rstrip("\n") | tojson }},
+                    "call": {{ operation.parameters.call(is_python3_file=True) | join(', ') | tojson }}
+                }
             }{{ "," if not loop.last else "" }}
             {% endfor %}
         }

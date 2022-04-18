@@ -44,7 +44,7 @@ class ReservedWordsClient:
         Use these helper methods to create the request you pass to this method.
 
         >>> from reservedwordslowlevel.rest import import_builders
-        >>> request = import_builders.build_operation_one_request(parameter1=parameter1, **kwargs)
+        >>> request = import_builders.build_operation_one_request(**kwargs)
         <HttpRequest [PUT], url: '/reservedWords/operationGroup/import'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
