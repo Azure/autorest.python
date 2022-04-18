@@ -44,7 +44,7 @@ class AutoRestParameterFlattening:
         Use these helper methods to create the request you pass to this method.
 
         >>> from parameterflatteninglowlevel.rest import availability_sets
-        >>> request = availability_sets.build_update_request(resource_group_name, avset, json=json, content=content, **kwargs)
+        >>> request = availability_sets.build_update_request(resource_group_name, avset, **kwargs)
         <HttpRequest [PATCH], url: '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
