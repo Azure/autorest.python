@@ -82,7 +82,7 @@ class BooleanType(PrimitiveType):
         return "bool"
 
 
-class IOType(PrimitiveType):
+class BinaryType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.type = "IO"
@@ -108,7 +108,7 @@ class IOType(PrimitiveType):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(b"bytes")
 
-    def imports(self) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
             "typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL
@@ -134,7 +134,7 @@ class AnyType(PrimitiveType):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration({})
 
-    def imports(self) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
@@ -316,7 +316,7 @@ class DatetimeType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(self) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -350,7 +350,7 @@ class TimeType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(self) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -384,7 +384,7 @@ class UnixTimeType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(self) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -418,7 +418,7 @@ class DateType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(self) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
@@ -452,7 +452,7 @@ class DurationType(PrimitiveType):
         """
         return f'"{value}"'
 
-    def imports(self) -> FileImport:
+    def imports(self, *, is_operation_file: bool) -> FileImport:
         file_import = FileImport()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import

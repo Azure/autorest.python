@@ -37,7 +37,7 @@ class ListType(BaseType):
         return f"List[{self.element_type.type_annotation(is_operation_file=is_operation_file)}]"
 
     def description(self, *, is_operation_file: bool) -> str:
-        return "" if is_operation_file else self.yaml_data["description"]
+        return "" if is_operation_file else self.yaml_data.get("description", "")
 
     @property
     def docstring_type(self) -> str:

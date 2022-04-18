@@ -96,7 +96,7 @@ class EnumType(BaseType):
         enum_description = f"Known values are: {possible_values_str}."
         if is_operation_file:
             return enum_description
-        return self.yaml_data["description"] + ". " + enum_description
+        return self.yaml_data.get("description", self.name)+ ". " + enum_description
 
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
         """The python type used for type annotation

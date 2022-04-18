@@ -5,14 +5,16 @@
 # --------------------------------------------------------------------------
 import logging
 import sys
-from typing import Dict, Any, Union, Type
+from typing import Dict, Any, List, Union, Type
 from pathlib import Path
 import yaml
 
+
 from .. import Plugin
+from .models import RequestBuilder, OverloadedRequestBuilder
 from .models.client import Client, Config
 from .models.code_model import CodeModel
-from .models import build_type, RequestBuilder
+from .models import build_type, RequestBuilderBase
 from .models.operation_group import OperationGroup
 from .models.parameter import Parameter
 from .models.parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
@@ -200,11 +202,13 @@ class CodeGenerator(Plugin):
 
         # Build request builders
         if yaml_data.get("operationGroups"):
-            code_model.request_builders = [
-                RequestBuilder.from_yaml(operation_yaml, code_model=code_model)
-                for og_group in yaml_data["operationGroups"]
-                for operation_yaml in og_group["operations"]
-            ]
+            for og_group in yaml_data["operationGroups"]:
+                for operation_yaml in og_group["operations"]:
+                    request_builder = RequestBuilderBase.from_yaml(operation_yaml, code_model=code_model)
+                    if request_builder.overloads:
+                        code_model.request_builders.extend(request_builder.overloads)
+                    code_model.request_builders.append(request_builder)
+
         _build_convenience_layer(yaml_data=yaml_data, code_model=code_model)
 
         if options["credential"]:
@@ -427,7 +431,16 @@ class CodeGenerator(Plugin):
         if "code-model-v4-no-tags.yaml" not in inputs:
             raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
 
-        file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
+        if self._autorestapi.get_value("input-yaml"):
+            input_yaml = self._autorestapi.get_value("input-yaml")
+            file_content = self._autorestapi.read_file(input_yaml)
+        else:
+            inputs = self._autorestapi.list_inputs()
+            _LOGGER.debug("Possible Inputs: %s", inputs)
+            if "code-model-v4-no-tags.yaml" not in inputs:
+                raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
+
+            file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
 
         # Parse the received YAML
         yaml_data = yaml.safe_load(file_content)

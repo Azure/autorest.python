@@ -20,11 +20,14 @@ class ModelGenericSerializer(ModelBaseSerializer):
         return "**kwargs"
 
     def required_property_no_default_init(self, prop: Property) -> str:
-        return f"self.{prop.name} = kwargs['{prop.name}']"
+        return f"self.{prop.client_name} = kwargs['{prop.client_name}']"
 
     def optional_property_init(self, prop: Property) -> str:
-        default = prop.default_value_declaration
-        return f"self.{prop.name} = kwargs.get('{prop.name}', {default})"
+        default = prop.type.get_declaration(prop.client_default_value)
+        return f"self.{prop.client_name} = kwargs.get('{prop.client_name}', {default})"
 
     def initialize_standard_arg(self, prop: Property) -> str:
         return self.initialize_standard_property(prop)
+
+    def super_call_template(self, model: ModelType) -> str:
+        return "super({}, self).__init__({})".format(model.name)

@@ -7,18 +7,20 @@ from typing import List
 
 from . import utils
 from ..models import CodeModel, ParameterMethodLocation
+from .parameter_serializer import ParameterSerializer, PopKwargType
 
 
 class ClientSerializer:
     def __init__(self, code_model: CodeModel, is_python3_file: bool) -> None:
         self.code_model = code_model
         self.is_python3_file = is_python3_file
+        self.parameter_serializer = ParameterSerializer(code_model)
 
     def _init_signature(self, async_mode: bool) -> str:
-        return utils.serialize_method(
+        return self.parameter_serializer.serialize_method(
             function_def="def",
             method_name="__init__",
-            _need_self_param=True,
+            need_self_param=True,
             method_param_signatures=self.code_model.client.parameters.method_signature(
                 async_mode or self.is_python3_file
             ),
@@ -33,13 +35,13 @@ class ClientSerializer:
         )
 
     def pop_kwargs_from_signature(self, async_mode: bool) -> List[str]:
-        return utils.pop_kwargs_from_signature(
+        return self.parameter_serializer.pop_kwargs_from_signature(
             self.code_model.client.parameters.kwargs_to_pop(
                 async_mode or self.is_python3_file,
             ),
             check_kwarg_dict=False,
-            pop_headers_kwarg=utils.PopKwargType.NO,
-            pop_params_kwarg=utils.PopKwargType.NO,
+            pop_headers_kwarg=PopKwargType.NO,
+            pop_params_kwarg=PopKwargType.NO,
         )
 
     def class_definition(self, async_mode) -> str:
@@ -153,10 +155,10 @@ class ClientSerializer:
         send_request_signature = request_signature + self.code_model.client.parameters.method_signature_kwargs(
             is_python3_file
         )
-        return utils.serialize_method(
+        return self.parameter_serializer.serialize_method(
             function_def="def",
             method_name=self.code_model.client.send_request_name,
-            _need_self_param=True,
+            need_self_param=True,
             method_param_signatures=send_request_signature,
         )
 
@@ -245,7 +247,7 @@ class ClientSerializer:
         return retval
 
     def serialize_path(self) -> List[str]:
-        return utils.serialize_path(
+        return self.parameter_serializer.serialize_path(
             self.code_model.client.parameters.path, "self._serialize"
         )
 
@@ -253,13 +255,14 @@ class ClientSerializer:
 class ConfigSerializer:
     def __init__(self, code_model: CodeModel, is_python3_file: bool) -> None:
         self.code_model = code_model
+        self.parameter_serializer = ParameterSerializer(code_model)
         self.is_python3_file = is_python3_file
 
     def _init_signature(self, async_mode: bool) -> str:
-        return utils.serialize_method(
+        return self.parameter_serializer.serialize_method(
             function_def="def",
             method_name="__init__",
-            _need_self_param=True,
+            need_self_param=True,
             method_param_signatures=self.code_model.config.parameters.method_signature(
                 async_mode or self.is_python3_file
             ),
@@ -274,13 +277,13 @@ class ConfigSerializer:
         )
 
     def pop_kwargs_from_signature(self, async_mode: bool) -> List[str]:
-        return utils.pop_kwargs_from_signature(
+        return self.parameter_serializer.pop_kwargs_from_signature(
             self.code_model.config.parameters.kwargs_to_pop(
                 async_mode or self.is_python3_file
             ),
             check_kwarg_dict=False,
-            pop_headers_kwarg=utils.PopKwargType.NO,
-            pop_params_kwarg=utils.PopKwargType.NO,
+            pop_headers_kwarg=PopKwargType.NO,
+            pop_params_kwarg=PopKwargType.NO,
         )
 
     def set_constants(self) -> List[str]:

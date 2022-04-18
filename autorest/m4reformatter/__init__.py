@@ -6,11 +6,13 @@
 """The modelerfour reformatter autorest plugin.
 """
 import re
-from typing import Dict, Any, List, Optional
+import copy
+from typing import Dict, Any, List, Optional, Set, Tuple
 
 from .. import YamlUpdatePlugin
-
+JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
 ORIGINAL_ID_TO_UPDATED_TYPE: Dict[int, Dict[str, Any]] = {}
+
 def update_list(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
         "type": "list",
@@ -88,7 +90,7 @@ def fill_model(yaml_data: Dict[str, Any], current_model: Dict[str, Any]) -> Dict
         })
     current_model.update({
         "properties": properties,
-        "parents": [update_type(yaml_data=p) for p in yaml_parents if p["type"] == "model"],
+        "parents": [update_type(yaml_data=p) for p in yaml_parents if p["type"] == "object"],
         "discriminatedSubtypes": update_discriminated_subtypes(yaml_data),
         "discriminatorValue": yaml_data.get("discriminatorValue"),
     })
@@ -103,7 +105,9 @@ def update_primitive(type_group: str, yaml_data: Dict[str, Any]) -> Dict[str, An
     if type_group == "string":
         return {"type": "string"}
     if type_group == "byte-array":
-        return {"type": "bytes"}
+        return {"type": "base64"}
+    if type_group == "binary":
+        return {"type": "binary"}
     if type_group == "any":
         return {"type": "any"}
     if type_group == "date-time":
@@ -143,25 +147,34 @@ def update_type(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
 def update_parameter_base(
     yaml_data: Dict[str, Any], *, client_name: Optional[str] = None
 ) -> Dict[str, Any]:
+    location = yaml_data["protocol"]["http"]["in"]
+    if location == "uri":
+        location = "path"
     return {
-        "optional": not yaml_data["required"],
+        "optional": not yaml_data.get("required", False),
         "description": yaml_data["language"]["default"]["description"],
         "clientName": client_name or yaml_data["language"]["default"]["name"],
-        "clientDefaultValue": yaml_data.get("clientDefaultValue")
+        "clientDefaultValue": yaml_data.get("clientDefaultValue"),
+        "location": location,
     }
 
 def update_parameter(yaml_data: Dict[str, Any], implementation: str, *, client_name: Optional[str] = None) -> Dict[str, Any]:
     param_base = update_parameter_base(yaml_data, client_name=client_name)
-    location = yaml_data["protocol"]["http"]["in"]
-    if location == "uri":
-        location = "path"
     param_base.update({
         "restApiName": yaml_data["language"]["default"]["serializedName"],
-        "location": location,
         "type": ORIGINAL_ID_TO_UPDATED_TYPE[id(yaml_data["schema"])],
-        "implementation": implementation
+        "implementation": implementation,
+        "explode": yaml_data["protocol"]["http"].get("explode", False)
     })
     return param_base
+
+def get_all_body_types(yaml_data: Dict[str, Any]) -> List[Dict[str, Any]]:
+    seen_body_types = {}
+    for schema_request in yaml_data.values():
+        curr_body_param = next(p for p in schema_request["parameters"] if p["protocol"]["http"]["in"] == "body")
+        seen_body_types[id(curr_body_param["schema"])] = update_type(curr_body_param["schema"])
+    return list(seen_body_types.values())
+
 
 def update_body_parameter(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     base_body_param = next(
@@ -171,30 +184,45 @@ def update_body_parameter(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         if p["protocol"]["http"]["in"] == "body"
     )
     param_base = update_parameter_base(base_body_param)
-    content_type_to_type: Dict[str, Dict[str, Any]] = {}
-    for content_type, schema_request in yaml_data.items():
-        curr_body_param = next(p for p in schema_request["parameters"] if p["protocol"]["http"]["in"] == "body")
-        content_type_to_type[content_type] = update_type(curr_body_param["schema"])
-    param_base["contentTypeToType"] = content_type_to_type
+    all_body_types = get_all_body_types(yaml_data)
+    if len(all_body_types) == 1:
+        # single type body parameter
+        param_base["discriminator"] = "single"
+        param_base["type"] = all_body_types[0]
+        param_base["contentTypes"] = list(yaml_data.keys())
+    else:
+        param_base["discriminator"] = "multiple"
+        content_type_to_type: Dict[str, Dict[str, Any]] = {}
+        # multiple type body parameter
+        for content_type, schema_request in yaml_data.items():
+            curr_body_param = next(p for p in schema_request["parameters"] if p["protocol"]["http"]["in"] == "body")
+            content_type_to_type[content_type] = update_type(curr_body_param["schema"])
+        param_base["contentTypeToType"] = content_type_to_type
     return param_base
 
 def update_parameters(yaml_data: Dict[str, Any]) -> List[Dict[str, Any]]:
     retval: List[Dict[str, Any]] = []
+    seen_rest_api_names: Set[str] = set()
     for param in yaml_data["parameters"]:
         if param["language"]["default"]["name"] == "$host":
             continue
-        retval.append(update_parameter(param, "Method"))
+        if param["language"]["default"]["serializedName"] not in seen_rest_api_names:
+            updated_param = update_parameter(param, "Method")
+            retval.append(updated_param)
+            seen_rest_api_names.add(updated_param["restApiName"])
 
     # now we handle content type and accept headers.
     # We only care about the content types on the body parameter itself,
     # so ignoring the different content types for now
-    for request in yaml_data["requests"]:
+    for request in yaml_data["requestMediaTypes"].values():
         for param in request["parameters"]:
             if param["protocol"]["http"]["in"] != "body":
-                param = update_parameter(param, "Method")
-                # find a string type
-                param["type"] = next(t for t in ORIGINAL_ID_TO_UPDATED_TYPE.values() if t["type"] == "string")  # override to string type
-                retval.append(param)
+                if param["language"]["default"]["serializedName"] not in seen_rest_api_names:
+                    param = update_parameter(param, "Method")
+                    # find a string type
+                    param["type"] = next(t for t in ORIGINAL_ID_TO_UPDATED_TYPE.values() if t["type"] == "string")  # override to string type
+                    retval.append(param)
+                    seen_rest_api_names.add(param["restApiName"])
     return retval
 
 def update_response_header(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
@@ -220,24 +248,71 @@ def update_response(
 
 def update_operation_group_class_name(yaml_data: Dict[str, Any], operation_group_yaml_data: Dict[str, Any]) -> str:
     name = operation_group_yaml_data["language"]["default"]["name"]
-    if operation_group_yaml_data["language"] == "":
+    if name == "":
         # i'm a mixin
-        return yaml_data["default"]["name"] + "OperationsMixin"
+        return yaml_data["language"]["default"]["name"] + "OperationsMixin"
     if name == "Operations":
         return "Operations"
     return name + "Operations"
 
-def update_operation(group_name: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+def _get_default_content_type(content_types: List[str]) -> Optional[str]:
+    json_values = [ct for ct in content_types if JSON_REGEXP.match(ct)]
+    if json_values:
+        if "application/json" in json_values:
+            return "application/json"
+        return json_values[0]
+
+    xml_values = [ct for ct in content_types if "xml" in ct]
+    if xml_values:
+        if "application/xml" in xml_values:
+            return "application/xml"
+        return xml_values[0]
+
+    if "application/octet-stream" in content_types:
+        return "application/octet-stream"
+    return None
+
+def update_overloads(group_name: str, yaml_data: Dict[str, Any], body_parameter: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    overloads: List[Dict[str, Any]] = []
+    if not body_parameter or body_parameter["discriminator"] == "single":
+        return overloads
+
+    seen_types: Set[int] = set()
+
+    for yaml_type in body_parameter["contentTypeToType"].values():
+        if id(yaml_type) in seen_types:
+            continue
+        chosen_content_types = [
+            k for k, v in body_parameter["contentTypeToType"].items()
+            if id(yaml_type) == id(v)
+        ]
+        new_yaml_data = copy.copy(yaml_data)
+        new_yaml_data["requestMediaTypes"] = {k: v for k, v in yaml_data["requestMediaTypes"].items() if k in chosen_content_types}
+        default_content_type = _get_default_content_type(chosen_content_types)
+        for rmt in new_yaml_data["requestMediaTypes"].values():
+            for parameter in rmt["parameters"]:
+                if parameter["language"]["default"]["name"] == "content_type":
+                    parameter["clientDefaultValue"] = default_content_type
+        seen_types.add(id(yaml_type))
+        overloads.append(update_operation(group_name, new_yaml_data, is_overload=True))
+
+    return overloads
+
+
+def update_operation(group_name: str, yaml_data: Dict[str, Any], *, is_overload: bool = False) -> Dict[str, Any]:
+    body_parameter = update_body_parameter(yaml_data["requestMediaTypes"]) if yaml_data.get("requestMediaTypes") else None
     return {
         "name": yaml_data["language"]["default"]["name"],
         "description": yaml_data["language"]["default"]["description"],
         "url": yaml_data["requests"][0]["protocol"]["http"]["path"],
         "method": yaml_data["requests"][0]["protocol"]["http"]["method"].upper(),
         "parameters": update_parameters(yaml_data),
-        "bodyParameter": update_body_parameter(yaml_data["requestMediaTypes"]) if yaml_data.get("requestMediaTypes") else None,
+        "bodyParameter": body_parameter,
         "responses": [update_response(yaml_data, r) for r in yaml_data["responses"]],
         "groupName": group_name,
         "operationType": "basic",
+        "overloads": update_overloads(group_name, yaml_data, body_parameter),
+        "isOverload": is_overload,
     }
 
 def update_operation_group(yaml_data: Dict[str, Any], operation_group_yaml_data: Dict[str, Any]) -> Dict[str, Any]:
@@ -272,6 +347,7 @@ class M4Reformatter(YamlUpdatePlugin):
                 version_tolerant = self._autorestapi.get_boolean_value("version-tolerant", False)
                 low_level_client = self._autorestapi.get_boolean_value("low-level-client", False)
                 client_name = "endpoint" if (version_tolerant or low_level_client) else "base_url"
+                global_parameter["language"]["default"]["description"] = "Service URL."
             global_params.append(update_parameter(global_parameter, "Client", client_name=client_name))
         return global_params
 

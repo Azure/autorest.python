@@ -8,7 +8,7 @@ from typing import Any, Dict, Optional, TYPE_CHECKING
 from .base_model import BaseModel
 from .constant_type import ConstantType
 from .base_type import BaseType
-from .utils import UNDEFINED
+from .imports import FileImport
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -26,9 +26,9 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.client_name = self.yaml_data["clientName"]
         self.type = type
         self.optional: bool = self.yaml_data["optional"]
-        self.readonly: bool = self.yaml_data.get("readonly")
+        self.readonly: bool = self.yaml_data.get("readonly", False)
         self.is_discriminator: bool = yaml_data.get("isDiscriminator", False)
-        self.client_default_value = yaml_data.get("clientDefaultValue", UNDEFINED)
+        self.client_default_value = yaml_data.get("clientDefaultValue", None)
 
     def description(self, *, is_operation_file: bool) -> str:
         if is_operation_file:
@@ -67,6 +67,25 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.description(is_operation_file=False):
             kwargs["description"] = self.description
         return self.type.get_json_template_representation(**kwargs)
+
+    @property
+    def validation(self) -> Optional[Dict[str, Any]]:
+        retval: Dict[str, Any] = {}
+        if not self.optional:
+            retval["required"] = True
+        if self.readonly:
+            retval["readonly"] = True
+        if self.constant:
+            retval["constant"] = True
+        retval.update(self.type.validation or {})
+        return retval or None
+
+    @property
+    def attribute_map(self) -> str:
+        return f'"{self.client_name}": {{"key": "{self.rest_api_name}", "type": "{self.serialization_type}"}},'
+
+    def imports(self) -> FileImport:
+        return self.type.imports(is_operation_file=False)
 
     @classmethod
     def from_yaml(

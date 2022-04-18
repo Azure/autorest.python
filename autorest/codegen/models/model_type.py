@@ -12,7 +12,7 @@ from .imports import FileImport, ImportModel, ImportType, TypingSection
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
-def _get_properties_from_parents(type: "ModelType", properties: List[Property]) -> List[Property]:
+def _get_properties(type: "ModelType", properties: List[Property]) -> List[Property]:
     for parent in type.parents:
         # here we're adding the properties from our parents
 
@@ -21,7 +21,7 @@ def _get_properties_from_parents(type: "ModelType", properties: List[Property]) 
         property_names = set([p.client_name for p in properties] + [p.client_name for p in type.properties])
         chosen_parent_properties = [p for p in parent.properties if p.client_name not in property_names]
         properties = (
-            _get_properties_from_parents(parent, chosen_parent_properties) + properties
+            _get_properties(parent, chosen_parent_properties) + properties
         )
     return properties
 
@@ -71,7 +71,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         return f"~{self.code_model.namespace}.models.{self.name}" if self.code_model.options["models_mode"] else "JSON"
 
     def description(self, *, is_operation_file: bool = False) -> str:
-        return "" if is_operation_file else self.yaml_data["description"]
+        return "" if is_operation_file else self.yaml_data.get("description", self.name)
 
     @property
     def docstring_text(self) -> str:
@@ -130,13 +130,10 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             cast(ModelType, build_type(bm, code_model))
             for bm in yaml_data.get("parents", [])
         ]
-        self.properties = [
+        properties = [
             Property.from_yaml(p, code_model) for p in yaml_data["properties"]
         ]
-        try:
-            self.properties += _get_properties_from_parents(self, self.properties)
-        except AttributeError:
-            a = "b"
+        self.properties = _get_properties(self, properties)
         # checking to see if this is a polymorphic class
         self.discriminated_subtypes = {
             discriminator_value: cast(ModelType, build_type(subtype_yaml_data, code_model))

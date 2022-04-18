@@ -3,12 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, TYPE_CHECKING
+from ctypes import cast
+from typing import TYPE_CHECKING, Any, Dict
 from .parameter import (
-    BodyParameter,
+    MultipleTypeBodyParameter,
     ParameterMethodLocation,
     Parameter,
-    OverloadBodyParameter
+    SingleTypeBodyParameter
 )
 from .model_type import ModelType
 from .list_type import ListType
@@ -17,12 +18,16 @@ from .dictionary_type import DictionaryType
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
-class RequestBuilderBodyParameter(BodyParameter):
+class RequestBuilderMultipleTypeBodyParameter(MultipleTypeBodyParameter):
     @property
     def method_location(self) -> ParameterMethodLocation:
         return ParameterMethodLocation.KEYWORD_ONLY
 
-class RequestBuilderOverloadBodyParameter(OverloadBodyParameter):
+    @classmethod
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "RequestBuilderMultipleTypeBodyParameter":
+        return super().from_yaml(yaml_data, code_model)  # type: ignore
+
+class RequestBuilderSingleTypeBodyParameter(SingleTypeBodyParameter):
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
@@ -30,6 +35,14 @@ class RequestBuilderOverloadBodyParameter(OverloadBodyParameter):
             self.client_name = "json"
         else:
             self.client_name = "content"
+
+    @property
+    def method_location(self) -> ParameterMethodLocation:
+        return ParameterMethodLocation.KEYWORD_ONLY
+
+    @classmethod
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "RequestBuilderSingleTypeBodyParameter":
+        return super().from_yaml(yaml_data, code_model)  # type: ignore
 
 class RequestBuilderParameter(Parameter):
 

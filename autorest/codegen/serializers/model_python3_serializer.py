@@ -21,7 +21,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
             for p in model.properties
             if not p.readonly and not p.is_discriminator and not p.constant
         ]
-        init_line_parameters.sort(key=lambda x: x.required, reverse=True)
+        init_line_parameters.sort(key=lambda x: x.optional)
         if init_line_parameters:
             init_properties_declaration.append("*")
         for param in init_line_parameters:
@@ -31,28 +31,30 @@ class ModelPython3Serializer(ModelBaseSerializer):
 
     def properties_to_pass_to_super(self, model: ModelType) -> str:
         properties_to_pass_to_super = []
-        for uncast_base_model in model.base_models:
-            base_model = cast(ModelType, uncast_base_model)
+        for parent in model.parents:
             for prop in model.properties:
                 if (
-                    prop in base_model.properties
+                    prop in parent.properties
                     and not prop.is_discriminator
                     and not prop.constant
                     and not prop.readonly
                 ):
-                    properties_to_pass_to_super.append(f"{prop.name}={prop.name}")
+                    properties_to_pass_to_super.append(f"{prop.client_name}={prop.client_name}")
         properties_to_pass_to_super.append("**kwargs")
         return ", ".join(properties_to_pass_to_super)
 
     def required_property_no_default_init(self, prop: Property) -> str:
-        return f"{prop.name}: {prop.type_annotation()}"
+        return f"{prop.client_name}: {prop.type_annotation()}"
 
     def optional_property_init(self, prop: Property) -> str:
-        default = prop.default_value_declaration
-        return f"{prop.name}: {prop.type_annotation()} = {default}"
+        default = prop.type.get_declaration(prop.client_default_value)
+        return f"{prop.client_name}: {prop.type_annotation()} = {default}"
 
     def initialize_standard_arg(self, prop: Property) -> str:
-        return f"self.{prop.name} = {prop.name}"
+        return f"self.{prop.client_name} = {prop.client_name}"
+
+    def super_call_template(self, model: ModelType) -> str:
+        return "super().__init__({})"
 
     def imports(self) -> FileImport:
         file_import = super(ModelPython3Serializer, self).imports()
@@ -61,6 +63,6 @@ class ModelPython3Serializer(ModelBaseSerializer):
                 p for p in model.properties if not p.readonly and not p.is_discriminator
             ]
             for param in init_line_parameters:
-                file_import.merge(param.model_file_imports())
+                file_import.merge(param.imports())
 
         return file_import

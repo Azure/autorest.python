@@ -1,8 +1,8 @@
 {# actual template starts here #}
 
 
-{{ declare_model(model) }}
-    """{{ model.description }}
+{{ serializer.declare_model(model) }}
+    """{{ model.description(is_operation_file=False) }}
     {% if model.discriminator_name %}
 
     You probably want to use the sub-classes and not this class directly. Known
@@ -19,7 +19,7 @@
 
     {% if model.properties != None %}
         {% for p in model.properties %}
-            {% for line in variable_documentation_string(p) %}
+            {% for line in serializer.variable_documentation_string(p) %}
                 {% for doc_string in line.replace('\n', '\n ').split('\n') %}
     {{ doc_string | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n     ') }}
                 {% endfor %}
@@ -27,21 +27,20 @@
         {% endfor %}
     {% endif %}
     """
-    {% if (model.properties | selectattr('validation_map') ) | first %}
+    {% if (model.properties | selectattr('validation') ) | first %}
 
     _validation = {
-        {% for p in model.properties | selectattr('validation_map')%}
-        '{{ p.name }}': {{ str(p.validation_map) }},
+        {% for p in model.properties | selectattr('validation')%}
+        '{{ p.client_name }}': {{ str(p.validation) }},
         {% endfor %}
     }
     {% endif %}
 
     _attribute_map = {
-        {% if model.properties != None %}
+        {% if model.properties %}
             {% for p in model.properties %}
-        '{{ p.name }}': {'key': '{{ p.escaped_swagger_name }}', 'type': '{{ p.serialization_type}}'{{ p.xml_metadata }}},
+        {{ p.attribute_map }}
             {% endfor %}
-        {% else%}
         {% endif %}
     }
     {% if model.discriminator_name %}
@@ -64,7 +63,7 @@
 
     def __init__(
         self,
-        {% for param_signature in init_line(model) %}
+        {% for param_signature in serializer.init_line(model) %}
         {{ param_signature }},
         {% endfor %}
         **kwargs
@@ -73,7 +72,7 @@
     {% if model.properties %}
         {% for p in model.properties %}
             {% if p.is_input %}
-                {% for line in input_documentation_string(p) %}
+                {% for line in serializer.input_documentation_string(p) %}
                     {% for doc_string in line.replace('\n', '\n ').split('\n') %}
         {{ doc_string | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n         ') }}
                     {% endfor %}
@@ -82,6 +81,7 @@
         {% endfor %}
     {% endif %}
         """
-    {% for arg in init_args(model) %}
-        {{ arg }}
+        {{ serializer.super_call(model) }}
+    {% for initialize_property in serializer.initialize_properties(model) %}
+        {{ initialize_property }}
     {% endfor %}

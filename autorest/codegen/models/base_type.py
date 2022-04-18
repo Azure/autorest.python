@@ -72,6 +72,10 @@ class BaseType(BaseModel, ABC):
         """
         ...
 
+    @property
+    def validation(self) -> Optional[Dict[str, Any]]:
+        return None
+
     def get_declaration(self, value: Any) -> str:  # pylint: disable=no-self-use
         """Return the current value from YAML as a Python string that represents the constant.
 

@@ -3,59 +3,27 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, TypeVar, TYPE_CHECKING, cast, Union
-import logging
-
+from typing import Any, Dict, List, TypeVar, TYPE_CHECKING, cast, Union, Optional, Type
 
 from .base_builder import BaseBuilder
-from .parameter_list import ParameterList, RequestBuilderParameterList
+from .parameter_list import RequestBuilderParameterList, OverloadedRequestBuilderParameterList
 from .imports import FileImport, ImportType, TypingSection
-from .parameter import MultipartBodyParameter, UrlEncodedBodyParameter
-from .request_builder_parameter import RequestBuilderOverloadBodyParameter, RequestBuilderParameter
+from .request_builder_parameter import RequestBuilderSingleTypeBodyParameter, RequestBuilderParameter, RequestBuilderMultipleTypeBodyParameter
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
-_LOGGER = logging.getLogger(__name__)
+ParameterListType = TypeVar("ParameterListType", bound=Union[RequestBuilderParameterList, OverloadedRequestBuilderParameterList])
 
-T = TypeVar("T")
-OrderedSet = Dict[T, None]
-
-def _get_overloads(
-    overload_body_parameters: List[RequestBuilderOverloadBodyParameter],
-    yaml_data: Dict[str, Any],
-    code_model: "CodeModel",
-    parameters: List[RequestBuilderParameter],
-    name: str,
-):
-    overloads: List[RequestBuilder] = []
-    if overload_body_parameters:
-        # we have overloads now, one for each type
-        for obp in overload_body_parameters:
-            overloads.append(RequestBuilder(
-                yaml_data=yaml_data,
-                code_model=code_model,
-                name=name,
-                parameters=RequestBuilderParameterList(
-                    code_model=code_model,
-                    parameters=parameters,
-                    body_parameter=obp
-                ),
-                overloads=[],
-                want_tracing=False,
-            ))
-    return overloads
-
-
-class RequestBuilder(BaseBuilder[RequestBuilderParameterList]):
+class RequestBuilderBase(BaseBuilder[ParameterListType]):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         name: str,
-        parameters: RequestBuilderParameterList,
-        overloads: List["RequestBuilder"],
+        parameters: ParameterListType,
         *,
+        overloads: Optional[List["RequestBuilder"]] = None,
         abstract: bool = False,
     ) -> None:
         super().__init__(
@@ -99,59 +67,62 @@ class RequestBuilder(BaseBuilder[RequestBuilderParameterList]):
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
         file_import.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY)
+        if self.overloads:
+            file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
         return file_import
 
     @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "RequestBuilder":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> Union["RequestBuilder", "OverloadedRequestBuilder"]:
+        if yaml_data.get("overloads"):
+            return OverloadedRequestBuilder.from_yaml(yaml_data, code_model)
+        return RequestBuilder.from_yaml(yaml_data, code_model)
 
-        # when combine embeded builders into one operation file, we need to avoid duplicated build function name.
+def _get_name(yaml_data: Dict[str, Any], code_model: "CodeModel") -> str:
+    # when combine embeded builders into one operation file, we need to avoid duplicated build function name.
         # So add operation group name is effective method
-        additional_mark = ""
-        if (
-            code_model.options["combine_operation_files"]
-            and code_model.options["builders_visibility"] == "embedded"
-        ):
-            additional_mark = yaml_data["groupName"]
-        names = [
-            "build",
-            additional_mark,
-            yaml_data["name"],
-            "request",
-        ]
-        name = "_".join([n for n in names if n])
+    additional_mark = ""
+    if (
+        code_model.options["combine_operation_files"]
+        and code_model.options["builders_visibility"] == "embedded"
+    ):
+        additional_mark = yaml_data["groupName"]
+    names = [
+        "build",
+        additional_mark,
+        yaml_data["name"],
+        "request",
+    ]
+    name = "_".join([n for n in names if n])
+    return name
 
+
+class RequestBuilder(RequestBuilderBase[RequestBuilderParameterList]):
+
+    @classmethod
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "RequestBuilder":
+        name = _get_name(yaml_data, code_model)
         parameters = [RequestBuilderParameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
-        abstract = False
-        parameter_list, overload_body_parameters = cls.create_parameters_and_overloads(
-            yaml_data, code_model, is_operation=True
+        body_parameter = RequestBuilderSingleTypeBodyParameter.from_yaml(yaml_data["bodyParameter"], code_model)
+        parameter_list = RequestBuilderParameterList(code_model, parameters, body_parameter)
+        return cls(
+            yaml_data=yaml_data,
+            code_model=code_model,
+            name=name,
+            parameters=parameter_list,
         )
-        overloads = _get_overloads(
-            cast(List[RequestBuilderOverloadBodyParameter], overload_body_parameters),
-            yaml_data,
-            code_model,
-            parameters,
-            name,
-        )
-        # if (
-        #     code_model.options["version_tolerant"]
-        #     or code_model.options["low_level_client"]
-        # ) and any(p for p in parameter_list if p.is_multipart or p.is_data_input):
-        #     _LOGGER.warning(
-        #         'Not going to generate request_builder "%s" because it has multipart / urlencoded '
-        #         "body parameters. Multipart / urlencoded body parameters are not supported for version "
-        #         "tolerant and low level generations right now. Please write your own custom operation "
-        #         "in the _patch.py file following https://aka.ms/azsdk/python/dpcodegen/python/customize.",
-        #         name,
-        #     )
-        #     abstract = True
 
+class OverloadedRequestBuilder(RequestBuilderBase[OverloadedRequestBuilderParameterList]):
+    @classmethod
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "OverloadedRequestBuilder":
+        name = _get_name(yaml_data, code_model)
+        parameters = [RequestBuilderParameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
+        body_parameter = RequestBuilderMultipleTypeBodyParameter.from_yaml(yaml_data["bodyParameter"], code_model)
+        parameter_list = OverloadedRequestBuilderParameterList(code_model, parameters, body_parameter)
+        overloads=[RequestBuilder.from_yaml(rb_yaml_data, code_model) for rb_yaml_data in yaml_data["overloads"]]
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
             name=name,
             parameters=parameter_list,
             overloads=overloads,
-            abstract=abstract,
         )

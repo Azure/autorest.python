@@ -5,74 +5,34 @@
 # --------------------------------------------------------------------------
 from itertools import chain
 import logging
-from typing import Dict, List, Any, Optional, Union, TYPE_CHECKING, cast, TypeVar, Generic
+from typing import Dict, List, Any, Optional, Type, Union, TYPE_CHECKING, cast, TypeVar, Generic
 
 from .base_builder import BaseBuilder
 from .imports import FileImport, ImportType, TypingSection
 from .response import Response
-from .parameter import MultipartBodyParameter, OverloadBodyParameter, Parameter, BodyParameter, UrlEncodedBodyParameter, ParameterLocation
-from .parameter_list import ParameterList, OverloadBaseParameterList
+from .parameter import MultipartBodyParameter, MultipleTypeBodyParameter, SingleTypeBodyParameter, Parameter, UrlEncodedBodyParameter, ParameterLocation
+from .parameter_list import ParameterList, OverloadedOperationParameterList
 from .model_type import ModelType
-from .request_builder import RequestBuilder
+from .request_builder import OverloadedRequestBuilder, RequestBuilder
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
-ParameterListType = TypeVar("ParameterListType", bound=Union[ParameterList, OverloadBaseParameterList])
+ParameterListType = TypeVar("ParameterListType", bound=Union[ParameterList, OverloadedOperationParameterList])
 
 _LOGGER = logging.getLogger(__name__)
 
-def _get_operation_class(operation_type):
-    if operation_type == "paging":
-        from .paging_operation import PagingOperation
-        return PagingOperation
-    if operation_type == "lro":
-        from .lro_operation import LROOperation
-        return LROOperation
-    if operation_type == "lropaging":
-        from .lro_paging_operation import LROPagingOperation
-        return LROPagingOperation
-    return Operation
-
-def _get_overloads(
-    overload_body_parameters: List[OverloadBodyParameter],
-    yaml_data: Dict[str, Any],
-    code_model: "CodeModel",
-    request_builder: RequestBuilder,
-    parameters: List[Parameter],
-    responses: List[Response],
-) -> List["OperationOverload"]:
-    overloads: List[OperationOverload] = []
-    if overload_body_parameters:
-        # we have overloads now, one for each type
-        for obp in overload_body_parameters:
-            overloads.append(OperationOverload(
-                yaml_data=yaml_data,
-                code_model=code_model,
-                name=yaml_data["name"],
-                request_builder=request_builder,
-                parameters=ParameterList(
-                    code_model=code_model,
-                    parameters=parameters,
-                    body_parameter=obp
-                ),
-                responses=responses,
-                overloads=[],
-                want_tracing=False,
-            ))
-    return overloads
-
-class _OperationBase(BaseBuilder[ParameterListType]):
+class OperationBase(BaseBuilder[ParameterListType]):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         name: str,
-        request_builder: RequestBuilder,
+        request_builder: Union[RequestBuilder, OverloadedRequestBuilder],
         parameters: ParameterListType,
         responses: List[Response],
-        overloads: List["OperationOverload"],
         *,
+        overloads: Optional[List["Operation"]] = None,
         want_description_docstring: bool = True,
         want_tracing: bool = True,
         abstract: bool = False,
@@ -86,7 +46,7 @@ class _OperationBase(BaseBuilder[ParameterListType]):
             abstract=abstract,
             want_tracing=want_tracing,
         )
-        self.overloads = overloads or []
+        self.overloads = overloads
         self.responses = responses
         self.want_description_docstring = want_description_docstring
         self.request_builder = request_builder
@@ -325,37 +285,42 @@ class _OperationBase(BaseBuilder[ParameterListType]):
         ]
 
     @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "_OperationBase":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> Union["Operation", "OverloadedOperation"]:
+        if yaml_data.get("overloads"):
+            return OverloadedOperation.from_yaml(yaml_data, code_model)
+        return Operation.from_yaml(yaml_data, code_model)
+
+class Operation(OperationBase[ParameterList]):
+
+    @classmethod
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "Operation":
         name = yaml_data["name"]
         parameters = [Parameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
-        abstract = False
         request_builder = code_model.lookup_request_builder(id(yaml_data))
         responses = [Response.from_yaml(r, code_model) for r in yaml_data["responses"]]
-        parameter_list, overload_body_parameters = cls.create_parameters_and_overloads(
-            yaml_data, code_model, is_operation=True
+        body_parameter = SingleTypeBodyParameter.from_yaml(yaml_data["bodyParameter"], code_model)
+        parameter_list = ParameterList(code_model, parameters, body_parameter)
+        return cls(
+            yaml_data=yaml_data,
+            code_model=code_model,
+            request_builder=request_builder,
+            name=name,
+            parameters=parameter_list,
+            responses=responses,
         )
-        overloads = _get_overloads(
-            cast(List[OverloadBodyParameter], overload_body_parameters),
-            yaml_data,
-            code_model,
-            request_builder,
-            parameters,
-            responses,
-        )
-        # if code_model.options["version_tolerant"] and any(p for p in parameter_list if p.is_multipart or p.is_data_input):
-        #     _LOGGER.warning(
-        #         'Not going to generate operation "%s" because it has multipart / urlencoded body parameters. '
-        #         "Multipart / urlencoded body parameters are not supported for version tolerant generation right now. "
-        #         'Please write your own custom operation in the "_patch.py" file '
-        #         "following https://aka.ms/azsdk/python/dpcodegen/python/customize",
-        #         name,
-        #     )
-        #     abstract = True
 
-        op_cls = _get_operation_class(yaml_data["operationType"])
-        return op_cls(
+class OverloadedOperation(OperationBase[OverloadedOperationParameterList]):
+
+    @classmethod
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "OverloadedOperation":
+        name = yaml_data["name"]
+        parameters = [Parameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
+        request_builder = code_model.lookup_request_builder(id(yaml_data))
+        responses = [Response.from_yaml(r, code_model) for r in yaml_data["responses"]]
+        body_parameter = MultipleTypeBodyParameter.from_yaml(yaml_data["bodyParameter"], code_model)
+        overloads = [Operation.from_yaml(overload_yaml_data, code_model) for overload_yaml_data in yaml_data["overloads"]]
+        parameter_list = OverloadedOperationParameterList(code_model, parameters, body_parameter)
+        return cls(
             yaml_data=yaml_data,
             code_model=code_model,
             request_builder=request_builder,
@@ -363,11 +328,4 @@ class _OperationBase(BaseBuilder[ParameterListType]):
             name=name,
             parameters=parameter_list,
             responses=responses,
-            abstract=abstract,
         )
-
-class Operation(_OperationBase[ParameterList]):
-    ...
-
-class OperationOverload(_OperationBase[OverloadBaseParameterList]):
-    ...

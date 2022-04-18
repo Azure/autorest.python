@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import cast, List, Dict, Optional, Any, Set
+from typing import cast, List, Dict, Optional, Any, Set, Union
 
 from .base_type import BaseType
 from .enum_type import EnumType
@@ -15,7 +15,7 @@ from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .client import Client, Config
 from .property import Property
-from .request_builder import RequestBuilder
+from .request_builder import OverloadedRequestBuilder, RequestBuilder
 from .credential_model import CredentialModel
 
 _LOGGER = logging.getLogger(__name__)
@@ -61,13 +61,13 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         self._object_types: List[ModelType] = []
         self._client: Optional[Client] = None
         self._config: Optional[Config] = None
-        self.request_builders: List[RequestBuilder] = []
+        self.request_builders: List[Union[RequestBuilder, OverloadedRequestBuilder]] = []
         self.package_dependency: Dict[str, str] = {}
         self._credential_model: Optional[CredentialModel] = None
         self.namespace = yaml_data["client"]["namespace"].lower()
         self.module_name = self.yaml_data["client"]["name"].replace(" ", "_").lower()
 
-    def lookup_schema(self, schema_id: int) -> BaseType:
+    def lookup_type(self, schema_id: int) -> BaseType:
         """Looks to see if the schema has already been created.
 
         :param int schema_id: The yaml id of the schema
@@ -104,7 +104,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     def config(self, val: Config) -> None:
         self._config = val
 
-    def lookup_request_builder(self, request_builder_id: int) -> RequestBuilder:
+    def lookup_request_builder(self, request_builder_id: int) -> Union[RequestBuilder, OverloadedRequestBuilder]:
         """Find the request builder based off of id"""
         try:
             return next(
@@ -130,7 +130,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         return [t for t in self.types_map.values() if isinstance(t, EnumType)]
 
     @staticmethod
-    def _sort_schemas_helper(current, seen_schema_names, seen_schema_yaml_ids):
+    def _sort_schemas_helper(current: ModelType, seen_schema_names: Set[str], seen_schema_yaml_ids: Set[int]):
         if current.id in seen_schema_yaml_ids:
             return []
         if current.name in seen_schema_names:
@@ -138,9 +138,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
                 f"We have already generated a schema with name {current.name}"
             )
         ancestors = [current]
-        if current.base_models:
-            for base_model in current.base_models:
-                parent = cast(ModelType, base_model)
+        if current.parents:
+            for parent in current.parents:
                 if parent.id in seen_schema_yaml_ids:
                     continue
                 seen_schema_names.add(current.name)

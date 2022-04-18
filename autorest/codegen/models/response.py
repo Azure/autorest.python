@@ -8,7 +8,7 @@ from typing import Dict, Optional, List, Set, Any, TYPE_CHECKING
 from .base_model import BaseModel
 from .base_type import BaseType
 from .imports import FileImport, ImportType
-from .primitive_types import IOType
+from .primitive_types import BinaryType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -29,7 +29,7 @@ class ResponseHeader(BaseModel):
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            type=code_model.lookup_schema(id(yaml_data["type"]))
+            type=code_model.lookup_type(id(yaml_data["type"]))
         )
 
 class Response(BaseModel):
@@ -50,7 +50,7 @@ class Response(BaseModel):
     @property
     def is_stream_response(self) -> bool:
         """Is the response expected to be streamable, like a download."""
-        return isinstance(self.type, IOType)
+        return isinstance(self.type, BinaryType)
 
     def serialization_type(self, content_type: str) -> str:
         if self.type:
@@ -87,8 +87,8 @@ class Response(BaseModel):
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            headers=[ResponseHeader(header, code_model, code_model.lookup_schema(header["type"])) for header in yaml_data["headers"]],
-            type=code_model.lookup_schema(id(yaml_data["type"])) if yaml_data.get("type") else None
+            headers=[ResponseHeader(header, code_model, code_model.lookup_type(header["type"])) for header in yaml_data["headers"]],
+            type=code_model.lookup_type(id(yaml_data["type"])) if yaml_data.get("type") else None
         )
 
     def __repr__(self) -> str:

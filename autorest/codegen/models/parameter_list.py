@@ -7,11 +7,11 @@ from collections.abc import MutableSequence
 from enum import Enum
 import logging
 from typing import List, Optional, TYPE_CHECKING, Union, Generic, TypeVar
-from .request_builder_parameter import RequestBuilderBodyParameter, RequestBuilderParameter
-from .parameter import OverloadBodyParameter, Parameter, ParameterMethodLocation, BodyParameter, ClientParameter, ConfigParameter
+from .request_builder_parameter import RequestBuilderMultipleTypeBodyParameter, RequestBuilderSingleTypeBodyParameter, RequestBuilderParameter
+from .parameter import ParameterLocation, SingleTypeBodyParameter, MultipleTypeBodyParameter, Parameter, ParameterMethodLocation, ClientParameter, ConfigParameter
 
 ParameterType = TypeVar("ParameterType", bound=Union[Parameter, RequestBuilderParameter])
-BodyParameterType = TypeVar("BodyParameterType", bound=Union[BodyParameter, RequestBuilderBodyParameter])
+BodyParameterType = TypeVar("BodyParameterType", bound=Union[SingleTypeBodyParameter, MultipleTypeBodyParameter, RequestBuilderSingleTypeBodyParameter])
 
 
 if TYPE_CHECKING:
@@ -30,7 +30,7 @@ def method_signature_helper(
     keyword_only = keyword_only or []
     return positional + keyword_only + kwarg_params
 
-def _sort(params: List[ParameterType]):
+def _sort(params):
     return sorted(
         params, key=lambda x: not (x.client_default_value or x.optional), reverse=True
     )
@@ -63,7 +63,7 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
     def __delitem__(self, index):
         del self.parameters[index]
 
-    def insert(self, index: int, value: Parameter) -> None:
+    def insert(self, index: int, value: ParameterType) -> None:
         self.parameters.insert(index, value)
 
     # Parameter helpers
@@ -93,19 +93,19 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
         return [p for p in self.parameters if p.constant]
 
     @property
-    def positional(self) -> List[ParameterType]:
+    def positional(self) -> List[Union[ParameterType, BodyParameterType]]:
         return _sort([
             p for p in self.method if p.method_location == ParameterMethodLocation.POSITIONAL
         ])
 
     @property
-    def keyword_only(self) -> List[ParameterType]:
+    def keyword_only(self) -> List[Union[ParameterType, BodyParameterType]]:
         return _sort([
             p for p in self.method if p.method_location == ParameterMethodLocation.KEYWORD_ONLY
         ])
 
     @property
-    def kwarg(self) -> List[ParameterType]:
+    def kwarg(self) -> List[Union[ParameterType, BodyParameterType]]:
         return _sort([
             p for p in self.method if p.method_location == ParameterMethodLocation.KWARG
         ])
@@ -115,8 +115,8 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
         return "Method"
 
     @property
-    def method(self) -> List[ParameterType]:
-        method_params = [p for p in self.parameters if p.in_method_signature and p.implementation == self.implementation]
+    def method(self) -> List[Union[ParameterType, BodyParameterType]]:
+        method_params: List[Union[ParameterType, BodyParameterType]] = [p for p in self.parameters if p.in_method_signature and p.implementation == self.implementation]
         if self.body_parameter:
             method_params.append(self.body_parameter)
         return method_params
@@ -145,7 +145,7 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
     def method_signature_kwargs(is_python3_file: bool) -> List[str]:
         return ["**kwargs: Any"] if is_python3_file else ["**kwargs  # type: Any"]
 
-    def kwargs_to_pop(self, is_python3_file: bool) -> List[ParameterType]:
+    def kwargs_to_pop(self, is_python3_file: bool) -> List[Union[ParameterType, BodyParameterType]]:
         kwargs_to_pop = [p for p in self.method if p.method_location == ParameterMethodLocation.KWARG]
         if not is_python3_file:
             kwargs_to_pop += [p for p in self.method if p.method_location == ParameterMethodLocation.KEYWORD_ONLY]
@@ -160,25 +160,39 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
         retval.append("**kwargs")
         return retval
 
-class ParameterList(_ParameterListBase[Parameter, BodyParameter]):
+class ParameterList(_ParameterListBase[Parameter, SingleTypeBodyParameter]):
     ...
 
-class OverloadBaseParameterList(ParameterList):
+class OverloadedOperationParameterList(_ParameterListBase[Parameter, MultipleTypeBodyParameter]):
+    """This parameter list is used if we have overloads for an operation due to multiple types of the body parameter"""
 
-    def method_signature(self) -> str:
-        return "*args, **kwargs"
-
-class RequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, RequestBuilderBodyParameter]):
     ...
 
+class RequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, RequestBuilderSingleTypeBodyParameter]):
+    ...
 
-class ClientGlobalParameterList(_ParameterListBase[ClientParameter, BodyParameter]):
+class OverloadedRequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, RequestBuilderMultipleTypeBodyParameter]):
+    def method_signature(self, is_python3_file: bool) -> List[str]:
+        if self.positional:
+            return ["*args", "**kwargs"]
+        return ["**kwargs"]
+
+    def kwargs_to_pop(self, is_python3_file: bool) -> List[Union[ParameterType, BodyParameterType]]:
+        super_kwargs_to_pop = super().kwargs_to_pop(is_python3_file=is_python3_file)
+        return [k for k in super_kwargs_to_pop if k.location != ParameterLocation.BODY]
+
+
+class ClientGlobalParameterList(_ParameterListBase[ClientParameter, SingleTypeBodyParameter]):
     @property
     def implementation(self) -> str:
         return "Client"
 
+    @property
+    def path(self) -> List[ClientParameter]:
+        return [p for p in super().path if not p.is_host]
 
-class ConfigGlobalParameterList(_ParameterListBase[ConfigParameter, BodyParameter]):
+
+class ConfigGlobalParameterList(_ParameterListBase[ConfigParameter, SingleTypeBodyParameter]):
     @property
     def implementation(self) -> str:
         return "Client"

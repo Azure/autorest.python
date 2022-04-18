@@ -21,7 +21,7 @@ from .primitive_types import (
     TimeType,
     AnyType,
     PrimitiveType,
-    IOType,
+    BinaryType,
     BooleanType,
 )
 from .enum_type import EnumType
@@ -30,13 +30,13 @@ from .constant_type import ConstantType
 from .imports import FileImport, ImportType, TypingSection
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
-from .parameter import Parameter, ParameterMethodLocation, ParameterLocation
-from .operation import Operation
+from .parameter import Parameter, ParameterMethodLocation, ParameterLocation, SingleTypeBodyParameter, MultipleTypeBodyParameter
+from .operation import Operation, OverloadedOperation, OperationBase
 from .property import Property
 from .operation_group import OperationGroup
 from .response import Response
 from .parameter_list import ParameterList, ClientGlobalParameterList, ConfigGlobalParameterList
-from .request_builder import RequestBuilder
+from .request_builder import RequestBuilder, OverloadedRequestBuilder, RequestBuilderBase
 from .base_builder import BaseBuilder
 from .lro_paging_operation import LROPagingOperation
 from .request_builder_parameter import RequestBuilderParameter
@@ -69,11 +69,17 @@ __all__ = [
     "LROPagingOperation",
     "BaseBuilder",
     "RequestBuilderParameter",
-    "IOType",
+    "BinaryType",
     "ClientGlobalParameterList",
     "ConfigGlobalParameterList",
     "ParameterMethodLocation",
     "ParameterLocation",
+    "OverloadedOperation",
+    "OperationBase",
+    "OverloadedRequestBuilder",
+    "RequestBuilderBase",
+    "SingleTypeBodyParameter",
+    "MultipleTypeBodyParameter",
 ]
 
 TYPE_TO_OBJECT = {
@@ -84,7 +90,7 @@ TYPE_TO_OBJECT = {
     "dict": DictionaryType,
     "constant": ConstantType,
     "enum": EnumType,
-    "bytes": IOType,
+    "binary": BinaryType,
     "any": AnyType,
     "datetime": DatetimeType,
     "time": TimeType,
@@ -97,7 +103,7 @@ TYPE_TO_OBJECT = {
 def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
     yaml_id = id(yaml_data)
     try:
-        return code_model.lookup_schema(yaml_id)
+        return code_model.lookup_type(yaml_id)
     except KeyError:
         # Not created yet, let's create it and add it to the index
         pass
