@@ -1,6 +1,6 @@
 # Change Log
 
-### 2022-xx-xx - 5.16.0
+### 2022-04-15 - 5.16.0
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -17,6 +17,7 @@
 **Bug Fixes**
 
 - Drop package dependency on "@azure-tools/extension", switch to "@autorest/system-requirements" #1229
+- Fix `content_type` generation in multiapi SDKs with multiple content types for bodies #1232
 
 ### 2022-04-07 - 5.15.0
 

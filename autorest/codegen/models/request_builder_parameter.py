@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional, TYPE_CHECKING
 from .parameter import (
+    ParameterMethodLocation,
     ParameterOnlyPathAndBodyPositional,
     ParameterLocation,
     ParameterStyle,
@@ -64,13 +65,20 @@ class RequestBuilderParameter(ParameterOnlyPathAndBodyPositional):
         return super().default_value_declaration
 
     @property
-    def is_keyword_only(self) -> bool:
-        return not self.location == ParameterLocation.Path and not self.is_kwarg
+    def method_location(self) -> ParameterMethodLocation:
+        super_method_location = super().method_location
+        if super_method_location in (
+            ParameterMethodLocation.KWARG,
+            ParameterMethodLocation.HIDDEN_KWARG,
+        ):
+            return super_method_location
+        if self.location != ParameterLocation.Path:
+            return ParameterMethodLocation.KEYWORD_ONLY
+        return super_method_location
 
-    @is_keyword_only.setter
-    def is_keyword_only(self, val: bool) -> None:
-        self._keyword_only = val
-        self.is_kwarg = False
+    @method_location.setter
+    def method_location(self, val: ParameterMethodLocation) -> None:
+        self._method_location = val
 
     @property
     def full_serialized_name(self) -> str:

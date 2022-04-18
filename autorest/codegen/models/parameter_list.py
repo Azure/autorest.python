@@ -7,7 +7,7 @@ from collections.abc import MutableSequence
 import logging
 from typing import cast, List, Callable, Optional, TypeVar, Dict, TYPE_CHECKING
 
-from .parameter import Parameter, ParameterLocation
+from .parameter import Parameter, ParameterLocation, ParameterMethodLocation
 from .base_schema import BaseSchema
 from .primitive_schemas import StringSchema
 from .utils import JSON_REGEXP
@@ -199,14 +199,22 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
         if len(content_type_params) > 1:
             # we don't want multiple content type params in the method, just one
             # we'll pick the one with the default content type
-            kwarg_params = [
-                k
-                for k in kwarg_params
-                if not (
-                    k.rest_api_name == "Content-Type"
-                    and k.default_value_declaration != f'"{self.default_content_type}"'
-                )
-            ]
+            seen_content_type = False
+            new_kwarg_params = []
+            for k in kwarg_params:
+                if k.rest_api_name == "Content-Type":
+                    if (
+                        not seen_content_type
+                        and k.default_value_declaration
+                        == f'"{self.default_content_type}"'
+                    ):
+                        new_kwarg_params.append(k)
+                        seen_content_type = True
+                    else:
+                        continue
+                else:
+                    new_kwarg_params.append(k)
+            kwarg_params = new_kwarg_params
         return kwarg_params
 
     @property
@@ -215,13 +223,27 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
         # Client level should not be on Method, etc.
         parameters_of_this_implementation = self.get_from_predicate(
             lambda parameter: parameter.implementation == self.implementation
+            and parameter.in_method_signature
         )
-        positional = [p for p in parameters_of_this_implementation if p.is_positional]
+        positional = [
+            p
+            for p in parameters_of_this_implementation
+            if p.method_location == ParameterMethodLocation.POSITIONAL
+        ]
         keyword_only = self._filter_out_multiple_content_type(
-            [p for p in parameters_of_this_implementation if p.is_keyword_only]
+            [
+                p
+                for p in parameters_of_this_implementation
+                if p.method_location == ParameterMethodLocation.KEYWORD_ONLY
+            ]
         )
         kwargs = self._filter_out_multiple_content_type(
-            [p for p in parameters_of_this_implementation if p.is_kwarg]
+            [
+                p
+                for p in parameters_of_this_implementation
+                if p.method_location
+                in (ParameterMethodLocation.KWARG, ParameterMethodLocation.HIDDEN_KWARG)
+            ]
         )
 
         def _sort(params):
@@ -258,15 +280,28 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
 
     @property
     def positional(self) -> List[Parameter]:
-        return [p for p in self.method if p.is_positional]
+        return [
+            p
+            for p in self.method
+            if p.method_location == ParameterMethodLocation.POSITIONAL
+        ]
 
     @property
     def keyword_only(self) -> List[Parameter]:
-        return [p for p in self.method if p.is_keyword_only]
+        return [
+            p
+            for p in self.method
+            if p.method_location == ParameterMethodLocation.KEYWORD_ONLY
+        ]
 
     @property
     def kwargs(self) -> List[Parameter]:
-        return [p for p in self.method if p.is_kwarg]
+        return [
+            p
+            for p in self.method
+            if p.method_location
+            in (ParameterMethodLocation.KWARG, ParameterMethodLocation.HIDDEN_KWARG)
+        ]
 
     def kwargs_to_pop(self, is_python3_file: bool) -> List[Parameter]:
         kwargs_to_pop = self.kwargs
@@ -274,12 +309,12 @@ class ParameterList(MutableSequence):  # pylint: disable=too-many-public-methods
             kwargs_to_pop += self.keyword_only
         return kwargs_to_pop
 
-    @property
-    def call(self) -> List[str]:
+    def call(self, is_python3_file: bool) -> List[str]:
         retval = [p.serialized_name for p in self.positional]
-        retval.extend(
-            [f"{p.serialized_name}={p.serialized_name}" for p in self.keyword_only]
-        )
+        if is_python3_file:
+            retval.extend(
+                [f"{p.serialized_name}={p.serialized_name}" for p in self.keyword_only]
+            )
         retval.append("**kwargs")
         return retval
 
@@ -299,12 +334,25 @@ class GlobalParameterList(ParameterList):
     def method(self) -> List[Parameter]:
         """The list of parameter used in method signature."""
         # Client level should not be on Method, etc.
-        positional = [p for p in self.parameters if p.is_positional]
+        positional = [
+            p
+            for p in self.parameters
+            if p.method_location == ParameterMethodLocation.POSITIONAL
+        ]
         keyword_only = self._filter_out_multiple_content_type(
-            [p for p in self.parameters if p.is_keyword_only]
+            [
+                p
+                for p in self.parameters
+                if p.method_location == ParameterMethodLocation.KEYWORD_ONLY
+            ]
         )
         kwargs = self._filter_out_multiple_content_type(
-            [p for p in self.parameters if p.is_kwarg]
+            [
+                p
+                for p in self.parameters
+                if p.method_location
+                in (ParameterMethodLocation.KWARG, ParameterMethodLocation.HIDDEN_KWARG)
+            ]
         )
 
         def _sort(params):
@@ -347,9 +395,12 @@ class GlobalParameterList(ParameterList):
             skip_url_encoding=False,
             constraints=[],
             client_default_value=host_value,
-            keyword_only=self.code_model.options["version_tolerant"]
-            or self.code_model.options["low_level_client"],
         )
+        if (
+            self.code_model.options["version_tolerant"]
+            or self.code_model.options["low_level_client"]
+        ):
+            host_param.method_location = ParameterMethodLocation.KEYWORD_ONLY
         self.parameters.append(host_param)
 
     def add_credential_global_parameter(self) -> None:

@@ -34,5 +34,5 @@ class {{ code_model.service_client.name }}OperationsMixin(object):
         mixin_instance._serialize.client_side_validation = False
         {% endif %}
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return {{ "await " if mixin_operation.coroutine(async_mode) }}mixin_instance.{{ mixin_operation.name }}({{ mixin_operation.call }}{{ ", **kwargs" if  mixin_operation.call else "**kwargs" }})
+        return {{ "await " if mixin_operation.coroutine(async_mode) }}mixin_instance.{{ mixin_operation.name }}({{ mixin_operation.call(async_mode) }})
 {% endfor %}

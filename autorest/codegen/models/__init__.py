@@ -22,7 +22,12 @@ from .constant_schema import ConstantSchema
 from .imports import FileImport, ImportType, TypingSection
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
-from .parameter import Parameter, ParameterStyle, ParameterLocation
+from .parameter import (
+    Parameter,
+    ParameterStyle,
+    ParameterLocation,
+    ParameterMethodLocation,
+)
 from .operation import Operation
 from .property import Property
 from .operation_group import OperationGroup
@@ -69,6 +74,7 @@ __all__ = [
     "ParameterStyle",
     "IOSchema",
     "GlobalParameterList",
+    "ParameterMethodLocation",
 ]
 
 

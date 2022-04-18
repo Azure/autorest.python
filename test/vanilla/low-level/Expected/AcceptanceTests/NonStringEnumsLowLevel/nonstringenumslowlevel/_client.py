@@ -44,7 +44,7 @@ class NonStringEnumsClient:
         Use these helper methods to create the request you pass to this method.
 
         >>> from nonstringenumslowlevel.rest import int
-        >>> request = int.build_put_request(json=json, content=content, **kwargs)
+        >>> request = int.build_put_request(**kwargs)
         <HttpRequest [PUT], url: '/nonStringEnums/int/put'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

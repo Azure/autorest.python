@@ -44,7 +44,7 @@ class AutoRestReportServiceForAzure:
         Use these helper methods to create the request you pass to this method.
 
         >>> from azurereportlowlevel.rest import build_get_report_request
-        >>> request = build_get_report_request(qualifier=qualifier, **kwargs)
+        >>> request = build_get_report_request(**kwargs)
         <HttpRequest [GET], url: '/report/azure'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

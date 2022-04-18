@@ -44,7 +44,7 @@ class BinaryWithContentTypeApplicationJson:
         Use these helper methods to create the request you pass to this method.
 
         >>> from bodybinarylowlevel.rest import upload
-        >>> request = upload.build_file_request(json=json, content=content, **kwargs)
+        >>> request = upload.build_file_request(**kwargs)
         <HttpRequest [POST], url: '/binary/file'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
