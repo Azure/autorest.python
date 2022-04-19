@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 from async_generator import yield_, async_generator
-from msrest.exceptions import ValidationError
+from validationversiontolerant._serialization import ValidationError
 
 from validationversiontolerant.aio import AutoRestValidationTest
 

@@ -27,7 +27,7 @@
 import sys
 import io
 from azure.core.exceptions import HttpResponseError
-from msrest.exceptions import ValidationError
+from requiredoptionallowlevel._serialization import ValidationError
 
 from requiredoptionallowlevel import AutoRestRequiredOptionalTestService
 from requiredoptionallowlevel.rest import implicit, explicit

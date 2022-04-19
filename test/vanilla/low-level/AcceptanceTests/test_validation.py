@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 import sys
 
-from msrest.exceptions import ValidationError
+from validationlowlevel._serialization import ValidationError
 
 from validationlowlevel import AutoRestValidationTest
 from validationlowlevel.rest import *

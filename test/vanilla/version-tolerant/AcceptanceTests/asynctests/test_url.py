@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 from async_generator import yield_, async_generator
 from datetime import datetime
-from msrest.exceptions import ValidationError
+from urlversiontolerant._serialization import ValidationError
 
 from urlversiontolerant.aio import AutoRestUrlTestService
 from urlmulticollectionformatversiontolerant.aio import AutoRestUrlMutliCollectionFormatTestService

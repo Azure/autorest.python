@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 from async_generator import yield_, async_generator
-from msrest.exceptions import ValidationError
+from azurespecialpropertieslowlevel._serialization import ValidationError
 
 from azurespecialpropertieslowlevel.aio import AutoRestAzureSpecialParametersTestClient
 from azurespecialpropertieslowlevel.rest import (

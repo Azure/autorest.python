@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 from datetime import datetime
-from msrest.exceptions import ValidationError
+from urlversiontolerant._serialization import ValidationError
 
 from urlversiontolerant import AutoRestUrlTestService
 from urlmulticollectionformatversiontolerant import AutoRestUrlMutliCollectionFormatTestService

@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
-from msrest.exceptions import ValidationError
+from azurespecialpropertieslowlevel._serialization import ValidationError
 from azurespecialpropertieslowlevel import AutoRestAzureSpecialParametersTestClient
 from azurespecialpropertieslowlevel.rest import (
     skip_url_encoding,

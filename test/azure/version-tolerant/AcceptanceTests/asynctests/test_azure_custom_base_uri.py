@@ -26,7 +26,7 @@
 
 from async_generator import yield_, async_generator
 import pytest
-from msrest.exceptions import ValidationError
+from custombaseurlversiontolerant._serialization import ValidationError
 from azure.core.exceptions import ServiceRequestError
 
 from custombaseurlversiontolerant.aio import AutoRestParameterizedHostTestClient

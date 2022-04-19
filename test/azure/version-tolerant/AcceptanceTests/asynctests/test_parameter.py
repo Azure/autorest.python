@@ -23,7 +23,7 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-from msrest.exceptions import ValidationError
+from azureparametergroupingversiontolerant._serialization import ValidationError
 from azure.core.exceptions import HttpResponseError
 from async_generator import yield_, async_generator
 

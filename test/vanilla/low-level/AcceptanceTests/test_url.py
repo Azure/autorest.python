@@ -29,7 +29,7 @@ from urllowlevel import AutoRestUrlTestService
 from urllowlevel.rest import queries, paths, path_items
 from urlmulticollectionformatlowlevel import AutoRestUrlMutliCollectionFormatTestService
 from urlmulticollectionformatlowlevel.rest import queries as multiqueries
-from msrest.exceptions import ValidationError
+from urllowlevel._serialization import ValidationError
 
 import pytest
 

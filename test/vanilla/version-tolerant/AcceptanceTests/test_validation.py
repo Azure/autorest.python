@@ -23,7 +23,7 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-from msrest.exceptions import ValidationError
+from validationversiontolerant._serialization import ValidationError
 
 from validationversiontolerant import AutoRestValidationTest
 

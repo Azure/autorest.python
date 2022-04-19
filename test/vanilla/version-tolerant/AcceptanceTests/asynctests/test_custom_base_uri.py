@@ -30,7 +30,7 @@ from azure.core.exceptions import ServiceRequestError
 
 from custombaseurlversiontolerant.aio import AutoRestParameterizedHostTestClient
 from custombaseurlmoreoptionsversiontolerant.aio import AutoRestParameterizedCustomHostTestClient
-from msrest.exceptions import ValidationError
+from custombaseurlversiontolerant._serialization import ValidationError
 import pytest
 
 @pytest.fixture

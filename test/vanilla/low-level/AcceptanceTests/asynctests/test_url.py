@@ -30,7 +30,7 @@ from urllowlevel.aio import AutoRestUrlTestService
 from urllowlevel.rest import path_items, paths, queries
 from urlmulticollectionformatlowlevel.aio import AutoRestUrlMutliCollectionFormatTestService
 from urlmulticollectionformatlowlevel.rest import queries as multi_queries
-from msrest.exceptions import ValidationError
+from urllowlevel._serialization import ValidationError
 
 import pytest
 

@@ -26,7 +26,7 @@
 from async_generator import yield_, async_generator
 import io
 
-from msrest.exceptions import ValidationError
+from requiredoptionalversiontolerant._serialization import ValidationError
 from azure.core.exceptions import HttpResponseError
 
 from requiredoptionalversiontolerant.aio import AutoRestRequiredOptionalTestService
