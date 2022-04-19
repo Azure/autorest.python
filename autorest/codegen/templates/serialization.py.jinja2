@@ -24,6 +24,8 @@
 #
 # --------------------------------------------------------------------------
 
+# pylint: skip-file
+
 from base64 import b64decode, b64encode
 import calendar
 import datetime
@@ -34,6 +36,7 @@ import json
 import logging
 import re
 import sys
+import codecs
 try:
     from urllib import quote  # type: ignore
 except ImportError:
@@ -42,13 +45,157 @@ import xml.etree.ElementTree as ET
 
 import isodate
 
-from typing import Dict, Any
+from typing import Dict, Any, cast
 
-from .exceptions import (
-    ValidationError,
-    SerializationError,
-    DeserializationError,
-    raise_with_traceback)
+from azure.core.exceptions import AzureError, raise_with_traceback
+
+_BOM = codecs.BOM_UTF8.decode(encoding='utf-8')
+
+class RawDeserializer:
+
+    # Accept "text" because we're open minded people...
+    JSON_REGEXP = re.compile(r'^(application|text)/([a-z+.]+\+)?json$')
+
+    # Name used in context
+    CONTEXT_NAME = "deserialized_data"
+
+    @classmethod
+    def deserialize_from_text(cls, data, content_type=None):
+        # type: (Optional[Union[AnyStr, IO]], Optional[str]) -> Any
+        """Decode data according to content-type.
+
+        Accept a stream of data as well, but will be load at once in memory for now.
+
+        If no content-type, will return the string version (not bytes, not stream)
+
+        :param data: Input, could be bytes or stream (will be decoded with UTF8) or text
+        :type data: str or bytes or IO
+        :param str content_type: The content type.
+        """
+        if hasattr(data, 'read'):
+            # Assume a stream
+            data = cast(IO, data).read()
+
+        if isinstance(data, bytes):
+            data_as_str = data.decode(encoding='utf-8-sig')
+        else:
+            # Explain to mypy the correct type.
+            data_as_str = cast(str, data)
+
+            # Remove Byte Order Mark if present in string
+            data_as_str = data_as_str.lstrip(_BOM)
+
+        if content_type is None:
+            return data
+
+        if cls.JSON_REGEXP.match(content_type):
+            try:
+                return json.loads(data_as_str)
+            except ValueError as err:
+                raise DeserializationError("JSON is invalid: {}".format(err), err)
+        elif "xml" in (content_type or []):
+            try:
+
+                try:
+                    if isinstance(data, unicode):  # type: ignore
+                        # If I'm Python 2.7 and unicode XML will scream if I try a "fromstring" on unicode string
+                        data_as_str = data_as_str.encode(encoding="utf-8")  # type: ignore
+                except NameError:
+                    pass
+
+                return ET.fromstring(data_as_str)
+            except ET.ParseError:
+                # It might be because the server has an issue, and returned JSON with
+                # content-type XML....
+                # So let's try a JSON load, and if it's still broken
+                # let's flow the initial exception
+                def _json_attemp(data):
+                    try:
+                        return True, json.loads(data)
+                    except ValueError:
+                        return False, None # Don't care about this one
+                success, json_result = _json_attemp(data)
+                if success:
+                    return json_result
+                # If i'm here, it's not JSON, it's not XML, let's scream
+                # and raise the last context in this block (the XML exception)
+                # The function hack is because Py2.7 messes up with exception
+                # context otherwise.
+                _LOGGER.critical("Wasn't XML not JSON, failing")
+                raise_with_traceback(DeserializationError, "XML is invalid")
+        raise DeserializationError("Cannot deserialize content-type: {}".format(content_type))
+
+    @classmethod
+    def deserialize_from_http_generics(cls, body_bytes, headers):
+        # type: (Optional[Union[AnyStr, IO]], Mapping) -> Any
+        """Deserialize from HTTP response.
+
+        Use bytes and headers to NOT use any requests/aiohttp or whatever
+        specific implementation.
+        Headers will tested for "content-type"
+        """
+        # Try to use content-type from headers if available
+        content_type = None
+        if 'content-type' in headers:
+            content_type = headers['content-type'].split(";")[0].strip().lower()
+        # Ouch, this server did not declare what it sent...
+        # Let's guess it's JSON...
+        # Also, since Autorest was considering that an empty body was a valid JSON,
+        # need that test as well....
+        else:
+            content_type = "application/json"
+
+        if body_bytes:
+            return cls.deserialize_from_text(body_bytes, content_type)
+        return None
+
+class ValidationError(AzureError):
+    """Request parameter validation failed.
+    :param str rule: Validation rule.
+    :param str target: Target value for the rule.
+    :param str value: Value that was invalid.
+    """
+
+    _messages = {
+        "min_length": "must have length greater than {!r}.",
+        "max_length": "must have length less than {!r}.",
+        "minimum_ex": "must be greater than {!r}.",
+        "maximum_ex": "must be less than {!r}.",
+        "minimum": "must be equal to or greater than {!r}.",
+        "maximum": "must be equal to or less than {!r}.",
+        "min_items": "must contain at least {!r} items.",
+        "max_items": "must contain at most {!r} items.",
+        "pattern": "must conform to the following pattern: {!r}.",
+        "unique": "must contain only unique items.",
+        "multiple": "must be a multiple of {!r}.",
+        "required": "can not be None.",
+        "type": "must be of type {!r}"
+    }
+
+    @staticmethod
+    def _format_message(rule, reason, value):
+        if rule == "type" and value.startswith(r"{"):
+            internal_type = value.strip(r"{}")
+            value = "dict[str, {}]".format(internal_type)
+        return reason.format(value)
+
+    def __init__(self, rule, target, value, *args, **kwargs):
+        # type: (str, str, str, str, str) -> None
+        self.rule = rule
+        self.target = target
+        message = "Parameter {!r} ".format(target)
+        reason = self._messages.get(
+            rule, "failed to meet validation requirement.")
+        message += self._format_message(rule, reason, value)
+        super(ValidationError, self).__init__(message, *args, **kwargs)
+
+class DeserializationError(AzureError):
+    """Error raised during response deserialization."""
+    pass
+
+class SerializationError(AzureError):
+    """Error raised during request serialization."""
+    pass
 
 try:
     basestring  # type: ignore
@@ -1523,10 +1670,6 @@ class Deserializer(object):
         :raises JSONDecodeError: If JSON is requested and parsing is impossible.
         :raises UnicodeDecodeError: If bytes is not UTF8
         """
-        # This avoids a circular dependency. We might want to consider RawDesializer is more generic
-        # than the pipeline concept, and put it in a toolbox, used both here and in pipeline. TBD.
-        from .pipeline.universal import RawDeserializer
-
         # Assume this is enough to detect a Pipeline Response without importing it
         context = getattr(raw_data, "context", {})
         if context:
