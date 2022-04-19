@@ -412,3 +412,11 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         if self.options["version_tolerant"] or self.options["low_level_client"]:
             return "_enums"
         return f"_{self.module_name}_enums"
+
+    @property
+    def is_legacy(self) -> bool:
+        return not any(
+            g
+            for g in ["low_level_client", "version_tolerant"]
+            if g in self.options
+        )

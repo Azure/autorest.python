@@ -103,7 +103,10 @@ class RequestBuilder(BaseBuilder):
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
-        file_import.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY)
+        if self.code_model.is_legacy:
+            file_import.add_submodule_import(".._serialization", "Serializer", ImportType.LOCAL)
+        else:
+            file_import.add_submodule_import(".._serialization", "Serializer", ImportType.LOCAL)
         return file_import
 
     @classmethod
