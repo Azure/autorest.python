@@ -39,7 +39,7 @@ from .parameter_list import ParameterList, ClientGlobalParameterList, ConfigGlob
 from .request_builder import RequestBuilder, OverloadedRequestBuilder, RequestBuilderBase
 from .base_builder import BaseBuilder
 from .lro_paging_operation import LROPagingOperation
-from .request_builder_parameter import RequestBuilderParameter
+from .request_builder_parameter import RequestBuilderParameter, RequestBuilderSingleTypeBodyParameter
 
 __all__ = [
     "AzureKeyCredentialSchema",
@@ -80,6 +80,7 @@ __all__ = [
     "RequestBuilderBase",
     "SingleTypeBodyParameter",
     "MultipleTypeBodyParameter",
+    "RequestBuilderSingleTypeBodyParameter",
 ]
 
 TYPE_TO_OBJECT = {

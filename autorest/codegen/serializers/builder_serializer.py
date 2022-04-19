@@ -29,6 +29,7 @@ from ..models import (
     BinaryType,
     SingleTypeBodyParameter,
     ParameterMethodLocation,
+    RequestBuilderSingleTypeBodyParameter,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from . import utils
@@ -785,6 +786,7 @@ class _OperationBaseSerializer(
         if builder.overloads:
             for overload in builder.overloads:
                 retval.append(f"_{overload.request_builder.parameters.body_parameter.client_name} = None")
+            retval.append('content_type = content_type or ""')
             for idx, overload in enumerate(builder.overloads):
                 if_statement = "if" if idx == 0 else "elif"
                 pre_semicolon_content_types = [content_type.split(";")[0] for content_type in overload.parameters.body_parameter.content_types]
@@ -812,12 +814,18 @@ class _OperationBaseSerializer(
         retval.append("")
         retval.append(f"request = {request_path_name}(")
         for parameter in request_builder.parameters.method:
-            retval.append(f"    {parameter.client_name}={parameter.client_name},")
+            if parameter.location == ParameterLocation.BODY:
+                # going to pass in body later based off of overloads
+                continue
+            retval.append(f"    {parameter.client_name}={parameter.name_in_high_level_operation},")
+        if request_builder.overloads:
+            for overload in request_builder.overloads:
+                body_param = cast(RequestBuilderSingleTypeBodyParameter, overload.parameters.body_parameter)
+                retval.append(f"    {body_param.client_name}={body_param.name_in_high_level_operation},")
+        else:
+            body_param = cast(RequestBuilderSingleTypeBodyParameter, request_builder.parameters.body_parameter)
+            retval.append(f"    {body_param.client_name}={body_param.name_in_high_level_operation},")
         if not self.code_model.options["version_tolerant"]:
-            # if builder.parameters.multipart:
-            #     retval.append(f"    files=_files,")
-            # if builder.parameters.data_inputs:
-            #     retval.append(f"    data=_data,")
             template_url = template_url or f"self.{builder.name}.metadata['url']"
             retval.append(f"    template_url={template_url},")
         retval.append("    headers=_headers,")

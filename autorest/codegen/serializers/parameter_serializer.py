@@ -106,7 +106,7 @@ class ParameterSerializer:
             retval.append("")
         for kwarg in parameters:
             if kwarg.client_default_value or kwarg.optional:
-                default_value = kwarg.type.get_declaration(kwarg.client_default_value)
+                default_value = kwarg.client_default_value_declaration
                 if check_kwarg_dict and (
                     kwarg.location in [ParameterLocation.HEADER, ParameterLocation.QUERY]
                 ):

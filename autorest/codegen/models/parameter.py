@@ -45,7 +45,7 @@ class _BaseParameter(BaseModel, abc.ABC):
     @property
     def description(self) -> str:
         description = self.yaml_data["description"]
-        if self.client_default_value:
+        if self.client_default_value or self.optional:
             description += f" Default value is {self.client_default_value_declaration}"
         return description
 
@@ -78,10 +78,10 @@ class _BaseParameter(BaseModel, abc.ABC):
     def method_signature(self, is_python3_file: bool) -> str:
         type_annot = self.type_annotation()
         if is_python3_file:
-            if self.client_default_value:
+            if self.client_default_value or self.optional:
                 return f"{self.client_name}: {type_annot} = {self.client_default_value_declaration},"
             return f"{self.client_name}: {type_annot},"
-        if self.client_default_value:
+        if self.client_default_value or self.optional:
             return f"{self.client_name}={self.client_default_value_declaration},  # type: {type_annot}"
         return f"{self.client_name},  # type: {type_annot}"
 
@@ -125,7 +125,10 @@ class MultipleTypeBodyParameter(_BodyParameter):
         return self.content_type_to_type[content_type].serialization_type
 
     def type_annotation(self) -> str:
-        return f'Union[{", ".join(type.type_annotation(is_operation_file=True) for type in self.types)}]'
+        type_annot = f'Union[{", ".join(type.type_annotation(is_operation_file=True) for type in self.types)}]'
+        if self.optional:
+            return f"Optional[{type_annot}]"
+        return type_annot
 
     @property
     def docstring_text(self) -> str:
@@ -137,6 +140,8 @@ class MultipleTypeBodyParameter(_BodyParameter):
 
     @property
     def client_default_value_declaration(self):
+        if not self.client_default_value:
+            return None
         return self.types[0].get_declaration(self.client_default_value)
 
     def type_to_content_types(self, yaml_id: int) -> List[str]:
@@ -150,6 +155,8 @@ class MultipleTypeBodyParameter(_BodyParameter):
         file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
         for type in self.types:
             file_import.merge(type.imports(is_operation_file=True))
+        if self.optional:
+            file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         return file_import
 
     @property
@@ -184,14 +191,21 @@ class SingleTypeBodyParameter(_BodyParameter):
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.merge(self.type.imports(is_operation_file=True))
+        if self.optional:
+            file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         return file_import
 
     @property
     def client_default_value_declaration(self):
+        if not self.client_default_value:
+            return None
         return self.type.get_declaration(self.client_default_value)
 
     def type_annotation(self) -> str:
-        return self.type.type_annotation(is_operation_file=True)
+        type_annot = self.type.type_annotation(is_operation_file=True)
+        if self.optional:
+            return f"Optional[{type_annot}]"
+        return type_annot
 
     @property
     def docstring_text(self) -> str:
@@ -259,10 +273,15 @@ class Parameter(_BaseParameter):
         return self.rest_api_name != "Accept"  # hiding accept header from users
 
     def type_annotation(self) -> str:
-        return self.type.type_annotation(is_operation_file=True)
+        type_annot = self.type.type_annotation(is_operation_file=True)
+        if self.optional:
+            return f"Optional[{type_annot}]"
+        return type_annot
 
     @property
     def client_default_value_declaration(self):
+        if not self.client_default_value:
+            return None
         return self.type.get_declaration(self.client_default_value)
 
     @property

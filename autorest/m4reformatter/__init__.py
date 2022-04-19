@@ -219,8 +219,10 @@ def update_parameters(yaml_data: Dict[str, Any]) -> List[Dict[str, Any]]:
             if param["protocol"]["http"]["in"] != "body":
                 if param["language"]["default"]["serializedName"] not in seen_rest_api_names:
                     param = update_parameter(param, "Method")
-                    # find a string type
-                    param["type"] = next(t for t in ORIGINAL_ID_TO_UPDATED_TYPE.values() if t["type"] == "string")  # override to string type
+                    if param["restApiName"] == "Content-Type":
+                        # override content type type to string
+                        param["type"] = next(t for t in ORIGINAL_ID_TO_UPDATED_TYPE.values() if t["type"] == "string")  # override to string type
+                        param["optional"] = True
                     retval.append(param)
                     seen_rest_api_names.add(param["restApiName"])
     return retval
@@ -291,7 +293,7 @@ def update_overloads(group_name: str, yaml_data: Dict[str, Any], body_parameter:
         default_content_type = _get_default_content_type(chosen_content_types)
         for rmt in new_yaml_data["requestMediaTypes"].values():
             for parameter in rmt["parameters"]:
-                if parameter["language"]["default"]["name"] == "content_type":
+                if parameter["language"]["default"]["name"] == "content_type" and default_content_type:
                     parameter["clientDefaultValue"] = default_content_type
         seen_types.add(id(yaml_type))
         overloads.append(update_operation(group_name, new_yaml_data, is_overload=True))

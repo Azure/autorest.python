@@ -44,6 +44,12 @@ class RequestBuilderSingleTypeBodyParameter(SingleTypeBodyParameter):
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "RequestBuilderSingleTypeBodyParameter":
         return super().from_yaml(yaml_data, code_model)  # type: ignore
 
+    @property
+    def name_in_high_level_operation(self) -> str:
+        if self.client_name == "json":
+            return "_json"
+        return "_content"
+
 class RequestBuilderParameter(Parameter):
 
     @property
