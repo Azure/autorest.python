@@ -76,7 +76,9 @@ setup(
     include_package_data=True,
     {% endif %}
     install_requires=[
+        {% if azure_arm %}
         "{{ dependency_msrest }}",
+        {% endif %}
         {% if azure_arm %}
         "{{ dependency_azure_mgmt_core }}",
         {% else %}

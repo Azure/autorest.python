@@ -178,6 +178,7 @@ class JinjaSerializer:
                     for i in range(len(package_parts))
                 ],
                 "dev_status": dev_status,
+                "is_legacy": self.code_model.is_legacy,
             }
             params.update(self.code_model.options)
             params.update(self.code_model.package_dependency)
