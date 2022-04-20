@@ -1,5 +1,19 @@
 # Change Log
 
+### 2022-xx-xx - 5.17.0
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.6.2`     |
+| `@autorest/modelerfour`                                                 | `4.19.1`    |
+| `azure-core` dep of generated code                                      | `1.23.0`    |
+| `msrest` dep of generated code                                          | `0.6.21`    |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
+
+**New Features**
+- Hide `api_version` in doc string for singleapi SDK even if contains multi api versions.
+
+
 ### 2022-04-18 - 5.16.0
 
 | Library                                                                 | Min Version |

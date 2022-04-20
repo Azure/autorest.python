@@ -387,6 +387,15 @@ class Parameter(
 
     @property
     def method_location(self) -> ParameterMethodLocation:
+        # If tag contains different api versions, output of modelerfour will
+        # change implementation from "Client" to "Method". But we don't want
+        # to show it in doc string
+        if (
+            self._implementation == "Method"
+            and self.serialized_name == "api_version"
+            and not self.code_model.options["multiapi"]
+        ):
+            return ParameterMethodLocation.HIDDEN_KWARG
         if self._method_location:
             return self._method_location
         if self.serialized_name in _HIDDEN_KWARGS or (

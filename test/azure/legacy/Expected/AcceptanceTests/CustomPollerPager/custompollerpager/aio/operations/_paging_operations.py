@@ -1171,14 +1171,11 @@ class PagingOperations:
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
         self,
-        api_version: str,
         tenant: str,
         **kwargs: Any
     ) -> AsyncIterable[_models.OdataProductResult]:
         """A paging operation that doesn't return a full URL, just a fragment.
 
-        :param api_version: Sets the api version to use.
-        :type api_version: str
         :param tenant: Sets the tenant to use.
         :type tenant: str
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1189,6 +1186,7 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        api_version = kwargs.pop('api_version')  # type: str
         cls = kwargs.pop('cls', None)  # type: ClsType[_models.OdataProductResult]
 
         error_map = {
@@ -1199,8 +1197,8 @@ class PagingOperations:
             if not next_link:
                 
                 request = build_get_multiple_pages_fragment_next_link_request(
-                    tenant=tenant,
                     api_version=api_version,
+                    tenant=tenant,
                     template_url=self.get_multiple_pages_fragment_next_link.metadata['url'],
                     headers=_headers,
                     params=_params,
@@ -1211,9 +1209,9 @@ class PagingOperations:
             else:
                 
                 request = build_next_fragment_request(
+                    api_version=api_version,
                     tenant=tenant,
                     next_link=next_link,
-                    api_version=api_version,
                     template_url='/paging/multiple/fragment/{tenant}/{nextLink}',
                     headers=_headers,
                     params=_params,
@@ -1285,8 +1283,8 @@ class PagingOperations:
                     _tenant = custom_parameter_group.tenant
                 
                 request = build_get_multiple_pages_fragment_with_grouping_next_link_request(
-                    tenant=_tenant,
                     api_version=_api_version,
+                    tenant=_tenant,
                     template_url=self.get_multiple_pages_fragment_with_grouping_next_link.metadata['url'],
                     headers=_headers,
                     params=_params,
@@ -1302,9 +1300,9 @@ class PagingOperations:
                     _tenant = custom_parameter_group.tenant
                 
                 request = build_next_fragment_with_grouping_request(
+                    api_version=_api_version,
                     tenant=_tenant,
                     next_link=next_link,
-                    api_version=_api_version,
                     template_url='/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}',
                     headers=_headers,
                     params=_params,

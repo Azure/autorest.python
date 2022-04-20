@@ -176,9 +176,6 @@ class ApiVersionLocalOperations(object):
         # type: (...) -> None
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-        :keyword api_version: This should appear as a method parameter, use value '2.0'. Default value
-         is "2.0". Note that overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -219,16 +216,11 @@ class ApiVersionLocalOperations(object):
 
     @distributed_trace
     def get_method_local_null(  # pylint: disable=inconsistent-return-statements
-        self,
-        api_version=None,  # type: Optional[str]
-        **kwargs  # type: Any
+        self, **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
 
-        :param api_version: This should appear as a method parameter, use value null, this should
-         result in no serialized parameter. Default value is None.
-        :type api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -238,8 +230,9 @@ class ApiVersionLocalOperations(object):
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+        api_version = kwargs.pop("api_version", _params.pop("api-version", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_get_method_local_null_request(
@@ -273,9 +266,6 @@ class ApiVersionLocalOperations(object):
         # type: (...) -> None
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-        :keyword api_version: This should appear as a method parameter, use value '2.0'. Default value
-         is "2.0". Note that overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
@@ -321,10 +311,6 @@ class ApiVersionLocalOperations(object):
         # type: (...) -> None
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-        :keyword api_version: The api version, which appears in the query, the value is always '2.0'.
-         Default value is "2.0". Note that overriding this default value may result in unsupported
-         behavior.
-        :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
         :rtype: None
