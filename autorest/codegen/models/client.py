@@ -54,13 +54,17 @@ class Client:
                 "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
             )
         if self.code_model.is_legacy:
-            file_import.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY)
+            file_import.add_submodule_import(
+                "msrest", "Serializer", ImportType.THIRDPARTY
+            )
             file_import.add_submodule_import(
                 "msrest", "Deserializer", ImportType.THIRDPARTY
             )
         else:
             relative_path = ".." if async_mode else "."
-            file_import.add_submodule_import(f"{relative_path}_serialization", "Serializer", ImportType.LOCAL)
+            file_import.add_submodule_import(
+                f"{relative_path}_serialization", "Serializer", ImportType.LOCAL
+            )
             file_import.add_submodule_import(
                 f"{relative_path}_serialization", "Deserializer", ImportType.LOCAL
             )

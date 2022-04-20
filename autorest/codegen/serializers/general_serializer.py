@@ -129,14 +129,23 @@ class GeneralSerializer:
                     "msrest", "Serializer", ImportType.THIRDPARTY, TypingSection.TYPING
                 )
                 file_import.add_submodule_import(
-                    "msrest", "Deserializer", ImportType.THIRDPARTY, TypingSection.TYPING
+                    "msrest",
+                    "Deserializer",
+                    ImportType.THIRDPARTY,
+                    TypingSection.TYPING,
                 )
             else:
                 file_import.add_submodule_import(
-                    "._serialization", "Serializer", ImportType.LOCAL, TypingSection.TYPING
+                    "._serialization",
+                    "Serializer",
+                    ImportType.LOCAL,
+                    TypingSection.TYPING,
                 )
                 file_import.add_submodule_import(
-                    "._serialization", "Deserializer", ImportType.LOCAL, TypingSection.TYPING
+                    "._serialization",
+                    "Deserializer",
+                    ImportType.LOCAL,
+                    TypingSection.TYPING,
                 )
 
         return template.render(
@@ -184,9 +193,7 @@ class GeneralSerializer:
 
     def serialize_setup_file(self) -> str:
         template = self.env.get_template("setup.py.jinja2")
-        params: Dict[str, Any] = {
-            "is_legacy": self.code_model.is_legacy
-        }
+        params: Dict[str, Any] = {"is_legacy": self.code_model.is_legacy}
         params.update(self.code_model.options)
         params.update(self.code_model.package_dependency)
         return template.render(code_model=self.code_model, **params)

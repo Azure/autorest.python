@@ -472,9 +472,9 @@ class JinjaSerializer:
         if not self.code_model.is_legacy:
             # serialization.py from msrest
             self._autorestapi.write_file(
-                    namespace_path / Path("_serialization.py"),
-                    general_serializer.serialize_serialization_file(),
-                )
+                namespace_path / Path("_serialization.py"),
+                general_serializer.serialize_serialization_file(),
+            )
 
         # Write the config file
         if self.code_model.request_builders:

@@ -54,9 +54,7 @@ class ModelBaseSerializer:
         if self.code_model.is_legacy:
             file_import.add_import("msrest.serialization", ImportType.AZURECORE)
         else:
-            file_import.add_submodule_import(
-                    "..", "_serialization", ImportType.LOCAL
-                )
+            file_import.add_submodule_import("..", "_serialization", ImportType.LOCAL)
         for model in self.code_model.sorted_schemas:
             file_import.merge(model.imports())
         return file_import
@@ -80,7 +78,11 @@ class ModelBaseSerializer:
 
     @staticmethod
     def declare_model(code_model: CodeModel, model: ObjectSchema) -> str:
-        basename = "msrest.serialization.Model" if code_model.is_legacy else "_serialization.Model"
+        basename = (
+            "msrest.serialization.Model"
+            if code_model.is_legacy
+            else "_serialization.Model"
+        )
         if model.base_models:
             basename = ", ".join(
                 [cast(ObjectSchema, m).name for m in model.base_models]
