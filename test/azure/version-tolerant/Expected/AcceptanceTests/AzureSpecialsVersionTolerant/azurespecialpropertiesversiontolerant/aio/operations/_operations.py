@@ -721,9 +721,6 @@ class ApiVersionLocalOperations:
     async def get_method_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-        :keyword api_version: This should appear as a method parameter, use value '2.0'. Default value
-         is "2.0". Note that overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -757,14 +754,9 @@ class ApiVersionLocalOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_method_local_null(  # pylint: disable=inconsistent-return-statements
-        self, *, api_version: Optional[str] = None, **kwargs: Any
-    ) -> None:
+    async def get_method_local_null(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
 
-        :keyword api_version: This should appear as a method parameter, use value null, this should
-         result in no serialized parameter. Default value is None.
-        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -773,8 +765,9 @@ class ApiVersionLocalOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
+        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+        api_version = kwargs.pop("api_version", _params.pop("api-version", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_api_version_local_get_method_local_null_request(
@@ -800,9 +793,6 @@ class ApiVersionLocalOperations:
     async def get_path_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-        :keyword api_version: This should appear as a method parameter, use value '2.0'. Default value
-         is "2.0". Note that overriding this default value may result in unsupported behavior.
-        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -839,10 +829,6 @@ class ApiVersionLocalOperations:
     async def get_swagger_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
 
-        :keyword api_version: The api version, which appears in the query, the value is always '2.0'.
-         Default value is "2.0". Note that overriding this default value may result in unsupported
-         behavior.
-        :paramtype api_version: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError

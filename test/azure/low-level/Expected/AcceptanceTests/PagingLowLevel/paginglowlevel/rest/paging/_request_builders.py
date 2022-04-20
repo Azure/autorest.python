@@ -868,8 +868,6 @@ def build_get_multiple_pages_fragment_next_link_request(
 
     :param tenant: Sets the tenant to use.
     :type tenant: str
-    :keyword api_version: Sets the api version to use.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -933,8 +931,6 @@ def build_get_multiple_pages_fragment_with_grouping_next_link_request(
 
     :param tenant: Sets the tenant to use.
     :type tenant: str
-    :keyword api_version: Sets the api version to use.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1067,8 +1063,6 @@ def build_next_fragment_request(
     :type tenant: str
     :param next_link: Next link for list operation.
     :type next_link: str
-    :keyword api_version: Sets the api version to use.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1136,8 +1130,6 @@ def build_next_fragment_with_grouping_request(
     :type tenant: str
     :param next_link: Next link for list operation.
     :type next_link: str
-    :keyword api_version: Sets the api version to use.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.

@@ -1203,15 +1203,11 @@ class PagingOperations:
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_multiple_pages_fragment_next_link(
-        self, tenant: str, *, api_version: str, **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    def get_multiple_pages_fragment_next_link(self, tenant: str, **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation that doesn't return a full URL, just a fragment.
 
         :param tenant: Sets the tenant to use.
         :type tenant: str
-        :keyword api_version: Sets the api version to use.
-        :paramtype api_version: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1235,6 +1231,7 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        api_version = kwargs.pop("api_version")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1244,8 +1241,8 @@ class PagingOperations:
             if not next_link:
 
                 request = build_paging_get_multiple_pages_fragment_next_link_request(
-                    tenant=tenant,
                     api_version=api_version,
+                    tenant=tenant,
                     headers=_headers,
                     params=_params,
                 )
@@ -1254,9 +1251,9 @@ class PagingOperations:
             else:
 
                 request = build_paging_next_fragment_request(
+                    api_version=api_version,
                     tenant=tenant,
                     next_link=next_link,
-                    api_version=api_version,
                     headers=_headers,
                     params=_params,
                 )
@@ -1288,15 +1285,11 @@ class PagingOperations:
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_multiple_pages_fragment_with_grouping_next_link(
-        self, tenant: str, *, api_version: str, **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    def get_multiple_pages_fragment_with_grouping_next_link(self, tenant: str, **kwargs: Any) -> AsyncIterable[JSON]:
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
         :param tenant: Sets the tenant to use.
         :type tenant: str
-        :keyword api_version: Sets the api version to use.
-        :paramtype api_version: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1320,6 +1313,7 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        api_version = kwargs.pop("api_version")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1329,8 +1323,8 @@ class PagingOperations:
             if not next_link:
 
                 request = build_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
-                    tenant=tenant,
                     api_version=api_version,
+                    tenant=tenant,
                     headers=_headers,
                     params=_params,
                 )
@@ -1339,9 +1333,9 @@ class PagingOperations:
             else:
 
                 request = build_paging_next_fragment_with_grouping_request(
+                    api_version=api_version,
                     tenant=tenant,
                     next_link=next_link,
-                    api_version=api_version,
                     headers=_headers,
                     params=_params,
                 )

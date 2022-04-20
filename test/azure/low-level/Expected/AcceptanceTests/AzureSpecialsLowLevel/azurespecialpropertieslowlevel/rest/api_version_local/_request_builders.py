@@ -29,9 +29,6 @@ def build_get_method_local_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword api_version: This should appear as a method parameter, use value '2.0'. Default value
-     is "2.0". Note that overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -71,9 +68,6 @@ def build_get_method_local_null_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword api_version: This should appear as a method parameter, use value null, this should
-     result in no serialized parameter. Default value is None.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -114,9 +108,6 @@ def build_get_path_local_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword api_version: This should appear as a method parameter, use value '2.0'. Default value
-     is "2.0". Note that overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -156,10 +147,6 @@ def build_get_swagger_local_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword api_version: The api version, which appears in the query, the value is always '2.0'.
-     Default value is "2.0". Note that overriding this default value may result in unsupported
-     behavior.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.

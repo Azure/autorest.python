@@ -53,15 +53,12 @@ class Helpers:
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
-
         if response.content:
             deserialized = response.json()
         else:
             deserialized = None
-
         if cls:
             return cls(pipeline_response, cast(Any, deserialized), {})
-
         return cast(Any, deserialized)
 
     @staticmethod
@@ -94,15 +91,12 @@ class Helpers:
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
-
         if response.content:
             deserialized = response.json()
         else:
             deserialized = None
-
         if cls:
             return cls(pipeline_response, cast(Any, deserialized), {})
-
         return cast(Any, deserialized)
 
 

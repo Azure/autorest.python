@@ -55,7 +55,6 @@ class Helpers:
         if response.status_code not in [200, 405]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
-
         if cls:
             return cls(pipeline_response, None, {})
 
@@ -71,7 +70,6 @@ class Helpers:
         # Construct headers
         if content_type is not None:
             _headers["Content-Type"] = content_type
-
         return HttpRequest(method="POST", url=_url, headers=_headers, data=data, params=_params)
 
     @staticmethod
@@ -88,7 +86,6 @@ class Helpers:
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
-
         if cls:
             return cls(pipeline_response, None, {})
 

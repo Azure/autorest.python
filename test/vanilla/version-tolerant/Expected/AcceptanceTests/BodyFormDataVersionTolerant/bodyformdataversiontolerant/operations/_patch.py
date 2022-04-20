@@ -54,12 +54,10 @@ def _upload_file_deserialize(pipeline_response, **kwargs):
     if response.status_code not in [200]:
         map_error(status_code=response.status_code, response=response, error_map=error_map)
         raise HttpResponseError(response=response)
-
     deserialized = response
 
     if cls:
         return cls(pipeline_response, cast(IO, deserialized), {})
-
     return cast(IO, deserialized)
 
 
@@ -90,12 +88,10 @@ def _upload_files_deserialize(pipeline_response, **kwargs):
     if response.status_code not in [200]:
         map_error(status_code=response.status_code, response=response, error_map=error_map)
         raise HttpResponseError(response=response)
-
     deserialized = response
 
     if cls:
         return cls(pipeline_response, cast(IO, deserialized), {})
-
     return cast(IO, deserialized)
 
 

@@ -735,7 +735,7 @@ def build_get_multiple_pages_failure_uri_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_multiple_pages_fragment_next_link_request(tenant: str, *, api_version: str, **kwargs: Any) -> HttpRequest:
+def build_get_multiple_pages_fragment_next_link_request(tenant: str, **kwargs: Any) -> HttpRequest:
     """A paging operation that doesn't return a full URL, just a fragment.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -743,8 +743,6 @@ def build_get_multiple_pages_fragment_next_link_request(tenant: str, *, api_vers
 
     :param tenant: Sets the tenant to use.
     :type tenant: str
-    :keyword api_version: Sets the api version to use.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -770,6 +768,7 @@ def build_get_multiple_pages_fragment_next_link_request(tenant: str, *, api_vers
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version = kwargs.pop("api_version")  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -789,9 +788,7 @@ def build_get_multiple_pages_fragment_next_link_request(tenant: str, *, api_vers
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_get_multiple_pages_fragment_with_grouping_next_link_request(
-    tenant: str, *, api_version: str, **kwargs: Any
-) -> HttpRequest:
+def build_get_multiple_pages_fragment_with_grouping_next_link_request(tenant: str, **kwargs: Any) -> HttpRequest:
     """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -799,8 +796,6 @@ def build_get_multiple_pages_fragment_with_grouping_next_link_request(
 
     :param tenant: Sets the tenant to use.
     :type tenant: str
-    :keyword api_version: Sets the api version to use.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -826,6 +821,7 @@ def build_get_multiple_pages_fragment_with_grouping_next_link_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version = kwargs.pop("api_version")  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -906,7 +902,7 @@ def build_get_multiple_pages_lro_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_next_fragment_request(tenant: str, next_link: str, *, api_version: str, **kwargs: Any) -> HttpRequest:
+def build_next_fragment_request(tenant: str, next_link: str, **kwargs: Any) -> HttpRequest:
     """A paging operation that doesn't return a full URL, just a fragment.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -916,8 +912,6 @@ def build_next_fragment_request(tenant: str, next_link: str, *, api_version: str
     :type tenant: str
     :param next_link: Next link for list operation.
     :type next_link: str
-    :keyword api_version: Sets the api version to use.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -943,6 +937,7 @@ def build_next_fragment_request(tenant: str, next_link: str, *, api_version: str
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version = kwargs.pop("api_version")  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -963,9 +958,7 @@ def build_next_fragment_request(tenant: str, next_link: str, *, api_version: str
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_next_fragment_with_grouping_request(
-    tenant: str, next_link: str, *, api_version: str, **kwargs: Any
-) -> HttpRequest:
+def build_next_fragment_with_grouping_request(tenant: str, next_link: str, **kwargs: Any) -> HttpRequest:
     """A paging operation that doesn't return a full URL, just a fragment.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -975,8 +968,6 @@ def build_next_fragment_with_grouping_request(
     :type tenant: str
     :param next_link: Next link for list operation.
     :type next_link: str
-    :keyword api_version: Sets the api version to use.
-    :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1002,6 +993,7 @@ def build_next_fragment_with_grouping_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version = kwargs.pop("api_version")  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
