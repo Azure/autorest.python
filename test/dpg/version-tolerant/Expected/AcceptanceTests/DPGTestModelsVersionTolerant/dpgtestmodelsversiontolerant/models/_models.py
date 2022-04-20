@@ -8,14 +8,14 @@
 
 from typing import List, Optional, TYPE_CHECKING, Union
 
-import msrest.serialization
+from .. import _serialization
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     import __init__ as _models
 
 
-class Input(msrest.serialization.Model):
+class Input(_serialization.Model):
     """Input.
 
     All required parameters must be populated in order to send to Azure.
@@ -41,7 +41,7 @@ class Input(msrest.serialization.Model):
         self.hello = hello
 
 
-class Product(msrest.serialization.Model):
+class Product(_serialization.Model):
     """Product.
 
     All required parameters must be populated in order to send to Azure.
@@ -99,7 +99,7 @@ class LROProduct(Product):
         self.provisioning_state = provisioning_state
 
 
-class ProductResult(msrest.serialization.Model):
+class ProductResult(_serialization.Model):
     """ProductResult.
 
     :ivar values:

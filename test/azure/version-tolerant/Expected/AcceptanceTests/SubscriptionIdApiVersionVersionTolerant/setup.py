@@ -21,7 +21,6 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        "msrest>=0.6.21",
         "azure-mgmt-core<2.0.0,>=1.3.0",
     ],
     long_description="""\

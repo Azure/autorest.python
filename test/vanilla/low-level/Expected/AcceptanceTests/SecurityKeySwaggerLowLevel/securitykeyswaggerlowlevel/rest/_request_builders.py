@@ -7,9 +7,9 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from msrest import Serializer
-
 from azure.core.rest import HttpRequest
+
+from .._serialization import Serializer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
