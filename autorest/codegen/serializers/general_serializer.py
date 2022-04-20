@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import Dict, Any
 from jinja2 import Environment
 from .import_serializer import FileImportSerializer, TypingSection
 from ..models import (
@@ -183,7 +184,7 @@ class GeneralSerializer:
 
     def serialize_setup_file(self) -> str:
         template = self.env.get_template("setup.py.jinja2")
-        params = {
+        params: Dict[str, Any] = {
             "is_legacy": self.code_model.is_legacy
         }
         params.update(self.code_model.options)
