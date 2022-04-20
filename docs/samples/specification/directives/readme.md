@@ -3,7 +3,7 @@
 ### Settings
 
 ``` yaml
-input-file: https://raw.githubusercontent.com/Azure/autorest/master/docs/openapi/examples/pollingPaging.json
+input-file: https://raw.githubusercontent.com/Azure/autorest/main/docs/openapi/examples/pollingPaging.json
 namespace: azure.directives.sample
 package-name: azure-directives-sample
 license-header: MICROSOFT_MIT_NO_VERSION
