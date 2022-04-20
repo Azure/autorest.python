@@ -76,7 +76,7 @@ setup(
     include_package_data=True,
     {% endif %}
     install_requires=[
-        {% if azure_arm %}
+        {% if is_legacy %}
         "{{ dependency_msrest }}",
         {% endif %}
         {% if azure_arm %}

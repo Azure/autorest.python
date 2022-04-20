@@ -36,25 +36,24 @@ class Client:
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
 
-        relative_path = ".." if async_mode else "."
-        file_import.add_submodule_import(f"{relative_path}_serialization", "Serializer", ImportType.LOCAL)
-        file_import.add_submodule_import(
-            f"{relative_path}_serialization", "Deserializer", ImportType.LOCAL
-        )
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
 
         any_optional_gp = any(not gp.required for gp in self.parameters)
 
-        legacy = self.code_model.is_legacy
+        legacy = not any(
+            g
+            for g in ["low_level_client", "version_tolerant"]
+            if g in self.code_model.options
+        )
         if any_optional_gp or (
             legacy and self.code_model.service_client.parameters.host
         ):
             file_import.add_submodule_import(
                 "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
             )
-        if legacy:
+        if self.code_model.is_legacy:
             file_import.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY)
             file_import.add_submodule_import(
                 "msrest", "Deserializer", ImportType.THIRDPARTY

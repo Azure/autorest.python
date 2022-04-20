@@ -183,7 +183,9 @@ class GeneralSerializer:
 
     def serialize_setup_file(self) -> str:
         template = self.env.get_template("setup.py.jinja2")
-        params = {}
+        params = {
+            "is_legacy": self.code_model.is_legacy
+        }
         params.update(self.code_model.options)
         params.update(self.code_model.package_dependency)
         return template.render(code_model=self.code_model, **params)
