@@ -5,22 +5,56 @@
 # --------------------------------------------------------------------------
 """The namer autorest plugin.
 """
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 from .helpers import to_snake_case
 
 from .. import YamlUpdatePlugin
 
-def update_operation_groups(yaml_data: List[Dict[str, Any]]) -> None:
-    for operation_group in yaml_data:
-        operation_group["propertyName"] = to_snake_case(operation_group["propertyName"])
-        for operation in operation_group["operations"]:
-            operation["groupName"] = to_snake_case(operation["groupName"])
+def update_description(description: Optional[str], default_description: str = "") -> str:
+    if not description:
+        description = default_description
+    if description and description[-1] != ".":
+        description += "."
+    return description
 
-def update_types(yaml_data: Dict[str, Any]) -> None:
-    pass
+def update_operation_group_class_name(yaml_data: Dict[str, Any], class_name: str) -> str:
+    if class_name == "":
+        return yaml_data["client"]["name"] + "OperationsMixin"
+    if class_name == "Operations":
+        return "Operations"
+    return class_name + "Operations"
+
+def update_parameter(yaml_data: Dict[str, Any]) -> None:
+    yaml_data["description"] = update_description(yaml_data["description"])
+
+def update_operation(yaml_data: Dict[str, Any]) -> None:
+    yaml_data["groupName"] = to_snake_case(yaml_data["groupName"])
+    yaml_data["description"] = update_description(yaml_data["description"], yaml_data["name"])
+    for parameter in yaml_data["parameters"]:
+        update_parameter(parameter)
+    if yaml_data["bodyParameter"]:
+        update_parameter(yaml_data["bodyParameter"])
+
+def update_operation_groups(yaml_data: Dict[str, Any]) -> None:
+    operation_groups_yaml_data = yaml_data["operationGroups"]
+    for operation_group in operation_groups_yaml_data:
+        operation_group["propertyName"] = to_snake_case(operation_group["propertyName"])
+        operation_group["className"] = update_operation_group_class_name(yaml_data, operation_group["className"])
+        for operation in operation_group["operations"]:
+            update_operation(operation)
+
+
+def update_types(yaml_data: List[Dict[str, Any]]) -> None:
+    for type in yaml_data:
+        for property in type.get("properties", []):
+            property["description"] = update_description(property["description"])
+        if type.get("name"):
+            type["description"] = update_description(type["description"], type["name"])
 
 def update_client(yaml_data: Dict[str, Any]) -> None:
-    pass
+    yaml_data["description"] = update_description(yaml_data["description"], default_description=yaml_data["name"])
+    for parameter in yaml_data["parameters"]:
+        update_parameter(parameter)
 
 class Namer(YamlUpdatePlugin):
     """Add Python naming information."""
@@ -29,5 +63,5 @@ class Namer(YamlUpdatePlugin):
         """Convert in place the YAML str."""
         update_client(yaml_data["client"])
         update_types(yaml_data["types"])
-        update_operation_groups(yaml_data["operationGroups"])
+        update_operation_groups(yaml_data)
         return yaml_data

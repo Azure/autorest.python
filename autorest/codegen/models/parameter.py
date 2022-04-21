@@ -13,6 +13,7 @@ from .imports import FileImport, ImportType, TypingSection
 from .base_model import BaseModel
 from .base_type import BaseType
 from .constant_type import ConstantType
+from .utils import add_to_description
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -39,15 +40,12 @@ class _BaseParameter(BaseModel, abc.ABC):
         super().__init__(yaml_data, code_model)
         self.client_name = yaml_data["clientName"]
         self.optional = yaml_data["optional"]
-        self.client_default_value = yaml_data.get("clientDefaultValue", None)
         self.location = yaml_data["location"]
+        self.client_default_value = yaml_data.get("clientDefaultValue", None)
 
     @property
     def description(self) -> str:
-        description = self.yaml_data["description"]
-        if self.client_default_value or self.optional:
-            description += f" Default value is {self.client_default_value_declaration}"
-        return description
+        return self.yaml_data["description"]
 
     @property
     def method_location(self) -> ParameterMethodLocation:
@@ -155,8 +153,6 @@ class MultipleTypeBodyParameter(_BodyParameter):
         file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
         for type in self.types:
             file_import.merge(type.imports(is_operation_file=True))
-        if self.optional:
-            file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         return file_import
 
     @property
@@ -174,26 +170,34 @@ class MultipleTypeBodyParameter(_BodyParameter):
             }
         )
 
-class SingleTypeBodyParameter(_BodyParameter):
-    """Body parameters for the overload operations. Only has one type per overload
-    """
-    def __init__(
-        self,
-        yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
-        type: BaseType,
-        content_types: List[str],
-    ) -> None:
+class _SingleTypeParameter(_BaseParameter):
+    """Base class for SingleTypeBodyParameter and Parameter"""
+
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel", type: BaseType) -> None:
         super().__init__(yaml_data, code_model)
         self.type = type
-        self.content_types = content_types
 
-    def imports(self) -> FileImport:
-        file_import = FileImport()
-        file_import.merge(self.type.imports(is_operation_file=True))
+    @property
+    def constant(self) -> bool:
+        """Returns whether a parameter is a constant or not.
+        Checking to see if it's required, because if not, we don't consider it
+        a constant because it can have a value of None.
+        """
+        return not self.optional and isinstance(self.type, ConstantType)
+
+    @property
+    def description(self):
+        description = super().description
+        type_description = self.type.description(is_operation_file=True)
+        if type_description:
+            description = add_to_description(description, type_description)
         if self.optional:
-            file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
-        return file_import
+            description = add_to_description(description, "Optional.")
+        elif self.client_default_value:
+            description = add_to_description(description, f"Default value is {self.client_default_value_declaration}.")
+        if self.constant:
+            description = add_to_description(description, "Note that overriding this default value may result in unsupported behavior.")
+        return description
 
     @property
     def client_default_value_declaration(self):
@@ -215,13 +219,38 @@ class SingleTypeBodyParameter(_BodyParameter):
     def docstring_type(self) -> str:
         return self.type.docstring_type
 
+    @property
+    def serialization_type(self) -> str:
+        return self.type.serialization_type
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.merge(self.type.imports(is_operation_file=True))
+        if self.optional and not self.client_default_value:
+            file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
+        return file_import
+
+
+class SingleTypeBodyParameter(_SingleTypeParameter, _BodyParameter):
+    """Body parameters for the overload operations. Only has one type per overload
+    """
+    def __init__(
+        self,
+        yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
+        type: BaseType,
+    ) -> None:
+        super().__init__(yaml_data, code_model, type=type)
+        self.content_types = yaml_data["contentTypes"]
+        self.default_content_type = yaml_data["defaultContentType"]
+
+
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "SingleTypeBodyParameter":
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
             type=code_model.lookup_type(id(yaml_data["type"])),
-            content_types=yaml_data["contentTypes"],
         )
 
 class MultipartBodyParameter(_BaseParameter):
@@ -230,15 +259,14 @@ class MultipartBodyParameter(_BaseParameter):
 class UrlEncodedBodyParameter(_BaseParameter):
     ...
 
-class Parameter(_BaseParameter):
+class Parameter(_SingleTypeParameter):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         type: BaseType,
     ) -> None:
-        super().__init__(yaml_data, code_model)
-        self.type = type
+        super().__init__(yaml_data, code_model, type=type)
         self.rest_api_name = yaml_data["restApiName"]
         self.implementation = yaml_data["implementation"]
         self.skip_url_encoding = self.yaml_data.get("skipUrlEncoding", False)
@@ -253,44 +281,8 @@ class Parameter(_BaseParameter):
         raise NotImplementedError("Haven't done parameter grouping yet")
 
     @property
-    def description(self):
-        description = super().description
-        description += (". " + self.type.description(is_operation_file=True))
-        if self.constant:
-            description += " Note that overriding this default value may result in unsuported behavior."
-        return description
-
-    @property
-    def constant(self) -> bool:
-        """Returns whether a parameter is a constant or not.
-        Checking to see if it's required, because if not, we don't consider it
-        a constant because it can have a value of None.
-        """
-        return not self.optional and isinstance(self.type, ConstantType)
-
-    @property
     def in_method_signature(self) -> bool:
         return self.rest_api_name != "Accept"  # hiding accept header from users
-
-    def type_annotation(self) -> str:
-        type_annot = self.type.type_annotation(is_operation_file=True)
-        if self.optional:
-            return f"Optional[{type_annot}]"
-        return type_annot
-
-    @property
-    def client_default_value_declaration(self):
-        if not self.client_default_value:
-            return None
-        return self.type.get_declaration(self.client_default_value)
-
-    @property
-    def serialization_type(self) -> str:
-        return self.type.serialization_type
-
-    @property
-    def docstring_type(self) -> str:
-        return self.type.docstring_type
 
     @property
     def full_client_name(self) -> str:
@@ -325,14 +317,6 @@ class Parameter(_BaseParameter):
             type=code_model.lookup_type(id(yaml_data["type"]))
         )
 
-    def imports(self) -> FileImport:
-        file_import = self.type.imports(is_operation_file=True)
-        if self.optional:
-            file_import.add_submodule_import(
-                "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
-            )
-        return file_import
-
 class ClientParameter(Parameter):
 
     @property
@@ -350,6 +334,13 @@ class ClientParameter(Parameter):
             # this means i am the base url
             return ParameterMethodLocation.KEYWORD_ONLY
         return ParameterMethodLocation.POSITIONAL
+
+    def imports(self) -> FileImport:
+        file_import = super().imports()
+        legacy = not (self.code_model.options["low_level_client"] or self.code_model.options["version_tolerant"])
+        if legacy and self.is_host:
+            file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
+        return file_import
 
 class ConfigParameter(Parameter):
 

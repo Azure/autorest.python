@@ -43,6 +43,27 @@ def _escape_str(input_str: str) -> str:
     replace = input_str.replace("'", "\\'")
     return f'"{replace}"'
 
+def _improve_json_string(template_representation: str) -> Any:
+    origin = template_representation.split("\n")
+    final = []
+    for line in origin:
+        idx0 = line.find("#")
+        idx1 = line.rfind('"')
+        modified_line = ""
+        if idx0 > -1 and idx1 > -1:
+            modified_line = line[:idx0] + line[idx1:] + "  " + line[idx0:idx1] + "\n"
+        else:
+            modified_line = line + "\n"
+        modified_line = modified_line.replace('"', "").replace("\\", '"')
+        final.append(modified_line)
+    return "".join(final)
+
+
+def _json_dumps_template(template_representation: Any) -> Any:
+    # only for template use, since it wraps everything in strings
+    return _improve_json_string(
+        json.dumps(template_representation, sort_keys=True, indent=4)
+    )
 
 class _BuilderSerializerProtocol(ABC):
     @property
@@ -112,19 +133,7 @@ class _BuilderSerializerProtocol(ABC):
         ...
 
     @abstractmethod
-    def want_example_template(self, builder: BuilderType) -> bool:
-        ...
-
-    @abstractmethod
-    def get_example_template(self, builder: BuilderType) -> List[str]:
-        ...
-
-    @abstractmethod
-    def _get_json_example_template(self, builder: BuilderType) -> List[str]:
-        ...
-
-    @abstractmethod
-    def _has_json_example_template(self, builder: BuilderType) -> bool:
+    def example_template(self, builder: BuilderType) -> List[str]:
         ...
 
     @abstractmethod
@@ -132,7 +141,7 @@ class _BuilderSerializerProtocol(ABC):
         ...
 
     @abstractmethod
-    def _get_json_response_template(self, builder: BuilderType) -> List[str]:
+    def _json_response_template(self, builder: BuilderType) -> List[str]:
         ...
 
     @abstractmethod
@@ -142,7 +151,7 @@ class _BuilderSerializerProtocol(ABC):
         ...
 
     @abstractmethod
-    def _get_kwargs_to_pop(self, builder: BuilderType) -> List[Parameter]:
+    def _kwargs_to_pop(self, builder: BuilderType) -> List[Parameter]:
         ...
 
 
@@ -216,6 +225,30 @@ class _BuilderBaseSerializer(
         description_list.append("")
         return description_list
 
+    def want_example_template(self, builder: RequestBuilder) -> bool:
+        if builder.abstract:
+            return False
+        if self.code_model.options["builders_visibility"] != "public":
+            return False  # if we're not exposing rest layer, don't need to generate
+        if builder.parameters.has_body_parameter:
+            if builder.overloads:
+                return any([o for o in builder.overloads if o.parameters.body_parameter.client_name == "json"])
+            if builder.parameters.body_parameter and builder.parameters.body_parameter.client_name == "json":
+                return True
+        return bool(self._get_json_response_template_to_status_codes(builder))
+
+    def example_template(self, builder: BuilderType) -> List[str]:
+        template = []
+        if builder.abstract:
+            return []
+        if self._json_input_example_template(builder):
+            template.append("")
+            template += self._json_input_example_template(builder)
+        if self._json_response_template(builder):
+            template.append("")
+            template += self._json_response_template(builder)
+        return template
+
     def param_description(  # pylint: disable=no-self-use
         self, builder: Union[RequestBuilder, Operation]
     ) -> List[str]:
@@ -274,64 +307,33 @@ class _BuilderBaseSerializer(
             retval[response_json].extend(status_codes)
         return retval
 
-    def get_example_template(self, builder: BuilderType) -> List[str]:
+    def _json_input_example_template(self, builder: BuilderType) -> List[str]:
         template = []
-        # if self._has_json_example_template(builder):
-        #     template.append("")
-        #     template += self._get_json_example_template(builder)
-        # if self._get_json_response_template_to_status_codes(builder):
-        #     template.append("")
-        #     template += self._get_json_response_template(builder)
-        return template
+        if not builder.parameters.has_body_parameter:
+            # No input template if now body parameter
+            return template
+        if builder.overloads:
+            # if there's overloads, we do the json input example template on the overload
+            return template
 
-    def _get_json_example_template(self, builder: BuilderType) -> List[str]:
-        template = []
-        json_body = builder.parameters.json_body
-        object_schema = cast(ModelType, json_body)
-        try:
-            discriminator_name = object_schema.discriminator_name
-            subtype_map = object_schema.subtype_map
-        except AttributeError:
-            discriminator_name = None
-            subtype_map = None
-        if subtype_map:
+        body_param = builder.parameters.body_parameter
+        if not isinstance(body_param.type, (ListType, DictionaryType, ModelType)):
+            return template
+
+        if isinstance(body_param.type, ModelType) and body_param.type.discriminator:
+            discriminator_name = body_param.type.discriminator.client_name
+            discriminator_values = body_param.type.discriminated_subtypes.keys()
             template.append(
                 "{} = '{}'".format(
-                    discriminator_name, "' or '".join(subtype_map.values())
+                    discriminator_name, "' or '".join(discriminator_values)
                 )
             )
-            template.append("")
-
-        try:
-            property_with_discriminator = object_schema.property_with_discriminator
-        except AttributeError:
-            property_with_discriminator = None
-        if property_with_discriminator:
-            polymorphic_schemas = [
-                s
-                for s in self.code_model.object_types
-                if s.name in property_with_discriminator.schema.subtype_map.values()
-            ]
-            num_schemas = min(
-                self.code_model.options["polymorphic_examples"],
-                len(polymorphic_schemas),
-            )
-            for i in range(num_schemas):
-                schema = polymorphic_schemas[i]
-                polymorphic_property = _json_dumps_template(
-                    schema.get_json_template_representation(),
-                )
-                template.extend(
-                    f"{property_with_discriminator.name} = {polymorphic_property}".splitlines()
-                )
-                if i != num_schemas - 1:
-                    template.append("# OR")
             template.append("")
         template.append(
             "# JSON input template you can fill out and use as your body input."
         )
         json_template = _json_dumps_template(
-            builder.parameters.json_body.get_json_template_representation(),
+            body_param.type.get_json_template_representation(),
         )
         template.extend(
             f"{self._json_example_param_name(builder)} = {json_template}".splitlines()
@@ -358,7 +360,7 @@ class _BuilderBaseSerializer(
             ]
         return retval
 
-    def _get_json_response_template(self, builder: BuilderType) -> List[str]:
+    def _json_response_template(self, builder: BuilderType) -> List[str]:
         template = []
         for (
             response_body,
@@ -417,17 +419,6 @@ class _RequestBuilderBaseSerializer(
             # and not p.in_method_signature
         ]
 
-    def want_example_template(self, builder: BuilderType) -> bool:
-        # if builder.abstract:
-        #     return False
-        # if self.code_model.options["builders_visibility"] != "public":
-        #     return False  # if we're not exposing rest layer, don't need to generate
-        # if builder.parameters.has_body:
-        #     body_kwargs = set(builder.parameters.body_kwarg_names.keys())
-        #     return bool(body_kwargs.intersection({"json", "files", "data"}))
-        # return bool(self._get_json_response_template_to_status_codes(builder))
-        return False
-
     @property
     def _def(self) -> str:
         return "def"
@@ -453,12 +444,9 @@ class _RequestBuilderBaseSerializer(
     def _json_example_param_name(self, builder: BuilderType) -> str:
         return "json"
 
-    def _has_json_example_template(self, builder: BuilderType) -> bool:
-        return "json" in builder.parameters.body_kwarg_names
-
     def pop_kwargs_from_signature(self, builder: BuilderType) -> List[str]:
         return self.parameter_serializer.pop_kwargs_from_signature(
-            self._get_kwargs_to_pop(builder),
+            self._kwargs_to_pop(builder),
             check_kwarg_dict=True,
             pop_headers_kwarg=PopKwargType.CASE_INSENSITIVE
             if bool(builder.parameters.headers)
@@ -476,7 +464,7 @@ class _RequestBuilderBaseSerializer(
             retval.append("    params=_params,")
         if builder.parameters.headers:
             retval.append("    headers=_headers,")
-        if builder.parameters.body_parameter and not builder.parameters.body_parameter:
+        if builder.parameters.has_body_parameter and not builder.parameters.body_parameter:
             retval.append(f"    {builder.parameters.body_parameter.client_name}={builder.parameters.body_parameter.client_name},")
         retval.append("    **kwargs")
         retval.append(")")
@@ -531,7 +519,7 @@ class RequestBuilderGenericSerializer(_RequestBuilderBaseSerializer):
             response_type_annotation=response_type_annotation,
         )
 
-    def _get_kwargs_to_pop(self, builder: BuilderType):
+    def _kwargs_to_pop(self, builder: BuilderType):
         return builder.parameters.kwargs_to_pop(is_python3_file=False)
 
     def _body_params_to_pass_to_request_creation(self, builder: BuilderType) -> List[str]:
@@ -561,7 +549,7 @@ class RequestBuilderPython3Serializer(_RequestBuilderBaseSerializer):
             response_type_annotation=response_type_annotation,
         )
 
-    def _get_kwargs_to_pop(self, builder: BuilderType):
+    def _kwargs_to_pop(self, builder: BuilderType):
         return builder.parameters.kwargs_to_pop(is_python3_file=True)
 
 
@@ -635,7 +623,7 @@ class _OperationBaseSerializer(
         return response_str
 
     def pop_kwargs_from_signature(self, builder: Operation) -> List[str]:
-        kwargs_to_pop = self._get_kwargs_to_pop(builder)
+        kwargs_to_pop = self._kwargs_to_pop(builder)
         kwargs = self.parameter_serializer.pop_kwargs_from_signature(
             kwargs_to_pop,
             check_kwarg_dict=True,
@@ -696,30 +684,8 @@ class _OperationBaseSerializer(
             ":raises: ~azure.core.exceptions.HttpResponseError",
         ]
 
-    def want_example_template(self, builder: BuilderType) -> bool:
-        # if builder.abstract:
-        #     return False
-        # if self.code_model.options["models_mode"]:
-        #     return False
-        # if builder.parameters.has_body:
-        #     body_params = builder.parameters.body
-        #     return any(
-        #         [
-        #             b
-        #             for b in body_params
-        #             if isinstance(
-        #                 b.schema, (DictionaryType, ListType, ModelType)
-        #             )
-        #         ]
-        #     )
-        # return bool(self._get_json_response_template_to_status_codes(builder))
-        return False
-
-    def _json_example_param_name(self, builder: BuilderType) -> str:
-        return builder.parameters.body[0].serialized_name
-
-    def _has_json_example_template(self, builder: BuilderType) -> bool:
-        return builder.parameters.has_body
+    def _json_example_param_name(self, builder: Operation) -> str:
+        return builder.parameters.body_parameter.client_name
 
     def _serialize_body_call(
         self,
@@ -784,31 +750,35 @@ class _OperationBaseSerializer(
     ) -> List[str]:
         retval = []
         if builder.overloads:
+            # we are only dealing with two overloads. If there are three, we generate an abstract operation
             for overload in builder.overloads:
                 retval.append(f"_{overload.request_builder.parameters.body_parameter.client_name} = None")
             retval.append('content_type = content_type or ""')
-            for idx, overload in enumerate(builder.overloads):
-                if_statement = "if" if idx == 0 else "elif"
-                pre_semicolon_content_types = [content_type.split(";")[0] for content_type in overload.parameters.body_parameter.content_types]
-                retval.append(f'{if_statement} content_type.split(";")[0] in {pre_semicolon_content_types}:')
-                retval.extend(f"    {l}" for l in self._create_body_parameter(overload))
-            retval.append("else:")
-            retval.append("    raise ValueError(")
-            retval.append(
-                "        \"The content_type '{}' is not one of the allowed values: \""
-            )
-            retval.append(f'        "asdf".format(content_type)')
-            retval.append("    )")
-        elif builder.parameters.body_parameter:
+            try:
+                # if there is a binary overload, we do a binary check first.
+                binary_overload = next((o for o in builder.overloads if isinstance(o.parameters.body_parameter.type, BinaryType)))
+                binary_body_param = binary_overload.parameters.body_parameter
+                retval.append(f"if {binary_body_param.type.instance_check_template.format(binary_body_param.client_name)}:")
+                retval.extend(f"    {l}" for l in self._create_body_parameter(binary_overload))
+                retval.append("else:")
+                other_overload = next((o for o in builder.overloads if not isinstance(o.parameters.body_parameter.type, BinaryType)))
+                retval.extend(f"    {l}" for l in self._create_body_parameter(other_overload))
+            except StopIteration:
+                for idx, overload in enumerate(builder.overloads):
+                    if_statement = "if" if idx == 0 else "elif"
+                    body_param = overload.parameters.body_parameter
+                    retval.append(f'{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:')
+                    retval.extend(f"    {l}" for l in self._create_body_parameter(overload))
+        elif builder.parameters.has_body_parameter:
             # non-overloaded body
             retval.extend(self._create_body_parameter(builder))
 
         if self.code_model.options["builders_visibility"] == "embedded":
             request_path_name = request_builder.name
         else:
-            builder_group_name = request_builder.group_name
+            group_name = request_builder.group_name
             request_path_name = "rest{}.{}".format(
-                ("_" + builder_group_name) if builder_group_name else "",
+                ("_" + group_name) if group_name else "",
                 request_builder.name,
             )
         retval.append("")
@@ -822,7 +792,7 @@ class _OperationBaseSerializer(
             for overload in request_builder.overloads:
                 body_param = cast(RequestBuilderSingleTypeBodyParameter, overload.parameters.body_parameter)
                 retval.append(f"    {body_param.client_name}={body_param.name_in_high_level_operation},")
-        else:
+        elif request_builder.parameters.has_body_parameter:
             body_param = cast(RequestBuilderSingleTypeBodyParameter, request_builder.parameters.body_parameter)
             retval.append(f"    {body_param.client_name}={body_param.name_in_high_level_operation},")
         if not self.code_model.options["version_tolerant"]:
@@ -1057,7 +1027,7 @@ class SyncOperationGenericSerializer(_SyncOperationBaseSerializer):
             response_type_annotation=response_type_annotation,
         )
 
-    def _get_kwargs_to_pop(self, builder: BuilderType):
+    def _kwargs_to_pop(self, builder: BuilderType):
         return builder.parameters.kwargs_to_pop(is_python3_file=False)
 
 
@@ -1076,7 +1046,7 @@ class SyncOperationPython3Serializer(_SyncOperationBaseSerializer):
             response_type_annotation=response_type_annotation,
         )
 
-    def _get_kwargs_to_pop(self, builder: BuilderType):
+    def _kwargs_to_pop(self, builder: BuilderType):
         return builder.parameters.kwargs_to_pop(is_python3_file=True)
 
 

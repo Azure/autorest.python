@@ -83,27 +83,27 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
     def __repr__(self) -> str:
         return f"<{self.__class__.__name__} {self.name}>"
 
-    def get_json_template_representation(self, **kwargs: Any) -> Any:
+    def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
         if self._created_json_template_representation:
             return "..."  # do this to avoid loop
         self._created_json_template_representation = True
         # don't add additional properties, because there's not really a concept of
         # additional properties in the template
         representation = {
-            f'"{prop.name}"': prop.get_json_template_representation(
-                **kwargs
+            f'"{prop.rest_api_name}"': prop.get_json_template_representation(
+                optional=optional, client_default_value_declaration=client_default_value_declaration, description=description
             )
             for prop in [
                 p
                 for p in self.properties
-                if not (p.is_discriminator or p.name == "additional_properties")
+                if not (p.is_discriminator or p.client_name == "additional_properties")
             ]
         }
         try:
             # add discriminator prop if there is one
             discriminator = next(p for p in self.properties if p.is_discriminator)
-            representation[discriminator.name] = (
-                self.discriminator_value or discriminator.name
+            representation[discriminator.rest_api_name] = (
+                self.discriminator_value or discriminator.rest_api_name
             )
         except StopIteration:
             pass
@@ -150,6 +150,12 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             return next(p for p in self.properties if p.is_discriminator)
         except StopIteration:
             return None
+
+    @property
+    def instance_check_template(self) -> str:
+        if self.code_model.options["models_mode"]:
+            return "isinstance({}, msrest.Model)"
+        return "isinstance({}, MutableMapping)"
 
     def imports(self, *, is_operation_file: bool) -> FileImport:
         file_import = FileImport()

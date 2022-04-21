@@ -36,7 +36,7 @@ class ConstantType(BaseType):
         self.value = value
 
     def get_declaration(self, value = None):
-        if value != self.value:
+        if value and value != self.value:
             _LOGGER.warning(
                 "Passed in value of %s differs from constant value of %s. Choosing constant value",
                 str(value),
@@ -47,10 +47,9 @@ class ConstantType(BaseType):
         return self.value_type.get_declaration(self.value)
 
     def description(self, *, is_operation_file: bool) -> str:
-        constant_description = f'Default value of "{self.value}".'
         if is_operation_file:
-            return constant_description
-        return self.yaml_data["description"] + ". " + constant_description
+            return ""
+        return f'{self.yaml_data["description"]} Default value is {self.get_declaration()}.'
 
     @property
     def serialization_type(self) -> str:
@@ -97,11 +96,16 @@ class ConstantType(BaseType):
             value=yaml_data["value"],
         )
 
-    def get_json_template_representation(self, **kwargs: Any) -> Any:
-        kwargs["default_value_declaration"] = self.value_type.get_declaration(self.value)
-        return self.value_type.get_json_template_representation(**kwargs)
+    def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
+        return self.value_type.get_json_template_representation(
+            optional=optional, client_default_value_declaration=self.get_declaration(), description=description
+        )
 
     def imports(self, *, is_operation_file: bool) -> FileImport:
         file_import = FileImport()
         file_import.merge(self.value_type.imports(is_operation_file=is_operation_file))
         return file_import
+
+    @property
+    def instance_check_template(self) -> str:
+        return self.value_type.instance_check_template

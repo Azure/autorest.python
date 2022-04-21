@@ -82,14 +82,9 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
 
-        any_optional_gp = any(gp.optional for gp in self.parameters)
+        any_optional_gp = any(gp.optional for gp in self.parameters.method)
         legacy = not (self.code_model.options["low_level_client"] and self.code_model.options["version_tolerant"])
         has_host = any(p for p in self.parameters if p.is_host)
-        if any_optional_gp or (legacy and has_host):
-            file_import.add_submodule_import(
-                "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
-            )
-
         if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import(
                 "azure.mgmt.core", self.pipeline_class(async_mode), ImportType.AZURECORE

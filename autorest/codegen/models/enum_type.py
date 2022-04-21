@@ -3,11 +3,11 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, TYPE_CHECKING
+from typing import Any, Dict, List, TYPE_CHECKING, Optional
 
-from autorest.codegen.models.base_model import BaseModel
 from .base_type import BaseType
 from .imports import FileImport, ImportType, TypingSection
+from .base_model import BaseModel
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -96,7 +96,7 @@ class EnumType(BaseType):
         enum_description = f"Known values are: {possible_values_str}."
         if is_operation_file:
             return enum_description
-        return self.yaml_data.get("description", self.name)+ ". " + enum_description
+        return f"{self.yaml_data['description']} {enum_description}"
 
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
         """The python type used for type annotation
@@ -124,16 +124,15 @@ class EnumType(BaseType):
             return f"{self.value_type.type_annotation()} or ~{self.code_model.namespace}.models.{self.name}"
         return self.value_type.type_annotation()
 
-    def get_json_template_representation(self, **kwargs: Any) -> Any:
+    def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
         # for better display effect, use the only value instead of var type
-        description = kwargs.pop("description", "")
-        if description:
-            description += f" {self.description(is_operation_file=True)}"
-        else:
-            description = self.description(is_operation_file=True)
         return self.value_type.get_json_template_representation(
-            description=description
+            optional=optional, client_default_value_declaration=client_default_value_declaration, description=description
         )
+
+    @property
+    def instance_check_template(self) -> str:
+        return self.value_type.instance_check_template
 
     @classmethod
     def from_yaml(

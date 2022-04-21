@@ -276,9 +276,9 @@ class JinjaSerializer:
     def _serialize_and_write_single_rest_layer(
         self, env: Environment, rest_path: Path, request_builders: List[RequestBuilder]
     ) -> None:
-        builder_group_name = request_builders[0].builder_group_name
+        group_name = request_builders[0].group_name
         output_path = (
-            rest_path / Path(builder_group_name) if builder_group_name else rest_path
+            rest_path / Path(group_name) if group_name else rest_path
         )
         # write generic request builders file
         self._autorestapi.write_file(

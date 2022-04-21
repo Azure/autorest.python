@@ -65,8 +65,14 @@ class ListType(BaseType):
             validation_map["unique"] = True
         return validation_map or None
 
-    def get_json_template_representation(self, **kwargs: Any) -> Any:
-        return [self.element_type.get_json_template_representation(**kwargs)]
+    def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
+        return [self.element_type.get_json_template_representation(
+            optional=optional, client_default_value_declaration=client_default_value_declaration, description=description
+        )]
+
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, list)"
 
     @classmethod
     def from_yaml(

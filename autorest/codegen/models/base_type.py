@@ -90,6 +90,12 @@ class BaseType(BaseModel, ABC):
         return str(value)
 
     @abstractmethod
-    def get_json_template_representation(self, **kwargs: Any) -> Any:
+    def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
         """Template of what this schema would look like as JSON input"""
+        ...
+
+    @property
+    @abstractmethod
+    def instance_check_template(self) -> str:
+        """Template of what an instance check of a variable for this type would look like"""
         ...

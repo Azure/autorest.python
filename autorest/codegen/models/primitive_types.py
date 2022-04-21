@@ -10,6 +10,7 @@ from typing import cast, Any, Dict, List, Optional, Union, TYPE_CHECKING
 
 from .base_type import BaseType
 from .imports import FileImport, ImportType, TypingSection
+from .utils import add_to_description
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -40,32 +41,19 @@ class PrimitiveType(BaseType):
     def docstring_text(self) -> str:
         return self.docstring_type
 
-    def _add_optional_and_default_value_template_representation(
-        self,
-        *,
-        optional: bool = True,
-        default_value_declaration: Optional[str] = None,
-        description: Optional[str] = None,
-    ):
+    def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
         comment = ""
         if optional:
-            comment += " Optional."
-        if default_value_declaration:
-            comment += f" Default value is {default_value_declaration}."
+            comment = add_to_description(comment, "Optional.")
+        if client_default_value_declaration:
+            comment = add_to_description(comment, f"Default value is {client_default_value_declaration}.")
         else:
-            default_value_declaration = self.default_template_representation_declaration
+            client_default_value_declaration = self.default_template_representation_declaration
         if description:
-            comment += f" {description}"
+            comment = add_to_description(comment, description)
         if comment:
-            comment = f"#{comment}"
-        return f"{default_value_declaration}{comment}"
-
-    def get_json_template_representation(self, **kwargs: Any) -> Any:
-        if self.default_value:
-            kwargs["default_value_declaration"] = kwargs.get(
-                "default_value_declaration", self.get_declaration(self.default_value)
-            )
-        return self._add_optional_and_default_value_template_representation(**kwargs)
+            comment = f"# {comment}"
+        return f"{client_default_value_declaration}{comment}"
 
     @property
     def default_template_representation_declaration(self) -> str:
@@ -80,6 +68,10 @@ class BooleanType(PrimitiveType):
     @property
     def docstring_type(self) -> str:
         return "bool"
+
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, bool)"
 
 
 class BinaryType(PrimitiveType):
@@ -115,6 +107,10 @@ class BinaryType(PrimitiveType):
         )
         return file_import
 
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, IO)"
+
 
 class AnyType(PrimitiveType):
     @property
@@ -140,6 +136,10 @@ class AnyType(PrimitiveType):
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
         return file_import
+
+    @property
+    def instance_check_template(self) -> str:
+        raise ValueError("Shouldn't do instance check on an anytype, it can be anything")
 
 
 class NumberType(PrimitiveType):
@@ -213,6 +213,10 @@ class IntegerType(NumberType):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(0)
 
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, int)"
+
 class FloatType(NumberType):
 
     @property
@@ -231,6 +235,10 @@ class FloatType(NumberType):
     @property
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(0.0)
+
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, float)"
 
 
 class StringType(PrimitiveType):
@@ -279,6 +287,10 @@ class StringType(PrimitiveType):
     def docstring_type(self) -> str:
         return "str"
 
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, str)"
+
 
 class DatetimeType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
@@ -325,6 +337,10 @@ class DatetimeType(PrimitiveType):
     def default_template_representation_declaration(self):
         return self.get_declaration(datetime.datetime(2020, 2, 20))
 
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, datetime.datetime)"
+
 
 class TimeType(PrimitiveType):
     @property
@@ -358,6 +374,10 @@ class TimeType(PrimitiveType):
     @property
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(datetime.time(12, 30, 0))
+
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, datetime.time)"
 
 
 class UnixTimeType(PrimitiveType):
@@ -393,6 +413,10 @@ class UnixTimeType(PrimitiveType):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(datetime.datetime(2020, 2, 20))
 
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, datetime.datetime)"
+
 
 class DateType(PrimitiveType):
     @property
@@ -426,6 +450,10 @@ class DateType(PrimitiveType):
     @property
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(datetime.date(2020, 2, 20))
+
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, datetime.date)"
 
 
 class DurationType(PrimitiveType):
@@ -461,6 +489,10 @@ class DurationType(PrimitiveType):
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(datetime.timedelta(1))
 
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, datetime.timedelta)"
+
 
 class Base64Type(PrimitiveType):
     @property
@@ -469,7 +501,11 @@ class Base64Type(PrimitiveType):
 
     @property
     def docstring_type(self) -> str:
-        return "base64 encoded bytes"
+        return "bytes"
 
     def get_declaration(self, value: str) -> str:
         return f'bytes("{value}", encoding="utf-8")'
+
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, bytes)"

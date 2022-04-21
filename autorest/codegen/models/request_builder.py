@@ -102,7 +102,10 @@ class RequestBuilder(RequestBuilderBase[RequestBuilderParameterList]):
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "RequestBuilder":
         name = _get_name(yaml_data, code_model)
         parameters = [RequestBuilderParameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
-        body_parameter = RequestBuilderSingleTypeBodyParameter.from_yaml(yaml_data["bodyParameter"], code_model)
+        if yaml_data["bodyParameter"]:
+            body_parameter = RequestBuilderSingleTypeBodyParameter.from_yaml(yaml_data["bodyParameter"], code_model)
+        else:
+            body_parameter = None
         parameter_list = RequestBuilderParameterList(code_model, parameters, body_parameter)
         return cls(
             yaml_data=yaml_data,
@@ -116,7 +119,10 @@ class OverloadedRequestBuilder(RequestBuilderBase[OverloadedRequestBuilderParame
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "OverloadedRequestBuilder":
         name = _get_name(yaml_data, code_model)
         parameters = [RequestBuilderParameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
-        body_parameter = RequestBuilderMultipleTypeBodyParameter.from_yaml(yaml_data["bodyParameter"], code_model)
+        if yaml_data["bodyParameter"]:
+            body_parameter = RequestBuilderMultipleTypeBodyParameter.from_yaml(yaml_data["bodyParameter"], code_model)
+        else:
+            body_parameter = None
         parameter_list = OverloadedRequestBuilderParameterList(code_model, parameters, body_parameter)
         overloads=[RequestBuilder.from_yaml(rb_yaml_data, code_model) for rb_yaml_data in yaml_data["overloads"]]
         return cls(

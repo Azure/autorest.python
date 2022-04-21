@@ -9,6 +9,7 @@ from .base_model import BaseModel
 from .constant_type import ConstantType
 from .base_type import BaseType
 from .imports import FileImport
+from .utils import add_to_description
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -31,9 +32,8 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.client_default_value = yaml_data.get("clientDefaultValue", None)
 
     def description(self, *, is_operation_file: bool) -> str:
-        if is_operation_file:
-            return ""
-        return self.type.description(is_operation_file=False)
+        description = self.yaml_data["description"]
+        return add_to_description(description, self.type.description(is_operation_file=is_operation_file))
 
     @property
     def constant(self) -> bool:
@@ -58,15 +58,12 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             return f"Optional[{self.type.type_annotation(is_operation_file=is_operation_file)}]"
         return self.type.type_annotation(is_operation_file=is_operation_file)
 
-    def get_json_template_representation(self, **kwargs: Any) -> Any:
-        kwargs["optional"] = self.optional
+    def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
         if self.client_default_value:
-            kwargs["default_value_declaration"] = self.type.get_declaration(
-                self.client_default_value
-            )
-        if self.description(is_operation_file=False):
-            kwargs["description"] = self.description
-        return self.type.get_json_template_representation(**kwargs)
+            client_default_value_declaration = self.type.get_declaration(self.client_default_value)
+        if self.description(is_operation_file=True):
+            description = self.description(is_operation_file=True)
+        return self.type.get_json_template_representation(optional=self.optional, client_default_value_declaration=client_default_value_declaration, description=description)
 
     @property
     def validation(self) -> Optional[Dict[str, Any]]:

@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any
+from typing import Any, Optional
 from .base_type import BaseType
 from .imports import FileImport, ImportType, TypingSection
 
@@ -29,7 +29,7 @@ class CredentialType(BaseType):
         # abstract serialization_type in BaseType is not overridden
         pass
 
-    def get_json_template_representation(self, **kwargs: Any) -> Any:
+    def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
         raise TypeError(
             "You should not try to get a JSON template representation of a CredentialType"
         )
@@ -54,6 +54,10 @@ class AzureKeyCredentialSchema(CredentialType):
             typing_section=TypingSection.CONDITIONAL,
         )
         return file_import
+
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, AzureKeyCredential)"
 
 
 class TokenCredentialSchema(CredentialType):
@@ -93,3 +97,9 @@ class TokenCredentialSchema(CredentialType):
                 typing_section=TypingSection.TYPING,
             )
         return file_import
+
+    @property
+    def instance_check_template(self) -> str:
+        if self.async_mode:
+            return "isinstance({}, AsyncTokenCredential)"
+        return "isinstance({}, TokenCredential)"

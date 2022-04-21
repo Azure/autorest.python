@@ -47,7 +47,7 @@ class DictionaryType(BaseType):
         return f"Dict[str, {self.element_type.type_annotation(is_operation_file=is_operation_file)}]"
 
     def description(self, *, is_operation_file: bool) -> str:
-        return "" if is_operation_file else self.yaml_data["description"]
+        return "" if is_operation_file else self.yaml_data.get("description", "")
 
     @property
     def docstring_text(self) -> str:
@@ -66,9 +66,11 @@ class DictionaryType(BaseType):
             "Dictionary schema does not support XML serialization."
         )
 
-    def get_json_template_representation(self, **kwargs: Any) -> Any:
+    def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
         return {
-            f'"{"str"}"': self.element_type.get_json_template_representation(**kwargs)
+            f'"str"': self.element_type.get_json_template_representation(
+                optional=optional, client_default_value_declaration=client_default_value_declaration, description=description
+            )
         }
 
     @classmethod
@@ -102,3 +104,7 @@ class DictionaryType(BaseType):
         )
         file_import.merge(self.element_type.imports(is_operation_file=is_operation_file))
         return file_import
+
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, dict)"

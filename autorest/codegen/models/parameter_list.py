@@ -45,7 +45,7 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
     ) -> None:
         self.code_model = code_model
         self.parameters = parameters or []
-        self.body_parameter = body_parameter
+        self._body_parameter = body_parameter
 
     # MutableSequence
 
@@ -67,6 +67,16 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
         self.parameters.insert(index, value)
 
     # Parameter helpers
+
+    @property
+    def body_parameter(self) -> BodyParameterType:
+        if not self._body_parameter:
+            raise ValueError("There is no body parameter")
+        return self._body_parameter
+
+    @property
+    def has_body_parameter(self) -> bool:
+        return bool(self._body_parameter)
 
     @property
     def path(self) -> List[ParameterType]:
@@ -117,7 +127,7 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
     @property
     def method(self) -> List[Union[ParameterType, BodyParameterType]]:
         method_params: List[Union[ParameterType, BodyParameterType]] = [p for p in self.parameters if p.in_method_signature and p.implementation == self.implementation]
-        if self.body_parameter:
+        if self.has_body_parameter:
             method_params.append(self.body_parameter)
         return method_params
 
@@ -190,6 +200,12 @@ class ClientGlobalParameterList(_ParameterListBase[ClientParameter, SingleTypeBo
     @property
     def path(self) -> List[ClientParameter]:
         return [p for p in super().path if not p.is_host]
+
+    def kwargs_to_pop(self, is_python3_file: bool) -> List[ClientParameter]:
+        return [
+            k for k in super().kwargs_to_pop(is_python3_file=is_python3_file)
+            if k.location == ParameterLocation.PATH
+        ]
 
 
 class ConfigGlobalParameterList(_ParameterListBase[ConfigParameter, SingleTypeBodyParameter]):

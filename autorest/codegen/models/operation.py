@@ -203,14 +203,14 @@ class OperationBase(BaseBuilder[ParameterListType]):
             if self.deprecated:
                 file_import.add_import("warnings", ImportType.STDLIB)
             if self.code_model.options["builders_visibility"] != "embedded":
-                builder_group_name = self.request_builder.group_name
+                group_name = self.request_builder.group_name
                 rest_import_path = "..." if async_mode else ".."
-                if builder_group_name:
+                if group_name:
                     file_import.add_submodule_import(
                         f"{rest_import_path}{self.code_model.rest_layer_name}",
-                        builder_group_name,
+                        group_name,
                         import_type=ImportType.LOCAL,
-                        alias=f"rest_{builder_group_name}",
+                        alias=f"rest_{group_name}",
                     )
                 else:
                     file_import.add_submodule_import(
@@ -263,7 +263,15 @@ class OperationBase(BaseBuilder[ParameterListType]):
                 f"distributed_trace{'_async' if async_mode else ''}",
                 ImportType.AZURECORE,
             )
-
+        if self.code_model.options["builders_visibility"] == "embedded" and async_mode:
+            suffix = (
+                "_py3" if self.code_model.options["add_python3_operation_files"] else ""
+            )
+            file_import.add_submodule_import(
+                f"...{self.code_model.operations_folder_name}.{self.filename}{suffix}",
+                self.request_builder.name,
+                import_type=ImportType.LOCAL,
+            )
         return file_import
 
     def get_response_from_status(
@@ -284,6 +292,20 @@ class OperationBase(BaseBuilder[ParameterListType]):
             if not response.is_error
         ]
 
+    @property
+    def filename(self) -> str:
+        basename = self.group_name
+        if basename == "":
+            # in a mixin
+            basename = self.code_model.module_name
+
+        if (
+            basename == "operations"
+            or self.code_model.options["combine_operation_files"]
+        ):
+            return f"_operations"
+        return f"_{basename}_operations"
+
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> Union["Operation", "OverloadedOperation"]:
         if yaml_data.get("overloads"):
@@ -298,7 +320,10 @@ class Operation(OperationBase[ParameterList]):
         parameters = [Parameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
         request_builder = code_model.lookup_request_builder(id(yaml_data))
         responses = [Response.from_yaml(r, code_model) for r in yaml_data["responses"]]
-        body_parameter = SingleTypeBodyParameter.from_yaml(yaml_data["bodyParameter"], code_model)
+        if yaml_data["bodyParameter"]:
+            body_parameter = SingleTypeBodyParameter.from_yaml(yaml_data["bodyParameter"], code_model)
+        else:
+            body_parameter = None
         parameter_list = ParameterList(code_model, parameters, body_parameter)
         return cls(
             yaml_data=yaml_data,
@@ -317,7 +342,10 @@ class OverloadedOperation(OperationBase[OverloadedOperationParameterList]):
         parameters = [Parameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
         request_builder = code_model.lookup_request_builder(id(yaml_data))
         responses = [Response.from_yaml(r, code_model) for r in yaml_data["responses"]]
-        body_parameter = MultipleTypeBodyParameter.from_yaml(yaml_data["bodyParameter"], code_model)
+        if yaml_data["bodyParameter"]:
+            body_parameter = MultipleTypeBodyParameter.from_yaml(yaml_data["bodyParameter"], code_model)
+        else:
+            body_parameter = None
         overloads = [Operation.from_yaml(overload_yaml_data, code_model) for overload_yaml_data in yaml_data["overloads"]]
         parameter_list = OverloadedOperationParameterList(code_model, parameters, body_parameter)
         return cls(

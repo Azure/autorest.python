@@ -63,30 +63,6 @@ class OperationGroup(BaseModel):
             file_import.add_submodule_import(
                 local_path, "models", ImportType.LOCAL, alias="_models"
             )
-        if self.code_model.options["builders_visibility"] == "embedded" and async_mode:
-            if not self.code_model.options["combine_operation_files"]:
-                operation_group_builders = [
-                    r
-                    for r in self.code_model.request_builders
-                    if r.group_name == self.property_name
-                ]
-            else:
-                operation_group_builders = self.code_model.request_builders
-            for request_builder in operation_group_builders:
-                if request_builder.abstract:
-                    continue
-                python3_only = self.code_model.options["python3_only"]
-                typed_sync_operation_file = self.code_model.options[
-                    "add_python3_operation_files"
-                ]
-                suffix = (
-                    "_py3" if typed_sync_operation_file and not python3_only else ""
-                )
-                file_import.add_submodule_import(
-                    f"...{self.code_model.operations_folder_name}.{self.filename}{suffix}",
-                    request_builder.name,
-                    import_type=ImportType.LOCAL,
-                )
         if self.code_model.need_mixin_abc:
             file_import.add_submodule_import(".._vendor", "MixinABC", ImportType.LOCAL)
         file_import.add_submodule_import(
@@ -101,16 +77,7 @@ class OperationGroup(BaseModel):
 
     @property
     def filename(self) -> str:
-        basename = self.property_name
-        if self.is_mixin:
-            basename = self.code_model.module_name
-
-        if (
-            basename == "operations"
-            or self.code_model.options["combine_operation_files"]
-        ):
-            return f"_operations"
-        return f"_{basename}_operations"
+        return self.operations[0].filename
 
     @property
     def is_mixin(self) -> bool:
