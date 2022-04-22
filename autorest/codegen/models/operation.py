@@ -7,6 +7,8 @@ from itertools import chain
 import logging
 from typing import Dict, List, Any, Optional, Type, Union, TYPE_CHECKING, cast, TypeVar, Generic
 
+from .utils import OrderedSet
+
 from .base_builder import BaseBuilder
 from .imports import FileImport, ImportType, TypingSection
 from .response import Response
@@ -67,6 +69,46 @@ class OperationBase(BaseBuilder[ParameterListType]):
             r for r in successful_responses if not r.type
         )
         return successful_response_with_body and successful_response_without_body
+
+    def response_type_annotation(self, async_mode: bool) -> str:
+        if self.code_model.options["head_as_boolean"] and self.request_builder.method.lower() == "head":
+            return "bool"
+        response_body_annotations: OrderedSet[str] = {}
+        for response in [r for r in self.responses if r.type]:
+            response_body_annotations[response.type_annotation()] = None
+        response_str = ", ".join(response_body_annotations.keys()) or "None"
+        if len(response_body_annotations) > 1:
+            return f"Union[{response_str}]"
+        if self.has_optional_return_type:
+            return f"Optional[{response_str}]"
+        return response_str
+
+    def cls_type_annotation(self, async_mode: bool) -> str:
+        return f"ClsType[{self.response_type_annotation(async_mode)}]"
+
+    def _response_docstring_helper(self, attr_name: str) -> str:
+        responses_with_body = [r for r in self.responses if r.type]
+        if (self.request_builder.method.lower() == "head" and self.code_model.options["head_as_boolean"]):
+            return "bool"
+        if responses_with_body:
+            response_docstring_values: OrderedSet[str] = {
+                getattr(response, attr_name): None for response in responses_with_body
+            }
+            retval = " or ".join(response_docstring_values.keys())
+            if self.has_optional_return_type:
+                retval += " or None"
+            return retval
+        return "None"
+
+    def response_docstring_text(self, async_mode: bool) -> str:
+        retval = self._response_docstring_helper("docstring_text")
+        if not self.code_model.options["version_tolerant"]:
+            retval += " or the result of cls(response)"
+        return retval
+
+
+    def response_docstring_type(self, async_mode: bool) -> str:
+        return self._response_docstring_helper("docstring_type")
 
     @property
     def has_response_body(self) -> bool:
@@ -308,6 +350,9 @@ class OperationBase(BaseBuilder[ParameterListType]):
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> Union["Operation", "OverloadedOperation"]:
+        if yaml_data["discriminator"] == "paging":
+            from .paging_operation import PagingOperation
+            return PagingOperation.from_yaml(yaml_data, code_model)
         if yaml_data.get("overloads"):
             return OverloadedOperation.from_yaml(yaml_data, code_model)
         return Operation.from_yaml(yaml_data, code_model)

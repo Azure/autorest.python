@@ -66,11 +66,6 @@ class LROOperation(Operation):
             want_tracing=False,
         )
 
-    @property
-    def has_optional_return_type(self) -> bool:
-        """An LROOperation will never have an optional return type, we will always return a poller"""
-        return False
-
     def _get_lro_extension(self, extension_base, async_mode, *, azure_arm=None):
         extension_name = extension_base + ("-async" if async_mode else "-sync")
         extension = self.yaml_data["extensions"][extension_name]

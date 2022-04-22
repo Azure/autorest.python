@@ -7,7 +7,7 @@
 """
 import re
 import copy
-from typing import Dict, Any, List, Optional, Set, Tuple
+from typing import Callable, Dict, Any, List, Optional, Set, Tuple
 
 from .. import YamlUpdatePlugin
 JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
@@ -345,16 +345,53 @@ def update_operation(group_name: str, yaml_data: Dict[str, Any], *, is_overload:
         "operationType": "basic",
         "overloads": update_overloads(group_name, yaml_data, body_parameter),
         "isOverload": is_overload,
+        "discriminator": "operation"
     }
+
+def update_paging_operation(group_name: str, yaml_data: Dict[str, Any], *, is_overload: bool = False) -> Dict[str, Any]:
+    base_operation = update_operation(group_name, yaml_data, is_overload=is_overload)
+    base_operation["discriminator"] = "paging"
+    base_operation["itemName"] = yaml_data["extensions"]["x-ms-pageable"].get("itemName", "value")
+    base_operation["continuationTokenName"] = yaml_data["extensions"]["x-ms-pageable"].get("nextLinkName")
+    if yaml_data["language"]["default"]["paging"].get("nextLinkOperation"):
+        base_operation["nextOperation"] = update_operation(
+            group_name=group_name,
+            yaml_data=yaml_data["language"]["default"]["paging"]["nextLinkOperation"],
+            is_overload=False,
+        )
+    if yaml_data["extensions"].get("x-python-custom-pager-sync"):
+        base_operation["pagerSync"] = yaml_data["extensions"]["x-python-custom-pager-sync"]
+    if yaml_data["extensions"].get("x-python-custom-pager-async"):
+        base_operation["pagerAsync"] = yaml_data["extensions"]["x-python-custom-pager-async"]
+    return base_operation
+
+def get_operation_creator(yaml_data: Dict[str, Any]) -> Callable[[str, Dict[str, Any]], Dict[str, Any]]:
+    lro_operation = yaml_data.get("extensions", {}).get("x-ms-long-running-operation")
+    paging_operation = yaml_data.get("extensions", {}).get("x-ms-pageable")
+    if paging_operation:
+        return update_paging_operation
+    return update_operation
+
+def filter_out_paging_next_operation(yaml_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    next_operations: Set[str] = set()
+    for operation in yaml_data:
+        next_operation = operation.get("nextOperation")
+        if not next_operation:
+            continue
+        next_operations.add(next_operation["name"])
+    return [
+        o for o in yaml_data
+        if o["name"] not in next_operations
+    ]
 
 def update_operation_group(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     property_name = yaml_data["language"]["default"]["name"]
     return {
         "propertyName": property_name,
         "className": property_name,
-        "operations": [
-            update_operation(property_name, o) for o in yaml_data["operations"]
-        ]
+        "operations": filter_out_paging_next_operation([
+            get_operation_creator(o)(property_name, o) for o in yaml_data["operations"]
+        ])
     }
 
 def update_client_url(yaml_data: Dict[str, Any]) -> str:

@@ -38,6 +38,9 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         self.url = yaml_data["url"]
         self.method = yaml_data["method"]
 
+    def response_type_annotation(self) -> str:
+        return "HttpRequest"
+
     def imports(self) -> FileImport:
         file_import = FileImport()
         for parameter in self.parameters.method:
