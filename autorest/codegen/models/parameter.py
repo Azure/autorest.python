@@ -193,7 +193,7 @@ class _SingleTypeParameter(_BaseParameter):
             description = add_to_description(description, type_description)
         if self.optional:
             description = add_to_description(description, "Optional.")
-        elif self.client_default_value:
+        if self.client_default_value:
             description = add_to_description(description, f"Default value is {self.client_default_value_declaration}.")
         if self.constant:
             description = add_to_description(description, "Note that overriding this default value may result in unsupported behavior.")
@@ -271,6 +271,7 @@ class Parameter(_SingleTypeParameter):
         self.implementation = yaml_data["implementation"]
         self.skip_url_encoding = self.yaml_data.get("skipUrlEncoding", False)
         self.explode: bool = self.yaml_data.get("explode", False)
+        self.in_overload: bool = self.yaml_data["inOverload"]
 
     @property
     def constraints(self):
@@ -304,6 +305,8 @@ class Parameter(_SingleTypeParameter):
             return ParameterMethodLocation.POSITIONAL
         # i'm a header
         if self.rest_api_name == "Content-Type":
+            if self.in_overload:
+                return ParameterMethodLocation.KEYWORD_ONLY
             return ParameterMethodLocation.KWARG
         if self.code_model.options["only_path_and_body_params_positional"]:
             return ParameterMethodLocation.KEYWORD_ONLY

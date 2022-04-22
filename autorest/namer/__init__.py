@@ -34,6 +34,9 @@ def update_operation(yaml_data: Dict[str, Any]) -> None:
         update_parameter(parameter)
     if yaml_data["bodyParameter"]:
         update_parameter(yaml_data["bodyParameter"])
+    for overload in yaml_data.get("overloads", []):
+        update_operation(overload)
+
 
 def update_operation_groups(yaml_data: Dict[str, Any]) -> None:
     operation_groups_yaml_data = yaml_data["operationGroups"]

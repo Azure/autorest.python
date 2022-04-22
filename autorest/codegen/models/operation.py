@@ -332,9 +332,15 @@ class Operation(OperationBase[ParameterList]):
             name=name,
             parameters=parameter_list,
             responses=responses,
+            want_tracing=not yaml_data["isOverload"],
         )
 
 class OverloadedOperation(OperationBase[OverloadedOperationParameterList]):
+
+    def _imports_shared(self, async_mode: bool) -> FileImport:
+        file_import = super()._imports_shared(async_mode)
+        file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
+        return file_import
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "OverloadedOperation":

@@ -105,19 +105,19 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
     @property
     def positional(self) -> List[Union[ParameterType, BodyParameterType]]:
         return _sort([
-            p for p in self.method if p.method_location == ParameterMethodLocation.POSITIONAL
+            p for p in self._unsorted_method_params if p.method_location == ParameterMethodLocation.POSITIONAL
         ])
 
     @property
     def keyword_only(self) -> List[Union[ParameterType, BodyParameterType]]:
         return _sort([
-            p for p in self.method if p.method_location == ParameterMethodLocation.KEYWORD_ONLY
+            p for p in self._unsorted_method_params if p.method_location == ParameterMethodLocation.KEYWORD_ONLY
         ])
 
     @property
     def kwarg(self) -> List[Union[ParameterType, BodyParameterType]]:
         return _sort([
-            p for p in self.method if p.method_location == ParameterMethodLocation.KWARG
+            p for p in self._unsorted_method_params if p.method_location == ParameterMethodLocation.KWARG
         ])
 
     @property
@@ -125,11 +125,15 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
         return "Method"
 
     @property
-    def method(self) -> List[Union[ParameterType, BodyParameterType]]:
+    def _unsorted_method_params(self) -> List[Union[ParameterType, BodyParameterType]]:
         method_params: List[Union[ParameterType, BodyParameterType]] = [p for p in self.parameters if p.in_method_signature and p.implementation == self.implementation]
         if self.has_body_parameter:
             method_params.append(self.body_parameter)
         return method_params
+
+    @property
+    def method(self) -> List[Union[ParameterType, BodyParameterType]]:
+        return self.positional + self.keyword_only + self.kwarg
 
     def method_signature(self, is_python3_file: bool) -> List[str]:
         return method_signature_helper(
@@ -186,10 +190,6 @@ class OverloadedRequestBuilderParameterList(_ParameterListBase[RequestBuilderPar
         if self.positional:
             return ["*args", "**kwargs"]
         return ["**kwargs"]
-
-    def kwargs_to_pop(self, is_python3_file: bool) -> List[Union[ParameterType, BodyParameterType]]:
-        super_kwargs_to_pop = super().kwargs_to_pop(is_python3_file=is_python3_file)
-        return [k for k in super_kwargs_to_pop if k.location != ParameterLocation.BODY]
 
 
 class ClientGlobalParameterList(_ParameterListBase[ClientParameter, SingleTypeBodyParameter]):

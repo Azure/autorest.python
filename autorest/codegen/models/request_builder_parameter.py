@@ -13,6 +13,7 @@ from .parameter import (
 )
 from .model_type import ModelType
 from .list_type import ListType
+from .base_type import BaseType
 from .dictionary_type import DictionaryType
 
 if TYPE_CHECKING:
@@ -51,6 +52,12 @@ class RequestBuilderSingleTypeBodyParameter(SingleTypeBodyParameter):
         return "_content"
 
 class RequestBuilderParameter(Parameter):
+
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel", type: BaseType) -> None:
+        super().__init__(yaml_data, code_model, type)
+        # we don't want any default content type behavior in request builder
+        if self.rest_api_name == "Content-Type":
+            self.client_default_value = None
 
     @property
     def name_in_high_level_operation(self) -> str:

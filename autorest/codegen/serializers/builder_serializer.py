@@ -414,9 +414,7 @@ class _RequestBuilderBaseSerializer(
         return [
             f"{p.client_name} = {_get_value(p)}"
             for p in builder.parameters.constant
-            # if p.original_parameter is None
-            # and p.in_method_code
-            # and not p.in_method_signature
+            if not p.in_method_signature
         ]
 
     @property
@@ -753,21 +751,26 @@ class _OperationBaseSerializer(
             # we are only dealing with two overloads. If there are three, we generate an abstract operation
             for overload in builder.overloads:
                 retval.append(f"_{overload.request_builder.parameters.body_parameter.client_name} = None")
-            retval.append('content_type = content_type or ""')
             try:
                 # if there is a binary overload, we do a binary check first.
                 binary_overload = next((o for o in builder.overloads if isinstance(o.parameters.body_parameter.type, BinaryType)))
                 binary_body_param = binary_overload.parameters.body_parameter
                 retval.append(f"if {binary_body_param.type.instance_check_template.format(binary_body_param.client_name)}:")
+                if binary_body_param.default_content_type:
+                    retval.append(f'    content_type = content_type or "{binary_body_param.default_content_type}"')
                 retval.extend(f"    {l}" for l in self._create_body_parameter(binary_overload))
                 retval.append("else:")
                 other_overload = next((o for o in builder.overloads if not isinstance(o.parameters.body_parameter.type, BinaryType)))
                 retval.extend(f"    {l}" for l in self._create_body_parameter(other_overload))
+                if other_overload.parameters.body_parameter.default_content_type:
+                    retval.append(f'    content_type = content_type or "{other_overload.parameters.body_parameter.default_content_type}"')
             except StopIteration:
                 for idx, overload in enumerate(builder.overloads):
                     if_statement = "if" if idx == 0 else "elif"
                     body_param = overload.parameters.body_parameter
                     retval.append(f'{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:')
+                    if body_param.default_content_type:
+                        retval.append(f'    content_type = content_type or "{body_param.default_content_type}"')
                     retval.extend(f"    {l}" for l in self._create_body_parameter(overload))
         elif builder.parameters.has_body_parameter:
             # non-overloaded body
