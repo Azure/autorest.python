@@ -32,16 +32,16 @@ class BaseBuilder(BaseModel, Generic[ParameterListType]):
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.name = name
-        self._description = yaml_data.get("description", "")
+        self._description: str = yaml_data.get("description", "")
         self.parameters = parameters
         self.overloads = overloads or []
-        self._summary = yaml_data.get("summary", "")
+        self._summary: str = yaml_data.get("summary", "")
         # for operations where we don't know what to do, we mark them as abstract so users implement
         # in patch.py
         self.abstract = abstract
         self.want_tracing = want_tracing
-        self.group_name = yaml_data["groupName"]
-        self.is_overload = yaml_data["isOverload"]
+        self.group_name: str = yaml_data["groupName"]
+        self.is_overload: bool = yaml_data["isOverload"]
 
     @property
     def summary(self) -> Optional[str]:

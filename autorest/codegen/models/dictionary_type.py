@@ -85,7 +85,7 @@ class DictionaryType(BaseType):
         :return: A created DictionaryType
         :rtype: ~autorest.models.DictionaryType
         """
-        element_schema = yaml_data["elementType"]
+        element_schema: Dict[str, Any] = yaml_data["elementType"]
 
         from . import build_type  # pylint: disable=import-outside-toplevel
 

@@ -23,8 +23,8 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._operations._operations import (
-    build_poll_with_constant_parameterized_endpoints_request_initial,
-    build_poll_with_parameterized_endpoints_request_initial,
+    build_poll_with_constant_parameterized_endpoints_request,
+    build_poll_with_parameterized_endpoints_request,
 )
 from .._vendor import MixinABC
 
@@ -42,7 +42,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
 
-        request = build_poll_with_parameterized_endpoints_request_initial(
+        request = build_poll_with_parameterized_endpoints_request(
             headers=_headers,
             params=_params,
         )
@@ -55,6 +55,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
@@ -157,7 +158,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
         constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
 
-        request = build_poll_with_constant_parameterized_endpoints_request_initial(
+        request = build_poll_with_constant_parameterized_endpoints_request(
             constant_parameter=constant_parameter,
             headers=_headers,
             params=_params,
@@ -171,6 +172,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:

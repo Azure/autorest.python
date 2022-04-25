@@ -27,38 +27,10 @@ def update_operation_group_class_name(yaml_data: Dict[str, Any], class_name: str
 def update_parameter(yaml_data: Dict[str, Any]) -> None:
     yaml_data["description"] = update_description(yaml_data["description"])
 
-def get_operation_updater(yaml_data: Dict[str, Any]) -> Callable[[Dict[str, Any]], None]:
-    if yaml_data["discriminator"] == "paging":
-        return update_paging_operation
-    return update_operation
-
-def update_operation(yaml_data: Dict[str, Any]) -> None:
-    yaml_data["groupName"] = to_snake_case(yaml_data["groupName"])
-    yaml_data["description"] = update_description(yaml_data["description"], yaml_data["name"])
-    for parameter in yaml_data["parameters"]:
-        update_parameter(parameter)
-    if yaml_data["bodyParameter"]:
-        update_parameter(yaml_data["bodyParameter"])
-    for overload in yaml_data.get("overloads", []):
-        update_operation(overload)
-
-def update_paging_operation(yaml_data: Dict[str, Any]) -> None:
-    update_operation(yaml_data)
-    if not yaml_data.get("pagerSync"):
-        yaml_data["pagerSync"] = "azure.core.paging.ItemPaged"
-    if not yaml_data.get("pagerAsync"):
-        yaml_data["pagerAsync"] = "azure.core.async_paging.AsyncItemPaged"
-    if yaml_data.get("nextOperation"):
-        yaml_data["nextOperation"]["groupName"] = to_snake_case(yaml_data["nextOperation"]["groupName"])
 
 
-def update_operation_groups(yaml_data: Dict[str, Any]) -> None:
-    operation_groups_yaml_data = yaml_data["operationGroups"]
-    for operation_group in operation_groups_yaml_data:
-        operation_group["propertyName"] = to_snake_case(operation_group["propertyName"])
-        operation_group["className"] = update_operation_group_class_name(yaml_data, operation_group["className"])
-        for operation in operation_group["operations"]:
-            get_operation_updater(operation)(operation)
+
+
 
 
 def update_types(yaml_data: List[Dict[str, Any]]) -> None:
@@ -76,9 +48,61 @@ def update_client(yaml_data: Dict[str, Any]) -> None:
 class Namer(YamlUpdatePlugin):
     """Add Python naming information."""
 
+    def get_operation_updater(self, yaml_data: Dict[str, Any]) -> Callable[[Dict[str, Any]], None]:
+        if yaml_data["discriminator"] == "lro":
+            return self.update_lro_operation
+        if yaml_data["discriminator"] == "paging":
+            return self.update_paging_operation
+        return self.update_operation
+
+    def update_operation(self, yaml_data: Dict[str, Any]) -> None:
+        yaml_data["groupName"] = to_snake_case(yaml_data["groupName"])
+        yaml_data["description"] = update_description(yaml_data["description"], yaml_data["name"])
+        for parameter in yaml_data["parameters"]:
+            update_parameter(parameter)
+        if yaml_data["bodyParameter"]:
+            update_parameter(yaml_data["bodyParameter"])
+        for overload in yaml_data.get("overloads", []):
+            self.update_operation(overload)
+
+    def update_lro_operation(self, yaml_data: Dict[str, Any]) -> None:
+        self.update_operation(yaml_data)
+        azure_arm = self._autorestapi.get_boolean_value("azure-arm", False)
+        if not yaml_data.get("pollerSync"):
+            yaml_data["pollerSync"] = "azure.core.polling.LROPoller"
+        if not yaml_data.get("pollerAsync"):
+            yaml_data["pollerAsync"] = "azure.core.polling.AsyncLROPoller"
+        if not yaml_data.get("pollingMethodSync"):
+            yaml_data["pollingMethodSync"] = (
+                "azure.mgmt.core.polling.arm_polling.ARMPolling" if azure_arm else
+                "azure.core.polling.base_polling.LROBasePolling"
+            )
+        if not yaml_data.get("pollingMethodAsync"):
+            yaml_data["pollingMethodAsync"] = (
+                "azure.mgmt.core.polling.async_arm_polling.AsyncARMPolling" if azure_arm else
+                "azure.core.polling.async_base_polling.AsyncLROBasePolling"
+            )
+
+    def update_paging_operation(self, yaml_data: Dict[str, Any]) -> None:
+        self.update_operation(yaml_data)
+        if not yaml_data.get("pagerSync"):
+            yaml_data["pagerSync"] = "azure.core.paging.ItemPaged"
+        if not yaml_data.get("pagerAsync"):
+            yaml_data["pagerAsync"] = "azure.core.async_paging.AsyncItemPaged"
+        if yaml_data.get("nextOperation"):
+            yaml_data["nextOperation"]["groupName"] = to_snake_case(yaml_data["nextOperation"]["groupName"])
+
+    def update_operation_groups(self, yaml_data: Dict[str, Any]) -> None:
+        operation_groups_yaml_data = yaml_data["operationGroups"]
+        for operation_group in operation_groups_yaml_data:
+            operation_group["propertyName"] = to_snake_case(operation_group["propertyName"])
+            operation_group["className"] = update_operation_group_class_name(yaml_data, operation_group["className"])
+            for operation in operation_group["operations"]:
+                self.get_operation_updater(operation)(operation)
+
     def update_yaml(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         """Convert in place the YAML str."""
         update_client(yaml_data["client"])
         update_types(yaml_data["types"])
-        update_operation_groups(yaml_data)
+        self.update_operation_groups(yaml_data)
         return yaml_data

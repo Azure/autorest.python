@@ -45,13 +45,13 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         discriminated_subtypes: Optional[Dict[str, "ModelType"]] = None,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.name = self.yaml_data["name"]
+        self.name: str = self.yaml_data["name"]
         self.max_properties: Optional[int] = self.yaml_data.get("maxProperties")
         self.min_properties: Optional[int] = self.yaml_data.get("minProperties")
         self.properties = properties or []
         self.parents = parents or []
         self.discriminated_subtypes = discriminated_subtypes or {}
-        self.discriminator_value = self.yaml_data.get("discriminatorValue")
+        self.discriminator_value: str = self.yaml_data.get("discriminatorValue")
         self._created_json_template_representation = False
 
     @property

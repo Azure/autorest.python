@@ -48,13 +48,11 @@ class PagingOperation(Operation):
         self.item_name: str = self.yaml_data["itemName"]
         self.continuation_token_name: str = self.yaml_data["continuationTokenName"]
         self.override_success_response_to_200 = override_success_response_to_200
-        self.pager_sync = yaml_data["pagerSync"]
-        self.pager_async = yaml_data["pagerAsync"]
+        self.pager_sync: str = yaml_data["pagerSync"]
+        self.pager_async: str = yaml_data["pagerAsync"]
 
     def get_pager_path(self, async_mode: bool) -> str:
-        if async_mode:
-            return self.yaml_data["pagerAsync"]
-        return self.yaml_data["pagerSync"]
+        return self.yaml_data["pagerAsync"] if async_mode else self.yaml_data["pagerSync"]
 
     def get_pager(self, async_mode: bool) -> str:
         return self.get_pager_path(async_mode).split(".")[-1]
@@ -80,6 +78,10 @@ class PagingOperation(Operation):
             file_import.merge(self.next_request_builder.imports())
         return file_import
 
+    @property
+    def has_optional_return_type(self) -> bool:
+        return False
+
     def response_type_annotation(self, *, async_mode: bool, **kwargs) -> str:
         iterable = "AsyncIterable" if async_mode else "Iterable"
         return f"{iterable}[{super().response_type_annotation(async_mode=async_mode)}]"
@@ -89,9 +91,10 @@ class PagingOperation(Operation):
 
     def response_docstring_text(self, *, async_mode: bool, **kwargs) -> str:
         super_text = super().response_docstring_text(async_mode=async_mode)
+        base_description = "An iterator like instance of "
         if not self.code_model.options["version_tolerant"]:
-            return "An iterator like instace of either " + super_text
-        return "An iterator like instance of " + super_text
+            base_description += "either "
+        return base_description + super_text
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
         file_import = super().imports_for_multiapi(async_mode)

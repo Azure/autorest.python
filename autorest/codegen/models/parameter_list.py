@@ -176,18 +176,22 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
         retval.append("**kwargs")
         return retval
 
-class ParameterList(_ParameterListBase[Parameter, SingleTypeBodyParameter]):
+class _ParameterList(_ParameterListBase[Parameter, BodyParameterType]):
 
     @property
     def implementation(self) -> str:
         return "Method"
 
-class OverloadedOperationParameterList(_ParameterListBase[Parameter, MultipleTypeBodyParameter]):
+    @property
+    def path(self) -> List[Parameter]:
+        return [k for k in super().path if k.location == ParameterLocation.ENDPOINT_PATH]
+
+class ParameterList(_ParameterList[SingleTypeBodyParameter]):
+    ...
+
+class OverloadedOperationParameterList(_ParameterList[MultipleTypeBodyParameter]):
     """This parameter list is used if we have overloads for an operation due to multiple types of the body parameter"""
-
-    @property
-    def implementation(self) -> str:
-        return "Method"
+    ...
 
 class _RequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, BodyParameterType]):
 

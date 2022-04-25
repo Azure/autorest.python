@@ -64,8 +64,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         self.request_builders: List[Union[RequestBuilder, OverloadedRequestBuilder]] = []
         self.package_dependency: Dict[str, str] = {}
         self._credential_model: Optional[CredentialModel] = None
-        self.namespace = yaml_data["client"]["namespace"].lower()
-        self.module_name = self.yaml_data["client"]["name"].replace(" ", "_").lower()
+        self.namespace: str = yaml_data["client"]["namespace"].lower()
+        self.module_name: str = self.yaml_data["client"]["name"].replace(" ", "_").lower()
 
     def lookup_type(self, schema_id: int) -> BaseType:
         """Looks to see if the schema has already been created.
@@ -184,38 +184,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
                     operation_group.operations.insert(i, operation.initial_operation)
                     i += 1
                 i += 1
-
-    def remove_next_operation(self) -> None:
-        """Linking paging operations together."""
-
-        def _lookup_operation(yaml_id: int) -> Operation:
-            for operation_group in self.operation_groups:
-                for operation in operation_group.operations:
-                    if operation.id == yaml_id:
-                        return operation
-            raise KeyError("Didn't find it!!!!!")
-
-        # for operation_group in self.operation_groups:
-        #     next_operations = []
-        #     for operation in operation_group.operations:
-        #         # when we add in "LRO" functions we don't include yaml_data, so yaml_data can be empty in these cases
-        #         next_link_yaml = None
-        #         if operation.yaml_data and operation.yaml_data["language"][
-        #             "python"
-        #         ].get("paging"):
-        #             next_link_yaml = operation.yaml_data["language"]["python"][
-        #                 "paging"
-        #             ].get("nextLinkOperation")
-        #         if isinstance(operation, PagingOperation) and next_link_yaml:
-        #             next_operation = _lookup_operation(id(next_link_yaml))
-        #             operation.next_operation = next_operation
-        #             next_operations.append(next_operation)
-
-        #     operation_group.operations = [
-        #         operation
-        #         for operation in operation_group.operations
-        #         if operation not in next_operations
-        #     ]
 
     @property
     def credential_model(self) -> CredentialModel:

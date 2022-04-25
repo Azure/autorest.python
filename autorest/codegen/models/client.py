@@ -9,6 +9,7 @@ from .base_model import BaseModel
 from .parameter import ClientParameter, ConfigParameter
 from .parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
 from .imports import FileImport, ImportType, TypingSection
+from .lro_operation import LROOperation
 
 ParameterListType = TypeVar(
     "ParameterListType",
@@ -30,7 +31,7 @@ class _ClientConfigBase(BaseModel, Generic[ParameterListType]):
     ):
         super().__init__(yaml_data, code_model)
         self.parameters = parameters
-        self.url = self.yaml_data["url"]
+        self.url: str = self.yaml_data["url"]
 
     @property
     def description(self) -> str:

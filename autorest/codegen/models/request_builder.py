@@ -35,8 +35,8 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             abstract=abstract,
             want_tracing=False,
         )
-        self.url = yaml_data["url"]
-        self.method = yaml_data["method"]
+        self.url: str = yaml_data["url"]
+        self.method: str = yaml_data["method"]
 
     def response_type_annotation(self, **kwargs) -> str:
         return "HttpRequest"

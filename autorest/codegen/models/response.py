@@ -3,11 +3,11 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Dict, Optional, List, Set, Any, TYPE_CHECKING
+from typing import Dict, Optional, List, Set, Any, TYPE_CHECKING, Union
 
 from .base_model import BaseModel
 from .base_type import BaseType
-from .imports import FileImport, ImportType
+from .imports import FileImport
 from .primitive_types import BinaryType
 
 if TYPE_CHECKING:
@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 class ResponseHeader(BaseModel):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel", type: BaseType) -> None:
         super().__init__(yaml_data, code_model)
-        self.name = yaml_data["name"]
+        self.rest_api_name: str = yaml_data["restApiName"]
         self.type = type
 
     @property
@@ -42,9 +42,9 @@ class Response(BaseModel):
         type: Optional[BaseType] = None,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.status_codes = yaml_data["statusCodes"]
+        self.status_codes: List[Union[int, str]] = yaml_data["statusCodes"]
         self.headers = headers
-        self.is_error = yaml_data["isError"]
+        self.is_error: bool = yaml_data["isError"]
         self.type = type
 
     @property
@@ -87,7 +87,7 @@ class Response(BaseModel):
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            headers=[ResponseHeader(header, code_model, code_model.lookup_type(header["type"])) for header in yaml_data["headers"]],
+            headers=[ResponseHeader.from_yaml(header, code_model) for header in yaml_data["headers"]],
             type=code_model.lookup_type(id(yaml_data["type"])) if yaml_data.get("type") else None
         )
 

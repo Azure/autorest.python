@@ -179,7 +179,7 @@ class _BuilderBaseSerializer(
         self, builder: BuilderType
     ) -> List[str]:
         description_list: List[str] = []
-        for param in [m for m in builder.parameters.method if not m.method_location == ParameterMethodLocation.KWARG]:
+        for param in builder.parameters.method:
             description_list.extend(
                 f":{param.description_keyword} { param.client_name }: { param.description }".replace(
                     "\n", "\n "
@@ -604,8 +604,8 @@ class OperationSerializer(
     ) -> List[str]:
         retval: List[str] = [
             (
-                f"response_headers['{response_header.name}']=self._deserialize('{response_header.serialization_type}', "
-                f"response.headers.get('{response_header.name}'))"
+                f"response_headers['{response_header.rest_api_name}']=self._deserialize('{response_header.serialization_type}', "
+                f"response.headers.get('{response_header.rest_api_name}'))"
             )
             for response_header in response.headers
         ]
@@ -890,9 +890,6 @@ class PagingOperationSerializer(
 class LROOperationSerializer(
     OperationSerializer
 ):
-    @property
-    def _polling_method_type(self) -> str:
-        return "AsyncPollingMethod" if self.async_mode else "PollingMethod"
 
     def param_description(self, builder: LROOperation) -> List[str]:
         retval = super().param_description(builder)
@@ -900,12 +897,12 @@ class LROOperationSerializer(
             ":keyword str continuation_token: A continuation token to restart a poller from a saved state."
         )
         retval.append(
-            f":keyword polling: By default, your polling method will be {builder.get_default_polling_method(self.async_mode)}. "
+            f":keyword polling: By default, your polling method will be {builder.get_polling_method(self.async_mode)}. "
             "Pass in False for this operation to not poll, or pass in your own initialized polling object for a"
             " personal polling strategy."
         )
         retval.append(
-            f":paramtype polling: bool or ~azure.core.polling.{self._polling_method_type}"
+            f":paramtype polling: bool or ~{builder.get_base_polling_method_path(self.async_mode)}"
         )
         retval.append(
             ":keyword int polling_interval: Default waiting time between two polls for LRO operations "
@@ -915,7 +912,7 @@ class LROOperationSerializer(
 
     def initial_call(self, builder: LROOperation) -> List[str]:
         retval = [
-            f"polling = kwargs.pop('polling', True)  # type: Union[bool, {self._polling_method_type}]"
+            f"polling = kwargs.pop('polling', True)  # type: Union[bool, {builder.get_base_polling_method(self.async_mode)}]"
         ]
         retval.append("lro_delay = kwargs.pop(")
         retval.append("    'polling_interval',")
@@ -959,17 +956,17 @@ class LROOperationSerializer(
         retval.extend(
             [
                 "if polling is True:",
-                f"    polling_method = cast({self._polling_method_type}, {builder.get_default_polling_method(self.async_mode)}(",
+                f"    polling_method = cast({builder.get_base_polling_method(self.async_mode)}, {builder.get_polling_method(self.async_mode)}(",
                 "        lro_delay,",
                 f"        {lro_options_str}",
                 f"        {path_format_arguments_str}",
                 "        **kwargs",
-                f"))  # type: {self._polling_method_type}",
+                f"))  # type: {builder.get_base_polling_method(self.async_mode)}",
             ]
         )
         retval.append(
-            f"elif polling is False: polling_method = cast({self._polling_method_type}, "
-            f"{builder.get_default_no_polling_method(self.async_mode)}())"
+            f"elif polling is False: polling_method = cast({builder.get_base_polling_method(self.async_mode)}, "
+            f"{builder.get_no_polling_method(self.async_mode)}())"
         )
         retval.append("else: polling_method = polling")
         retval.append("if cont_token:")
@@ -1007,14 +1004,14 @@ class LROOperationSerializer(
         retval.append(
             "        return cls(pipeline_response, {}, {})".format(
                 "deserialized"
-                if builder.lro_response and builder.lro_response.types
+                if builder.lro_response and builder.lro_response.type
                 else "None",
                 "response_headers"
                 if builder.lro_response and builder.lro_response.headers
                 else "{}",
             )
         )
-        if builder.lro_response and builder.lro_response.types:
+        if builder.lro_response and builder.lro_response.type:
             retval.append("    return deserialized")
         return retval
 

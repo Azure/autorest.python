@@ -7,7 +7,7 @@ import logging
 import abc
 from enum import Enum, auto
 
-from typing import Dict, Any, TYPE_CHECKING, List, Set, Union
+from typing import Dict, Any, TYPE_CHECKING, List, Optional, Set, Union
 
 from .imports import FileImport, ImportType, TypingSection
 from .base_model import BaseModel
@@ -39,11 +39,11 @@ class _BaseParameter(BaseModel, abc.ABC):
         code_model: "CodeModel"
     ) -> None:
         super().__init__(yaml_data, code_model)
-        self.client_name = self.yaml_data["clientName"]
-        self.optional = self.yaml_data["optional"]
-        self.location = self.yaml_data["location"]
+        self.client_name: str = self.yaml_data["clientName"]
+        self.optional: bool = self.yaml_data["optional"]
+        self.location: ParameterLocation = self.yaml_data["location"]
         self.client_default_value = self.yaml_data.get("clientDefaultValue", None)
-        self.skip_url_encoding = self.yaml_data["skipUrlEncoding"]
+        self.skip_url_encoding: bool = self.yaml_data["skipUrlEncoding"]
 
     @property
     def description(self) -> str:
@@ -243,8 +243,8 @@ class SingleTypeBodyParameter(_SingleTypeParameter, _BodyParameter):
         type: BaseType,
     ) -> None:
         super().__init__(yaml_data, code_model, type=type)
-        self.content_types = yaml_data["contentTypes"]
-        self.default_content_type = yaml_data["defaultContentType"]
+        self.content_types: List[str] = yaml_data["contentTypes"]
+        self.default_content_type: str = yaml_data["defaultContentType"]
 
 
     @classmethod
@@ -269,9 +269,9 @@ class Parameter(_SingleTypeParameter):
         type: BaseType,
     ) -> None:
         super().__init__(yaml_data, code_model, type=type)
-        self.rest_api_name = yaml_data["restApiName"]
-        self.implementation = yaml_data["implementation"]
-        self.skip_url_encoding = self.yaml_data.get("skipUrlEncoding", False)
+        self.rest_api_name: str = yaml_data["restApiName"]
+        self.implementation: str = yaml_data["implementation"]
+        self.skip_url_encoding: bool = self.yaml_data.get("skipUrlEncoding", False)
         self.explode: bool = self.yaml_data.get("explode", False)
         self.in_overload: bool = self.yaml_data["inOverload"]
 

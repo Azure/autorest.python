@@ -23,8 +23,8 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         type: BaseType,
     ) -> None:
         super().__init__(yaml_data, code_model)
-        self.rest_api_name = self.yaml_data["restApiName"]
-        self.client_name = self.yaml_data["clientName"]
+        self.rest_api_name: str = self.yaml_data["restApiName"]
+        self.client_name: str = self.yaml_data["clientName"]
         self.type = type
         self.optional: bool = self.yaml_data["optional"]
         self.readonly: bool = self.yaml_data.get("readonly", False)

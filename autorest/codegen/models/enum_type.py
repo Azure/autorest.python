@@ -24,9 +24,9 @@ class EnumValue(BaseModel):
         self, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.name = self.yaml_data["name"]
-        self.value = self.yaml_data["value"]
-        self.description = self.yaml_data.get("description")
+        self.name: str = self.yaml_data["name"]
+        self.value: str = self.yaml_data["value"]
+        self.description: Optional[str] = self.yaml_data.get("description")
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "EnumValue":
@@ -64,7 +64,7 @@ class EnumType(BaseType):
         value_type: BaseType,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.name = yaml_data["name"]
+        self.name: str = yaml_data["name"]
         self.values = values
         self.value_type = value_type
 

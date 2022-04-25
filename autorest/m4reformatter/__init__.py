@@ -259,7 +259,7 @@ def update_parameters(yaml_data: Dict[str, Any], *, in_overload: bool = False) -
 
 def update_response_header(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
-        "restApiName": yaml_data["header"]["name"],
+        "restApiName": yaml_data["language"]["default"]["name"],
         "type": update_type(yaml_data["schema"])
     }
 
@@ -349,6 +349,18 @@ def update_operation(group_name: str, yaml_data: Dict[str, Any], *, is_overload:
         "discriminator": "operation"
     }
 
+def update_lro_operation(group_name: str, yaml_data: Dict[str, Any], *, is_overload: bool = False) -> Dict[str, Any]:
+    base_operation = update_operation(group_name, yaml_data, is_overload=is_overload)
+    base_operation["discriminator"] = "lro"
+    extensions = yaml_data["extensions"]
+    base_operation["lroOptions"] = extensions.get("x-ms-long-running-operation-options")
+    base_operation["pollerSync"] = extensions.get("x-python-custom-poller-sync")
+    base_operation["pollerAsync"] = extensions.get("x-python-custom-poller-async")
+    base_operation["pollingMethodSync"] = extensions.get("x-python-custom-default-polling-method-sync")
+    base_operation["pollingMethodAsync"] = extensions.get("x-python-custom-default-polling-method-async")
+    return base_operation
+
+
 def update_paging_operation(group_name: str, yaml_data: Dict[str, Any], *, is_overload: bool = False) -> Dict[str, Any]:
     base_operation = update_operation(group_name, yaml_data, is_overload=is_overload)
     base_operation["discriminator"] = "paging"
@@ -360,15 +372,16 @@ def update_paging_operation(group_name: str, yaml_data: Dict[str, Any], *, is_ov
             yaml_data=yaml_data["language"]["default"]["paging"]["nextLinkOperation"],
             is_overload=False,
         )
-    if yaml_data["extensions"].get("x-python-custom-pager-sync"):
-        base_operation["pagerSync"] = yaml_data["extensions"]["x-python-custom-pager-sync"]
-    if yaml_data["extensions"].get("x-python-custom-pager-async"):
-        base_operation["pagerAsync"] = yaml_data["extensions"]["x-python-custom-pager-async"]
+    extensions = yaml_data["extensions"]
+    base_operation["pagerSync"] = extensions.get("x-python-custom-pager-sync")
+    base_operation["pagerAsync"] = extensions.get("x-python-custom-pager-async")
     return base_operation
 
 def get_operation_creator(yaml_data: Dict[str, Any]) -> Callable[[str, Dict[str, Any]], Dict[str, Any]]:
     lro_operation = yaml_data.get("extensions", {}).get("x-ms-long-running-operation")
     paging_operation = yaml_data.get("extensions", {}).get("x-ms-pageable")
+    if lro_operation:
+        return update_lro_operation
     if paging_operation:
         return update_paging_operation
     return update_operation

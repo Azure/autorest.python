@@ -47,8 +47,6 @@ def _build_convenience_layer(yaml_data: Dict[str, Any], code_model: CodeModel) -
     if code_model.options["show_operations"]:
         # LRO operation
         code_model.format_lro_operations()
-        code_model.remove_next_operation()
-
 
 def _validate_code_model_options(options: Dict[str, Any]) -> None:
 
@@ -209,6 +207,7 @@ class CodeGenerator(Plugin):
                         code_model.request_builders.extend(request_builder.overloads)
                     code_model.request_builders.append(request_builder)
                     if operation_yaml.get("nextOperation"):
+                        # i am a paging operation and i have a next operation. Make sure to include my next operation
                         code_model.request_builders.append(RequestBuilderBase.from_yaml(operation_yaml["nextOperation"], code_model=code_model))
 
         _build_convenience_layer(yaml_data=yaml_data, code_model=code_model)

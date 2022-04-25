@@ -361,6 +361,9 @@ class OperationBase(BaseBuilder[ParameterListType]):
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> Union["Operation", "OverloadedOperation"]:
+        if yaml_data["discriminator"] == "lro":
+            from .lro_operation import LROOperation
+            return LROOperation.from_yaml(yaml_data, code_model)
         if yaml_data["discriminator"] == "paging":
             from .paging_operation import PagingOperation
             return PagingOperation.from_yaml(yaml_data, code_model)

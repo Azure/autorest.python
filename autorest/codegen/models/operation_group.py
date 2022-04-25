@@ -26,8 +26,8 @@ class OperationGroup(BaseModel):
         operations: List[OperationBase],
     ) -> None:
         super().__init__(yaml_data, code_model)
-        self.class_name = yaml_data["className"]
-        self.property_name = yaml_data["propertyName"]
+        self.class_name: str = yaml_data["className"]
+        self.property_name: str = yaml_data["propertyName"]
         self.operations = operations
 
     @property
