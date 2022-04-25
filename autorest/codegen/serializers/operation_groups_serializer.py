@@ -15,7 +15,7 @@ from ..models import (
     PagingOperation,
 )
 from .import_serializer import FileImportSerializer
-from .builder_serializer import get_operation_serializer, get_request_builder_serializer
+from .builder_serializer import get_operation_serializer, RequestBuilderSerializer
 
 
 class OperationGroupsSerializer:
@@ -75,8 +75,9 @@ class OperationGroupsSerializer:
                 async_mode=self.async_mode,
                 is_python3_file=self.is_python3_file,
             ),
-            request_builder_serializer=get_request_builder_serializer(
+            request_builder_serializer=RequestBuilderSerializer(
                 self.code_model,
-                self.is_python3_file,
+                async_mode=False,
+                is_python3_file=self.is_python3_file,
             ),
         )

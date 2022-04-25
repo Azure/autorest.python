@@ -15,7 +15,7 @@
         {{ op_tools.serialize(serializer.pop_kwargs_from_signature(async_mode)) | indent(8) }}
     {% endif %}
         {% if code_model.client.has_parameterized_host %}
-        _{{ code_model.client.parameters.host_variable_name }} = {{ keywords.escape_str(code_model.client.parameterized_host_template) }}
+        {{ serializer.host_variable_name }} = {{ keywords.escape_str(code_model.client.url) }}
         {% endif %}
         {{ serializer.initialize_config() }}
         {{ serializer.initialize_pipeline_client(async_mode) }}

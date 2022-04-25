@@ -23,6 +23,7 @@ _LOGGER = logging.getLogger(__name__)
 class ParameterLocation(str, Enum):
     HEADER = "header"
     PATH = "path"
+    ENDPOINT_PATH = "endpointPath"
     QUERY = "query"
     BODY = "body"
 
@@ -38,10 +39,11 @@ class _BaseParameter(BaseModel, abc.ABC):
         code_model: "CodeModel"
     ) -> None:
         super().__init__(yaml_data, code_model)
-        self.client_name = yaml_data["clientName"]
-        self.optional = yaml_data["optional"]
-        self.location = yaml_data["location"]
-        self.client_default_value = yaml_data.get("clientDefaultValue", None)
+        self.client_name = self.yaml_data["clientName"]
+        self.optional = self.yaml_data["optional"]
+        self.location = self.yaml_data["location"]
+        self.client_default_value = self.yaml_data.get("clientDefaultValue", None)
+        self.skip_url_encoding = self.yaml_data["skipUrlEncoding"]
 
     @property
     def description(self) -> str:
@@ -301,7 +303,7 @@ class Parameter(_SingleTypeParameter):
             if self.code_model.options["only_path_and_body_params_positional"]:
                 return ParameterMethodLocation.KEYWORD_ONLY
             return ParameterMethodLocation.POSITIONAL
-        if self.location == ParameterLocation.PATH:
+        if self.location in (ParameterLocation.PATH, ParameterLocation.ENDPOINT_PATH):
             return ParameterMethodLocation.POSITIONAL
         # i'm a header
         if self.rest_api_name == "Content-Type":

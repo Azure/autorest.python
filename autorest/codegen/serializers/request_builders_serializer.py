@@ -9,10 +9,7 @@ from jinja2 import Environment
 from ..models import RequestBuilder, FileImport
 from .import_serializer import FileImportSerializer
 from ..models import CodeModel
-from .builder_serializer import (
-    RequestBuilderGenericSerializer,
-    RequestBuilderPython3Serializer,
-)
+from .builder_serializer import RequestBuilderSerializer
 
 
 class RequestBuildersSerializer:
@@ -21,11 +18,13 @@ class RequestBuildersSerializer:
         code_model: CodeModel,
         env: Environment,
         request_builders: List[RequestBuilder],
+        is_python3_file: bool
     ) -> None:
         self.code_model = code_model
         self.env = env
         self.request_builders = request_builders
         self.group_name = request_builders[0].group_name
+        self.is_python3_file = is_python3_file
 
     @property
     def imports(self) -> FileImport:
@@ -41,8 +40,6 @@ class RequestBuildersSerializer:
             code_model=self.code_model, request_builders=self.request_builders
         )
 
-
-class RequestBuildersPython3Serializer(RequestBuildersSerializer):
     def serialize_request_builders(self) -> str:
         template = self.env.get_template("request_builders.py.jinja2")
 
@@ -53,22 +50,5 @@ class RequestBuildersPython3Serializer(RequestBuildersSerializer):
                 self.imports,
                 is_python3_file=True,
             ),
-            is_python3_file=True,
-            request_builder_serializer=RequestBuilderPython3Serializer(self.code_model),
-        )
-
-
-class RequestBuildersGenericSerializer(RequestBuildersSerializer):
-    def serialize_request_builders(self) -> str:
-        template = self.env.get_template("request_builders.py.jinja2")
-
-        return template.render(
-            code_model=self.code_model,
-            request_builders=self.request_builders,
-            imports=FileImportSerializer(
-                self.imports,
-                is_python3_file=False,
-            ),
-            is_python3_file=False,
-            request_builder_serializer=RequestBuilderGenericSerializer(self.code_model),
+            request_builder_serializer=RequestBuilderSerializer(self.code_model, async_mode=False, is_python3_file=self.is_python3_file),
         )

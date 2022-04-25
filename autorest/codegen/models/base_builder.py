@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from abc import abstractmethod
 from typing import Any, Dict, List, Optional, TypeVar, Union, TYPE_CHECKING, Generic
 from .base_model import BaseModel
 from .parameter_list import ParameterList, RequestBuilderParameterList, OverloadedOperationParameterList, OverloadedRequestBuilderParameterList
@@ -47,6 +48,18 @@ class BaseBuilder(BaseModel, Generic[ParameterListType]):
         if self.abstract:
             return None
         return self._summary
+
+    @abstractmethod
+    def response_type_annotation(self, **kwargs) -> str:
+        ...
+
+    @abstractmethod
+    def response_docstring_text(self, **kwargs) -> str:
+        ...
+
+    @abstractmethod
+    def response_docstring_type(self, **kwargs) -> str:
+        ...
 
     @property
     def description(self) -> str:

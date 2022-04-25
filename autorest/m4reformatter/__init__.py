@@ -161,7 +161,7 @@ def update_parameter_base(
 ) -> Dict[str, Any]:
     location = yaml_data["protocol"]["http"]["in"]
     if location == "uri":
-        location = "path"
+        location = "endpointPath"
 
     return {
         "optional": not yaml_data.get("required", False),
@@ -171,7 +171,7 @@ def update_parameter_base(
         "location": location,
     }
 
-def update_parameter(yaml_data: Dict[str, Any], implementation: str, *, client_name: Optional[str] = None, in_overload: bool = False) -> Dict[str, Any]:
+def update_parameter(yaml_data: Dict[str, Any], *, client_name: Optional[str] = None, in_overload: bool = False) -> Dict[str, Any]:
     param_base = update_parameter_base(yaml_data, client_name=client_name)
     type = get_type(yaml_data["schema"])
     if type["type"] == "constant":
@@ -179,9 +179,10 @@ def update_parameter(yaml_data: Dict[str, Any], implementation: str, *, client_n
     param_base.update({
         "restApiName": yaml_data["language"]["default"]["serializedName"],
         "type": type,
-        "implementation": implementation,
+        "implementation": yaml_data["implementation"],
         "explode": yaml_data["protocol"]["http"].get("explode", False),
-        "inOverload": in_overload
+        "inOverload": in_overload,
+        "skipUrlEncoding": yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False)
     })
     return param_base
 
@@ -229,7 +230,7 @@ def update_parameters(yaml_data: Dict[str, Any], *, in_overload: bool = False) -
         if param["language"]["default"]["name"] == "$host":
             continue
         if param["language"]["default"]["serializedName"] not in seen_rest_api_names:
-            updated_param = update_parameter(param, "Method", in_overload=in_overload)
+            updated_param = update_parameter(param, in_overload=in_overload)
             retval.append(updated_param)
             seen_rest_api_names.add(updated_param["restApiName"])
 
@@ -250,7 +251,7 @@ def update_parameters(yaml_data: Dict[str, Any], *, in_overload: bool = False) -
                         param["required"] = False
                         if not in_overload:
                             param["clientDefaultValue"] = None
-                    param = update_parameter(param, "Method", in_overload=in_overload)
+                    param = update_parameter(param, in_overload=in_overload)
 
                     retval.append(param)
                     seen_rest_api_names.add(param["restApiName"])
@@ -417,7 +418,7 @@ class M4Reformatter(YamlUpdatePlugin):
                 low_level_client = self._autorestapi.get_boolean_value("low-level-client", False)
                 client_name = "endpoint" if (version_tolerant or low_level_client) else "base_url"
                 global_parameter["language"]["default"]["description"] = "Service URL."
-            global_params.append(update_parameter(global_parameter, "Client", client_name=client_name))
+            global_params.append(update_parameter(global_parameter, client_name=client_name))
         return global_params
 
 

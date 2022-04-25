@@ -48,6 +48,8 @@ def update_paging_operation(yaml_data: Dict[str, Any]) -> None:
         yaml_data["pagerSync"] = "azure.core.paging.ItemPaged"
     if not yaml_data.get("pagerAsync"):
         yaml_data["pagerAsync"] = "azure.core.async_paging.AsyncItemPaged"
+    if yaml_data.get("nextOperation"):
+        yaml_data["nextOperation"]["groupName"] = to_snake_case(yaml_data["nextOperation"]["groupName"])
 
 
 def update_operation_groups(yaml_data: Dict[str, Any]) -> None:

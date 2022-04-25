@@ -100,13 +100,16 @@ class ClientSerializer:
         )
         return f"self._config = {config_name}({config_call})"
 
-    def initialize_pipeline_client(self, async_mode: bool) -> str:
+    @property
+    def host_variable_name(self) -> str:
         try:
-            host_variable_name = next(p for p in self.code_model.client.parameters if p.is_host).client_name
+            return next(p for p in self.code_model.client.parameters if p.is_host).client_name
         except StopIteration:
-            host_variable_name = "_endpoint"
+            return "_endpoint"
+
+    def initialize_pipeline_client(self, async_mode: bool) -> str:
         pipeline_client_name = self.code_model.client.pipeline_class(async_mode)
-        return f"self._client = {pipeline_client_name}(base_url={host_variable_name}, config=self._config, **kwargs)"
+        return f"self._client = {pipeline_client_name}(base_url={self.host_variable_name}, config=self._config, **kwargs)"
 
     def serializers_and_operation_groups_properties(self) -> List[str]:
         retval = []

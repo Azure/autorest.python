@@ -59,6 +59,7 @@ class ParameterSerializer:
 
         msrest_function_name = {
             ParameterLocation.PATH: "url",
+            ParameterLocation.ENDPOINT_PATH: "url",
             ParameterLocation.HEADER: "header",
             ParameterLocation.QUERY: "query",
         }[parameter.location]

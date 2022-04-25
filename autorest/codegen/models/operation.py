@@ -70,7 +70,7 @@ class OperationBase(BaseBuilder[ParameterListType]):
         )
         return successful_response_with_body and successful_response_without_body
 
-    def response_type_annotation(self, async_mode: bool) -> str:
+    def response_type_annotation(self, **kwargs) -> str:
         if self.code_model.options["head_as_boolean"] and self.request_builder.method.lower() == "head":
             return "bool"
         response_body_annotations: OrderedSet[str] = {}
@@ -83,8 +83,8 @@ class OperationBase(BaseBuilder[ParameterListType]):
             return f"Optional[{response_str}]"
         return response_str
 
-    def cls_type_annotation(self, async_mode: bool) -> str:
-        return f"ClsType[{self.response_type_annotation(async_mode)}]"
+    def cls_type_annotation(self, *, async_mode: bool) -> str:
+        return f"ClsType[{self.response_type_annotation(async_mode=async_mode)}]"
 
     def _response_docstring_helper(self, attr_name: str) -> str:
         responses_with_body = [r for r in self.responses if r.type]
@@ -100,14 +100,14 @@ class OperationBase(BaseBuilder[ParameterListType]):
             return retval
         return "None"
 
-    def response_docstring_text(self, async_mode: bool) -> str:
+    def response_docstring_text(self, **kwargs) -> str:
         retval = self._response_docstring_helper("docstring_text")
         if not self.code_model.options["version_tolerant"]:
             retval += " or the result of cls(response)"
         return retval
 
 
-    def response_docstring_type(self, async_mode: bool) -> str:
+    def response_docstring_type(self, **kwargs) -> str:
         return self._response_docstring_helper("docstring_type")
 
     @property
@@ -204,6 +204,37 @@ class OperationBase(BaseBuilder[ParameterListType]):
             for kwarg in kwargs_to_pop
         )
 
+    def get_request_builder_import(self, request_builder: Union[RequestBuilder, OverloadedRequestBuilder], async_mode: bool) -> FileImport:
+        """Helper method to get a request builder import."""
+        file_import = FileImport()
+        if self.code_model.options["builders_visibility"] != "embedded":
+            group_name = request_builder.group_name
+            rest_import_path = "..." if async_mode else ".."
+            if group_name:
+                file_import.add_submodule_import(
+                    f"{rest_import_path}{self.code_model.rest_layer_name}",
+                    group_name,
+                    import_type=ImportType.LOCAL,
+                    alias=f"rest_{group_name}",
+                )
+            else:
+                file_import.add_submodule_import(
+                    rest_import_path,
+                    self.code_model.rest_layer_name,
+                    import_type=ImportType.LOCAL,
+                    alias="rest",
+                )
+        if self.code_model.options["builders_visibility"] == "embedded" and async_mode:
+            suffix = (
+                "_py3" if self.code_model.options["add_python3_operation_files"] else ""
+            )
+            file_import.add_submodule_import(
+                f"...{self.code_model.operations_folder_name}.{self.filename}{suffix}",
+                request_builder.name,
+                import_type=ImportType.LOCAL,
+            )
+        return file_import
+
     def _imports_base(self, async_mode: bool, is_python3_file: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)
 
@@ -244,23 +275,7 @@ class OperationBase(BaseBuilder[ParameterListType]):
                 )
             if self.deprecated:
                 file_import.add_import("warnings", ImportType.STDLIB)
-            if self.code_model.options["builders_visibility"] != "embedded":
-                group_name = self.request_builder.group_name
-                rest_import_path = "..." if async_mode else ".."
-                if group_name:
-                    file_import.add_submodule_import(
-                        f"{rest_import_path}{self.code_model.rest_layer_name}",
-                        group_name,
-                        import_type=ImportType.LOCAL,
-                        alias=f"rest_{group_name}",
-                    )
-                else:
-                    file_import.add_submodule_import(
-                        rest_import_path,
-                        self.code_model.rest_layer_name,
-                        import_type=ImportType.LOCAL,
-                        alias="rest",
-                    )
+
             if self.code_model.need_request_converter:
                 relative_path = "..." if async_mode else ".."
                 file_import.add_submodule_import(
@@ -305,15 +320,7 @@ class OperationBase(BaseBuilder[ParameterListType]):
                 f"distributed_trace{'_async' if async_mode else ''}",
                 ImportType.AZURECORE,
             )
-        if self.code_model.options["builders_visibility"] == "embedded" and async_mode:
-            suffix = (
-                "_py3" if self.code_model.options["add_python3_operation_files"] else ""
-            )
-            file_import.add_submodule_import(
-                f"...{self.code_model.operations_folder_name}.{self.filename}{suffix}",
-                self.request_builder.name,
-                import_type=ImportType.LOCAL,
-            )
+        file_import.merge(self.get_request_builder_import(self.request_builder, async_mode))
         return file_import
 
     def get_response_from_status(
@@ -347,6 +354,10 @@ class OperationBase(BaseBuilder[ParameterListType]):
         ):
             return f"_operations"
         return f"_{basename}_operations"
+
+    @property
+    def has_stream_response(self) -> bool:
+        return any(r.is_stream_response for r in self.responses)
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> Union["Operation", "OverloadedOperation"]:

@@ -4,13 +4,13 @@
 {# actual template starts here #}
 {% if operation.overloads %}
     {% for overload in operation.overloads %}
-{{ operation_serializer.method_signature_and_response_type_annotation(overload, async_mode) }}
+{{ operation_serializer.method_signature_and_response_type_annotation(overload) }}
         {% if operation.want_description_docstring %}
     {{ op_tools.description(overload, operation_serializer) | indent }}{% endif %}
     ...
     {% endfor %}
 {% endif %}
-{{ operation_serializer.method_signature_and_response_type_annotation(operation, async_mode) }}
+{{ operation_serializer.method_signature_and_response_type_annotation(operation) }}
 {% if operation.want_description_docstring %}
     {{ op_tools.description(operation, operation_serializer) | indent }}{% endif %}
     {% if not operation.abstract %}
@@ -22,11 +22,7 @@
     {{ op_tools.serialize(operation_serializer.pop_kwargs_from_signature(operation)) | indent }}
         {% endif %}
     {{ op_tools.serialize(operation_serializer.call_request_builder(operation)) | indent }}
-    pipeline_response = {{ keywords.await }}self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-        request,
-        {{ stream_request_parameter }},
-        **kwargs
-    )
+    {{ op_tools.serialize(operation_serialize.make_pipeline_call(operation) | indent) }}
     {{ op_tools.serialize(operation_serializer.handle_response(operation)) | indent }}
     {% endif %}
 {% if not code_model.options["version_tolerant"] %}

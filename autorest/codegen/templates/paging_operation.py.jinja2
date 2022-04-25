@@ -1,6 +1,6 @@
 {% import 'operation_tools.jinja2' as op_tools with context %}
 {# actual template starts here #}
-{{ operation_serializer.method_signature_and_response_type_annotation(operation, async_mode) }}
+{{ operation_serializer.method_signature_and_response_type_annotation(operation) }}
 {% if operation.want_description_docstring %}
     {{ op_tools.description(operation, operation_serializer) | indent }}{% endif %}
     {% if not operation.abstract %}

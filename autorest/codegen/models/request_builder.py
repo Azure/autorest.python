@@ -38,8 +38,18 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         self.url = yaml_data["url"]
         self.method = yaml_data["method"]
 
-    def response_type_annotation(self) -> str:
+    def response_type_annotation(self, **kwargs) -> str:
         return "HttpRequest"
+
+    def response_docstring_text(self, **kwargs) -> str:
+        return (
+            "Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's "
+            + "`send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to "
+            + "incorporate this response into your code flow."
+        )
+
+    def response_docstring_type(self, **kwargs) -> str:
+        return "~azure.core.rest.HttpRequest"
 
     def imports(self) -> FileImport:
         file_import = FileImport()

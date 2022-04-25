@@ -63,6 +63,10 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         return "send_request" if self.code_model.options["show_send_request"] else "_send_request"
 
     @property
+    def has_parameterized_host(self) -> bool:
+        return not any(p for p in self.parameters if p.is_host)
+
+    @property
     def filename(self) -> str:
         if (
             self.code_model.options["version_tolerant"]
@@ -81,10 +85,6 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-
-        any_optional_gp = any(gp.optional for gp in self.parameters.method)
-        legacy = not (self.code_model.options["low_level_client"] and self.code_model.options["version_tolerant"])
-        has_host = any(p for p in self.parameters if p.is_host)
         if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import(
                 "azure.mgmt.core", self.pipeline_class(async_mode), ImportType.AZURECORE

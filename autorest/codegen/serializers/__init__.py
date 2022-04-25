@@ -18,11 +18,7 @@ from .model_python3_serializer import ModelPython3Serializer
 from .operations_init_serializer import OperationsInitSerializer
 from .operation_groups_serializer import OperationGroupsSerializer
 from .metadata_serializer import MetadataSerializer
-from .request_builders_serializer import (
-    RequestBuildersPython3Serializer,
-    RequestBuildersGenericSerializer,
-    RequestBuildersSerializer,
-)
+from .request_builders_serializer import RequestBuildersSerializer
 from .patch_serializer import PatchSerializer
 
 __all__ = [
@@ -283,16 +279,16 @@ class JinjaSerializer:
         # write generic request builders file
         self._autorestapi.write_file(
             output_path / Path("_request_builders.py"),
-            RequestBuildersGenericSerializer(
-                code_model=self.code_model, env=env, request_builders=request_builders
+            RequestBuildersSerializer(
+                code_model=self.code_model, env=env, request_builders=request_builders, is_python3_file=False
             ).serialize_request_builders(),
         )
 
         # write python3 request builders file
         self._autorestapi.write_file(
             output_path / Path("_request_builders_py3.py"),
-            RequestBuildersPython3Serializer(
-                code_model=self.code_model, env=env, request_builders=request_builders
+            RequestBuildersSerializer(
+                code_model=self.code_model, env=env, request_builders=request_builders, is_python3_file=True
             ).serialize_request_builders(),
         )
 
@@ -300,7 +296,7 @@ class JinjaSerializer:
         self._autorestapi.write_file(
             output_path / Path("__init__.py"),
             RequestBuildersSerializer(
-                code_model=self.code_model, env=env, request_builders=request_builders
+                code_model=self.code_model, env=env, request_builders=request_builders, is_python3_file=True
             ).serialize_init(),
         )
 

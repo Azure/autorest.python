@@ -208,6 +208,8 @@ class CodeGenerator(Plugin):
                     if request_builder.overloads:
                         code_model.request_builders.extend(request_builder.overloads)
                     code_model.request_builders.append(request_builder)
+                    if operation_yaml.get("nextOperation"):
+                        code_model.request_builders.append(RequestBuilderBase.from_yaml(operation_yaml["nextOperation"], code_model=code_model))
 
         _build_convenience_layer(yaml_data=yaml_data, code_model=code_model)
 

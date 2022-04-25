@@ -3,10 +3,11 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from abc import abstractmethod
 from collections.abc import MutableSequence
 from enum import Enum
 import logging
-from typing import List, Optional, TYPE_CHECKING, Union, Generic, TypeVar
+from typing import List, Optional, TYPE_CHECKING, Union, Generic, TypeVar, cast
 from .request_builder_parameter import RequestBuilderMultipleTypeBodyParameter, RequestBuilderSingleTypeBodyParameter, RequestBuilderParameter
 from .parameter import ParameterLocation, SingleTypeBodyParameter, MultipleTypeBodyParameter, Parameter, ParameterMethodLocation, ClientParameter, ConfigParameter
 
@@ -80,15 +81,15 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
 
     @property
     def path(self) -> List[ParameterType]:
-        return [p for p in self.parameters if p.location == "path"]
+        return [p for p in self.parameters if p.location in (ParameterLocation.PATH, ParameterLocation.ENDPOINT_PATH)]
 
     @property
     def query(self) -> List[ParameterType]:
-        return [p for p in self.parameters if p.location == "query"]
+        return [p for p in self.parameters if p.location == ParameterLocation.QUERY]
 
     @property
     def headers(self) -> List[ParameterType]:
-        return [p for p in self.parameters if p.location == "header"]
+        return [p for p in self.parameters if p.location == ParameterLocation.HEADER]
 
     @property
     def grouped(self) -> List[ParameterType]:
@@ -105,27 +106,28 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
     @property
     def positional(self) -> List[Union[ParameterType, BodyParameterType]]:
         return _sort([
-            p for p in self._unsorted_method_params if p.method_location == ParameterMethodLocation.POSITIONAL
+            p for p in self.unsorted_method_params if p.method_location == ParameterMethodLocation.POSITIONAL
         ])
 
     @property
     def keyword_only(self) -> List[Union[ParameterType, BodyParameterType]]:
         return _sort([
-            p for p in self._unsorted_method_params if p.method_location == ParameterMethodLocation.KEYWORD_ONLY
+            p for p in self.unsorted_method_params if p.method_location == ParameterMethodLocation.KEYWORD_ONLY
         ])
 
     @property
     def kwarg(self) -> List[Union[ParameterType, BodyParameterType]]:
         return _sort([
-            p for p in self._unsorted_method_params if p.method_location == ParameterMethodLocation.KWARG
+            p for p in self.unsorted_method_params if p.method_location == ParameterMethodLocation.KWARG
         ])
 
     @property
+    @abstractmethod
     def implementation(self) -> str:
-        return "Method"
+        ...
 
     @property
-    def _unsorted_method_params(self) -> List[Union[ParameterType, BodyParameterType]]:
+    def unsorted_method_params(self) -> List[Union[ParameterType, BodyParameterType]]:
         method_params: List[Union[ParameterType, BodyParameterType]] = [p for p in self.parameters if p.in_method_signature and p.implementation == self.implementation]
         if self.has_body_parameter:
             method_params.append(self.body_parameter)
@@ -175,17 +177,38 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
         return retval
 
 class ParameterList(_ParameterListBase[Parameter, SingleTypeBodyParameter]):
-    ...
+
+    @property
+    def implementation(self) -> str:
+        return "Method"
 
 class OverloadedOperationParameterList(_ParameterListBase[Parameter, MultipleTypeBodyParameter]):
     """This parameter list is used if we have overloads for an operation due to multiple types of the body parameter"""
 
+    @property
+    def implementation(self) -> str:
+        return "Method"
+
+class _RequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, BodyParameterType]):
+
+    @property
+    def implementation(self) -> str:
+        return "Method"
+
+    @property
+    def unsorted_method_params(self) -> List[Union[RequestBuilderParameter, BodyParameterType]]:
+        return [k for k in super().unsorted_method_params if k.location != ParameterLocation.ENDPOINT_PATH]
+
+    @property
+    def path(self) -> List[RequestBuilderParameter]:
+        return [p for p in super().path if p.location != ParameterLocation.ENDPOINT_PATH]
+
+
+class RequestBuilderParameterList(_RequestBuilderParameterList[RequestBuilderSingleTypeBodyParameter]):
     ...
 
-class RequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, RequestBuilderSingleTypeBodyParameter]):
-    ...
 
-class OverloadedRequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, RequestBuilderMultipleTypeBodyParameter]):
+class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList[RequestBuilderMultipleTypeBodyParameter]):
     def method_signature(self, is_python3_file: bool) -> List[str]:
         if self.positional:
             return ["*args", "**kwargs"]
@@ -201,10 +224,10 @@ class ClientGlobalParameterList(_ParameterListBase[ClientParameter, SingleTypeBo
     def path(self) -> List[ClientParameter]:
         return [p for p in super().path if not p.is_host]
 
-    def kwargs_to_pop(self, is_python3_file: bool) -> List[ClientParameter]:
+    def kwargs_to_pop(self, is_python3_file: bool) -> List[Union[ClientParameter, SingleTypeBodyParameter]]:
         return [
             k for k in super().kwargs_to_pop(is_python3_file=is_python3_file)
-            if k.location == ParameterLocation.PATH
+            if k.location == ParameterLocation.ENDPOINT_PATH
         ]
 
 

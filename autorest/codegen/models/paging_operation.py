@@ -3,13 +3,12 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import cast, Dict, List, Any, Optional, Union, TYPE_CHECKING
+from typing import Dict, List, Any, Optional, Union, TYPE_CHECKING
 
-from .operation import Operation, OverloadedOperation
+from .operation import Operation
 from .response import Response
 from .request_builder import OverloadedRequestBuilder, RequestBuilder, RequestBuilderBase
 from .imports import ImportType, FileImport, TypingSection
-from .model_type import ModelType
 from .parameter_list import ParameterList
 
 if TYPE_CHECKING:
@@ -60,6 +59,9 @@ class PagingOperation(Operation):
     def get_pager(self, async_mode: bool) -> str:
         return self.get_pager_path(async_mode).split(".")[-1]
 
+    def cls_type_annotation(self, *, async_mode: bool) -> str:
+        return f"ClsType[{super().response_type_annotation(async_mode=async_mode)}]"
+
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = super()._imports_shared(async_mode)
         if async_mode:
@@ -78,16 +80,16 @@ class PagingOperation(Operation):
             file_import.merge(self.next_request_builder.imports())
         return file_import
 
-    def response_type_annotation(self, async_mode: bool) -> str:
+    def response_type_annotation(self, *, async_mode: bool, **kwargs) -> str:
         iterable = "AsyncIterable" if async_mode else "Iterable"
-        return f"{iterable}[{super().response_type_annotation(async_mode)}]"
+        return f"{iterable}[{super().response_type_annotation(async_mode=async_mode)}]"
 
-    def response_docstring_type(self, async_mode: bool) -> str:
-        return f"~{self.get_pager_path(async_mode)}[{super().response_docstring_type(async_mode)}]"
+    def response_docstring_type(self, *, async_mode: bool, **kwargs) -> str:
+        return f"~{self.get_pager_path(async_mode)}[{super().response_docstring_type(async_mode=async_mode)}]"
 
-    def response_docstring_text(self, async_mode: bool) -> str:
-        super_text = super().response_docstring_text(async_mode)
-        if self.code_model.options["version_tolerant"]:
+    def response_docstring_text(self, *, async_mode: bool, **kwargs) -> str:
+        super_text = super().response_docstring_text(async_mode=async_mode)
+        if not self.code_model.options["version_tolerant"]:
             return "An iterator like instace of either " + super_text
         return "An iterator like instance of " + super_text
 
@@ -127,5 +129,7 @@ class PagingOperation(Operation):
                 "distributed_trace",
                 ImportType.AZURECORE,
             )
+        if self.next_request_builder:
+            file_import.merge(self.get_request_builder_import(self.next_request_builder, async_mode))
 
         return file_import
