@@ -40,7 +40,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 # fmt: off
 
-def build_put201_creating_succeeded200_request_initial(
+def build_put201_creating_succeeded200_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -65,7 +65,7 @@ def build_put201_creating_succeeded200_request_initial(
     )
 
 
-def build_put_async_relative_retry_succeeded_request_initial(
+def build_put_async_relative_retry_succeeded_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -90,7 +90,7 @@ def build_put_async_relative_retry_succeeded_request_initial(
     )
 
 
-def build_delete_provisioning202_accepted200_succeeded_request_initial(
+def build_delete_provisioning202_accepted200_succeeded_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -112,7 +112,7 @@ def build_delete_provisioning202_accepted200_succeeded_request_initial(
     )
 
 
-def build_delete202_retry200_request_initial(
+def build_delete202_retry200_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -134,7 +134,7 @@ def build_delete202_retry200_request_initial(
     )
 
 
-def build_delete_async_relative_retry_succeeded_request_initial(
+def build_delete_async_relative_retry_succeeded_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -156,7 +156,7 @@ def build_delete_async_relative_retry_succeeded_request_initial(
     )
 
 
-def build_post202_retry200_request_initial(
+def build_post202_retry200_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -181,7 +181,7 @@ def build_post202_retry200_request_initial(
     )
 
 
-def build_post_async_relative_retry_succeeded_request_initial(
+def build_post_async_relative_retry_succeeded_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -247,7 +247,7 @@ class LRORetrysOperations(object):
         else:
             _json = None
 
-        request = build_put201_creating_succeeded200_request_initial(
+        request = build_put201_creating_succeeded200_request(
             content_type=content_type,
             json=_json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
@@ -371,7 +371,7 @@ class LRORetrysOperations(object):
         else:
             _json = None
 
-        request = build_put_async_relative_retry_succeeded_request_initial(
+        request = build_put_async_relative_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             template_url=self._put_async_relative_retry_succeeded_initial.metadata["url"],
@@ -496,7 +496,7 @@ class LRORetrysOperations(object):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.Product]
 
-        request = build_delete_provisioning202_accepted200_succeeded_request_initial(
+        request = build_delete_provisioning202_accepted200_succeeded_request(
             template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
@@ -600,7 +600,7 @@ class LRORetrysOperations(object):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_delete202_retry200_request_initial(
+        request = build_delete202_retry200_request(
             template_url=self._delete202_retry200_initial.metadata["url"],
             headers=_headers,
             params=_params,
@@ -693,7 +693,7 @@ class LRORetrysOperations(object):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_delete_async_relative_retry_succeeded_request_initial(
+        request = build_delete_async_relative_retry_succeeded_request(
             template_url=self._delete_async_relative_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
@@ -799,7 +799,7 @@ class LRORetrysOperations(object):
         else:
             _json = None
 
-        request = build_post202_retry200_request_initial(
+        request = build_post202_retry200_request(
             content_type=content_type,
             json=_json,
             template_url=self._post202_retry200_initial.metadata["url"],
@@ -916,7 +916,7 @@ class LRORetrysOperations(object):
         else:
             _json = None
 
-        request = build_post_async_relative_retry_succeeded_request_initial(
+        request = build_post_async_relative_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             template_url=self._post_async_relative_retry_succeeded_initial.metadata["url"],
