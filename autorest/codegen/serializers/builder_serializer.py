@@ -865,6 +865,15 @@ class _OperationBaseSerializer(
             )
         return f"_{body_kwarg_to_pass} = {body_param.serialized_name}"
 
+    def make_pipeline_call(self, builder) -> List[str]:
+        return [
+            f"pipeline_response = {self._call_method}self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access",
+            "    request,",
+            f"    stream={builder.is_stream_response},",
+            "    **kwargs",
+            ")",
+        ]
+
     def _serialize_body(
         self, builder, body_param: Parameter, body_kwarg: str
     ) -> List[str]:
@@ -1407,13 +1416,7 @@ class _PagingOperationBaseSerializer(
         retval = [f"{self._def} get_next(next_link=None):"]
         retval.append("    request = prepare_request(next_link)")
         retval.append("")
-        retval.append(
-            f"    pipeline_response = {self._call_method}self._client._pipeline.run(  # pylint: disable=protected-access"
-        )
-        retval.append("        request,")
-        retval.append(f"        stream={builder.is_stream_response},")
-        retval.append("        **kwargs")
-        retval.append("    )")
+        retval.extend([f"    {l}" for l in self.make_pipeline_call(builder)])
         retval.append("    response = pipeline_response.http_response")
         retval.append("")
         retval.extend([f"    {line}" for line in self.handle_error_response(builder)])
