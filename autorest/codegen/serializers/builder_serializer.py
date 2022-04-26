@@ -406,7 +406,7 @@ class OperationSerializer(
         return [
             f"pipeline_response = {self._call_method}self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access",
             "    request,",
-            f"    stream={True if builder.has_stream_response else False},",
+            f"    stream={builder.has_stream_response},",
             "    **kwargs",
             ")"
         ]
