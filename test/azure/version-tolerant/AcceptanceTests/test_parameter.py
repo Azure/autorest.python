@@ -24,7 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
-from azureparametergroupingversiontolerant._serialization import ValidationError
+from azurespecialpropertiesversiontolerant._serialization import ValidationError
 
 from azureparametergroupingversiontolerant import AutoRestParameterGroupingTestService
 from azurespecialpropertiesversiontolerant import AutoRestAzureSpecialParametersTestClient
