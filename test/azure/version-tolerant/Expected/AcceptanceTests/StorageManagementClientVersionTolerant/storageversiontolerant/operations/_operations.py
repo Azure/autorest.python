@@ -71,7 +71,7 @@ def build_storage_accounts_check_name_availability_request(
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_storage_accounts_create_request_initial(
+def build_storage_accounts_create_request(
     resource_group_name: str,
     account_name: str,
     subscription_id: str,
@@ -454,7 +454,7 @@ class StorageAccountsOperations:
 
         _json = parameters
 
-        request = build_storage_accounts_create_request_initial(
+        request = build_storage_accounts_create_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,

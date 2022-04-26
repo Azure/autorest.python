@@ -66,7 +66,7 @@ def build_test_one_request(
     )
 
 
-def build_test_lro_request_initial(
+def build_test_lro_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -91,7 +91,7 @@ def build_test_lro_request_initial(
     )
 
 
-def build_test_lro_and_paging_request_initial(
+def build_test_lro_and_paging_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -237,7 +237,7 @@ class MultiapiServiceClientOperationsMixin(object):
         else:
             _json = None
 
-        request = build_test_lro_request_initial(
+        request = build_test_lro_request(
             content_type=content_type,
             json=_json,
             template_url=self._test_lro_initial.metadata['url'],
@@ -366,7 +366,7 @@ class MultiapiServiceClientOperationsMixin(object):
             _maxresults = test_lro_and_paging_options.maxresults
             _timeout = test_lro_and_paging_options.timeout
 
-        request = build_test_lro_and_paging_request_initial(
+        request = build_test_lro_and_paging_request(
             client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,
@@ -445,7 +445,7 @@ class MultiapiServiceClientOperationsMixin(object):
                     _maxresults = test_lro_and_paging_options.maxresults
                     _timeout = test_lro_and_paging_options.timeout
                 
-                request = build_test_lro_and_paging_request_initial(
+                request = build_test_lro_and_paging_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
@@ -463,7 +463,7 @@ class MultiapiServiceClientOperationsMixin(object):
                     _maxresults = test_lro_and_paging_options.maxresults
                     _timeout = test_lro_and_paging_options.timeout
                 
-                request = build_test_lro_and_paging_request_initial(
+                request = build_test_lro_and_paging_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,

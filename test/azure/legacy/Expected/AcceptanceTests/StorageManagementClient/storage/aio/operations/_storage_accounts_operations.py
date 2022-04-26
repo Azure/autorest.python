@@ -30,7 +30,7 @@ from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._storage_accounts_operations import (
     build_check_name_availability_request,
-    build_create_request_initial,
+    build_create_request,
     build_delete_request,
     build_get_properties_request,
     build_list_by_resource_group_request,
@@ -147,7 +147,7 @@ class StorageAccountsOperations:
 
         _json = self._serialize.body(parameters, "StorageAccountCreateParameters")
 
-        request = build_create_request_initial(
+        request = build_create_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,

@@ -35,7 +35,7 @@ from ...operations._operations import (
     build_paging_get_multiple_pages_failure_uri_request,
     build_paging_get_multiple_pages_fragment_next_link_request,
     build_paging_get_multiple_pages_fragment_with_grouping_next_link_request,
-    build_paging_get_multiple_pages_lro_request_initial,
+    build_paging_get_multiple_pages_lro_request,
     build_paging_get_multiple_pages_request,
     build_paging_get_multiple_pages_retry_first_request,
     build_paging_get_multiple_pages_retry_second_request,
@@ -1388,7 +1388,7 @@ class PagingOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_paging_get_multiple_pages_lro_request_initial(
+        request = build_paging_get_multiple_pages_lro_request(
             client_request_id=client_request_id,
             maxresults=maxresults,
             timeout=timeout,
@@ -1460,7 +1460,7 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_lro_request_initial(
+                request = build_paging_get_multiple_pages_lro_request(
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
@@ -1471,7 +1471,7 @@ class PagingOperations:
 
             else:
 
-                request = build_paging_get_multiple_pages_lro_request_initial(
+                request = build_paging_get_multiple_pages_lro_request(
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
