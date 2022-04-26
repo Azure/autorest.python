@@ -3,14 +3,15 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import Optional
 from jinja2 import Environment
 from .import_serializer import FileImportSerializer, TypingSection
 from ..models import (
     FileImport,
     ImportType,
     CodeModel,
-    TokenCredentialSchema,
-    ParameterList,
+    Parameter,
+    TokenCredentialType,
 )
 from .client_serializer import ClientSerializer, ConfigSerializer
 
@@ -31,23 +32,21 @@ class GeneralSerializer:
         template = self.env.get_template("init.py.jinja2")
         return template.render(code_model=self.code_model, async_mode=self.async_mode)
 
-    def _correct_credential_parameter(self):
-        credential_param = [
-            gp
-            for gp in self.code_model.client.parameters
-            if isinstance(gp.schema, TokenCredentialSchema)
-        ][0]
-        credential_param.schema = TokenCredentialSchema(async_mode=self.async_mode)
+    def _correct_credential_parameter(self, credential: Optional[Parameter]):
+        if credential:
+            credential.type = TokenCredentialType(
+                credential.type.yaml_data,
+                credential.type.code_model,
+                async_mode=self.async_mode,
+                policy=credential.type.policy,
+            )
 
     def serialize_service_client_file(self) -> str:
 
         template = self.env.get_template("client.py.jinja2")
 
-        if self.code_model.options["credential"] and isinstance(
-            self.code_model.credential_model.credential_schema_policy.credential,
-            TokenCredentialSchema,
-        ):
-            self._correct_credential_parameter()
+        if self.code_model.credential and isinstance(self.code_model.credential.type, TokenCredentialType):
+            self._correct_credential_parameter(self.code_model.client.parameters.credential)
 
         python3_only = self.code_model.options["python3_only"]
         return template.render(
@@ -114,11 +113,8 @@ class GeneralSerializer:
             package_name if package_name else self.code_model.client.name.lower()
         )
 
-        if self.code_model.options["credential"] and isinstance(
-            self.code_model.credential_model.credential_schema_policy.credential,
-            TokenCredentialSchema,
-        ):
-            self._correct_credential_parameter()
+        if self.code_model.credential and isinstance(self.code_model.credential.type, TokenCredentialType):
+            self._correct_credential_parameter(self.code_model.config.parameters.credential)
 
         template = self.env.get_template("config.py.jinja2")
         python3_only = self.code_model.options["python3_only"]

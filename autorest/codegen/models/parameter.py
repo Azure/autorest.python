@@ -316,11 +316,14 @@ class Parameter(_SingleTypeParameter):
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
-        return cls(
-            yaml_data=yaml_data,
-            code_model=code_model,
-            type=code_model.lookup_type(id(yaml_data["type"]))
-        )
+        try:
+            return cls(
+                yaml_data=yaml_data,
+                code_model=code_model,
+                type=code_model.lookup_type(id(yaml_data["type"]))
+            )
+        except KeyError:
+            a = 'b'
 
 class ClientParameter(Parameter):
 

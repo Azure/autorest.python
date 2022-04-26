@@ -7,17 +7,34 @@
 """
 import re
 import copy
+import logging
 from typing import Callable, Dict, Any, List, Optional, Set, Tuple
 
 from .. import YamlUpdatePlugin
 JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
 ORIGINAL_ID_TO_UPDATED_TYPE: Dict[int, Dict[str, Any]] = {}
 
+AAD_TYPE = "AADToken"
+KEY_TYPE = "AzureKey"
+
+_LOGGER = logging.getLogger(__name__)
+
 # used if we want to get a string / binary type etc
 KNOWN_TYPES = {
     "string": {"type": "string"},
     "binary": {"type": "binary"},
 }
+
+def get_azure_key_credential(key: str) -> Dict[str, Any]:
+    retval = {
+        "type": KEY_TYPE,
+        "policy": {
+            "type": "AzureKeyCredentialPolicy",
+            "key": key
+        }
+    }
+    update_type(retval)
+    return retval
 
 def get_type(yaml_data: Dict[str, Any]):
     if KNOWN_TYPES.get(yaml_data["type"]):
@@ -146,6 +163,8 @@ def update_type(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         updated_type = update_constant(yaml_data)
     elif type_group in ("choice", "sealed-choice"):
         updated_type = update_enum(yaml_data)
+    elif type_group in (AAD_TYPE, KEY_TYPE):
+        updated_type = yaml_data
     elif type_group == "object":
         # avoiding infinite loop
         initial_model = create_model(yaml_data)
@@ -242,7 +261,7 @@ def update_parameters(yaml_data: Dict[str, Any], *, in_overload: bool = False) -
     else:
         sub_requests = yaml_data.get("requests", [])
     for request in sub_requests:
-        for param in request["parameters"]:
+        for param in request.get("parameters", []):
             if param["protocol"]["http"]["in"] != "body":
                 if param["language"]["default"]["serializedName"] not in seen_rest_api_names:
                     if param["language"]["default"]["serializedName"] == "Content-Type":
@@ -420,6 +439,10 @@ def update_client_url(yaml_data: Dict[str, Any]) -> str:
 class M4Reformatter(YamlUpdatePlugin):
     """Add Python naming information."""
 
+    @property
+    def azure_arm(self) -> bool:
+        return bool(self._autorestapi.get_boolean_value("azure-arm"))
+
     def update_global_parameters(self, yaml_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         global_params: List[Dict[str, Any]] = []
         for global_parameter in yaml_data:
@@ -434,13 +457,117 @@ class M4Reformatter(YamlUpdatePlugin):
             global_params.append(update_parameter(global_parameter, client_name=client_name))
         return global_params
 
+    def get_token_credential(self, credential_scopes: List[str]) -> Dict[str, Any]:
+        retval = {
+            "type": AAD_TYPE,
+            "policy": {
+                "type": "ARMChallengeAuthenticationPolicy" if self.azure_arm else "BearerTokenCredentialPolicy",
+                "credentialScopes": credential_scopes
+            }
+        }
+        update_type(retval)
+        return retval
+
+    def update_credential_from_security(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+        retval: Dict[str, Any] = {}
+        for scheme in yaml_data.get("schemes", []):
+            if scheme["type"] == AAD_TYPE:
+                # TokenCredential
+                retval = self.get_token_credential(scheme["scopes"])
+            elif scheme["type"] == KEY_TYPE:
+                retval = get_azure_key_credential(scheme["headerName"])
+        return retval
+
+    def get_credential_scopes_from_flags(self, auth_policy: str) -> List[str]:
+        if self.azure_arm:
+            return ["https://management.azure.com/.default"]
+        credential_scopes = (self._autorestapi.get_value("credential-scopes") or []).split(",")
+        if (
+            self._autorestapi.get_boolean_value("credential-scopes", False)
+            and not credential_scopes
+        ):
+            raise ValueError(
+                "--credential-scopes takes a list of scopes in comma separated format. "
+                "For example: --credential-scopes=https://cognitiveservices.azure.com/.default"
+            )
+        if not credential_scopes:
+            _LOGGER.warning(
+                "You have default credential policy %s "
+                "but not the --credential-scopes flag set while generating non-management plane code. "
+                "This is not recommend because it forces the customer to pass credential scopes "
+                "through kwargs if they want to authenticate.",
+                auth_policy,
+            )
+            credential_scopes = []
+        return credential_scopes
+
+    def update_credential_from_flags(self) -> Dict[str, Any]:
+        default_auth_policy = "ARMChallengeAuthenticationPolicy" if self.azure_arm else "BearerTokenCredentialPolicy"
+        auth_policy = self._autorestapi.get_value("credential-default-policy-type") or default_auth_policy
+        credential_scopes = self.get_credential_scopes_from_flags(auth_policy)
+        key = self._autorestapi.get_value("credential-key-header-name")
+        if auth_policy.lower() in ("armchallengeauthenticationpolicy", "bearertokencredentialpolicy"):
+            if key:
+                raise ValueError(
+                    "You have passed in a credential key header name with default credential policy type "
+                    f"{auth_policy}. This is not allowed, since credential key header "
+                    "name is tied with AzureKeyCredentialPolicy. Instead, with this policy it is recommend you "
+                    "pass in --credential-scopes."
+                )
+            return self.get_token_credential(credential_scopes)
+        # Otherwise you have AzureKeyCredentialPolicy
+        if credential_scopes:
+            raise ValueError(
+                "You have passed in credential scopes with default credential policy type "
+                "AzureKeyCredentialPolicy. This is not allowed, since credential scopes is tied with "
+                f"{default_auth_policy}. Instead, with this policy "
+                "you must pass in --credential-key-header-name."
+            )
+        if not key:
+            key = "api-key"
+            _LOGGER.info(
+                "Defaulting the AzureKeyCredentialPolicy header's name to 'api-key'"
+            )
+        return get_azure_key_credential(key)
+
+    def update_credential(self, yaml_data: Dict[str, Any], parameters: List[Dict[str, Any]]) -> None:
+        # then override with credential flags
+        credential = self._autorestapi.get_boolean_value(
+            "add-credentials", False
+        ) or self._autorestapi.get_boolean_value("add-credential", False) or self.azure_arm
+        if credential:
+            credential_type = self.update_credential_from_flags()
+        else:
+            credential_type = self.update_credential_from_security(yaml_data)
+        if not credential_type:
+            return
+        credential = {
+            "type": credential_type,
+            "optional": False,
+            "description": "Credential needed for the client to connect to Azure.",
+            "clientName": "credential",
+            "location": "other",
+            "restApiName": "credential",
+            "implementation": "Client",
+            "skipUrlEncoding": True,
+            "inOverload": False,
+        }
+        if (
+            self._autorestapi.get_boolean_value("version-tolerant")
+            or self._autorestapi.get_boolean_value("low-level-client")
+        ):
+            parameters.append(credential)
+        else:
+            parameters.insert(0, credential)
+
 
     def update_client(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+        parameters = self.update_global_parameters(yaml_data["globalParameters"])
+        self.update_credential(yaml_data.get("security", {}), parameters)
         return {
             "name": yaml_data["language"]["default"]["name"],
             "description": yaml_data["info"]["description"],
-            "parameters": self.update_global_parameters(yaml_data["globalParameters"]),
-            "security": yaml_data["security"],
+            "parameters": parameters,
             "url": update_client_url(yaml_data),
             "namespace": self._autorestapi.get_value("namespace") or yaml_data["language"]["default"]["name"]
         }

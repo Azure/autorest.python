@@ -6,6 +6,8 @@
 import logging
 from typing import cast, List, Dict, Optional, Any, Set, Union
 
+from autorest.codegen.models.parameter import Parameter
+
 from .base_type import BaseType
 from .enum_type import EnumType
 from .model_type import ModelType
@@ -16,7 +18,7 @@ from .paging_operation import PagingOperation
 from .client import Client, Config
 from .property import Property
 from .request_builder import OverloadedRequestBuilder, RequestBuilder
-from .credential_model import CredentialModel
+from .credential_types import TokenCredentialType, AzureKeyCredentialType
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -45,8 +47,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     :type operation_groups: list[~autorest.models.OperationGroup]
     :param package_dependency: All the dependencies needed in setup.py
     :type package_dependency: Dict[str, str]
-    :param credential_model: The class contains all the credential info
-    :type credential_model: CredentialMode
     """
 
     def __init__(
@@ -63,7 +63,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         self._config: Optional[Config] = None
         self.request_builders: List[Union[RequestBuilder, OverloadedRequestBuilder]] = []
         self.package_dependency: Dict[str, str] = {}
-        self._credential_model: Optional[CredentialModel] = None
         self.namespace: str = yaml_data["client"]["namespace"].lower()
         self.module_name: str = self.yaml_data["client"]["name"].replace(" ", "_").lower()
 
@@ -83,6 +82,10 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             )
         except StopIteration:
             raise KeyError(f"Couldn't find schema with id {schema_id}")
+
+    @property
+    def credential(self) -> Optional[Parameter]:
+        return self.client.parameters.credential
 
     @property
     def client(self) -> Client:
@@ -184,18 +187,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
                     operation_group.operations.insert(i, operation.initial_operation)
                     i += 1
                 i += 1
-
-    @property
-    def credential_model(self) -> CredentialModel:
-        if not self._credential_model:
-            raise ValueError(
-                "You want to find the Credential Model, but have not given a value"
-            )
-        return self._credential_model
-
-    @credential_model.setter
-    def credential_model(self, val: CredentialModel) -> None:
-        self._credential_model = val
 
     @property
     def operations_folder_name(self) -> str:

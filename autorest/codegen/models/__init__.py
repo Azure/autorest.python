@@ -6,7 +6,6 @@
 from typing import Any, Dict
 from .base_model import BaseModel
 from .code_model import CodeModel
-from .credential_type import AzureKeyCredentialSchema, TokenCredentialSchema
 from .model_type import ModelType
 from .dictionary_type import DictionaryType
 from .list_type import ListType
@@ -40,9 +39,16 @@ from .request_builder import RequestBuilder, OverloadedRequestBuilder, RequestBu
 from .base_builder import BaseBuilder
 from .lro_paging_operation import LROPagingOperation
 from .request_builder_parameter import RequestBuilderParameter, RequestBuilderSingleTypeBodyParameter
+from .credential_types import (
+    TokenCredentialType,
+    AzureKeyCredentialType,
+    ARMChallengeAuthenticationPolicyType,
+    BearerTokenCredentialPolicyType,
+    AzureKeyCredentialPolicyType,
+)
 
 __all__ = [
-    "AzureKeyCredentialSchema",
+    "AzureKeyCredentialPolicyType",
     "AnyType",
     "BaseModel",
     "BaseType",
@@ -65,7 +71,7 @@ __all__ = [
     "Property",
     "RequestBuilder",
     "Response",
-    "TokenCredentialSchema",
+    "TokenCredentialType",
     "LROPagingOperation",
     "BaseBuilder",
     "RequestBuilderParameter",
@@ -99,6 +105,11 @@ TYPE_TO_OBJECT = {
     "date": DateType,
     "base64": Base64Type,
     "bool": BooleanType,
+    "AADToken": TokenCredentialType,
+    "AzureKey": AzureKeyCredentialType,
+    "ARMChallengeAuthenticationPolicy": ARMChallengeAuthenticationPolicyType,
+    "BearerTokenCredentialPolicy": BearerTokenCredentialPolicyType,
+    "AzureKeyCredentialPolicy": AzureKeyCredentialPolicyType,
 }
 
 def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:

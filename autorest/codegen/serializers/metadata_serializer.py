@@ -14,7 +14,6 @@ from ..models import (
     OperationGroup,
     LROOperation,
     PagingOperation,
-    TokenCredentialSchema,
     ParameterList,
     TypingSection,
     ImportType,

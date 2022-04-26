@@ -84,6 +84,8 @@ class OperationBase(BaseBuilder[ParameterListType]):
         return response_str
 
     def cls_type_annotation(self, *, async_mode: bool) -> str:
+        if self.code_model.options["head_as_boolean"]:
+            return "ClsType[None]"
         return f"ClsType[{self.response_type_annotation(async_mode=async_mode)}]"
 
     def _response_docstring_helper(self, attr_name: str) -> str:

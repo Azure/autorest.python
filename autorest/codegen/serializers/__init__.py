@@ -9,7 +9,7 @@ from jinja2 import PackageLoader, Environment, FileSystemLoader, StrictUndefined
 from autorest.codegen.models.operation_group import OperationGroup
 
 from ...jsonrpc import AutorestAPI
-from ..models import CodeModel, OperationGroup, RequestBuilder, TokenCredentialSchema
+from ..models import CodeModel, OperationGroup, RequestBuilder
 from .enum_serializer import EnumSerializer
 from .general_serializer import GeneralSerializer
 from .model_generic_serializer import ModelGenericSerializer
@@ -153,10 +153,11 @@ class JinjaSerializer:
         def _prepare_params() -> Dict[Any, Any]:
             package_parts = self.code_model.options["package_name"].split("-")[:-1]
             try:
-                token_cred = isinstance(
-                    self.code_model.credential_model.credential_schema_policy.credential,
-                    TokenCredentialSchema,
-                )
+                # token_cred = isinstance(
+                #     self.code_model.credential_model.credential_schema_policy.credential,
+                #     TokenCredentialSchema,
+                # )
+                token_cred = False
             except ValueError:
                 token_cred = False
             version = self.code_model.options["package_version"]

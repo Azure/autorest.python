@@ -219,10 +219,19 @@ class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList[Request
         return ["**kwargs"]
 
 
-class ClientGlobalParameterList(_ParameterListBase[ClientParameter, SingleTypeBodyParameter]):
+class _ClientGlobalParameterList(_ParameterListBase[ParameterType, SingleTypeBodyParameter]):
     @property
     def implementation(self) -> str:
         return "Client"
+
+    @property
+    def credential(self) -> Optional[ParameterType]:
+        try:
+            return next(p for p in self.parameters if p.client_name == "credential")
+        except StopIteration:
+            return None
+
+class ClientGlobalParameterList(_ClientGlobalParameterList[ClientParameter]):
 
     @property
     def path(self) -> List[ClientParameter]:
@@ -235,7 +244,7 @@ class ClientGlobalParameterList(_ParameterListBase[ClientParameter, SingleTypeBo
         ]
 
 
-class ConfigGlobalParameterList(_ParameterListBase[ConfigParameter, SingleTypeBodyParameter]):
+class ConfigGlobalParameterList(_ClientGlobalParameterList[ConfigParameter]):
     @property
     def implementation(self) -> str:
         return "Client"
