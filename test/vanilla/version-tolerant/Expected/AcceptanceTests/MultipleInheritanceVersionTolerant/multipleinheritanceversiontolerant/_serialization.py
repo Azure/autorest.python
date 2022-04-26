@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+# type: ignore
 # pylint: skip-file
 
 from base64 import b64decode, b64encode
