@@ -29,7 +29,7 @@ from ... import models as _models
 from ..._operations._operations import (
     build_get_model_request,
     build_get_pages_request,
-    build_lro_request_initial,
+    build_lro_request,
     build_post_model_request,
 )
 from .._vendor import MixinABC
@@ -213,7 +213,7 @@ class DPGClientOperationsMixin(MixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.LROProduct]
 
-        request = build_lro_request_initial(
+        request = build_lro_request(
             mode=mode,
             headers=_headers,
             params=_params,

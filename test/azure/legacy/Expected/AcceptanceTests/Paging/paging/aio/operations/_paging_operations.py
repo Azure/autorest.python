@@ -34,7 +34,7 @@ from ...operations._paging_operations import (
     build_get_multiple_pages_failure_uri_request,
     build_get_multiple_pages_fragment_next_link_request,
     build_get_multiple_pages_fragment_with_grouping_next_link_request,
-    build_get_multiple_pages_lro_request_initial,
+    build_get_multiple_pages_lro_request,
     build_get_multiple_pages_request,
     build_get_multiple_pages_retry_first_request,
     build_get_multiple_pages_retry_second_request,
@@ -1269,7 +1269,7 @@ class PagingOperations:
             _maxresults = paging_get_multiple_pages_lro_options.maxresults
             _timeout = paging_get_multiple_pages_lro_options.timeout
 
-        request = build_get_multiple_pages_lro_request_initial(
+        request = build_get_multiple_pages_lro_request(
             client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,
@@ -1343,7 +1343,7 @@ class PagingOperations:
                     _maxresults = paging_get_multiple_pages_lro_options.maxresults
                     _timeout = paging_get_multiple_pages_lro_options.timeout
 
-                request = build_get_multiple_pages_lro_request_initial(
+                request = build_get_multiple_pages_lro_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
@@ -1361,7 +1361,7 @@ class PagingOperations:
                     _maxresults = paging_get_multiple_pages_lro_options.maxresults
                     _timeout = paging_get_multiple_pages_lro_options.timeout
 
-                request = build_get_multiple_pages_lro_request_initial(
+                request = build_get_multiple_pages_lro_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
