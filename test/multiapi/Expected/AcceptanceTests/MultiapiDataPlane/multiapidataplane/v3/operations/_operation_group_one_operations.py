@@ -130,6 +130,7 @@ class OperationGroupOneOperations(object):
             stream=False,
             **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
