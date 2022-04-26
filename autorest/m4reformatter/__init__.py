@@ -278,7 +278,7 @@ def update_parameters(yaml_data: Dict[str, Any], *, in_overload: bool = False) -
 
 def update_response_header(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
-        "restApiName": yaml_data["language"]["default"]["name"],
+        "restApiName": yaml_data["header"],
         "type": update_type(yaml_data["schema"])
     }
 
@@ -368,15 +368,21 @@ def update_operation(group_name: str, yaml_data: Dict[str, Any], *, is_overload:
         "discriminator": "operation"
     }
 
-def update_lro_operation(group_name: str, yaml_data: Dict[str, Any], *, is_overload: bool = False) -> Dict[str, Any]:
-    base_operation = update_operation(group_name, yaml_data, is_overload=is_overload)
-    base_operation["discriminator"] = "lro"
+def add_lro_information(operation: Dict[str, Any], yaml_data: Dict[str, Any]) -> None:
+    operation["discriminator"] = "lro"
     extensions = yaml_data["extensions"]
-    base_operation["lroOptions"] = extensions.get("x-ms-long-running-operation-options")
-    base_operation["pollerSync"] = extensions.get("x-python-custom-poller-sync")
-    base_operation["pollerAsync"] = extensions.get("x-python-custom-poller-async")
-    base_operation["pollingMethodSync"] = extensions.get("x-python-custom-default-polling-method-sync")
-    base_operation["pollingMethodAsync"] = extensions.get("x-python-custom-default-polling-method-async")
+    operation["lroOptions"] = extensions.get("x-ms-long-running-operation-options")
+    operation["pollerSync"] = extensions.get("x-python-custom-poller-sync")
+    operation["pollerAsync"] = extensions.get("x-python-custom-poller-async")
+    operation["pollingMethodSync"] = extensions.get("x-python-custom-default-polling-method-sync")
+    operation["pollingMethodAsync"] = extensions.get("x-python-custom-default-polling-method-async")
+
+
+def update_lro_operation(group_name: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    base_operation = update_operation(group_name, yaml_data)
+    add_lro_information(base_operation, yaml_data)
+    for overload in base_operation["overloads"]:
+        add_lro_information(overload, yaml_data)
     return base_operation
 
 

@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, List, Optional, TypeVar, Union, cast
+from typing import Any, Callable, Dict, IO, List, Optional, Optional, TypeVar, Union, Union, cast, overload
 
 from msrest import Serializer
 
@@ -39,9 +39,21 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
+@overload
 def build_lros_put200_succeeded_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_put200_succeeded_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_put200_succeeded_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -55,12 +67,24 @@ def build_lros_put200_succeeded_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_patch200_succeeded_ignore_headers_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_patch200_succeeded_ignore_headers_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_patch200_succeeded_ignore_headers_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -74,12 +98,24 @@ def build_lros_patch200_succeeded_ignore_headers_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_patch201_retry_with_async_header_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_patch201_retry_with_async_header_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_patch201_retry_with_async_header_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -93,12 +129,24 @@ def build_lros_patch201_retry_with_async_header_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_patch202_retry_with_async_and_location_header_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_patch202_retry_with_async_and_location_header_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_patch202_retry_with_async_and_location_header_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -112,12 +160,24 @@ def build_lros_patch202_retry_with_async_and_location_header_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_put201_succeeded_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_put201_succeeded_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_put201_succeeded_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -131,7 +191,7 @@ def build_lros_put201_succeeded_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 def build_lros_post202_list_request(**kwargs: Any) -> HttpRequest:
@@ -148,9 +208,21 @@ def build_lros_post202_list_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_put200_succeeded_no_state_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_put200_succeeded_no_state_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_put200_succeeded_no_state_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -164,12 +236,24 @@ def build_lros_put200_succeeded_no_state_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_put202_retry200_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_put202_retry200_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_put202_retry200_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -183,12 +267,24 @@ def build_lros_put202_retry200_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_put201_creating_succeeded200_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_put201_creating_succeeded200_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_put201_creating_succeeded200_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -202,12 +298,24 @@ def build_lros_put201_creating_succeeded200_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_put200_updating_succeeded204_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_put200_updating_succeeded204_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_put200_updating_succeeded204_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -221,12 +329,24 @@ def build_lros_put200_updating_succeeded204_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_put201_creating_failed200_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_put201_creating_failed200_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_put201_creating_failed200_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -240,12 +360,24 @@ def build_lros_put201_creating_failed200_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_put200_acceptedcanceled200_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_put200_acceptedcanceled200_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_put200_acceptedcanceled200_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -259,12 +391,24 @@ def build_lros_put200_acceptedcanceled200_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_put_no_header_in_retry_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_put_no_header_in_retry_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_put_no_header_in_retry_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -278,12 +422,24 @@ def build_lros_put_no_header_in_retry_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_put_async_retry_succeeded_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_put_async_retry_succeeded_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_put_async_retry_succeeded_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -297,12 +453,24 @@ def build_lros_put_async_retry_succeeded_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_put_async_no_retry_succeeded_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_put_async_no_retry_succeeded_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_put_async_no_retry_succeeded_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -316,12 +484,24 @@ def build_lros_put_async_no_retry_succeeded_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_put_async_retry_failed_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_put_async_retry_failed_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_put_async_retry_failed_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -335,12 +515,24 @@ def build_lros_put_async_retry_failed_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_put_async_no_retrycanceled_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_put_async_no_retrycanceled_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_put_async_no_retrycanceled_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -354,12 +546,24 @@ def build_lros_put_async_no_retrycanceled_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_put_async_no_header_in_retry_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_put_async_no_header_in_retry_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_put_async_no_header_in_retry_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -373,12 +577,24 @@ def build_lros_put_async_no_header_in_retry_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_put_non_resource_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_put_non_resource_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_put_non_resource_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -392,12 +608,24 @@ def build_lros_put_non_resource_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_put_async_non_resource_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_put_async_non_resource_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_put_async_non_resource_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -411,12 +639,24 @@ def build_lros_put_async_non_resource_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_put_sub_resource_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_put_sub_resource_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_put_sub_resource_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -430,12 +670,24 @@ def build_lros_put_sub_resource_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_put_async_sub_resource_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_put_async_sub_resource_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_put_async_sub_resource_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -449,7 +701,7 @@ def build_lros_put_async_sub_resource_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 def build_lros_delete_provisioning202_accepted200_succeeded_request(**kwargs: Any) -> HttpRequest:
@@ -634,9 +886,21 @@ def build_lros_post200_with_payload_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_post202_retry200_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_post202_retry200_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_post202_retry200_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -650,12 +914,24 @@ def build_lros_post202_retry200_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_post202_no_retry204_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_post202_no_retry204_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_post202_no_retry204_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -669,7 +945,7 @@ def build_lros_post202_no_retry204_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 def build_lros_post_double_headers_final_location_get_request(**kwargs: Any) -> HttpRequest:
@@ -714,9 +990,21 @@ def build_lros_post_double_headers_final_azure_header_get_default_request(**kwar
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_post_async_retry_succeeded_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_post_async_retry_succeeded_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_post_async_retry_succeeded_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -730,12 +1018,24 @@ def build_lros_post_async_retry_succeeded_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_post_async_no_retry_succeeded_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_post_async_no_retry_succeeded_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_post_async_no_retry_succeeded_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -749,12 +1049,24 @@ def build_lros_post_async_no_retry_succeeded_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_post_async_retry_failed_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_post_async_retry_failed_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_post_async_retry_failed_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -768,12 +1080,24 @@ def build_lros_post_async_retry_failed_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lros_post_async_retrycanceled_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lros_post_async_retrycanceled_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lros_post_async_retrycanceled_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -787,12 +1111,24 @@ def build_lros_post_async_retrycanceled_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lro_retrys_put201_creating_succeeded200_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lro_retrys_put201_creating_succeeded200_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lro_retrys_put201_creating_succeeded200_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -806,12 +1142,24 @@ def build_lro_retrys_put201_creating_succeeded200_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lro_retrys_put_async_relative_retry_succeeded_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lro_retrys_put_async_relative_retry_succeeded_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lro_retrys_put_async_relative_retry_succeeded_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -825,7 +1173,7 @@ def build_lro_retrys_put_async_relative_retry_succeeded_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 def build_lro_retrys_delete_provisioning202_accepted200_succeeded_request(**kwargs: Any) -> HttpRequest:
@@ -870,9 +1218,21 @@ def build_lro_retrys_delete_async_relative_retry_succeeded_request(**kwargs: Any
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lro_retrys_post202_retry200_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lro_retrys_post202_retry200_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lro_retrys_post202_retry200_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -886,12 +1246,24 @@ def build_lro_retrys_post202_retry200_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lro_retrys_post_async_relative_retry_succeeded_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lro_retrys_post_async_relative_retry_succeeded_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lro_retrys_post_async_relative_retry_succeeded_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -905,12 +1277,24 @@ def build_lro_retrys_post_async_relative_retry_succeeded_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lrosads_put_non_retry400_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lrosads_put_non_retry400_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lrosads_put_non_retry400_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -924,12 +1308,24 @@ def build_lrosads_put_non_retry400_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lrosads_put_non_retry201_creating400_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lrosads_put_non_retry201_creating400_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lrosads_put_non_retry201_creating400_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -943,12 +1339,24 @@ def build_lrosads_put_non_retry201_creating400_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lrosads_put_non_retry201_creating400_invalid_json_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lrosads_put_non_retry201_creating400_invalid_json_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lrosads_put_non_retry201_creating400_invalid_json_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -962,12 +1370,24 @@ def build_lrosads_put_non_retry201_creating400_invalid_json_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lrosads_put_async_relative_retry400_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lrosads_put_async_relative_retry400_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lrosads_put_async_relative_retry400_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -981,7 +1401,7 @@ def build_lrosads_put_async_relative_retry400_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 def build_lrosads_delete_non_retry400_request(**kwargs: Any) -> HttpRequest:
@@ -1026,9 +1446,21 @@ def build_lrosads_delete_async_relative_retry400_request(**kwargs: Any) -> HttpR
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lrosads_post_non_retry400_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lrosads_post_non_retry400_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lrosads_post_non_retry400_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1042,12 +1474,24 @@ def build_lrosads_post_non_retry400_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lrosads_post202_non_retry400_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lrosads_post202_non_retry400_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lrosads_post202_non_retry400_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1061,12 +1505,24 @@ def build_lrosads_post202_non_retry400_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lrosads_post_async_relative_retry400_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lrosads_post_async_relative_retry400_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lrosads_post_async_relative_retry400_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1080,12 +1536,24 @@ def build_lrosads_post_async_relative_retry400_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lrosads_put_error201_no_provisioning_state_payload_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lrosads_put_error201_no_provisioning_state_payload_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lrosads_put_error201_no_provisioning_state_payload_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1099,12 +1567,24 @@ def build_lrosads_put_error201_no_provisioning_state_payload_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lrosads_put_async_relative_retry_no_status_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lrosads_put_async_relative_retry_no_status_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lrosads_put_async_relative_retry_no_status_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1118,12 +1598,24 @@ def build_lrosads_put_async_relative_retry_no_status_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lrosads_put_async_relative_retry_no_status_payload_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lrosads_put_async_relative_retry_no_status_payload_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lrosads_put_async_relative_retry_no_status_payload_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1137,7 +1629,7 @@ def build_lrosads_put_async_relative_retry_no_status_payload_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 def build_lrosads_delete204_succeeded_request(**kwargs: Any) -> HttpRequest:
@@ -1168,9 +1660,21 @@ def build_lrosads_delete_async_relative_retry_no_status_request(**kwargs: Any) -
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lrosads_post202_no_location_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lrosads_post202_no_location_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lrosads_post202_no_location_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1184,12 +1688,24 @@ def build_lrosads_post202_no_location_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lrosads_post_async_relative_retry_no_payload_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lrosads_post_async_relative_retry_no_payload_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lrosads_post_async_relative_retry_no_payload_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1203,12 +1719,24 @@ def build_lrosads_post_async_relative_retry_no_payload_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lrosads_put200_invalid_json_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lrosads_put200_invalid_json_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lrosads_put200_invalid_json_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1222,12 +1750,24 @@ def build_lrosads_put200_invalid_json_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lrosads_put_async_relative_retry_invalid_header_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lrosads_put_async_relative_retry_invalid_header_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lrosads_put_async_relative_retry_invalid_header_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1241,12 +1781,24 @@ def build_lrosads_put_async_relative_retry_invalid_header_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lrosads_put_async_relative_retry_invalid_json_polling_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lrosads_put_async_relative_retry_invalid_json_polling_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lrosads_put_async_relative_retry_invalid_json_polling_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1260,7 +1812,7 @@ def build_lrosads_put_async_relative_retry_invalid_json_polling_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 def build_lrosads_delete202_retry_invalid_header_request(**kwargs: Any) -> HttpRequest:
@@ -1305,9 +1857,21 @@ def build_lrosads_delete_async_relative_retry_invalid_json_polling_request(**kwa
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lrosads_post202_retry_invalid_header_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lrosads_post202_retry_invalid_header_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lrosads_post202_retry_invalid_header_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1321,12 +1885,24 @@ def build_lrosads_post202_retry_invalid_header_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lrosads_post_async_relative_retry_invalid_header_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lrosads_post_async_relative_retry_invalid_header_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lrosads_post_async_relative_retry_invalid_header_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1340,12 +1916,24 @@ def build_lrosads_post_async_relative_retry_invalid_header_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lrosads_post_async_relative_retry_invalid_json_polling_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lrosads_post_async_relative_retry_invalid_json_polling_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lrosads_post_async_relative_retry_invalid_json_polling_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1359,12 +1947,24 @@ def build_lrosads_post_async_relative_retry_invalid_json_polling_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lr_os_custom_header_put_async_retry_succeeded_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lr_os_custom_header_put_async_retry_succeeded_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lr_os_custom_header_put_async_retry_succeeded_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1378,12 +1978,24 @@ def build_lr_os_custom_header_put_async_retry_succeeded_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lr_os_custom_header_put201_creating_succeeded200_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lr_os_custom_header_put201_creating_succeeded200_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lr_os_custom_header_put201_creating_succeeded200_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1397,12 +2009,24 @@ def build_lr_os_custom_header_put201_creating_succeeded200_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lr_os_custom_header_post202_retry200_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lr_os_custom_header_post202_retry200_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lr_os_custom_header_post202_retry200_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1416,12 +2040,24 @@ def build_lr_os_custom_header_post202_retry200_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_lr_os_custom_header_post_async_retry_succeeded_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_lr_os_custom_header_post_async_retry_succeeded_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_lr_os_custom_header_post_async_retry_succeeded_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -1435,7 +2071,7 @@ def build_lr_os_custom_header_post_async_retry_succeeded_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 class LROsOperations:  # pylint: disable=too-many-public-methods
@@ -1455,26 +2091,28 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def _put200_succeeded_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> Optional[JSON]:
+    def _put200_succeeded_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> Optional[JSON]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSON]]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_put200_succeeded_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -1502,13 +2140,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    @distributed_trace
-    def begin_put200_succeeded(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put200_succeeded(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -1532,11 +2175,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -1550,11 +2192,98 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put200_succeeded(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        contains ProvisioningState=’Succeeded’.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put200_succeeded(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        contains ProvisioningState=’Succeeded’.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -1562,9 +2291,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -1605,26 +2332,30 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _patch200_succeeded_ignore_headers_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _patch200_succeeded_ignore_headers_initial(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_patch200_succeeded_ignore_headers_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -1655,13 +2386,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_patch200_succeeded_ignore_headers(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_patch200_succeeded_ignore_headers(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request with location header. We
         should not have any subsequent calls after receiving this first response.
 
-        :param product: Product to patch. Default value is None.
+        :param product: Product to patch. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -1685,11 +2421,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -1703,11 +2438,100 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_patch200_succeeded_ignore_headers(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request with location header. We
+        should not have any subsequent calls after receiving this first response.
+
+        :param product: Product to patch. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_patch200_succeeded_ignore_headers(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request with location header. We
+        should not have any subsequent calls after receiving this first response.
+
+        :param product: Product to patch.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -1715,9 +2539,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -1763,26 +2585,30 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _patch201_retry_with_async_header_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _patch201_retry_with_async_header_initial(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_patch201_retry_with_async_header_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -1820,12 +2646,17 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_patch201_retry_with_async_header(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_patch201_retry_with_async_header(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running patch request, service returns a 201 to the initial request with async header.
 
-        :param product: Product to patch. Default value is None.
+        :param product: Product to patch. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -1849,11 +2680,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -1867,11 +2697,98 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_patch201_retry_with_async_header(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running patch request, service returns a 201 to the initial request with async header.
+
+        :param product: Product to patch. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_patch201_retry_with_async_header(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running patch request, service returns a 201 to the initial request with async header.
+
+        :param product: Product to patch.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -1879,9 +2796,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -1925,7 +2840,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     def _patch202_retry_with_async_and_location_header_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -1933,19 +2848,21 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_patch202_retry_with_async_and_location_header_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -1984,15 +2901,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
+    @overload
     def begin_patch202_retry_with_async_and_location_header(
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[JSON]:
         """Long running patch request, service returns a 202 to the initial request with async and
         location header.
 
-        :param product: Product to patch. Default value is None.
+        :param product: Product to patch. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -2016,11 +2936,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2034,11 +2953,100 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_patch202_retry_with_async_and_location_header(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running patch request, service returns a 202 to the initial request with async and
+        location header.
+
+        :param product: Product to patch. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 202
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_patch202_retry_with_async_and_location_header(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running patch request, service returns a 202 to the initial request with async and
+        location header.
+
+        :param product: Product to patch.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 202
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2046,9 +3054,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -2089,26 +3095,28 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put201_succeeded_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put201_succeeded_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_put201_succeeded_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -2134,13 +3142,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put201_succeeded(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put201_succeeded(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -2164,11 +3177,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2182,11 +3194,98 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put201_succeeded(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 201 to the initial request, with an entity that
+        contains ProvisioningState=’Succeeded’.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put201_succeeded(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> LROPoller[JSON]:
+        """Long running put request, service returns a 201 to the initial request, with an entity that
+        contains ProvisioningState=’Succeeded’.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2194,9 +3293,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -2244,7 +3341,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[JSON]]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_lros_post202_list_request(
             headers=_headers,
@@ -2310,11 +3407,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                             "provisioningState": "str",  # Optional.
                             "provisioningStateValues": "str"  # Optional. Known values
                               are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                              "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                              "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
                         },
                         "tags": {
-                            "str": "str"  # Optional. A set of tags. Dictionary of
-                              :code:`<string>`.
+                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
                         },
                         "type": "str"  # Optional. Resource Type.
                     }
@@ -2358,26 +3454,28 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put200_succeeded_no_state_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put200_succeeded_no_state_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_put200_succeeded_no_state_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -2403,13 +3501,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put200_succeeded_no_state(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put200_succeeded_no_state(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         does not contain ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -2433,11 +3536,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2451,11 +3553,100 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put200_succeeded_no_state(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        does not contain ProvisioningState=’Succeeded’.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put200_succeeded_no_state(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        does not contain ProvisioningState=’Succeeded’.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2463,9 +3654,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -2506,26 +3695,28 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put202_retry200_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put202_retry200_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_put202_retry200_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -2551,14 +3742,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put202_retry200(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put202_retry200(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a 202 to the initial request, with a location header
         that points to a polling URL that returns a 200 and an entity that doesn't contains
         ProvisioningState.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -2582,11 +3778,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2600,11 +3795,100 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put202_retry200(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 202 to the initial request, with a location header
+        that points to a polling URL that returns a 200 and an entity that doesn't contains
+        ProvisioningState.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put202_retry200(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> LROPoller[JSON]:
+        """Long running put request, service returns a 202 to the initial request, with a location header
+        that points to a polling URL that returns a 200 and an entity that doesn't contains
+        ProvisioningState.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2612,9 +3896,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -2655,26 +3937,28 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put201_creating_succeeded200_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put201_creating_succeeded200_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_put201_creating_succeeded200_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -2707,14 +3991,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put201_creating_succeeded200(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put201_creating_succeeded200(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -2738,11 +4027,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2756,11 +4044,102 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put201_creating_succeeded200(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 201 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
+        ‘200’ with ProvisioningState=’Succeeded’.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put201_creating_succeeded200(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 201 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
+        ‘200’ with ProvisioningState=’Succeeded’.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2768,9 +4147,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -2811,26 +4188,28 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put200_updating_succeeded204_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put200_updating_succeeded204_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_put200_updating_succeeded204_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -2856,14 +4235,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put200_updating_succeeded204(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put200_updating_succeeded204(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -2887,11 +4271,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2905,11 +4288,102 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put200_updating_succeeded204(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 201 to the initial request, with an entity that
+        contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
+        ‘200’ with ProvisioningState=’Succeeded’.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put200_updating_succeeded204(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 201 to the initial request, with an entity that
+        contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
+        ‘200’ with ProvisioningState=’Succeeded’.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -2917,9 +4391,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -2960,26 +4432,28 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put201_creating_failed200_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put201_creating_failed200_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_put201_creating_failed200_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -3012,14 +4486,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put201_creating_failed200(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put201_creating_failed200(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Failed’.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -3043,11 +4522,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -3061,11 +4539,102 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put201_creating_failed200(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 201 to the initial request, with an entity that
+        contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
+        ‘200’ with ProvisioningState=’Failed’.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put201_creating_failed200(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 201 to the initial request, with an entity that
+        contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
+        ‘200’ with ProvisioningState=’Failed’.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -3073,9 +4642,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -3116,26 +4683,28 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put200_acceptedcanceled200_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put200_acceptedcanceled200_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_put200_acceptedcanceled200_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -3161,14 +4730,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put200_acceptedcanceled200(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put200_acceptedcanceled200(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Canceled’.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -3192,11 +4766,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -3210,11 +4783,102 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put200_acceptedcanceled200(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 201 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
+        ‘200’ with ProvisioningState=’Canceled’.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put200_acceptedcanceled200(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 201 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
+        ‘200’ with ProvisioningState=’Canceled’.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -3222,9 +4886,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -3265,26 +4927,28 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put_no_header_in_retry_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put_no_header_in_retry_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_put_no_header_in_retry_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -3313,13 +4977,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put_no_header_in_retry(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put_no_header_in_retry(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a 202 to the initial request with location header.
         Subsequent calls to operation status do not contain location header.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -3343,11 +5012,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -3361,11 +5029,98 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put_no_header_in_retry(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 202 to the initial request with location header.
+        Subsequent calls to operation status do not contain location header.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_no_header_in_retry(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> LROPoller[JSON]:
+        """Long running put request, service returns a 202 to the initial request with location header.
+        Subsequent calls to operation status do not contain location header.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -3373,9 +5128,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -3419,26 +5172,28 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put_async_retry_succeeded_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put_async_retry_succeeded_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_put_async_retry_succeeded_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -3471,14 +5226,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put_async_retry_succeeded(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put_async_retry_succeeded(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -3502,11 +5262,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -3520,11 +5279,102 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put_async_retry_succeeded(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_async_retry_succeeded(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -3532,9 +5382,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -3582,26 +5430,28 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put_async_no_retry_succeeded_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put_async_no_retry_succeeded_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_put_async_no_retry_succeeded_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -3633,14 +5483,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put_async_no_retry_succeeded(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put_async_no_retry_succeeded(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -3664,11 +5519,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -3682,11 +5536,102 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put_async_no_retry_succeeded(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_async_no_retry_succeeded(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -3694,9 +5639,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -3743,26 +5686,28 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put_async_retry_failed_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put_async_retry_failed_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_put_async_retry_failed_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -3795,14 +5740,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put_async_retry_failed(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put_async_retry_failed(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -3826,11 +5776,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -3844,11 +5793,100 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put_async_retry_failed(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_async_retry_failed(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -3856,9 +5894,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -3906,26 +5942,28 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put_async_no_retrycanceled_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put_async_no_retrycanceled_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_put_async_no_retrycanceled_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -3957,14 +5995,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put_async_no_retrycanceled(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put_async_no_retrycanceled(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -3988,11 +6031,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -4006,11 +6048,102 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put_async_no_retrycanceled(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_async_no_retrycanceled(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -4018,9 +6151,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -4067,26 +6198,28 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put_async_no_header_in_retry_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put_async_no_header_in_retry_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_put_async_no_header_in_retry_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -4117,14 +6250,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put_async_no_header_in_retry(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put_async_no_header_in_retry(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a 202 to the initial request with
         Azure-AsyncOperation header. Subsequent calls to operation status do not contain
         Azure-AsyncOperation header.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -4148,11 +6286,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -4166,11 +6303,102 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put_async_no_header_in_retry(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 202 to the initial request with
+        Azure-AsyncOperation header. Subsequent calls to operation status do not contain
+        Azure-AsyncOperation header.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_async_no_header_in_retry(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 202 to the initial request with
+        Azure-AsyncOperation header. Subsequent calls to operation status do not contain
+        Azure-AsyncOperation header.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -4178,9 +6406,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -4226,26 +6452,28 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put_non_resource_initial(self, sku: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put_non_resource_initial(self, sku: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if sku is not None:
-            _json = sku
+        _json = None
+        _content = None
+        if isinstance(sku, IO):
+            _content = sku
         else:
-            _json = None
+            _json = sku
+            content_type = content_type or "application/json"
 
         request = build_lros_put_non_resource_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -4271,12 +6499,17 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put_non_resource(self, sku: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put_non_resource(
+        self, sku: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request with non resource.
 
-        :param sku: sku to put. Default value is None.
+        :param sku: sku to put. Optional.
         :type sku: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -4303,12 +6536,74 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str"  # Optional.
                 }
         """
+
+        ...
+
+    @overload
+    def begin_put_non_resource(
+        self, sku: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request with non resource.
+
+        :param sku: sku to put. Optional.
+        :type sku: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response.json() == {
+                    "id": "str",  # Optional.
+                    "name": "str"  # Optional.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_non_resource(self, sku: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> LROPoller[JSON]:
+        """Long running put request with non resource.
+
+        :param sku: sku to put.
+        :type sku: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response.json() == {
+                    "id": "str",  # Optional.
+                    "name": "str"  # Optional.
+                }
+        """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -4344,26 +6639,28 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put_async_non_resource_initial(self, sku: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put_async_non_resource_initial(self, sku: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if sku is not None:
-            _json = sku
+        _json = None
+        _content = None
+        if isinstance(sku, IO):
+            _content = sku
         else:
-            _json = None
+            _json = sku
+            content_type = content_type or "application/json"
 
         request = build_lros_put_async_non_resource_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -4389,12 +6686,17 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put_async_non_resource(self, sku: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put_async_non_resource(
+        self, sku: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request with non resource.
 
-        :param sku: Sku to put. Default value is None.
+        :param sku: Sku to put. Optional.
         :type sku: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -4421,12 +6723,74 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                     "name": "str"  # Optional.
                 }
         """
+
+        ...
+
+    @overload
+    def begin_put_async_non_resource(
+        self, sku: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request with non resource.
+
+        :param sku: Sku to put. Optional.
+        :type sku: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response.json() == {
+                    "id": "str",  # Optional.
+                    "name": "str"  # Optional.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_async_non_resource(self, sku: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> LROPoller[JSON]:
+        """Long running put request with non resource.
+
+        :param sku: Sku to put.
+        :type sku: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response.json() == {
+                    "id": "str",  # Optional.
+                    "name": "str"  # Optional.
+                }
+        """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -4462,26 +6826,28 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put_sub_resource_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put_sub_resource_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_put_sub_resource_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -4507,12 +6873,17 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put_sub_resource(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put_sub_resource(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request with sub resource.
 
-        :param product: Sub Product to put. Default value is None.
+        :param product: Sub Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -4534,7 +6905,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     }
                 }
 
@@ -4545,16 +6916,88 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    }
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put_sub_resource(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request with sub resource.
+
+        :param product: Sub Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response.json() == {
+                    "id": "str",  # Optional. Sub Resource Id.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    }
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_sub_resource(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> LROPoller[JSON]:
+        """Long running put request with sub resource.
+
+        :param product: Sub Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response.json() == {
+                    "id": "str",  # Optional. Sub Resource Id.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     }
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -4595,26 +7038,28 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put_async_sub_resource_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put_async_sub_resource_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_put_async_sub_resource_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -4640,12 +7085,17 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put_async_sub_resource(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put_async_sub_resource(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request with sub resource.
 
-        :param product: Sub Product to put. Default value is None.
+        :param product: Sub Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -4667,7 +7117,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     }
                 }
 
@@ -4678,16 +7128,88 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    }
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put_async_sub_resource(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request with sub resource.
+
+        :param product: Sub Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response.json() == {
+                    "id": "str",  # Optional. Sub Resource Id.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    }
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_async_sub_resource(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> LROPoller[JSON]:
+        """Long running put request with sub resource.
+
+        :param product: Sub Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response.json() == {
+                    "id": "str",  # Optional. Sub Resource Id.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     }
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -4735,7 +7257,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_lros_delete_provisioning202_accepted200_succeeded_request(
             headers=_headers,
@@ -4803,11 +7325,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -4857,7 +7378,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_lros_delete_provisioning202_deleting_failed200_request(
             headers=_headers,
@@ -4925,11 +7446,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -4979,7 +7499,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_lros_delete_provisioning202_deletingcanceled200_request(
             headers=_headers,
@@ -5047,11 +7567,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -5123,9 +7642,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def begin_delete204_succeeded(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> LROPoller[None]:
+    def begin_delete204_succeeded(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete succeeds and returns right away.
 
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -5178,7 +7695,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSON]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_lros_delete202_retry200_request(
             headers=_headers,
@@ -5241,11 +7758,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -5295,7 +7811,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSON]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_lros_delete202_no_retry204_request(
             headers=_headers,
@@ -5358,11 +7874,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -5440,9 +7955,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_no_header_in_retry(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> LROPoller[None]:
+    def begin_delete_no_header_in_retry(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a location header in the initial request.
         Subsequent calls to operation status do not contain location header.
 
@@ -5524,9 +8037,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_no_header_in_retry(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> LROPoller[None]:
+    def begin_delete_async_no_header_in_retry(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns an Azure-AsyncOperation header in the initial
         request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
@@ -5611,9 +8122,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_retry_succeeded(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> LROPoller[None]:
+    def begin_delete_async_retry_succeeded(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -5698,9 +8207,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_no_retry_succeeded(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> LROPoller[None]:
+    def begin_delete_async_no_retry_succeeded(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -5785,9 +8292,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_retry_failed(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> LROPoller[None]:
+    def begin_delete_async_retry_failed(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -5872,9 +8377,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_retrycanceled(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> LROPoller[None]:
+    def begin_delete_async_retrycanceled(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -5928,7 +8431,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_lros_post200_with_payload_request(
             headers=_headers,
@@ -6027,7 +8530,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -6035,19 +8538,21 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_post202_retry200_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -6070,15 +8575,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    @distributed_trace
-    def begin_post202_retry200(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+    @overload
+    def begin_post202_retry200(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with 'Location' and
         'Retry-After' headers, Polls return a 200 with a response body after success.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -6102,21 +8610,66 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
         """
+
+        ...
+
+    @overload
+    def begin_post202_retry200(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 202 to the initial request, with 'Location' and
+        'Retry-After' headers, Polls return a 200 with a response body after success.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_post202_retry200(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> LROPoller[None]:
+        """Long running post request, service returns a 202 to the initial request, with 'Location' and
+        'Retry-After' headers, Polls return a 200 with a response body after success.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -6151,26 +8704,28 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post202_no_retry204_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _post202_no_retry204_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_post202_no_retry204_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -6200,13 +8755,18 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_post202_no_retry204(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_post202_no_retry204(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request, with 'Location'
         header, 204 with noresponse body after success.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -6230,11 +8790,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -6248,11 +8807,98 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_post202_no_retry204(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running post request, service returns a 202 to the initial request, with 'Location'
+        header, 204 with noresponse body after success.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_post202_no_retry204(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> LROPoller[JSON]:
+        """Long running post request, service returns a 202 to the initial request, with 'Location'
+        header, 204 with noresponse body after success.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 202
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -6260,9 +8906,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -6314,7 +8958,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_lros_post_double_headers_final_location_get_request(
             headers=_headers,
@@ -6371,11 +9015,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -6427,7 +9070,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_lros_post_double_headers_final_azure_header_get_request(
             headers=_headers,
@@ -6484,11 +9127,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -6540,7 +9182,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_lros_post_double_headers_final_azure_header_get_default_request(
             headers=_headers,
@@ -6597,11 +9239,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -6644,26 +9285,30 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_async_retry_succeeded_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> Optional[JSON]:
+    def _post_async_retry_succeeded_initial(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> Optional[JSON]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSON]]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_post_async_retry_succeeded_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -6699,14 +9344,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    @distributed_trace
-    def begin_post_async_retry_succeeded(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_post_async_retry_succeeded(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -6730,11 +9380,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -6748,11 +9397,102 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_post_async_retry_succeeded(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running post request, service returns a 202 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_post_async_retry_succeeded(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running post request, service returns a 202 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -6760,9 +9500,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -6803,26 +9541,30 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _post_async_no_retry_succeeded_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> Optional[JSON]:
+    def _post_async_no_retry_succeeded_initial(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> Optional[JSON]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSON]]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_post_async_no_retry_succeeded_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -6858,14 +9600,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    @distributed_trace
-    def begin_post_async_no_retry_succeeded(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_post_async_no_retry_succeeded(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -6889,11 +9636,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -6907,11 +9653,102 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_post_async_no_retry_succeeded(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running post request, service returns a 202 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_post_async_no_retry_succeeded(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running post request, service returns a 202 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -6919,9 +9756,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -6963,7 +9798,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     def _post_async_retry_failed_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -6971,19 +9806,21 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_post_async_retry_failed_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -7009,16 +9846,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    @distributed_trace
-    def begin_post_async_retry_failed(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+    @overload
+    def begin_post_async_retry_failed(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -7042,21 +9882,70 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
         """
+
+        ...
+
+    @overload
+    def begin_post_async_retry_failed(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 202 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_post_async_retry_failed(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 202 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -7092,7 +9981,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     def _post_async_retrycanceled_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -7100,19 +9989,21 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lros_post_async_retrycanceled_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -7138,16 +10029,19 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    @distributed_trace
-    def begin_post_async_retrycanceled(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+    @overload
+    def begin_post_async_retrycanceled(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -7171,21 +10065,70 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
         """
+
+        ...
+
+    @overload
+    def begin_post_async_retrycanceled(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 202 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_post_async_retrycanceled(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 202 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -7238,26 +10181,28 @@ class LRORetrysOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def _put201_creating_succeeded200_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put201_creating_succeeded200_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lro_retrys_put201_creating_succeeded200_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -7290,14 +10235,19 @@ class LRORetrysOperations:
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put201_creating_succeeded200(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put201_creating_succeeded200(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a 500, then a 201 to the initial request, with an
         entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -7321,11 +10271,10 @@ class LRORetrysOperations:
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -7339,11 +10288,102 @@ class LRORetrysOperations:
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put201_creating_succeeded200(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 500, then a 201 to the initial request, with an
+        entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
+        returns a ‘200’ with ProvisioningState=’Succeeded’.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put201_creating_succeeded200(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 500, then a 201 to the initial request, with an
+        entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
+        returns a ‘200’ with ProvisioningState=’Succeeded’.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -7351,9 +10391,7 @@ class LRORetrysOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -7394,26 +10432,30 @@ class LRORetrysOperations:
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put_async_relative_retry_succeeded_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put_async_relative_retry_succeeded_initial(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lro_retrys_put_async_relative_retry_succeeded_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -7446,16 +10488,19 @@ class LRORetrysOperations:
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
+    @overload
     def begin_put_async_relative_retry_succeeded(
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[JSON]:
         """Long running put request, service returns a 500, then a 200 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -7479,11 +10524,10 @@ class LRORetrysOperations:
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -7497,11 +10541,102 @@ class LRORetrysOperations:
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put_async_relative_retry_succeeded(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 500, then a 200 to the initial request, with an
+        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+        Azure-AsyncOperation header for operation status.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_async_relative_retry_succeeded(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 500, then a 200 to the initial request, with an
+        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+        Azure-AsyncOperation header for operation status.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -7509,9 +10644,7 @@ class LRORetrysOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -7566,7 +10699,7 @@ class LRORetrysOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_lro_retrys_delete_provisioning202_accepted200_succeeded_request(
             headers=_headers,
@@ -7634,11 +10767,10 @@ class LRORetrysOperations:
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -7714,9 +10846,7 @@ class LRORetrysOperations:
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete202_retry200(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> LROPoller[None]:
+    def begin_delete202_retry200(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 500, then a 202 to the initial request. Polls
         return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -7801,9 +10931,7 @@ class LRORetrysOperations:
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_relative_retry_succeeded(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> LROPoller[None]:
+    def begin_delete_async_relative_retry_succeeded(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 500, then a 202 to the initial request. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation status.
 
@@ -7851,7 +10979,7 @@ class LRORetrysOperations:
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -7859,19 +10987,21 @@ class LRORetrysOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lro_retrys_post202_retry200_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -7894,15 +11024,18 @@ class LRORetrysOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    @distributed_trace
-    def begin_post202_retry200(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+    @overload
+    def begin_post202_retry200(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -7926,21 +11059,66 @@ class LRORetrysOperations:
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
         """
+
+        ...
+
+    @overload
+    def begin_post202_retry200(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 500, then a 202 to the initial request, with
+        'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_post202_retry200(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> LROPoller[None]:
+        """Long running post request, service returns a 500, then a 202 to the initial request, with
+        'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -7976,7 +11154,7 @@ class LRORetrysOperations:
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     def _post_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -7984,19 +11162,21 @@ class LRORetrysOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lro_retrys_post_async_relative_retry_succeeded_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -8022,16 +11202,19 @@ class LRORetrysOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    @distributed_trace
-    def begin_post_async_relative_retry_succeeded(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+    @overload
+    def begin_post_async_relative_retry_succeeded(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -8055,21 +11238,70 @@ class LRORetrysOperations:
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
         """
+
+        ...
+
+    @overload
+    def begin_post_async_relative_retry_succeeded(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 500, then a 202 to the initial request, with an
+        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+        Azure-AsyncOperation header for operation status.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_post_async_relative_retry_succeeded(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 500, then a 202 to the initial request, with an
+        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+        Azure-AsyncOperation header for operation status.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -8122,26 +11354,28 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def _put_non_retry400_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put_non_retry400_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lrosads_put_non_retry400_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -8174,12 +11408,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put_non_retry400(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put_non_retry400(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a 400 to the initial request.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -8203,11 +11442,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -8221,11 +11459,96 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put_non_retry400(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 400 to the initial request.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_non_retry400(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> LROPoller[JSON]:
+        """Long running put request, service returns a 400 to the initial request.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -8233,9 +11556,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -8276,26 +11597,28 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put_non_retry201_creating400_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put_non_retry201_creating400_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lrosads_put_non_retry201_creating400_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -8328,13 +11651,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put_non_retry201_creating400(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put_non_retry201_creating400(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
         201 response code.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -8358,11 +11686,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -8376,11 +11703,100 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put_non_retry201_creating400(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
+        201 response code.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_non_retry201_creating400(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
+        201 response code.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -8388,9 +11804,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -8431,26 +11845,30 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put_non_retry201_creating400_invalid_json_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put_non_retry201_creating400_invalid_json_initial(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lrosads_put_non_retry201_creating400_invalid_json_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -8483,15 +11901,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
+    @overload
     def begin_put_non_retry201_creating400_invalid_json(
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[JSON]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
         201 response code.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -8515,11 +11936,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -8533,11 +11953,100 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put_non_retry201_creating400_invalid_json(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
+        201 response code.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_non_retry201_creating400_invalid_json(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
+        201 response code.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -8545,9 +12054,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -8588,26 +12095,28 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put_async_relative_retry400_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put_async_relative_retry400_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lrosads_put_async_relative_retry400_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -8640,13 +12149,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put_async_relative_retry400(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put_async_relative_retry400(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -8670,11 +12184,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -8688,11 +12201,100 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put_async_relative_retry400(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
+        endpoint indicated in the Azure-AsyncOperation header for operation status.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_async_relative_retry400(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
+        endpoint indicated in the Azure-AsyncOperation header for operation status.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -8700,9 +12302,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -8783,9 +12383,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_non_retry400(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> LROPoller[None]:
+    def begin_delete_non_retry400(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 400 with an error body.
 
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -8864,9 +12462,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete202_non_retry400(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> LROPoller[None]:
+    def begin_delete202_non_retry400(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 with a location header.
 
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -8950,9 +12546,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_relative_retry400(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> LROPoller[None]:
+    def begin_delete_async_relative_retry400(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -9000,7 +12594,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     def _post_non_retry400_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -9008,19 +12602,21 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lrosads_post_non_retry400_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -9043,14 +12639,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    @distributed_trace
-    def begin_post_non_retry400(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+    @overload
+    def begin_post_non_retry400(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 400 with no error body.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -9074,21 +12673,64 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
         """
+
+        ...
+
+    @overload
+    def begin_post_non_retry400(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 400 with no error body.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_post_non_retry400(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> LROPoller[None]:
+        """Long running post request, service returns a 400 with no error body.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -9124,7 +12766,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     def _post202_non_retry400_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -9132,19 +12774,21 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lrosads_post202_non_retry400_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -9167,14 +12811,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    @distributed_trace
-    def begin_post202_non_retry400(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+    @overload
+    def begin_post202_non_retry400(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 202 with a location header.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -9198,21 +12845,64 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
         """
+
+        ...
+
+    @overload
+    def begin_post202_non_retry400(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 202 with a location header.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_post202_non_retry400(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> LROPoller[None]:
+        """Long running post request, service returns a 202 with a location header.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -9248,7 +12938,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     def _post_async_relative_retry400_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -9256,19 +12946,21 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lrosads_post_async_relative_retry400_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -9294,15 +12986,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    @distributed_trace
-    def begin_post_async_relative_retry400(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+    @overload
+    def begin_post_async_relative_retry400(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -9326,21 +13021,68 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
         """
+
+        ...
+
+    @overload
+    def begin_post_async_relative_retry400(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 202 to the initial request Poll the endpoint
+        indicated in the Azure-AsyncOperation header for operation status.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_post_async_relative_retry400(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 202 to the initial request Poll the endpoint
+        indicated in the Azure-AsyncOperation header for operation status.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -9376,7 +13118,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     def _put_error201_no_provisioning_state_payload_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -9384,19 +13126,21 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lrosads_put_error201_no_provisioning_state_payload_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -9429,14 +13173,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
+    @overload
     def begin_put_error201_no_provisioning_state_payload(
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request with no payload.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -9460,11 +13207,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -9478,11 +13224,98 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put_error201_no_provisioning_state_payload(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 201 to the initial request with no payload.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_error201_no_provisioning_state_payload(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 201 to the initial request with no payload.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -9490,9 +13323,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -9533,26 +13364,30 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put_async_relative_retry_no_status_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put_async_relative_retry_no_status_initial(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lrosads_put_async_relative_retry_no_status_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -9585,16 +13420,19 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
+    @overload
     def begin_put_async_relative_retry_no_status(
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -9618,11 +13456,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -9636,11 +13473,102 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put_async_relative_retry_no_status(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_async_relative_retry_no_status(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -9648,9 +13576,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -9699,7 +13625,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     def _put_async_relative_retry_no_status_payload_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -9707,19 +13633,21 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lrosads_put_async_relative_retry_no_status_payload_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -9752,16 +13680,19 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
+    @overload
     def begin_put_async_relative_retry_no_status_payload(
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -9785,11 +13716,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -9803,11 +13733,102 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put_async_relative_retry_no_status_payload(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_async_relative_retry_no_status_payload(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -9815,9 +13836,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -9894,9 +13913,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def begin_delete204_succeeded(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> LROPoller[None]:
+    def begin_delete204_succeeded(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 204 to the initial request, indicating success.
 
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -9980,9 +13997,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_relative_retry_no_status(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> LROPoller[None]:
+    def begin_delete_async_relative_retry_no_status(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -10030,7 +14045,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     def _post202_no_location_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -10038,19 +14053,21 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lrosads_post202_no_location_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -10073,15 +14090,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    @distributed_trace
-    def begin_post202_no_location(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+    @overload
+    def begin_post202_no_location(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, without a location
         header.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -10105,21 +14125,66 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
         """
+
+        ...
+
+    @overload
+    def begin_post202_no_location(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 202 to the initial request, without a location
+        header.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_post202_no_location(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> LROPoller[None]:
+        """Long running post request, service returns a 202 to the initial request, without a location
+        header.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -10155,7 +14220,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     def _post_async_relative_retry_no_payload_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -10163,19 +14228,21 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lrosads_post_async_relative_retry_no_payload_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -10201,16 +14268,19 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    @distributed_trace
-    def begin_post_async_relative_retry_no_payload(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+    @overload
+    def begin_post_async_relative_retry_no_payload(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -10234,21 +14304,70 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
         """
+
+        ...
+
+    @overload
+    def begin_post_async_relative_retry_no_payload(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 202 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_post_async_relative_retry_no_payload(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 202 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -10283,26 +14402,28 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put200_invalid_json_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> Optional[JSON]:
+    def _put200_invalid_json_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> Optional[JSON]:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSON]]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lrosads_put200_invalid_json_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -10330,13 +14451,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    @distributed_trace
-    def begin_put200_invalid_json(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put200_invalid_json(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that is
         not a valid json.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -10360,11 +14486,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -10378,11 +14503,98 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put200_invalid_json(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that is
+        not a valid json.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put200_invalid_json(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that is
+        not a valid json.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -10390,9 +14602,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -10433,26 +14643,30 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put_async_relative_retry_invalid_header_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put_async_relative_retry_invalid_header_initial(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lrosads_put_async_relative_retry_invalid_header_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -10485,16 +14699,19 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
+    @overload
     def begin_put_async_relative_retry_invalid_header(
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
         header is invalid.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -10518,11 +14735,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -10536,11 +14752,102 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put_async_relative_retry_invalid_header(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
+        header is invalid.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_async_relative_retry_invalid_header(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
+        header is invalid.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -10548,9 +14855,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -10599,7 +14904,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     def _put_async_relative_retry_invalid_json_polling_initial(
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -10607,19 +14912,21 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lrosads_put_async_relative_retry_invalid_json_polling_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -10652,16 +14959,19 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
+    @overload
     def begin_put_async_relative_retry_invalid_json_polling(
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -10685,11 +14995,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -10703,11 +15012,102 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put_async_relative_retry_invalid_json_polling(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_async_relative_retry_invalid_json_polling(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """Long running put request, service returns a 200 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -10715,9 +15115,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -10800,9 +15198,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete202_retry_invalid_header(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> LROPoller[None]:
+    def begin_delete202_retry_invalid_header(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request receing a reponse
         with an invalid 'Location' and 'Retry-After' headers.
 
@@ -10887,9 +15283,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_relative_retry_invalid_header(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> LROPoller[None]:
+    def begin_delete_async_relative_retry_invalid_header(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. The endpoint
         indicated in the Azure-AsyncOperation header is invalid.
 
@@ -10974,9 +15368,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def begin_delete_async_relative_retry_invalid_json_polling(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> LROPoller[None]:
+    def begin_delete_async_relative_retry_invalid_json_polling(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -11024,7 +15416,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     def _post202_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -11032,19 +15424,21 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lrosads_post202_retry_invalid_header_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -11067,15 +15461,18 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    @distributed_trace
-    def begin_post202_retry_invalid_header(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+    @overload
+    def begin_post202_retry_invalid_header(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with invalid
         'Location' and 'Retry-After' headers.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -11099,21 +15496,68 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
         """
+
+        ...
+
+    @overload
+    def begin_post202_retry_invalid_header(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 202 to the initial request, with invalid
+        'Location' and 'Retry-After' headers.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_post202_retry_invalid_header(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 202 to the initial request, with invalid
+        'Location' and 'Retry-After' headers.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -11149,7 +15593,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     def _post_async_relative_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -11157,19 +15601,21 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lrosads_post_async_relative_retry_invalid_header_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -11195,16 +15641,19 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    @distributed_trace
-    def begin_post_async_relative_retry_invalid_header(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+    @overload
+    def begin_post_async_relative_retry_invalid_header(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
         header is invalid.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -11228,21 +15677,70 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
         """
+
+        ...
+
+    @overload
+    def begin_post_async_relative_retry_invalid_header(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 202 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
+        header is invalid.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_post_async_relative_retry_invalid_header(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 202 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
+        header is invalid.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -11278,7 +15776,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     def _post_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -11286,19 +15784,21 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lrosads_post_async_relative_retry_invalid_json_polling_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -11324,16 +15824,19 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    @distributed_trace
-    def begin_post_async_relative_retry_invalid_json_polling(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+    @overload
+    def begin_post_async_relative_retry_invalid_json_polling(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -11357,21 +15860,70 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
         """
+
+        ...
+
+    @overload
+    def begin_post_async_relative_retry_invalid_json_polling(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 202 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_post_async_relative_retry_invalid_json_polling(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """Long running post request, service returns a 202 to the initial request, with an entity that
+        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+        header for operation status.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -11424,26 +15976,28 @@ class LROsCustomHeaderOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def _put_async_retry_succeeded_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put_async_retry_succeeded_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lr_os_custom_header_put_async_retry_succeeded_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -11476,15 +16030,20 @@ class LROsCustomHeaderOperations:
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put_async_retry_succeeded(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put_async_retry_succeeded(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 200 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -11508,11 +16067,10 @@ class LROsCustomHeaderOperations:
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -11526,11 +16084,104 @@ class LROsCustomHeaderOperations:
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put_async_retry_succeeded(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+        all requests. Long running put request, service returns a 200 to the initial request, with an
+        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+        Azure-AsyncOperation header for operation status.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put_async_retry_succeeded(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+        all requests. Long running put request, service returns a 200 to the initial request, with an
+        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+        Azure-AsyncOperation header for operation status.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -11538,9 +16189,7 @@ class LROsCustomHeaderOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -11588,26 +16237,28 @@ class LROsCustomHeaderOperations:
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
-    def _put201_creating_succeeded200_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    def _put201_creating_succeeded200_initial(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lr_os_custom_header_put201_creating_succeeded200_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -11640,15 +16291,20 @@ class LROsCustomHeaderOperations:
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def begin_put201_creating_succeeded200(self, product: Optional[JSON] = None, **kwargs: Any) -> LROPoller[JSON]:
+    @overload
+    def begin_put201_creating_succeeded200(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
+    ) -> LROPoller[JSON]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running put request, service returns a 201 to the initial request, with an
         entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -11672,11 +16328,10 @@ class LROsCustomHeaderOperations:
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -11690,11 +16345,104 @@ class LROsCustomHeaderOperations:
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @overload
+    def begin_put201_creating_succeeded200(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+        all requests. Long running put request, service returns a 201 to the initial request, with an
+        entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
+        returns a ‘200’ with ProvisioningState=’Succeeded’.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_put201_creating_succeeded200(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[JSON]:
+        """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+        all requests. Long running put request, service returns a 201 to the initial request, with an
+        entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
+        returns a ‘200’ with ProvisioningState=’Succeeded’.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns JSON object
+        :rtype: ~azure.core.polling.LROPoller[JSON]
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200, 201
+                response.json() == {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
@@ -11702,9 +16450,7 @@ class LROsCustomHeaderOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -11746,7 +16492,7 @@ class LROsCustomHeaderOperations:
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -11754,19 +16500,21 @@ class LROsCustomHeaderOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lr_os_custom_header_post202_retry200_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -11789,16 +16537,19 @@ class LROsCustomHeaderOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    @distributed_trace
-    def begin_post202_retry200(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+    @overload
+    def begin_post202_retry200(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -11822,21 +16573,68 @@ class LROsCustomHeaderOperations:
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
         """
+
+        ...
+
+    @overload
+    def begin_post202_retry200(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+        all requests. Long running post request, service returns a 202 to the initial request, with
+        'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_post202_retry200(self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any) -> LROPoller[None]:
+        """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+        all requests. Long running post request, service returns a 202 to the initial request, with
+        'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -11872,7 +16670,7 @@ class LROsCustomHeaderOperations:
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
 
     def _post_async_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
     ) -> None:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -11880,19 +16678,21 @@ class LROsCustomHeaderOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if product is not None:
-            _json = product
+        _json = None
+        _content = None
+        if isinstance(product, IO):
+            _content = product
         else:
-            _json = None
+            _json = product
+            content_type = content_type or "application/json"
 
         request = build_lr_os_custom_header_post_async_retry_succeeded_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -11918,17 +16718,20 @@ class LROsCustomHeaderOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    @distributed_trace
-    def begin_post_async_retry_succeeded(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[JSON] = None, **kwargs: Any
+    @overload
+    def begin_post_async_retry_succeeded(
+        self, product: Optional[JSON] = None, *, content_type: Optional[str] = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
         all requests. Long running post request, service returns a 202 to the initial request, with an
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put. Default value is None.
+        :param product: Product to put. Optional.
         :type product: JSON
+        :keyword content_type: Body Parameter content-type. Optional. Default value is
+         "application/json".
+        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
          operation to not poll, or pass in your own initialized polling object for a personal polling
@@ -11952,21 +16755,72 @@ class LROsCustomHeaderOperations:
                         "provisioningState": "str",  # Optional.
                         "provisioningStateValues": "str"  # Optional. Known values are:
                           "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
-                          "Updating", "Updated", "Deleting", "Deleted", "OK".
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
                     },
                     "tags": {
-                        "str": "str"  # Optional. A set of tags. Dictionary of
-                          :code:`<string>`.
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
                     },
                     "type": "str"  # Optional. Resource Type.
                 }
         """
+
+        ...
+
+    @overload
+    def begin_post_async_retry_succeeded(
+        self, product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+        all requests. Long running post request, service returns a 202 to the initial request, with an
+        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+        Azure-AsyncOperation header for operation status.
+
+        :param product: Product to put. Optional.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def begin_post_async_retry_succeeded(
+        self, product: Optional[Union[IO, JSON]] = None, **kwargs: Any
+    ) -> LROPoller[None]:
+        """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
+        all requests. Long running post request, service returns a 202 to the initial request, with an
+        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+        Azure-AsyncOperation header for operation status.
+
+        :param product: Product to put.
+        :type product: IO or JSON
+        :keyword content_type: Body Parameter content-type. Optional.
+        :paramtype content_type: str
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
+         operation to not poll, or pass in your own initialized polling object for a personal polling
+         strategy.
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
         polling = kwargs.pop("polling", True)  # type: Union[bool, PollingMethod]
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)

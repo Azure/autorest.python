@@ -27,12 +27,6 @@ def update_operation_group_class_name(yaml_data: Dict[str, Any], class_name: str
 def update_parameter(yaml_data: Dict[str, Any]) -> None:
     yaml_data["description"] = update_description(yaml_data["description"])
 
-
-
-
-
-
-
 def update_types(yaml_data: List[Dict[str, Any]]) -> None:
     for type in yaml_data:
         for property in type.get("properties", []):
@@ -65,8 +59,7 @@ class Namer(YamlUpdatePlugin):
         for overload in yaml_data.get("overloads", []):
             self.update_operation(overload)
 
-    def update_lro_operation(self, yaml_data: Dict[str, Any]) -> None:
-        self.update_operation(yaml_data)
+    def _update_lro_operation_helper(self, yaml_data: Dict[str, Any]) -> None:
         azure_arm = self._autorestapi.get_boolean_value("azure-arm", False)
         if not yaml_data.get("pollerSync"):
             yaml_data["pollerSync"] = "azure.core.polling.LROPoller"
@@ -82,6 +75,13 @@ class Namer(YamlUpdatePlugin):
                 "azure.mgmt.core.polling.async_arm_polling.AsyncARMPolling" if azure_arm else
                 "azure.core.polling.async_base_polling.AsyncLROBasePolling"
             )
+
+
+    def update_lro_operation(self, yaml_data: Dict[str, Any]) -> None:
+        self.update_operation(yaml_data)
+        self._update_lro_operation_helper(yaml_data)
+        for overload in yaml_data["overloads"]:
+            self._update_lro_operation_helper(overload)
 
     def update_paging_operation(self, yaml_data: Dict[str, Any]) -> None:
         self.update_operation(yaml_data)

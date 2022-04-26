@@ -25,7 +25,7 @@ class PagingOperation(Operation):
         responses: List[Response],
         *,
         overloads: Optional[List[Operation]] = None,
-        want_description_docstring: bool = True,
+        public: bool = True,
         want_tracing: bool = True,
         abstract: bool = False,
         override_success_response_to_200: bool = False,
@@ -38,7 +38,7 @@ class PagingOperation(Operation):
             parameters=parameters,
             responses=responses,
             overloads=overloads,
-            want_description_docstring=want_description_docstring,
+            public=public,
             want_tracing=want_tracing,
             abstract=abstract,
         )
@@ -50,6 +50,7 @@ class PagingOperation(Operation):
         self.override_success_response_to_200 = override_success_response_to_200
         self.pager_sync: str = yaml_data["pagerSync"]
         self.pager_async: str = yaml_data["pagerAsync"]
+        self.operation_type = "paging"
 
     def get_pager_path(self, async_mode: bool) -> str:
         return self.yaml_data["pagerAsync"] if async_mode else self.yaml_data["pagerSync"]

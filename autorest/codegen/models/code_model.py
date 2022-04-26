@@ -13,7 +13,7 @@ from .enum_type import EnumType
 from .model_type import ModelType
 from .operation_group import OperationGroup
 from .operation import Operation
-from .lro_operation import LROOperation
+from .lro_operation import LROOperation, OverloadedLROOperation
 from .paging_operation import PagingOperation
 from .client import Client, Config
 from .property import Property
@@ -183,7 +183,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             i = 0
             while i < len(operation_group.operations):
                 operation = operation_group.operations[i]
-                if isinstance(operation, LROOperation):
+                if operation.operation_type == "lro":
                     operation_group.operations.insert(i, operation.initial_operation)
                     i += 1
                 i += 1
@@ -228,7 +228,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     def has_lro_operations(self) -> bool:
         return any(
             [
-                isinstance(operation, LROOperation)
+                operation.operation_type == "lro"
                 for operation_group in self.operation_groups
                 for operation in operation_group.operations
             ]

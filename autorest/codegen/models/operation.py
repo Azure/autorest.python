@@ -35,7 +35,7 @@ class OperationBase(BaseBuilder[ParameterListType]):
         responses: List[Response],
         *,
         overloads: Optional[List["Operation"]] = None,
-        want_description_docstring: bool = True,
+        public: bool = True,
         want_tracing: bool = True,
         abstract: bool = False,
     ) -> None:
@@ -50,7 +50,7 @@ class OperationBase(BaseBuilder[ParameterListType]):
         )
         self.overloads = overloads
         self.responses = responses
-        self.want_description_docstring = want_description_docstring
+        self.public = public
         self.request_builder = request_builder
         self.deprecated = False
         self.operation_type = "operation"
@@ -364,6 +364,9 @@ class OperationBase(BaseBuilder[ParameterListType]):
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> Union["Operation", "OverloadedOperation"]:
         if yaml_data["discriminator"] == "lro":
+            if yaml_data.get("overloads"):
+                from .lro_operation import OverloadedLROOperation
+                return OverloadedLROOperation.from_yaml(yaml_data, code_model)
             from .lro_operation import LROOperation
             return LROOperation.from_yaml(yaml_data, code_model)
         if yaml_data["discriminator"] == "paging":
@@ -403,6 +406,10 @@ class OverloadedOperation(OperationBase[OverloadedOperationParameterList]):
         file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
         return file_import
 
+    @staticmethod
+    def overload_operation_class() -> Type[Operation]:
+        return Operation
+
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "OverloadedOperation":
         name = yaml_data["name"]
@@ -413,7 +420,7 @@ class OverloadedOperation(OperationBase[OverloadedOperationParameterList]):
             body_parameter = MultipleTypeBodyParameter.from_yaml(yaml_data["bodyParameter"], code_model)
         else:
             body_parameter = None
-        overloads = [Operation.from_yaml(overload_yaml_data, code_model) for overload_yaml_data in yaml_data["overloads"]]
+        overloads = [cls.overload_operation_class().from_yaml(overload_yaml_data, code_model) for overload_yaml_data in yaml_data["overloads"]]
         parameter_list = OverloadedOperationParameterList(code_model, parameters, body_parameter)
         return cls(
             yaml_data=yaml_data,

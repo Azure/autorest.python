@@ -56,3 +56,10 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
     {% endif %}
 {% endmacro %}
+
+{% macro generate_overloads(operation_serializer, operation) %}
+{% for overload in operation.overloads %}
+{{ operation_serializer.method_signature_and_response_type_annotation(overload) }}
+    {{ description(overload, operation_serializer) | indent }}
+    ...
+{% endfor %}{% endmacro %}

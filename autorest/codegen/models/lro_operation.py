@@ -4,9 +4,9 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Any, Dict, Optional, cast, List, TYPE_CHECKING
+from typing import Any, Dict, Optional, Type, List, TYPE_CHECKING
 from .imports import FileImport
-from .operation import Operation
+from .operation import Operation, OperationBase, OverloadedOperation
 from .response import Response
 from .imports import ImportType, TypingSection
 from .base_type import BaseType
@@ -19,7 +19,7 @@ if TYPE_CHECKING:
     from .code_model import CodeModel
 
 
-class LROOperation(Operation):
+class _LROOperationBase(OperationBase):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -30,7 +30,7 @@ class LROOperation(Operation):
         responses: List[Response],
         *,
         overloads: Optional[List[Operation]] = None,
-        want_description_docstring: bool = True,
+        public: bool = True,
         want_tracing: bool = True,
         abstract: bool = False,
     ) -> None:
@@ -42,26 +42,13 @@ class LROOperation(Operation):
             parameters=parameters,
             responses=responses,
             overloads=overloads,
-            want_description_docstring=want_description_docstring,
+            public=public,
             want_tracing=want_tracing,
             abstract=abstract,
         )
         self.name = "begin_" + self.name
         self.lro_options: Dict[str, Any] = self.yaml_data.get("lroOptions", {})
-
-    @property
-    def initial_operation(self) -> Operation:
-        return Operation(
-            yaml_data=self.yaml_data,
-            code_model=self.code_model,
-            request_builder=self.code_model.lookup_request_builder(id(self.yaml_data)),
-            name=self.name[5:] + "_initial",
-            overloads=self.overloads,
-            parameters=self.parameters,
-            responses=self.responses,
-            want_description_docstring=False,
-            want_tracing=False,
-        )
+        self.operation_type = "lro"
 
     @property
     def has_optional_return_type(self) -> bool:
@@ -190,3 +177,38 @@ class LROOperation(Operation):
                 ImportType.AZURECORE,
             )
         return file_import
+
+class LROOperation(Operation, _LROOperationBase):
+    @property
+    def initial_operation(self) -> Operation:
+        return Operation(
+            yaml_data=self.yaml_data,
+            code_model=self.code_model,
+            request_builder=self.code_model.lookup_request_builder(id(self.yaml_data)),
+            name=self.name[5:] + "_initial",
+            overloads=self.overloads,
+            parameters=self.parameters,
+            responses=self.responses,
+            public=False,
+            want_tracing=False,
+        )
+
+class OverloadedLROOperation(OverloadedOperation, _LROOperationBase):
+
+    @staticmethod
+    def overload_operation_class() -> Type[Operation]:
+        return LROOperation
+
+    @property
+    def initial_operation(self) -> OverloadedOperation:
+        return OverloadedOperation(
+            yaml_data=self.yaml_data,
+            code_model=self.code_model,
+            request_builder=self.code_model.lookup_request_builder(id(self.yaml_data)),
+            name=self.name[5:] + "_initial",
+            overloads=self.overloads,
+            parameters=self.parameters,
+            responses=self.responses,
+            public=False,
+            want_tracing=False,
+        )

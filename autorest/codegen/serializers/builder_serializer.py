@@ -8,6 +8,8 @@ from abc import abstractmethod, ABC
 from collections import defaultdict
 from typing import Any, List, TypeVar, Dict, Union, Optional, cast
 
+from autorest.codegen.models.lro_operation import OverloadedLROOperation
+
 from ..models import (
     Operation,
     CodeModel,
@@ -1039,7 +1041,7 @@ class LROPagingOperationSerializer(
         return LROOperationSerializer.decorators(self, builder)
 
 def get_operation_serializer(
-    builder,
+    builder: Operation,
     code_model,
     async_mode: bool,
     is_python3_file: bool,
@@ -1047,7 +1049,7 @@ def get_operation_serializer(
     retcls = OperationSerializer
     if isinstance(builder, LROPagingOperation):
         retcls = LROPagingOperationSerializer
-    elif isinstance(builder, LROOperation):
+    elif builder.operation_type == "lro":
         retcls = LROOperationSerializer
     elif isinstance(builder, PagingOperation):
         retcls = PagingOperationSerializer

@@ -43,7 +43,6 @@ class _BaseParameter(BaseModel, abc.ABC):
         self.optional: bool = self.yaml_data["optional"]
         self.location: ParameterLocation = self.yaml_data["location"]
         self.client_default_value = self.yaml_data.get("clientDefaultValue", None)
-        self.skip_url_encoding: bool = self.yaml_data["skipUrlEncoding"]
 
     @property
     def description(self) -> str:
@@ -249,11 +248,14 @@ class SingleTypeBodyParameter(_SingleTypeParameter, _BodyParameter):
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "SingleTypeBodyParameter":
-        return cls(
-            yaml_data=yaml_data,
-            code_model=code_model,
-            type=code_model.lookup_type(id(yaml_data["type"])),
-        )
+        try:
+            return cls(
+                yaml_data=yaml_data,
+                code_model=code_model,
+                type=code_model.lookup_type(id(yaml_data["type"])),
+            )
+        except KeyError:
+            a = "b"
 
 class MultipartBodyParameter(_BaseParameter):
     ...
@@ -316,14 +318,11 @@ class Parameter(_SingleTypeParameter):
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
-        try:
-            return cls(
-                yaml_data=yaml_data,
-                code_model=code_model,
-                type=code_model.lookup_type(id(yaml_data["type"]))
-            )
-        except KeyError:
-            a = 'b'
+        return cls(
+            yaml_data=yaml_data,
+            code_model=code_model,
+            type=code_model.lookup_type(id(yaml_data["type"]))
+        )
 
 class ClientParameter(Parameter):
 
