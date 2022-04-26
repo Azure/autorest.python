@@ -187,6 +187,7 @@ class HttpFailureOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -228,6 +229,7 @@ class HttpFailureOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -269,6 +271,7 @@ class HttpFailureOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -328,6 +331,7 @@ class HttpSuccessOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -362,6 +366,7 @@ class HttpSuccessOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -403,6 +408,7 @@ class HttpSuccessOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -459,6 +465,7 @@ class HttpSuccessOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -508,6 +515,7 @@ class HttpSuccessOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -557,6 +565,7 @@ class HttpSuccessOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -606,6 +615,7 @@ class HttpSuccessOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -655,6 +665,7 @@ class HttpSuccessOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -704,6 +715,7 @@ class HttpSuccessOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [201]:
@@ -753,6 +765,7 @@ class HttpSuccessOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -802,6 +815,7 @@ class HttpSuccessOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -851,6 +865,7 @@ class HttpSuccessOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -900,6 +915,7 @@ class HttpSuccessOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -934,6 +950,7 @@ class HttpSuccessOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
@@ -983,6 +1000,7 @@ class HttpSuccessOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
@@ -1032,6 +1050,7 @@ class HttpSuccessOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
@@ -1081,6 +1100,7 @@ class HttpSuccessOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
@@ -1130,6 +1150,7 @@ class HttpSuccessOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
@@ -1164,6 +1185,7 @@ class HttpSuccessOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [204, 404]:
@@ -1216,6 +1238,7 @@ class HttpRedirectsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 300]:
@@ -1262,6 +1285,7 @@ class HttpRedirectsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 300]:
@@ -1308,6 +1332,7 @@ class HttpRedirectsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 301]:
@@ -1346,6 +1371,7 @@ class HttpRedirectsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 301]:
@@ -1400,6 +1426,7 @@ class HttpRedirectsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [301]:
@@ -1437,6 +1464,7 @@ class HttpRedirectsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 302]:
@@ -1475,6 +1503,7 @@ class HttpRedirectsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 302]:
@@ -1529,6 +1558,7 @@ class HttpRedirectsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [302]:
@@ -1582,6 +1612,7 @@ class HttpRedirectsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 303]:
@@ -1620,6 +1651,7 @@ class HttpRedirectsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
@@ -1658,6 +1690,7 @@ class HttpRedirectsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
@@ -1696,6 +1729,7 @@ class HttpRedirectsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
@@ -1749,6 +1783,7 @@ class HttpRedirectsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
@@ -1802,6 +1837,7 @@ class HttpRedirectsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
@@ -1855,6 +1891,7 @@ class HttpRedirectsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
@@ -1908,6 +1945,7 @@ class HttpRedirectsOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 307]:
@@ -1964,6 +2002,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -1998,6 +2037,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2032,6 +2072,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2081,6 +2122,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2130,6 +2172,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2179,6 +2222,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2228,6 +2272,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2262,6 +2307,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2296,6 +2342,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2330,6 +2377,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2364,6 +2412,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2413,6 +2462,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2462,6 +2512,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2511,6 +2562,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2560,6 +2612,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2609,6 +2662,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2643,6 +2697,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2677,6 +2732,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2711,6 +2767,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2745,6 +2802,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2794,6 +2852,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2843,6 +2902,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2892,6 +2952,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2926,6 +2987,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -2975,6 +3037,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -3009,6 +3072,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -3061,6 +3125,7 @@ class HttpServerFailureOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -3095,6 +3160,7 @@ class HttpServerFailureOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -3144,6 +3210,7 @@ class HttpServerFailureOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -3193,6 +3260,7 @@ class HttpServerFailureOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in []:
@@ -3245,6 +3313,7 @@ class HttpRetryOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3294,6 +3363,7 @@ class HttpRetryOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3343,6 +3413,7 @@ class HttpRetryOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3377,6 +3448,7 @@ class HttpRetryOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3411,6 +3483,7 @@ class HttpRetryOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3467,6 +3540,7 @@ class HttpRetryOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3516,6 +3590,7 @@ class HttpRetryOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3565,6 +3640,7 @@ class HttpRetryOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3614,6 +3690,7 @@ class HttpRetryOperations:
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -3674,6 +3751,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
@@ -3725,6 +3803,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
@@ -3776,6 +3855,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
@@ -3827,6 +3907,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
@@ -3878,6 +3959,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
@@ -3934,6 +4016,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
@@ -3995,6 +4078,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
@@ -4056,6 +4140,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
@@ -4120,6 +4205,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201, 404]:
@@ -4190,6 +4276,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201, 404]:
@@ -4260,6 +4347,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201, 404]:
@@ -4330,6 +4418,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201, 404]:
@@ -4386,6 +4475,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
@@ -4422,6 +4512,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
@@ -4458,6 +4549,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
@@ -4494,6 +4586,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
@@ -4530,6 +4623,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
@@ -4566,6 +4660,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
@@ -4602,6 +4697,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [202, 204]:
@@ -4644,6 +4740,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -4693,6 +4790,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -4736,6 +4834,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -4772,6 +4871,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -4808,6 +4908,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -4842,6 +4943,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -4878,6 +4980,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -4912,6 +5015,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -4955,6 +5059,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -5004,6 +5109,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -5053,6 +5159,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -5102,6 +5209,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -5151,6 +5259,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -5200,6 +5309,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -5249,6 +5359,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:

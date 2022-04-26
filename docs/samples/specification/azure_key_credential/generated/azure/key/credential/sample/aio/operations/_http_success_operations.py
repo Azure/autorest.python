@@ -73,6 +73,7 @@ class HttpSuccessOperations:
             stream=False,
             **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 404]:
@@ -121,6 +122,7 @@ class HttpSuccessOperations:
             stream=False,
             **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [204, 404]:
@@ -169,6 +171,7 @@ class HttpSuccessOperations:
             stream=False,
             **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [204, 404]:

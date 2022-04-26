@@ -74,6 +74,7 @@ class MultiapiServiceClientOperationsMixin:
             stream=False,
             **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -123,6 +124,7 @@ class MultiapiServiceClientOperationsMixin:
             stream=False,
             **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
@@ -251,6 +253,7 @@ class MultiapiServiceClientOperationsMixin:
             stream=False,
             **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -354,7 +357,7 @@ class MultiapiServiceClientOperationsMixin:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
-            pipeline_response = await self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
                 request,
                 stream=False,
                 **kwargs
@@ -458,6 +461,7 @@ class MultiapiServiceClientOperationsMixin:
             stream=False,
             **kwargs
         )
+
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
