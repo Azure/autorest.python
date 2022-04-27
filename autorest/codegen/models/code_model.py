@@ -399,9 +399,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
                 operation.link_body_kwargs_to_body_params()
 
     def get_models_filename(self, is_python3_file: bool) -> str:
-        if (
-            self.options["version_tolerant"] or self.options["low_level_client"]
-        ) and self.options["python3_only"]:
+        if not self.is_legacy and self.options["python3_only"]:
             return "_models"
         if is_python3_file:
             return "_models_py3"
@@ -409,7 +407,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
 
     @property
     def enums_filename(self) -> str:
-        if self.options["version_tolerant"] or self.options["low_level_client"]:
+        if not self.is_legacy:
             return "_enums"
         return f"_{self.module_name}_enums"
 
@@ -418,8 +416,3 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         return not (
             self.options["version_tolerant"] or self.options["low_level_client"]
         )
-        # return not any(
-        #     g
-        #     for g in ["low_level_client", "version_tolerant"]
-        #     if g in self.options
-        # )

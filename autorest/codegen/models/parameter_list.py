@@ -366,10 +366,9 @@ class GlobalParameterList(ParameterList):
     @property
     def host_variable_name(self) -> str:
         return (
-            "endpoint"
-            if self.code_model.options["version_tolerant"]
-            or self.code_model.options["low_level_client"]
-            else "base_url"
+            "base_url"
+            if self.code_model.is_legacy
+            else "endpoint"
         )
 
     @staticmethod
@@ -396,10 +395,7 @@ class GlobalParameterList(ParameterList):
             constraints=[],
             client_default_value=host_value,
         )
-        if (
-            self.code_model.options["version_tolerant"]
-            or self.code_model.options["low_level_client"]
-        ):
+        if not self.code_model.is_legacy:
             host_param.method_location = ParameterMethodLocation.KEYWORD_ONLY
         self.parameters.append(host_param)
 
@@ -417,13 +413,10 @@ class GlobalParameterList(ParameterList):
             skip_url_encoding=True,
             constraints=[],
         )
-        if (
-            self.code_model.options["version_tolerant"]
-            or self.code_model.options["low_level_client"]
-        ):
-            self.parameters.append(credential_parameter)
-        else:
+        if self.code_model.is_legacy:
             self.parameters.insert(0, credential_parameter)
+        else:
+            self.parameters.append(credential_parameter)
 
     @property
     def host(self) -> Optional[Parameter]:

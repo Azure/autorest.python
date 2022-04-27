@@ -157,9 +157,6 @@ class Client:
 
     @property
     def filename(self) -> str:
-        if (
-            self.code_model.options["version_tolerant"]
-            or self.code_model.options["low_level_client"]
-        ):
+        if not self.code_model.is_legacy:
             return "_client"
         return f"_{self.code_model.module_name}"

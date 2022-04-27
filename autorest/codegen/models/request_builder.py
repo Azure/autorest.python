@@ -146,10 +146,7 @@ class RequestBuilder(BaseBuilder):
             code_model, parameters + multiple_content_type_parameters, schema_requests
         )
         abstract = False
-        if (
-            code_model.options["version_tolerant"]
-            or code_model.options["low_level_client"]
-        ) and any(p for p in parameter_list if p.is_multipart or p.is_data_input):
+        if not code_model.is_legacy and any(p for p in parameter_list if p.is_multipart or p.is_data_input):
             _LOGGER.warning(
                 'Not going to generate request_builder "%s" because it has multipart / urlencoded '
                 "body parameters. Multipart / urlencoded body parameters are not supported for version "
