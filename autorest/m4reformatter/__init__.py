@@ -8,7 +8,7 @@
 import re
 import copy
 import logging
-from typing import Callable, Dict, Any, List, Optional, Set, Tuple
+from typing import Callable, Dict, Any, Iterable, List, Optional, Sequence, Set, Tuple
 
 from .. import YamlUpdatePlugin
 JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
@@ -203,7 +203,8 @@ def update_parameter(yaml_data: Dict[str, Any], *, client_name: Optional[str] = 
         "implementation": yaml_data["implementation"],
         "explode": yaml_data["protocol"]["http"].get("explode", False),
         "inOverload": in_overload,
-        "skipUrlEncoding": yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False)
+        "skipUrlEncoding": yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
+        "inDocstring": yaml_data.get("inDocstring", True)
     })
     return param_base
 
@@ -230,8 +231,7 @@ def update_body_parameter(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         param_base["type"] = all_body_types[0]
         param_base["contentTypes"] = list(yaml_data.keys())
         # get default content type
-        content_type_param = next(p for p in list(yaml_data.values())[0]["parameters"] if p["language"]["default"]["name"] == "content_type")
-        param_base["defaultContentType"] = content_type_param["clientDefaultValue"]
+        param_base["defaultContentType"] = _get_default_content_type(yaml_data.keys())
         if all_body_types[0]["type"] == "constant":
             param_base["clientDefaultValue"] = all_body_types[0]["value"]
     else:
@@ -271,7 +271,9 @@ def update_parameters(yaml_data: Dict[str, Any], *, in_overload: bool = False) -
                         param["schema"] = get_type({"type": "string"})  # override to string type
                         param["required"] = False
                         if not in_overload:
-                            param["clientDefaultValue"] = None
+                            param["clientDefaultValue"] = _get_default_content_type(yaml_data.get("requestMediaTypes", {}).keys())
+                        if len(yaml_data.get("requestMediaTypes", {})) == 1:
+                            param["inDocstring"] = False
                     param = update_parameter(param, in_overload=in_overload)
 
                     retval.append(param)
@@ -288,7 +290,10 @@ def update_response(
     operation_group_yaml_data: Dict[str, Any],
     yaml_data: Dict[str, Any],
 ) -> Dict[str, Any]:
-    type = update_type(yaml_data["schema"]) if yaml_data.get("schema") else None
+    if yaml_data.get("binary"):
+        type = KNOWN_TYPES["binary"]
+    else:
+        type = update_type(yaml_data["schema"]) if yaml_data.get("schema") else None
     return {
         "headers": [update_response_header(h) for h in yaml_data["protocol"]["http"].get("headers", [])],
         "statusCodes": [
@@ -299,7 +304,7 @@ def update_response(
         "type": type
     }
 
-def _get_default_content_type(content_types: List[str]) -> Optional[str]:
+def _get_default_content_type(content_types: Iterable[str]) -> Optional[str]:
     json_values = [ct for ct in content_types if JSON_REGEXP.match(ct)]
     if json_values:
         if "application/json" in json_values:
@@ -344,16 +349,24 @@ def update_overloads(group_name: str, yaml_data: Dict[str, Any], body_parameter:
 
 
 def update_operation(group_name: str, yaml_data: Dict[str, Any], *, is_overload: bool = False) -> Dict[str, Any]:
-    if not is_overload and yaml_data.get("requestMediaTypes") and any(ct for ct in yaml_data["requestMediaTypes"] if JSON_REGEXP.match(ct)):
-        # we add a content overload for all JSON inputs
-        # first check if we already have any body param that is a stream input. If so, we skip this step
-        yaml_data["requestMediaTypes"]["UNKNOWN"] = copy.deepcopy(list(yaml_data["requestMediaTypes"].values())[0])
-        body_param = next(b for b in yaml_data["requestMediaTypes"]["UNKNOWN"]["parameters"] if b["protocol"]["http"]["in"] == "body")
-        body_param["schema"] = get_type({"type": "binary"})
-        yaml_data["requestMediaTypes"]["UNKNOWN"]["parameters"] = [
-            body_param if p["protocol"]["http"]["in"] == "body" else p
-            for p in list(yaml_data["requestMediaTypes"].values())[0]["parameters"]
-        ]
+    if len(yaml_data.get("requests", [])) == 1:
+        if (
+            not is_overload and
+            yaml_data.get("requestMediaTypes") and
+            any(ct for ct in yaml_data["requestMediaTypes"] if JSON_REGEXP.match(ct)) and
+            next(b for b in yaml_data["requests"][0]["parameters"] if b["protocol"]["http"]["in"] == "body")["schema"] in ("object", "dictionary", "array")
+        ):
+            # we add a content overload for all JSON inputs
+            # first check if we already have any body param that is a stream input. If so, we skip this step
+            yaml_data["requestMediaTypes"]["UNKNOWN"] = copy.deepcopy(list(yaml_data["requestMediaTypes"].values())[0])
+            body_param = next(b for b in yaml_data["requestMediaTypes"]["UNKNOWN"]["parameters"] if b["protocol"]["http"]["in"] == "body")
+            body_param["schema"] = get_type({"type": "binary"})
+            yaml_data["requestMediaTypes"]["UNKNOWN"]["parameters"] = [
+                body_param if p["protocol"]["http"]["in"] == "body" else p
+                for p in list(yaml_data["requestMediaTypes"].values())[0]["parameters"]
+            ]
+        # update content type
+
     body_parameter = update_body_parameter(yaml_data["requestMediaTypes"]) if yaml_data.get("requestMediaTypes") else None
     return {
         "name": yaml_data["language"]["default"]["name"],

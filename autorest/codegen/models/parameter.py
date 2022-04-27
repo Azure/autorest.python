@@ -43,6 +43,7 @@ class _BaseParameter(BaseModel, abc.ABC):
         self.optional: bool = self.yaml_data["optional"]
         self.location: ParameterLocation = self.yaml_data["location"]
         self.client_default_value = self.yaml_data.get("clientDefaultValue", None)
+        self.in_docstring = self.yaml_data.get("inDocstring", True)
 
     @property
     def description(self) -> str:

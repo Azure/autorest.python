@@ -180,6 +180,8 @@ class _BuilderBaseSerializer(
     ) -> List[str]:
         description_list: List[str] = []
         for param in builder.parameters.method:
+            if not param.in_docstring:
+                continue
             description_list.extend(
                 f":{param.description_keyword} { param.client_name }: { param.description }".replace(
                     "\n", "\n "
@@ -333,7 +335,7 @@ class RequestBuilderSerializer(
             retval.append("    params=_params,")
         if builder.parameters.headers:
             retval.append("    headers=_headers,")
-        if builder.parameters.has_body_parameter and not builder.parameters.body_parameter:
+        if builder.parameters.has_body_parameter:
             retval.append(f"    {builder.parameters.body_parameter.client_name}={builder.parameters.body_parameter.client_name},")
         retval.append("    **kwargs")
         retval.append(")")
