@@ -14,8 +14,8 @@ from .. import YamlUpdatePlugin
 JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
 ORIGINAL_ID_TO_UPDATED_TYPE: Dict[int, Dict[str, Any]] = {}
 
-AAD_TYPE = "AADToken"
-KEY_TYPE = "AzureKey"
+OAUTH_TYPE = "OAuth2"
+KEY_TYPE = "Key"
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -165,7 +165,7 @@ def update_type(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         updated_type = update_constant(yaml_data)
     elif type_group in ("choice", "sealed-choice"):
         updated_type = update_enum(yaml_data)
-    elif type_group in (AAD_TYPE, KEY_TYPE):
+    elif type_group in (OAUTH_TYPE, KEY_TYPE):
         updated_type = yaml_data
     elif type_group == "object":
         # avoiding infinite loop
@@ -478,7 +478,7 @@ class M4Reformatter(YamlUpdatePlugin):
 
     def get_token_credential(self, credential_scopes: List[str]) -> Dict[str, Any]:
         retval = {
-            "type": AAD_TYPE,
+            "type": OAUTH_TYPE,
             "policy": {
                 "type": "ARMChallengeAuthenticationPolicy" if self.azure_arm else "BearerTokenCredentialPolicy",
                 "credentialScopes": credential_scopes
@@ -490,11 +490,11 @@ class M4Reformatter(YamlUpdatePlugin):
     def update_credential_from_security(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         retval: Dict[str, Any] = {}
         for scheme in yaml_data.get("schemes", []):
-            if scheme["type"] == AAD_TYPE:
+            if scheme["type"] == OAUTH_TYPE:
                 # TokenCredential
                 retval = self.get_token_credential(scheme["scopes"])
             elif scheme["type"] == KEY_TYPE:
-                retval = get_azure_key_credential(scheme["headerName"])
+                retval = get_azure_key_credential(scheme["name"])
         return retval
 
     def get_credential_scopes_from_flags(self, auth_policy: str) -> List[str]:
