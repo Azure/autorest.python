@@ -128,27 +128,29 @@ def fill_model(yaml_data: Dict[str, Any], current_model: Dict[str, Any]) -> Dict
 
 def update_primitive(type_group: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     if type_group == "integer":
-        return {"type": "integer"}
+        return {"type": "integer", "clientDefaultValue": yaml_data.get("defaultValue")}
     if type_group == "number":
-        return {"type": "float"}
+        return {"type": "float", "clientDefaultValue": yaml_data.get("defaultValue")}
     if type_group in ("string", "uuid"):
+        if yaml_data.get("defaultValue"):
+            return {"type": "string", "clientDefaultValue": yaml_data.get("defaultValue")}
         return KNOWN_TYPES["string"]
     if type_group == "byte-array":
-        return {"type": "base64"}
+        return {"type": "base64", "clientDefaultValue": yaml_data.get("defaultValue")}
     if type_group == "binary":
         return KNOWN_TYPES["binary"]
     if type_group == "any":
-        return {"type": "any"}
+        return {"type": "any", "clientDefaultValue": yaml_data.get("defaultValue")}
     if type_group == "date-time":
-        return {"type": "datetime", "format": yaml_data["format"]}
+        return {"type": "datetime", "format": yaml_data["format"], "clientDefaultValue": yaml_data.get("defaultValue")}
     if type_group == "duration":
-        return {"type": "duration"}
+        return {"type": "duration", "clientDefaultValue": yaml_data.get("defaultValue")}
     if type_group == "date":
-        return {"type": "date"}
+        return {"type": "date", "clientDefaultValue": yaml_data.get("defaultValue")}
     if type_group == "base64":
-        return {"type": "base64"}
+        return {"type": "base64", "clientDefaultValue": yaml_data.get("defaultValue")}
     if type_group == "boolean":
-        return {"type": "bool"}
+        return {"type": "bool", "clientDefaultValue": yaml_data.get("defaultValue")}
     raise ValueError(f"Unknown type group {type_group}")
 
 def update_type(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
@@ -385,26 +387,37 @@ def update_lro_operation(group_name: str, yaml_data: Dict[str, Any]) -> Dict[str
         add_lro_information(overload, yaml_data)
     return base_operation
 
-
-def update_paging_operation(group_name: str, yaml_data: Dict[str, Any], *, is_overload: bool = False) -> Dict[str, Any]:
-    base_operation = update_operation(group_name, yaml_data, is_overload=is_overload)
-    base_operation["discriminator"] = "paging"
-    base_operation["itemName"] = yaml_data["extensions"]["x-ms-pageable"].get("itemName", "value")
-    base_operation["continuationTokenName"] = yaml_data["extensions"]["x-ms-pageable"].get("nextLinkName")
+def add_paging_information(group_name: str, operation: Dict[str, Any], yaml_data: Dict[str, Any]) -> None:
+    operation["discriminator"] = "paging"
+    operation["itemName"] = yaml_data["extensions"]["x-ms-pageable"].get("itemName", "value")
+    operation["continuationTokenName"] = yaml_data["extensions"]["x-ms-pageable"].get("nextLinkName")
     if yaml_data["language"]["default"]["paging"].get("nextLinkOperation"):
-        base_operation["nextOperation"] = update_operation(
+        operation["nextOperation"] = update_operation(
             group_name=group_name,
             yaml_data=yaml_data["language"]["default"]["paging"]["nextLinkOperation"],
             is_overload=False,
         )
     extensions = yaml_data["extensions"]
-    base_operation["pagerSync"] = extensions.get("x-python-custom-pager-sync")
-    base_operation["pagerAsync"] = extensions.get("x-python-custom-pager-async")
+    operation["pagerSync"] = extensions.get("x-python-custom-pager-sync")
+    operation["pagerAsync"] = extensions.get("x-python-custom-pager-async")
+
+
+def update_paging_operation(group_name: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    base_operation = update_operation(group_name, yaml_data)
+    add_paging_information(group_name, base_operation, yaml_data)
     return base_operation
+
+def update_lro_paging_operation(group_name: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    operation = update_lro_operation(group_name, yaml_data)
+    add_paging_information(group_name, operation, yaml_data)
+    operation["discriminator"] = "lropaging"
+    return operation
 
 def get_operation_creator(yaml_data: Dict[str, Any]) -> Callable[[str, Dict[str, Any]], Dict[str, Any]]:
     lro_operation = yaml_data.get("extensions", {}).get("x-ms-long-running-operation")
     paging_operation = yaml_data.get("extensions", {}).get("x-ms-pageable")
+    if lro_operation and paging_operation:
+        return update_lro_paging_operation
     if lro_operation:
         return update_lro_operation
     if paging_operation:

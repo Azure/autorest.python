@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, Optional, TypeVar, Union, cast
+from typing import Any, AsyncIterable, Callable, Dict, Optional, Optional, TypeVar, Union, cast
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
@@ -384,13 +384,12 @@ class PagingOperations:
     ) -> AsyncIterable[JSON]:
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :keyword client_request_id:  Default value is None.
+        :keyword client_request_id: Optional.
         :paramtype client_request_id: str
-        :keyword maxresults: Sets the maximum number of items to return in the response. Default value
-         is None.
+        :keyword maxresults: Sets the maximum number of items to return in the response. Optional.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
-         seconds. The default is 30 seconds.
+         seconds. The default is 30 seconds. Optional. Default value is 30.
         :paramtype timeout: int
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
@@ -513,8 +512,8 @@ class PagingOperations:
             if not next_link:
 
                 request = build_paging_get_with_query_params_request(
-                    query_constant=query_constant,
                     required_query_parameter=required_query_parameter,
+                    query_constant=query_constant,
                     headers=_headers,
                     params=_params,
                 )
@@ -560,7 +559,7 @@ class PagingOperations:
         include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
         param in the url sent.
 
-        :keyword filter: OData filter options. Pass in 'foo'. Default value is None.
+        :keyword filter: OData filter options. Pass in 'foo'. Optional.
         :paramtype filter: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
@@ -644,13 +643,12 @@ class PagingOperations:
     ) -> AsyncIterable[JSON]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
-        :keyword client_request_id:  Default value is None.
+        :keyword client_request_id: Optional.
         :paramtype client_request_id: str
-        :keyword maxresults: Sets the maximum number of items to return in the response. Default value
-         is None.
+        :keyword maxresults: Sets the maximum number of items to return in the response. Optional.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
-         seconds. The default is 30 seconds.
+         seconds. The default is 30 seconds. Optional. Default value is 30.
         :paramtype timeout: int
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
@@ -742,13 +740,12 @@ class PagingOperations:
 
         :param offset: Offset of return value.
         :type offset: int
-        :keyword client_request_id:  Default value is None.
+        :keyword client_request_id: Optional.
         :paramtype client_request_id: str
-        :keyword maxresults: Sets the maximum number of items to return in the response. Default value
-         is None.
+        :keyword maxresults: Sets the maximum number of items to return in the response. Optional.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
-         seconds. The default is 30 seconds.
+         seconds. The default is 30 seconds. Optional. Default value is 30.
         :paramtype timeout: int
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
@@ -1416,23 +1413,22 @@ class PagingOperations:
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_get_multiple_pages_lro(
+    def begin_get_multiple_pages_lro(
         self,
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
         timeout: Optional[int] = 30,
         **kwargs: Any
-    ) -> AsyncLROPoller[AsyncItemPaged[JSON]]:
+    ) -> AsyncLROPoller[AsyncIterable[JSON]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :keyword client_request_id:  Default value is None.
+        :keyword client_request_id: Optional.
         :paramtype client_request_id: str
-        :keyword maxresults: Sets the maximum number of items to return in the response. Default value
-         is None.
+        :keyword maxresults: Sets the maximum number of items to return in the response. Optional.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
-         seconds. The default is 30 seconds.
+         seconds. The default is 30 seconds. Optional. Default value is 30.
         :paramtype timeout: int
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False
@@ -1441,7 +1437,7 @@ class PagingOperations:
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns an iterator like instance of JSON object
+        :return: An instance of LROPoller that returns an iterator like instance of JSON object
         :rtype: ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[JSON]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1516,7 +1512,7 @@ class PagingOperations:
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            async def internal_get_next(next_link=None):
+            def internal_get_next(next_link=None):
                 if next_link is None:
                     return pipeline_response
                 return await get_next(next_link)

@@ -43,6 +43,8 @@ class Namer(YamlUpdatePlugin):
     """Add Python naming information."""
 
     def get_operation_updater(self, yaml_data: Dict[str, Any]) -> Callable[[Dict[str, Any]], None]:
+        if yaml_data["discriminator"] == "lropaging":
+            return self.update_lro_paging_operation
         if yaml_data["discriminator"] == "lro":
             return self.update_lro_operation
         if yaml_data["discriminator"] == "paging":
@@ -51,6 +53,7 @@ class Namer(YamlUpdatePlugin):
 
     def update_operation(self, yaml_data: Dict[str, Any]) -> None:
         yaml_data["groupName"] = to_snake_case(yaml_data["groupName"])
+        yaml_data["name"] = yaml_data["name"].lower()
         yaml_data["description"] = update_description(yaml_data["description"], yaml_data["name"])
         for parameter in yaml_data["parameters"]:
             update_parameter(parameter)
@@ -75,6 +78,10 @@ class Namer(YamlUpdatePlugin):
                 "azure.mgmt.core.polling.async_arm_polling.AsyncARMPolling" if azure_arm else
                 "azure.core.polling.async_base_polling.AsyncLROBasePolling"
             )
+
+    def update_lro_paging_operation(self, yaml_data: Dict[str, Any]) -> None:
+        self.update_lro_operation(yaml_data)
+        self.update_paging_operation(yaml_data)
 
 
     def update_lro_operation(self, yaml_data: Dict[str, Any]) -> None:

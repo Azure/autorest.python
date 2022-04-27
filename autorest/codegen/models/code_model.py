@@ -3,8 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import logging
-from typing import cast, List, Dict, Optional, Any, Set, Union
+from typing import List, Dict, Optional, Any, Set, Union
 
 from autorest.codegen.models.parameter import Parameter
 
@@ -12,16 +11,8 @@ from .base_type import BaseType
 from .enum_type import EnumType
 from .model_type import ModelType
 from .operation_group import OperationGroup
-from .operation import Operation
-from .lro_operation import LROOperation, OverloadedLROOperation
-from .paging_operation import PagingOperation
 from .client import Client, Config
-from .property import Property
 from .request_builder import OverloadedRequestBuilder, RequestBuilder
-from .credential_types import TokenCredentialType, AzureKeyCredentialType
-
-_LOGGER = logging.getLogger(__name__)
-
 
 class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-public-methods
     """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets
@@ -183,7 +174,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
             i = 0
             while i < len(operation_group.operations):
                 operation = operation_group.operations[i]
-                if operation.operation_type == "lro":
+                if operation.operation_type in ("lro", "lropaging"):
                     operation_group.operations.insert(i, operation.initial_operation)
                     i += 1
                 i += 1
@@ -228,7 +219,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
     def has_lro_operations(self) -> bool:
         return any(
             [
-                operation.operation_type == "lro"
+                operation.operation_type in ("lro", "lropaging")
                 for operation_group in self.operation_groups
                 for operation in operation_group.operations
             ]

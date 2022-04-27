@@ -3,9 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Dict, List, Any, Optional, Union, TYPE_CHECKING
+from typing import Dict, List, Any, Optional, Union, TYPE_CHECKING, Type
 
-from .operation import Operation
+from .operation import Operation, OperationBase, OverloadedOperation
 from .response import Response
 from .request_builder import OverloadedRequestBuilder, RequestBuilder, RequestBuilderBase
 from .imports import ImportType, FileImport, TypingSection
@@ -14,7 +14,7 @@ from .parameter_list import ParameterList
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
-class PagingOperation(Operation):
+class _PagingOperationBase(OperationBase):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -50,7 +50,10 @@ class PagingOperation(Operation):
         self.override_success_response_to_200 = override_success_response_to_200
         self.pager_sync: str = yaml_data["pagerSync"]
         self.pager_async: str = yaml_data["pagerAsync"]
-        self.operation_type = "paging"
+
+    @property
+    def operation_type(self) -> str:
+        return "paging"
 
     def get_pager_path(self, async_mode: bool) -> str:
         return self.yaml_data["pagerAsync"] if async_mode else self.yaml_data["pagerSync"]
@@ -137,3 +140,13 @@ class PagingOperation(Operation):
             file_import.merge(self.get_request_builder_import(self.next_request_builder, async_mode))
 
         return file_import
+
+class PagingOperation(Operation, _PagingOperationBase):
+    ...
+
+
+class OverloadedPagingOperation(OverloadedOperation, _PagingOperationBase):
+
+    @staticmethod
+    def overload_operation_class() -> Type[Operation]:
+        return PagingOperation

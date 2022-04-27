@@ -8,8 +8,6 @@ from abc import abstractmethod, ABC
 from collections import defaultdict
 from typing import Any, List, TypeVar, Dict, Union, Optional, cast
 
-from autorest.codegen.models.lro_operation import OverloadedLROOperation
-
 from ..models import (
     Operation,
     CodeModel,
@@ -516,7 +514,7 @@ class OperationSerializer(
 
     def _call_request_builder_helper(  # pylint: disable=too-many-statements
         self,
-        builder: Operation,
+        builder: Union[Operation, PagingOperation],
         request_builder: Union[RequestBuilder, OverloadedRequestBuilder],
         template_url: Optional[str] = None,
         is_next_request: bool = False,
@@ -564,6 +562,17 @@ class OperationSerializer(
         for parameter in request_builder.parameters.method:
             if parameter.location == ParameterLocation.BODY:
                 # going to pass in body later based off of overloads
+                continue
+            if (
+                is_next_request
+                and builder.operation_type == "paging"
+                and not bool(builder.next_request_builder)
+                and not self.code_model.options["reformat_next_link"]
+                and parameter.location == ParameterLocation.QUERY
+            ):
+                # if we don't want to reformat query parameters for next link calls
+                # in paging operations with a single swagger operation defintion,
+                # we skip passing query params when building the next request
                 continue
             retval.append(f"    {parameter.client_name}={parameter.name_in_high_level_operation},")
         if request_builder.overloads:
@@ -1047,10 +1056,10 @@ def get_operation_serializer(
     is_python3_file: bool,
 ) -> Union[OperationSerializer, PagingOperationSerializer, LROOperationSerializer, LROPagingOperationSerializer]:
     retcls = OperationSerializer
-    if isinstance(builder, LROPagingOperation):
+    if builder.operation_type == "lropaging":
         retcls = LROPagingOperationSerializer
     elif builder.operation_type == "lro":
         retcls = LROOperationSerializer
-    elif isinstance(builder, PagingOperation):
+    elif builder.operation_type == "paging":
         retcls = PagingOperationSerializer
     return retcls(code_model, async_mode, is_python3_file)

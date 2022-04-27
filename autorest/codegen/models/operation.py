@@ -53,7 +53,10 @@ class OperationBase(BaseBuilder[ParameterListType]):
         self.public = public
         self.request_builder = request_builder
         self.deprecated = False
-        self.operation_type = "operation"
+
+    @property
+    def operation_type(self) -> str:
+        return "operation"
 
     @property
     def has_optional_return_type(self) -> bool:
@@ -363,18 +366,18 @@ class OperationBase(BaseBuilder[ParameterListType]):
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> Union["Operation", "OverloadedOperation"]:
-        if yaml_data["discriminator"] == "lro":
-            if yaml_data.get("overloads"):
-                from .lro_operation import OverloadedLROOperation
-                return OverloadedLROOperation.from_yaml(yaml_data, code_model)
-            from .lro_operation import LROOperation
-            return LROOperation.from_yaml(yaml_data, code_model)
-        if yaml_data["discriminator"] == "paging":
-            from .paging_operation import PagingOperation
-            return PagingOperation.from_yaml(yaml_data, code_model)
-        if yaml_data.get("overloads"):
-            return OverloadedOperation.from_yaml(yaml_data, code_model)
-        return Operation.from_yaml(yaml_data, code_model)
+        if yaml_data["discriminator"] == "lropaging":
+            from .lro_paging_operation import LROPagingOperation, OverloadedLROPagingOperation
+            operation_cls = OverloadedLROPagingOperation if yaml_data.get("overloads") else LROPagingOperation
+        elif yaml_data["discriminator"] == "lro":
+            from .lro_operation import LROOperation, OverloadedLROOperation
+            operation_cls = OverloadedLROOperation if yaml_data.get("overloads") else LROOperation
+        elif yaml_data["discriminator"] == "paging":
+            from .paging_operation import PagingOperation, OverloadedPagingOperation
+            operation_cls = OverloadedPagingOperation if yaml_data.get("overloads") else PagingOperation
+        else:
+            operation_cls = OverloadedOperation if yaml_data.get("overloads") else Operation
+        return operation_cls.from_yaml(yaml_data, code_model)
 
 class Operation(OperationBase[ParameterList]):
 

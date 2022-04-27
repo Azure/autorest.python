@@ -44,6 +44,10 @@ class BaseType(BaseModel, ABC):
         """
         ...
 
+    @property
+    def client_default_value(self) -> Any:
+        return self.yaml_data.get("clientDefaultValue")
+
     @abstractmethod
     def description(self, *, is_operation_file: bool) -> str:
         """The description"""

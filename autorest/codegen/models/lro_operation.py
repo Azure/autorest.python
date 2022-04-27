@@ -48,7 +48,10 @@ class _LROOperationBase(OperationBase):
         )
         self.name = "begin_" + self.name
         self.lro_options: Dict[str, Any] = self.yaml_data.get("lroOptions", {})
-        self.operation_type = "lro"
+
+    @property
+    def operation_type(self) -> str:
+        return "lro"
 
     @property
     def has_optional_return_type(self) -> bool:

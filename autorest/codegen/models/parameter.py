@@ -177,6 +177,7 @@ class _SingleTypeParameter(_BaseParameter):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel", type: BaseType) -> None:
         super().__init__(yaml_data, code_model)
         self.type = type
+        self.client_default_value = self.client_default_value or self.type.client_default_value
 
     @property
     def constant(self) -> bool:
