@@ -57,7 +57,7 @@ class Namer(YamlUpdatePlugin):
         yaml_data["description"] = update_description(yaml_data["description"], yaml_data["name"])
         for parameter in yaml_data["parameters"]:
             update_parameter(parameter)
-        if yaml_data["bodyParameter"]:
+        if yaml_data.get("bodyParameter"):
             update_parameter(yaml_data["bodyParameter"])
         for overload in yaml_data.get("overloads", []):
             self.update_operation(overload)

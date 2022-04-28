@@ -7,7 +7,7 @@ from typing import Dict, List, Any, Optional, Union, TYPE_CHECKING, Type
 
 from .operation import Operation, OperationBase, OverloadedOperation
 from .response import Response
-from .request_builder import OverloadedRequestBuilder, RequestBuilder, RequestBuilderBase
+from .request_builder import OverloadedRequestBuilder, RequestBuilder, get_request_builder
 from .imports import ImportType, FileImport, TypingSection
 from .parameter_list import ParameterList
 
@@ -42,7 +42,7 @@ class _PagingOperationBase(OperationBase):
             want_tracing=want_tracing,
             abstract=abstract,
         )
-        self.next_request_builder: Optional[Union[RequestBuilder, OverloadedRequestBuilder]] = RequestBuilderBase.from_yaml(
+        self.next_request_builder: Optional[Union[RequestBuilder, OverloadedRequestBuilder]] = get_request_builder(
             self.yaml_data["nextOperation"], code_model) if self.yaml_data.get("nextOperation"
         ) else None
         self.item_name: str = self.yaml_data["itemName"]

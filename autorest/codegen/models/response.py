@@ -84,12 +84,15 @@ class Response(BaseModel):
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "Response":
-        return cls(
-            yaml_data=yaml_data,
-            code_model=code_model,
-            headers=[ResponseHeader.from_yaml(header, code_model) for header in yaml_data["headers"]],
-            type=code_model.lookup_type(id(yaml_data["type"])) if yaml_data.get("type") else None
-        )
+        try:
+            return cls(
+                yaml_data=yaml_data,
+                code_model=code_model,
+                headers=[ResponseHeader.from_yaml(header, code_model) for header in yaml_data["headers"]],
+                type=code_model.lookup_type(id(yaml_data["type"])) if yaml_data.get("type") else None
+            )
+        except KeyError:
+            a = "b"
 
     def __repr__(self) -> str:
         return f"<{self.__class__.__name__} {self.status_codes}>"

@@ -32,11 +32,12 @@ class ParameterMethodLocation(Enum):
     KEYWORD_ONLY = auto()
     KWARG = auto()
 
-class _BaseParameter(BaseModel, abc.ABC):
+class _ParameterBase(BaseModel, abc.ABC):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        code_model: "CodeModel"
+        code_model: "CodeModel",
+        type: BaseType,
     ) -> None:
         super().__init__(yaml_data, code_model)
         self.client_name: str = self.yaml_data["clientName"]
@@ -44,139 +45,6 @@ class _BaseParameter(BaseModel, abc.ABC):
         self.location: ParameterLocation = self.yaml_data["location"]
         self.client_default_value = self.yaml_data.get("clientDefaultValue", None)
         self.in_docstring = self.yaml_data.get("inDocstring", True)
-
-    @property
-    def description(self) -> str:
-        return self.yaml_data["description"]
-
-    @property
-    def method_location(self) -> ParameterMethodLocation:
-        raise NotImplementedError("Please implement in children")
-
-    @property
-    def description_keyword(self) -> str:
-        return "param" if self.method_location == ParameterMethodLocation.POSITIONAL else "keyword"
-
-    @property
-    def docstring_type_keyword(self) -> str:
-        return "type" if self.method_location == ParameterMethodLocation.POSITIONAL else "paramtype"
-
-    @abc.abstractmethod
-    def type_annotation(self) -> str:
-        ...
-
-    @property
-    @abc.abstractmethod
-    def client_default_value_declaration(self) -> str:
-        ...
-
-    @property
-    @abc.abstractmethod
-    def in_method_signature(self) -> bool:
-        ...
-
-    def method_signature(self, is_python3_file: bool) -> str:
-        type_annot = self.type_annotation()
-        if is_python3_file:
-            if self.client_default_value or self.optional:
-                return f"{self.client_name}: {type_annot} = {self.client_default_value_declaration},"
-            return f"{self.client_name}: {type_annot},"
-        if self.client_default_value or self.optional:
-            return f"{self.client_name}={self.client_default_value_declaration},  # type: {type_annot}"
-        return f"{self.client_name},  # type: {type_annot}"
-
-class _BodyParameter(_BaseParameter):
-    """Base parent for SingleTypeBodyParameter and MultipleTypeBodyParameter"""
-
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
-        super().__init__(yaml_data, code_model)
-        self.location = ParameterLocation.BODY
-
-    @property
-    def method_location(self) -> ParameterMethodLocation:
-        return ParameterMethodLocation.POSITIONAL
-
-    @property
-    def flattened(self) -> bool:
-        raise NotImplementedError("Haven't implemented flattening yet")
-
-    @property
-    def in_method_signature(self) -> bool:
-        return True
-
-class MultipleTypeBodyParameter(_BodyParameter):
-    """Polymorphic base parent for SingleTypeBodyParameter and MultipleTypeBodyParameter
-    """
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel", content_type_to_type: Dict[str, BaseType]):
-        super().__init__(yaml_data, code_model)
-        self.content_type_to_type = content_type_to_type
-        self.types = self._create_types_property()
-
-    def _create_types_property(self) -> List[BaseType]:
-        types: List[BaseType] = []
-        seen_ids: Set[int] = set()
-        for type in self.content_type_to_type.values():
-            if id(type.yaml_data) not in seen_ids:
-                types.append(type)
-            seen_ids.add(id(type.yaml_data))
-        return types
-
-    def serialization_type(self, content_type: str) -> str:
-        return self.content_type_to_type[content_type].serialization_type
-
-    def type_annotation(self) -> str:
-        type_annot = f'Union[{", ".join(type.type_annotation(is_operation_file=True) for type in self.types)}]'
-        if self.optional:
-            return f"Optional[{type_annot}]"
-        return type_annot
-
-    @property
-    def docstring_text(self) -> str:
-        return " or ".join(t.docstring_text for t in self.types)
-
-    @property
-    def docstring_type(self) -> str:
-        return " or ".join(t.docstring_type for t in self.types)
-
-    @property
-    def client_default_value_declaration(self):
-        if not self.client_default_value:
-            return None
-        return self.types[0].get_declaration(self.client_default_value)
-
-    def type_to_content_types(self, yaml_id: int) -> List[str]:
-        return [
-            k for k, v in self.content_type_to_type.items()
-            if id(v.yaml_data) == yaml_id
-        ]
-
-    def imports(self) -> FileImport:
-        file_import = FileImport()
-        file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
-        for type in self.types:
-            file_import.merge(type.imports(is_operation_file=True))
-        return file_import
-
-    @property
-    def constant(self) -> bool:
-        return not self.optional and all(t for t in self.types if isinstance(t, ConstantType))
-
-    @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "MultipleTypeBodyParameter":
-        return cls(
-            yaml_data=yaml_data,
-            code_model=code_model,
-            content_type_to_type={
-                k: code_model.lookup_type(id(v))
-                for k, v in yaml_data["contentTypeToType"].items()
-            }
-        )
-
-class _SingleTypeParameter(_BaseParameter):
-    """Base class for SingleTypeBodyParameter and Parameter"""
-
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel", type: BaseType) -> None:
-        super().__init__(yaml_data, code_model)
         self.type = type
         self.client_default_value = self.client_default_value or self.type.client_default_value
 
@@ -190,17 +58,17 @@ class _SingleTypeParameter(_BaseParameter):
 
     @property
     def description(self):
-        description = super().description
+        base_description = self.yaml_data["description"]
         type_description = self.type.description(is_operation_file=True)
         if type_description:
-            description = add_to_description(description, type_description)
+            base_description = add_to_description(base_description, type_description)
         if self.optional:
-            description = add_to_description(description, "Optional.")
+            base_description = add_to_description(base_description, "Optional.")
         if self.client_default_value:
-            description = add_to_description(description, f"Default value is {self.client_default_value_declaration}.")
+            base_description = add_to_description(base_description, f"Default value is {self.client_default_value_declaration}.")
         if self.constant:
-            description = add_to_description(description, "Note that overriding this default value may result in unsupported behavior.")
-        return description
+            base_description = add_to_description(base_description, "Note that overriding this default value may result in unsupported behavior.")
+        return base_description
 
     @property
     def client_default_value_declaration(self):
@@ -233,39 +101,74 @@ class _SingleTypeParameter(_BaseParameter):
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         return file_import
 
+    @property
+    def method_location(self) -> ParameterMethodLocation:
+        raise NotImplementedError("Please implement in children")
 
-class SingleTypeBodyParameter(_SingleTypeParameter, _BodyParameter):
+    @property
+    def description_keyword(self) -> str:
+        return "param" if self.method_location == ParameterMethodLocation.POSITIONAL else "keyword"
+
+    @property
+    def docstring_type_keyword(self) -> str:
+        return "type" if self.method_location == ParameterMethodLocation.POSITIONAL else "paramtype"
+
+    @property
+    @abc.abstractmethod
+    def in_method_signature(self) -> bool:
+        ...
+
+    def method_signature(self, is_python3_file: bool) -> str:
+        type_annot = self.type_annotation()
+        if is_python3_file:
+            if self.client_default_value or self.optional:
+                return f"{self.client_name}: {type_annot} = {self.client_default_value_declaration},"
+            return f"{self.client_name}: {type_annot},"
+        if self.client_default_value or self.optional:
+            return f"{self.client_name}={self.client_default_value_declaration},  # type: {type_annot}"
+        return f"{self.client_name},  # type: {type_annot}"
+
+class _BodyParameterBase(_ParameterBase):
+    @property
+    def method_location(self) -> ParameterMethodLocation:
+        return ParameterMethodLocation.POSITIONAL
+
+    @property
+    def flattened(self) -> bool:
+        raise NotImplementedError("Haven't implemented flattening yet")
+
+    @property
+    def in_method_signature(self) -> bool:
+        return True
+
+
+class BodyParameter(_BodyParameterBase):
     """Body parameters for the overload operations. Only has one type per overload
     """
-    def __init__(
-        self,
-        yaml_data: Dict[str, Any],
-        code_model: "CodeModel",
-        type: BaseType,
-    ) -> None:
-        super().__init__(yaml_data, code_model, type=type)
-        self.content_types: List[str] = yaml_data["contentTypes"]
-        self.default_content_type: str = yaml_data["defaultContentType"]
 
+    @property
+    def content_types(self) -> List[str]:
+        return self.yaml_data["contentTypes"]
+
+    @property
+    def default_content_type(self) -> str:
+        return self.yaml_data["defaultContentType"]
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "SingleTypeBodyParameter":
-        try:
-            return cls(
-                yaml_data=yaml_data,
-                code_model=code_model,
-                type=code_model.lookup_type(id(yaml_data["type"])),
-            )
-        except KeyError:
-            a = "b"
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "BodyParameter":
+        return cls(
+            yaml_data=yaml_data,
+            code_model=code_model,
+            type=code_model.lookup_type(id(yaml_data["type"])),
+        )
 
-class MultipartBodyParameter(_BaseParameter):
+class MultipartBodyParameter(_ParameterBase):
     ...
 
-class UrlEncodedBodyParameter(_BaseParameter):
+class UrlEncodedBodyParameter(_ParameterBase):
     ...
 
-class Parameter(_SingleTypeParameter):
+class Parameter(_ParameterBase):
     def __init__(
         self,
         yaml_data: Dict[str, Any],

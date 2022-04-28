@@ -13,7 +13,8 @@ import yaml
 from .. import Plugin
 from .models.client import Client, Config
 from .models.code_model import CodeModel
-from .models import build_type, RequestBuilderBase
+from .models import build_type
+from .models.request_builder import get_request_builder
 from .models.operation_group import OperationGroup
 from .serializers import JinjaSerializer
 
@@ -147,13 +148,13 @@ class CodeGenerator(Plugin):
         if yaml_data.get("operationGroups"):
             for og_group in yaml_data["operationGroups"]:
                 for operation_yaml in og_group["operations"]:
-                    request_builder = RequestBuilderBase.from_yaml(operation_yaml, code_model=code_model)
+                    request_builder = get_request_builder(operation_yaml, code_model=code_model)
                     if request_builder.overloads:
                         code_model.request_builders.extend(request_builder.overloads)
                     code_model.request_builders.append(request_builder)
                     if operation_yaml.get("nextOperation"):
                         # i am a paging operation and i have a next operation. Make sure to include my next operation
-                        code_model.request_builders.append(RequestBuilderBase.from_yaml(operation_yaml["nextOperation"], code_model=code_model))
+                        code_model.request_builders.append(get_request_builder(operation_yaml["nextOperation"], code_model=code_model))
 
         _build_convenience_layer(yaml_data=yaml_data, code_model=code_model)
         code_model.package_dependency = self._build_package_dependency()
@@ -285,6 +286,8 @@ class CodeGenerator(Plugin):
 
         # Parse the received YAML
         yaml_data = yaml.safe_load(file_content)
+        with open('temp.yaml', 'w') as outfile:
+            yaml.dump(yaml_data, outfile, default_flow_style=False)
 
         options = self._build_code_model_options()
 

@@ -3,8 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from abc import abstractmethod
 from itertools import chain
-import logging
 from typing import Dict, List, Any, Optional, Type, Union, TYPE_CHECKING, cast, TypeVar, Generic
 
 from .utils import OrderedSet
@@ -12,7 +12,7 @@ from .utils import OrderedSet
 from .base_builder import BaseBuilder
 from .imports import FileImport, ImportType, TypingSection
 from .response import Response
-from .parameter import MultipartBodyParameter, MultipleTypeBodyParameter, SingleTypeBodyParameter, Parameter, UrlEncodedBodyParameter, ParameterLocation
+from .parameter import MultipartBodyParameter, BodyParameter, Parameter, UrlEncodedBodyParameter, ParameterLocation
 from .parameter_list import ParameterList, OverloadedOperationParameterList
 from .model_type import ModelType
 from .request_builder import OverloadedRequestBuilder, RequestBuilder
@@ -21,8 +21,6 @@ if TYPE_CHECKING:
     from .code_model import CodeModel
 
 ParameterListType = TypeVar("ParameterListType", bound=Union[ParameterList, OverloadedOperationParameterList])
-
-_LOGGER = logging.getLogger(__name__)
 
 class OperationBase(BaseBuilder[ParameterListType]):
     def __init__(
@@ -364,43 +362,39 @@ class OperationBase(BaseBuilder[ParameterListType]):
     def has_stream_response(self) -> bool:
         return any(r.is_stream_response for r in self.responses)
 
-    @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> Union["Operation", "OverloadedOperation"]:
-        if yaml_data["discriminator"] == "lropaging":
-            from .lro_paging_operation import LROPagingOperation, OverloadedLROPagingOperation
-            operation_cls = OverloadedLROPagingOperation if yaml_data.get("overloads") else LROPagingOperation
-        elif yaml_data["discriminator"] == "lro":
-            from .lro_operation import LROOperation, OverloadedLROOperation
-            operation_cls = OverloadedLROOperation if yaml_data.get("overloads") else LROOperation
-        elif yaml_data["discriminator"] == "paging":
-            from .paging_operation import PagingOperation, OverloadedPagingOperation
-            operation_cls = OverloadedPagingOperation if yaml_data.get("overloads") else PagingOperation
-        else:
-            operation_cls = OverloadedOperation if yaml_data.get("overloads") else Operation
-        return operation_cls.from_yaml(yaml_data, code_model)
-
-class Operation(OperationBase[ParameterList]):
+    @staticmethod
+    @abstractmethod
+    def parameter_list_type() -> Type[ParameterListType]:
+        ...
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "Operation":
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
         name = yaml_data["name"]
-        parameters = [Parameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
         request_builder = code_model.lookup_request_builder(id(yaml_data))
         responses = [Response.from_yaml(r, code_model) for r in yaml_data["responses"]]
-        if yaml_data["bodyParameter"]:
-            body_parameter = SingleTypeBodyParameter.from_yaml(yaml_data["bodyParameter"], code_model)
-        else:
-            body_parameter = None
-        parameter_list = ParameterList(code_model, parameters, body_parameter)
+        parameter_list = cls.parameter_list_type().from_yaml(yaml_data, code_model)
+        overloads = [
+            Operation.from_yaml(overload, code_model)
+            for overload in yaml_data.get("overloads", [])
+        ]
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
             request_builder=request_builder,
             name=name,
             parameters=parameter_list,
+            overloads=overloads,
             responses=responses,
             want_tracing=not yaml_data["isOverload"],
         )
+
+
+class Operation(OperationBase[ParameterList]):
+
+    @staticmethod
+    def parameter_list_type() -> Type[ParameterList]:
+        return ParameterList
+
 
 class OverloadedOperation(OperationBase[OverloadedOperationParameterList]):
 
@@ -413,24 +407,20 @@ class OverloadedOperation(OperationBase[OverloadedOperationParameterList]):
     def overload_operation_class() -> Type[Operation]:
         return Operation
 
-    @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "OverloadedOperation":
-        name = yaml_data["name"]
-        parameters = [Parameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
-        request_builder = code_model.lookup_request_builder(id(yaml_data))
-        responses = [Response.from_yaml(r, code_model) for r in yaml_data["responses"]]
-        if yaml_data["bodyParameter"]:
-            body_parameter = MultipleTypeBodyParameter.from_yaml(yaml_data["bodyParameter"], code_model)
-        else:
-            body_parameter = None
-        overloads = [cls.overload_operation_class().from_yaml(overload_yaml_data, code_model) for overload_yaml_data in yaml_data["overloads"]]
-        parameter_list = OverloadedOperationParameterList(code_model, parameters, body_parameter)
-        return cls(
-            yaml_data=yaml_data,
-            code_model=code_model,
-            request_builder=request_builder,
-            overloads=overloads,
-            name=name,
-            parameters=parameter_list,
-            responses=responses,
-        )
+    @staticmethod
+    def parameter_list_type() -> Type[OverloadedOperationParameterList]:
+        return OverloadedOperationParameterList
+
+def get_operation(yaml_data: Dict[str, Any], code_model: "CodeModel") -> OperationBase:
+    if yaml_data["discriminator"] == "lropaging":
+        from .lro_paging_operation import LROPagingOperation, OverloadedLROPagingOperation
+        operation_cls = OverloadedLROPagingOperation if yaml_data.get("overloads") else LROPagingOperation
+    elif yaml_data["discriminator"] == "lro":
+        from .lro_operation import LROOperation, OverloadedLROOperation
+        operation_cls = OverloadedLROOperation if yaml_data.get("overloads") else LROOperation
+    elif yaml_data["discriminator"] == "paging":
+        from .paging_operation import PagingOperation, OverloadedPagingOperation
+        operation_cls = OverloadedPagingOperation if yaml_data.get("overloads") else PagingOperation
+    else:
+        operation_cls = OverloadedOperation if yaml_data.get("overloads") else Operation
+    return operation_cls.from_yaml(yaml_data, code_model)

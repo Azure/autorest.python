@@ -7,7 +7,7 @@ import logging
 from typing import Dict, List, Any, Set, TYPE_CHECKING
 
 from .base_model import BaseModel
-from .operation import OperationBase
+from .operation import OperationBase, get_operation
 from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
@@ -92,6 +92,6 @@ class OperationGroup(BaseModel):
             yaml_data=yaml_data,
             code_model=code_model,
             operations=[
-                OperationBase.from_yaml(o, code_model) for o in yaml_data["operations"]
+                get_operation(o, code_model) for o in yaml_data["operations"]
             ],
         )

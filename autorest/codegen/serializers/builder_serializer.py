@@ -22,15 +22,17 @@ from ..models import (
     ParameterLocation,
     Response,
     BinaryType,
-    SingleTypeBodyParameter,
+    BodyParameter,
     ParameterMethodLocation,
-    RequestBuilderSingleTypeBodyParameter,
+    RequestBuilderBodyParameter,
     OverloadedRequestBuilder,
     ConstantType,
     BaseType,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from . import utils
+
+RequestBuilderType = Union[RequestBuilder, OverloadedRequestBuilder]
 
 T = TypeVar("T")
 OrderedSet = Dict[T, None]
@@ -201,7 +203,7 @@ class _BuilderBaseSerializer(
 
     def _json_input_example_template(self, builder: BuilderType) -> List[str]:
         template = []
-        if not builder.parameters.has_body_parameter:
+        if not builder.parameters.has_body:
             # No input template if now body parameter
             return template
         if builder.overloads:
@@ -257,7 +259,7 @@ class _BuilderBaseSerializer(
 class RequestBuilderSerializer(
     _BuilderBaseSerializer
 ):  # pylint: disable=abstract-method
-    def description_and_summary(self, builder: RequestBuilder) -> List[str]:
+    def description_and_summary(self, builder: RequestBuilderType) -> List[str]:
         retval = super().description_and_summary(builder)
         retval += [
             "See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this "
@@ -275,7 +277,7 @@ class RequestBuilderSerializer(
         return "_SERIALIZER"
 
     @staticmethod
-    def declare_non_inputtable_constants(builder: RequestBuilder) -> List[str]:
+    def declare_non_inputtable_constants(builder: RequestBuilderType) -> List[str]:
         def _get_value(param: Parameter):
             param_type = cast(ConstantType, param.type)
             if param.location in [ParameterLocation.HEADER, ParameterLocation.QUERY]:
@@ -302,7 +304,7 @@ class RequestBuilderSerializer(
         return False
 
     def _response_type_annotation(
-        self, builder: RequestBuilder
+        self, builder: RequestBuilderType
     ) -> str:
         return builder.response_type_annotation()
 
@@ -315,7 +317,7 @@ class RequestBuilderSerializer(
         rtype_str = f":rtype: ~azure.core.rest.HttpRequest"
         return [response_str, rtype_str]
 
-    def pop_kwargs_from_signature(self, builder: RequestBuilder) -> List[str]:
+    def pop_kwargs_from_signature(self, builder: RequestBuilderType) -> List[str]:
         return self.parameter_serializer.pop_kwargs_from_signature(
             builder.parameters.kwargs_to_pop(is_python3_file=self.is_python3_file),
             check_kwarg_dict=True,
@@ -327,7 +329,7 @@ class RequestBuilderSerializer(
             else PopKwargType.NO,
         )
 
-    def create_http_request(self, builder: RequestBuilder) -> List[str]:
+    def create_http_request(self, builder: RequestBuilderType) -> List[str]:
         retval = ["return HttpRequest("]
         retval.append(f'    method="{builder.method}",')
         retval.append("    url=_url,")
@@ -335,13 +337,13 @@ class RequestBuilderSerializer(
             retval.append("    params=_params,")
         if builder.parameters.headers:
             retval.append("    headers=_headers,")
-        if builder.parameters.has_body_parameter:
+        if builder.parameters.has_body and not builder.overloads:
             retval.append(f"    {builder.parameters.body_parameter.client_name}={builder.parameters.body_parameter.client_name},")
         retval.append("    **kwargs")
         retval.append(")")
         return retval
 
-    def serialize_headers(self, builder: RequestBuilder) -> List[str]:
+    def serialize_headers(self, builder: RequestBuilderType) -> List[str]:
         retval = ["# Construct headers"]
         for parameter in builder.parameters.headers:
             retval.extend(
@@ -352,7 +354,7 @@ class RequestBuilderSerializer(
             )
         return retval
 
-    def serialize_query(self, builder: RequestBuilder) -> List[str]:
+    def serialize_query(self, builder: RequestBuilderType) -> List[str]:
         retval = ["# Construct parameters"]
         for parameter in builder.parameters.query:
             retval.extend(
@@ -363,7 +365,7 @@ class RequestBuilderSerializer(
             )
         return retval
 
-    def construct_url(self, builder: RequestBuilder) -> str:
+    def construct_url(self, builder: RequestBuilderType) -> str:
         if any(
             o
             for o in ["low_level_client", "version_tolerant"]
@@ -504,7 +506,7 @@ class OperationSerializer(
         builder: Operation,
     ) -> List[str]:
         retval = []
-        body_param = cast(SingleTypeBodyParameter, builder.parameters.body_parameter)
+        body_param = cast(BodyParameter, builder.parameters.body_parameter)
         if isinstance(body_param.type, BinaryType):
             retval.append(f"_content = {body_param.client_name}")
         else:
@@ -547,7 +549,7 @@ class OperationSerializer(
                     if body_param.default_content_type:
                         retval.append(f'    content_type = content_type or "{body_param.default_content_type}"')
                     retval.extend(f"    {l}" for l in self._create_body_parameter(overload))
-        elif builder.parameters.has_body_parameter:
+        elif builder.parameters.has_body:
             # non-overloaded body
             retval.extend(self._create_body_parameter(builder))
 
@@ -579,10 +581,10 @@ class OperationSerializer(
             retval.append(f"    {parameter.client_name}={parameter.name_in_high_level_operation},")
         if request_builder.overloads:
             for overload in request_builder.overloads:
-                body_param = cast(RequestBuilderSingleTypeBodyParameter, overload.parameters.body_parameter)
+                body_param = cast(RequestBuilderBodyParameter, overload.parameters.body_parameter)
                 retval.append(f"    {body_param.client_name}={body_param.name_in_high_level_operation},")
-        elif request_builder.parameters.has_body_parameter:
-            body_param = cast(RequestBuilderSingleTypeBodyParameter, request_builder.parameters.body_parameter)
+        elif request_builder.parameters.has_body:
+            body_param = cast(RequestBuilderBodyParameter, request_builder.parameters.body_parameter)
             retval.append(f"    {body_param.client_name}={body_param.name_in_high_level_operation},")
         if not self.code_model.options["version_tolerant"]:
             template_url = template_url or f"self.{builder.name}.metadata['url']"

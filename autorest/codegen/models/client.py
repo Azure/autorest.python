@@ -164,11 +164,10 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "Client":
-        parameters = [ClientParameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            parameters=ClientGlobalParameterList(code_model, parameters),
+            parameters=ClientGlobalParameterList.from_yaml(yaml_data, code_model),
         )
 
 
@@ -219,9 +218,8 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "Config":
-        parameters = [ConfigParameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            parameters=ConfigGlobalParameterList(code_model, parameters),
+            parameters=ConfigGlobalParameterList.from_yaml(yaml_data, code_model),
         )

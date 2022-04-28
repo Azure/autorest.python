@@ -9,6 +9,7 @@ from .code_model import CodeModel
 from .model_type import ModelType
 from .dictionary_type import DictionaryType
 from .list_type import ListType
+from .combined_type import CombinedType
 from .primitive_types import (
     Base64Type,
     DateType,
@@ -29,7 +30,7 @@ from .constant_type import ConstantType
 from .imports import FileImport, ImportType, TypingSection
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
-from .parameter import Parameter, ParameterMethodLocation, ParameterLocation, SingleTypeBodyParameter, MultipleTypeBodyParameter
+from .parameter import Parameter, ParameterMethodLocation, ParameterLocation, BodyParameter
 from .operation import Operation, OverloadedOperation, OperationBase
 from .property import Property
 from .operation_group import OperationGroup
@@ -38,7 +39,7 @@ from .parameter_list import ParameterList, ClientGlobalParameterList, ConfigGlob
 from .request_builder import RequestBuilder, OverloadedRequestBuilder, RequestBuilderBase
 from .base_builder import BaseBuilder
 from .lro_paging_operation import LROPagingOperation
-from .request_builder_parameter import RequestBuilderParameter, RequestBuilderSingleTypeBodyParameter
+from .request_builder_parameter import RequestBuilderParameter, RequestBuilderBodyParameter
 from .credential_types import (
     TokenCredentialType,
     AzureKeyCredentialType,
@@ -84,9 +85,8 @@ __all__ = [
     "OperationBase",
     "OverloadedRequestBuilder",
     "RequestBuilderBase",
-    "SingleTypeBodyParameter",
-    "MultipleTypeBodyParameter",
-    "RequestBuilderSingleTypeBodyParameter",
+    "BodyParameter",
+    "RequestBuilderBodyParameter",
 ]
 
 TYPE_TO_OBJECT = {
@@ -105,6 +105,7 @@ TYPE_TO_OBJECT = {
     "date": DateType,
     "base64": Base64Type,
     "bool": BooleanType,
+    "combined": CombinedType,
     "OAuth2": TokenCredentialType,
     "Key": AzureKeyCredentialType,
     "ARMChallengeAuthenticationPolicy": ARMChallengeAuthenticationPolicyType,

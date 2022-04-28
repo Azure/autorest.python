@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import List, Union
 from enum import Enum, auto
-from ..models import CodeModel, Parameter, ParameterLocation, SingleTypeBodyParameter, MultipleTypeBodyParameter
+from ..models import CodeModel, Parameter, ParameterLocation, BodyParameter
 
 class PopKwargType(Enum):
     NO = auto()
@@ -86,7 +86,7 @@ class ParameterSerializer:
 
     def pop_kwargs_from_signature(
         self,
-        parameters: List[Union[Parameter, SingleTypeBodyParameter, MultipleTypeBodyParameter]],
+        parameters: List[Union[Parameter, BodyParameter]],
         check_kwarg_dict: bool,
         pop_headers_kwarg: PopKwargType,
         pop_params_kwarg: PopKwargType,

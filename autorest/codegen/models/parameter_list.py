@@ -3,16 +3,19 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import Any, Dict
 from abc import abstractmethod
 from collections.abc import MutableSequence
 from enum import Enum
 import logging
-from typing import List, Optional, TYPE_CHECKING, Union, Generic, TypeVar, cast
-from .request_builder_parameter import RequestBuilderMultipleTypeBodyParameter, RequestBuilderSingleTypeBodyParameter, RequestBuilderParameter
-from .parameter import ParameterLocation, SingleTypeBodyParameter, MultipleTypeBodyParameter, Parameter, ParameterMethodLocation, ClientParameter, ConfigParameter
+from typing import List, Optional, TYPE_CHECKING, Union, Generic, TypeVar, Type
+from .combined_type import CombinedType
+from .imports import FileImport, ImportType
+from .request_builder_parameter import RequestBuilderBodyParameter, RequestBuilderParameter
+from .parameter import ParameterLocation, BodyParameter, Parameter, ParameterMethodLocation, ClientParameter, ConfigParameter
 
 ParameterType = TypeVar("ParameterType", bound=Union[Parameter, RequestBuilderParameter])
-BodyParameterType = TypeVar("BodyParameterType", bound=Union[SingleTypeBodyParameter, MultipleTypeBodyParameter, RequestBuilderSingleTypeBodyParameter])
+BodyParameterType = TypeVar("BodyParameterType", bound=Union[BodyParameter, RequestBuilderBodyParameter])
 
 
 if TYPE_CHECKING:
@@ -40,10 +43,12 @@ def _sort(params):
 class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterType]):  # pylint: disable=too-many-public-methods
     def __init__(
         self,
+        yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         parameters: List[ParameterType],
         body_parameter: Optional[BodyParameterType] = None,
     ) -> None:
+        self.yaml_data = yaml_data
         self.code_model = code_model
         self.parameters = parameters or []
         self._body_parameter = body_parameter
@@ -69,14 +74,19 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
 
     # Parameter helpers
 
-    @property
-    def body_parameter(self) -> BodyParameterType:
-        if not self._body_parameter:
-            raise ValueError("There is no body parameter")
-        return self._body_parameter
+
+    @staticmethod
+    @abstractmethod
+    def parameter_creator() -> Type[ParameterType]:
+        ...
+
+    @staticmethod
+    @abstractmethod
+    def body_parameter_creator() -> Type[BodyParameterType]:
+        ...
 
     @property
-    def has_body_parameter(self) -> bool:
+    def has_body(self) -> bool:
         return bool(self._body_parameter)
 
     @property
@@ -129,8 +139,8 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
     @property
     def unsorted_method_params(self) -> List[Union[ParameterType, BodyParameterType]]:
         method_params: List[Union[ParameterType, BodyParameterType]] = [p for p in self.parameters if p.in_method_signature and p.implementation == self.implementation]
-        if self.has_body_parameter:
-            method_params.append(self.body_parameter)
+        if self._body_parameter:
+            method_params.append(self._body_parameter)
         return method_params
 
     @property
@@ -176,7 +186,32 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
         retval.append("**kwargs")
         return retval
 
-class _ParameterList(_ParameterListBase[Parameter, BodyParameterType]):
+    @classmethod
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
+        parameters = [
+            cls.parameter_creator().from_yaml(parameter, code_model)
+            for parameter in yaml_data["parameters"]
+        ]
+        body_parameter = None
+        if yaml_data.get("bodyParameter"):
+            body_parameter = cls.body_parameter_creator().from_yaml(yaml_data["bodyParameter"], code_model)
+        return cls(
+            yaml_data,
+            code_model,
+            parameters=parameters,
+            body_parameter=body_parameter,
+        )
+
+
+class _ParameterList(_ParameterListBase[Parameter, BodyParameter]):
+
+    @staticmethod
+    def parameter_creator() -> Type[Parameter]:
+        return Parameter
+
+    @staticmethod
+    def body_parameter_creator() -> Type[BodyParameter]:
+        return BodyParameter
 
     @property
     def implementation(self) -> str:
@@ -186,21 +221,42 @@ class _ParameterList(_ParameterListBase[Parameter, BodyParameterType]):
     def path(self) -> List[Parameter]:
         return [k for k in super().path if k.location == ParameterLocation.ENDPOINT_PATH]
 
-class ParameterList(_ParameterList[SingleTypeBodyParameter]):
+    @property
+    def body_parameter(self) -> BodyParameter:
+        if not self._body_parameter:
+            raise ValueError("There is no body parameter")
+        return self._body_parameter
+
+class ParameterList(_ParameterList):
     ...
 
-class OverloadedOperationParameterList(_ParameterList[MultipleTypeBodyParameter]):
+class OverloadedOperationParameterList(_ParameterList):
     """This parameter list is used if we have overloads for an operation due to multiple types of the body parameter"""
+
     ...
 
-class _RequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, BodyParameterType]):
+class _RequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, RequestBuilderBodyParameter]):
+
+    @staticmethod
+    def parameter_creator() -> Type[RequestBuilderParameter]:
+        return RequestBuilderParameter
+
+    @staticmethod
+    def body_parameter_creator() -> Type[RequestBuilderBodyParameter]:
+        return RequestBuilderBodyParameter
 
     @property
     def implementation(self) -> str:
         return "Method"
 
     @property
-    def unsorted_method_params(self) -> List[Union[RequestBuilderParameter, BodyParameterType]]:
+    def body_parameter(self) -> RequestBuilderBodyParameter:
+        if not self._body_parameter:
+            raise ValueError("There is no body parameter")
+        return self._body_parameter
+
+    @property
+    def unsorted_method_params(self) -> List[Union[RequestBuilderParameter, RequestBuilderBodyParameter]]:
         return [k for k in super().unsorted_method_params if k.location != ParameterLocation.ENDPOINT_PATH]
 
     @property
@@ -208,18 +264,23 @@ class _RequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, B
         return [p for p in super().path if p.location != ParameterLocation.ENDPOINT_PATH]
 
 
-class RequestBuilderParameterList(_RequestBuilderParameterList[RequestBuilderSingleTypeBodyParameter]):
+class RequestBuilderParameterList(_RequestBuilderParameterList):
     ...
 
+class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList):
 
-class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList[RequestBuilderMultipleTypeBodyParameter]):
     def method_signature(self, is_python3_file: bool) -> List[str]:
         if self.positional:
             return ["*args", "**kwargs"]
         return ["**kwargs"]
 
 
-class _ClientGlobalParameterList(_ParameterListBase[ParameterType, SingleTypeBodyParameter]):
+class _ClientGlobalParameterList(_ParameterListBase[ParameterType, BodyParameter]):
+
+    @staticmethod
+    def body_parameter_creator() -> Type[BodyParameter]:
+        return BodyParameter
+
     @property
     def implementation(self) -> str:
         return "Client"
@@ -233,11 +294,15 @@ class _ClientGlobalParameterList(_ParameterListBase[ParameterType, SingleTypeBod
 
 class ClientGlobalParameterList(_ClientGlobalParameterList[ClientParameter]):
 
+    @staticmethod
+    def parameter_creator() -> Type[ClientParameter]:
+        return ClientParameter
+
     @property
     def path(self) -> List[ClientParameter]:
         return [p for p in super().path if not p.is_host]
 
-    def kwargs_to_pop(self, is_python3_file: bool) -> List[Union[ClientParameter, SingleTypeBodyParameter]]:
+    def kwargs_to_pop(self, is_python3_file: bool) -> List[Union[ClientParameter, BodyParameter]]:
         return [
             k for k in super().kwargs_to_pop(is_python3_file=is_python3_file)
             if k.location == ParameterLocation.ENDPOINT_PATH
@@ -245,6 +310,11 @@ class ClientGlobalParameterList(_ClientGlobalParameterList[ClientParameter]):
 
 
 class ConfigGlobalParameterList(_ClientGlobalParameterList[ConfigParameter]):
+
+    @staticmethod
+    def parameter_creator() -> Type[ConfigParameter]:
+        return ConfigParameter
+
     @property
     def implementation(self) -> str:
         return "Client"

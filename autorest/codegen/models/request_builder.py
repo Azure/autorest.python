@@ -4,11 +4,12 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, TypeVar, TYPE_CHECKING, cast, Union, Optional, Type
+from abc import abstractmethod
 
 from .base_builder import BaseBuilder
 from .parameter_list import RequestBuilderParameterList, OverloadedRequestBuilderParameterList
 from .imports import FileImport, ImportType, TypingSection
-from .request_builder_parameter import RequestBuilderSingleTypeBodyParameter, RequestBuilderParameter, RequestBuilderMultipleTypeBodyParameter
+from .request_builder_parameter import RequestBuilderBodyParameter, RequestBuilderParameter
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -84,64 +85,53 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
         return file_import
 
+    @staticmethod
+    @abstractmethod
+    def parameter_list_type() -> Type[ParameterListType]:
+        ...
+
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> Union["RequestBuilder", "OverloadedRequestBuilder"]:
-        if yaml_data.get("overloads"):
-            return OverloadedRequestBuilder.from_yaml(yaml_data, code_model)
-        return RequestBuilder.from_yaml(yaml_data, code_model)
-
-def _get_name(yaml_data: Dict[str, Any], code_model: "CodeModel") -> str:
-    # when combine embeded builders into one operation file, we need to avoid duplicated build function name.
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
+        # when combine embedded builders into one operation file, we need to avoid duplicated build function name.
         # So add operation group name is effective method
-    additional_mark = ""
-    if (
-        code_model.options["combine_operation_files"]
-        and code_model.options["builders_visibility"] == "embedded"
-    ):
-        additional_mark = yaml_data["groupName"]
-    names = [
-        "build",
-        additional_mark,
-        yaml_data["name"],
-        "request",
-    ]
-    name = "_".join([n for n in names if n])
-    return name
-
+        additional_mark = ""
+        if (
+            code_model.options["combine_operation_files"]
+            and code_model.options["builders_visibility"] == "embedded"
+        ):
+            additional_mark = yaml_data["groupName"]
+        names = [
+            "build",
+            additional_mark,
+            yaml_data["name"],
+            "request",
+        ]
+        name = "_".join([n for n in names if n])
+        overloads=[
+            RequestBuilder.from_yaml(rb_yaml_data, code_model) for rb_yaml_data in yaml_data.get("overloads", [])
+        ]
+        return cls(
+            yaml_data=yaml_data,
+            code_model=code_model,
+            name=name,
+            parameters=cls.parameter_list_type().from_yaml(yaml_data, code_model),
+            overloads=overloads,
+        )
 
 class RequestBuilder(RequestBuilderBase[RequestBuilderParameterList]):
 
-    @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "RequestBuilder":
-        name = _get_name(yaml_data, code_model)
-        parameters = [RequestBuilderParameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
-        if yaml_data["bodyParameter"]:
-            body_parameter = RequestBuilderSingleTypeBodyParameter.from_yaml(yaml_data["bodyParameter"], code_model)
-        else:
-            body_parameter = None
-        parameter_list = RequestBuilderParameterList(code_model, parameters, body_parameter)
-        return cls(
-            yaml_data=yaml_data,
-            code_model=code_model,
-            name=name,
-            parameters=parameter_list,
-        )
+    @staticmethod
+    def parameter_list_type() -> Type[RequestBuilderParameterList]:
+        return RequestBuilderParameterList
 
 class OverloadedRequestBuilder(RequestBuilderBase[OverloadedRequestBuilderParameterList]):
-    @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "OverloadedRequestBuilder":
-        name = _get_name(yaml_data, code_model)
-        parameters = [RequestBuilderParameter.from_yaml(p, code_model) for p in yaml_data["parameters"]]
-        if yaml_data["bodyParameter"]:
-            body_parameter = RequestBuilderMultipleTypeBodyParameter.from_yaml(yaml_data["bodyParameter"], code_model)
-        else:
-            body_parameter = None
-        parameter_list = OverloadedRequestBuilderParameterList(code_model, parameters, body_parameter)
-        overloads=[RequestBuilder.from_yaml(rb_yaml_data, code_model) for rb_yaml_data in yaml_data["overloads"]]
-        return cls(
-            yaml_data=yaml_data,
-            code_model=code_model,
-            name=name,
-            parameters=parameter_list,
-            overloads=overloads,
-        )
+
+    @staticmethod
+    def parameter_list_type() -> Type[OverloadedRequestBuilderParameterList]:
+        return OverloadedRequestBuilderParameterList
+
+
+def get_request_builder(yaml_data: Dict[str, Any], code_model: "CodeModel") -> Union[RequestBuilder, OverloadedRequestBuilder]:
+    if yaml_data.get("overloads"):
+        return OverloadedRequestBuilder.from_yaml(yaml_data, code_model)
+    return RequestBuilder.from_yaml(yaml_data, code_model)
