@@ -286,6 +286,8 @@ def update_parameters(yaml_data: Dict[str, Any], body_parameter: Optional[Dict[s
         if param["language"]["default"]["name"] == "$host":
             continue
         if param["language"]["default"]["serializedName"] not in seen_rest_api_names:
+            if param.get("origin") == "modelerfour:synthesized/api-version":
+                param["inDocstring"] = False
             updated_param = update_parameter(param, in_overload=in_overload, in_overriden=in_overriden)
             retval.append(updated_param)
             seen_rest_api_names.add(updated_param["restApiName"])
