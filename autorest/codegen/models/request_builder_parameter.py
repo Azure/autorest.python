@@ -50,5 +50,12 @@ class RequestBuilderParameter(Parameter):
             self.client_default_value = None
 
     @property
+    def method_location(self) -> ParameterMethodLocation:
+        super_method_location = super().method_location
+        if self.in_overriden and super_method_location == ParameterMethodLocation.KEYWORD_ONLY:
+            return ParameterMethodLocation.KWARG
+        return super_method_location
+
+    @property
     def name_in_high_level_operation(self) -> str:
         return self.client_name

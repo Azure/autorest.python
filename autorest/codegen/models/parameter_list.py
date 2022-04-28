@@ -274,7 +274,6 @@ class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList):
             return ["*args", "**kwargs"]
         return ["**kwargs"]
 
-
 class _ClientGlobalParameterList(_ParameterListBase[ParameterType, BodyParameter]):
 
     @staticmethod

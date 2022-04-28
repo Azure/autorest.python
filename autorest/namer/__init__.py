@@ -13,6 +13,7 @@ from .. import YamlUpdatePlugin
 def update_description(description: Optional[str], default_description: str = "") -> str:
     if not description:
         description = default_description
+    description.rstrip(" ")
     if description and description[-1] != ".":
         description += "."
     return description

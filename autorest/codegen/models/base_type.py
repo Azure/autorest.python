@@ -20,6 +20,10 @@ class BaseType(BaseModel, ABC):
     :type yaml_data: dict[str, Any]
     """
 
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
+        super().__init__(yaml_data, code_model)
+        self.type = yaml_data["type"]
+
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"

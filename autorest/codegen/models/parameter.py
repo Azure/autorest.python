@@ -57,7 +57,7 @@ class _ParameterBase(BaseModel, abc.ABC):
         return not self.optional and isinstance(self.type, ConstantType)
 
     @property
-    def description(self):
+    def description(self) -> str:
         base_description = self.yaml_data["description"]
         type_description = self.type.description(is_operation_file=True)
         if type_description:
@@ -65,6 +65,8 @@ class _ParameterBase(BaseModel, abc.ABC):
         if self.optional:
             base_description = add_to_description(base_description, "Optional.")
         if self.client_default_value:
+            base_description = add_to_description(base_description, f"Default value is {self.client_default_value_declaration}.")
+        if self.optional and not self.client_default_value:
             base_description = add_to_description(base_description, f"Default value is {self.client_default_value_declaration}.")
         if self.constant:
             base_description = add_to_description(base_description, "Note that overriding this default value may result in unsupported behavior.")
@@ -181,6 +183,7 @@ class Parameter(_ParameterBase):
         self.skip_url_encoding: bool = self.yaml_data.get("skipUrlEncoding", False)
         self.explode: bool = self.yaml_data.get("explode", False)
         self.in_overload: bool = self.yaml_data["inOverload"]
+        self.in_overriden: bool = self.yaml_data["inOverriden"]
 
     @property
     def constraints(self):
@@ -216,7 +219,7 @@ class Parameter(_ParameterBase):
         if self.rest_api_name == "Content-Type":
             if self.in_overload:
                 return ParameterMethodLocation.KEYWORD_ONLY
-            return ParameterMethodLocation.KWARG
+            return ParameterMethodLocation.KWARG if not self.in_docstring else ParameterMethodLocation.KEYWORD_ONLY
         if self.code_model.options["only_path_and_body_params_positional"]:
             return ParameterMethodLocation.KEYWORD_ONLY
         return ParameterMethodLocation.POSITIONAL

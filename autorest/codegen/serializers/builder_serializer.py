@@ -507,7 +507,7 @@ class OperationSerializer(
     ) -> List[str]:
         retval = []
         body_param = cast(BodyParameter, builder.parameters.body_parameter)
-        if isinstance(body_param.type, BinaryType):
+        if builder.request_builder.parameters.body_parameter.client_name == "content":
             retval.append(f"_content = {body_param.client_name}")
         else:
             if self.code_model.options["models_mode"]:

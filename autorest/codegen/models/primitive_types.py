@@ -109,7 +109,7 @@ class BinaryType(PrimitiveType):
 
     @property
     def instance_check_template(self) -> str:
-        return "isinstance({}, IO)"
+        return "isinstance({}, (IO, bytes))"
 
 
 class AnyType(PrimitiveType):
