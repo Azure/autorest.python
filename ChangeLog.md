@@ -10,6 +10,9 @@
 | `msrest` dep of generated code                                          | `0.6.21`    |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.0`     |
 
+**New Features**
+- Hide `api_version` in doc string for singleapi SDK even if contains multi api versions  #1239
+
 **Breaking Changes in Request Builders**
 
 - Request builders for LRO operations have the `_initial` suffix removed from their name  #1241
