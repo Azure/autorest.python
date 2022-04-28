@@ -291,7 +291,7 @@ class ConfigSerializer:
 
     def set_constants(self) -> List[str]:
         return [
-            f"self.{p.serialized_name} = {p.constant_declaration}"
+            f"self.{p.client_name} = {p.client_default_value_declaration}"
             for p in self.code_model.config.parameters.constant
             if p not in self.code_model.config.parameters.method
         ]

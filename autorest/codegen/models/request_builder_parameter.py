@@ -14,6 +14,7 @@ from .model_type import ModelType
 from .list_type import ListType
 from .base_type import BaseType
 from .dictionary_type import DictionaryType
+from .primitive_types import BinaryType, StringType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -22,14 +23,14 @@ class RequestBuilderBodyParameter(BodyParameter):
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
-        if isinstance(self.type, (ModelType, ListType, DictionaryType)):
-            self.client_name = "json"
-        else:
+        if isinstance(self.type, (BinaryType, StringType)):
             self.client_name = "content"
+        else:
+            self.client_name = "json"
 
     @property
     def method_location(self) -> ParameterMethodLocation:
-        return ParameterMethodLocation.KEYWORD_ONLY
+        return ParameterMethodLocation.KWARG if self.constant else ParameterMethodLocation.KEYWORD_ONLY
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "RequestBuilderBodyParameter":

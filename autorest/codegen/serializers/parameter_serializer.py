@@ -106,7 +106,7 @@ class ParameterSerializer:
         if pop_headers_kwarg != PopKwargType.NO or pop_params_kwarg != PopKwargType.NO:
             retval.append("")
         for kwarg in parameters:
-            if kwarg.client_default_value or kwarg.optional:
+            if kwarg.client_default_value is not None or kwarg.optional:
                 default_value = kwarg.client_default_value_declaration
                 if check_kwarg_dict and (
                     kwarg.location in [ParameterLocation.HEADER, ParameterLocation.QUERY]

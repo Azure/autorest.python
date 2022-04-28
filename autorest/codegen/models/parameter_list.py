@@ -110,7 +110,7 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
         raise NotImplementedError("No parameter grouping")
 
     @property
-    def constant(self) -> List[ParameterType]:
+    def constant(self) -> List[Union[ParameterType, BodyParameterType]]:
         return [p for p in self.parameters if p.constant]
 
     @property

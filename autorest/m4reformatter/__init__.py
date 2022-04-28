@@ -253,11 +253,9 @@ def _update_body_parameter_helper(yaml_data: Dict[str, Any], body_type: Dict[str
     ]
     # get default content type
     body_param["defaultContentType"] = _get_default_content_type(body_param["contentTypes"])
-    if body_param["type"] == "constant":
+    if body_param["type"]["type"] == "constant":
         body_param["clientDefaultValue"] = body_type["value"]
     return body_param
-
-
 
 def update_body_parameter(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     body_types = get_all_body_types(yaml_data)
@@ -273,11 +271,11 @@ def update_body_parameter_overload(yaml_data: Dict[str, Any], body_type: Dict[st
     return _update_body_parameter_helper(yaml_data, body_type)
 
 def get_body_type_for_description(body_parameter: Dict[str, Any]) -> str:
-    if body_parameter["type"]["type"] in ("model", "list", "dict"):
-        return "JSON"
+    if body_parameter["type"]["type"] == "binary":
+        return "binary"
     if body_parameter["type"]["type"] == "string":
         return "string"
-    return "binary"
+    return "JSON"
 
 def update_parameters(yaml_data: Dict[str, Any], body_parameter: Optional[Dict[str, Any]], *, in_overload: bool = False, in_overriden: bool = False) -> List[Dict[str, Any]]:
     retval: List[Dict[str, Any]] = []
@@ -318,6 +316,8 @@ def update_parameters(yaml_data: Dict[str, Any], body_parameter: Optional[Dict[s
                         elif not in_overload:
                             content_types = "'" + "', '".join(yaml_data["requestMediaTypes"]) + "'"
                             description += f" Known values are: {content_types}."
+                        if not in_overload and not in_overriden:
+                            param["clientDefaultValue"] = body_parameter["defaultContentType"]
                         param["language"]["default"]["description"] = description
                     param = update_parameter(param, in_overload=in_overload, in_overriden=in_overriden)
                     retval.append(param)
@@ -345,7 +345,8 @@ def update_response(
             for code in yaml_data["protocol"]["http"]["statusCodes"]
         ],
         "isError": any(e for e in operation_group_yaml_data.get("exceptions", []) if id(e) == id(yaml_data)),
-        "type": type
+        "type": type,
+        "nullable": yaml_data.get("nullable", False)
     }
 
 def _get_default_content_type(content_types: Iterable[str]) -> Optional[str]:

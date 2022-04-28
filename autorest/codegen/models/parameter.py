@@ -46,7 +46,8 @@ class _ParameterBase(BaseModel, abc.ABC):
         self.client_default_value = self.yaml_data.get("clientDefaultValue", None)
         self.in_docstring = self.yaml_data.get("inDocstring", True)
         self.type = type
-        self.client_default_value = self.client_default_value or self.type.client_default_value
+        if self.client_default_value is None:
+            self.client_default_value = self.type.client_default_value
 
     @property
     def constant(self) -> bool:
@@ -64,9 +65,9 @@ class _ParameterBase(BaseModel, abc.ABC):
             base_description = add_to_description(base_description, type_description)
         if self.optional:
             base_description = add_to_description(base_description, "Optional.")
-        if self.client_default_value:
+        if self.client_default_value is not None:
             base_description = add_to_description(base_description, f"Default value is {self.client_default_value_declaration}.")
-        if self.optional and not self.client_default_value:
+        if self.optional and self.client_default_value is None:
             base_description = add_to_description(base_description, f"Default value is {self.client_default_value_declaration}.")
         if self.constant:
             base_description = add_to_description(base_description, "Note that overriding this default value may result in unsupported behavior.")
@@ -74,7 +75,7 @@ class _ParameterBase(BaseModel, abc.ABC):
 
     @property
     def client_default_value_declaration(self):
-        if not self.client_default_value:
+        if self.client_default_value is None:
             return None
         return self.type.get_declaration(self.client_default_value)
 
@@ -99,7 +100,7 @@ class _ParameterBase(BaseModel, abc.ABC):
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.merge(self.type.imports(is_operation_file=True))
-        if self.optional and not self.client_default_value:
+        if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         return file_import
 
@@ -123,17 +124,17 @@ class _ParameterBase(BaseModel, abc.ABC):
     def method_signature(self, is_python3_file: bool) -> str:
         type_annot = self.type_annotation()
         if is_python3_file:
-            if self.client_default_value or self.optional:
+            if self.client_default_value is not None or self.optional:
                 return f"{self.client_name}: {type_annot} = {self.client_default_value_declaration},"
             return f"{self.client_name}: {type_annot},"
-        if self.client_default_value or self.optional:
+        if self.client_default_value is not None or self.optional:
             return f"{self.client_name}={self.client_default_value_declaration},  # type: {type_annot}"
         return f"{self.client_name},  # type: {type_annot}"
 
 class _BodyParameterBase(_ParameterBase):
     @property
     def method_location(self) -> ParameterMethodLocation:
-        return ParameterMethodLocation.POSITIONAL
+        return ParameterMethodLocation.KWARG if self.constant else ParameterMethodLocation.POSITIONAL
 
     @property
     def flattened(self) -> bool:
