@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 import datetime
 import sys
-from typing import Any, Callable, Dict, List, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, IO, List, Optional, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -21,7 +21,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
-from azure.core.utils import case_insensitive_dict
 
 from ...operations._operations import (
     build_array_get_array_empty_request,
@@ -271,14 +270,17 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         return cast(List[int], deserialized)
 
-    @distributed_trace_async
+    @overload
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[str], **kwargs: Any
+        self, array_body: List[str], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value empty [].
 
         :param array_body:
         :type array_body: list[str]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -291,22 +293,62 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                     "str"  # Optional.
                 ]
         """
+
+        ...
+
+    @overload
+    async def put_empty(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value empty [].
+
+        :param array_body:
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_empty(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[str], IO], *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value empty [].
+
+        :param array_body: Is either a list type or a IO type.
+        :type array_body: list[str] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = array_body
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = array_body
+            content_type = content_type or "application/json"
 
         request = build_array_put_empty_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -375,14 +417,17 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         return cast(List[bool], deserialized)
 
-    @distributed_trace_async
+    @overload
     async def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[bool], **kwargs: Any
+        self, array_body: List[bool], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value empty [true, false, false, true].
 
         :param array_body:
         :type array_body: list[bool]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -395,22 +440,62 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                     bool  # Optional.
                 ]
         """
+
+        ...
+
+    @overload
+    async def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value empty [true, false, false, true].
+
+        :param array_body:
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[bool], IO], *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value empty [true, false, false, true].
+
+        :param array_body: Is either a list type or a IO type.
+        :type array_body: list[bool] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = array_body
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = array_body
+            content_type = content_type or "application/json"
 
         request = build_array_put_boolean_tfft_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -579,14 +664,17 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         return cast(List[int], deserialized)
 
-    @distributed_trace_async
+    @overload
     async def put_integer_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[int], **kwargs: Any
+        self, array_body: List[int], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value empty [1, -1, 3, 300].
 
         :param array_body:
         :type array_body: list[int]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -599,22 +687,62 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                     0  # Optional.
                 ]
         """
+
+        ...
+
+    @overload
+    async def put_integer_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value empty [1, -1, 3, 300].
+
+        :param array_body:
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_integer_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[int], IO], *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value empty [1, -1, 3, 300].
+
+        :param array_body: Is either a list type or a IO type.
+        :type array_body: list[int] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = array_body
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = array_body
+            content_type = content_type or "application/json"
 
         request = build_array_put_integer_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -737,8 +865,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     async def get_long_valid(self, **kwargs: Any) -> List[int]:
         """Get integer array value [1, -1, 3, 300].
 
-        :return: list of long
-        :rtype: list[long]
+        :return: list of int
+        :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -746,7 +874,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response.json() == [
-                    0.0  # Optional.
+                    0  # Optional.
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -783,14 +911,17 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         return cast(List[int], deserialized)
 
-    @distributed_trace_async
+    @overload
     async def put_long_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[int], **kwargs: Any
+        self, array_body: List[int], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value empty [1, -1, 3, 300].
 
         :param array_body:
-        :type array_body: list[long]
+        :type array_body: list[int]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -800,25 +931,65 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    0.0  # Optional.
+                    0  # Optional.
                 ]
+        """
+
+        ...
+
+    @overload
+    async def put_long_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value empty [1, -1, 3, 300].
+
+        :param array_body:
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_long_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[int], IO], *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value empty [1, -1, 3, 300].
+
+        :param array_body: Is either a list type or a IO type.
+        :type array_body: list[int] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = array_body
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = array_body
+            content_type = content_type or "application/json"
 
         request = build_array_put_long_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -841,8 +1012,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     async def get_long_invalid_null(self, **kwargs: Any) -> List[int]:
         """Get long array value [1, null, 0].
 
-        :return: list of long
-        :rtype: list[long]
+        :return: list of int
+        :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -850,7 +1021,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response.json() == [
-                    0.0  # Optional.
+                    0  # Optional.
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -891,8 +1062,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     async def get_long_invalid_string(self, **kwargs: Any) -> List[int]:
         """Get long array value [1, 'integer', 0].
 
-        :return: list of long
-        :rtype: list[long]
+        :return: list of int
+        :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -900,7 +1071,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response.json() == [
-                    0.0  # Optional.
+                    0  # Optional.
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -987,14 +1158,17 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         return cast(List[float], deserialized)
 
-    @distributed_trace_async
+    @overload
     async def put_float_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[float], **kwargs: Any
+        self, array_body: List[float], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
         :param array_body:
         :type array_body: list[float]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1007,22 +1181,62 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                     0.0  # Optional.
                 ]
         """
+
+        ...
+
+    @overload
+    async def put_float_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value [0, -0.01, 1.2e20].
+
+        :param array_body:
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_float_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[float], IO], *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value [0, -0.01, 1.2e20].
+
+        :param array_body: Is either a list type or a IO type.
+        :type array_body: list[float] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = array_body
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = array_body
+            content_type = content_type or "application/json"
 
         request = build_array_put_float_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -1191,14 +1405,17 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         return cast(List[float], deserialized)
 
-    @distributed_trace_async
+    @overload
     async def put_double_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[float], **kwargs: Any
+        self, array_body: List[float], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
         :param array_body:
         :type array_body: list[float]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1211,22 +1428,62 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                     0.0  # Optional.
                 ]
         """
+
+        ...
+
+    @overload
+    async def put_double_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value [0, -0.01, 1.2e20].
+
+        :param array_body:
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_double_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[float], IO], *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value [0, -0.01, 1.2e20].
+
+        :param array_body: Is either a list type or a IO type.
+        :type array_body: list[float] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = array_body
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = array_body
+            content_type = content_type or "application/json"
 
         request = build_array_put_double_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -1395,14 +1652,17 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         return cast(List[str], deserialized)
 
-    @distributed_trace_async
+    @overload
     async def put_string_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[str], **kwargs: Any
+        self, array_body: List[str], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body:
         :type array_body: list[str]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1415,22 +1675,62 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                     "str"  # Optional.
                 ]
         """
+
+        ...
+
+    @overload
+    async def put_string_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value ['foo1', 'foo2', 'foo3'].
+
+        :param array_body:
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_string_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[str], IO], *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value ['foo1', 'foo2', 'foo3'].
+
+        :param array_body: Is either a list type or a IO type.
+        :type array_body: list[str] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = array_body
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = array_body
+            content_type = content_type or "application/json"
 
         request = build_array_put_string_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -1453,7 +1753,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     async def get_enum_valid(self, **kwargs: Any) -> List[str]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
-        :return: list of str. Known values are: "foo1", "foo2", and "foo3".
+        :return: list of str
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -1499,14 +1799,17 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         return cast(List[str], deserialized)
 
-    @distributed_trace_async
+    @overload
     async def put_enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[str], **kwargs: Any
+        self, array_body: List[str], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body:
         :type array_body: list[str]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1519,22 +1822,62 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                     "str"  # Optional.
                 ]
         """
+
+        ...
+
+    @overload
+    async def put_enum_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value ['foo1', 'foo2', 'foo3'].
+
+        :param array_body:
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_enum_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[str], IO], *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value ['foo1', 'foo2', 'foo3'].
+
+        :param array_body: Is either a list type or a IO type.
+        :type array_body: list[str] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = array_body
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = array_body
+            content_type = content_type or "application/json"
 
         request = build_array_put_enum_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -1557,7 +1900,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     async def get_string_enum_valid(self, **kwargs: Any) -> List[str]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
-        :return: list of str. Known values are: "foo1", "foo2", and "foo3".
+        :return: list of str
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -1603,14 +1946,17 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         return cast(List[str], deserialized)
 
-    @distributed_trace_async
+    @overload
     async def put_string_enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[str], **kwargs: Any
+        self, array_body: List[str], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body:
         :type array_body: list[str]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1623,22 +1969,62 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                     "str"  # Optional.
                 ]
         """
+
+        ...
+
+    @overload
+    async def put_string_enum_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value ['foo1', 'foo2', 'foo3'].
+
+        :param array_body:
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_string_enum_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[str], IO], *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value ['foo1', 'foo2', 'foo3'].
+
+        :param array_body: Is either a list type or a IO type.
+        :type array_body: list[str] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = array_body
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = array_body
+            content_type = content_type or "application/json"
 
         request = build_array_put_string_enum_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -1771,7 +2157,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response.json() == [
-                    str  # Optional.
+                    "str"  # Optional.
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1808,15 +2194,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         return cast(List[str], deserialized)
 
-    @distributed_trace_async
+    @overload
     async def put_uuid_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[str], **kwargs: Any
+        self, array_body: List[str], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
         'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
         :param array_body:
         :type array_body: list[str]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1826,25 +2215,67 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    str  # Optional.
+                    "str"  # Optional.
                 ]
+        """
+
+        ...
+
+    @overload
+    async def put_uuid_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
+        'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
+
+        :param array_body:
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_uuid_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[str], IO], *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
+        'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
+
+        :param array_body: Is either a list type or a IO type.
+        :type array_body: list[str] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = array_body
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = array_body
+            content_type = content_type or "application/json"
 
         request = build_array_put_uuid_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -1876,7 +2307,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response.json() == [
-                    str  # Optional.
+                    "str"  # Optional.
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1963,14 +2394,17 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         return cast(List[datetime.date], deserialized)
 
-    @distributed_trace_async
+    @overload
     async def put_date_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[datetime.date], **kwargs: Any
+        self, array_body: List[datetime.date], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         :param array_body:
         :type array_body: list[~datetime.date]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1983,22 +2417,62 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                     "2020-02-20"  # Optional.
                 ]
         """
+
+        ...
+
+    @overload
+    async def put_date_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
+
+        :param array_body:
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_date_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[datetime.date], IO], *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
+
+        :param array_body: Is either a list type or a IO type.
+        :type array_body: list[~datetime.date] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = array_body
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = array_body
+            content_type = content_type or "application/json"
 
         request = build_array_put_date_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -2168,15 +2642,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         return cast(List[datetime.datetime], deserialized)
 
-    @distributed_trace_async
+    @overload
     async def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[datetime.datetime], **kwargs: Any
+        self, array_body: List[datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
         '1492-10-12T10:15:01-08:00'].
 
         :param array_body:
         :type array_body: list[~datetime.datetime]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2189,22 +2666,64 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                     "2020-02-20 00:00:00"  # Optional.
                 ]
         """
+
+        ...
+
+    @overload
+    async def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
+        '1492-10-12T10:15:01-08:00'].
+
+        :param array_body:
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[datetime.datetime], IO], *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
+        '1492-10-12T10:15:01-08:00'].
+
+        :param array_body: Is either a list type or a IO type.
+        :type array_body: list[~datetime.datetime] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = array_body
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = array_body
+            content_type = content_type or "application/json"
 
         request = build_array_put_date_time_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -2374,15 +2893,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         return cast(List[datetime.datetime], deserialized)
 
-    @distributed_trace_async
+    @overload
     async def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[datetime.datetime], **kwargs: Any
+        self, array_body: List[datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
         Oct 1492 10:15:01 GMT'].
 
         :param array_body:
         :type array_body: list[~datetime.datetime]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2395,22 +2917,64 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                     "2020-02-20 00:00:00"  # Optional.
                 ]
         """
+
+        ...
+
+    @overload
+    async def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
+        Oct 1492 10:15:01 GMT'].
+
+        :param array_body:
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[datetime.datetime], IO], *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
+        Oct 1492 10:15:01 GMT'].
+
+        :param array_body: Is either a list type or a IO type.
+        :type array_body: list[~datetime.datetime] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = array_body
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = array_body
+            content_type = content_type or "application/json"
 
         request = build_array_put_date_time_rfc1123_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -2479,14 +3043,17 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         return cast(List[datetime.timedelta], deserialized)
 
-    @distributed_trace_async
+    @overload
     async def put_duration_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[datetime.timedelta], **kwargs: Any
+        self, array_body: List[datetime.timedelta], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         :param array_body:
         :type array_body: list[~datetime.timedelta]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2499,22 +3066,62 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                     "1 day, 0:00:00"  # Optional.
                 ]
         """
+
+        ...
+
+    @overload
+    async def put_duration_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
+
+        :param array_body:
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_duration_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[datetime.timedelta], IO], *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
+
+        :param array_body: Is either a list type or a IO type.
+        :type array_body: list[~datetime.timedelta] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = array_body
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = array_body
+            content_type = content_type or "application/json"
 
         request = build_array_put_duration_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -2534,12 +3141,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_byte_valid(self, **kwargs: Any) -> List[bytearray]:
+    async def get_byte_valid(self, **kwargs: Any) -> List[bytes]:
         """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded
         in base64.
 
-        :return: list of bytearray
-        :rtype: list[bytearray]
+        :return: list of bytes
+        :rtype: list[bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2547,7 +3154,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response.json() == [
-                    bytearray("bytearray", encoding="utf-8")  # Optional.
+                    bytes("bytes", encoding="utf-8")  # Optional.
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2556,7 +3163,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[bytearray]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[bytes]]
 
         request = build_array_get_byte_valid_request(
             headers=_headers,
@@ -2580,19 +3187,22 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[bytearray], deserialized), {})
+            return cls(pipeline_response, cast(List[bytes], deserialized), {})
 
-        return cast(List[bytearray], deserialized)
+        return cast(List[bytes], deserialized)
 
-    @distributed_trace_async
+    @overload
     async def put_byte_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[bytearray], **kwargs: Any
+        self, array_body: List[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
         elementencoded in base 64.
 
         :param array_body:
-        :type array_body: list[bytearray]
+        :type array_body: list[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2602,25 +3212,67 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 array_body = [
-                    bytearray("bytearray", encoding="utf-8")  # Optional.
+                    bytes("bytes", encoding="utf-8")  # Optional.
                 ]
+        """
+
+        ...
+
+    @overload
+    async def put_byte_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
+        elementencoded in base 64.
+
+        :param array_body:
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_byte_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[bytes], IO], *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
+        elementencoded in base 64.
+
+        :param array_body: Is either a list type or a IO type.
+        :type array_body: list[bytes] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = array_body
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = array_body
+            content_type = content_type or "application/json"
 
         request = build_array_put_byte_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -2640,11 +3292,11 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def get_byte_invalid_null(self, **kwargs: Any) -> List[bytearray]:
+    async def get_byte_invalid_null(self, **kwargs: Any) -> List[bytes]:
         """Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded.
 
-        :return: list of bytearray
-        :rtype: list[bytearray]
+        :return: list of bytes
+        :rtype: list[bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -2652,7 +3304,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response.json() == [
-                    bytearray("bytearray", encoding="utf-8")  # Optional.
+                    bytes("bytes", encoding="utf-8")  # Optional.
                 ]
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2661,7 +3313,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[bytearray]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[bytes]]
 
         request = build_array_get_byte_invalid_null_request(
             headers=_headers,
@@ -2685,9 +3337,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[bytearray], deserialized), {})
+            return cls(pipeline_response, cast(List[bytes], deserialized), {})
 
-        return cast(List[bytearray], deserialized)
+        return cast(List[bytes], deserialized)
 
     @distributed_trace_async
     async def get_base64_url(self, **kwargs: Any) -> List[bytes]:
@@ -3008,15 +3660,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         return cast(List[JSON], deserialized)
 
-    @distributed_trace_async
+    @overload
     async def put_complex_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[JSON], **kwargs: Any
+        self, array_body: List[JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
         'string': '4'}, {'integer': 5, 'string': '6'}].
 
         :param array_body:
         :type array_body: list[JSON]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3032,22 +3687,64 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                     }
                 ]
         """
+
+        ...
+
+    @overload
+    async def put_complex_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
+        'string': '4'}, {'integer': 5, 'string': '6'}].
+
+        :param array_body:
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_complex_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[JSON], IO], *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
+        'string': '4'}, {'integer': 5, 'string': '6'}].
+
+        :param array_body: Is either a list type or a IO type.
+        :type array_body: list[JSON] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = array_body
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = array_body
+            content_type = content_type or "application/json"
 
         request = build_array_put_complex_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -3326,14 +4023,17 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         return cast(List[List[str]], deserialized)
 
-    @distributed_trace_async
+    @overload
     async def put_array_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[List[str]], **kwargs: Any
+        self, array_body: List[List[str]], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
         :param array_body:
         :type array_body: list[list[str]]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3348,22 +4048,62 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                     ]
                 ]
         """
+
+        ...
+
+    @overload
+    async def put_array_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
+
+        :param array_body:
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_array_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[List[str]], IO], *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
+
+        :param array_body: Is either a list type or a IO type.
+        :type array_body: list[list[str]] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = array_body
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = array_body
+            content_type = content_type or "application/json"
 
         request = build_array_put_array_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -3645,15 +4385,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         return cast(List[Dict[str, str]], deserialized)
 
-    @distributed_trace_async
+    @overload
     async def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[Dict[str, str]], **kwargs: Any
+        self, array_body: List[Dict[str, str]], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :param array_body:
         :type array_body: list[dict[str, str]]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3668,22 +4411,64 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
                     }
                 ]
         """
+
+        ...
+
+    @overload
+    async def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
+        'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+
+        :param array_body:
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[Dict[str, str]], IO], *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
+        'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+
+        :param array_body: Is either a list type or a IO type.
+        :type array_body: list[dict[str, str]] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = array_body
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = array_body
+            content_type = content_type or "application/json"
 
         request = build_array_put_dictionary_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
