@@ -80,7 +80,7 @@ class _ParameterBase(BaseModel, abc.ABC):
 
     def type_annotation(self) -> str:
         type_annot = self.type.type_annotation(is_operation_file=True)
-        if self.optional:
+        if self.optional and self.client_default_value is None:
             return f"Optional[{type_annot}]"
         return type_annot
 

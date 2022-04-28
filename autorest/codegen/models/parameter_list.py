@@ -227,7 +227,13 @@ class _ParameterList(_ParameterListBase[Parameter, BodyParameter]):
             raise ValueError("There is no body parameter")
         return self._body_parameter
 
+    def kwargs_to_pop(self, is_python3_file: bool) -> List[Union[Parameter, BodyParameter]]:
+        super_kwargs_to_pop = super().kwargs_to_pop(is_python3_file)
+        super_kwargs_to_pop.extend([c for c in self.parameters if c.implementation == "Client" and c.constant])  # we pop client constants for back compat
+        return super_kwargs_to_pop
+
 class ParameterList(_ParameterList):
+
     ...
 
 class OverloadedOperationParameterList(_ParameterList):
@@ -257,7 +263,9 @@ class _RequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, R
 
     @property
     def unsorted_method_params(self) -> List[Union[RequestBuilderParameter, RequestBuilderBodyParameter]]:
-        return [k for k in super().unsorted_method_params if k.location != ParameterLocation.ENDPOINT_PATH]
+        super_unsorted_method_params = super().unsorted_method_params
+        super_unsorted_method_params.extend([p for p in self.parameters if p.implementation == "Client"])  # don't have access to client params in request builder
+        return super_unsorted_method_params
 
     @property
     def path(self) -> List[RequestBuilderParameter]:

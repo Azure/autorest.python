@@ -162,14 +162,14 @@ class BasicOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -187,6 +187,7 @@ class BasicOperations:
                       does not fit on a single line and a line break.
                 }
         """
+
         ...
 
     @overload
@@ -197,22 +198,28 @@ class BasicOperations:
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
-        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
-        :type complex_body: IO or JSON
+        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Is either a model type
+         or a IO type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -220,24 +227,23 @@ class BasicOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("api-version", "2016-02-29"))  # type: str
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
             content_type = content_type or "application/json"
 
         request = build_basic_put_valid_request(
-            api_version=api_version,
             content_type=content_type,
+            api_version=api_version,
             json=_json,
             content=_content,
             headers=_headers,
@@ -545,14 +551,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_int(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2.
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -567,6 +573,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0  # Optional.
                 }
         """
+
         ...
 
     @overload
@@ -577,22 +584,27 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         :param complex_body: Please put -1 and 2.
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_int(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types with integer properties.
 
-        :param complex_body: Please put -1 and 2.
-        :type complex_body: IO or JSON
+        :param complex_body: Please put -1 and 2. Is either a model type or a IO type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -600,15 +612,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -689,14 +700,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_long(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788.
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -711,6 +722,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0  # Optional.
                 }
         """
+
         ...
 
     @overload
@@ -721,22 +733,28 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         :param complex_body: Please put 1099511627775 and -999511627788.
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_long(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types with long properties.
 
-        :param complex_body: Please put 1099511627775 and -999511627788.
-        :type complex_body: IO or JSON
+        :param complex_body: Please put 1099511627775 and -999511627788. Is either a model type or a IO
+         type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -744,15 +762,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -833,14 +850,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_float(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003.
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -855,6 +872,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0.0  # Optional.
                 }
         """
+
         ...
 
     @overload
@@ -865,22 +883,27 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         :param complex_body: Please put 1.05 and -0.003.
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_float(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types with float properties.
 
-        :param complex_body: Please put 1.05 and -0.003.
-        :type complex_body: IO or JSON
+        :param complex_body: Please put 1.05 and -0.003. Is either a model type or a IO type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -888,15 +911,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -978,15 +1000,15 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_double(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
          -0.000000000000000000000000000000000000000000000000000000005.
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1002,6 +1024,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                       0.0  # Optional.
                 }
         """
+
         ...
 
     @overload
@@ -1013,23 +1036,29 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put 3e-100 and
          -0.000000000000000000000000000000000000000000000000000000005.
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_double(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
-         -0.000000000000000000000000000000000000000000000000000000005.
-        :type complex_body: IO or JSON
+         -0.000000000000000000000000000000000000000000000000000000005. Is either a model type or a IO
+         type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1037,15 +1066,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -1126,14 +1154,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_bool(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false.
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1148,6 +1176,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field_true": bool  # Optional.
                 }
         """
+
         ...
 
     @overload
@@ -1158,22 +1187,27 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         :param complex_body: Please put true and false.
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_bool(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types with bool properties.
 
-        :param complex_body: Please put true and false.
-        :type complex_body: IO or JSON
+        :param complex_body: Please put true and false. Is either a model type or a IO type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1181,15 +1215,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -1271,14 +1304,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_string(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null.
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1294,6 +1327,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "null": "str"  # Optional.
                 }
         """
+
         ...
 
     @overload
@@ -1304,22 +1338,28 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         :param complex_body: Please put 'goodrequest', '', and null.
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_string(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types with string properties.
 
-        :param complex_body: Please put 'goodrequest', '', and null.
-        :type complex_body: IO or JSON
+        :param complex_body: Please put 'goodrequest', '', and null. Is either a model type or a IO
+         type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1327,15 +1367,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -1416,14 +1455,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'.
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1438,6 +1477,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "leap": "2020-02-20"  # Optional.
                 }
         """
+
         ...
 
     @overload
@@ -1448,22 +1488,28 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'.
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_date(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types with date properties.
 
-        :param complex_body: Please put '0001-01-01' and '2016-02-29'.
-        :type complex_body: IO or JSON
+        :param complex_body: Please put '0001-01-01' and '2016-02-29'. Is either a model type or a IO
+         type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1471,15 +1517,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -1560,14 +1605,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1582,6 +1627,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "now": "2020-02-20 00:00:00"  # Optional.
                 }
         """
+
         ...
 
     @overload
@@ -1592,22 +1638,28 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types with datetime properties.
 
-        :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
-        :type complex_body: IO or JSON
+        :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'. Is
+         either a model type or a IO type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1615,15 +1667,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -1704,15 +1755,15 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
          GMT'.
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1727,6 +1778,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "now": "2020-02-20 00:00:00"  # Optional.
                 }
         """
+
         ...
 
     @overload
@@ -1738,23 +1790,28 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
          GMT'.
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
-         GMT'.
-        :type complex_body: IO or JSON
+         GMT'. Is either a model type or a IO type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1762,15 +1819,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -1850,14 +1906,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_duration(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with duration properties.
 
         :param complex_body: Please put 'P123DT22H14M12.011S'.
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1871,6 +1927,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field": "1 day, 0:00:00"  # Optional.
                 }
         """
+
         ...
 
     @overload
@@ -1881,22 +1938,27 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         :param complex_body: Please put 'P123DT22H14M12.011S'.
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_duration(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types with duration properties.
 
-        :param complex_body: Please put 'P123DT22H14M12.011S'.
-        :type complex_body: IO or JSON
+        :param complex_body: Please put 'P123DT22H14M12.011S'. Is either a model type or a IO type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1904,15 +1966,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -1992,14 +2053,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_byte(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with byte properties.
 
         :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6).
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2013,6 +2074,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field": bytes("bytes", encoding="utf-8")  # Optional.
                 }
         """
+
         ...
 
     @overload
@@ -2023,22 +2085,28 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6).
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_byte(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types with byte properties.
 
-        :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6).
-        :type complex_body: IO or JSON
+        :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6). Is
+         either a model type or a IO type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2046,15 +2114,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -2154,15 +2221,15 @@ class ArrayOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with array property.
 
         :param complex_body: Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The
          quick brown fox jumps over the lazy dog".
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2178,6 +2245,7 @@ class ArrayOperations:
                     ]
                 }
         """
+
         ...
 
     @overload
@@ -2189,23 +2257,28 @@ class ArrayOperations:
         :param complex_body: Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The
          quick brown fox jumps over the lazy dog".
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types with array property.
 
         :param complex_body: Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The
-         quick brown fox jumps over the lazy dog".
-        :type complex_body: IO or JSON
+         quick brown fox jumps over the lazy dog". Is either a model type or a IO type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2213,15 +2286,14 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -2303,14 +2375,14 @@ class ArrayOperations:
 
     @overload
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with array property which is empty.
 
         :param complex_body: Please put an empty array.
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2326,6 +2398,7 @@ class ArrayOperations:
                     ]
                 }
         """
+
         ...
 
     @overload
@@ -2336,22 +2409,27 @@ class ArrayOperations:
 
         :param complex_body: Please put an empty array.
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types with array property which is empty.
 
-        :param complex_body: Please put an empty array.
-        :type complex_body: IO or JSON
+        :param complex_body: Please put an empty array. Is either a model type or a IO type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2359,15 +2437,14 @@ class ArrayOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -2519,15 +2596,15 @@ class DictionaryOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property.
 
         :param complex_body: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
          "bmp":"mspaint", "xls":"excel", "exe":"", "":null.
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2543,6 +2620,7 @@ class DictionaryOperations:
                     }
                 }
         """
+
         ...
 
     @overload
@@ -2554,23 +2632,28 @@ class DictionaryOperations:
         :param complex_body: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
          "bmp":"mspaint", "xls":"excel", "exe":"", "":null.
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property.
 
         :param complex_body: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
-         "bmp":"mspaint", "xls":"excel", "exe":"", "":null.
-        :type complex_body: IO or JSON
+         "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Is either a model type or a IO type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2578,15 +2661,14 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -2668,14 +2750,14 @@ class DictionaryOperations:
 
     @overload
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property which is empty.
 
         :param complex_body: Please put an empty dictionary.
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2691,6 +2773,7 @@ class DictionaryOperations:
                     }
                 }
         """
+
         ...
 
     @overload
@@ -2701,22 +2784,27 @@ class DictionaryOperations:
 
         :param complex_body: Please put an empty dictionary.
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property which is empty.
 
-        :param complex_body: Please put an empty dictionary.
-        :type complex_body: IO or JSON
+        :param complex_body: Please put an empty dictionary. Is either a model type or a IO type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2724,15 +2812,14 @@ class DictionaryOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -2944,7 +3031,7 @@ class InheritanceOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that extend others.
 
@@ -2952,8 +3039,8 @@ class InheritanceOperations:
          breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
          the 2nd one named "Tomato" with id=-1 and food="french fries".
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2977,6 +3064,7 @@ class InheritanceOperations:
                     "name": "str"  # Optional.
                 }
         """
+
         ...
 
     @overload
@@ -2989,24 +3077,30 @@ class InheritanceOperations:
          breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
          the 2nd one named "Tomato" with id=-1 and food="french fries".
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types that extend others.
 
         :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
          breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
-         the 2nd one named "Tomato" with id=-1 and food="french fries".
-        :type complex_body: IO or JSON
+         the 2nd one named "Tomato" with id=-1 and food="french fries". Is either a model type or a IO
+         type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3014,15 +3108,14 @@ class InheritanceOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -3125,7 +3218,7 @@ class PolymorphismOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic.
 
@@ -3163,8 +3256,8 @@ class PolymorphismOperations:
                  ]
                };.
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3185,6 +3278,7 @@ class PolymorphismOperations:
                     fishtype: fishtype
                 }
         """
+
         ...
 
     @overload
@@ -3227,17 +3321,19 @@ class PolymorphismOperations:
                  ]
                };.
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic.
 
@@ -3273,8 +3369,11 @@ class PolymorphismOperations:
                      'jawsize': 5
                    }
                  ]
-               };.
-        :type complex_body: IO or JSON
+               };. Is either a model type or a IO type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3282,15 +3381,14 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -3586,15 +3684,15 @@ class PolymorphismOperations:
 
     @overload
     async def put_complicated(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
         :param complex_body:
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3624,6 +3722,7 @@ class PolymorphismOperations:
                     fishtype: salmon
                 }
         """
+
         ...
 
     @overload
@@ -3635,23 +3734,28 @@ class PolymorphismOperations:
 
         :param complex_body:
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_complicated(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
-        :param complex_body:
-        :type complex_body: IO or JSON
+        :param complex_body: Is either a model type or a IO type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3659,15 +3763,14 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -3697,14 +3800,14 @@ class PolymorphismOperations:
 
     @overload
     async def put_missing_discriminator(
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Put complex types that are polymorphic, omitting the discriminator.
 
         :param complex_body:
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -3753,6 +3856,7 @@ class PolymorphismOperations:
                     fishtype: salmon
                 }
         """
+
         ...
 
     @overload
@@ -3763,7 +3867,8 @@ class PolymorphismOperations:
 
         :param complex_body:
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -3791,14 +3896,20 @@ class PolymorphismOperations:
                     fishtype: salmon
                 }
         """
+
         ...
 
     @distributed_trace_async
-    async def put_missing_discriminator(self, complex_body: Union[IO, JSON], **kwargs: Any) -> JSON:
+    async def put_missing_discriminator(
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> JSON:
         """Put complex types that are polymorphic, omitting the discriminator.
 
-        :param complex_body:
-        :type complex_body: IO or JSON
+        :param complex_body: Is either a model type or a IO type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -3828,15 +3939,14 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -3873,7 +3983,7 @@ class PolymorphismOperations:
 
     @overload
     async def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
@@ -3906,8 +4016,8 @@ class PolymorphismOperations:
              ]
          }.
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3928,6 +4038,7 @@ class PolymorphismOperations:
                     fishtype: fishtype
                 }
         """
+
         ...
 
     @overload
@@ -3965,17 +4076,19 @@ class PolymorphismOperations:
              ]
          }.
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
@@ -4006,8 +4119,11 @@ class PolymorphismOperations:
                      "age": 105
                  }
              ]
-         }.
-        :type complex_body: IO or JSON
+         }. Is either a model type or a IO type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -4015,15 +4131,14 @@ class PolymorphismOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -4126,7 +4241,7 @@ class PolymorphicrecursiveOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
@@ -4184,8 +4299,8 @@ class PolymorphicrecursiveOperations:
              ]
          }.
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -4206,6 +4321,7 @@ class PolymorphicrecursiveOperations:
                     fishtype: fishtype
                 }
         """
+
         ...
 
     @overload
@@ -4268,17 +4384,19 @@ class PolymorphicrecursiveOperations:
              ]
          }.
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
@@ -4334,8 +4452,11 @@ class PolymorphicrecursiveOperations:
                      "age": 105
                  }
              ]
-         }.
-        :type complex_body: IO or JSON
+         }. Is either a model type or a IO type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -4343,15 +4464,14 @@ class PolymorphicrecursiveOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
@@ -4450,14 +4570,14 @@ class ReadonlypropertyOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that have readonly properties.
 
         :param complex_body:
         :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Optional. Default value is
-         "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -4472,6 +4592,7 @@ class ReadonlypropertyOperations:
                     "size": 0  # Optional.
                 }
         """
+
         ...
 
     @overload
@@ -4482,22 +4603,27 @@ class ReadonlypropertyOperations:
 
         :param complex_body:
         :type complex_body: IO
-        :keyword content_type: Body Parameter content-type. Optional.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
+
         ...
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[IO, JSON], **kwargs: Any
+        self, complex_body: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Put complex types that have readonly properties.
 
-        :param complex_body:
-        :type complex_body: IO or JSON
+        :param complex_body: Is either a model type or a IO type.
+        :type complex_body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -4505,15 +4631,14 @@ class ReadonlypropertyOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
         _content = None
-        if isinstance(complex_body, IO):
+        if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
             _json = complex_body
