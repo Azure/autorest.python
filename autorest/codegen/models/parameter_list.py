@@ -11,7 +11,7 @@ import logging
 from typing import List, Optional, TYPE_CHECKING, Union, Generic, TypeVar, Type
 from .combined_type import CombinedType
 from .imports import FileImport, ImportType
-from .request_builder_parameter import RequestBuilderBodyParameter, RequestBuilderParameter
+from .request_builder_parameter import RequestBuilderBodyParameter, RequestBuilderMultipartBodyParameter, RequestBuilderParameter, get_request_body_parameter
 from .parameter import MultipartBodyParameter, ParameterLocation, BodyParameter, Parameter, ParameterMethodLocation, ClientParameter, ConfigParameter, get_body_parameter
 
 ParameterType = TypeVar("ParameterType", bound=Union[Parameter, RequestBuilderParameter])
@@ -241,22 +241,22 @@ class OverloadedOperationParameterList(_ParameterList):
 
     ...
 
-class _RequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, RequestBuilderBodyParameter]):
+class _RequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, Union[RequestBuilderBodyParameter, RequestBuilderMultipartBodyParameter]]):
 
     @staticmethod
     def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], RequestBuilderParameter]:
         return RequestBuilderParameter.from_yaml
 
     @staticmethod
-    def body_parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], RequestBuilderBodyParameter]:
-        return RequestBuilderBodyParameter.from_yaml
+    def body_parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], Union[RequestBuilderBodyParameter, RequestBuilderMultipartBodyParameter]]:
+        return get_request_body_parameter
 
     @property
     def implementation(self) -> str:
         return "Method"
 
     @property
-    def unsorted_method_params(self) -> List[Union[RequestBuilderParameter, RequestBuilderBodyParameter]]:
+    def unsorted_method_params(self) -> List[Union[RequestBuilderParameter, Union[RequestBuilderBodyParameter, RequestBuilderMultipartBodyParameter]]]:
         super_unsorted_method_params = super().unsorted_method_params
         super_unsorted_method_params.extend([p for p in self.parameters if p.implementation == "Client"])  # don't have access to client params in request builder
         return super_unsorted_method_params

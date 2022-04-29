@@ -237,14 +237,12 @@ def get_all_body_types(yaml_data: Dict[str, Any]) -> List[Dict[str, Any]]:
         seen_body_types[id(body_param["schema"])] = update_type(body_param["schema"])
     return list(seen_body_types.values())
 
-def _update_body_parameter_helper(yaml_data: Dict[str, Any], body_type: Dict[str, Any]) -> Dict[str, Any]:
-    base_body_param = next(
-        p
-        for sr in yaml_data.values()
-        for p in sr["parameters"]
-        if is_body(p)
-    )
-    param_base = update_parameter_base(base_body_param)
+def _update_body_parameter_helper(
+    yaml_data: Dict[str, Any],
+    body_param: Dict[str, Any],
+    body_type: Dict[str, Any],
+) -> Dict[str, Any]:
+    param_base = update_parameter_base(body_param)
     body_param = copy.deepcopy(param_base)
     body_param["type"] = body_type
     body_param["contentTypes"] = [
@@ -261,7 +259,10 @@ def _update_body_parameter_helper(yaml_data: Dict[str, Any], body_type: Dict[str
 def update_body_parameter(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     first_value = list(yaml_data.values())[0]
     if len(yaml_data.values()) == 1 and first_value["protocol"]["http"].get("multipart"):
-        entries = [update_body_parameter(p) for p in first_value["parameters"] if is_body(p)]
+        entries = [
+            _update_body_parameter_helper(yaml_data, p, update_type(p["schema"]))
+            for p in first_value["parameters"] if is_body(p)
+        ]
         return {
             "optional": not first_value.get("required", False),
             "description": "Multipart input body.",
@@ -270,6 +271,7 @@ def update_body_parameter(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
             "location": "Method",
             "type": KNOWN_TYPES["anydict"],
             "contentTypes": list(yaml_data.keys()),
+            "defaultContentType": list(yaml_data.keys())[0], # there should only be one content type for multpart
             "entries": entries,
         }
     body_types = get_all_body_types(yaml_data)
@@ -277,12 +279,24 @@ def update_body_parameter(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         body_type = update_types(body_types)
     else:
         body_type = body_types[0]
-    return _update_body_parameter_helper(yaml_data, body_type)
+    body_param = next(
+        p
+        for sr in yaml_data.values()
+        for p in sr["parameters"]
+        if is_body(p)
+    )
+    return _update_body_parameter_helper(yaml_data, body_param, body_type)
 
 
 def update_body_parameter_overload(yaml_data: Dict[str, Any], body_type: Dict[str, Any]) -> Dict[str, Any]:
     """For overloads we already know what body_type we want to go with"""
-    return _update_body_parameter_helper(yaml_data, body_type)
+    body_param = next(
+        p
+        for sr in yaml_data.values()
+        for p in sr["parameters"]
+        if is_body(p)
+    )
+    return _update_body_parameter_helper(yaml_data, body_param, body_type)
 
 def get_body_type_for_description(body_parameter: Dict[str, Any]) -> str:
     if body_parameter["type"]["type"] == "binary":

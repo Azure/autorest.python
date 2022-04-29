@@ -9,8 +9,6 @@ from enum import Enum, auto
 
 from typing import Dict, Any, TYPE_CHECKING, List, Optional, Set, TypeVar, Union, Generic
 
-
-
 from .imports import FileImport, ImportType, TypingSection
 from .base_model import BaseModel
 from .base_type import BaseType

@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import TYPE_CHECKING, Any, Dict
+from typing import TYPE_CHECKING, Any, Dict, Union
 from .parameter import (
     ParameterMethodLocation,
     Parameter,
@@ -76,3 +76,8 @@ class RequestBuilderParameter(Parameter):
     @property
     def name_in_high_level_operation(self) -> str:
         return self.client_name
+
+def get_request_body_parameter(yaml_data: Dict[str, Any], code_model: "CodeModel") -> Union[RequestBuilderBodyParameter, RequestBuilderMultipartBodyParameter]:
+    if yaml_data.get("entries"):
+        return RequestBuilderMultipartBodyParameter.from_yaml(yaml_data, code_model)
+    return RequestBuilderBodyParameter.from_yaml(yaml_data, code_model)

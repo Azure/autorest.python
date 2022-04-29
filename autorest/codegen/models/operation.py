@@ -325,7 +325,8 @@ class OperationBase(BaseBuilder[ParameterListType]):
                 f"distributed_trace{'_async' if async_mode else ''}",
                 ImportType.AZURECORE,
             )
-        file_import.merge(self.get_request_builder_import(self.request_builder, async_mode))
+        if not self.abstract:
+            file_import.merge(self.get_request_builder_import(self.request_builder, async_mode))
         return file_import
 
     def get_response_from_status(
