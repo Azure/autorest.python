@@ -34,6 +34,29 @@ class BaseType(BaseModel, ABC):
         return FileImport()
 
     @property
+    def xml_metadata(self) -> Dict[str, Any]:
+        return self.yaml_data.get("xmlMetadata", {})
+
+    @property
+    def is_xml(self) -> bool:
+        return bool(self.xml_metadata)
+
+    def xml_serialization_ctxt(self) -> Optional[str]:
+        """Return the serialization context in case this schema is used in an operation."""
+        attrs_list = []
+        if self.xml_metadata.get("name"):
+            attrs_list.append(f"'name': '{self.xml_metadata['name']}'")
+        if self.xml_metadata.get("attribute", False):
+            attrs_list.append("'attr': True")
+        if self.xml_metadata.get("prefix", False):
+            attrs_list.append(f"'prefix': '{self.xml_metadata['prefix']}'")
+        if self.xml_metadata.get("namespace", False):
+            attrs_list.append(f"'ns': '{self.xml_metadata['namespace']}'")
+        if self.xml_metadata.get("text"):
+            attrs_list.append(f"'text': True")
+        return ", ".join(attrs_list)
+
+    @property
     @abstractmethod
     def serialization_type(self) -> str:
         """The tag recognized by 'msrest' as a serialization/deserialization.

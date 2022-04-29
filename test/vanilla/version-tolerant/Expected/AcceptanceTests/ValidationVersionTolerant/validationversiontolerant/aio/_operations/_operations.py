@@ -90,9 +90,9 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_validation_of_method_parameters_request(
-            subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
+            subscription_id=self._config.subscription_id,
             api_version=api_version,
             headers=_headers,
             params=_params,
@@ -258,13 +258,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
 
     @distributed_trace_async
     async def validation_of_body(
-        self,
-        resource_group_name: str,
-        id: int,
-        body: Optional[Union[JSON, IO]] = None,
-        *,
-        content_type: Optional[str] = None,
-        **kwargs: Any
+        self, resource_group_name: str, id: int, body: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> JSON:
         """Validates body parameters on the method. See swagger for details.
 
@@ -312,10 +306,11 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: str
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _json = None
@@ -327,9 +322,9 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
             content_type = content_type or "application/json"
 
         request = build_validation_of_body_request(
-            subscription_id=self._config.subscription_id,
             resource_group_name=resource_group_name,
             id=id,
+            subscription_id=self._config.subscription_id,
             api_version=api_version,
             content_type=content_type,
             json=_json,
@@ -523,19 +518,17 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         ...
 
     @distributed_trace_async
-    async def post_with_constant_in_body(
-        self, body: Optional[Union[JSON, IO]] = None, *, content_type: Optional[str] = None, **kwargs: Any
-    ) -> JSON:
+    async def post_with_constant_in_body(self, body: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
         """post_with_constant_in_body.
 
         :param body: Is either a model type or a IO type. Optional. Default value is None.
         :type body: JSON or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
-        :paramtype content_type: str
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype constant_param: str
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -571,10 +564,11 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
         constant_param = kwargs.pop("constant_param", "constant")  # type: str
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _json = None

@@ -50,8 +50,12 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         self.properties = properties or []
         self.parents = parents or []
         self.discriminated_subtypes = discriminated_subtypes or {}
-        self.discriminator_value: str = self.yaml_data.get("discriminatorValue")
+        self.discriminator_value: Optional[str] = self.yaml_data.get("discriminatorValue")
         self._created_json_template_representation = False
+
+    @property
+    def is_xml(self) -> bool:
+        return self.yaml_data.get("isXml")
 
     @property
     def serialization_type(self) -> str:
@@ -63,24 +67,37 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         if self.code_model.options["models_mode"]:
             retval = f"_models.{self.name}"
             return retval if is_operation_file else f'"{retval}"'
-        return "JSON"
+        return "ET.Element" if self.is_xml else "JSON"
 
     @property
     def docstring_type(self) -> str:
-        return f"~{self.code_model.namespace}.models.{self.name}" if self.code_model.options["models_mode"] else "JSON"
+        if self.code_model.options["models_mode"]:
+            return f"~{self.code_model.namespace}.models.{self.name}"
+        return "ET.Element" if self.is_xml else "JSON"
 
     def description(self, *, is_operation_file: bool = False) -> str:
         return "" if is_operation_file else self.yaml_data.get("description", self.name)
 
     @property
     def docstring_text(self) -> str:
-        return self.name if self.code_model.options["models_mode"] else "JSON object"
+        if self.code_model.options["models_mode"]:
+            return self.name
+        return "XML Element" if self.is_xml else "JSON object"
 
     def get_declaration(self, value: Any) -> str:
         return f"{self.name}()"
 
     def __repr__(self) -> str:
         return f"<{self.__class__.__name__} {self.name}>"
+
+    def xml_serialization_ctxt(self) -> Optional[str]:
+        # object schema contains _xml_map, they don't need serialization context
+        return ""
+
+    def xml_map_content(self) -> Optional[str]:
+        # This is NOT an error on the super call, we use the serialization context for "xml_map",
+        # but we don't want to write a serialization context for an object.
+        return super().xml_serialization_ctxt()
 
     def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
         if self._created_json_template_representation:
@@ -173,4 +190,8 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         )
         file_import.add_import("sys", ImportType.STDLIB)
         file_import.define_mutable_mapping_type()
+        if self.is_xml:
+            file_import.add_submodule_import(
+                "xml.etree", "ElementTree", ImportType.STDLIB, alias="ET"
+            )
         return file_import

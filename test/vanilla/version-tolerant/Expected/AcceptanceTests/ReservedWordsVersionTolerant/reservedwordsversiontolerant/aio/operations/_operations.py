@@ -120,9 +120,7 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/octet-stream")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _content = content
@@ -171,9 +169,7 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _json = json
@@ -235,7 +231,7 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
          code. Pass in 'x-ms-header' to pass.
         :paramtype header_parameters: str
         :keyword query_parameters: Query args that uses same name as queryParameters in generated code.
-         Pass in ['one', 'two'] to pass test. Default value is None.
+         Pass in ['one', 'two'] to pass test. Optional. Default value is None.
         :paramtype query_parameters: list[str]
         :return: JSON
         :rtype: JSON

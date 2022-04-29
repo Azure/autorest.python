@@ -72,7 +72,7 @@ def build_byte_get_non_ascii_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_byte_put_non_ascii_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_byte_put_non_ascii_request(*, json: bytes, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -86,7 +86,7 @@ def build_byte_put_non_ascii_request(*, json: Any = None, content: Any = None, *
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_byte_get_invalid_request(**kwargs: Any) -> HttpRequest:
@@ -121,11 +121,11 @@ class ByteOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get_null(self, **kwargs: Any) -> bytearray:
+    def get_null(self, **kwargs: Any) -> bytes:
         """Get null byte value.
 
-        :return: bytearray
-        :rtype: bytearray
+        :return: bytes
+        :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -134,7 +134,7 @@ class ByteOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
+        cls = kwargs.pop("cls", None)  # type: ClsType[bytes]
 
         request = build_byte_get_null_request(
             headers=_headers,
@@ -158,16 +158,16 @@ class ByteOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bytearray, deserialized), {})
+            return cls(pipeline_response, cast(bytes, deserialized), {})
 
-        return cast(bytearray, deserialized)
+        return cast(bytes, deserialized)
 
     @distributed_trace
-    def get_empty(self, **kwargs: Any) -> bytearray:
+    def get_empty(self, **kwargs: Any) -> bytes:
         """Get empty byte value ''.
 
-        :return: bytearray
-        :rtype: bytearray
+        :return: bytes
+        :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -176,7 +176,7 @@ class ByteOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
+        cls = kwargs.pop("cls", None)  # type: ClsType[bytes]
 
         request = build_byte_get_empty_request(
             headers=_headers,
@@ -200,16 +200,16 @@ class ByteOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bytearray, deserialized), {})
+            return cls(pipeline_response, cast(bytes, deserialized), {})
 
-        return cast(bytearray, deserialized)
+        return cast(bytes, deserialized)
 
     @distributed_trace
-    def get_non_ascii(self, **kwargs: Any) -> bytearray:
+    def get_non_ascii(self, **kwargs: Any) -> bytes:
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
-        :return: bytearray
-        :rtype: bytearray
+        :return: bytes
+        :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -218,7 +218,7 @@ class ByteOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
+        cls = kwargs.pop("cls", None)  # type: ClsType[bytes]
 
         request = build_byte_get_non_ascii_request(
             headers=_headers,
@@ -242,18 +242,16 @@ class ByteOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bytearray, deserialized), {})
+            return cls(pipeline_response, cast(bytes, deserialized), {})
 
-        return cast(bytearray, deserialized)
+        return cast(bytes, deserialized)
 
     @distributed_trace
-    def put_non_ascii(  # pylint: disable=inconsistent-return-statements
-        self, byte_body: bytearray, **kwargs: Any
-    ) -> None:
+    def put_non_ascii(self, byte_body: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
-        :type byte_body: bytearray
+        :type byte_body: bytes
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -264,9 +262,7 @@ class ByteOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = byte_body
@@ -293,11 +289,11 @@ class ByteOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_invalid(self, **kwargs: Any) -> bytearray:
+    def get_invalid(self, **kwargs: Any) -> bytes:
         """Get invalid byte value ':::SWAGGER::::'.
 
-        :return: bytearray
-        :rtype: bytearray
+        :return: bytes
+        :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -306,7 +302,7 @@ class ByteOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[bytearray]
+        cls = kwargs.pop("cls", None)  # type: ClsType[bytes]
 
         request = build_byte_get_invalid_request(
             headers=_headers,
@@ -330,6 +326,6 @@ class ByteOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bytearray, deserialized), {})
+            return cls(pipeline_response, cast(bytes, deserialized), {})
 
-        return cast(bytearray, deserialized)
+        return cast(bytes, deserialized)

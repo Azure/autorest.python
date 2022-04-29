@@ -640,9 +640,8 @@ class OperationSerializer(
                     f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)"
                 )
             else:
-                is_xml = False # any(["xml" in ct for ct in response.content_types])
                 deserialized_value = (
-                    "ET.fromstring(response.text())" if is_xml else "response.json()"
+                    "ET.fromstring(response.text())" if response.type.is_xml else "response.json()"
                 )
                 retval.append(f"if response.content:")
                 retval.append(f"    deserialized = {deserialized_value}")

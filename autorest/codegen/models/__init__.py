@@ -106,7 +106,7 @@ TYPE_TO_OBJECT = {
     "duration": DurationType,
     "date": DateType,
     "base64": Base64Type,
-    "bool": BooleanType,
+    "boolean": BooleanType,
     "combined": CombinedType,
     "OAuth2": TokenCredentialType,
     "Key": AzureKeyCredentialType,
@@ -114,7 +114,7 @@ TYPE_TO_OBJECT = {
     "BearerTokenCredentialPolicy": BearerTokenCredentialPolicyType,
     "AzureKeyCredentialPolicy": AzureKeyCredentialPolicyType,
     "any-object": AnyObjectType,
-    "unix-time": UnixTimeType,
+    "unixtime": UnixTimeType,
     "time": TimeType,
 }
 

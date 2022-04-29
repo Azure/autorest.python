@@ -59,7 +59,7 @@ class PetOperations:
 
         :param pet_id: pet id.
         :type pet_id: str
-        :return: JSON object
+        :return: JSON object or None
         :rtype: JSON or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -72,13 +72,7 @@ class PetOperations:
                     "name": "str"  # Optional. Gets the Pet by id.
                 }
         """
-        error_map = {
-            401: ClientAuthenticationError,
-            409: ResourceExistsError,
-            400: HttpResponseError,
-            404: lambda response: ResourceNotFoundError(response=response),
-            501: HttpResponseError,
-        }
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
@@ -133,12 +127,7 @@ class PetOperations:
                     "actionResponse": "str"  # Optional. action feedback.
                 }
         """
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            500: HttpResponseError,
-        }
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
@@ -175,24 +164,19 @@ class PetOperations:
 
     @distributed_trace_async
     async def has_models_param(  # pylint: disable=inconsistent-return-statements
-        self, *, models: Optional[str] = "value1", **kwargs: Any
+        self, *, models: str = "value1", **kwargs: Any
     ) -> None:
         """Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
         conflict with the input param name 'models'.
 
         :keyword models: Make sure model deserialization doesn't conflict with this param name, which
-         has input name 'models'. Use client default value in call. Default value is "value1".
+         has input name 'models'. Use client default value in call. Optional. Default value is "value1".
         :paramtype models: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            500: HttpResponseError,
-        }
+        error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}

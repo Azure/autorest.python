@@ -156,6 +156,8 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     async def param_protected_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Send a post request with header value "Content-Type": "text/html".
 
+        :keyword content_type: Send a post request with header value "Content-Type": "text/html".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -324,7 +326,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
         :paramtype scenario: str
         :keyword value: Send a post request with header values 105 or -2.
-        :paramtype value: long
+        :paramtype value: int
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -396,7 +398,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("long", response.headers.get("value"))
+        response_headers["value"] = self._deserialize("int", response.headers.get("value"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
@@ -673,7 +675,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
          "empty".
         :paramtype scenario: str
         :keyword value: Send a post request with header values "The quick brown fox jumps over the lazy
-         dog" or null or "". Default value is None.
+         dog" or null or "". Optional. Default value is None.
         :paramtype value: str
         :return: None
         :rtype: None
@@ -937,7 +939,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
         :paramtype scenario: str
         :keyword value: Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon,
-         01 Jan 0001 00:00:00 GMT". Default value is None.
+         01 Jan 0001 00:00:00 GMT". Optional. Default value is None.
         :paramtype value: ~datetime.datetime
         :return: None
         :rtype: None
@@ -1104,14 +1106,14 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def param_byte(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: bytearray, **kwargs: Any
+        self, *, scenario: str, value: bytes, **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
 
         :keyword scenario: Send a post request with header values "scenario": "valid".
         :paramtype scenario: str
         :keyword value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩".
-        :paramtype value: bytearray
+        :paramtype value: bytes
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1183,7 +1185,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("bytearray", response.headers.get("value"))
+        response_headers["value"] = self._deserialize("base64", response.headers.get("value"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)
@@ -1199,7 +1201,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
          "empty".
         :paramtype scenario: str
         :keyword value: Send a post request with header values 'GREY'. Known values are: "White",
-         "black", and "GREY". Default value is None.
+         "black", and "GREY". Optional. Default value is None.
         :paramtype value: str
         :return: None
         :rtype: None

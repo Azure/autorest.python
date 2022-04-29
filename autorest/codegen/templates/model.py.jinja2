@@ -49,7 +49,7 @@
         '{{ model.discriminator_name }}': {{ str(model.subtype_map) }}
     }
     {% endif %}
-    {% if model.xml_metadata %}
+    {% if model.xml_map_content() %}
     _xml_map = {
         {{ model.xml_map_content() }}
     }

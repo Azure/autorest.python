@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import abc
-from typing import Any, Callable, Dict, IO, Optional, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, cast
 
 from msrest import Serializer
 

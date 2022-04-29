@@ -284,7 +284,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
     async def put_utc_max_date_time7_digits(  # pylint: disable=inconsistent-return-statements
         self, datetime_body: datetime.datetime, **kwargs: Any
     ) -> None:
-        """This is against the recommendation that asks for 3 digits, but allow to test what happens in
+        """Put max datetime value 9999-12-31T23:59:59.9999999Z.
+
+        This is against the recommendation that asks for 3 digits, but allow to test what happens in
         that scenario.
 
         :param datetime_body: datetime body.
@@ -411,7 +413,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def get_utc_uppercase_max_date_time7_digits(self, **kwargs: Any) -> datetime.datetime:
-        """This is against the recommendation that asks for 3 digits, but allow to test what happens in
+        """Get max datetime value 9999-12-31T23:59:59.9999999Z.
+
+        This is against the recommendation that asks for 3 digits, but allow to test what happens in
         that scenario.
 
         :return: datetime

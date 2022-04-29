@@ -31,7 +31,7 @@ class ParameterMethodLocation(Enum):
     KEYWORD_ONLY = auto()
     KWARG = auto()
 
-class ParameterDelimeter(Enum):
+class ParameterDelimeter(str, Enum):
     SPACE = "space"
     PIPE = "pipe"
     TAB = "tab"
@@ -68,6 +68,8 @@ class _ParameterBase(BaseModel, abc.ABC):
         type_description = self.type.description(is_operation_file=True)
         if type_description:
             base_description = add_to_description(base_description, type_description)
+        if self.optional and isinstance(self.type, ConstantType):
+            base_description = add_to_description(base_description, f"Known values are {self.type.get_declaration()} and None.")
         if self.optional:
             base_description = add_to_description(base_description, "Optional.")
         if self.client_default_value is not None:
@@ -226,6 +228,10 @@ class Parameter(_ParameterBase):
         return self.client_name
 
     @property
+    def xml_serialization_ctxt(self) -> str:
+        return self.type.xml_serialization_ctxt() or ""
+
+    @property
     def method_location(self) -> ParameterMethodLocation:
         if not self.in_method_signature:
             raise ValueError(f"Parameter '{self.client_name}' is not in the method.")
@@ -241,7 +247,7 @@ class Parameter(_ParameterBase):
         if self.rest_api_name == "Content-Type":
             if self.in_overload:
                 return ParameterMethodLocation.KEYWORD_ONLY
-            return ParameterMethodLocation.KWARG if not self.in_docstring else ParameterMethodLocation.KEYWORD_ONLY
+            return ParameterMethodLocation.KWARG
         if self.code_model.options["only_path_and_body_params_positional"]:
             return ParameterMethodLocation.KEYWORD_ONLY
         return ParameterMethodLocation.POSITIONAL

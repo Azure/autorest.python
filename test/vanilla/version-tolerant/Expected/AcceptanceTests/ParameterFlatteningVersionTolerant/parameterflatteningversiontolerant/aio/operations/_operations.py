@@ -20,6 +20,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 
 from ...operations._operations import build_availability_sets_update_request
 
@@ -105,13 +106,7 @@ class AvailabilitySetsOperations:
 
     @distributed_trace_async
     async def update(  # pylint: disable=inconsistent-return-statements
-        self,
-        resource_group_name: str,
-        avset: str,
-        tags: Union[JSON, IO],
-        *,
-        content_type: Optional[str] = None,
-        **kwargs: Any
+        self, resource_group_name: str, avset: str, tags: Union[JSON, IO], **kwargs: Any
     ) -> None:
         """Updates the tags for an availability set.
 
@@ -131,9 +126,10 @@ class AvailabilitySetsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None

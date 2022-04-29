@@ -53,6 +53,11 @@ class DictionaryType(BaseType):
     def docstring_text(self) -> str:
         return f"dict mapping str to {self.element_type.docstring_text}"
 
+    def xml_serialization_ctxt(self) -> Optional[str]:
+        raise NotImplementedError(
+            "Dictionary type does not support XML serialization."
+        )
+
     @property
     def docstring_type(self) -> str:
         """The python type used for RST syntax input and type annotation.
@@ -60,11 +65,6 @@ class DictionaryType(BaseType):
         :param str namespace: Optional. The namespace for the models.
         """
         return f"dict[str, {self.element_type.docstring_type}]"
-
-    def xml_serialization_ctxt(self) -> Optional[str]:
-        raise NotImplementedError(
-            "Dictionary schema does not support XML serialization."
-        )
 
     def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
         return {

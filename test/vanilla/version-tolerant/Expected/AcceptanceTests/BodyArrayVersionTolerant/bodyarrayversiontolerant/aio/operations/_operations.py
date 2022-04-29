@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 import datetime
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -21,6 +21,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 
 from ...operations._operations import (
     build_array_get_array_empty_request,
@@ -316,7 +317,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[str], IO], *, content_type: Optional[str] = None, **kwargs: Any
+        self, array_body: Union[List[str], IO], **kwargs: Any
     ) -> None:
         """Set array value empty [].
 
@@ -332,9 +333,10 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
@@ -463,7 +465,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[bool], IO], *, content_type: Optional[str] = None, **kwargs: Any
+        self, array_body: Union[List[bool], IO], **kwargs: Any
     ) -> None:
         """Set array value empty [true, false, false, true].
 
@@ -479,9 +481,10 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
@@ -710,7 +713,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_integer_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[int], IO], *, content_type: Optional[str] = None, **kwargs: Any
+        self, array_body: Union[List[int], IO], **kwargs: Any
     ) -> None:
         """Set array value empty [1, -1, 3, 300].
 
@@ -726,9 +729,10 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
@@ -957,7 +961,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_long_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[int], IO], *, content_type: Optional[str] = None, **kwargs: Any
+        self, array_body: Union[List[int], IO], **kwargs: Any
     ) -> None:
         """Set array value empty [1, -1, 3, 300].
 
@@ -973,9 +977,10 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
@@ -1204,7 +1209,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_float_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[float], IO], *, content_type: Optional[str] = None, **kwargs: Any
+        self, array_body: Union[List[float], IO], **kwargs: Any
     ) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
@@ -1220,9 +1225,10 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
@@ -1451,7 +1457,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_double_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[float], IO], *, content_type: Optional[str] = None, **kwargs: Any
+        self, array_body: Union[List[float], IO], **kwargs: Any
     ) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
@@ -1467,9 +1473,10 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
@@ -1698,7 +1705,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_string_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[str], IO], *, content_type: Optional[str] = None, **kwargs: Any
+        self, array_body: Union[List[str], IO], **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
@@ -1714,9 +1721,10 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
@@ -1845,7 +1853,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[str], IO], *, content_type: Optional[str] = None, **kwargs: Any
+        self, array_body: Union[List[str], IO], **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
@@ -1861,9 +1869,10 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
@@ -1992,7 +2001,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_string_enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[str], IO], *, content_type: Optional[str] = None, **kwargs: Any
+        self, array_body: Union[List[str], IO], **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
@@ -2008,9 +2017,10 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
@@ -2242,7 +2252,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_uuid_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[str], IO], *, content_type: Optional[str] = None, **kwargs: Any
+        self, array_body: Union[List[str], IO], **kwargs: Any
     ) -> None:
         """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
         'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
@@ -2259,9 +2269,10 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
@@ -2440,7 +2451,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_date_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[datetime.date], IO], *, content_type: Optional[str] = None, **kwargs: Any
+        self, array_body: Union[List[datetime.date], IO], **kwargs: Any
     ) -> None:
         """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
 
@@ -2456,9 +2467,10 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
@@ -2690,7 +2702,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[datetime.datetime], IO], *, content_type: Optional[str] = None, **kwargs: Any
+        self, array_body: Union[List[datetime.datetime], IO], **kwargs: Any
     ) -> None:
         """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
         '1492-10-12T10:15:01-08:00'].
@@ -2707,9 +2719,10 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
@@ -2941,7 +2954,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[datetime.datetime], IO], *, content_type: Optional[str] = None, **kwargs: Any
+        self, array_body: Union[List[datetime.datetime], IO], **kwargs: Any
     ) -> None:
         """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
         Oct 1492 10:15:01 GMT'].
@@ -2958,9 +2971,10 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
@@ -3089,7 +3103,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_duration_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[datetime.timedelta], IO], *, content_type: Optional[str] = None, **kwargs: Any
+        self, array_body: Union[List[datetime.timedelta], IO], **kwargs: Any
     ) -> None:
         """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
@@ -3105,9 +3119,10 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
@@ -3239,7 +3254,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_byte_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[bytes], IO], *, content_type: Optional[str] = None, **kwargs: Any
+        self, array_body: Union[List[bytes], IO], **kwargs: Any
     ) -> None:
         """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
         elementencoded in base 64.
@@ -3256,9 +3271,10 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
@@ -3711,7 +3727,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_complex_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[JSON], IO], *, content_type: Optional[str] = None, **kwargs: Any
+        self, array_body: Union[List[JSON], IO], **kwargs: Any
     ) -> None:
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
         'string': '4'}, {'integer': 5, 'string': '6'}].
@@ -3728,9 +3744,10 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
@@ -4071,7 +4088,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_array_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[List[str]], IO], *, content_type: Optional[str] = None, **kwargs: Any
+        self, array_body: Union[List[List[str]], IO], **kwargs: Any
     ) -> None:
         """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
@@ -4087,9 +4104,10 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
@@ -4435,7 +4453,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Union[List[Dict[str, str]], IO], *, content_type: Optional[str] = None, **kwargs: Any
+        self, array_body: Union[List[Dict[str, str]], IO], **kwargs: Any
     ) -> None:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
@@ -4452,9 +4470,10 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None

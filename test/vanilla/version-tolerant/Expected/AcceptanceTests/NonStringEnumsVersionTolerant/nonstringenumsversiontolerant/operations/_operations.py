@@ -30,7 +30,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_int_put_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_int_put_request(*, json: Optional[int] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -44,7 +44,7 @@ def build_int_put_request(*, json: Any = None, content: Any = None, **kwargs: An
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_int_get_request(**kwargs: Any) -> HttpRequest:
@@ -61,7 +61,7 @@ def build_int_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_float_put_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+def build_float_put_request(*, json: Optional[float] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -75,7 +75,7 @@ def build_float_put_request(*, json: Any = None, content: Any = None, **kwargs: 
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_float_get_request(**kwargs: Any) -> HttpRequest:
@@ -113,8 +113,8 @@ class IntOperations:
     def put(self, input: Optional[int] = None, **kwargs: Any) -> str:
         """Put an int enum.
 
-        :param input: Input int enum. Known values are: 200, 403, 405, 406, and 429. Default value is
-         None.
+        :param input: Input int enum. Known values are: 200, 403, 405, 406, and 429. Optional. Default
+         value is None.
         :type input: int
         :return: str
         :rtype: str
@@ -126,15 +126,10 @@ class IntOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        if input is not None:
-            _json = input
-        else:
-            _json = None
+        _json = input
 
         request = build_int_put_request(
             content_type=content_type,
@@ -168,15 +163,9 @@ class IntOperations:
     def get(self, **kwargs: Any) -> int:
         """Get an int enum.
 
-        :return: int. Known values are: 200, 403, 405, 406, and 429.
+        :return: int
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == 0  # Optional.
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -235,7 +224,7 @@ class FloatOperations:
         """Put a float enum.
 
         :param input: Input float enum. Known values are: 200.4, 403.4, 405.3, 406.2, and 429.1.
-         Default value is None.
+         Optional. Default value is None.
         :type input: float
         :return: str
         :rtype: str
@@ -247,15 +236,10 @@ class FloatOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
-        if input is not None:
-            _json = input
-        else:
-            _json = None
+        _json = input
 
         request = build_float_put_request(
             content_type=content_type,
@@ -289,15 +273,9 @@ class FloatOperations:
     def get(self, **kwargs: Any) -> float:
         """Get a float enum.
 
-        :return: float. Known values are: 200.4, 403.4, 405.3, 406.2, and 429.1.
+        :return: float
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response.json() == 0.0  # Optional.
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})

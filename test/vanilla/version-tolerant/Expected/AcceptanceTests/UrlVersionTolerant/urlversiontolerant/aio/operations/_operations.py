@@ -280,7 +280,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         :keyword long_path: '10000000000' 64 bit integer value. Default value is 10000000000. Note that
          overriding this default value may result in unsupported behavior.
-        :paramtype long_path: long
+        :paramtype long_path: int
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -320,7 +320,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         :keyword long_path: '-10000000000' 64 bit integer value. Default value is -10000000000. Note
          that overriding this default value may result in unsupported behavior.
-        :paramtype long_path: long
+        :paramtype long_path: int
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -798,12 +798,12 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
-        self, byte_path: bytearray, **kwargs: Any
+        self, byte_path: bytes, **kwargs: Any
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
-        :type byte_path: bytearray
+        :type byte_path: bytes
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -840,9 +840,9 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     async def byte_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '' as byte array.
 
-        :keyword byte_path: '' as byte array. Default value is bytearray("", encoding="utf-8"). Note
-         that overriding this default value may result in unsupported behavior.
-        :paramtype byte_path: bytearray
+        :keyword byte_path: '' as byte array. Default value is bytes("", encoding="utf-8"). Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype byte_path: bytes
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -853,7 +853,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        byte_path = kwargs.pop("byte_path", bytearray("", encoding="utf-8"))  # type: bytearray
+        byte_path = kwargs.pop("byte_path", bytes("", encoding="utf-8"))  # type: bytes
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paths_byte_empty_request(
@@ -878,12 +878,12 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def byte_null(  # pylint: disable=inconsistent-return-statements
-        self, byte_path: bytearray, **kwargs: Any
+        self, byte_path: bytes, **kwargs: Any
     ) -> None:
         """Get null as byte array (should throw).
 
         :param byte_path: null as byte array (should throw).
-        :type byte_path: bytearray
+        :type byte_path: bytes
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1273,7 +1273,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         bool_query = kwargs.pop("bool_query", _params.pop("boolQuery", False))  # type: bool
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -1304,7 +1304,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null Boolean value on query (query string should be absent).
 
-        :keyword bool_query: null boolean value. Default value is None.
+        :keyword bool_query: null boolean value. Optional. Default value is None.
         :paramtype bool_query: bool
         :return: None
         :rtype: None
@@ -1426,7 +1426,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null integer value (no query parameter).
 
-        :keyword int_query: null integer value. Default value is None.
+        :keyword int_query: null integer value. Optional. Default value is None.
         :paramtype int_query: int
         :return: None
         :rtype: None
@@ -1466,7 +1466,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         :keyword long_query: '10000000000' 64 bit integer value. Default value is 10000000000. Note
          that overriding this default value may result in unsupported behavior.
-        :paramtype long_query: long
+        :paramtype long_query: int
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1506,7 +1506,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
         :keyword long_query: '-10000000000' 64 bit integer value. Default value is -10000000000. Note
          that overriding this default value may result in unsupported behavior.
-        :paramtype long_query: long
+        :paramtype long_query: int
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1546,8 +1546,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get 'null 64 bit integer value (no query param in uri).
 
-        :keyword long_query: null 64 bit integer value. Default value is None.
-        :paramtype long_query: long
+        :keyword long_query: null 64 bit integer value. Optional. Default value is None.
+        :paramtype long_query: int
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1666,7 +1666,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null numeric value (no query parameter).
 
-        :keyword float_query: null numeric value. Default value is None.
+        :keyword float_query: null numeric value. Optional. Default value is None.
         :paramtype float_query: float
         :return: None
         :rtype: None
@@ -1786,7 +1786,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null numeric value (no query parameter).
 
-        :keyword double_query: null numeric value. Default value is None.
+        :keyword double_query: null numeric value. Optional. Default value is None.
         :paramtype double_query: float
         :return: None
         :rtype: None
@@ -1918,7 +1918,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
         string_query = kwargs.pop("string_query", _params.pop("stringQuery", ""))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
@@ -1949,7 +1949,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null (no query parameter in url).
 
-        :keyword string_query: null string value. Default value is None.
+        :keyword string_query: null string value. Optional. Default value is None.
         :paramtype string_query: str
         :return: None
         :rtype: None
@@ -1990,7 +1990,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         """Get using uri with query parameter 'green color'.
 
         :keyword enum_query: 'green color' enum value. Known values are: "red color", "green color",
-         and "blue color". Default value is None.
+         and "blue color". Optional. Default value is None.
         :paramtype enum_query: str
         :return: None
         :rtype: None
@@ -2031,7 +2031,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         """Get null (no query parameter in url).
 
         :keyword enum_query: null string value. Known values are: "red color", "green color", and "blue
-         color". Default value is None.
+         color". Optional. Default value is None.
         :paramtype enum_query: str
         :return: None
         :rtype: None
@@ -2067,13 +2067,13 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
-        self, *, byte_query: Optional[bytearray] = None, **kwargs: Any
+        self, *, byte_query: Optional[bytes] = None, **kwargs: Any
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
-        :keyword byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array. Default value is
-         None.
-        :paramtype byte_query: bytearray
+        :keyword byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array. Optional.
+         Default value is None.
+        :paramtype byte_query: bytes
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2110,9 +2110,9 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     async def byte_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '' as byte array.
 
-        :keyword byte_query: '' as byte array. Default value is bytearray("", encoding="utf-8"). Note
-         that overriding this default value may result in unsupported behavior.
-        :paramtype byte_query: bytearray
+        :keyword byte_query: '' as byte array. Default value is bytes("", encoding="utf-8"). Note that
+         overriding this default value may result in unsupported behavior.
+        :paramtype byte_query: bytes
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2121,11 +2121,9 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
-        _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
 
-        byte_query = kwargs.pop(
-            "byte_query", _params.pop("byteQuery", bytearray("", encoding="utf-8"))
-        )  # type: bytearray
+        byte_query = kwargs.pop("byte_query", _params.pop("byteQuery", bytes("", encoding="utf-8")))  # type: bytes
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_queries_byte_empty_request(
@@ -2150,12 +2148,13 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def byte_null(  # pylint: disable=inconsistent-return-statements
-        self, *, byte_query: Optional[bytearray] = None, **kwargs: Any
+        self, *, byte_query: Optional[bytes] = None, **kwargs: Any
     ) -> None:
         """Get null as byte array (no query parameters in uri).
 
-        :keyword byte_query: null as byte array (no query parameters in uri). Default value is None.
-        :paramtype byte_query: bytearray
+        :keyword byte_query: null as byte array (no query parameters in uri). Optional. Default value
+         is None.
+        :paramtype byte_query: bytes
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -2234,7 +2233,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null as date - this should result in no query parameters in uri.
 
-        :keyword date_query: null as date (no query parameters in uri). Default value is None.
+        :keyword date_query: null as date (no query parameters in uri). Optional. Default value is
+         None.
         :paramtype date_query: ~datetime.date
         :return: None
         :rtype: None
@@ -2317,7 +2317,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null as date-time, should result in no query parameters in uri.
 
-        :keyword date_time_query: null as date-time (no query parameters). Default value is None.
+        :keyword date_time_query: null as date-time (no query parameters). Optional. Default value is
+         None.
         :paramtype date_time_query: ~datetime.datetime
         :return: None
         :rtype: None
@@ -2359,7 +2360,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         csv-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the csv-array format. Default value is None.
+         ''] using the csv-array format. Optional. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -2399,7 +2400,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get a null array of string using the csv-array format.
 
-        :keyword array_query: a null array of string using the csv-array format. Default value is None.
+        :keyword array_query: a null array of string using the csv-array format. Optional. Default
+         value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -2439,8 +2441,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get an empty array [] of string using the csv-array format.
 
-        :keyword array_query: an empty array [] of string using the csv-array format. Default value is
-         None.
+        :keyword array_query: an empty array [] of string using the csv-array format. Optional. Default
+         value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -2482,7 +2484,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         'bonjour'] for the 'arrayQuery' parameter to the service.
 
         :keyword array_query: Array-typed query parameter. Pass in ['hello', 'nihao', 'bonjour'].
-         Default value is None.
+         Optional. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -2524,7 +2526,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         ssv-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the ssv-array format. Default value is None.
+         ''] using the ssv-array format. Optional. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -2566,7 +2568,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         tsv-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the tsv-array format. Default value is None.
+         ''] using the tsv-array format. Optional. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -2608,7 +2610,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipes-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the pipes-array format. Default value is None.
+         ''] using the pipes-array format. Optional. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -2679,9 +2681,10 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter. Default value is None.
+         parameter. Optional. Default value is None.
         :paramtype path_item_string_query: str
-        :keyword local_string_query: should contain value 'localStringQuery'. Default value is None.
+        :keyword local_string_query: should contain value 'localStringQuery'. Optional. Default value
+         is None.
         :paramtype local_string_query: str
         :return: None
         :rtype: None
@@ -2697,11 +2700,11 @@ class PathItemsOperations:
 
         request = build_path_items_get_all_with_values_request(
             path_item_string_path=path_item_string_path,
-            global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
+            global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
-            global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            global_string_query=self._config.global_string_query,
             headers=_headers,
             params=_params,
         )
@@ -2739,9 +2742,10 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter. Default value is None.
+         parameter. Optional. Default value is None.
         :paramtype path_item_string_query: str
-        :keyword local_string_query: should contain value 'localStringQuery'. Default value is None.
+        :keyword local_string_query: should contain value 'localStringQuery'. Optional. Default value
+         is None.
         :paramtype local_string_query: str
         :return: None
         :rtype: None
@@ -2757,11 +2761,11 @@ class PathItemsOperations:
 
         request = build_path_items_get_global_query_null_request(
             path_item_string_path=path_item_string_path,
-            global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
+            global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
-            global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            global_string_query=self._config.global_string_query,
             headers=_headers,
             params=_params,
         )
@@ -2799,9 +2803,9 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter. Default value is None.
+         parameter. Optional. Default value is None.
         :paramtype path_item_string_query: str
-        :keyword local_string_query: should contain null value. Default value is None.
+        :keyword local_string_query: should contain null value. Optional. Default value is None.
         :paramtype local_string_query: str
         :return: None
         :rtype: None
@@ -2817,11 +2821,11 @@ class PathItemsOperations:
 
         request = build_path_items_get_global_and_local_query_null_request(
             path_item_string_path=path_item_string_path,
-            global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
+            global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
-            global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            global_string_query=self._config.global_string_query,
             headers=_headers,
             params=_params,
         )
@@ -2858,9 +2862,9 @@ class PathItemsOperations:
         :type path_item_string_path: str
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
-        :keyword path_item_string_query: should contain value null. Default value is None.
+        :keyword path_item_string_query: should contain value null. Optional. Default value is None.
         :paramtype path_item_string_query: str
-        :keyword local_string_query: should contain value null. Default value is None.
+        :keyword local_string_query: should contain value null. Optional. Default value is None.
         :paramtype local_string_query: str
         :return: None
         :rtype: None
@@ -2876,11 +2880,11 @@ class PathItemsOperations:
 
         request = build_path_items_get_local_path_item_query_null_request(
             path_item_string_path=path_item_string_path,
-            global_string_path=self._config.global_string_path,
             local_string_path=local_string_path,
+            global_string_path=self._config.global_string_path,
             path_item_string_query=path_item_string_query,
-            global_string_query=self._config.global_string_query,
             local_string_query=local_string_query,
+            global_string_query=self._config.global_string_query,
             headers=_headers,
             params=_params,
         )

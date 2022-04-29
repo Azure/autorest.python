@@ -228,11 +228,6 @@ class _ParameterList(_ParameterListBase[Parameter, Union[MultipartBodyParameter,
     def path(self) -> List[Parameter]:
         return [k for k in super().path if k.location == ParameterLocation.ENDPOINT_PATH]
 
-    def kwargs_to_pop(self, is_python3_file: bool) -> List[Union[Parameter, BodyParameter, MultipartBodyParameter]]:
-        super_kwargs_to_pop = super().kwargs_to_pop(is_python3_file)
-        super_kwargs_to_pop.extend([c for c in self.parameters if c.implementation == "Client" and c.constant])  # we pop client constants for back compat
-        return super_kwargs_to_pop
-
 class ParameterList(_ParameterList):
 
     ...

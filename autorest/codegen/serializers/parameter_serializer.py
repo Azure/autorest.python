@@ -25,7 +25,7 @@ class ParameterSerializer:
             optional_parameters.append("skip_quote=True")
 
         if parameter.delimiter and not parameter.explode:
-            if parameter.delimiter == ParameterDelimeter:
+            if parameter.delimiter == ParameterDelimeter.COMMA:
                 div_char = ","
             elif parameter.delimiter == ParameterDelimeter.SPACE:
                 div_char = " "
@@ -34,7 +34,7 @@ class ParameterSerializer:
             elif parameter.delimiter == ParameterDelimeter.TAB:
                 div_char = "\t"
             else:
-                raise ValueError(f"Do not support {parameter.delimiter} yet")
+                raise ValueError(f"We do not support {parameter.delimiter} yet")
             optional_parameters.append(f"div='{div_char}'")
 
         if parameter.explode:

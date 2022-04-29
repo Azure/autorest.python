@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, List, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, cast, overload
 
 from msrest import Serializer
 
@@ -38,7 +38,21 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_put_array_request(*, json: Optional[List[JSON]] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+@overload
+def build_put_array_request(
+    *, content_type: Optional[str] = None, json: Optional[List[JSON]] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+@overload
+def build_put_array_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_put_array_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -52,7 +66,7 @@ def build_put_array_request(*, json: Optional[List[JSON]] = None, content: Any =
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 def build_get_array_request(**kwargs: Any) -> HttpRequest:
@@ -69,9 +83,21 @@ def build_get_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_put_wrapped_array_request(
-    *, json: Optional[List[JSON]] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[List[JSON]] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_put_wrapped_array_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_put_wrapped_array_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -85,7 +111,7 @@ def build_put_wrapped_array_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 def build_get_wrapped_array_request(**kwargs: Any) -> HttpRequest:
@@ -102,9 +128,21 @@ def build_get_wrapped_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_put_dictionary_request(
-    *, json: Optional[Dict[str, JSON]] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[Dict[str, JSON]] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_put_dictionary_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_put_dictionary_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -118,7 +156,7 @@ def build_put_dictionary_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 def build_get_dictionary_request(**kwargs: Any) -> HttpRequest:
@@ -135,9 +173,21 @@ def build_get_dictionary_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_put_resource_collection_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_put_resource_collection_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_put_resource_collection_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -151,7 +201,7 @@ def build_put_resource_collection_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 def build_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
@@ -168,7 +218,21 @@ def build_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_simple_product_request(*, json: Optional[JSON] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+@overload
+def build_put_simple_product_request(
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+@overload
+def build_put_simple_product_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_put_simple_product_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -182,12 +246,24 @@ def build_put_simple_product_request(*, json: Optional[JSON] = None, content: An
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_post_flattened_simple_product_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_post_flattened_simple_product_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_post_flattened_simple_product_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -201,12 +277,24 @@ def build_post_flattened_simple_product_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_put_simple_product_with_grouping_request(
-    name: str, *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    name: str, *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_put_simple_product_with_grouping_request(
+    name: str, *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_put_simple_product_with_grouping_request(name: str, **kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -225,18 +313,21 @@ def build_put_simple_product_with_grouping_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
-    @distributed_trace
+    @overload
     def put_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[List[JSON]] = None, **kwargs: Any
+        self, resource_array: Optional[List[JSON]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as an Array.
 
-        :param resource_array: External Resource as an Array to put. Default value is None.
+        :param resource_array: External Resource as an Array to put. Optional. Default value is None.
         :type resource_array: list[JSON]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -251,12 +342,48 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                         "location": "str",  # Optional. Resource Location.
                         "name": "str",  # Optional. Resource Name.
                         "tags": {
-                            "str": "str"  # Optional. A set of tags. Dictionary of
-                              :code:`<string>`.
+                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
                         },
                         "type": "str"  # Optional. Resource Type.
                     }
                 ]
+        """
+
+        ...
+
+    @overload
+    def put_array(  # pylint: disable=inconsistent-return-statements
+        self, resource_array: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Put External Resource as an Array.
+
+        :param resource_array: External Resource as an Array to put. Optional. Default value is None.
+        :type resource_array: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def put_array(  # pylint: disable=inconsistent-return-statements
+        self, resource_array: Optional[Union[List[JSON], IO]] = None, **kwargs: Any
+    ) -> None:
+        """Put External Resource as an Array.
+
+        :param resource_array: External Resource as an Array to put. Is either a list type or a IO
+         type. Optional. Default value is None.
+        :type resource_array: list[JSON] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -264,19 +391,21 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if resource_array is not None:
-            _json = resource_array
+        _json = None
+        _content = None
+        if isinstance(resource_array, (IO, bytes)):
+            _content = resource_array
         else:
-            _json = None
+            _json = resource_array
+            content_type = content_type or "application/json"
 
         request = build_put_array_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -317,12 +446,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                             "provisioningState": "str",  # Optional.
                             "provisioningStateValues": "str",  # Optional. Known values
                               are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                              "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                              "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
                             "type": "str"  # Optional.
                         },
                         "tags": {
-                            "str": "str"  # Optional. A set of tags. Dictionary of
-                              :code:`<string>`.
+                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
                         },
                         "type": "str"  # Optional. Resource Type.
                     }
@@ -362,15 +490,18 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
         return cast(List[JSON], deserialized)
 
-    @distributed_trace
+    @overload
     def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[List[JSON]] = None, **kwargs: Any
+        self, resource_array: Optional[List[JSON]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
-        :param resource_array: External Resource as an Array to put. Default value is None.
+        :param resource_array: External Resource as an Array to put. Optional. Default value is None.
         :type resource_array: list[JSON]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -385,25 +516,66 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     }
                 ]
         """
+
+        ...
+
+    @overload
+    def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
+        self, resource_array: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """No need to have a route in Express server for this operation. Used to verify the type flattened
+        is not removed if it's referenced in an array.
+
+        :param resource_array: External Resource as an Array to put. Optional. Default value is None.
+        :type resource_array: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
+        self, resource_array: Optional[Union[List[JSON], IO]] = None, **kwargs: Any
+    ) -> None:
+        """No need to have a route in Express server for this operation. Used to verify the type flattened
+        is not removed if it's referenced in an array.
+
+        :param resource_array: External Resource as an Array to put. Is either a list type or a IO
+         type. Optional. Default value is None.
+        :type resource_array: list[JSON] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if resource_array is not None:
-            _json = resource_array
+        _json = None
+        _content = None
+        if isinstance(resource_array, (IO, bytes)):
+            _content = resource_array
         else:
-            _json = None
+            _json = resource_array
+            content_type = content_type or "application/json"
 
         request = build_put_wrapped_array_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -477,14 +649,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
         return cast(List[JSON], deserialized)
 
-    @distributed_trace
+    @overload
     def put_dictionary(  # pylint: disable=inconsistent-return-statements
-        self, resource_dictionary: Optional[Dict[str, JSON]] = None, **kwargs: Any
+        self,
+        resource_dictionary: Optional[Dict[str, JSON]] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
 
-        :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
+        :param resource_dictionary: External Resource as a Dictionary to put. Optional. Default value
+         is None.
         :type resource_dictionary: dict[str, JSON]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -503,16 +683,53 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                             "provisioningState": "str",  # Optional.
                             "provisioningStateValues": "str",  # Optional. Known values
                               are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                              "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                              "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
                             "type": "str"  # Optional.
                         },
                         "tags": {
-                            "str": "str"  # Optional. A set of tags. Dictionary of
-                              :code:`<string>`.
+                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
                         },
                         "type": "str"  # Optional. Resource Type.
                     }
                 }
+        """
+
+        ...
+
+    @overload
+    def put_dictionary(  # pylint: disable=inconsistent-return-statements
+        self, resource_dictionary: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Put External Resource as a Dictionary.
+
+        :param resource_dictionary: External Resource as a Dictionary to put. Optional. Default value
+         is None.
+        :type resource_dictionary: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def put_dictionary(  # pylint: disable=inconsistent-return-statements
+        self, resource_dictionary: Optional[Union[Dict[str, JSON], IO]] = None, **kwargs: Any
+    ) -> None:
+        """Put External Resource as a Dictionary.
+
+        :param resource_dictionary: External Resource as a Dictionary to put. Is either a dict type or
+         a IO type. Optional. Default value is None.
+        :type resource_dictionary: dict[str, JSON] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -520,19 +737,21 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if resource_dictionary is not None:
-            _json = resource_dictionary
+        _json = None
+        _content = None
+        if isinstance(resource_dictionary, (IO, bytes)):
+            _content = resource_dictionary
         else:
-            _json = None
+            _json = resource_dictionary
+            content_type = content_type or "application/json"
 
         request = build_put_dictionary_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -573,12 +792,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                             "provisioningState": "str",  # Optional.
                             "provisioningStateValues": "str",  # Optional. Known values
                               are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                              "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                              "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
                             "type": "str"  # Optional.
                         },
                         "tags": {
-                            "str": "str"  # Optional. A set of tags. Dictionary of
-                              :code:`<string>`.
+                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
                         },
                         "type": "str"  # Optional. Resource Type.
                     }
@@ -618,15 +836,18 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
         return cast(Dict[str, JSON], deserialized)
 
-    @distributed_trace
+    @overload
     def put_resource_collection(  # pylint: disable=inconsistent-return-statements
-        self, resource_complex_object: Optional[JSON] = None, **kwargs: Any
+        self, resource_complex_object: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
-        :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
-         is None.
+        :param resource_complex_object: External Resource as a ResourceCollection to put. Optional.
+         Default value is None.
         :type resource_complex_object: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -647,12 +868,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                                 "provisioningStateValues": "str",  # Optional. Known
                                   values are: "Succeeded", "Failed", "canceled", "Accepted",
                                   "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-                                  "OK".
+                                  and "OK".
                                 "type": "str"  # Optional.
                             },
                             "tags": {
-                                "str": "str"  # Optional. A set of tags. Dictionary
-                                  of :code:`<string>`.
+                                "str": "str"  # Optional. Dictionary of
+                                  :code:`<string>`.
                             },
                             "type": "str"  # Optional. Resource Type.
                         }
@@ -670,13 +891,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                                 "provisioningStateValues": "str",  # Optional. Known
                                   values are: "Succeeded", "Failed", "canceled", "Accepted",
                                   "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-                                  "OK".
+                                  and "OK".
                                 "type": "str"  # Optional. Dictionary of
                                   :code:`<FlattenedProduct>`.
                             },
                             "tags": {
-                                "str": "str"  # Optional. A set of tags. Dictionary
-                                  of :code:`<string>`.
+                                "str": "str"  # Optional. Dictionary of
+                                  :code:`<string>`.
                             },
                             "type": "str"  # Optional. Resource Type.
                         }
@@ -690,16 +911,53 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                             "provisioningState": "str",  # Optional. Flattened product.
                             "provisioningStateValues": "str",  # Optional. Known values
                               are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                              "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                              "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
                             "type": "str"  # Optional. Flattened product.
                         },
                         "tags": {
-                            "str": "str"  # Optional. A set of tags. Dictionary of
-                              :code:`<string>`.
+                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
                         },
                         "type": "str"  # Optional. Resource Type.
                     }
                 }
+        """
+
+        ...
+
+    @overload
+    def put_resource_collection(  # pylint: disable=inconsistent-return-statements
+        self, resource_complex_object: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Put External Resource as a ResourceCollection.
+
+        :param resource_complex_object: External Resource as a ResourceCollection to put. Optional.
+         Default value is None.
+        :type resource_complex_object: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def put_resource_collection(  # pylint: disable=inconsistent-return-statements
+        self, resource_complex_object: Optional[Union[JSON, IO]] = None, **kwargs: Any
+    ) -> None:
+        """Put External Resource as a ResourceCollection.
+
+        :param resource_complex_object: External Resource as a ResourceCollection to put. Is either a
+         model type or a IO type. Optional. Default value is None.
+        :type resource_complex_object: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -707,19 +965,21 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if resource_complex_object is not None:
-            _json = resource_complex_object
+        _json = None
+        _content = None
+        if isinstance(resource_complex_object, (IO, bytes)):
+            _content = resource_complex_object
         else:
-            _json = None
+            _json = resource_complex_object
+            content_type = content_type or "application/json"
 
         request = build_put_resource_collection_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -762,12 +1022,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                                 "provisioningStateValues": "str",  # Optional. Known
                                   values are: "Succeeded", "Failed", "canceled", "Accepted",
                                   "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-                                  "OK".
+                                  and "OK".
                                 "type": "str"  # Optional.
                             },
                             "tags": {
-                                "str": "str"  # Optional. A set of tags. Dictionary
-                                  of :code:`<string>`.
+                                "str": "str"  # Optional. Dictionary of
+                                  :code:`<string>`.
                             },
                             "type": "str"  # Optional. Resource Type.
                         }
@@ -785,13 +1045,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                                 "provisioningStateValues": "str",  # Optional. Known
                                   values are: "Succeeded", "Failed", "canceled", "Accepted",
                                   "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
-                                  "OK".
+                                  and "OK".
                                 "type": "str"  # Optional. Dictionary of
                                   :code:`<FlattenedProduct>`.
                             },
                             "tags": {
-                                "str": "str"  # Optional. A set of tags. Dictionary
-                                  of :code:`<string>`.
+                                "str": "str"  # Optional. Dictionary of
+                                  :code:`<string>`.
                             },
                             "type": "str"  # Optional. Resource Type.
                         }
@@ -805,12 +1065,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                             "provisioningState": "str",  # Optional. Flattened product.
                             "provisioningStateValues": "str",  # Optional. Known values
                               are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
-                              "Created", "Updating", "Updated", "Deleting", "Deleted", "OK".
+                              "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
                             "type": "str"  # Optional. Flattened product.
                         },
                         "tags": {
-                            "str": "str"  # Optional. A set of tags. Dictionary of
-                              :code:`<string>`.
+                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
                         },
                         "type": "str"  # Optional. Resource Type.
                     }
@@ -850,12 +1109,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def put_simple_product(self, simple_body_product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    @overload
+    def put_simple_product(
+        self, simple_body_product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
-        :param simple_body_product: Simple body product to put. Default value is None.
+        :param simple_body_product: Simple body product to put. Optional. Default value is None.
         :type simple_body_product: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -866,14 +1130,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
                     "base_product_description": "str",  # Optional. Description of product.
-                    "base_product_id": "str",  # Required. Unique identifier representing a
-                      specific product for a given latitude & longitude. For example, uberX in San
-                      Francisco will have a different product_id than uberX in Los Angeles.
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles.
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Has constant value: "Large".
-                        "max_product_display_name": "str",  # Required. Display name of
-                          product.
+                        "max_product_capacity": "str",  # Capacity of product. For example, 4
+                          people. "Large"
+                        "max_product_display_name": "str",  # Display name of product.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -884,14 +1147,88 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 # response body for status code(s): 200
                 response.json() == {
                     "base_product_description": "str",  # Optional. Description of product.
-                    "base_product_id": "str",  # Required. Unique identifier representing a
-                      specific product for a given latitude & longitude. For example, uberX in San
-                      Francisco will have a different product_id than uberX in Los Angeles.
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles.
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Has constant value: "Large".
-                        "max_product_display_name": "str",  # Required. Display name of
-                          product.
+                        "max_product_capacity": "str",  # Capacity of product. For example, 4
+                          people. "Large"
+                        "max_product_display_name": "str",  # Display name of product.
+                        "max_product_image": {
+                            "@odata.value": "str",  # Optional. URL value.
+                            "generic_value": "str"  # Optional. Generic URL value.
+                        }
+                    }
+                }
+        """
+
+        ...
+
+    @overload
+    def put_simple_product(
+        self, simple_body_product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> JSON:
+        """Put Simple Product with client flattening true on the model.
+
+        :param simple_body_product: Simple body product to put. Optional. Default value is None.
+        :type simple_body_product: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles.
+                    "details": {
+                        "max_product_capacity": "str",  # Capacity of product. For example, 4
+                          people. "Large"
+                        "max_product_display_name": "str",  # Display name of product.
+                        "max_product_image": {
+                            "@odata.value": "str",  # Optional. URL value.
+                            "generic_value": "str"  # Optional. Generic URL value.
+                        }
+                    }
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def put_simple_product(self, simple_body_product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+        """Put Simple Product with client flattening true on the model.
+
+        :param simple_body_product: Simple body product to put. Is either a model type or a IO type.
+         Optional. Default value is None.
+        :type simple_body_product: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles.
+                    "details": {
+                        "max_product_capacity": "str",  # Capacity of product. For example, 4
+                          people. "Large"
+                        "max_product_display_name": "str",  # Display name of product.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -905,19 +1242,21 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        if simple_body_product is not None:
-            _json = simple_body_product
+        _json = None
+        _content = None
+        if isinstance(simple_body_product, (IO, bytes)):
+            _content = simple_body_product
         else:
-            _json = None
+            _json = simple_body_product
+            content_type = content_type or "application/json"
 
         request = build_put_simple_product_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -943,12 +1282,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def post_flattened_simple_product(self, simple_body_product: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    @overload
+    def post_flattened_simple_product(
+        self, simple_body_product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
         """Put Flattened Simple Product with client flattening true on the parameter.
 
-        :param simple_body_product: Simple body product to post. Default value is None.
+        :param simple_body_product: Simple body product to post. Optional. Default value is None.
         :type simple_body_product: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -959,14 +1303,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
                     "base_product_description": "str",  # Optional. Description of product.
-                    "base_product_id": "str",  # Required. Unique identifier representing a
-                      specific product for a given latitude & longitude. For example, uberX in San
-                      Francisco will have a different product_id than uberX in Los Angeles.
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles.
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Has constant value: "Large".
-                        "max_product_display_name": "str",  # Required. Display name of
-                          product.
+                        "max_product_capacity": "str",  # Capacity of product. For example, 4
+                          people. "Large"
+                        "max_product_display_name": "str",  # Display name of product.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -977,14 +1320,90 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 # response body for status code(s): 200
                 response.json() == {
                     "base_product_description": "str",  # Optional. Description of product.
-                    "base_product_id": "str",  # Required. Unique identifier representing a
-                      specific product for a given latitude & longitude. For example, uberX in San
-                      Francisco will have a different product_id than uberX in Los Angeles.
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles.
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Has constant value: "Large".
-                        "max_product_display_name": "str",  # Required. Display name of
-                          product.
+                        "max_product_capacity": "str",  # Capacity of product. For example, 4
+                          people. "Large"
+                        "max_product_display_name": "str",  # Display name of product.
+                        "max_product_image": {
+                            "@odata.value": "str",  # Optional. URL value.
+                            "generic_value": "str"  # Optional. Generic URL value.
+                        }
+                    }
+                }
+        """
+
+        ...
+
+    @overload
+    def post_flattened_simple_product(
+        self, simple_body_product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> JSON:
+        """Put Flattened Simple Product with client flattening true on the parameter.
+
+        :param simple_body_product: Simple body product to post. Optional. Default value is None.
+        :type simple_body_product: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles.
+                    "details": {
+                        "max_product_capacity": "str",  # Capacity of product. For example, 4
+                          people. "Large"
+                        "max_product_display_name": "str",  # Display name of product.
+                        "max_product_image": {
+                            "@odata.value": "str",  # Optional. URL value.
+                            "generic_value": "str"  # Optional. Generic URL value.
+                        }
+                    }
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def post_flattened_simple_product(
+        self, simple_body_product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+    ) -> JSON:
+        """Put Flattened Simple Product with client flattening true on the parameter.
+
+        :param simple_body_product: Simple body product to post. Is either a model type or a IO type.
+         Optional. Default value is None.
+        :type simple_body_product: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles.
+                    "details": {
+                        "max_product_capacity": "str",  # Capacity of product. For example, 4
+                          people. "Large"
+                        "max_product_display_name": "str",  # Display name of product.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -998,19 +1417,21 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        if simple_body_product is not None:
-            _json = simple_body_product
+        _json = None
+        _content = None
+        if isinstance(simple_body_product, (IO, bytes)):
+            _content = simple_body_product
         else:
-            _json = None
+            _json = simple_body_product
+            content_type = content_type or "application/json"
 
         request = build_post_flattened_simple_product_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -1036,16 +1457,24 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
+    @overload
     def put_simple_product_with_grouping(
-        self, name: str, simple_body_product: Optional[JSON] = None, **kwargs: Any
+        self,
+        name: str,
+        simple_body_product: Optional[JSON] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
         :param name: Product name with value 'groupproduct'.
         :type name: str
-        :param simple_body_product: Simple body product to put. Default value is None.
+        :param simple_body_product: Simple body product to put. Optional. Default value is None.
         :type simple_body_product: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -1056,14 +1485,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
                     "base_product_description": "str",  # Optional. Description of product.
-                    "base_product_id": "str",  # Required. Unique identifier representing a
-                      specific product for a given latitude & longitude. For example, uberX in San
-                      Francisco will have a different product_id than uberX in Los Angeles.
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles.
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Has constant value: "Large".
-                        "max_product_display_name": "str",  # Required. Display name of
-                          product.
+                        "max_product_capacity": "str",  # Capacity of product. For example, 4
+                          people. "Large"
+                        "max_product_display_name": "str",  # Display name of product.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1074,14 +1502,94 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                 # response body for status code(s): 200
                 response.json() == {
                     "base_product_description": "str",  # Optional. Description of product.
-                    "base_product_id": "str",  # Required. Unique identifier representing a
-                      specific product for a given latitude & longitude. For example, uberX in San
-                      Francisco will have a different product_id than uberX in Los Angeles.
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles.
                     "details": {
-                        "max_product_capacity": "Large",  # Default value is "Large".
-                          Capacity of product. For example, 4 people. Has constant value: "Large".
-                        "max_product_display_name": "str",  # Required. Display name of
-                          product.
+                        "max_product_capacity": "str",  # Capacity of product. For example, 4
+                          people. "Large"
+                        "max_product_display_name": "str",  # Display name of product.
+                        "max_product_image": {
+                            "@odata.value": "str",  # Optional. URL value.
+                            "generic_value": "str"  # Optional. Generic URL value.
+                        }
+                    }
+                }
+        """
+
+        ...
+
+    @overload
+    def put_simple_product_with_grouping(
+        self, name: str, simple_body_product: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> JSON:
+        """Put Simple Product with client flattening true on the model.
+
+        :param name: Product name with value 'groupproduct'.
+        :type name: str
+        :param simple_body_product: Simple body product to put. Optional. Default value is None.
+        :type simple_body_product: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles.
+                    "details": {
+                        "max_product_capacity": "str",  # Capacity of product. For example, 4
+                          people. "Large"
+                        "max_product_display_name": "str",  # Display name of product.
+                        "max_product_image": {
+                            "@odata.value": "str",  # Optional. URL value.
+                            "generic_value": "str"  # Optional. Generic URL value.
+                        }
+                    }
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def put_simple_product_with_grouping(
+        self, name: str, simple_body_product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+    ) -> JSON:
+        """Put Simple Product with client flattening true on the model.
+
+        :param name: Product name with value 'groupproduct'.
+        :type name: str
+        :param simple_body_product: Simple body product to put. Is either a model type or a IO type.
+         Optional. Default value is None.
+        :type simple_body_product: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "base_product_description": "str",  # Optional. Description of product.
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles.
+                    "details": {
+                        "max_product_capacity": "str",  # Capacity of product. For example, 4
+                          people. "Large"
+                        "max_product_display_name": "str",  # Display name of product.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1095,20 +1603,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        if simple_body_product is not None:
-            _json = simple_body_product
+        _json = None
+        _content = None
+        if isinstance(simple_body_product, (IO, bytes)):
+            _content = simple_body_product
         else:
-            _json = None
+            _json = simple_body_product
+            content_type = content_type or "application/json"
 
         request = build_put_simple_product_with_grouping_request(
             name=name,
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )

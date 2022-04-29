@@ -36,6 +36,12 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return add_to_description(description, self.type.description(is_operation_file=is_operation_file))
 
     @property
+    def xml_metadata(self) -> str:
+        if self.type.xml_serialization_ctxt():
+            return f", 'xml': {{{self.type.xml_serialization_ctxt()}}}"
+        return ""
+
+    @property
     def constant(self) -> bool:
         # this bool doesn't consider you to be constant if you are a discriminator
         # you also have to be required to be considered a constant

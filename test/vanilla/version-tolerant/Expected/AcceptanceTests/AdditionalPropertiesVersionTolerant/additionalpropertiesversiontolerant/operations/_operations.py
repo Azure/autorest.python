@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from msrest import Serializer
 
@@ -36,9 +36,17 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_pets_create_ap_true_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
-) -> HttpRequest:
+@overload
+def build_pets_create_ap_true_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+    ...
+
+
+@overload
+def build_pets_create_ap_true_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+    ...
+
+
+def build_pets_create_ap_true_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -52,12 +60,24 @@ def build_pets_create_ap_true_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_pets_create_cat_ap_true_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_pets_create_cat_ap_true_request(
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_pets_create_cat_ap_true_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -71,12 +91,24 @@ def build_pets_create_cat_ap_true_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_pets_create_ap_object_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_pets_create_ap_object_request(
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_pets_create_ap_object_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -90,12 +122,24 @@ def build_pets_create_ap_object_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_pets_create_ap_string_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_pets_create_ap_string_request(
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_pets_create_ap_string_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -109,12 +153,24 @@ def build_pets_create_ap_string_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_pets_create_ap_in_properties_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_pets_create_ap_in_properties_request(
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_pets_create_ap_in_properties_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -128,12 +184,24 @@ def build_pets_create_ap_in_properties_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+@overload
 def build_pets_create_ap_in_properties_with_ap_string_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_pets_create_ap_in_properties_with_ap_string_request(
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_pets_create_ap_in_properties_with_ap_string_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -147,7 +215,7 @@ def build_pets_create_ap_in_properties_with_ap_string_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 class PetsOperations:
@@ -167,12 +235,15 @@ class PetsOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    @distributed_trace
-    def create_ap_true(self, create_parameters: JSON, **kwargs: Any) -> JSON:
+    @overload
+    def create_ap_true(self, create_parameters: JSON, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
         :type create_parameters: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -182,14 +253,66 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,  # Required.
+                    "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": 0,  # Required.
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
+        """
+
+        ...
+
+    @overload
+    def create_ap_true(self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
+        """Create a Pet which contains more properties than what is defined.
+
+        :param create_parameters:
+        :type create_parameters: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def create_ap_true(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
+        """Create a Pet which contains more properties than what is defined.
+
+        :param create_parameters: Is either a model type or a IO type.
+        :type create_parameters: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -200,16 +323,21 @@ class PetsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        _json = create_parameters
+        _json = None
+        _content = None
+        if isinstance(create_parameters, (IO, bytes)):
+            _content = create_parameters
+        else:
+            _json = create_parameters
+            content_type = content_type or "application/json"
 
         request = build_pets_create_ap_true_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -235,12 +363,17 @@ class PetsOperations:
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def create_cat_ap_true(self, create_parameters: JSON, **kwargs: Any) -> JSON:
+    @overload
+    def create_cat_ap_true(
+        self, create_parameters: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters:
         :type create_parameters: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -251,7 +384,7 @@ class PetsOperations:
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
                     "friendly": bool,  # Optional.
-                    "id": 0,  # Required.
+                    "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -259,7 +392,61 @@ class PetsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "friendly": bool,  # Optional.
-                    "id": 0,  # Required.
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
+        """
+
+        ...
+
+    @overload
+    def create_cat_ap_true(self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
+        """Create a CatAPTrue which contains more properties than what is defined.
+
+        :param create_parameters:
+        :type create_parameters: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "friendly": bool,  # Optional.
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def create_cat_ap_true(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
+        """Create a CatAPTrue which contains more properties than what is defined.
+
+        :param create_parameters: Is either a model type or a IO type.
+        :type create_parameters: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "friendly": bool,  # Optional.
+                    "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -270,16 +457,21 @@ class PetsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        _json = create_parameters
+        _json = None
+        _content = None
+        if isinstance(create_parameters, (IO, bytes)):
+            _content = create_parameters
+        else:
+            _json = create_parameters
+            content_type = content_type or "application/json"
 
         request = build_pets_create_cat_ap_true_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -305,12 +497,17 @@ class PetsOperations:
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def create_ap_object(self, create_parameters: JSON, **kwargs: Any) -> JSON:
+    @overload
+    def create_ap_object(
+        self, create_parameters: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
         :type create_parameters: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -320,14 +517,66 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,  # Required.
+                    "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": 0,  # Required.
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
+        """
+
+        ...
+
+    @overload
+    def create_ap_object(self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
+        """Create a Pet which contains more properties than what is defined.
+
+        :param create_parameters:
+        :type create_parameters: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def create_ap_object(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
+        """Create a Pet which contains more properties than what is defined.
+
+        :param create_parameters: Is either a model type or a IO type.
+        :type create_parameters: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -338,16 +587,21 @@ class PetsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        _json = create_parameters
+        _json = None
+        _content = None
+        if isinstance(create_parameters, (IO, bytes)):
+            _content = create_parameters
+        else:
+            _json = create_parameters
+            content_type = content_type or "application/json"
 
         request = build_pets_create_ap_object_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -373,12 +627,17 @@ class PetsOperations:
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def create_ap_string(self, create_parameters: JSON, **kwargs: Any) -> JSON:
+    @overload
+    def create_ap_string(
+        self, create_parameters: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
         :type create_parameters: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -388,14 +647,66 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,  # Required.
+                    "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": 0,  # Required.
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
+        """
+
+        ...
+
+    @overload
+    def create_ap_string(self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
+        """Create a Pet which contains more properties than what is defined.
+
+        :param create_parameters:
+        :type create_parameters: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def create_ap_string(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
+        """Create a Pet which contains more properties than what is defined.
+
+        :param create_parameters: Is either a model type or a IO type.
+        :type create_parameters: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -406,16 +717,21 @@ class PetsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        _json = create_parameters
+        _json = None
+        _content = None
+        if isinstance(create_parameters, (IO, bytes)):
+            _content = create_parameters
+        else:
+            _json = create_parameters
+            content_type = content_type or "application/json"
 
         request = build_pets_create_ap_string_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -441,12 +757,17 @@ class PetsOperations:
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def create_ap_in_properties(self, create_parameters: JSON, **kwargs: Any) -> JSON:
+    @overload
+    def create_ap_in_properties(
+        self, create_parameters: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
         :type create_parameters: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -456,14 +777,68 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,  # Required.
+                    "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": 0,  # Required.
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
+        """
+
+        ...
+
+    @overload
+    def create_ap_in_properties(
+        self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> JSON:
+        """Create a Pet which contains more properties than what is defined.
+
+        :param create_parameters:
+        :type create_parameters: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def create_ap_in_properties(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
+        """Create a Pet which contains more properties than what is defined.
+
+        :param create_parameters: Is either a model type or a IO type.
+        :type create_parameters: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -474,16 +849,21 @@ class PetsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        _json = create_parameters
+        _json = None
+        _content = None
+        if isinstance(create_parameters, (IO, bytes)):
+            _content = create_parameters
+        else:
+            _json = create_parameters
+            content_type = content_type or "application/json"
 
         request = build_pets_create_ap_in_properties_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -509,12 +889,17 @@ class PetsOperations:
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def create_ap_in_properties_with_ap_string(self, create_parameters: JSON, **kwargs: Any) -> JSON:
+    @overload
+    def create_ap_in_properties_with_ap_string(
+        self, create_parameters: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
         :type create_parameters: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -524,22 +909,72 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "@odata.location": "str",  # Required.
-                    "additionalProperties": {
-                        "str": 0.0  # Optional. Dictionary of :code:`<number>`.
-                    },
-                    "id": 0,  # Required.
+                    "@odata.location": "str",
+                    "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "@odata.location": "str",  # Required.
-                    "additionalProperties": {
-                        "str": 0.0  # Optional. Dictionary of :code:`<number>`.
-                    },
-                    "id": 0,  # Required.
+                    "@odata.location": "str",
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
+        """
+
+        ...
+
+    @overload
+    def create_ap_in_properties_with_ap_string(
+        self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> JSON:
+        """Create a Pet which contains more properties than what is defined.
+
+        :param create_parameters:
+        :type create_parameters: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "@odata.location": "str",
+                    "id": 0,
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def create_ap_in_properties_with_ap_string(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
+        """Create a Pet which contains more properties than what is defined.
+
+        :param create_parameters: Is either a model type or a IO type.
+        :type create_parameters: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "@odata.location": "str",
+                    "id": 0,
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -550,16 +985,21 @@ class PetsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        _json = create_parameters
+        _json = None
+        _content = None
+        if isinstance(create_parameters, (IO, bytes)):
+            _content = create_parameters
+        else:
+            _json = create_parameters
+            content_type = content_type or "application/json"
 
         request = build_pets_create_ap_in_properties_with_ap_string_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )

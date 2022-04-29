@@ -60,7 +60,7 @@ def build_availability_sets_update_request(resource_group_name: str, avset: str,
     _url = "/parameterFlattening/{resourceGroupName}/{availabilitySetName}"
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "availabilitySetName": _SERIALIZER.url("avset", avset, "str"),
+        "availabilitySetName": _SERIALIZER.url("avset", avset, "str", max_length=80),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
@@ -145,13 +145,7 @@ class AvailabilitySetsOperations:
 
     @distributed_trace
     def update(  # pylint: disable=inconsistent-return-statements
-        self,
-        resource_group_name: str,
-        avset: str,
-        tags: Union[JSON, IO],
-        *,
-        content_type: Optional[str] = None,
-        **kwargs: Any
+        self, resource_group_name: str, avset: str, tags: Union[JSON, IO], **kwargs: Any
     ) -> None:
         """Updates the tags for an availability set.
 
@@ -171,9 +165,10 @@ class AvailabilitySetsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None

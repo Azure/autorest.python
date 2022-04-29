@@ -431,8 +431,8 @@ class HttpSuccessOperations:
     ) -> None:
         """Put boolean value true returning 200 success.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -444,15 +444,10 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_put200_request(
             content_type=content_type,
@@ -481,8 +476,8 @@ class HttpSuccessOperations:
     ) -> None:
         """Patch true Boolean value in request returning 200.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -494,15 +489,10 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_patch200_request(
             content_type=content_type,
@@ -531,8 +521,8 @@ class HttpSuccessOperations:
     ) -> None:
         """Post bollean value true in request that returns a 200.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -544,15 +534,10 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_post200_request(
             content_type=content_type,
@@ -581,8 +566,8 @@ class HttpSuccessOperations:
     ) -> None:
         """Delete simple boolean value true returns 200.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -594,15 +579,10 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_delete200_request(
             content_type=content_type,
@@ -631,8 +611,8 @@ class HttpSuccessOperations:
     ) -> None:
         """Put true Boolean value in request returns 201.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -644,15 +624,10 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_put201_request(
             content_type=content_type,
@@ -681,8 +656,8 @@ class HttpSuccessOperations:
     ) -> None:
         """Post true Boolean value in request returns 201 (Created).
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -694,15 +669,10 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_post201_request(
             content_type=content_type,
@@ -731,8 +701,8 @@ class HttpSuccessOperations:
     ) -> None:
         """Put true Boolean value in request returns 202 (Accepted).
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -744,15 +714,10 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_put202_request(
             content_type=content_type,
@@ -781,8 +746,8 @@ class HttpSuccessOperations:
     ) -> None:
         """Patch true Boolean value in request returns 202.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -794,15 +759,10 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_patch202_request(
             content_type=content_type,
@@ -831,8 +791,8 @@ class HttpSuccessOperations:
     ) -> None:
         """Post true Boolean value in request returns 202 (Accepted).
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -844,15 +804,10 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_post202_request(
             content_type=content_type,
@@ -881,8 +836,8 @@ class HttpSuccessOperations:
     ) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -894,15 +849,10 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_delete202_request(
             content_type=content_type,
@@ -966,8 +916,8 @@ class HttpSuccessOperations:
     ) -> None:
         """Put true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -979,15 +929,10 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_put204_request(
             content_type=content_type,
@@ -1016,8 +961,8 @@ class HttpSuccessOperations:
     ) -> None:
         """Patch true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1029,15 +974,10 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_patch204_request(
             content_type=content_type,
@@ -1066,8 +1006,8 @@ class HttpSuccessOperations:
     ) -> None:
         """Post true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1079,15 +1019,10 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_post204_request(
             content_type=content_type,
@@ -1116,8 +1051,8 @@ class HttpSuccessOperations:
     ) -> None:
         """Delete true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1129,15 +1064,10 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_delete204_request(
             content_type=content_type,
@@ -1256,7 +1186,7 @@ class HttpRedirectsOperations:
     async def get300(self, **kwargs: Any) -> Optional[List[str]]:
         """Return 300 status code and redirect to /http/success/200.
 
-        :return: list of str
+        :return: list of str or None
         :rtype: list[str] or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -1392,8 +1322,8 @@ class HttpRedirectsOperations:
         """Put true Boolean value in request returns 301.  This request should not be automatically
         redirected, but should return the received 301 to the caller for evaluation.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1405,15 +1335,10 @@ class HttpRedirectsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_redirects_put301_request(
             content_type=content_type,
@@ -1524,8 +1449,8 @@ class HttpRedirectsOperations:
         """Patch true Boolean value in request returns 302.  This request should not be automatically
         redirected, but should return the received 302 to the caller for evaluation.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1537,15 +1462,10 @@ class HttpRedirectsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_redirects_patch302_request(
             content_type=content_type,
@@ -1578,8 +1498,8 @@ class HttpRedirectsOperations:
         """Post true Boolean value in request returns 303.  This request should be automatically
         redirected usign a get, ultimately returning a 200 status code.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1591,15 +1511,10 @@ class HttpRedirectsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_redirects_post303_request(
             content_type=content_type,
@@ -1749,8 +1664,8 @@ class HttpRedirectsOperations:
     ) -> None:
         """Put redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1762,15 +1677,10 @@ class HttpRedirectsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_redirects_put307_request(
             content_type=content_type,
@@ -1803,8 +1713,8 @@ class HttpRedirectsOperations:
     ) -> None:
         """Patch redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1816,15 +1726,10 @@ class HttpRedirectsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_redirects_patch307_request(
             content_type=content_type,
@@ -1857,8 +1762,8 @@ class HttpRedirectsOperations:
     ) -> None:
         """Post redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1870,15 +1775,10 @@ class HttpRedirectsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_redirects_post307_request(
             content_type=content_type,
@@ -1911,8 +1811,8 @@ class HttpRedirectsOperations:
     ) -> None:
         """Delete redirected with 307, resulting in a 200 after redirect.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -1924,15 +1824,10 @@ class HttpRedirectsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_redirects_delete307_request(
             content_type=content_type,
@@ -2088,8 +1983,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2101,15 +1996,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_put400_request(
             content_type=content_type,
@@ -2138,8 +2028,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2151,15 +2041,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_patch400_request(
             content_type=content_type,
@@ -2188,8 +2073,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2201,15 +2086,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_post400_request(
             content_type=content_type,
@@ -2238,8 +2118,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2251,15 +2131,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_delete400_request(
             content_type=content_type,
@@ -2428,8 +2303,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Return 404 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2441,15 +2316,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_put404_request(
             content_type=content_type,
@@ -2478,8 +2348,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Return 405 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2491,15 +2361,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_patch405_request(
             content_type=content_type,
@@ -2528,8 +2393,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Return 406 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2541,15 +2406,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_post406_request(
             content_type=content_type,
@@ -2578,8 +2438,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Return 407 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2591,15 +2451,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_delete407_request(
             content_type=content_type,
@@ -2628,8 +2483,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Return 409 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2641,15 +2496,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_put409_request(
             content_type=content_type,
@@ -2818,8 +2668,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Return 413 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2831,15 +2681,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_put413_request(
             content_type=content_type,
@@ -2868,8 +2713,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Return 414 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2881,15 +2726,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_patch414_request(
             content_type=content_type,
@@ -2918,8 +2758,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Return 415 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2931,15 +2771,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_post415_request(
             content_type=content_type,
@@ -3003,8 +2838,8 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Return 417 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3016,15 +2851,10 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_delete417_request(
             content_type=content_type,
@@ -3176,8 +3006,8 @@ class HttpServerFailureOperations:
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3189,15 +3019,10 @@ class HttpServerFailureOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_server_failure_post505_request(
             content_type=content_type,
@@ -3226,8 +3051,8 @@ class HttpServerFailureOperations:
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3239,15 +3064,10 @@ class HttpServerFailureOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_server_failure_delete505_request(
             content_type=content_type,
@@ -3329,8 +3149,8 @@ class HttpRetryOperations:
     ) -> None:
         """Return 500 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3342,15 +3162,10 @@ class HttpRetryOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_retry_put500_request(
             content_type=content_type,
@@ -3379,8 +3194,8 @@ class HttpRetryOperations:
     ) -> None:
         """Return 500 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3392,15 +3207,10 @@ class HttpRetryOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_retry_patch500_request(
             content_type=content_type,
@@ -3506,8 +3316,8 @@ class HttpRetryOperations:
     ) -> None:
         """Return 503 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3519,15 +3329,10 @@ class HttpRetryOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_retry_post503_request(
             content_type=content_type,
@@ -3556,8 +3361,8 @@ class HttpRetryOperations:
     ) -> None:
         """Return 503 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3569,15 +3374,10 @@ class HttpRetryOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_retry_delete503_request(
             content_type=content_type,
@@ -3606,8 +3406,8 @@ class HttpRetryOperations:
     ) -> None:
         """Return 504 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3619,15 +3419,10 @@ class HttpRetryOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_retry_put504_request(
             content_type=content_type,
@@ -3656,8 +3451,8 @@ class HttpRetryOperations:
     ) -> None:
         """Return 504 status code, then 200 after retry.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
-         is None.
+        :param boolean_value: Simple boolean value true. Known values are True and None. Optional.
+         Default value is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3669,15 +3464,10 @@ class HttpRetryOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_retry_patch504_request(
             content_type=content_type,
@@ -3722,7 +3512,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     async def get200_model204_no_model_default_error200_valid(self, **kwargs: Any) -> Optional[JSON]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
-        :return: JSON object
+        :return: JSON object or None
         :rtype: JSON or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -3774,7 +3564,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     async def get200_model204_no_model_default_error204_valid(self, **kwargs: Any) -> Optional[JSON]:
         """Send a 204 response with no payload.
 
-        :return: JSON object
+        :return: JSON object or None
         :rtype: JSON or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -3826,7 +3616,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     async def get200_model204_no_model_default_error201_invalid(self, **kwargs: Any) -> Optional[JSON]:
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
-        :return: JSON object
+        :return: JSON object or None
         :rtype: JSON or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -3878,7 +3668,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     async def get200_model204_no_model_default_error202_none(self, **kwargs: Any) -> Optional[JSON]:
         """Send a 202 response with no payload:.
 
-        :return: JSON object
+        :return: JSON object or None
         :rtype: JSON or None
         :raises: ~azure.core.exceptions.HttpResponseError
 
@@ -3930,7 +3720,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     async def get200_model204_no_model_default_error400_valid(self, **kwargs: Any) -> Optional[JSON]:
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
 
-        :return: JSON object
+        :return: JSON object or None
         :rtype: JSON or None
         :raises: ~azure.core.exceptions.HttpResponseError
 

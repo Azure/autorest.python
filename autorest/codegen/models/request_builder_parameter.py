@@ -22,7 +22,7 @@ class RequestBuilderBodyParameter(BodyParameter):
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
-        if isinstance(self.type, (BinaryType, StringType)):
+        if isinstance(self.type, (BinaryType, StringType)) or any("xml" in ct for ct in self.content_types):
             self.client_name = "content"
         else:
             self.client_name = "json"
@@ -81,7 +81,7 @@ class RequestBuilderParameter(Parameter):
 
     @property
     def name_in_high_level_operation(self) -> str:
-        if self.implementation == "Client" and not isinstance(self.type, ConstantType):
+        if self.implementation == "Client":
             return f"self._config.{self.client_name}"
         return self.client_name
 

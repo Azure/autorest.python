@@ -51,24 +51,28 @@ def get_type(yaml_data: Dict[str, Any]):
     except KeyError:
         return KNOWN_TYPES[yaml_data["type"]]
 
-def update_list(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+def _update_type_base(updated_type: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
-        "type": "list",
-        "elementType": update_type(yaml_data["elementType"])
+        "type": updated_type,
+        "clientDefaultValue": yaml_data.get("defaultValue"),
+        "xmlMetadata": yaml_data.get("serialization", {}).get("xml", {})
     }
+
+def update_list(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    base = _update_type_base("list", yaml_data)
+    base["elementType"] = update_type(yaml_data["elementType"])
+    return base
 
 def update_dict(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
-    return {
-        "type": "dict",
-        "elementType": update_type(yaml_data["elementType"])
-    }
+    base = _update_type_base("dict", yaml_data)
+    base["elementType"] = update_type(yaml_data["elementType"])
+    return base
 
 def update_constant(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
-    return {
-        "type": "constant",
-        "valueType": update_type(yaml_data["valueType"]),
-        "value": yaml_data["value"]["value"]
-    }
+    base = _update_type_base("constant", yaml_data)
+    base["valueType"] = update_type(yaml_data["valueType"])
+    base["value"] = yaml_data["value"]["value"]
+    return base
 
 def update_enum_value(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
@@ -77,15 +81,15 @@ def update_enum_value(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         "description": yaml_data["language"]["default"]["description"]
     }
 
-
 def update_enum(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
-    return {
+    base = _update_type_base("enum", yaml_data)
+    base.update({
         "name": yaml_data["language"]["default"]["name"],
-        "type": "enum",
         "valueType": update_type(yaml_data["choiceType"]),
         "values": [update_enum_value(v) for v in yaml_data["choices"]],
         "description": yaml_data["language"]["default"]["description"],
-    }
+    })
+    return base
 
 def update_property(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
@@ -105,12 +109,11 @@ def update_discriminated_subtypes(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 def create_model(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
-    return {
-        "type": "model",
-        "name": yaml_data["language"]["default"]["name"],
-        "description": yaml_data["language"]["default"]["description"],
-
-    }
+    base = _update_type_base("model", yaml_data)
+    base["name"] = yaml_data["language"]["default"]["name"]
+    base["description"] = yaml_data["language"]["default"]["description"]
+    base["isXml"] = "xml" in yaml_data.get("serializationFormats", [])
+    return base
 
 def fill_model(yaml_data: Dict[str, Any], current_model: Dict[str, Any]) -> Dict[str, Any]:
     properties = [update_property(p) for p in yaml_data.get("properties", [])]
@@ -135,55 +138,42 @@ def fill_model(yaml_data: Dict[str, Any], current_model: Dict[str, Any]) -> Dict
     })
     return current_model
 
+
 def update_number_type(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
-    type_group = "integer" if yaml_data["type"] == "integer" else "float"
-    return {
-        "type": type_group,
-        "clientDefaultValue": yaml_data.get("defaultValue"),
+    updated_type = "integer" if yaml_data["type"] == "integer" else "float"
+    base = _update_type_base(updated_type, yaml_data)
+    base.update({
         "precision": yaml_data.get("precision"),
         "multipleOf": yaml_data.get("multipleOf"),
         "maximum": yaml_data.get("maximum"),
         "minimum": yaml_data.get("minimum"),
         "exclusiveMaximum": yaml_data.get("exclusiveMaximum"),
         "exclusiveMinimum": yaml_data.get("exclusiveMinimum"),
-    }
+    })
+    return base
 
 def update_primitive(type_group: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     if type_group in ("integer", "number"):
         return update_number_type(yaml_data)
     if type_group in ("string", "uuid", "uri"):
         if any(r in yaml_data for r in ("maxLength", "minLength", "pattern", "defaultValue")):
-            return {
-                "type": "string",
+            base = _update_type_base("string", yaml_data)
+            base.update({
                 "maxLength": yaml_data.get("maxLength"),
                 "minLength": yaml_data.get("minLength"),
                 "pattern": yaml_data.get("pattern"),
-                "clientDefaultValue": yaml_data.get("defaultValue"),
-            }
+            })
+            return base
         return KNOWN_TYPES["string"]
-    if type_group == "byte-array":
-        return {"type": "base64", "clientDefaultValue": yaml_data.get("defaultValue")}
     if type_group == "binary":
         return KNOWN_TYPES["binary"]
-    if type_group == "any":
-        return {"type": "any", "clientDefaultValue": yaml_data.get("defaultValue")}
     if type_group == "date-time":
-        return {"type": "datetime", "format": yaml_data["format"], "clientDefaultValue": yaml_data.get("defaultValue")}
-    if type_group == "duration":
-        return {"type": "duration", "clientDefaultValue": yaml_data.get("defaultValue")}
-    if type_group == "date":
-        return {"type": "date", "clientDefaultValue": yaml_data.get("defaultValue")}
-    if type_group == "base64":
-        return {"type": "base64", "clientDefaultValue": yaml_data.get("defaultValue")}
-    if type_group == "boolean":
-        return {"type": "bool", "clientDefaultValue": yaml_data.get("defaultValue")}
-    if type_group == "any-object":
-        return {"type": "any-object"}
-    if type_group == "unixtime":
-        return {"type": "unix-time", "clientDefaultValue": yaml_data.get("defaultValue")}
-    if type_group == "time":
-        return {"type": "time", "clientDefaultValue": yaml_data.get("defaultValue")}
-    raise ValueError(f"Unknown type group {type_group}")
+        base = _update_type_base("datetime", yaml_data)
+        base["format"] = yaml_data["format"]
+        return base
+    if type_group == "byte-array":
+        type_group = "base64"
+    return _update_type_base(type_group, yaml_data)
 
 def update_types(yaml_data: List[Dict[str, Any]]) -> Dict[str, Any]:
     types: List[Dict[str, Any]] = []
@@ -247,102 +237,12 @@ def update_parameter_delimiter(style: Optional[str]) -> Optional[str]:
         return style.replace("Delimited", "")
     return None
 
-
-def update_parameter(yaml_data: Dict[str, Any], *, client_name: Optional[str] = None, in_overload: bool = False, in_overriden: bool = False) -> Dict[str, Any]:
-    param_base = update_parameter_base(yaml_data, client_name=client_name)
-    type = get_type(yaml_data["schema"])
-    if type["type"] == "constant":
-        param_base["clientDefaultValue"] = type["value"]
-    param_base.update({
-        "restApiName": yaml_data["language"]["default"]["serializedName"],
-        "type": type,
-        "implementation": yaml_data["implementation"],
-        "explode": yaml_data["protocol"]["http"].get("explode", False),
-        "inOverload": in_overload,
-        "skipUrlEncoding": yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
-        "inDocstring": yaml_data.get("inDocstring", True),
-        "inOverriden": in_overriden,
-        "delimiter": update_parameter_delimiter(yaml_data["protocol"]["http"].get("style"))
-    })
-    return param_base
-
 def get_all_body_types(yaml_data: Dict[str, Any]) -> List[Dict[str, Any]]:
     seen_body_types = {}
     for schema_request in yaml_data.values():
         body_param = get_body_parameter(schema_request)
         seen_body_types[id(body_param["schema"])] = update_type(body_param["schema"])
     return list(seen_body_types.values())
-
-def _update_body_parameter_helper(
-    yaml_data: Dict[str, Any],
-    body_param: Dict[str, Any],
-    body_type: Dict[str, Any],
-) -> Dict[str, Any]:
-    param_base = update_parameter_base(body_param)
-    body_param = copy.deepcopy(param_base)
-    body_param["type"] = body_type
-    body_param["contentTypes"] = [
-        ct
-        for ct, request in yaml_data.items()
-        if id(body_type) == id(ORIGINAL_ID_TO_UPDATED_TYPE[id(get_body_parameter(request)["schema"] )])
-    ]
-    # get default content type
-    body_param["defaultContentType"] = _get_default_content_type(body_param["contentTypes"])
-    if body_param["type"]["type"] == "constant":
-        body_param["clientDefaultValue"] = body_type["value"]
-    return body_param
-
-def update_multipart_body_parameter(yaml_data: Dict[str, Any], client_name: str, description: str) -> Dict[str, Any]:
-    first_value = list(yaml_data.values())[0]
-    entries = [
-        _update_body_parameter_helper(yaml_data, p, update_type(p["schema"]))
-        for p in first_value["parameters"] if is_body(p)
-    ]
-    return {
-        "optional": not first_value.get("required", False),
-        "description": description,
-        "clientName": client_name,
-        "clientDefaultValue": None,
-        "location": "Method",
-        "type": KNOWN_TYPES["anydict"],
-        "contentTypes": list(yaml_data.keys()),
-        "defaultContentType": list(yaml_data.keys())[0], # there should only be one content type for multpart
-        "entries": entries,
-    }
-
-def update_body_parameter(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
-    protocol_http = list(yaml_data.values())[0].get("protocol", {}).get("http", {})
-    if protocol_http.get("multipart"):
-        return update_multipart_body_parameter(
-            yaml_data, "files", "Multipart input for files."
-        )
-    if protocol_http.get("knownMediaType") == "form":
-        return update_multipart_body_parameter(
-            yaml_data, "data", "Multipart input for form encoded data."
-        )
-    body_types = get_all_body_types(yaml_data)
-    if len(body_types) > 1:
-        body_type = update_types(body_types)
-    else:
-        body_type = body_types[0]
-    body_param = next(
-        p
-        for sr in yaml_data.values()
-        for p in sr["parameters"]
-        if is_body(p)
-    )
-    return _update_body_parameter_helper(yaml_data, body_param, body_type)
-
-
-def update_body_parameter_overload(yaml_data: Dict[str, Any], body_type: Dict[str, Any]) -> Dict[str, Any]:
-    """For overloads we already know what body_type we want to go with"""
-    body_param = next(
-        p
-        for sr in yaml_data.values()
-        for p in sr["parameters"]
-        if is_body(p)
-    )
-    return _update_body_parameter_helper(yaml_data, body_param, body_type)
 
 def get_body_type_for_description(body_parameter: Dict[str, Any]) -> str:
     if body_parameter["type"]["type"] == "binary":
@@ -351,52 +251,26 @@ def get_body_type_for_description(body_parameter: Dict[str, Any]) -> str:
         return "string"
     return "JSON"
 
-def update_parameters(yaml_data: Dict[str, Any], body_parameter: Optional[Dict[str, Any]], *, in_overload: bool = False, in_overriden: bool = False) -> List[Dict[str, Any]]:
-    retval: List[Dict[str, Any]] = []
-    seen_rest_api_names: Set[str] = set()
-    for param in yaml_data["parameters"]:
-        if param["language"]["default"]["name"] == "$host":
-            continue
-        if param["language"]["default"]["serializedName"] not in seen_rest_api_names:
-            if param.get("origin") == "modelerfour:synthesized/api-version":
-                param["inDocstring"] = False
-            updated_param = update_parameter(param, in_overload=in_overload, in_overriden=in_overriden)
-            retval.append(updated_param)
-            seen_rest_api_names.add(updated_param["restApiName"])
+def add_lro_information(operation: Dict[str, Any], yaml_data: Dict[str, Any]) -> None:
+    operation["discriminator"] = "lro"
+    extensions = yaml_data["extensions"]
+    operation["lroOptions"] = extensions.get("x-ms-long-running-operation-options")
+    operation["pollerSync"] = extensions.get("x-python-custom-poller-sync")
+    operation["pollerAsync"] = extensions.get("x-python-custom-poller-async")
+    operation["pollingMethodSync"] = extensions.get("x-python-custom-default-polling-method-sync")
+    operation["pollingMethodAsync"] = extensions.get("x-python-custom-default-polling-method-async")
 
-    # now we handle content type and accept headers.
-    # We only care about the content types on the body parameter itself,
-    # so ignoring the different content types for now
-    if yaml_data.get("requestMediaTypes"):
-        sub_requests = yaml_data["requestMediaTypes"].values()
-    else:
-        sub_requests = yaml_data.get("requests", [])
-    for request in sub_requests:
-        for param in request.get("parameters", []):
-            if not is_body(param):
-                if param["language"]["default"]["serializedName"] not in seen_rest_api_names:
-                    if param["language"]["default"]["serializedName"] == "Content-Type":
-                        # override content type type to string
-                        param = copy.deepcopy(param)
-                        param["schema"] = KNOWN_TYPES["string"]  # override to string type
-                        param["required"] = False
-                        description = param["language"]["default"]["description"]
-                        if description and description[-1] != ".":
-                            description += "."
-                        if not (in_overriden or in_overload):
-                            param["inDocstring"] = False
-                        elif in_overload:
-                            description += f" Content type parameter for {get_body_type_for_description(body_parameter)} body."
-                        elif not in_overload:
-                            content_types = "'" + "', '".join(yaml_data["requestMediaTypes"]) + "'"
-                            description += f" Known values are: {content_types}."
-                        if not in_overload and not in_overriden:
-                            param["clientDefaultValue"] = body_parameter["defaultContentType"]
-                        param["language"]["default"]["description"] = description
-                    param = update_parameter(param, in_overload=in_overload, in_overriden=in_overriden)
-                    retval.append(param)
-                    seen_rest_api_names.add(param["restApiName"])
-    return retval
+def filter_out_paging_next_operation(yaml_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    next_operations: Set[str] = set()
+    for operation in yaml_data:
+        next_operation = operation.get("nextOperation")
+        if not next_operation:
+            continue
+        next_operations.add(next_operation["name"])
+    return [
+        o for o in yaml_data
+        if o["name"] not in next_operations
+    ]
 
 def update_response_header(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
@@ -440,140 +314,6 @@ def _get_default_content_type(content_types: Iterable[str]) -> Optional[str]:
         return "application/octet-stream"
     return None
 
-def update_overloads(group_name: str, yaml_data: Dict[str, Any], body_parameter: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    overloads: List[Dict[str, Any]] = []
-    if not body_parameter:
-        return overloads
-    body_types = body_parameter["type"].get("types", [])
-    if not body_types:
-        return overloads
-    for body_type in body_types:
-        overload = update_overload(group_name, yaml_data, body_type)
-        for parameter in overload["parameters"]:
-            if parameter["restApiName"] == "Content-Type":
-                parameter["clientDefaultValue"] = overload["bodyParameter"]["defaultContentType"]
-        overloads.append(overload)
-    return overloads
-
-def _update_operation_helper(
-    group_name: str,
-    yaml_data: Dict[str, Any],
-    body_parameter: Optional[Dict[str, Any]],
-    *,
-    is_overload: bool = False
-) -> Dict[str, Any]:
-    in_overriden = body_parameter["type"]["type"] == "combined" if body_parameter else False
-    return {
-        "name": yaml_data["language"]["default"]["name"],
-        "description": yaml_data["language"]["default"]["description"],
-        "url": yaml_data["requests"][0]["protocol"]["http"]["path"],
-        "method": yaml_data["requests"][0]["protocol"]["http"]["method"].upper(),
-        "parameters": update_parameters(yaml_data, body_parameter, in_overload=is_overload, in_overriden=in_overriden),
-        "bodyParameter": body_parameter,
-        "responses": [update_response(yaml_data, r) for r in yaml_data["responses"]],
-        "groupName": group_name,
-        "operationType": "basic",
-        "discriminator": "operation",
-        "isOverload": is_overload,
-    }
-
-def update_operation(group_name: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
-    body_parameter = update_body_parameter(yaml_data["requestMediaTypes"]) if yaml_data.get("requestMediaTypes") else None
-    if (
-        body_parameter and
-        body_parameter["type"]["type"] != "combined" and
-        yaml_data.get("requestMediaTypes") and
-        any(ct for ct in yaml_data["requestMediaTypes"] if JSON_REGEXP.match(ct)) and
-        body_parameter["type"]["type"] in ("model", "dict", "list")
-    ):
-        combined_type = update_types([body_parameter["type"], KNOWN_TYPES["binary"]])
-        body_parameter["type"] = combined_type
-        body_parameter["contentTypes"] = []
-        # get default content type
-        body_parameter["defaultContentType"] = None
-    operation = _update_operation_helper(group_name, yaml_data, body_parameter)
-    operation["overloads"] = update_overloads(group_name, yaml_data, body_parameter)
-    return operation
-
-def update_overload(group_name: str, yaml_data: Dict[str, Any], body_type: Dict[str, Any]) -> Dict[str, Any]:
-    body_parameter = update_body_parameter_overload(yaml_data["requestMediaTypes"], body_type)
-    return _update_operation_helper(group_name, yaml_data, body_parameter, is_overload=True)
-
-def add_lro_information(operation: Dict[str, Any], yaml_data: Dict[str, Any]) -> None:
-    operation["discriminator"] = "lro"
-    extensions = yaml_data["extensions"]
-    operation["lroOptions"] = extensions.get("x-ms-long-running-operation-options")
-    operation["pollerSync"] = extensions.get("x-python-custom-poller-sync")
-    operation["pollerAsync"] = extensions.get("x-python-custom-poller-async")
-    operation["pollingMethodSync"] = extensions.get("x-python-custom-default-polling-method-sync")
-    operation["pollingMethodAsync"] = extensions.get("x-python-custom-default-polling-method-async")
-
-
-def update_lro_operation(group_name: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
-    base_operation = update_operation(group_name, yaml_data)
-    add_lro_information(base_operation, yaml_data)
-    for overload in base_operation["overloads"]:
-        add_lro_information(overload, yaml_data)
-    return base_operation
-
-def add_paging_information(group_name: str, operation: Dict[str, Any], yaml_data: Dict[str, Any]) -> None:
-    operation["discriminator"] = "paging"
-    operation["itemName"] = yaml_data["extensions"]["x-ms-pageable"].get("itemName", "value")
-    operation["continuationTokenName"] = yaml_data["extensions"]["x-ms-pageable"].get("nextLinkName")
-    if yaml_data["language"]["default"]["paging"].get("nextLinkOperation"):
-        operation["nextOperation"] = update_operation(
-            group_name=group_name,
-            yaml_data=yaml_data["language"]["default"]["paging"]["nextLinkOperation"],
-        )
-    extensions = yaml_data["extensions"]
-    operation["pagerSync"] = extensions.get("x-python-custom-pager-sync")
-    operation["pagerAsync"] = extensions.get("x-python-custom-pager-async")
-
-
-def update_paging_operation(group_name: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
-    base_operation = update_operation(group_name, yaml_data)
-    add_paging_information(group_name, base_operation, yaml_data)
-    return base_operation
-
-def update_lro_paging_operation(group_name: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
-    operation = update_lro_operation(group_name, yaml_data)
-    add_paging_information(group_name, operation, yaml_data)
-    operation["discriminator"] = "lropaging"
-    return operation
-
-def get_operation_creator(yaml_data: Dict[str, Any]) -> Callable[[str, Dict[str, Any]], Dict[str, Any]]:
-    lro_operation = yaml_data.get("extensions", {}).get("x-ms-long-running-operation")
-    paging_operation = yaml_data.get("extensions", {}).get("x-ms-pageable")
-    if lro_operation and paging_operation:
-        return update_lro_paging_operation
-    if lro_operation:
-        return update_lro_operation
-    if paging_operation:
-        return update_paging_operation
-    return update_operation
-
-def filter_out_paging_next_operation(yaml_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    next_operations: Set[str] = set()
-    for operation in yaml_data:
-        next_operation = operation.get("nextOperation")
-        if not next_operation:
-            continue
-        next_operations.add(next_operation["name"])
-    return [
-        o for o in yaml_data
-        if o["name"] not in next_operations
-    ]
-
-def update_operation_group(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
-    property_name = yaml_data["language"]["default"]["name"]
-    return {
-        "propertyName": property_name,
-        "className": property_name,
-        "operations": filter_out_paging_next_operation([
-            get_operation_creator(o)(property_name, o) for o in yaml_data["operations"]
-        ])
-    }
-
 def update_client_url(yaml_data: Dict[str, Any]) -> str:
     if any(p for p in yaml_data["globalParameters"] if p["language"]["default"]["name"] == "$host"):
         # this means we DO NOT have a parameterized host
@@ -590,6 +330,265 @@ class M4Reformatter(YamlUpdatePlugin):
     def azure_arm(self) -> bool:
         return bool(self._autorestapi.get_boolean_value("azure-arm"))
 
+    @property
+    def default_optional_constants_to_none(self) -> bool:
+        return bool(self._autorestapi.get_boolean_value("default-optional-constants-to-none") or self._autorestapi.get_boolean_value("version-tolerant"))
+
+    def update_overloads(self, group_name: str, yaml_data: Dict[str, Any], body_parameter: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        overloads: List[Dict[str, Any]] = []
+        if not body_parameter:
+            return overloads
+        body_types = body_parameter["type"].get("types", [])
+        if not body_types:
+            return overloads
+        for body_type in body_types:
+            overload = self.update_overload(group_name, yaml_data, body_type)
+            for parameter in overload["parameters"]:
+                if parameter["restApiName"] == "Content-Type":
+                    parameter["clientDefaultValue"] = overload["bodyParameter"]["defaultContentType"]
+            overloads.append(overload)
+        return overloads
+
+    def _update_operation_helper(
+        self,
+        group_name: str,
+        yaml_data: Dict[str, Any],
+        body_parameter: Optional[Dict[str, Any]],
+        *,
+        is_overload: bool = False
+    ) -> Dict[str, Any]:
+        in_overriden = body_parameter["type"]["type"] == "combined" if body_parameter else False
+        return {
+            "name": yaml_data["language"]["default"]["name"],
+            "description": yaml_data["language"]["default"]["description"],
+            "summary": yaml_data["language"]["default"].get("summary"),
+            "url": yaml_data["requests"][0]["protocol"]["http"]["path"],
+            "method": yaml_data["requests"][0]["protocol"]["http"]["method"].upper(),
+            "parameters": self.update_parameters(yaml_data, body_parameter, in_overload=is_overload, in_overriden=in_overriden),
+            "bodyParameter": body_parameter,
+            "responses": [update_response(yaml_data, r) for r in yaml_data.get("responses", [])],
+            "groupName": group_name,
+            "operationType": "basic",
+            "discriminator": "operation",
+            "isOverload": is_overload,
+        }
+
+    def get_operation_creator(self, yaml_data: Dict[str, Any]) -> Callable[[str, Dict[str, Any]], Dict[str, Any]]:
+        lro_operation = yaml_data.get("extensions", {}).get("x-ms-long-running-operation")
+        paging_operation = yaml_data.get("extensions", {}).get("x-ms-pageable")
+        if lro_operation and paging_operation:
+            return self.update_lro_paging_operation
+        if lro_operation:
+            return self.update_lro_operation
+        if paging_operation:
+            return self.update_paging_operation
+        return self.update_operation
+
+    def update_operation(self, group_name: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+        body_parameter = self.update_body_parameter(yaml_data["requestMediaTypes"]) if yaml_data.get("requestMediaTypes") else None
+        if (
+            body_parameter and
+            body_parameter["type"]["type"] != "combined" and
+            yaml_data.get("requestMediaTypes") and
+            any(ct for ct in yaml_data["requestMediaTypes"] if JSON_REGEXP.match(ct)) and
+            body_parameter["type"]["type"] in ("model", "dict", "list") and
+            not body_parameter["type"]["xmlMetadata"]
+        ):
+            combined_type = update_types([body_parameter["type"], KNOWN_TYPES["binary"]])
+            body_parameter["type"] = combined_type
+            body_parameter["contentTypes"] = []
+            # get default content type
+            body_parameter["defaultContentType"] = None
+        operation = self._update_operation_helper(group_name, yaml_data, body_parameter)
+        operation["overloads"] = self.update_overloads(group_name, yaml_data, body_parameter)
+        return operation
+
+    def add_paging_information(self, group_name: str, operation: Dict[str, Any], yaml_data: Dict[str, Any]) -> None:
+        operation["discriminator"] = "paging"
+        operation["itemName"] = yaml_data["extensions"]["x-ms-pageable"].get("itemName", "value")
+        operation["continuationTokenName"] = yaml_data["extensions"]["x-ms-pageable"].get("nextLinkName")
+        if yaml_data["language"]["default"]["paging"].get("nextLinkOperation"):
+            operation["nextOperation"] = self.update_operation(
+                group_name=group_name,
+                yaml_data=yaml_data["language"]["default"]["paging"]["nextLinkOperation"],
+            )
+        extensions = yaml_data["extensions"]
+        operation["pagerSync"] = extensions.get("x-python-custom-pager-sync")
+        operation["pagerAsync"] = extensions.get("x-python-custom-pager-async")
+
+    def update_paging_operation(self, group_name: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+        base_operation = self.update_operation(group_name, yaml_data)
+        self.add_paging_information(group_name, base_operation, yaml_data)
+        return base_operation
+
+    def update_lro_paging_operation(self, group_name: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+        operation = self.update_lro_operation(group_name, yaml_data)
+        self.add_paging_information(group_name, operation, yaml_data)
+        operation["discriminator"] = "lropaging"
+        return operation
+
+    def update_lro_operation(self, group_name: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+        base_operation = self.update_operation(group_name, yaml_data)
+        add_lro_information(base_operation, yaml_data)
+        for overload in base_operation["overloads"]:
+            add_lro_information(overload, yaml_data)
+        return base_operation
+
+    def update_overload(self, group_name: str, yaml_data: Dict[str, Any], body_type: Dict[str, Any]) -> Dict[str, Any]:
+        body_parameter = self.update_body_parameter_overload(yaml_data["requestMediaTypes"], body_type)
+        return self._update_operation_helper(group_name, yaml_data, body_parameter, is_overload=True)
+
+    def update_operation_group(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+        property_name = yaml_data["language"]["default"]["name"]
+        return {
+            "propertyName": property_name,
+            "className": property_name,
+            "operations": filter_out_paging_next_operation([
+                self.get_operation_creator(o)(property_name, o) for o in yaml_data["operations"]
+            ])
+        }
+
+    def _update_body_parameter_helper(
+        self,
+        yaml_data: Dict[str, Any],
+        body_param: Dict[str, Any],
+        body_type: Dict[str, Any],
+    ) -> Dict[str, Any]:
+        param_base = update_parameter_base(body_param)
+        body_param = copy.deepcopy(param_base)
+        body_param["type"] = body_type
+        body_param["contentTypes"] = [
+            ct
+            for ct, request in yaml_data.items()
+            if id(body_type) == id(ORIGINAL_ID_TO_UPDATED_TYPE[id(get_body_parameter(request)["schema"] )])
+        ]
+        # get default content type
+        body_param["defaultContentType"] = _get_default_content_type(body_param["contentTypes"])
+        if body_param["type"]["type"] == "constant":
+            if not body_param["optional"] or (body_param["optional"] and not self.default_optional_constants_to_none):
+                body_param["clientDefaultValue"] = body_type["value"]
+
+        return body_param
+
+    def update_multipart_body_parameter(self, yaml_data: Dict[str, Any], client_name: str, description: str) -> Dict[str, Any]:
+        first_value = list(yaml_data.values())[0]
+        entries = [
+            self._update_body_parameter_helper(yaml_data, p, update_type(p["schema"]))
+            for p in first_value["parameters"] if is_body(p)
+        ]
+        return {
+            "optional": not first_value.get("required", False),
+            "description": description,
+            "clientName": client_name,
+            "clientDefaultValue": None,
+            "location": "Method",
+            "type": KNOWN_TYPES["anydict"],
+            "contentTypes": list(yaml_data.keys()),
+            "defaultContentType": list(yaml_data.keys())[0], # there should only be one content type for multpart
+            "entries": entries,
+        }
+
+    def update_body_parameter(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+        protocol_http = list(yaml_data.values())[0].get("protocol", {}).get("http", {})
+        if protocol_http.get("multipart"):
+            return self.update_multipart_body_parameter(
+                yaml_data, "files", "Multipart input for files."
+            )
+        if protocol_http.get("knownMediaType") == "form":
+            return self.update_multipart_body_parameter(
+                yaml_data, "data", "Multipart input for form encoded data."
+            )
+        body_types = get_all_body_types(yaml_data)
+        if len(body_types) > 1:
+            body_type = update_types(body_types)
+        else:
+            body_type = body_types[0]
+        body_param = next(
+            p
+            for sr in yaml_data.values()
+            for p in sr["parameters"]
+            if is_body(p)
+        )
+        return self._update_body_parameter_helper(yaml_data, body_param, body_type)
+
+
+    def update_body_parameter_overload(self, yaml_data: Dict[str, Any], body_type: Dict[str, Any]) -> Dict[str, Any]:
+        """For overloads we already know what body_type we want to go with"""
+        body_param = next(
+            p
+            for sr in yaml_data.values()
+            for p in sr["parameters"]
+            if is_body(p)
+        )
+        return self._update_body_parameter_helper(yaml_data, body_param, body_type)
+
+    def update_parameters(self, yaml_data: Dict[str, Any], body_parameter: Optional[Dict[str, Any]], *, in_overload: bool = False, in_overriden: bool = False) -> List[Dict[str, Any]]:
+        retval: List[Dict[str, Any]] = []
+        seen_rest_api_names: Set[str] = set()
+        for param in yaml_data["parameters"]:
+            if param["language"]["default"]["name"] == "$host":
+                continue
+            if param["language"]["default"]["serializedName"] not in seen_rest_api_names:
+                if param.get("origin") == "modelerfour:synthesized/api-version":
+                    param["inDocstring"] = False
+                    param["implementation"] = "Method"
+                updated_param = self.update_parameter(param, in_overload=in_overload, in_overriden=in_overriden)
+                retval.append(updated_param)
+                seen_rest_api_names.add(updated_param["restApiName"])
+
+        # now we handle content type and accept headers.
+        # We only care about the content types on the body parameter itself,
+        # so ignoring the different content types for now
+        if yaml_data.get("requestMediaTypes"):
+            sub_requests = yaml_data["requestMediaTypes"].values()
+        else:
+            sub_requests = yaml_data.get("requests", [])
+        for request in sub_requests:
+            for param in request.get("parameters", []):
+                if not is_body(param):
+                    if param["language"]["default"]["serializedName"] not in seen_rest_api_names:
+                        if param["language"]["default"]["serializedName"] == "Content-Type":
+                            # override content type type to string
+                            param = copy.deepcopy(param)
+                            param["schema"] = KNOWN_TYPES["string"]  # override to string type
+                            param["required"] = False
+                            description = param["language"]["default"]["description"]
+                            if description and description[-1] != ".":
+                                description += "."
+                            if not (in_overriden or in_overload):
+                                param["inDocstring"] = False
+                            elif in_overload:
+                                description += f" Content type parameter for {get_body_type_for_description(body_parameter)} body."
+                            elif not in_overload:
+                                content_types = "'" + "', '".join(yaml_data["requestMediaTypes"]) + "'"
+                                description += f" Known values are: {content_types}."
+                            if not in_overload and not in_overriden:
+                                param["clientDefaultValue"] = body_parameter["defaultContentType"]
+                            param["language"]["default"]["description"] = description
+                        param = self.update_parameter(param, in_overload=in_overload, in_overriden=in_overriden)
+                        retval.append(param)
+                        seen_rest_api_names.add(param["restApiName"])
+        return retval
+
+    def update_parameter(self, yaml_data: Dict[str, Any], *, client_name: Optional[str] = None, in_overload: bool = False, in_overriden: bool = False) -> Dict[str, Any]:
+        param_base = update_parameter_base(yaml_data, client_name=client_name)
+        type = get_type(yaml_data["schema"])
+        if type["type"] == "constant":
+            if not param_base["optional"] or (param_base["optional"] and not self.default_optional_constants_to_none):
+                param_base["clientDefaultValue"] = type["value"]
+        param_base.update({
+            "restApiName": yaml_data["language"]["default"]["serializedName"],
+            "type": type,
+            "implementation": yaml_data["implementation"],
+            "explode": yaml_data["protocol"]["http"].get("explode", False),
+            "inOverload": in_overload,
+            "skipUrlEncoding": yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
+            "inDocstring": yaml_data.get("inDocstring", True),
+            "inOverriden": in_overriden,
+            "delimiter": update_parameter_delimiter(yaml_data["protocol"]["http"].get("style"))
+        })
+        return param_base
+
     def update_global_parameters(self, yaml_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         global_params: List[Dict[str, Any]] = []
         for global_parameter in yaml_data:
@@ -601,7 +600,7 @@ class M4Reformatter(YamlUpdatePlugin):
                 low_level_client = self._autorestapi.get_boolean_value("low-level-client", False)
                 client_name = "endpoint" if (version_tolerant or low_level_client) else "base_url"
                 global_parameter["language"]["default"]["description"] = "Service URL."
-            global_params.append(update_parameter(global_parameter, client_name=client_name))
+            global_params.append(self.update_parameter(global_parameter, client_name=client_name))
         return global_params
 
     def get_token_credential(self, credential_scopes: List[str]) -> Dict[str, Any]:
@@ -709,13 +708,13 @@ class M4Reformatter(YamlUpdatePlugin):
 
 
     def update_client(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
-        parameters = self.update_global_parameters(yaml_data["globalParameters"])
+        parameters = self.update_global_parameters(yaml_data.get("globalParameters", []))
         self.update_credential(yaml_data.get("security", {}), parameters)
         return {
             "name": yaml_data["language"]["default"]["name"],
             "description": yaml_data["info"]["description"],
             "parameters": parameters,
-            "url": update_client_url(yaml_data),
+            "url": update_client_url(yaml_data) if yaml_data.get("globalParameters") else "",
             "namespace": self._autorestapi.get_value("namespace") or yaml_data["language"]["default"]["name"]
         }
 
@@ -728,7 +727,7 @@ class M4Reformatter(YamlUpdatePlugin):
         return {
             "client": self.update_client(yaml_data),
             "operationGroups": [
-                update_operation_group(og)
+                self.update_operation_group(og)
                 for og in yaml_data["operationGroups"]
             ],
             "types": list(ORIGINAL_ID_TO_UPDATED_TYPE.values()) + list(KNOWN_TYPES.values())

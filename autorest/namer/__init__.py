@@ -60,6 +60,7 @@ class Namer(YamlUpdatePlugin):
         yaml_data["name"] = yaml_data["name"].lower()
         yaml_data["name"] = pad_reserved_words(yaml_data["name"], PadType.Method)
         yaml_data["description"] = update_description(yaml_data["description"], yaml_data["name"])
+        yaml_data["summary"] = update_description(yaml_data.get("summary", ""))
         for parameter in yaml_data["parameters"]:
             update_parameter(parameter)
         if yaml_data.get("bodyParameter"):

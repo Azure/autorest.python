@@ -29,7 +29,7 @@ class ListType(BaseType):
         return f"[{self.element_type.serialization_type}]"
 
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
-        if self.element_type.type_annotation() == "ET.Element":
+        if self.code_model.options["version_tolerant"] and self.element_type.is_xml:
             # this means we're version tolerant XML, we just return the XML element
             return self.element_type.type_annotation(
                 is_operation_file=is_operation_file
@@ -39,16 +39,37 @@ class ListType(BaseType):
     def description(self, *, is_operation_file: bool) -> str:
         return "" if is_operation_file else self.yaml_data.get("description", "")
 
+    def xml_serialization_ctxt(self) -> Optional[str]:
+        attrs_list = []
+        base_xml_map = super().xml_serialization_ctxt()
+        if base_xml_map:
+            attrs_list.append(base_xml_map)
+
+        # Attribute at the list level
+        if self.xml_metadata.get("wrapped", False):
+            attrs_list.append("'wrapped': True")
+
+        # Attributes of the items
+        item_xml_metadata = self.element_type.xml_metadata
+        if item_xml_metadata.get("name"):
+            attrs_list.append(f"'itemsName': '{item_xml_metadata['name']}'")
+        if item_xml_metadata.get("prefix", False):
+            attrs_list.append(f"'itemsPrefix': '{item_xml_metadata['prefix']}'")
+        if item_xml_metadata.get("namespace", False):
+            attrs_list.append(f"'itemsNs': '{item_xml_metadata['namespace']}'")
+
+        return ", ".join(attrs_list)
+
     @property
     def docstring_type(self) -> str:
-        if self.element_type.docstring_type == "ET.Element":
+        if self.code_model.options["version_tolerant"] and self.element_type.xml_metadata:
             # this means we're version tolerant XML, we just return the XML element
             return self.element_type.docstring_type
         return f"list[{self.element_type.docstring_type}]"
 
     @property
     def docstring_text(self) -> str:
-        if self.element_type.docstring_text == "XML Element":
+        if self.code_model.options["version_tolerant"] and self.element_type.xml_metadata:
             # this means we're version tolerant XML, we just return the XML element
             return self.element_type.docstring_text
         return f"list of {self.element_type.docstring_text}"
@@ -87,10 +108,7 @@ class ListType(BaseType):
 
     def imports(self, *, is_operation_file: bool) -> FileImport:
         file_import = FileImport()
-        if (
-            not self.element_type.type_annotation(is_operation_file=True)
-            == "ET.Element"
-        ):
+        if not (self.code_model.options["version_tolerant"] and self.element_type.is_xml):
             file_import.add_submodule_import(
                 "typing", "List", ImportType.STDLIB, TypingSection.CONDITIONAL
             )
