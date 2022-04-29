@@ -146,12 +146,12 @@ class ParamsOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def head_no_params(self, **kwargs: Any) -> Any:
+    def head_no_params(self, **kwargs: Any) -> JSON:
         """Head request, no params.
          Initially has no query parameters. After evolution, a new optional query parameter is added.
 
-        :return: any
-        :rtype: any
+        :return: JSON
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -160,7 +160,7 @@ class ParamsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_params_head_no_params_request(
             headers=_headers,
@@ -184,20 +184,20 @@ class ParamsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Any, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(Any, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace
-    def get_required(self, *, parameter: str, **kwargs: Any) -> Any:
+    def get_required(self, *, parameter: str, **kwargs: Any) -> JSON:
         """Get true Boolean value on path.
          Initially only has one required Query Parameter. After evolution, a new optional query
         parameter is added.
 
         :keyword parameter: I am a required parameter.
         :paramtype parameter: str
-        :return: any
-        :rtype: any
+        :return: JSON
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -206,7 +206,7 @@ class ParamsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_params_get_required_request(
             parameter=parameter,
@@ -231,12 +231,14 @@ class ParamsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Any, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(Any, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace
-    def put_required_optional(self, *, required_param: str, optional_param: Optional[str] = None, **kwargs: Any) -> Any:
+    def put_required_optional(
+        self, *, required_param: str, optional_param: Optional[str] = None, **kwargs: Any
+    ) -> JSON:
         """Initially has one required query parameter and one optional query parameter.  After evolution,
         a new optional query parameter is added.
 
@@ -244,8 +246,8 @@ class ParamsOperations:
         :paramtype required_param: str
         :keyword optional_param: I am an optional parameter. Default value is None.
         :paramtype optional_param: str
-        :return: any
-        :rtype: any
+        :return: JSON
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -254,7 +256,7 @@ class ParamsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_params_put_required_optional_request(
             required_param=required_param,
@@ -280,19 +282,19 @@ class ParamsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Any, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(Any, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace
-    def post_parameters(self, parameter: JSON, **kwargs: Any) -> Any:
+    def post_parameters(self, parameter: JSON, **kwargs: Any) -> JSON:
         """POST a JSON.
 
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }.
         :type parameter: JSON
-        :return: any
-        :rtype: any
+        :return: JSON
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
 
         Example:
@@ -312,7 +314,7 @@ class ParamsOperations:
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _json = parameter
 
@@ -340,20 +342,20 @@ class ParamsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Any, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(Any, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace
-    def get_optional(self, *, optional_param: Optional[str] = None, **kwargs: Any) -> Any:
+    def get_optional(self, *, optional_param: Optional[str] = None, **kwargs: Any) -> JSON:
         """Get true Boolean value on path.
          Initially has one optional query parameter. After evolution, a new optional query parameter is
         added.
 
         :keyword optional_param: I am an optional parameter. Default value is None.
         :paramtype optional_param: str
-        :return: any
-        :rtype: any
+        :return: JSON
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -362,7 +364,7 @@ class ParamsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_params_get_optional_request(
             optional_param=optional_param,
@@ -387,6 +389,6 @@ class ParamsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Any, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(Any, deserialized)
+        return cast(JSON, deserialized)

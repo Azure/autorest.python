@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional, Union, Type, TYPE_CHECKING
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .property import Property
-from .imports import FileImport, ImportModel, ImportType, TypingSection
+from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -275,25 +275,7 @@ class HiddenModelObjectSchema(ObjectSchema):
                 "xml.etree", "ElementTree", ImportType.STDLIB, alias="ET"
             )
         file_import.add_import("sys", ImportType.STDLIB)
-        file_import.define_mypy_type(
-            "JSON",
-            "MutableMapping[str, Any] # pylint: disable=unsubscriptable-object",
-            None,
-            {
-                (3, 9): ImportModel(
-                    TypingSection.CONDITIONAL,
-                    ImportType.STDLIB,
-                    "collections.abc",
-                    submodule_name="MutableMapping",
-                ),
-                None: ImportModel(
-                    TypingSection.CONDITIONAL,
-                    ImportType.STDLIB,
-                    "typing",
-                    submodule_name="MutableMapping",
-                ),
-            },
-        )
+        file_import.define_mutable_mapping_type()
         return file_import
 
 
