@@ -122,8 +122,8 @@ class QueriesOperations:
     ) -> None:
         """Get a null array of string using the multi-array format.
 
-        :keyword array_query: a null array of string using the multi-array format. Default value is
-         None.
+        :keyword array_query: a null array of string using the multi-array format. Optional. Default
+         value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -163,8 +163,8 @@ class QueriesOperations:
     ) -> None:
         """Get an empty array [] of string using the multi-array format.
 
-        :keyword array_query: an empty array [] of string using the multi-array format. Default value
-         is None.
+        :keyword array_query: an empty array [] of string using the multi-array format. Optional.
+         Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -206,7 +206,7 @@ class QueriesOperations:
         mult-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the mult-array format. Default value is None.
+         ''] using the mult-array format. Optional. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None

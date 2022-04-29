@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from msrest import Serializer
 
@@ -67,15 +67,33 @@ def build_validation_of_method_parameters_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
+@overload
 def build_validation_of_body_request(
     subscription_id: str,
     resource_group_name: str,
     id: int,
     *,
+    content_type: Optional[str] = None,
     json: Optional[JSON] = None,
-    content: Any = None,
     **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_validation_of_body_request(
+    subscription_id: str,
+    resource_group_name: str,
+    id: int,
+    *,
+    content_type: Optional[str] = None,
+    content: Optional[IO] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_validation_of_body_request(subscription_id: str, resource_group_name: str, id: int, **kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -103,7 +121,7 @@ def build_validation_of_body_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
@@ -119,9 +137,21 @@ def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
+@overload
 def build_post_with_constant_in_body_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_post_with_constant_in_body_request(
+    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_post_with_constant_in_body_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     constant_param = kwargs.pop("constant_param", "constant")  # type: str
@@ -141,7 +171,7 @@ def build_post_with_constant_in_body_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 class AutoRestValidationTestOperationsMixin(MixinABC):
@@ -165,21 +195,19 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Has constant value: "constant".
+                          string.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Has constant value: "constant".
+                          string.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2. Has constant value: "constant2".
+                          Constant string2.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int. Has constant value: 0.
+                    "constInt": 0,  # Default value is 0. Constant int.
                     "constString": "constant",  # Default value is "constant". Constant string.
-                      Has constant value: "constant".
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                      "constant_string_as_enum". Constant string as Enum. The only acceptable values to
-                      pass in are None and "constant_string_as_enum". The default value is None.
+                      "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
                         "str"  # Optional. Non required array of unique items from 0 to 6
                           elements.
@@ -226,16 +254,27 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def validation_of_body(self, resource_group_name: str, id: int, body: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    @overload
+    def validation_of_body(
+        self,
+        resource_group_name: str,
+        id: int,
+        body: Optional[JSON] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> JSON:
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
-        :param body:  Default value is None.
+        :param body: Optional. Default value is None.
         :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -248,21 +287,19 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Has constant value: "constant".
+                          string.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Has constant value: "constant".
+                          string.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2. Has constant value: "constant2".
+                          Constant string2.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int. Has constant value: 0.
+                    "constInt": 0,  # Default value is 0. Constant int.
                     "constString": "constant",  # Default value is "constant". Constant string.
-                      Has constant value: "constant".
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                      "constant_string_as_enum". Constant string as Enum. The only acceptable values to
-                      pass in are None and "constant_string_as_enum". The default value is None.
+                      "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
                         "str"  # Optional. Non required array of unique items from 0 to 6
                           elements.
@@ -275,21 +312,131 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Has constant value: "constant".
+                          string.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Has constant value: "constant".
+                          string.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2. Has constant value: "constant2".
+                          Constant string2.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int. Has constant value: 0.
+                    "constInt": 0,  # Default value is 0. Constant int.
                     "constString": "constant",  # Default value is "constant". Constant string.
-                      Has constant value: "constant".
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                      "constant_string_as_enum". Constant string as Enum. The only acceptable values to
-                      pass in are None and "constant_string_as_enum". The default value is None.
+                      "constant_string_as_enum". Constant string as Enum.
+                    "display_names": [
+                        "str"  # Optional. Non required array of unique items from 0 to 6
+                          elements.
+                    ],
+                    "image": "str"  # Optional. Image URL representing the product.
+                }
+        """
+
+        ...
+
+    @overload
+    def validation_of_body(
+        self,
+        resource_group_name: str,
+        id: int,
+        body: Optional[IO] = None,
+        *,
+        content_type: Optional[str] = None,
+        **kwargs: Any
+    ) -> JSON:
+        """Validates body parameters on the method. See swagger for details.
+
+        :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+        :type resource_group_name: str
+        :param id: Required int multiple of 10 from 100 to 1000.
+        :type id: int
+        :param body: Optional. Default value is None.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
+                    "child": {
+                        "constProperty": "constant",  # Default value is "constant". Constant
+                          string.
+                        "count": 0  # Optional. Count.
+                    },
+                    "constChild": {
+                        "constProperty": "constant",  # Default value is "constant". Constant
+                          string.
+                        "constProperty2": "constant2"  # Default value is "constant2".
+                          Constant string2.
+                    },
+                    "constInt": 0,  # Default value is 0. Constant int.
+                    "constString": "constant",  # Default value is "constant". Constant string.
+                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
+                      "constant_string_as_enum". Constant string as Enum.
+                    "display_names": [
+                        "str"  # Optional. Non required array of unique items from 0 to 6
+                          elements.
+                    ],
+                    "image": "str"  # Optional. Image URL representing the product.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def validation_of_body(
+        self,
+        resource_group_name: str,
+        id: int,
+        body: Optional[Union[JSON, IO]] = None,
+        *,
+        content_type: Optional[str] = None,
+        **kwargs: Any
+    ) -> JSON:
+        """Validates body parameters on the method. See swagger for details.
+
+        :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+        :type resource_group_name: str
+        :param id: Required int multiple of 10 from 100 to 1000.
+        :type id: int
+        :param body: Is either a model type or a IO type. Optional. Default value is None.
+        :type body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
+                    "child": {
+                        "constProperty": "constant",  # Default value is "constant". Constant
+                          string.
+                        "count": 0  # Optional. Count.
+                    },
+                    "constChild": {
+                        "constProperty": "constant",  # Default value is "constant". Constant
+                          string.
+                        "constProperty2": "constant2"  # Default value is "constant2".
+                          Constant string2.
+                    },
+                    "constInt": 0,  # Default value is 0. Constant int.
+                    "constString": "constant",  # Default value is "constant". Constant string.
+                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
+                      "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
                         "str"  # Optional. Non required array of unique items from 0 to 6
                           elements.
@@ -300,19 +447,19 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))  # type: str
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        if body is not None:
-            _json = body
+        _json = None
+        _content = None
+        if isinstance(body, (IO, bytes)):
+            _content = body
         else:
-            _json = None
+            _json = body
+            content_type = content_type or "application/json"
 
         request = build_validation_of_body_request(
             subscription_id=self._config.subscription_id,
@@ -321,6 +468,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
             api_version=api_version,
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -350,7 +498,7 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
     def get_with_constant_in_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """get_with_constant_in_path.
 
-        :keyword constant_param:  Default value is "constant". Note that overriding this default value
+        :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype constant_param: str
         :return: None
@@ -386,13 +534,18 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         if cls:
             return cls(pipeline_response, None, {})
 
-    @distributed_trace
-    def post_with_constant_in_body(self, body: Optional[JSON] = None, **kwargs: Any) -> JSON:
+    @overload
+    def post_with_constant_in_body(
+        self, body: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
         """post_with_constant_in_body.
 
-        :param body:  Default value is None.
+        :param body: Optional. Default value is None.
         :type body: JSON
-        :keyword constant_param:  Default value is "constant". Note that overriding this default value
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
+        :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype constant_param: str
         :return: JSON object
@@ -407,21 +560,19 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Has constant value: "constant".
+                          string.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Has constant value: "constant".
+                          string.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2. Has constant value: "constant2".
+                          Constant string2.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int. Has constant value: 0.
+                    "constInt": 0,  # Default value is 0. Constant int.
                     "constString": "constant",  # Default value is "constant". Constant string.
-                      Has constant value: "constant".
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                      "constant_string_as_enum". Constant string as Enum. The only acceptable values to
-                      pass in are None and "constant_string_as_enum". The default value is None.
+                      "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
                         "str"  # Optional. Non required array of unique items from 0 to 6
                           elements.
@@ -434,21 +585,117 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Has constant value: "constant".
+                          string.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Has constant value: "constant".
+                          string.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2. Has constant value: "constant2".
+                          Constant string2.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int. Has constant value: 0.
+                    "constInt": 0,  # Default value is 0. Constant int.
                     "constString": "constant",  # Default value is "constant". Constant string.
-                      Has constant value: "constant".
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                      "constant_string_as_enum". Constant string as Enum. The only acceptable values to
-                      pass in are None and "constant_string_as_enum". The default value is None.
+                      "constant_string_as_enum". Constant string as Enum.
+                    "display_names": [
+                        "str"  # Optional. Non required array of unique items from 0 to 6
+                          elements.
+                    ],
+                    "image": "str"  # Optional. Image URL representing the product.
+                }
+        """
+
+        ...
+
+    @overload
+    def post_with_constant_in_body(
+        self, body: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> JSON:
+        """post_with_constant_in_body.
+
+        :param body: Optional. Default value is None.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :keyword constant_param: Default value is "constant". Note that overriding this default value
+         may result in unsupported behavior.
+        :paramtype constant_param: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
+                    "child": {
+                        "constProperty": "constant",  # Default value is "constant". Constant
+                          string.
+                        "count": 0  # Optional. Count.
+                    },
+                    "constChild": {
+                        "constProperty": "constant",  # Default value is "constant". Constant
+                          string.
+                        "constProperty2": "constant2"  # Default value is "constant2".
+                          Constant string2.
+                    },
+                    "constInt": 0,  # Default value is 0. Constant int.
+                    "constString": "constant",  # Default value is "constant". Constant string.
+                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
+                      "constant_string_as_enum". Constant string as Enum.
+                    "display_names": [
+                        "str"  # Optional. Non required array of unique items from 0 to 6
+                          elements.
+                    ],
+                    "image": "str"  # Optional. Image URL representing the product.
+                }
+        """
+
+        ...
+
+    @distributed_trace
+    def post_with_constant_in_body(
+        self, body: Optional[Union[JSON, IO]] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> JSON:
+        """post_with_constant_in_body.
+
+        :param body: Is either a model type or a IO type. Optional. Default value is None.
+        :type body: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :keyword constant_param: Default value is "constant". Note that overriding this default value
+         may result in unsupported behavior.
+        :paramtype constant_param: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
+                    "child": {
+                        "constProperty": "constant",  # Default value is "constant". Constant
+                          string.
+                        "count": 0  # Optional. Count.
+                    },
+                    "constChild": {
+                        "constProperty": "constant",  # Default value is "constant". Constant
+                          string.
+                        "constProperty2": "constant2"  # Default value is "constant2".
+                          Constant string2.
+                    },
+                    "constInt": 0,  # Default value is 0. Constant int.
+                    "constString": "constant",  # Default value is "constant". Constant string.
+                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
+                      "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
                         "str"  # Optional. Non required array of unique items from 0 to 6
                           elements.
@@ -459,24 +706,25 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
         constant_param = kwargs.pop("constant_param", "constant")  # type: str
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        if body is not None:
-            _json = body
+        _json = None
+        _content = None
+        if isinstance(body, (IO, bytes)):
+            _content = body
         else:
-            _json = None
+            _json = body
+            content_type = content_type or "application/json"
 
         request = build_post_with_constant_in_body_request(
             constant_param=constant_param,
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )

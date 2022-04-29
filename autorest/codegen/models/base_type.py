@@ -107,3 +107,7 @@ class BaseType(BaseModel, ABC):
     def instance_check_template(self) -> str:
         """Template of what an instance check of a variable for this type would look like"""
         ...
+
+    @property
+    def serialization_constraints(self) -> List[str]:
+        return []

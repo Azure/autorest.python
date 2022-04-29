@@ -21,25 +21,3 @@ def add_to_description(description: str, entry: str) -> str:
     if description:
         return f"{description} {entry}"
     return entry
-
-def define_mutable_mapping_type(file_import: FileImport) -> FileImport:
-    file_import.define_mypy_type(
-        "JSON",
-        "MutableMapping[str, Any] # pylint: disable=unsubscriptable-object",
-        None,
-        {
-            (3, 9): ImportModel(
-                TypingSection.CONDITIONAL,
-                ImportType.STDLIB,
-                "collections.abc",
-                submodule_name="MutableMapping",
-            ),
-            None: ImportModel(
-                TypingSection.CONDITIONAL,
-                ImportType.STDLIB,
-                "typing",
-                submodule_name="MutableMapping",
-            ),
-        },
-    )
-    return file_import

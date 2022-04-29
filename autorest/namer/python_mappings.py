@@ -51,14 +51,13 @@ basic_latin_chars = {
 }
 
 
-class PadType(Enum):
+class PadType(str, Enum):
     Model = "Model"
-    Method = "Method"
-    Parameter = "Parameter"
+    Method = "_method"
+    Parameter = "_parameter"
     Enum = "Enum"
-    Property = "Property"
+    Property = "_property"
     OperationGroup = "Operations"
-    BuilderGroup = "Builders"
 
 
 _always_reserved = [
@@ -96,13 +95,11 @@ _always_reserved = [
     "await",
 ]
 
-reserved_words = {
+RESERVED_WORDS = {
     PadType.Method: [*_always_reserved],
     PadType.Parameter: [
         "self",
         # these are kwargs we've reserved for our autorest generated operations
-        "content_type",
-        "accept",
         "cls",
         "polling",
         "continuation_token",  # for LRO calls
@@ -167,5 +164,4 @@ reserved_words = {
     PadType.Property: ["self", *_always_reserved],
     PadType.Enum: ["mro", *_always_reserved],
     PadType.OperationGroup: [*_always_reserved],
-    PadType.BuilderGroup: [*_always_reserved],
 }

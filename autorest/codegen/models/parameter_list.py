@@ -16,6 +16,7 @@ from .parameter import MultipartBodyParameter, ParameterLocation, BodyParameter,
 
 ParameterType = TypeVar("ParameterType", bound=Union[Parameter, RequestBuilderParameter])
 BodyParameterType = TypeVar("BodyParameterType", bound=Union[BodyParameter, RequestBuilderBodyParameter])
+RequestBuilderBodyParameterType = Union[RequestBuilderBodyParameter, RequestBuilderMultipartBodyParameter]
 
 
 if TYPE_CHECKING:
@@ -241,14 +242,14 @@ class OverloadedOperationParameterList(_ParameterList):
 
     ...
 
-class _RequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, Union[RequestBuilderBodyParameter, RequestBuilderMultipartBodyParameter]]):
+class _RequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, RequestBuilderBodyParameterType]):
 
     @staticmethod
     def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], RequestBuilderParameter]:
         return RequestBuilderParameter.from_yaml
 
     @staticmethod
-    def body_parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], Union[RequestBuilderBodyParameter, RequestBuilderMultipartBodyParameter]]:
+    def body_parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], RequestBuilderBodyParameterType]:
         return get_request_body_parameter
 
     @property
@@ -256,10 +257,14 @@ class _RequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, U
         return "Method"
 
     @property
-    def unsorted_method_params(self) -> List[Union[RequestBuilderParameter, Union[RequestBuilderBodyParameter, RequestBuilderMultipartBodyParameter]]]:
-        super_unsorted_method_params = super().unsorted_method_params
-        super_unsorted_method_params.extend([p for p in self.parameters if p.implementation == "Client"])  # don't have access to client params in request builder
-        return super_unsorted_method_params
+    def unsorted_method_params(self) -> List[Union[RequestBuilderParameter, RequestBuilderBodyParameterType]]:
+        # don't have access to client params in request builder
+        retval = super().unsorted_method_params
+        retval.extend([
+            p for p in self.parameters
+            if p.implementation == "Client" and p.in_method_signature
+        ])
+        return retval
 
     @property
     def path(self) -> List[RequestBuilderParameter]:
@@ -290,6 +295,10 @@ class _ClientGlobalParameterList(_ParameterListBase[ParameterType, BodyParameter
             return next(p for p in self.parameters if p.client_name == "credential")
         except StopIteration:
             return None
+
+    @property
+    def path(self) -> List[ParameterType]:
+        return [p for p in super().path if p.location == ParameterLocation.ENDPOINT_PATH]
 
 class ClientGlobalParameterList(_ClientGlobalParameterList[ClientParameter]):
 

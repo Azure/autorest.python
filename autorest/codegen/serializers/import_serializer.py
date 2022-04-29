@@ -23,9 +23,9 @@ def _serialize_package(imports: List[ImportModel], delimiter: str) -> str:
     else:
         import_str = ", ".join(
             sorted(
-                [
+                set([
                     f"{i.submodule_name} as {i.alias}" if i.alias else i.submodule_name for i in imports  # type: ignore
-                ]
+                ])
             )
         )
         buffer.append(f"from {imports[0].module_name} import {import_str}")

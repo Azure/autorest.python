@@ -3,12 +3,10 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional, Union, Type, TYPE_CHECKING, cast
+from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast
 from .base_type import BaseType
-from .dictionary_type import DictionaryType
 from .property import Property
-from .imports import FileImport, ImportModel, ImportType, TypingSection
-from .utils import define_mutable_mapping_type
+from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -174,5 +172,5 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
         file_import.add_import("sys", ImportType.STDLIB)
-        file_import.merge(define_mutable_mapping_type(file_import))
+        file_import.define_mutable_mapping_type()
         return file_import

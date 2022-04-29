@@ -5,7 +5,8 @@
 # --------------------------------------------------------------------------
 from typing import List, Union
 from enum import Enum, auto
-from ..models import CodeModel, Parameter, ParameterLocation, BodyParameter
+
+from ..models import CodeModel, Parameter, ParameterLocation, BodyParameter, ListType, ParameterDelimeter
 
 class PopKwargType(Enum):
     NO = auto()
@@ -23,36 +24,36 @@ class ParameterSerializer:
         if parameter.skip_url_encoding:
             optional_parameters.append("skip_quote=True")
 
-        # if parameter.style and not parameter.explode:
-        #     if parameter.style in [ParameterStyle.simple, ParameterStyle.form]:
-        #         div_char = ","
-        #     elif parameter.style in [ParameterStyle.spaceDelimited]:
-        #         div_char = " "
-        #     elif parameter.style in [ParameterStyle.pipeDelimited]:
-        #         div_char = "|"
-        #     elif parameter.style in [ParameterStyle.tabDelimited]:
-        #         div_char = "\t"
-        #     else:
-        #         raise ValueError(f"Do not support {parameter.style} yet")
-        #     optional_parameters.append(f"div='{div_char}'")
+        if parameter.delimiter and not parameter.explode:
+            if parameter.delimiter == ParameterDelimeter:
+                div_char = ","
+            elif parameter.delimiter == ParameterDelimeter.SPACE:
+                div_char = " "
+            elif parameter.delimiter == ParameterDelimeter.PIPE:
+                div_char = "|"
+            elif parameter.delimiter == ParameterDelimeter.TAB:
+                div_char = "\t"
+            else:
+                raise ValueError(f"Do not support {parameter.delimiter} yet")
+            optional_parameters.append(f"div='{div_char}'")
 
-        # if parameter.explode:
-        #     if not isinstance(parameter.schema, ListType):
-        #         raise ValueError("Got a explode boolean on a non-array schema")
-        #     serialization_schema = parameter.schema.element_type
-        # else:
-        #     serialization_schema = parameter.schema
+        if parameter.explode:
+            if not isinstance(parameter.type, ListType):
+                raise ValueError("Got a explode boolean on a non-array schema")
+            type = parameter.type.element_type
+        else:
+            type = parameter.type
 
-        # serialization_constraints = serialization_schema.serialization_constraints
-        # if serialization_constraints:
-        #     optional_parameters += serialization_constraints
+        serialization_constraints = type.serialization_constraints
+        if serialization_constraints:
+            optional_parameters += serialization_constraints
 
         origin_name = parameter.full_client_name
 
         parameters = [
             f'"{origin_name.lstrip("_")}"',
             "q" if parameter.explode else origin_name,
-            f"'{parameter.type.serialization_type}'",
+            f"'{type.serialization_type}'",
             *optional_parameters,
         ]
         parameters_line = ", ".join(parameters)

@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import re
+from .python_mappings import PadType, RESERVED_WORDS
 
 def to_snake_case(name: str) -> str:
     def replace_upper_characters(m: re.Match[str]) -> str:
@@ -32,3 +33,9 @@ def to_snake_case(name: str) -> str:
         return prefix + match_str
 
     return re.sub("[A-Z]+", replace_upper_characters, name)
+
+
+def pad_reserved_words(name: str, pad_type: PadType):
+    if name.lower() in RESERVED_WORDS[pad_type]:
+        return name + pad_type
+    return name

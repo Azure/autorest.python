@@ -45,7 +45,7 @@ class PathsOperations:
 
     @distributed_trace_async
     async def get_empty(  # pylint: disable=inconsistent-return-statements
-        self, vault: str, secret: str, key_name: str, *, key_version: Optional[str] = "v1", **kwargs: Any
+        self, vault: str, secret: str, key_name: str, *, key_version: str = "v1", **kwargs: Any
     ) -> None:
         """Get a 200 to test a valid base uri.
 
@@ -55,7 +55,7 @@ class PathsOperations:
         :type secret: str
         :param key_name: The key name with value 'key1'.
         :type key_name: str
-        :keyword key_version: The key version. Default value 'v1'. Default value is "v1".
+        :keyword key_version: The key version. Default value 'v1'. Optional. Default value is "v1".
         :paramtype key_version: str
         :return: None
         :rtype: None

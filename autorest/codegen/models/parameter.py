@@ -31,6 +31,12 @@ class ParameterMethodLocation(Enum):
     KEYWORD_ONLY = auto()
     KWARG = auto()
 
+class ParameterDelimeter(Enum):
+    SPACE = "space"
+    PIPE = "pipe"
+    TAB = "tab"
+    COMMA = "comma"
+
 class _ParameterBase(BaseModel, abc.ABC):
     def __init__(
         self,
@@ -198,7 +204,8 @@ class Parameter(_ParameterBase):
         self.skip_url_encoding: bool = self.yaml_data.get("skipUrlEncoding", False)
         self.explode: bool = self.yaml_data.get("explode", False)
         self.in_overload: bool = self.yaml_data["inOverload"]
-        self.in_overriden: bool = self.yaml_data["inOverriden"]
+        self.in_overriden: bool = self.yaml_data.get("inOverriden", False)
+        self.delimiter: Optional[ParameterDelimeter] = self.yaml_data.get("delimiter")
 
     @property
     def constraints(self):

@@ -6,11 +6,11 @@
 import logging
 import datetime
 from enum import Enum
-from typing import cast, Any, Dict, List, Optional, Union, TYPE_CHECKING
+from typing import Any, Dict, List, Optional, Union, TYPE_CHECKING
 
 from .base_type import BaseType
 from .imports import FileImport, ImportType, TypingSection
-from .utils import add_to_description, define_mutable_mapping_type
+from .utils import add_to_description
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -165,19 +165,20 @@ class AnyObjectType(PrimitiveType):
 
     def imports(self, *, is_operation_file: bool) -> FileImport:
         file_import = FileImport()
-        file_import.merge(define_mutable_mapping_type(file_import))
+        file_import.define_mutable_mapping_type()
+        file_import.add_import("sys", ImportType.STDLIB)
         return file_import
 
 
 class NumberType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.precision = cast(int, yaml_data.get("precision"))
-        self.multiple = cast(int, yaml_data.get("multipleOf"))
-        self.maximum = cast(int, yaml_data.get("maximum"))
-        self.minimum = cast(int, yaml_data.get("minimum"))
-        self.exclusive_maximum = cast(int, yaml_data.get("exclusiveMaximum"))
-        self.exclusive_minimum = cast(int, yaml_data.get("exclusiveMinimum"))
+        self.precision: Optional[int] = yaml_data.get("precision")
+        self.multiple: Optional[int] = yaml_data.get("multipleOf")
+        self.maximum: Optional[int] = yaml_data.get("maximum")
+        self.minimum: Optional[int] = yaml_data.get("minimum")
+        self.exclusive_maximum: Optional[int] = yaml_data.get("exclusiveMaximum")
+        self.exclusive_minimum: Optional[int] = yaml_data.get("exclusiveMinimum")
 
     @property
     def serialization_constraints(self) -> List[str]:
@@ -271,16 +272,13 @@ class FloatType(NumberType):
 class StringType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.max_length = cast(int, yaml_data.get("maxLength"))
-        self.min_length = cast(
-            int,
-            (
-                yaml_data.get("minLength", 0)
-                if yaml_data.get("maxLength")
-                else yaml_data.get("minLength")
-            ),
+        self.max_length: Optional[int] = yaml_data.get("maxLength")
+        self.min_length: Optional[int] = (
+            yaml_data.get("minLength", 0)
+            if yaml_data.get("maxLength")
+            else yaml_data.get("minLength")
         )
-        self.pattern = cast(str, yaml_data.get("pattern"))
+        self.pattern: Optional[str] = yaml_data.get("pattern")
 
     @property
     def serialization_constraints(self) -> List[str]:

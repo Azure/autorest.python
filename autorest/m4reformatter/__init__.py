@@ -46,9 +46,10 @@ def get_azure_key_credential(key: str) -> Dict[str, Any]:
     return retval
 
 def get_type(yaml_data: Dict[str, Any]):
-    if KNOWN_TYPES.get(yaml_data["type"]):
+    try:
+        return ORIGINAL_ID_TO_UPDATED_TYPE[id(yaml_data)]
+    except KeyError:
         return KNOWN_TYPES[yaml_data["type"]]
-    return ORIGINAL_ID_TO_UPDATED_TYPE[id(yaml_data)]
 
 def update_list(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
@@ -134,13 +135,31 @@ def fill_model(yaml_data: Dict[str, Any], current_model: Dict[str, Any]) -> Dict
     })
     return current_model
 
+def update_number_type(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    type_group = "integer" if yaml_data["type"] == "integer" else "float"
+    return {
+        "type": type_group,
+        "clientDefaultValue": yaml_data.get("defaultValue"),
+        "precision": yaml_data.get("precision"),
+        "multipleOf": yaml_data.get("multipleOf"),
+        "maximum": yaml_data.get("maximum"),
+        "minimum": yaml_data.get("minimum"),
+        "exclusiveMaximum": yaml_data.get("exclusiveMaximum"),
+        "exclusiveMinimum": yaml_data.get("exclusiveMinimum"),
+    }
 
 def update_primitive(type_group: str, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
-    if type_group == "integer":
-        return {"type": "integer", "clientDefaultValue": yaml_data.get("defaultValue")}
-    if type_group == "number":
-        return {"type": "float", "clientDefaultValue": yaml_data.get("defaultValue")}
-    if type_group in ("string", "uuid"):
+    if type_group in ("integer", "number"):
+        return update_number_type(yaml_data)
+    if type_group in ("string", "uuid", "uri"):
+        if any(r in yaml_data for r in ("maxLength", "minLength", "pattern", "defaultValue")):
+            return {
+                "type": "string",
+                "maxLength": yaml_data.get("maxLength"),
+                "minLength": yaml_data.get("minLength"),
+                "pattern": yaml_data.get("pattern"),
+                "clientDefaultValue": yaml_data.get("defaultValue"),
+            }
         return KNOWN_TYPES["string"]
     if type_group == "byte-array":
         return {"type": "base64", "clientDefaultValue": yaml_data.get("defaultValue")}
@@ -160,7 +179,7 @@ def update_primitive(type_group: str, yaml_data: Dict[str, Any]) -> Dict[str, An
         return {"type": "bool", "clientDefaultValue": yaml_data.get("defaultValue")}
     if type_group == "any-object":
         return {"type": "any-object"}
-    if type_group == "unix-time":
+    if type_group == "unixtime":
         return {"type": "unix-time", "clientDefaultValue": yaml_data.get("defaultValue")}
     if type_group == "time":
         return {"type": "time", "clientDefaultValue": yaml_data.get("defaultValue")}
@@ -219,6 +238,16 @@ def update_parameter_base(
         "location": location,
     }
 
+def update_parameter_delimiter(style: Optional[str]) -> Optional[str]:
+    if not style:
+        return None
+    if style in ("form", "simple"):
+        return "comma"
+    if style in ("spaceDelimited", "pipeDelimited", "tabDelimited"):
+        return style.replace("Delimited", "")
+    return None
+
+
 def update_parameter(yaml_data: Dict[str, Any], *, client_name: Optional[str] = None, in_overload: bool = False, in_overriden: bool = False) -> Dict[str, Any]:
     param_base = update_parameter_base(yaml_data, client_name=client_name)
     type = get_type(yaml_data["schema"])
@@ -233,6 +262,7 @@ def update_parameter(yaml_data: Dict[str, Any], *, client_name: Optional[str] = 
         "skipUrlEncoding": yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
         "inDocstring": yaml_data.get("inDocstring", True),
         "inOverriden": in_overriden,
+        "delimiter": update_parameter_delimiter(yaml_data["protocol"]["http"].get("style"))
     })
     return param_base
 

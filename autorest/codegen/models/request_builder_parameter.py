@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING, Any, Dict, Union
 from .parameter import (
+    ParameterLocation,
     ParameterMethodLocation,
     Parameter,
     BodyParameter,
@@ -12,6 +13,7 @@ from .parameter import (
 )
 from .base_type import BaseType
 from .primitive_types import BinaryType, StringType
+from .constant_type import ConstantType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -63,6 +65,10 @@ class RequestBuilderParameter(Parameter):
             self.client_default_value = None
 
     @property
+    def in_method_signature(self) -> bool:
+        return super().in_method_signature and self.location != ParameterLocation.ENDPOINT_PATH
+
+    @property
     def full_client_name(self) -> str:
         return self.client_name
 
@@ -75,6 +81,8 @@ class RequestBuilderParameter(Parameter):
 
     @property
     def name_in_high_level_operation(self) -> str:
+        if self.implementation == "Client" and not isinstance(self.type, ConstantType):
+            return f"self._config.{self.client_name}"
         return self.client_name
 
 def get_request_body_parameter(yaml_data: Dict[str, Any], code_model: "CodeModel") -> Union[RequestBuilderBodyParameter, RequestBuilderMultipartBodyParameter]:
