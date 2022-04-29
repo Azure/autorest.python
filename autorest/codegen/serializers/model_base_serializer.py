@@ -46,7 +46,7 @@ class ModelBaseSerializer:
             init_args=self.init_args,
             input_documentation_string=ModelBaseSerializer.input_documentation_string,
             variable_documentation_string=ModelBaseSerializer.variable_documentation_string,
-            declare_model=ModelBaseSerializer.declare_model,
+            declare_model=self.declare_model,
         )
 
     def imports(self) -> FileImport:
@@ -76,11 +76,10 @@ class ModelBaseSerializer:
             properties_to_initialize = model.properties
         return properties_to_initialize
 
-    @staticmethod
-    def declare_model(code_model: CodeModel, model: ObjectSchema) -> str:
+    def declare_model(self, model: ObjectSchema) -> str:
         basename = (
             "msrest.serialization.Model"
-            if code_model.options["client_side_validation"]
+            if self.code_model.options["client_side_validation"]
             else "_serialization.Model"
         )
         if model.base_models:

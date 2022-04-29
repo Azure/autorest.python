@@ -365,11 +365,7 @@ class GlobalParameterList(ParameterList):
 
     @property
     def host_variable_name(self) -> str:
-        return (
-            "base_url"
-            if self.code_model.is_legacy
-            else "endpoint"
-        )
+        return "base_url" if self.code_model.is_legacy else "endpoint"
 
     @staticmethod
     def _wanted_path_parameter(parameter: Parameter) -> bool:
