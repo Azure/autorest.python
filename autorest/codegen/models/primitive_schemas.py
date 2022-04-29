@@ -142,6 +142,30 @@ class AnySchema(PrimitiveSchema):
         )
         return file_import
 
+class AnyObjectSchema(PrimitiveSchema):
+    @property
+    def serialization_type(self) -> str:
+        return "object"
+
+    @property
+    def docstring_type(self) -> str:
+        return "JSON"
+
+    def type_annotation(
+        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
+    ) -> str:
+        return "JSON"
+
+    @property
+    def default_template_representation_declaration(self) -> str:
+        return self.get_declaration({})
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_import("sys", ImportType.STDLIB)
+        file_import.define_mutable_mapping_type()
+        return file_import
+
 
 class NumberSchema(PrimitiveSchema):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:

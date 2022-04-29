@@ -11,6 +11,7 @@ from .object_schema import ObjectSchema, get_object_schema, HiddenModelObjectSch
 from .dictionary_schema import DictionarySchema
 from .list_schema import ListSchema
 from .primitive_schemas import (
+    AnyObjectSchema,
     get_primitive_schema,
     AnySchema,
     PrimitiveSchema,
@@ -124,7 +125,8 @@ def build_schema(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseSchema
             code_model.schemas[yaml_id] = schema
             schema.fill_instance_from_yaml(yaml_data=yaml_data, code_model=code_model)
         else:
-            schema = AnySchema.from_yaml(yaml_data=yaml_data, code_model=code_model)
+            schema_type = AnyObjectSchema if schema_type == "any-object" else AnySchema
+            schema = schema_type.from_yaml(yaml_data=yaml_data, code_model=code_model)
             code_model.primitives[yaml_id] = schema
     else:
         schema = get_primitive_schema(yaml_data=yaml_data, code_model=code_model)

@@ -275,25 +275,7 @@ class HiddenModelObjectSchema(ObjectSchema):
                 "xml.etree", "ElementTree", ImportType.STDLIB, alias="ET"
             )
         file_import.add_import("sys", ImportType.STDLIB)
-        file_import.define_mypy_type(
-            "JSON",
-            "MutableMapping[str, Any] # pylint: disable=unsubscriptable-object",
-            None,
-            {
-                (3, 9): ImportModel(
-                    TypingSection.CONDITIONAL,
-                    ImportType.STDLIB,
-                    "collections.abc",
-                    submodule_name="MutableMapping",
-                ),
-                None: ImportModel(
-                    TypingSection.CONDITIONAL,
-                    ImportType.STDLIB,
-                    "typing",
-                    submodule_name="MutableMapping",
-                ),
-            },
-        )
+        file_import.define_mutable_mapping_type()
         return file_import
 
 

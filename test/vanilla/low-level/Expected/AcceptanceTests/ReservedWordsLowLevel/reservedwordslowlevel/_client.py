@@ -43,8 +43,8 @@ class ReservedWordsClient:
         We have helper methods to create requests specific to this service in `reservedwordslowlevel.rest`.
         Use these helper methods to create the request you pass to this method.
 
-        >>> from reservedwordslowlevel.rest import import_builders
-        >>> request = import_builders.build_operation_one_request(**kwargs)
+        >>> from reservedwordslowlevel.rest import import_operations
+        >>> request = import_operations.build_operation_one_request(**kwargs)
         <HttpRequest [PUT], url: '/reservedWords/operationGroup/import'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
