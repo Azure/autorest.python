@@ -16,6 +16,11 @@
 **Breaking Changes in Request Builders**
 
 - Request builders for LRO operations have the `_initial` suffix removed from their name  #1241
+- Request builders from groups with reserved words will now be padded with the word "Operations" instead of "Builders"  #1243
+
+**Bug Fixes**
+
+- Make sure `any-object` schemas from swagger are typed with `MutableMapping`s  #1243
 
 ### 2022-04-18 - 5.16.0
 

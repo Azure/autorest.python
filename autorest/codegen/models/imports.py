@@ -147,6 +147,28 @@ class FileImport:
             self._append_import(i)
         self.type_definitions.update(file_import.type_definitions)
 
+    def define_mutable_mapping_type(self) -> None:
+        """Helper function for defining the mutable mapping type"""
+        self.define_mypy_type(
+            "JSON",
+            "MutableMapping[str, Any] # pylint: disable=unsubscriptable-object",
+            None,
+            {
+                (3, 9): ImportModel(
+                    TypingSection.CONDITIONAL,
+                    ImportType.STDLIB,
+                    "collections.abc",
+                    submodule_name="MutableMapping",
+                ),
+                None: ImportModel(
+                    TypingSection.CONDITIONAL,
+                    ImportType.STDLIB,
+                    "typing",
+                    submodule_name="MutableMapping",
+                ),
+            },
+        )
+
     def to_dict(
         self,
     ) -> Dict[
