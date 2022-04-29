@@ -206,7 +206,7 @@ def _build_flags(
     namespace = kwargs.pop("namespace", _OVERWRITE_DEFAULT_NAMESPACE.get(package_name, package_name.lower()))
     low_level_client = kwargs.pop("low_level_client", False)
     version_tolerant = kwargs.pop("version_tolerant", False)
-    client_side_validation = package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION
+    client_side_validation = package_name in _PACKAGES_WITH_CLIENT_SIDE_VALIDATION and not (low_level_client or version_tolerant)
     if low_level_client:
         package_name += "LowLevel"
         generation_section += "/low-level"

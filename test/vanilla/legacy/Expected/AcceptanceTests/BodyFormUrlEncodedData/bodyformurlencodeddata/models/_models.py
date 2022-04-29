@@ -6,11 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import msrest.serialization
+from .. import _serialization
 
 
 class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(
-    msrest.serialization.Model
+    _serialization.Model
 ):
     """Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 
@@ -70,7 +70,7 @@ class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicatio
 
 
 class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(
-    msrest.serialization.Model
+    _serialization.Model
 ):
     """PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 

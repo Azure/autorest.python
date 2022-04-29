@@ -58,6 +58,7 @@ class AutoRestRequiredOptionalTestService:
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
+        self._serialize.client_side_validation = False
         self.implicit = ImplicitOperations(self._client, self._config, self._serialize, self._deserialize)
         self.explicit = ExplicitOperations(self._client, self._config, self._serialize, self._deserialize)
 

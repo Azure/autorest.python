@@ -24,7 +24,6 @@
 #
 # --------------------------------------------------------------------------
 from async_generator import yield_, async_generator
-from azurespecialpropertieslowlevel._serialization import ValidationError
 
 from azurespecialpropertieslowlevel.aio import AutoRestAzureSpecialParametersTestClient
 from azurespecialpropertieslowlevel.rest import (
@@ -183,7 +182,7 @@ async def test_subscription_in_method(send_request, valid_subscription):
     await send_request(request)
     request = subscription_in_method.build_post_swagger_local_valid_request(valid_subscription)
     await send_request(request)
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         request = subscription_in_method.build_post_method_local_null_request(None)
 
 @pytest.mark.asyncio

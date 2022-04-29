@@ -20,6 +20,7 @@ else:
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def build_get_valid_request(**kwargs: Any) -> HttpRequest:

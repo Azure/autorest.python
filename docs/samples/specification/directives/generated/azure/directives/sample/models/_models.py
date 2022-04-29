@@ -7,10 +7,11 @@
 # --------------------------------------------------------------------------
 
 from azure.core.exceptions import HttpResponseError
-import msrest.serialization
+
+from .. import _serialization
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -39,7 +40,7 @@ class Error(msrest.serialization.Model):
         self.message = kwargs.get('message', None)
 
 
-class Product(msrest.serialization.Model):
+class Product(_serialization.Model):
     """Product.
 
     :ivar properties:
@@ -62,7 +63,7 @@ class Product(msrest.serialization.Model):
         self.properties = kwargs.get('properties', None)
 
 
-class ProductProperties(msrest.serialization.Model):
+class ProductProperties(_serialization.Model):
     """ProductProperties.
 
     :ivar id:
@@ -91,7 +92,7 @@ class ProductProperties(msrest.serialization.Model):
         self.name = kwargs.get('name', None)
 
 
-class ProductResult(msrest.serialization.Model):
+class ProductResult(_serialization.Model):
     """ProductResult.
 
     :ivar value:

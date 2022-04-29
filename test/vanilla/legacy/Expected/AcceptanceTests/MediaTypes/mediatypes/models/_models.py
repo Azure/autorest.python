@@ -6,10 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import msrest.serialization
+from .. import _serialization
 
 
-class SourcePath(msrest.serialization.Model):
+class SourcePath(_serialization.Model):
     """Uri or local path to source data.
 
     :ivar source: File source path.

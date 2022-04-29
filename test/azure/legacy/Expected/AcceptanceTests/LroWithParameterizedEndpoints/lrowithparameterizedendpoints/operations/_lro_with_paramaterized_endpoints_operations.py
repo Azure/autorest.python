@@ -8,8 +8,6 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING, cast
 
-from msrest import Serializer
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -26,6 +24,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
+from .._serialization import Serializer
 from .._vendor import _convert_request, _format_url_section
 
 if TYPE_CHECKING:

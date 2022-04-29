@@ -7,10 +7,11 @@
 # --------------------------------------------------------------------------
 
 from azure.core.exceptions import HttpResponseError
-import msrest.serialization
+
+from .. import _serialization
 
 
-class MyException(msrest.serialization.Model):
+class MyException(_serialization.Model):
     """MyException.
 
     :ivar status_code:
@@ -55,7 +56,7 @@ class B(MyException):
         self.text_status_code = kwargs.get("text_status_code", None)
 
 
-class C(msrest.serialization.Model):
+class C(_serialization.Model):
     """C.
 
     :ivar http_code:
@@ -75,7 +76,7 @@ class C(msrest.serialization.Model):
         self.http_code = kwargs.get("http_code", None)
 
 
-class D(msrest.serialization.Model):
+class D(_serialization.Model):
     """D.
 
     :ivar http_status_code:
@@ -95,7 +96,7 @@ class D(msrest.serialization.Model):
         self.http_status_code = kwargs.get("http_status_code", None)
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:

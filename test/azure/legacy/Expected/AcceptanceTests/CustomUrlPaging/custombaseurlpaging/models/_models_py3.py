@@ -8,14 +8,14 @@
 
 from typing import List, Optional, TYPE_CHECKING
 
-import msrest.serialization
+from .. import _serialization
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     import __init__ as _models
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -41,7 +41,7 @@ class Error(msrest.serialization.Model):
         self.message = message
 
 
-class Product(msrest.serialization.Model):
+class Product(_serialization.Model):
     """Product.
 
     :ivar properties:
@@ -61,7 +61,7 @@ class Product(msrest.serialization.Model):
         self.properties = properties
 
 
-class ProductProperties(msrest.serialization.Model):
+class ProductProperties(_serialization.Model):
     """ProductProperties.
 
     :ivar id:
@@ -87,7 +87,7 @@ class ProductProperties(msrest.serialization.Model):
         self.name = name
 
 
-class ProductResult(msrest.serialization.Model):
+class ProductResult(_serialization.Model):
     """ProductResult.
 
     :ivar values:

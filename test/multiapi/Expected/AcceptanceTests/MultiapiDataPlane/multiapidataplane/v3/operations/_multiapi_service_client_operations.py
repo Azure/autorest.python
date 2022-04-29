@@ -8,8 +8,6 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from msrest import Serializer
-
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
@@ -19,6 +17,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
+from .._serialization import Serializer
 from .._vendor import _convert_request
 
 if TYPE_CHECKING:

@@ -14,6 +14,7 @@ from ..._serialization import Serializer
 from ..._vendor import _format_url_section
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def build_post_method_global_valid_request(subscription_id: str, **kwargs: Any) -> HttpRequest:

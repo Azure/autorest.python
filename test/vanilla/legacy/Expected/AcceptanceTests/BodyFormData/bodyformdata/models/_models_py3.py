@@ -9,10 +9,11 @@
 from typing import IO, List, Optional
 
 from azure.core.exceptions import HttpResponseError
-import msrest.serialization
+
+from .. import _serialization
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -38,7 +39,7 @@ class Error(msrest.serialization.Model):
         self.message = message
 
 
-class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema(msrest.serialization.Model):
+class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema(_serialization.Model):
     """Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema.
 
     All required parameters must be populated in order to send to Azure.
@@ -74,7 +75,7 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
         self.file_name = file_name
 
 
-class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema(msrest.serialization.Model):
+class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema(_serialization.Model):
     """Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema.
 
     All required parameters must be populated in order to send to Azure.

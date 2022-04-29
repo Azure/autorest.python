@@ -23,7 +23,6 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-from azurespecialpropertiesversiontolerant._serialization import ValidationError
 from azure.core.exceptions import HttpResponseError
 from async_generator import yield_, async_generator
 
@@ -151,7 +150,7 @@ async def test_subscription_in_method(azure_client, valid_subscription):
     await azure_client.subscription_in_method.post_method_local_valid(valid_subscription)
     await azure_client.subscription_in_method.post_path_local_valid(valid_subscription)
     await azure_client.subscription_in_method.post_swagger_local_valid(valid_subscription)
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         await azure_client.subscription_in_method.post_method_local_null(None)
 
 @pytest.mark.asyncio

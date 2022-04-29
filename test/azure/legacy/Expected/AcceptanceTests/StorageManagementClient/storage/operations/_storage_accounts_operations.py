@@ -8,8 +8,6 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING, cast
 
-from msrest import Serializer
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -28,6 +26,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models as _models
+from .._serialization import Serializer
 from .._vendor import _convert_request, _format_url_section
 
 if TYPE_CHECKING:

@@ -7,10 +7,11 @@
 # --------------------------------------------------------------------------
 
 from azure.core.exceptions import HttpResponseError
-import msrest.serialization
+
+from .. import _serialization
 
 
-class Animal(msrest.serialization.Model):
+class Animal(_serialization.Model):
     """Animal.
 
     :ivar ani_type:
@@ -30,7 +31,7 @@ class Animal(msrest.serialization.Model):
         self.ani_type = kwargs.get("ani_type", None)
 
 
-class BaseError(msrest.serialization.Model):
+class BaseError(_serialization.Model):
     """BaseError.
 
     :ivar some_base_prop:
@@ -199,7 +200,7 @@ class Pet(Animal):
         self.name = None
 
 
-class PetAction(msrest.serialization.Model):
+class PetAction(_serialization.Model):
     """PetAction.
 
     :ivar action_response: action feedback.

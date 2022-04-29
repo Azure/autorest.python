@@ -9,13 +9,12 @@
 from copy import deepcopy
 from typing import Any, Awaitable
 
-from msrest import Deserializer, Serializer
-
 from azure.core.credentials import AzureKeyCredential
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 
 from .. import models
+from .._serialization import Deserializer, Serializer
 from ._configuration import MultiapiServiceClientConfiguration
 from .operations import MultiapiServiceClientOperationsMixin, OperationGroupOneOperations, OperationGroupTwoOperations
 

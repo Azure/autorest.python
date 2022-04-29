@@ -8,8 +8,6 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING
 
-from msrest import Serializer
-
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,6 +20,7 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
+from .._serialization import Serializer
 from .._vendor import _convert_request
 
 if TYPE_CHECKING:

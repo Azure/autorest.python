@@ -25,7 +25,6 @@
 # --------------------------------------------------------------------------
 import io
 
-from requiredoptionalversiontolerant._serialization import ValidationError
 from azure.core.exceptions import HttpResponseError
 
 from requiredoptionalversiontolerant import AutoRestRequiredOptionalTestService
@@ -81,17 +80,17 @@ def test_post_optional_array(client_required):
     client_required.explicit.post_optional_array_header(header_parameter=None)
 
 def test_implicit_get_required(client):
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         client.implicit.get_required_path(None)
 
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         client.implicit.get_required_global_path()
 
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         client.implicit.get_required_global_query()
 
 def test_post_required_string(client):
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         client.explicit.post_required_string_header(header_parameter=None)
 
     with pytest.raises(HttpResponseError) as ex:
@@ -103,7 +102,7 @@ def test_post_required_string(client):
     assert "Not Found" in str(ex.value)
 
 def test_post_required_array(client):
-    with pytest.raises(ValidationError):
+    with pytest.raises(TypeError):
         client.explicit.post_required_array_header(header_parameter=None)
 
     with pytest.raises(HttpResponseError) as ex:

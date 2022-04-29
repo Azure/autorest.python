@@ -9,12 +9,11 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core import PipelineClient
 
 from . import models
 from ._configuration import AutoRestBoolTestServiceConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import BoolOperations
 
 if TYPE_CHECKING:

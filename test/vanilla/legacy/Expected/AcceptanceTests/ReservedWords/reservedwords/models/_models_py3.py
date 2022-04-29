@@ -8,11 +8,11 @@
 
 from typing import IO
 
-import msrest.serialization
+from .. import _serialization
 
 
 class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema(
-    msrest.serialization.Model
+    _serialization.Model
 ):
     """PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 
@@ -48,7 +48,7 @@ class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwF
         self.world = world
 
 
-class PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema(msrest.serialization.Model):
+class PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema(_serialization.Model):
     """PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema.
 
     All required parameters must be populated in order to send to Azure.

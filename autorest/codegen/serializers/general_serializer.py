@@ -124,7 +124,7 @@ class GeneralSerializer:
                 f"{self.code_model.class_name}Configuration",
                 ImportType.LOCAL,
             )
-            if self.code_model.is_legacy:
+            if self.code_model.options["client_side_validation"]:
                 file_import.add_submodule_import(
                     "msrest", "Serializer", ImportType.THIRDPARTY, TypingSection.TYPING
                 )

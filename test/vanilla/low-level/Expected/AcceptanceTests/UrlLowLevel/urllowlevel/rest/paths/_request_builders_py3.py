@@ -15,6 +15,7 @@ from ..._serialization import Serializer
 from ..._vendor import _format_url_section
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def build_get_boolean_true_request(**kwargs: Any) -> HttpRequest:

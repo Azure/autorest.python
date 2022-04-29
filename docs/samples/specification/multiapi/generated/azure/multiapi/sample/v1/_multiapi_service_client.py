@@ -9,12 +9,11 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.mgmt.core import ARMPipelineClient
 
 from . import models
 from ._configuration import MultiapiServiceClientConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import MultiapiServiceClientOperationsMixin, OperationGroupOneOperations
 
 if TYPE_CHECKING:

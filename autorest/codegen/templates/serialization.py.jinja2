@@ -47,6 +47,7 @@ import isodate
 
 from typing import Dict, Any, cast, TYPE_CHECKING
 
+from msrest.exceptions import DeserializationError, SerializationError
 from azure.core.exceptions import AzureError, raise_with_traceback
 
 _BOM = codecs.BOM_UTF8.decode(encoding='utf-8')
@@ -152,54 +153,6 @@ class RawDeserializer:
             return cls.deserialize_from_text(body_bytes, content_type)
         return None
 
-class ValidationError(AzureError):
-    """Request parameter validation failed.
-    :param str rule: Validation rule.
-    :param str target: Target value for the rule.
-    :param str value: Value that was invalid.
-    """
-
-    _messages = {
-        "min_length": "must have length greater than {!r}.",
-        "max_length": "must have length less than {!r}.",
-        "minimum_ex": "must be greater than {!r}.",
-        "maximum_ex": "must be less than {!r}.",
-        "minimum": "must be equal to or greater than {!r}.",
-        "maximum": "must be equal to or less than {!r}.",
-        "min_items": "must contain at least {!r} items.",
-        "max_items": "must contain at most {!r} items.",
-        "pattern": "must conform to the following pattern: {!r}.",
-        "unique": "must contain only unique items.",
-        "multiple": "must be a multiple of {!r}.",
-        "required": "can not be None.",
-        "type": "must be of type {!r}"
-    }
-
-    @staticmethod
-    def _format_message(rule, reason, value):
-        if rule == "type" and value.startswith(r"{"):
-            internal_type = value.strip(r"{}")
-            value = "dict[str, {}]".format(internal_type)
-        return reason.format(value)
-
-    def __init__(self, rule, target, value, *args, **kwargs):
-        # type: (str, str, str, str, str) -> None
-        self.rule = rule
-        self.target = target
-        message = "Parameter {!r} ".format(target)
-        reason = self._messages.get(
-            rule, "failed to meet validation requirement.")
-        message += self._format_message(rule, reason, value)
-        super(ValidationError, self).__init__(message, *args, **kwargs)
-
-class DeserializationError(AzureError):
-    """Error raised during response deserialization."""
-    pass
-
-class SerializationError(AzureError):
-    """Error raised during request serialization."""
-    pass
-
 try:
     basestring  # type: ignore
     unicode_str = unicode  # type: ignore
@@ -296,20 +249,6 @@ def last_restapi_key_transformer(key, attr_desc, value):
     key, value = full_restapi_key_transformer(key, attr_desc, value)
     return (key[-1], value)
 
-def _recursive_validate(attr_name, attr_type, data):
-    result = []
-    if attr_type.startswith('[') and data is not None:
-        for content in data:
-            result += _recursive_validate(attr_name+" content", attr_type[1:-1], content)
-    elif attr_type.startswith('{') and data is not None:
-        if not hasattr(data, 'values'):
-            raise ValidationError("type", attr_name, attr_type)
-        for content in data.values():
-            result += _recursive_validate(attr_name+" content", attr_type[1:-1], content)
-    elif hasattr(data, '_validation'):
-        return data.validate()
-    return result
-
 def _create_xml_node(tag, prefix=None, ns=None):
     """Create a XML node."""
     if prefix and ns:
@@ -377,32 +316,6 @@ class Model(object):
             xml_map.get("prefix", None),
             xml_map.get("ns", None)
         )
-
-    def validate(self):
-        """Validate this model recursively and return a list of ValidationError.
-
-        :returns: A list of validation error
-        :rtype: list
-        """
-        validation_result = []
-        for attr_name, value in [(attr, getattr(self, attr)) for attr in self._attribute_map]:
-            attr_desc = self._attribute_map[attr_name]
-            if attr_name == "additional_properties" and attr_desc["key"] == '':
-                # Do NOT validate additional_properties
-                continue
-            attr_type = attr_desc['type']
-
-            try:
-                debug_name = "{}.{}".format(self.__class__.__name__, attr_name)
-                # https://github.com/Azure/msrest-for-python/issues/85
-                if value is not None and attr_type in Serializer.basic_types.values():
-                    value = Serializer.serialize_basic(value, attr_type)
-                Serializer.validate(value, debug_name, **self._validation.get(attr_name, {}))
-            except ValidationError as validation_error:
-                validation_result.append(validation_error)
-
-            validation_result += _recursive_validate(attr_name, attr_type, value)
-        return validation_result
 
     def serialize(self, keep_readonly=False, **kwargs):
         """Return the JSON that would be sent to azure from this model.
@@ -738,8 +651,6 @@ class Serializer(object):
         :raises: SerializationError if serialization fails.
         :raises: ValueError if data is None
         """
-        if data is None:
-            raise ValidationError("required", "body", True)
 
         # Just in case this is a dict
         internal_data_type = data_type.strip('[]{}')
@@ -772,19 +683,7 @@ class Serializer(object):
                 raise_with_traceback(
                     SerializationError, "Unable to build a model: "+str(err), err)
 
-        if self.client_side_validation:
-            errors = _recursive_validate(data_type, data_type, data)
-            if errors:
-                raise errors[0]
         return self._serialize(data, data_type, **kwargs)
-
-    def _http_component_validation(self, data, data_type, name, **kwargs):
-        if self.client_side_validation:
-            # https://github.com/Azure/msrest-for-python/issues/85
-            if data is not None and data_type in self.basic_types.values():
-                data = self.serialize_basic(data, data_type, **kwargs)
-            data = self.validate(data, name, required=True, **kwargs)
-        return data
 
     def url(self, name, data, data_type, **kwargs):
         """Serialize data intended for a URL path.
@@ -795,7 +694,6 @@ class Serializer(object):
         :raises: TypeError if serialization fails.
         :raises: ValueError if data is None
         """
-        data = self._http_component_validation(data, data_type, name, **kwargs)
         try:
             output = self.serialize_data(data, data_type, **kwargs)
             if data_type == 'bool':
@@ -819,7 +717,6 @@ class Serializer(object):
         :raises: TypeError if serialization fails.
         :raises: ValueError if data is None
         """
-        data = self._http_component_validation(data, data_type, name, **kwargs)
         try:
             # Treat the list aside, since we don't want to encode the div separator
             if data_type.startswith("["):
@@ -859,7 +756,6 @@ class Serializer(object):
         :raises: TypeError if serialization fails.
         :raises: ValueError if data is None
         """
-        data = self._http_component_validation(data, data_type, name, **kwargs)
         try:
             if data_type in ['[str]']:
                 data = ["" if d is None else d for d in data]
@@ -871,27 +767,6 @@ class Serializer(object):
             raise TypeError("{} must be type {}.".format(name, data_type))
         else:
             return str(output)
-
-    @classmethod
-    def validate(cls, data, name, **kwargs):
-        """Validate that a piece of data meets certain conditions"""
-        required = kwargs.get('required', False)
-        if required and data is None:
-            raise ValidationError("required", name, True)
-        elif data is None:
-            return
-        elif kwargs.get('readonly'):
-            return
-
-        try:
-            for key, value in kwargs.items():
-                validator = cls.validation.get(key, lambda x, y: False)
-                if validator(data, value):
-                    raise ValidationError(key, name, value)
-        except TypeError:
-            raise ValidationError("unknown", name, "unknown")
-        else:
-            return data
 
     def serialize_data(self, data, data_type, **kwargs):
         """Serialize generic data according to supplied data type.

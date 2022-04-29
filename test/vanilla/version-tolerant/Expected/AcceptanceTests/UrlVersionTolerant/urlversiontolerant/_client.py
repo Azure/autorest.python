@@ -54,6 +54,7 @@ class AutoRestUrlTestService:
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
+        self._serialize.client_side_validation = False
         self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
         self.queries = QueriesOperations(self._client, self._config, self._serialize, self._deserialize)
         self.path_items = PathItemsOperations(self._client, self._config, self._serialize, self._deserialize)

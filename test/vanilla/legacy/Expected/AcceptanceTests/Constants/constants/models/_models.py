@@ -6,10 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import msrest.serialization
+from .. import _serialization
 
 
-class ModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
+class ModelAsStringNoRequiredOneValueDefault(_serialization.Model):
     """ModelAsStringNoRequiredOneValueDefault.
 
     :ivar parameter: Known values are: "value1".
@@ -29,7 +29,7 @@ class ModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
         self.parameter = kwargs.get("parameter", "value1")
 
 
-class ModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
+class ModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):
     """ModelAsStringNoRequiredOneValueNoDefault.
 
     :ivar parameter: Known values are: "value1".
@@ -49,7 +49,7 @@ class ModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
         self.parameter = kwargs.get("parameter", None)
 
 
-class ModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
+class ModelAsStringNoRequiredTwoValueDefault(_serialization.Model):
     """ModelAsStringNoRequiredTwoValueDefault.
 
     :ivar parameter: Known values are: "value1", "value2".
@@ -69,7 +69,7 @@ class ModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
         self.parameter = kwargs.get("parameter", "value1")
 
 
-class ModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
+class ModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):
     """ModelAsStringNoRequiredTwoValueNoDefault.
 
     :ivar parameter: Known values are: "value1", "value2".
@@ -89,7 +89,7 @@ class ModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
         self.parameter = kwargs.get("parameter", None)
 
 
-class ModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
+class ModelAsStringRequiredOneValueDefault(_serialization.Model):
     """ModelAsStringRequiredOneValueDefault.
 
     All required parameters must be populated in order to send to Azure.
@@ -115,7 +115,7 @@ class ModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
         self.parameter = kwargs.get("parameter", "value1")
 
 
-class ModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
+class ModelAsStringRequiredOneValueNoDefault(_serialization.Model):
     """ModelAsStringRequiredOneValueNoDefault.
 
     All required parameters must be populated in order to send to Azure.
@@ -141,7 +141,7 @@ class ModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
         self.parameter = kwargs["parameter"]
 
 
-class ModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
+class ModelAsStringRequiredTwoValueDefault(_serialization.Model):
     """ModelAsStringRequiredTwoValueDefault.
 
     All required parameters must be populated in order to send to Azure.
@@ -167,7 +167,7 @@ class ModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
         self.parameter = kwargs.get("parameter", "value1")
 
 
-class ModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
+class ModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
     """ModelAsStringRequiredTwoValueNoDefault.
 
     All required parameters must be populated in order to send to Azure.
@@ -193,7 +193,7 @@ class ModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
         self.parameter = kwargs["parameter"]
 
 
-class NoModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
+class NoModelAsStringNoRequiredOneValueDefault(_serialization.Model):
     """NoModelAsStringNoRequiredOneValueDefault.
 
     :ivar parameter:  The only acceptable values to pass in are None and "value1". The default
@@ -215,7 +215,7 @@ class NoModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
         self.parameter = kwargs.get("parameter", "value1")
 
 
-class NoModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
+class NoModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):
     """NoModelAsStringNoRequiredOneValueNoDefault.
 
     :ivar parameter:  The only acceptable values to pass in are None and "value1". The default
@@ -237,7 +237,7 @@ class NoModelAsStringNoRequiredOneValueNoDefault(msrest.serialization.Model):
         self.parameter = kwargs.get("parameter", None)
 
 
-class NoModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
+class NoModelAsStringNoRequiredTwoValueDefault(_serialization.Model):
     """NoModelAsStringNoRequiredTwoValueDefault.
 
     :ivar parameter: Known values are: "value1", "value2".
@@ -257,7 +257,7 @@ class NoModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
         self.parameter = kwargs.get("parameter", "value1")
 
 
-class NoModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
+class NoModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):
     """NoModelAsStringNoRequiredTwoValueNoDefault.
 
     :ivar parameter: Known values are: "value1", "value2".
@@ -277,7 +277,7 @@ class NoModelAsStringNoRequiredTwoValueNoDefault(msrest.serialization.Model):
         self.parameter = kwargs.get("parameter", None)
 
 
-class NoModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
+class NoModelAsStringRequiredOneValueDefault(_serialization.Model):
     """NoModelAsStringRequiredOneValueDefault.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -303,7 +303,7 @@ class NoModelAsStringRequiredOneValueDefault(msrest.serialization.Model):
         super(NoModelAsStringRequiredOneValueDefault, self).__init__(**kwargs)
 
 
-class NoModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
+class NoModelAsStringRequiredOneValueNoDefault(_serialization.Model):
     """NoModelAsStringRequiredOneValueNoDefault.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -329,7 +329,7 @@ class NoModelAsStringRequiredOneValueNoDefault(msrest.serialization.Model):
         super(NoModelAsStringRequiredOneValueNoDefault, self).__init__(**kwargs)
 
 
-class NoModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
+class NoModelAsStringRequiredTwoValueDefault(_serialization.Model):
     """NoModelAsStringRequiredTwoValueDefault.
 
     All required parameters must be populated in order to send to Azure.
@@ -355,7 +355,7 @@ class NoModelAsStringRequiredTwoValueDefault(msrest.serialization.Model):
         self.parameter = kwargs.get("parameter", "value1")
 
 
-class NoModelAsStringRequiredTwoValueNoDefault(msrest.serialization.Model):
+class NoModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
     """NoModelAsStringRequiredTwoValueNoDefault.
 
     All required parameters must be populated in order to send to Azure.

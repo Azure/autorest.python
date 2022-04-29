@@ -8,8 +8,6 @@
 # --------------------------------------------------------------------------
 from typing import TYPE_CHECKING, cast
 
-from msrest import Serializer
-
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpResponse
@@ -20,6 +18,7 @@ from azure.core.utils import case_insensitive_dict
 from my.library import CustomDefaultPollingMethod, CustomPager, CustomPoller
 
 from .. import models as _models
+from .._serialization import Serializer
 from .._vendor import _convert_request
 
 if TYPE_CHECKING:

@@ -103,7 +103,7 @@ class RequestBuilder(BaseBuilder):
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
-        if self.code_model.is_legacy:
+        if self.code_model.options["client_side_validation"]:
             file_import.add_submodule_import(
                 "msrest", "Serializer", ImportType.THIRDPARTY
             )

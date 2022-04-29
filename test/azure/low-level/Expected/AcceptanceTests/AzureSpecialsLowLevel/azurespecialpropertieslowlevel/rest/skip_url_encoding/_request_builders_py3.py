@@ -14,6 +14,7 @@ from ..._serialization import Serializer
 from ..._vendor import _format_url_section
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def build_get_method_path_valid_request(unencoded_path_param: str, **kwargs: Any) -> HttpRequest:

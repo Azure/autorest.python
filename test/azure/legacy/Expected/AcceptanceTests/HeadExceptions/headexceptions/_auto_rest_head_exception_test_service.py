@@ -9,11 +9,10 @@
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.mgmt.core import ARMPipelineClient
 
 from ._configuration import AutoRestHeadExceptionTestServiceConfiguration
+from ._serialization import Deserializer, Serializer
 from .operations import HeadExceptionOperations
 
 if TYPE_CHECKING:

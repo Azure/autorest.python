@@ -9,12 +9,11 @@
 from copy import deepcopy
 from typing import Any, Awaitable, TYPE_CHECKING
 
-from msrest import Deserializer, Serializer
-
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 
 from .. import models
+from .._serialization import Deserializer, Serializer
 from ._configuration import AutoRestPagingTestServiceConfiguration
 from .operations import PagingOperations
 

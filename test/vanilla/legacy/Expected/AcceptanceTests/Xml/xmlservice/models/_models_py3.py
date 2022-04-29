@@ -10,14 +10,15 @@ import datetime
 from typing import Dict, List, Optional, TYPE_CHECKING, Union
 
 from azure.core.exceptions import HttpResponseError
-import msrest.serialization
+
+from .. import _serialization
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     import __init__ as _models
 
 
-class AccessPolicy(msrest.serialization.Model):
+class AccessPolicy(_serialization.Model):
     """An Access policy.
 
     All required parameters must be populated in order to send to Azure.
@@ -57,7 +58,7 @@ class AccessPolicy(msrest.serialization.Model):
         self.permission = permission
 
 
-class AppleBarrel(msrest.serialization.Model):
+class AppleBarrel(_serialization.Model):
     """A barrel of apples.
 
     :ivar good_apples:
@@ -83,7 +84,7 @@ class AppleBarrel(msrest.serialization.Model):
         self.bad_apples = bad_apples
 
 
-class Banana(msrest.serialization.Model):
+class Banana(_serialization.Model):
     """A banana.
 
     :ivar name:
@@ -123,7 +124,7 @@ class Banana(msrest.serialization.Model):
         self.expiration = expiration
 
 
-class Blob(msrest.serialization.Model):
+class Blob(_serialization.Model):
     """An Azure Storage blob.
 
     All required parameters must be populated in order to send to Azure.
@@ -186,7 +187,7 @@ class Blob(msrest.serialization.Model):
         self.metadata = metadata
 
 
-class BlobPrefix(msrest.serialization.Model):
+class BlobPrefix(_serialization.Model):
     """BlobPrefix.
 
     All required parameters must be populated in order to send to Azure.
@@ -212,7 +213,7 @@ class BlobPrefix(msrest.serialization.Model):
         self.name = name
 
 
-class BlobProperties(msrest.serialization.Model):
+class BlobProperties(_serialization.Model):
     """Properties of a blob.
 
     All required parameters must be populated in order to send to Azure.
@@ -437,7 +438,7 @@ class BlobProperties(msrest.serialization.Model):
         self.archive_status = archive_status
 
 
-class Blobs(msrest.serialization.Model):
+class Blobs(_serialization.Model):
     """Blobs.
 
     :ivar blob_prefix:
@@ -469,7 +470,7 @@ class Blobs(msrest.serialization.Model):
         self.blob = blob
 
 
-class ComplexTypeNoMeta(msrest.serialization.Model):
+class ComplexTypeNoMeta(_serialization.Model):
     """I am a complex type with no XML node.
 
     :ivar id: The id of the res.
@@ -489,7 +490,7 @@ class ComplexTypeNoMeta(msrest.serialization.Model):
         self.id = id
 
 
-class ComplexTypeWithMeta(msrest.serialization.Model):
+class ComplexTypeWithMeta(_serialization.Model):
     """I am a complex type with XML node.
 
     :ivar id: The id of the res.
@@ -510,7 +511,7 @@ class ComplexTypeWithMeta(msrest.serialization.Model):
         self.id = id
 
 
-class Container(msrest.serialization.Model):
+class Container(_serialization.Model):
     """An Azure Storage container.
 
     All required parameters must be populated in order to send to Azure.
@@ -556,7 +557,7 @@ class Container(msrest.serialization.Model):
         self.metadata = metadata
 
 
-class ContainerProperties(msrest.serialization.Model):
+class ContainerProperties(_serialization.Model):
     """Properties of a container.
 
     All required parameters must be populated in order to send to Azure.
@@ -623,7 +624,7 @@ class ContainerProperties(msrest.serialization.Model):
         self.public_access = public_access
 
 
-class CorsRule(msrest.serialization.Model):
+class CorsRule(_serialization.Model):
     """CORS is an HTTP feature that enables a web application running under one domain to access resources in another domain. Web browsers implement a security restriction known as same-origin policy that prevents a web page from calling APIs in a different domain; CORS provides a secure way to allow one domain (the origin domain) to call APIs in another domain.
 
     All required parameters must be populated in order to send to Azure.
@@ -703,7 +704,7 @@ class CorsRule(msrest.serialization.Model):
         self.max_age_in_seconds = max_age_in_seconds
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -729,7 +730,7 @@ class Error(msrest.serialization.Model):
         self.message = message
 
 
-class JSONInput(msrest.serialization.Model):
+class JSONInput(_serialization.Model):
     """JSONInput.
 
     :ivar id:
@@ -749,7 +750,7 @@ class JSONInput(msrest.serialization.Model):
         self.id = id
 
 
-class JSONOutput(msrest.serialization.Model):
+class JSONOutput(_serialization.Model):
     """JSONOutput.
 
     :ivar id:
@@ -769,7 +770,7 @@ class JSONOutput(msrest.serialization.Model):
         self.id = id
 
 
-class ListBlobsResponse(msrest.serialization.Model):
+class ListBlobsResponse(_serialization.Model):
     """An enumeration of blobs.
 
     All required parameters must be populated in order to send to Azure.
@@ -856,7 +857,7 @@ class ListBlobsResponse(msrest.serialization.Model):
         self.next_marker = next_marker
 
 
-class ListContainersResponse(msrest.serialization.Model):
+class ListContainersResponse(_serialization.Model):
     """An enumeration of containers.
 
     All required parameters must be populated in order to send to Azure.
@@ -926,7 +927,7 @@ class ListContainersResponse(msrest.serialization.Model):
         self.next_marker = next_marker
 
 
-class Logging(msrest.serialization.Model):
+class Logging(_serialization.Model):
     """Azure Analytics Logging settings.
 
     All required parameters must be populated in order to send to Azure.
@@ -989,7 +990,7 @@ class Logging(msrest.serialization.Model):
         self.retention_policy = retention_policy
 
 
-class Metrics(msrest.serialization.Model):
+class Metrics(_serialization.Model):
     """Metrics.
 
     All required parameters must be populated in order to send to Azure.
@@ -1043,7 +1044,7 @@ class Metrics(msrest.serialization.Model):
         self.retention_policy = retention_policy
 
 
-class ModelWithByteProperty(msrest.serialization.Model):
+class ModelWithByteProperty(_serialization.Model):
     """ModelWithByteProperty.
 
     :ivar bytes:
@@ -1063,7 +1064,7 @@ class ModelWithByteProperty(msrest.serialization.Model):
         self.bytes = bytes
 
 
-class ModelWithUrlProperty(msrest.serialization.Model):
+class ModelWithUrlProperty(_serialization.Model):
     """ModelWithUrlProperty.
 
     :ivar url:
@@ -1083,7 +1084,7 @@ class ModelWithUrlProperty(msrest.serialization.Model):
         self.url = url
 
 
-class ObjectWithXMsTextProperty(msrest.serialization.Model):
+class ObjectWithXMsTextProperty(_serialization.Model):
     """Contans property.
 
     :ivar language: Returned value should be 'english'.
@@ -1110,7 +1111,7 @@ class ObjectWithXMsTextProperty(msrest.serialization.Model):
         self.content = content
 
 
-class RetentionPolicy(msrest.serialization.Model):
+class RetentionPolicy(_serialization.Model):
     """the retention policy.
 
     All required parameters must be populated in order to send to Azure.
@@ -1147,7 +1148,7 @@ class RetentionPolicy(msrest.serialization.Model):
         self.days = days
 
 
-class RootWithRefAndMeta(msrest.serialization.Model):
+class RootWithRefAndMeta(_serialization.Model):
     """I am root, and I ref a model WITH meta.
 
     :ivar ref_to_model: XML will use XMLComplexTypeWithMeta.
@@ -1175,7 +1176,7 @@ class RootWithRefAndMeta(msrest.serialization.Model):
         self.something = something
 
 
-class RootWithRefAndNoMeta(msrest.serialization.Model):
+class RootWithRefAndNoMeta(_serialization.Model):
     """I am root, and I ref a model with no meta.
 
     :ivar ref_to_model: XML will use RefToModel.
@@ -1203,7 +1204,7 @@ class RootWithRefAndNoMeta(msrest.serialization.Model):
         self.something = something
 
 
-class SignedIdentifier(msrest.serialization.Model):
+class SignedIdentifier(_serialization.Model):
     """signed identifier.
 
     All required parameters must be populated in order to send to Azure.
@@ -1237,7 +1238,7 @@ class SignedIdentifier(msrest.serialization.Model):
         self.access_policy = access_policy
 
 
-class Slide(msrest.serialization.Model):
+class Slide(_serialization.Model):
     """A slide in a slideshow.
 
     :ivar type:
@@ -1272,7 +1273,7 @@ class Slide(msrest.serialization.Model):
         self.items = items
 
 
-class Slideshow(msrest.serialization.Model):
+class Slideshow(_serialization.Model):
     """Data about a slideshow.
 
     :ivar title:
@@ -1319,7 +1320,7 @@ class Slideshow(msrest.serialization.Model):
         self.slides = slides
 
 
-class StorageServiceProperties(msrest.serialization.Model):
+class StorageServiceProperties(_serialization.Model):
     """Storage Service Properties.
 
     :ivar logging: Azure Analytics Logging settings.

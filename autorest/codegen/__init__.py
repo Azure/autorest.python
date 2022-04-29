@@ -112,6 +112,11 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             "We are working on creating a new multiapi SDK for version tolerant and it is not available yet."
         )
 
+    if options["client_side_validation"] and options["version_tolerant"]:
+        raise ValueError(
+            "Can not generate version with --client-side-validation. "
+        )
+
 
 _LOGGER = logging.getLogger(__name__)
 

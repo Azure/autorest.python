@@ -13,6 +13,7 @@ from azure.core.utils import case_insensitive_dict
 from ..._serialization import Serializer
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def build_custom_named_request_id_request(*, foo_client_request_id: str, **kwargs: Any) -> HttpRequest:

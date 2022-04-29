@@ -7,10 +7,11 @@
 # --------------------------------------------------------------------------
 
 from azure.core.exceptions import HttpResponseError
-import msrest.serialization
+
+from .. import _serialization
 
 
-class Feline(msrest.serialization.Model):
+class Feline(_serialization.Model):
     """Feline.
 
     :ivar meows:
@@ -36,7 +37,7 @@ class Feline(msrest.serialization.Model):
         self.hisses = kwargs.get("hisses", None)
 
 
-class Pet(msrest.serialization.Model):
+class Pet(_serialization.Model):
     """Pet.
 
     All required parameters must be populated in order to send to Azure.
@@ -106,7 +107,7 @@ class Cat(Pet, Feline):
         self.name = kwargs["name"]
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:

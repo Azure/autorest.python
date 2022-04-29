@@ -6,10 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import msrest.serialization
+from .. import _serialization
 
 
-class CustomParameterGroup(msrest.serialization.Model):
+class CustomParameterGroup(_serialization.Model):
     """Parameter group.
 
     All required parameters must be populated in order to send to Azure.
@@ -45,7 +45,7 @@ class CustomParameterGroup(msrest.serialization.Model):
         self.tenant = kwargs['tenant']
 
 
-class OdataProductResult(msrest.serialization.Model):
+class OdataProductResult(_serialization.Model):
     """OdataProductResult.
 
     :ivar values:
@@ -74,7 +74,7 @@ class OdataProductResult(msrest.serialization.Model):
         self.odata_next_link = kwargs.get('odata_next_link', None)
 
 
-class OperationResult(msrest.serialization.Model):
+class OperationResult(_serialization.Model):
     """OperationResult.
 
     :ivar status: The status of the request. Known values are: "Succeeded", "Failed", "canceled",
@@ -100,7 +100,7 @@ class OperationResult(msrest.serialization.Model):
         self.status = kwargs.get('status', None)
 
 
-class PagingGetMultiplePagesLroOptions(msrest.serialization.Model):
+class PagingGetMultiplePagesLroOptions(_serialization.Model):
     """Parameter group.
 
     :ivar maxresults: Sets the maximum number of items to return in the response.
@@ -131,7 +131,7 @@ class PagingGetMultiplePagesLroOptions(msrest.serialization.Model):
         self.timeout = kwargs.get('timeout', 30)
 
 
-class PagingGetMultiplePagesOptions(msrest.serialization.Model):
+class PagingGetMultiplePagesOptions(_serialization.Model):
     """Parameter group.
 
     :ivar maxresults: Sets the maximum number of items to return in the response.
@@ -162,7 +162,7 @@ class PagingGetMultiplePagesOptions(msrest.serialization.Model):
         self.timeout = kwargs.get('timeout', 30)
 
 
-class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
+class PagingGetMultiplePagesWithOffsetOptions(_serialization.Model):
     """Parameter group.
 
     All required parameters must be populated in order to send to Azure.
@@ -205,7 +205,7 @@ class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
         self.timeout = kwargs.get('timeout', 30)
 
 
-class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
+class PagingGetOdataMultiplePagesOptions(_serialization.Model):
     """Parameter group.
 
     :ivar maxresults: Sets the maximum number of items to return in the response.
@@ -236,7 +236,7 @@ class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
         self.timeout = kwargs.get('timeout', 30)
 
 
-class Product(msrest.serialization.Model):
+class Product(_serialization.Model):
     """Product.
 
     :ivar properties:
@@ -259,7 +259,7 @@ class Product(msrest.serialization.Model):
         self.properties = kwargs.get('properties', None)
 
 
-class ProductProperties(msrest.serialization.Model):
+class ProductProperties(_serialization.Model):
     """ProductProperties.
 
     :ivar id:
@@ -288,7 +288,7 @@ class ProductProperties(msrest.serialization.Model):
         self.name = kwargs.get('name', None)
 
 
-class ProductResult(msrest.serialization.Model):
+class ProductResult(_serialization.Model):
     """ProductResult.
 
     :ivar values:
@@ -317,7 +317,7 @@ class ProductResult(msrest.serialization.Model):
         self.next_link = kwargs.get('next_link', None)
 
 
-class ProductResultValue(msrest.serialization.Model):
+class ProductResultValue(_serialization.Model):
     """ProductResultValue.
 
     :ivar value:
@@ -346,7 +346,7 @@ class ProductResultValue(msrest.serialization.Model):
         self.next_link = kwargs.get('next_link', None)
 
 
-class ProductResultValueWithXMSClientName(msrest.serialization.Model):
+class ProductResultValueWithXMSClientName(_serialization.Model):
     """ProductResultValueWithXMSClientName.
 
     :ivar indexes:

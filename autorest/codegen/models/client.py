@@ -53,7 +53,7 @@ class Client:
             file_import.add_submodule_import(
                 "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
             )
-        if self.code_model.is_legacy:
+        if self.code_model.options["client_side_validation"]:
             file_import.add_submodule_import(
                 "msrest", "Serializer", ImportType.THIRDPARTY
             )

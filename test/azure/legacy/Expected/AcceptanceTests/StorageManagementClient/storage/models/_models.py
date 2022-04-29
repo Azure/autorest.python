@@ -6,10 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import msrest.serialization
+from .. import _serialization
 
 
-class Bar(msrest.serialization.Model):
+class Bar(_serialization.Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
     :ivar recursive_point: Recursive Endpoints.
@@ -29,7 +29,7 @@ class Bar(msrest.serialization.Model):
         self.recursive_point = kwargs.get("recursive_point", None)
 
 
-class CheckNameAvailabilityResult(msrest.serialization.Model):
+class CheckNameAvailabilityResult(_serialization.Model):
     """The CheckNameAvailability operation response.
 
     :ivar name_available: Gets a boolean value that indicates whether the name is available for you
@@ -69,7 +69,7 @@ class CheckNameAvailabilityResult(msrest.serialization.Model):
         self.message = kwargs.get("message", None)
 
 
-class CustomDomain(msrest.serialization.Model):
+class CustomDomain(_serialization.Model):
     """The custom domain assigned to this storage account. This can be set via Update.
 
     :ivar name: Gets or sets the custom domain name. Name is the CNAME source.
@@ -97,7 +97,7 @@ class CustomDomain(msrest.serialization.Model):
         self.use_sub_domain = kwargs.get("use_sub_domain", None)
 
 
-class Endpoints(msrest.serialization.Model):
+class Endpoints(_serialization.Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
     :ivar blob: Gets the blob endpoint.
@@ -141,7 +141,7 @@ class Endpoints(msrest.serialization.Model):
         self.foo_point = kwargs.get("foo_point", None)
 
 
-class Foo(msrest.serialization.Model):
+class Foo(_serialization.Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
     :ivar bar_point: Bar point.
@@ -161,7 +161,7 @@ class Foo(msrest.serialization.Model):
         self.bar_point = kwargs.get("bar_point", None)
 
 
-class Resource(msrest.serialization.Model):
+class Resource(_serialization.Model):
     """Resource.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -346,7 +346,7 @@ class StorageAccount(Resource):
         self.secondary_endpoints = kwargs.get("secondary_endpoints", None)
 
 
-class StorageAccountCheckNameAvailabilityParameters(msrest.serialization.Model):
+class StorageAccountCheckNameAvailabilityParameters(_serialization.Model):
     """StorageAccountCheckNameAvailabilityParameters.
 
     All required parameters must be populated in order to send to Azure.
@@ -430,7 +430,7 @@ class StorageAccountCreateParameters(Resource):
         self.account_type = kwargs.get("account_type", None)
 
 
-class StorageAccountKeys(msrest.serialization.Model):
+class StorageAccountKeys(_serialization.Model):
     """The access keys for the storage account.
 
     :ivar key1: Gets the value of key 1.
@@ -456,7 +456,7 @@ class StorageAccountKeys(msrest.serialization.Model):
         self.key2 = kwargs.get("key2", None)
 
 
-class StorageAccountListResult(msrest.serialization.Model):
+class StorageAccountListResult(_serialization.Model):
     """The list storage accounts operation response.
 
     :ivar value: Gets the list of storage accounts and their properties.
@@ -484,7 +484,7 @@ class StorageAccountListResult(msrest.serialization.Model):
         self.next_link = kwargs.get("next_link", None)
 
 
-class StorageAccountRegenerateKeyParameters(msrest.serialization.Model):
+class StorageAccountRegenerateKeyParameters(_serialization.Model):
     """StorageAccountRegenerateKeyParameters.
 
     :ivar key_name: Known values are: "key1", "key2".
@@ -570,7 +570,7 @@ class StorageAccountUpdateParameters(Resource):
         self.custom_domain = kwargs.get("custom_domain", None)
 
 
-class SubResource(msrest.serialization.Model):
+class SubResource(_serialization.Model):
     """SubResource.
 
     :ivar id: Resource Id.
@@ -590,7 +590,7 @@ class SubResource(msrest.serialization.Model):
         self.id = kwargs.get("id", None)
 
 
-class Usage(msrest.serialization.Model):
+class Usage(_serialization.Model):
     """Describes Storage Resource Usage.
 
     :ivar unit: Gets the unit of measurement. Known values are: "Count", "Bytes", "Seconds",
@@ -631,7 +631,7 @@ class Usage(msrest.serialization.Model):
         self.name = kwargs.get("name", None)
 
 
-class UsageListResult(msrest.serialization.Model):
+class UsageListResult(_serialization.Model):
     """The List Usages operation response.
 
     :ivar value: Gets or sets the list Storage Resource Usages.
@@ -651,7 +651,7 @@ class UsageListResult(msrest.serialization.Model):
         self.value = kwargs.get("value", None)
 
 
-class UsageName(msrest.serialization.Model):
+class UsageName(_serialization.Model):
     """The Usage Names.
 
     :ivar value: Gets a string describing the resource name.

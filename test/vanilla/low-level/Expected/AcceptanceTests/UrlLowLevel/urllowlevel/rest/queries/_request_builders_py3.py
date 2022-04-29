@@ -14,6 +14,7 @@ from azure.core.utils import case_insensitive_dict
 from ..._serialization import Serializer
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def build_get_boolean_true_request(**kwargs: Any) -> HttpRequest:

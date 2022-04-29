@@ -24,8 +24,6 @@
 #
 # --------------------------------------------------------------------------
 
-from azurespecialpropertiesversiontolerant._serialization import ValidationError
-
 from azureparametergroupingversiontolerant import AutoRestParameterGroupingTestService
 from azurespecialpropertiesversiontolerant import AutoRestAzureSpecialParametersTestClient
 
@@ -135,7 +133,7 @@ def test_subscription_in_method(azure_client, valid_subscription):
     azure_client.subscription_in_method.post_method_local_valid(valid_subscription)
     azure_client.subscription_in_method.post_path_local_valid(valid_subscription)
     azure_client.subscription_in_method.post_swagger_local_valid(valid_subscription)
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         azure_client.subscription_in_method.post_method_local_null(None)
 
 def test_api_version_default(azure_client):

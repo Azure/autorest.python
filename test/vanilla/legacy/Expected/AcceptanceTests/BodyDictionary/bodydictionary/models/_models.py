@@ -7,10 +7,11 @@
 # --------------------------------------------------------------------------
 
 from azure.core.exceptions import HttpResponseError
-import msrest.serialization
+
+from .. import _serialization
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -36,7 +37,7 @@ class Error(msrest.serialization.Model):
         self.message = kwargs.get("message", None)
 
 
-class Widget(msrest.serialization.Model):
+class Widget(_serialization.Model):
     """Widget.
 
     :ivar integer:

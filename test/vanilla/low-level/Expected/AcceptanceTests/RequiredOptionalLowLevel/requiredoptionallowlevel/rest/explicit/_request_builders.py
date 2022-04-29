@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 # fmt: off
 

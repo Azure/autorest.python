@@ -6,10 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import msrest.serialization
+from .. import _serialization
 
 
-class AvailabilitySetUpdateParameters(msrest.serialization.Model):
+class AvailabilitySetUpdateParameters(_serialization.Model):
     """AvailabilitySetUpdateParameters.
 
     All required parameters must be populated in order to send to Azure.

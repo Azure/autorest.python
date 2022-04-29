@@ -51,7 +51,7 @@ class ModelBaseSerializer:
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        if self.code_model.is_legacy:
+        if self.code_model.options["client_side_validation"]:
             file_import.add_import("msrest.serialization", ImportType.AZURECORE)
         else:
             file_import.add_submodule_import("..", "_serialization", ImportType.LOCAL)
@@ -80,7 +80,7 @@ class ModelBaseSerializer:
     def declare_model(code_model: CodeModel, model: ObjectSchema) -> str:
         basename = (
             "msrest.serialization.Model"
-            if code_model.is_legacy
+            if code_model.options["client_side_validation"]
             else "_serialization.Model"
         )
         if model.base_models:

@@ -7,10 +7,11 @@
 # --------------------------------------------------------------------------
 
 from azure.core.exceptions import HttpResponseError
-import msrest.serialization
+
+from .. import _serialization
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -39,7 +40,7 @@ class Error(msrest.serialization.Model):
         self.message = kwargs.get('message', None)
 
 
-class ModelThree(msrest.serialization.Model):
+class ModelThree(_serialization.Model):
     """Only exists in api version 3.0.0.
 
     :ivar optional_property:
@@ -62,7 +63,7 @@ class ModelThree(msrest.serialization.Model):
         self.optional_property = kwargs.get('optional_property', None)
 
 
-class PagingResult(msrest.serialization.Model):
+class PagingResult(_serialization.Model):
     """PagingResult.
 
     :ivar values:
@@ -91,7 +92,7 @@ class PagingResult(msrest.serialization.Model):
         self.next_link = kwargs.get('next_link', None)
 
 
-class SourcePath(msrest.serialization.Model):
+class SourcePath(_serialization.Model):
     """Uri or local path to source data.
 
     :ivar source: File source path.

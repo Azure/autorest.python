@@ -34,6 +34,7 @@ else:
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
 def build_implicit_get_required_path_request(path_parameter: str, **kwargs: Any) -> HttpRequest:

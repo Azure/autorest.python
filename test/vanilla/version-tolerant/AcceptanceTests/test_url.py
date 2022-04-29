@@ -24,7 +24,6 @@
 #
 # --------------------------------------------------------------------------
 from datetime import datetime
-from urlversiontolerant._serialization import ValidationError
 
 from urlversiontolerant import AutoRestUrlTestService
 from urlmulticollectionformatversiontolerant import AutoRestUrlMutliCollectionFormatTestService
@@ -48,7 +47,7 @@ def test_array_query():
 def test_byte_empty_and_null(client):
     client.paths.byte_empty()
 
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         client.paths.byte_null(None)
 
 def test_byte_multi_byte(client):
@@ -56,11 +55,11 @@ def test_byte_multi_byte(client):
     client.paths.byte_multi_byte(u_bytes)
 
 def test_date_null(client):
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         client.paths.date_null(None)
 
 def test_date_time_null(client):
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         client.paths.date_time_null(None)
 
 def test_date_time_valid(client):
@@ -95,7 +94,7 @@ def test_get_long(client):
 def test_string_empty_and_null(client):
     client.paths.string_empty()
 
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         client.paths.string_null(None)
 
 def test_array_csv_in_path(client):
@@ -115,7 +114,7 @@ def test_enum_valid(client):
     client.paths.enum_valid("green color")
 
 def test_enum_null(client):
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         client.paths.enum_null(None)
 
 def test_base64_url(client):

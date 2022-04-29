@@ -7,10 +7,11 @@
 # --------------------------------------------------------------------------
 
 from azure.core.exceptions import HttpResponseError
-import msrest.serialization
+
+from .. import _serialization
 
 
-class BaseProduct(msrest.serialization.Model):
+class BaseProduct(_serialization.Model):
     """The product documentation.
 
     All required parameters must be populated in order to send to Azure.
@@ -46,7 +47,7 @@ class BaseProduct(msrest.serialization.Model):
         self.description = kwargs.get("description", None)
 
 
-class Error(msrest.serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -78,7 +79,7 @@ class Error(msrest.serialization.Model):
         self.parent_error = kwargs.get("parent_error", None)
 
 
-class Resource(msrest.serialization.Model):
+class Resource(_serialization.Model):
     """Resource.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -190,7 +191,7 @@ class FlattenedProduct(Resource):
         self.provisioning_state = kwargs.get("provisioning_state", None)
 
 
-class FlattenParameterGroup(msrest.serialization.Model):
+class FlattenParameterGroup(_serialization.Model):
     """Parameter group.
 
     All required parameters must be populated in order to send to Azure.
@@ -265,7 +266,7 @@ class FlattenParameterGroup(msrest.serialization.Model):
         self.odata_value = kwargs.get("odata_value", None)
 
 
-class GenericUrl(msrest.serialization.Model):
+class GenericUrl(_serialization.Model):
     """The Generic URL.
 
     :ivar generic_value: Generic URL value.
@@ -310,7 +311,7 @@ class ProductUrl(GenericUrl):
         self.odata_value = kwargs.get("odata_value", None)
 
 
-class ProductWrapper(msrest.serialization.Model):
+class ProductWrapper(_serialization.Model):
     """The wrapped produc.
 
     :ivar value: the product value.
@@ -330,7 +331,7 @@ class ProductWrapper(msrest.serialization.Model):
         self.value = kwargs.get("value", None)
 
 
-class ResourceCollection(msrest.serialization.Model):
+class ResourceCollection(_serialization.Model):
     """ResourceCollection.
 
     :ivar productresource: Flattened product.
@@ -422,7 +423,7 @@ class SimpleProduct(BaseProduct):
         self.odata_value = kwargs.get("odata_value", None)
 
 
-class WrappedProduct(msrest.serialization.Model):
+class WrappedProduct(_serialization.Model):
     """The wrapped produc.
 
     :ivar value: the product value.

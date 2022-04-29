@@ -30,7 +30,6 @@ from urllowlevel.aio import AutoRestUrlTestService
 from urllowlevel.rest import path_items, paths, queries
 from urlmulticollectionformatlowlevel.aio import AutoRestUrlMutliCollectionFormatTestService
 from urlmulticollectionformatlowlevel.rest import queries as multi_queries
-from urllowlevel._serialization import ValidationError
 
 import pytest
 
@@ -68,7 +67,7 @@ async def test_byte_empty_and_null(send_request):
     request = paths.build_byte_empty_request()
     await send_request(request)
 
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         paths.build_byte_null_request(None)
 
 @pytest.mark.asyncio
@@ -79,12 +78,12 @@ async def test_byte_multi_byte(send_request):
 
 @pytest.mark.asyncio
 async def test_date_null(send_request):
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         paths.build_date_null_request(None)
 
 @pytest.mark.asyncio
 async def test_date_time_null(send_request):
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         paths.build_date_time_null_request(None)
 
 @pytest.mark.asyncio
@@ -146,7 +145,7 @@ async def test_string_empty_and_null(send_request):
     request = paths.build_string_empty_request()
     await send_request(request)
 
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         paths.build_string_null_request(None)
 
 @pytest.mark.asyncio
@@ -177,7 +176,7 @@ async def test_enum_valid(send_request):
 
 @pytest.mark.asyncio
 async def test_enum_null(send_request):
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValueError):
         paths.build_enum_null_request(None)
 
 @pytest.mark.asyncio

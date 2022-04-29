@@ -469,7 +469,7 @@ class JinjaSerializer:
             namespace_path / Path("py.typed"), "# Marker file for PEP 561."
         )
 
-        if not self.code_model.is_legacy:
+        if not self.code_model.options["client_side_validation"]:
             # serialization.py from msrest
             self._autorestapi.write_file(
                 namespace_path / Path("_serialization.py"),
