@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional, Union, Type, TYPE_CHECKING
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .property import Property
-from .imports import FileImport, ImportModel, ImportType, TypingSection
+from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
     from .code_model import CodeModel

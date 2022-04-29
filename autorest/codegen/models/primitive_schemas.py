@@ -142,6 +142,7 @@ class AnySchema(PrimitiveSchema):
         )
         return file_import
 
+
 class AnyObjectSchema(PrimitiveSchema):
     @property
     def serialization_type(self) -> str:
