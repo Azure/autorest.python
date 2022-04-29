@@ -256,24 +256,34 @@ def _update_body_parameter_helper(
         body_param["clientDefaultValue"] = body_type["value"]
     return body_param
 
-def update_body_parameter(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+def update_multipart_body_parameter(yaml_data: Dict[str, Any], client_name: str, description: str) -> Dict[str, Any]:
     first_value = list(yaml_data.values())[0]
-    if len(yaml_data.values()) == 1 and first_value["protocol"]["http"].get("multipart"):
-        entries = [
-            _update_body_parameter_helper(yaml_data, p, update_type(p["schema"]))
-            for p in first_value["parameters"] if is_body(p)
-        ]
-        return {
-            "optional": not first_value.get("required", False),
-            "description": "Multipart input body.",
-            "clientName": "files",
-            "clientDefaultValue": None,
-            "location": "Method",
-            "type": KNOWN_TYPES["anydict"],
-            "contentTypes": list(yaml_data.keys()),
-            "defaultContentType": list(yaml_data.keys())[0], # there should only be one content type for multpart
-            "entries": entries,
-        }
+    entries = [
+        _update_body_parameter_helper(yaml_data, p, update_type(p["schema"]))
+        for p in first_value["parameters"] if is_body(p)
+    ]
+    return {
+        "optional": not first_value.get("required", False),
+        "description": description,
+        "clientName": client_name,
+        "clientDefaultValue": None,
+        "location": "Method",
+        "type": KNOWN_TYPES["anydict"],
+        "contentTypes": list(yaml_data.keys()),
+        "defaultContentType": list(yaml_data.keys())[0], # there should only be one content type for multpart
+        "entries": entries,
+    }
+
+def update_body_parameter(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+    protocol_http = list(yaml_data.values())[0].get("protocol", {}).get("http", {})
+    if protocol_http.get("multipart"):
+        return update_multipart_body_parameter(
+            yaml_data, "files", "Multipart input for files."
+        )
+    if protocol_http.get("knownMediaType") == "form":
+        return update_multipart_body_parameter(
+            yaml_data, "data", "Multipart input for form encoded data."
+        )
     body_types = get_all_body_types(yaml_data)
     if len(body_types) > 1:
         body_type = update_types(body_types)
