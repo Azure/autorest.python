@@ -38,7 +38,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 # fmt: off
 
-def build_poll_with_parameterized_endpoints_request_initial(
+def build_poll_with_parameterized_endpoints_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -60,7 +60,7 @@ def build_poll_with_parameterized_endpoints_request_initial(
     )
 
 
-def build_poll_with_constant_parameterized_endpoints_request_initial(
+def build_poll_with_constant_parameterized_endpoints_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -103,7 +103,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
 
-        request = build_poll_with_parameterized_endpoints_request_initial(
+        request = build_poll_with_parameterized_endpoints_request(
             template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"],
             headers=_headers,
             params=_params,
@@ -227,7 +227,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(object):
         constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
 
-        request = build_poll_with_constant_parameterized_endpoints_request_initial(
+        request = build_poll_with_constant_parameterized_endpoints_request(
             constant_parameter=constant_parameter,
             template_url=self._poll_with_constant_parameterized_endpoints_initial.metadata["url"],
             headers=_headers,

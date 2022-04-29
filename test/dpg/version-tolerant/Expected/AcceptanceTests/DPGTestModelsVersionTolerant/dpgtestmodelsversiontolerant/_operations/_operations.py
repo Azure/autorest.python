@@ -97,7 +97,7 @@ def build_get_pages_request(mode: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_lro_request_initial(mode: str, **kwargs: Any) -> HttpRequest:
+def build_lro_request(mode: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -290,7 +290,7 @@ class DPGClientOperationsMixin(MixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.LROProduct]
 
-        request = build_lro_request_initial(
+        request = build_lro_request(
             mode=mode,
             headers=_headers,
             params=_params,

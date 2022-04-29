@@ -39,7 +39,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 # fmt: off
 
-def build_put_async_retry_succeeded_request_initial(
+def build_put_async_retry_succeeded_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -64,7 +64,7 @@ def build_put_async_retry_succeeded_request_initial(
     )
 
 
-def build_put201_creating_succeeded200_request_initial(
+def build_put201_creating_succeeded200_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -89,7 +89,7 @@ def build_put201_creating_succeeded200_request_initial(
     )
 
 
-def build_post202_retry200_request_initial(
+def build_post202_retry200_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -114,7 +114,7 @@ def build_post202_retry200_request_initial(
     )
 
 
-def build_post_async_retry_succeeded_request_initial(
+def build_post_async_retry_succeeded_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -180,7 +180,7 @@ class LROsCustomHeaderOperations(object):
         else:
             _json = None
 
-        request = build_put_async_retry_succeeded_request_initial(
+        request = build_put_async_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             template_url=self._put_async_retry_succeeded_initial.metadata["url"],
@@ -316,7 +316,7 @@ class LROsCustomHeaderOperations(object):
         else:
             _json = None
 
-        request = build_put201_creating_succeeded200_request_initial(
+        request = build_put201_creating_succeeded200_request(
             content_type=content_type,
             json=_json,
             template_url=self._put201_creating_succeeded200_initial.metadata["url"],
@@ -441,7 +441,7 @@ class LROsCustomHeaderOperations(object):
         else:
             _json = None
 
-        request = build_post202_retry200_request_initial(
+        request = build_post202_retry200_request(
             content_type=content_type,
             json=_json,
             template_url=self._post202_retry200_initial.metadata["url"],
@@ -559,7 +559,7 @@ class LROsCustomHeaderOperations(object):
         else:
             _json = None
 
-        request = build_post_async_retry_succeeded_request_initial(
+        request = build_post_async_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             template_url=self._post_async_retry_succeeded_initial.metadata["url"],

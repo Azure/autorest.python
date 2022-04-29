@@ -29,7 +29,7 @@ from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ...operations._operations import (
     build_storage_accounts_check_name_availability_request,
-    build_storage_accounts_create_request_initial,
+    build_storage_accounts_create_request,
     build_storage_accounts_delete_request,
     build_storage_accounts_get_properties_request,
     build_storage_accounts_list_by_resource_group_request,
@@ -166,7 +166,7 @@ class StorageAccountsOperations:
 
         _json = parameters
 
-        request = build_storage_accounts_create_request_initial(
+        request = build_storage_accounts_create_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,

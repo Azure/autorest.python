@@ -39,7 +39,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_lros_put200_succeeded_request_initial(
+def build_lros_put200_succeeded_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -58,7 +58,7 @@ def build_lros_put200_succeeded_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_patch200_succeeded_ignore_headers_request_initial(
+def build_lros_patch200_succeeded_ignore_headers_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -77,7 +77,7 @@ def build_lros_patch200_succeeded_ignore_headers_request_initial(
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_patch201_retry_with_async_header_request_initial(
+def build_lros_patch201_retry_with_async_header_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -96,7 +96,7 @@ def build_lros_patch201_retry_with_async_header_request_initial(
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_patch202_retry_with_async_and_location_header_request_initial(
+def build_lros_patch202_retry_with_async_and_location_header_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -115,7 +115,7 @@ def build_lros_patch202_retry_with_async_and_location_header_request_initial(
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_put201_succeeded_request_initial(
+def build_lros_put201_succeeded_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -134,7 +134,7 @@ def build_lros_put201_succeeded_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_post202_list_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lros_post202_list_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -148,7 +148,7 @@ def build_lros_post202_list_request_initial(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_lros_put200_succeeded_no_state_request_initial(
+def build_lros_put200_succeeded_no_state_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -167,7 +167,7 @@ def build_lros_put200_succeeded_no_state_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_put202_retry200_request_initial(
+def build_lros_put202_retry200_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -186,7 +186,7 @@ def build_lros_put202_retry200_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_put201_creating_succeeded200_request_initial(
+def build_lros_put201_creating_succeeded200_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -205,7 +205,7 @@ def build_lros_put201_creating_succeeded200_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_put200_updating_succeeded204_request_initial(
+def build_lros_put200_updating_succeeded204_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -224,7 +224,7 @@ def build_lros_put200_updating_succeeded204_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_put201_creating_failed200_request_initial(
+def build_lros_put201_creating_failed200_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -243,7 +243,7 @@ def build_lros_put201_creating_failed200_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_put200_acceptedcanceled200_request_initial(
+def build_lros_put200_acceptedcanceled200_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -262,7 +262,7 @@ def build_lros_put200_acceptedcanceled200_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_put_no_header_in_retry_request_initial(
+def build_lros_put_no_header_in_retry_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -281,7 +281,7 @@ def build_lros_put_no_header_in_retry_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_put_async_retry_succeeded_request_initial(
+def build_lros_put_async_retry_succeeded_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -300,7 +300,7 @@ def build_lros_put_async_retry_succeeded_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_put_async_no_retry_succeeded_request_initial(
+def build_lros_put_async_no_retry_succeeded_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -319,7 +319,7 @@ def build_lros_put_async_no_retry_succeeded_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_put_async_retry_failed_request_initial(
+def build_lros_put_async_retry_failed_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -338,7 +338,7 @@ def build_lros_put_async_retry_failed_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_put_async_no_retrycanceled_request_initial(
+def build_lros_put_async_no_retrycanceled_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -357,7 +357,7 @@ def build_lros_put_async_no_retrycanceled_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_put_async_no_header_in_retry_request_initial(
+def build_lros_put_async_no_header_in_retry_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -376,7 +376,7 @@ def build_lros_put_async_no_header_in_retry_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_put_non_resource_request_initial(
+def build_lros_put_non_resource_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -395,7 +395,7 @@ def build_lros_put_non_resource_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_put_async_non_resource_request_initial(
+def build_lros_put_async_non_resource_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -414,7 +414,7 @@ def build_lros_put_async_non_resource_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_put_sub_resource_request_initial(
+def build_lros_put_sub_resource_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -433,7 +433,7 @@ def build_lros_put_sub_resource_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_put_async_sub_resource_request_initial(
+def build_lros_put_async_sub_resource_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -452,7 +452,7 @@ def build_lros_put_async_sub_resource_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_delete_provisioning202_accepted200_succeeded_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lros_delete_provisioning202_accepted200_succeeded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -466,7 +466,7 @@ def build_lros_delete_provisioning202_accepted200_succeeded_request_initial(**kw
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lros_delete_provisioning202_deleting_failed200_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lros_delete_provisioning202_deleting_failed200_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -480,7 +480,7 @@ def build_lros_delete_provisioning202_deleting_failed200_request_initial(**kwarg
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lros_delete_provisioning202_deletingcanceled200_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lros_delete_provisioning202_deletingcanceled200_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -494,7 +494,7 @@ def build_lros_delete_provisioning202_deletingcanceled200_request_initial(**kwar
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lros_delete204_succeeded_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lros_delete204_succeeded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -508,7 +508,7 @@ def build_lros_delete204_succeeded_request_initial(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lros_delete202_retry200_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lros_delete202_retry200_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -522,7 +522,7 @@ def build_lros_delete202_retry200_request_initial(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lros_delete202_no_retry204_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lros_delete202_no_retry204_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -536,7 +536,7 @@ def build_lros_delete202_no_retry204_request_initial(**kwargs: Any) -> HttpReque
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lros_delete_no_header_in_retry_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lros_delete_no_header_in_retry_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -550,7 +550,7 @@ def build_lros_delete_no_header_in_retry_request_initial(**kwargs: Any) -> HttpR
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lros_delete_async_no_header_in_retry_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lros_delete_async_no_header_in_retry_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -564,7 +564,7 @@ def build_lros_delete_async_no_header_in_retry_request_initial(**kwargs: Any) ->
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lros_delete_async_retry_succeeded_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lros_delete_async_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -578,7 +578,7 @@ def build_lros_delete_async_retry_succeeded_request_initial(**kwargs: Any) -> Ht
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lros_delete_async_no_retry_succeeded_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lros_delete_async_no_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -592,7 +592,7 @@ def build_lros_delete_async_no_retry_succeeded_request_initial(**kwargs: Any) ->
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lros_delete_async_retry_failed_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lros_delete_async_retry_failed_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -606,7 +606,7 @@ def build_lros_delete_async_retry_failed_request_initial(**kwargs: Any) -> HttpR
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lros_delete_async_retrycanceled_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lros_delete_async_retrycanceled_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -620,7 +620,7 @@ def build_lros_delete_async_retrycanceled_request_initial(**kwargs: Any) -> Http
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lros_post200_with_payload_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lros_post200_with_payload_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -634,7 +634,7 @@ def build_lros_post200_with_payload_request_initial(**kwargs: Any) -> HttpReques
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_lros_post202_retry200_request_initial(
+def build_lros_post202_retry200_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -653,7 +653,7 @@ def build_lros_post202_retry200_request_initial(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_post202_no_retry204_request_initial(
+def build_lros_post202_no_retry204_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -672,7 +672,7 @@ def build_lros_post202_no_retry204_request_initial(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_post_double_headers_final_location_get_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lros_post_double_headers_final_location_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -686,7 +686,7 @@ def build_lros_post_double_headers_final_location_get_request_initial(**kwargs: 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_lros_post_double_headers_final_azure_header_get_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lros_post_double_headers_final_azure_header_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -700,7 +700,7 @@ def build_lros_post_double_headers_final_azure_header_get_request_initial(**kwar
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_lros_post_double_headers_final_azure_header_get_default_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lros_post_double_headers_final_azure_header_get_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -714,7 +714,7 @@ def build_lros_post_double_headers_final_azure_header_get_default_request_initia
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_lros_post_async_retry_succeeded_request_initial(
+def build_lros_post_async_retry_succeeded_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -733,7 +733,7 @@ def build_lros_post_async_retry_succeeded_request_initial(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_post_async_no_retry_succeeded_request_initial(
+def build_lros_post_async_no_retry_succeeded_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -752,7 +752,7 @@ def build_lros_post_async_no_retry_succeeded_request_initial(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_post_async_retry_failed_request_initial(
+def build_lros_post_async_retry_failed_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -771,7 +771,7 @@ def build_lros_post_async_retry_failed_request_initial(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lros_post_async_retrycanceled_request_initial(
+def build_lros_post_async_retrycanceled_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -790,7 +790,7 @@ def build_lros_post_async_retrycanceled_request_initial(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lro_retrys_put201_creating_succeeded200_request_initial(
+def build_lro_retrys_put201_creating_succeeded200_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -809,7 +809,7 @@ def build_lro_retrys_put201_creating_succeeded200_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lro_retrys_put_async_relative_retry_succeeded_request_initial(
+def build_lro_retrys_put_async_relative_retry_succeeded_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -828,7 +828,7 @@ def build_lro_retrys_put_async_relative_retry_succeeded_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lro_retrys_delete_provisioning202_accepted200_succeeded_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lro_retrys_delete_provisioning202_accepted200_succeeded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -842,7 +842,7 @@ def build_lro_retrys_delete_provisioning202_accepted200_succeeded_request_initia
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lro_retrys_delete202_retry200_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lro_retrys_delete202_retry200_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -856,7 +856,7 @@ def build_lro_retrys_delete202_retry200_request_initial(**kwargs: Any) -> HttpRe
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lro_retrys_delete_async_relative_retry_succeeded_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lro_retrys_delete_async_relative_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -870,7 +870,7 @@ def build_lro_retrys_delete_async_relative_retry_succeeded_request_initial(**kwa
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lro_retrys_post202_retry200_request_initial(
+def build_lro_retrys_post202_retry200_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -889,7 +889,7 @@ def build_lro_retrys_post202_retry200_request_initial(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lro_retrys_post_async_relative_retry_succeeded_request_initial(
+def build_lro_retrys_post_async_relative_retry_succeeded_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -908,7 +908,7 @@ def build_lro_retrys_post_async_relative_retry_succeeded_request_initial(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lrosads_put_non_retry400_request_initial(
+def build_lrosads_put_non_retry400_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -927,7 +927,7 @@ def build_lrosads_put_non_retry400_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lrosads_put_non_retry201_creating400_request_initial(
+def build_lrosads_put_non_retry201_creating400_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -946,7 +946,7 @@ def build_lrosads_put_non_retry201_creating400_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lrosads_put_non_retry201_creating400_invalid_json_request_initial(
+def build_lrosads_put_non_retry201_creating400_invalid_json_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -965,7 +965,7 @@ def build_lrosads_put_non_retry201_creating400_invalid_json_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lrosads_put_async_relative_retry400_request_initial(
+def build_lrosads_put_async_relative_retry400_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -984,7 +984,7 @@ def build_lrosads_put_async_relative_retry400_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lrosads_delete_non_retry400_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lrosads_delete_non_retry400_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -998,7 +998,7 @@ def build_lrosads_delete_non_retry400_request_initial(**kwargs: Any) -> HttpRequ
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lrosads_delete202_non_retry400_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lrosads_delete202_non_retry400_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -1012,7 +1012,7 @@ def build_lrosads_delete202_non_retry400_request_initial(**kwargs: Any) -> HttpR
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lrosads_delete_async_relative_retry400_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lrosads_delete_async_relative_retry400_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -1026,7 +1026,7 @@ def build_lrosads_delete_async_relative_retry400_request_initial(**kwargs: Any) 
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lrosads_post_non_retry400_request_initial(
+def build_lrosads_post_non_retry400_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1045,7 +1045,7 @@ def build_lrosads_post_non_retry400_request_initial(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lrosads_post202_non_retry400_request_initial(
+def build_lrosads_post202_non_retry400_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1064,7 +1064,7 @@ def build_lrosads_post202_non_retry400_request_initial(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lrosads_post_async_relative_retry400_request_initial(
+def build_lrosads_post_async_relative_retry400_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1083,7 +1083,7 @@ def build_lrosads_post_async_relative_retry400_request_initial(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lrosads_put_error201_no_provisioning_state_payload_request_initial(
+def build_lrosads_put_error201_no_provisioning_state_payload_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1102,7 +1102,7 @@ def build_lrosads_put_error201_no_provisioning_state_payload_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lrosads_put_async_relative_retry_no_status_request_initial(
+def build_lrosads_put_async_relative_retry_no_status_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1121,7 +1121,7 @@ def build_lrosads_put_async_relative_retry_no_status_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lrosads_put_async_relative_retry_no_status_payload_request_initial(
+def build_lrosads_put_async_relative_retry_no_status_payload_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1140,7 +1140,7 @@ def build_lrosads_put_async_relative_retry_no_status_payload_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lrosads_delete204_succeeded_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lrosads_delete204_succeeded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -1154,7 +1154,7 @@ def build_lrosads_delete204_succeeded_request_initial(**kwargs: Any) -> HttpRequ
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lrosads_delete_async_relative_retry_no_status_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lrosads_delete_async_relative_retry_no_status_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -1168,7 +1168,7 @@ def build_lrosads_delete_async_relative_retry_no_status_request_initial(**kwargs
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lrosads_post202_no_location_request_initial(
+def build_lrosads_post202_no_location_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1187,7 +1187,7 @@ def build_lrosads_post202_no_location_request_initial(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lrosads_post_async_relative_retry_no_payload_request_initial(
+def build_lrosads_post_async_relative_retry_no_payload_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1206,7 +1206,7 @@ def build_lrosads_post_async_relative_retry_no_payload_request_initial(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lrosads_put200_invalid_json_request_initial(
+def build_lrosads_put200_invalid_json_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1225,7 +1225,7 @@ def build_lrosads_put200_invalid_json_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lrosads_put_async_relative_retry_invalid_header_request_initial(
+def build_lrosads_put_async_relative_retry_invalid_header_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1244,7 +1244,7 @@ def build_lrosads_put_async_relative_retry_invalid_header_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lrosads_put_async_relative_retry_invalid_json_polling_request_initial(
+def build_lrosads_put_async_relative_retry_invalid_json_polling_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1263,7 +1263,7 @@ def build_lrosads_put_async_relative_retry_invalid_json_polling_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lrosads_delete202_retry_invalid_header_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lrosads_delete202_retry_invalid_header_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -1277,7 +1277,7 @@ def build_lrosads_delete202_retry_invalid_header_request_initial(**kwargs: Any) 
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lrosads_delete_async_relative_retry_invalid_header_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lrosads_delete_async_relative_retry_invalid_header_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -1291,7 +1291,7 @@ def build_lrosads_delete_async_relative_retry_invalid_header_request_initial(**k
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lrosads_delete_async_relative_retry_invalid_json_polling_request_initial(**kwargs: Any) -> HttpRequest:
+def build_lrosads_delete_async_relative_retry_invalid_json_polling_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -1305,7 +1305,7 @@ def build_lrosads_delete_async_relative_retry_invalid_json_polling_request_initi
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_lrosads_post202_retry_invalid_header_request_initial(
+def build_lrosads_post202_retry_invalid_header_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1324,7 +1324,7 @@ def build_lrosads_post202_retry_invalid_header_request_initial(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lrosads_post_async_relative_retry_invalid_header_request_initial(
+def build_lrosads_post_async_relative_retry_invalid_header_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1343,7 +1343,7 @@ def build_lrosads_post_async_relative_retry_invalid_header_request_initial(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lrosads_post_async_relative_retry_invalid_json_polling_request_initial(
+def build_lrosads_post_async_relative_retry_invalid_json_polling_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1362,7 +1362,7 @@ def build_lrosads_post_async_relative_retry_invalid_json_polling_request_initial
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lr_os_custom_header_put_async_retry_succeeded_request_initial(
+def build_lr_os_custom_header_put_async_retry_succeeded_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1381,7 +1381,7 @@ def build_lr_os_custom_header_put_async_retry_succeeded_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lr_os_custom_header_put201_creating_succeeded200_request_initial(
+def build_lr_os_custom_header_put201_creating_succeeded200_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1400,7 +1400,7 @@ def build_lr_os_custom_header_put201_creating_succeeded200_request_initial(
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lr_os_custom_header_post202_retry200_request_initial(
+def build_lr_os_custom_header_post202_retry200_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1419,7 +1419,7 @@ def build_lr_os_custom_header_post202_retry200_request_initial(
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_lr_os_custom_header_post_async_retry_succeeded_request_initial(
+def build_lr_os_custom_header_post_async_retry_succeeded_request(
     *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1472,7 +1472,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_put200_succeeded_request_initial(
+        request = build_lros_put200_succeeded_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -1622,7 +1622,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_patch200_succeeded_ignore_headers_request_initial(
+        request = build_lros_patch200_succeeded_ignore_headers_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -1780,7 +1780,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_patch201_retry_with_async_header_request_initial(
+        request = build_lros_patch201_retry_with_async_header_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -1943,7 +1943,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_patch202_retry_with_async_and_location_header_request_initial(
+        request = build_lros_patch202_retry_with_async_and_location_header_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -2106,7 +2106,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_put201_succeeded_request_initial(
+        request = build_lros_put201_succeeded_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -2246,7 +2246,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[List[JSON]]]
 
-        request = build_lros_post202_list_request_initial(
+        request = build_lros_post202_list_request(
             headers=_headers,
             params=_params,
         )
@@ -2375,7 +2375,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_put200_succeeded_no_state_request_initial(
+        request = build_lros_put200_succeeded_no_state_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -2523,7 +2523,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_put202_retry200_request_initial(
+        request = build_lros_put202_retry200_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -2672,7 +2672,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_put201_creating_succeeded200_request_initial(
+        request = build_lros_put201_creating_succeeded200_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -2828,7 +2828,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_put200_updating_succeeded204_request_initial(
+        request = build_lros_put200_updating_succeeded204_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -2977,7 +2977,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_put201_creating_failed200_request_initial(
+        request = build_lros_put201_creating_failed200_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -3133,7 +3133,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_put200_acceptedcanceled200_request_initial(
+        request = build_lros_put200_acceptedcanceled200_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -3282,7 +3282,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_put_no_header_in_retry_request_initial(
+        request = build_lros_put_no_header_in_retry_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -3436,7 +3436,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_put_async_retry_succeeded_request_initial(
+        request = build_lros_put_async_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -3599,7 +3599,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_put_async_no_retry_succeeded_request_initial(
+        request = build_lros_put_async_no_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -3760,7 +3760,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_put_async_retry_failed_request_initial(
+        request = build_lros_put_async_retry_failed_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -3923,7 +3923,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_put_async_no_retrycanceled_request_initial(
+        request = build_lros_put_async_no_retrycanceled_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -4084,7 +4084,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_put_async_no_header_in_retry_request_initial(
+        request = build_lros_put_async_no_header_in_retry_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -4243,7 +4243,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_put_non_resource_request_initial(
+        request = build_lros_put_non_resource_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -4361,7 +4361,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_put_async_non_resource_request_initial(
+        request = build_lros_put_async_non_resource_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -4479,7 +4479,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_put_sub_resource_request_initial(
+        request = build_lros_put_sub_resource_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -4612,7 +4612,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_put_async_sub_resource_request_initial(
+        request = build_lros_put_async_sub_resource_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -4737,7 +4737,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_lros_delete_provisioning202_accepted200_succeeded_request_initial(
+        request = build_lros_delete_provisioning202_accepted200_succeeded_request(
             headers=_headers,
             params=_params,
         )
@@ -4859,7 +4859,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_lros_delete_provisioning202_deleting_failed200_request_initial(
+        request = build_lros_delete_provisioning202_deleting_failed200_request(
             headers=_headers,
             params=_params,
         )
@@ -4981,7 +4981,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_lros_delete_provisioning202_deletingcanceled200_request_initial(
+        request = build_lros_delete_provisioning202_deletingcanceled200_request(
             headers=_headers,
             params=_params,
         )
@@ -5103,7 +5103,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_lros_delete204_succeeded_request_initial(
+        request = build_lros_delete204_succeeded_request(
             headers=_headers,
             params=_params,
         )
@@ -5180,7 +5180,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSON]]
 
-        request = build_lros_delete202_retry200_request_initial(
+        request = build_lros_delete202_retry200_request(
             headers=_headers,
             params=_params,
         )
@@ -5297,7 +5297,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[JSON]]
 
-        request = build_lros_delete202_no_retry204_request_initial(
+        request = build_lros_delete202_no_retry204_request(
             headers=_headers,
             params=_params,
         )
@@ -5416,7 +5416,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_lros_delete_no_header_in_retry_request_initial(
+        request = build_lros_delete_no_header_in_retry_request(
             headers=_headers,
             params=_params,
         )
@@ -5500,7 +5500,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_lros_delete_async_no_header_in_retry_request_initial(
+        request = build_lros_delete_async_no_header_in_retry_request(
             headers=_headers,
             params=_params,
         )
@@ -5584,7 +5584,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_lros_delete_async_retry_succeeded_request_initial(
+        request = build_lros_delete_async_retry_succeeded_request(
             headers=_headers,
             params=_params,
         )
@@ -5671,7 +5671,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_lros_delete_async_no_retry_succeeded_request_initial(
+        request = build_lros_delete_async_no_retry_succeeded_request(
             headers=_headers,
             params=_params,
         )
@@ -5758,7 +5758,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_lros_delete_async_retry_failed_request_initial(
+        request = build_lros_delete_async_retry_failed_request(
             headers=_headers,
             params=_params,
         )
@@ -5845,7 +5845,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_lros_delete_async_retrycanceled_request_initial(
+        request = build_lros_delete_async_retrycanceled_request(
             headers=_headers,
             params=_params,
         )
@@ -5930,7 +5930,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_lros_post200_with_payload_request_initial(
+        request = build_lros_post200_with_payload_request(
             headers=_headers,
             params=_params,
         )
@@ -6045,7 +6045,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_post202_retry200_request_initial(
+        request = build_lros_post202_retry200_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -6168,7 +6168,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_post202_no_retry204_request_initial(
+        request = build_lros_post202_no_retry204_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -6316,7 +6316,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_lros_post_double_headers_final_location_get_request_initial(
+        request = build_lros_post_double_headers_final_location_get_request(
             headers=_headers,
             params=_params,
         )
@@ -6429,7 +6429,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_lros_post_double_headers_final_azure_header_get_request_initial(
+        request = build_lros_post_double_headers_final_azure_header_get_request(
             headers=_headers,
             params=_params,
         )
@@ -6542,7 +6542,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_lros_post_double_headers_final_azure_header_get_default_request_initial(
+        request = build_lros_post_double_headers_final_azure_header_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -6661,7 +6661,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_post_async_retry_succeeded_request_initial(
+        request = build_lros_post_async_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -6820,7 +6820,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_post_async_no_retry_succeeded_request_initial(
+        request = build_lros_post_async_no_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -6981,7 +6981,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_post_async_retry_failed_request_initial(
+        request = build_lros_post_async_retry_failed_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -7110,7 +7110,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lros_post_async_retrycanceled_request_initial(
+        request = build_lros_post_async_retrycanceled_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -7255,7 +7255,7 @@ class LRORetrysOperations:
         else:
             _json = None
 
-        request = build_lro_retrys_put201_creating_succeeded200_request_initial(
+        request = build_lro_retrys_put201_creating_succeeded200_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -7411,7 +7411,7 @@ class LRORetrysOperations:
         else:
             _json = None
 
-        request = build_lro_retrys_put_async_relative_retry_succeeded_request_initial(
+        request = build_lro_retrys_put_async_relative_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -7568,7 +7568,7 @@ class LRORetrysOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_lro_retrys_delete_provisioning202_accepted200_succeeded_request_initial(
+        request = build_lro_retrys_delete_provisioning202_accepted200_succeeded_request(
             headers=_headers,
             params=_params,
         )
@@ -7690,7 +7690,7 @@ class LRORetrysOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_lro_retrys_delete202_retry200_request_initial(
+        request = build_lro_retrys_delete202_retry200_request(
             headers=_headers,
             params=_params,
         )
@@ -7774,7 +7774,7 @@ class LRORetrysOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_lro_retrys_delete_async_relative_retry_succeeded_request_initial(
+        request = build_lro_retrys_delete_async_relative_retry_succeeded_request(
             headers=_headers,
             params=_params,
         )
@@ -7869,7 +7869,7 @@ class LRORetrysOperations:
         else:
             _json = None
 
-        request = build_lro_retrys_post202_retry200_request_initial(
+        request = build_lro_retrys_post202_retry200_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -7994,7 +7994,7 @@ class LRORetrysOperations:
         else:
             _json = None
 
-        request = build_lro_retrys_post_async_relative_retry_succeeded_request_initial(
+        request = build_lro_retrys_post_async_relative_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -8139,7 +8139,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lrosads_put_non_retry400_request_initial(
+        request = build_lrosads_put_non_retry400_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -8293,7 +8293,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lrosads_put_non_retry201_creating400_request_initial(
+        request = build_lrosads_put_non_retry201_creating400_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -8448,7 +8448,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lrosads_put_non_retry201_creating400_invalid_json_request_initial(
+        request = build_lrosads_put_non_retry201_creating400_invalid_json_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -8605,7 +8605,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lrosads_put_async_relative_retry400_request_initial(
+        request = build_lrosads_put_async_relative_retry400_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -8759,7 +8759,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_lrosads_delete_non_retry400_request_initial(
+        request = build_lrosads_delete_non_retry400_request(
             headers=_headers,
             params=_params,
         )
@@ -8840,7 +8840,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_lrosads_delete202_non_retry400_request_initial(
+        request = build_lrosads_delete202_non_retry400_request(
             headers=_headers,
             params=_params,
         )
@@ -8923,7 +8923,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_lrosads_delete_async_relative_retry400_request_initial(
+        request = build_lrosads_delete_async_relative_retry400_request(
             headers=_headers,
             params=_params,
         )
@@ -9018,7 +9018,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lrosads_post_non_retry400_request_initial(
+        request = build_lrosads_post_non_retry400_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -9142,7 +9142,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lrosads_post202_non_retry400_request_initial(
+        request = build_lrosads_post202_non_retry400_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -9266,7 +9266,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lrosads_post_async_relative_retry400_request_initial(
+        request = build_lrosads_post_async_relative_retry400_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -9394,7 +9394,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lrosads_put_error201_no_provisioning_state_payload_request_initial(
+        request = build_lrosads_put_error201_no_provisioning_state_payload_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -9550,7 +9550,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lrosads_put_async_relative_retry_no_status_request_initial(
+        request = build_lrosads_put_async_relative_retry_no_status_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -9717,7 +9717,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lrosads_put_async_relative_retry_no_status_payload_request_initial(
+        request = build_lrosads_put_async_relative_retry_no_status_payload_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -9874,7 +9874,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_lrosads_delete204_succeeded_request_initial(
+        request = build_lrosads_delete204_succeeded_request(
             headers=_headers,
             params=_params,
         )
@@ -9953,7 +9953,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_lrosads_delete_async_relative_retry_no_status_request_initial(
+        request = build_lrosads_delete_async_relative_retry_no_status_request(
             headers=_headers,
             params=_params,
         )
@@ -10048,7 +10048,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lrosads_post202_no_location_request_initial(
+        request = build_lrosads_post202_no_location_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -10173,7 +10173,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lrosads_post_async_relative_retry_no_payload_request_initial(
+        request = build_lrosads_post_async_relative_retry_no_payload_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -10300,7 +10300,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lrosads_put200_invalid_json_request_initial(
+        request = build_lrosads_put200_invalid_json_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -10450,7 +10450,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lrosads_put_async_relative_retry_invalid_header_request_initial(
+        request = build_lrosads_put_async_relative_retry_invalid_header_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -10617,7 +10617,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lrosads_put_async_relative_retry_invalid_json_polling_request_initial(
+        request = build_lrosads_put_async_relative_retry_invalid_json_polling_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -10776,7 +10776,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_lrosads_delete202_retry_invalid_header_request_initial(
+        request = build_lrosads_delete202_retry_invalid_header_request(
             headers=_headers,
             params=_params,
         )
@@ -10860,7 +10860,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_lrosads_delete_async_relative_retry_invalid_header_request_initial(
+        request = build_lrosads_delete_async_relative_retry_invalid_header_request(
             headers=_headers,
             params=_params,
         )
@@ -10947,7 +10947,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_lrosads_delete_async_relative_retry_invalid_json_polling_request_initial(
+        request = build_lrosads_delete_async_relative_retry_invalid_json_polling_request(
             headers=_headers,
             params=_params,
         )
@@ -11042,7 +11042,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lrosads_post202_retry_invalid_header_request_initial(
+        request = build_lrosads_post202_retry_invalid_header_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -11167,7 +11167,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lrosads_post_async_relative_retry_invalid_header_request_initial(
+        request = build_lrosads_post_async_relative_retry_invalid_header_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -11296,7 +11296,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_lrosads_post_async_relative_retry_invalid_json_polling_request_initial(
+        request = build_lrosads_post_async_relative_retry_invalid_json_polling_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -11441,7 +11441,7 @@ class LROsCustomHeaderOperations:
         else:
             _json = None
 
-        request = build_lr_os_custom_header_put_async_retry_succeeded_request_initial(
+        request = build_lr_os_custom_header_put_async_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -11605,7 +11605,7 @@ class LROsCustomHeaderOperations:
         else:
             _json = None
 
-        request = build_lr_os_custom_header_put201_creating_succeeded200_request_initial(
+        request = build_lr_os_custom_header_put201_creating_succeeded200_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -11764,7 +11764,7 @@ class LROsCustomHeaderOperations:
         else:
             _json = None
 
-        request = build_lr_os_custom_header_post202_retry200_request_initial(
+        request = build_lr_os_custom_header_post202_retry200_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
@@ -11890,7 +11890,7 @@ class LROsCustomHeaderOperations:
         else:
             _json = None
 
-        request = build_lr_os_custom_header_post_async_retry_succeeded_request_initial(
+        request = build_lr_os_custom_header_post_async_retry_succeeded_request(
             content_type=content_type,
             json=_json,
             headers=_headers,

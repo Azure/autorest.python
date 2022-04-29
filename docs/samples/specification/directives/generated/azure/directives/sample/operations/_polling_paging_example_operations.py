@@ -31,7 +31,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 # fmt: off
 
-def build_basic_polling_request_initial(
+def build_basic_polling_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -102,7 +102,7 @@ class PollingPagingExampleOperationsMixin(object):
         else:
             _json = None
 
-        request = build_basic_polling_request_initial(
+        request = build_basic_polling_request(
             content_type=content_type,
             json=_json,
             template_url=self._basic_polling_initial.metadata['url'],

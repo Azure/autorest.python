@@ -77,7 +77,7 @@ def build_check_name_availability_request(
     )
 
 
-def build_create_request_initial(
+def build_create_request(
     resource_group_name,  # type: str
     account_name,  # type: str
     subscription_id,  # type: str
@@ -484,7 +484,7 @@ class StorageAccountsOperations(object):
 
         _json = self._serialize.body(parameters, "StorageAccountCreateParameters")
 
-        request = build_create_request_initial(
+        request = build_create_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,

@@ -360,7 +360,7 @@ def build_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_paging_get_multiple_pages_lro_request_initial(
+def build_paging_get_multiple_pages_lro_request(
     *,
     client_request_id: Optional[str] = None,
     maxresults: Optional[int] = None,
@@ -1775,7 +1775,7 @@ class PagingOperations:
 
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_paging_get_multiple_pages_lro_request_initial(
+        request = build_paging_get_multiple_pages_lro_request(
             client_request_id=client_request_id,
             maxresults=maxresults,
             timeout=timeout,
@@ -1846,7 +1846,7 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_lro_request_initial(
+                request = build_paging_get_multiple_pages_lro_request(
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
@@ -1857,7 +1857,7 @@ class PagingOperations:
 
             else:
 
-                request = build_paging_get_multiple_pages_lro_request_initial(
+                request = build_paging_get_multiple_pages_lro_request(
                     client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,

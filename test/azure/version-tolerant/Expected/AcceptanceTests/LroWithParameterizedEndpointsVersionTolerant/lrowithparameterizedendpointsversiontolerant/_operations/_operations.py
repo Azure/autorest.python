@@ -33,7 +33,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_poll_with_parameterized_endpoints_request_initial(**kwargs: Any) -> HttpRequest:
+def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -47,7 +47,7 @@ def build_poll_with_parameterized_endpoints_request_initial(**kwargs: Any) -> Ht
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_poll_with_constant_parameterized_endpoints_request_initial(**kwargs: Any) -> HttpRequest:
+def build_poll_with_constant_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
@@ -77,7 +77,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
 
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
 
-        request = build_poll_with_parameterized_endpoints_request_initial(
+        request = build_poll_with_parameterized_endpoints_request(
             headers=_headers,
             params=_params,
         )
@@ -191,7 +191,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
         constant_parameter = kwargs.pop("constant_parameter", "iAmConstant")  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[Optional[str]]
 
-        request = build_poll_with_constant_parameterized_endpoints_request_initial(
+        request = build_poll_with_constant_parameterized_endpoints_request(
             constant_parameter=constant_parameter,
             headers=_headers,
             params=_params,

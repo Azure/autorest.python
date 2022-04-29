@@ -389,8 +389,10 @@ class Parameter(
     def method_location(self) -> ParameterMethodLocation:
         if self._method_location:
             return self._method_location
-        if self.serialized_name in _HIDDEN_KWARGS or (
-            self._implementation == "Client" and self.constant
+        if (
+            self.serialized_name in _HIDDEN_KWARGS
+            or (self._implementation == "Client" and self.constant)
+            or self.yaml_data.get("origin", "") == "modelerfour:synthesized/api-version"
         ):
             return ParameterMethodLocation.HIDDEN_KWARG
         if self.constant and self.inputtable_by_user:

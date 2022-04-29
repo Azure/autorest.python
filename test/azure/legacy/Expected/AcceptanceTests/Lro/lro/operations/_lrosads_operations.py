@@ -39,7 +39,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 # fmt: off
 
-def build_put_non_retry400_request_initial(
+def build_put_non_retry400_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -64,7 +64,7 @@ def build_put_non_retry400_request_initial(
     )
 
 
-def build_put_non_retry201_creating400_request_initial(
+def build_put_non_retry201_creating400_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -89,7 +89,7 @@ def build_put_non_retry201_creating400_request_initial(
     )
 
 
-def build_put_non_retry201_creating400_invalid_json_request_initial(
+def build_put_non_retry201_creating400_invalid_json_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -114,7 +114,7 @@ def build_put_non_retry201_creating400_invalid_json_request_initial(
     )
 
 
-def build_put_async_relative_retry400_request_initial(
+def build_put_async_relative_retry400_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -139,7 +139,7 @@ def build_put_async_relative_retry400_request_initial(
     )
 
 
-def build_delete_non_retry400_request_initial(
+def build_delete_non_retry400_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -161,7 +161,7 @@ def build_delete_non_retry400_request_initial(
     )
 
 
-def build_delete202_non_retry400_request_initial(
+def build_delete202_non_retry400_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -183,7 +183,7 @@ def build_delete202_non_retry400_request_initial(
     )
 
 
-def build_delete_async_relative_retry400_request_initial(
+def build_delete_async_relative_retry400_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -205,7 +205,7 @@ def build_delete_async_relative_retry400_request_initial(
     )
 
 
-def build_post_non_retry400_request_initial(
+def build_post_non_retry400_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -230,7 +230,7 @@ def build_post_non_retry400_request_initial(
     )
 
 
-def build_post202_non_retry400_request_initial(
+def build_post202_non_retry400_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -255,7 +255,7 @@ def build_post202_non_retry400_request_initial(
     )
 
 
-def build_post_async_relative_retry400_request_initial(
+def build_post_async_relative_retry400_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -280,7 +280,7 @@ def build_post_async_relative_retry400_request_initial(
     )
 
 
-def build_put_error201_no_provisioning_state_payload_request_initial(
+def build_put_error201_no_provisioning_state_payload_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -305,7 +305,7 @@ def build_put_error201_no_provisioning_state_payload_request_initial(
     )
 
 
-def build_put_async_relative_retry_no_status_request_initial(
+def build_put_async_relative_retry_no_status_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -330,7 +330,7 @@ def build_put_async_relative_retry_no_status_request_initial(
     )
 
 
-def build_put_async_relative_retry_no_status_payload_request_initial(
+def build_put_async_relative_retry_no_status_payload_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -355,7 +355,7 @@ def build_put_async_relative_retry_no_status_payload_request_initial(
     )
 
 
-def build_delete204_succeeded_request_initial(
+def build_delete204_succeeded_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -377,7 +377,7 @@ def build_delete204_succeeded_request_initial(
     )
 
 
-def build_delete_async_relative_retry_no_status_request_initial(
+def build_delete_async_relative_retry_no_status_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -399,7 +399,7 @@ def build_delete_async_relative_retry_no_status_request_initial(
     )
 
 
-def build_post202_no_location_request_initial(
+def build_post202_no_location_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -424,7 +424,7 @@ def build_post202_no_location_request_initial(
     )
 
 
-def build_post_async_relative_retry_no_payload_request_initial(
+def build_post_async_relative_retry_no_payload_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -449,7 +449,7 @@ def build_post_async_relative_retry_no_payload_request_initial(
     )
 
 
-def build_put200_invalid_json_request_initial(
+def build_put200_invalid_json_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -474,7 +474,7 @@ def build_put200_invalid_json_request_initial(
     )
 
 
-def build_put_async_relative_retry_invalid_header_request_initial(
+def build_put_async_relative_retry_invalid_header_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -499,7 +499,7 @@ def build_put_async_relative_retry_invalid_header_request_initial(
     )
 
 
-def build_put_async_relative_retry_invalid_json_polling_request_initial(
+def build_put_async_relative_retry_invalid_json_polling_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -524,7 +524,7 @@ def build_put_async_relative_retry_invalid_json_polling_request_initial(
     )
 
 
-def build_delete202_retry_invalid_header_request_initial(
+def build_delete202_retry_invalid_header_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -546,7 +546,7 @@ def build_delete202_retry_invalid_header_request_initial(
     )
 
 
-def build_delete_async_relative_retry_invalid_header_request_initial(
+def build_delete_async_relative_retry_invalid_header_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -568,7 +568,7 @@ def build_delete_async_relative_retry_invalid_header_request_initial(
     )
 
 
-def build_delete_async_relative_retry_invalid_json_polling_request_initial(
+def build_delete_async_relative_retry_invalid_json_polling_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -590,7 +590,7 @@ def build_delete_async_relative_retry_invalid_json_polling_request_initial(
     )
 
 
-def build_post202_retry_invalid_header_request_initial(
+def build_post202_retry_invalid_header_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -615,7 +615,7 @@ def build_post202_retry_invalid_header_request_initial(
     )
 
 
-def build_post_async_relative_retry_invalid_header_request_initial(
+def build_post_async_relative_retry_invalid_header_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -640,7 +640,7 @@ def build_post_async_relative_retry_invalid_header_request_initial(
     )
 
 
-def build_post_async_relative_retry_invalid_json_polling_request_initial(
+def build_post_async_relative_retry_invalid_json_polling_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -706,7 +706,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_put_non_retry400_request_initial(
+        request = build_put_non_retry400_request(
             content_type=content_type,
             json=_json,
             template_url=self._put_non_retry400_initial.metadata["url"],
@@ -828,7 +828,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_put_non_retry201_creating400_request_initial(
+        request = build_put_non_retry201_creating400_request(
             content_type=content_type,
             json=_json,
             template_url=self._put_non_retry201_creating400_initial.metadata["url"],
@@ -951,7 +951,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_put_non_retry201_creating400_invalid_json_request_initial(
+        request = build_put_non_retry201_creating400_invalid_json_request(
             content_type=content_type,
             json=_json,
             template_url=self._put_non_retry201_creating400_invalid_json_initial.metadata["url"],
@@ -1074,7 +1074,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_put_async_relative_retry400_request_initial(
+        request = build_put_async_relative_retry400_request(
             content_type=content_type,
             json=_json,
             template_url=self._put_async_relative_retry400_initial.metadata["url"],
@@ -1198,7 +1198,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_delete_non_retry400_request_initial(
+        request = build_delete_non_retry400_request(
             template_url=self._delete_non_retry400_initial.metadata["url"],
             headers=_headers,
             params=_params,
@@ -1290,7 +1290,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_delete202_non_retry400_request_initial(
+        request = build_delete202_non_retry400_request(
             template_url=self._delete202_non_retry400_initial.metadata["url"],
             headers=_headers,
             params=_params,
@@ -1382,7 +1382,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_delete_async_relative_retry400_request_initial(
+        request = build_delete_async_relative_retry400_request(
             template_url=self._delete_async_relative_retry400_initial.metadata["url"],
             headers=_headers,
             params=_params,
@@ -1488,7 +1488,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_post_non_retry400_request_initial(
+        request = build_post_non_retry400_request(
             content_type=content_type,
             json=_json,
             template_url=self._post_non_retry400_initial.metadata["url"],
@@ -1604,7 +1604,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_post202_non_retry400_request_initial(
+        request = build_post202_non_retry400_request(
             content_type=content_type,
             json=_json,
             template_url=self._post202_non_retry400_initial.metadata["url"],
@@ -1720,7 +1720,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_post_async_relative_retry400_request_initial(
+        request = build_post_async_relative_retry400_request(
             content_type=content_type,
             json=_json,
             template_url=self._post_async_relative_retry400_initial.metadata["url"],
@@ -1840,7 +1840,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_put_error201_no_provisioning_state_payload_request_initial(
+        request = build_put_error201_no_provisioning_state_payload_request(
             content_type=content_type,
             json=_json,
             template_url=self._put_error201_no_provisioning_state_payload_initial.metadata["url"],
@@ -1962,7 +1962,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_put_async_relative_retry_no_status_request_initial(
+        request = build_put_async_relative_retry_no_status_request(
             content_type=content_type,
             json=_json,
             template_url=self._put_async_relative_retry_no_status_initial.metadata["url"],
@@ -2097,7 +2097,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_put_async_relative_retry_no_status_payload_request_initial(
+        request = build_put_async_relative_retry_no_status_payload_request(
             content_type=content_type,
             json=_json,
             template_url=self._put_async_relative_retry_no_status_payload_initial.metadata["url"],
@@ -2222,7 +2222,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_delete204_succeeded_request_initial(
+        request = build_delete204_succeeded_request(
             template_url=self._delete204_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
@@ -2310,7 +2310,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_delete_async_relative_retry_no_status_request_initial(
+        request = build_delete_async_relative_retry_no_status_request(
             template_url=self._delete_async_relative_retry_no_status_initial.metadata["url"],
             headers=_headers,
             params=_params,
@@ -2416,7 +2416,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_post202_no_location_request_initial(
+        request = build_post202_no_location_request(
             content_type=content_type,
             json=_json,
             template_url=self._post202_no_location_initial.metadata["url"],
@@ -2533,7 +2533,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_post_async_relative_retry_no_payload_request_initial(
+        request = build_post_async_relative_retry_no_payload_request(
             content_type=content_type,
             json=_json,
             template_url=self._post_async_relative_retry_no_payload_initial.metadata["url"],
@@ -2654,7 +2654,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_put200_invalid_json_request_initial(
+        request = build_put200_invalid_json_request(
             content_type=content_type,
             json=_json,
             template_url=self._put200_invalid_json_initial.metadata["url"],
@@ -2775,7 +2775,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_put_async_relative_retry_invalid_header_request_initial(
+        request = build_put_async_relative_retry_invalid_header_request(
             content_type=content_type,
             json=_json,
             template_url=self._put_async_relative_retry_invalid_header_initial.metadata["url"],
@@ -2910,7 +2910,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_put_async_relative_retry_invalid_json_polling_request_initial(
+        request = build_put_async_relative_retry_invalid_json_polling_request(
             content_type=content_type,
             json=_json,
             template_url=self._put_async_relative_retry_invalid_json_polling_initial.metadata["url"],
@@ -3035,7 +3035,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_delete202_retry_invalid_header_request_initial(
+        request = build_delete202_retry_invalid_header_request(
             template_url=self._delete202_retry_invalid_header_initial.metadata["url"],
             headers=_headers,
             params=_params,
@@ -3128,7 +3128,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_delete_async_relative_retry_invalid_header_request_initial(
+        request = build_delete_async_relative_retry_invalid_header_request(
             template_url=self._delete_async_relative_retry_invalid_header_initial.metadata["url"],
             headers=_headers,
             params=_params,
@@ -3224,7 +3224,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
 
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        request = build_delete_async_relative_retry_invalid_json_polling_request_initial(
+        request = build_delete_async_relative_retry_invalid_json_polling_request(
             template_url=self._delete_async_relative_retry_invalid_json_polling_initial.metadata["url"],
             headers=_headers,
             params=_params,
@@ -3330,7 +3330,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_post202_retry_invalid_header_request_initial(
+        request = build_post202_retry_invalid_header_request(
             content_type=content_type,
             json=_json,
             template_url=self._post202_retry_invalid_header_initial.metadata["url"],
@@ -3447,7 +3447,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_post_async_relative_retry_invalid_header_request_initial(
+        request = build_post_async_relative_retry_invalid_header_request(
             content_type=content_type,
             json=_json,
             template_url=self._post_async_relative_retry_invalid_header_initial.metadata["url"],
@@ -3568,7 +3568,7 @@ class LROSADsOperations(object):  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_post_async_relative_retry_invalid_json_polling_request_initial(
+        request = build_post_async_relative_retry_invalid_json_polling_request(
             content_type=content_type,
             json=_json,
             template_url=self._post_async_relative_retry_invalid_json_polling_initial.metadata["url"],

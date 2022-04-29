@@ -486,7 +486,7 @@ def build_get_multiple_pages_fragment_with_grouping_next_link_request(
     )
 
 
-def build_get_multiple_pages_lro_request_initial(
+def build_get_multiple_pages_lro_request(
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -1965,7 +1965,7 @@ class PagingOperations(object):
             _maxresults = paging_get_multiple_pages_lro_options.maxresults
             _timeout = paging_get_multiple_pages_lro_options.timeout
 
-        request = build_get_multiple_pages_lro_request_initial(
+        request = build_get_multiple_pages_lro_request(
             client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,
@@ -2045,7 +2045,7 @@ class PagingOperations(object):
                     _maxresults = paging_get_multiple_pages_lro_options.maxresults
                     _timeout = paging_get_multiple_pages_lro_options.timeout
                 
-                request = build_get_multiple_pages_lro_request_initial(
+                request = build_get_multiple_pages_lro_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
@@ -2063,7 +2063,7 @@ class PagingOperations(object):
                     _maxresults = paging_get_multiple_pages_lro_options.maxresults
                     _timeout = paging_get_multiple_pages_lro_options.timeout
                 
-                request = build_get_multiple_pages_lro_request_initial(
+                request = build_get_multiple_pages_lro_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
