@@ -104,7 +104,7 @@ class NameConverter:
                     ] = operation_group["language"]["python"]["name"].lower()
                     NameConverter._convert_language_default_python_case(
                         builder_group,
-                        pad_string=PadType.BuilderGroup,
+                        pad_string=PadType.OperationGroup,
                         convert_name=True,
                     )
                     operation["language"]["python"]["builderGroupName"] = builder_group[

@@ -7,6 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import abc
+import sys
 from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, cast
 
 from azure.core.exceptions import (
@@ -25,6 +26,11 @@ from azure.core.utils import case_insensitive_dict
 from .._serialization import Serializer
 from .._vendor import MixinABC, _format_url_section
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -32,7 +38,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_import_builders_operation_one_request(*, parameter1: str, **kwargs: Any) -> HttpRequest:
+def build_import_operations_operation_one_request(*, parameter1: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -145,13 +151,13 @@ class ImportOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def operation_one(self, *, parameter1: str, **kwargs: Any) -> Any:
+    def operation_one(self, *, parameter1: str, **kwargs: Any) -> JSON:
         """Operation in operation group import, a reserved word.
 
         :keyword parameter1: Pass in 'foo' to pass this test.
         :paramtype parameter1: str
-        :return: any
-        :rtype: any
+        :return: JSON
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -160,9 +166,9 @@ class ImportOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        request = build_import_builders_operation_one_request(
+        request = build_import_operations_operation_one_request(
             parameter1=parameter1,
             headers=_headers,
             params=_params,
@@ -185,20 +191,20 @@ class ImportOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Any, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(Any, deserialized)
+        return cast(JSON, deserialized)
 
 
 class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
     @distributed_trace
-    def operation_with_content_param(self, content: IO, **kwargs: Any) -> Any:
+    def operation_with_content_param(self, content: IO, **kwargs: Any) -> JSON:
         """Operation with body param called content. Pass in b'hello, world'.
 
         :param content: Pass in b'hello, world'.
         :type content: IO
-        :return: any
-        :rtype: any
+        :return: JSON
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -210,7 +216,7 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/octet-stream")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _content = content
 
@@ -238,18 +244,18 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Any, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(Any, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace
-    def operation_with_json_param(self, json: Any, **kwargs: Any) -> Any:
+    def operation_with_json_param(self, json: Any, **kwargs: Any) -> JSON:
         """Operation with body param called 'json'. Pass in {'hello': 'world'}.
 
         :param json: Pass in {'hello': 'world'}.
         :type json: any
-        :return: any
-        :rtype: any
+        :return: JSON
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -261,7 +267,7 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
         )  # type: Optional[str]
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _json = json
 
@@ -289,13 +295,13 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Any, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(Any, deserialized)
+        return cast(JSON, deserialized)
 
     @distributed_trace
     @abc.abstractmethod
-    def operation_with_data_param(self, *args, **kwargs) -> Any:
+    def operation_with_data_param(self, *args, **kwargs) -> JSON:
         """You need to write a custom operation for "operation_with_data_param". Please refer to
         https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
@@ -303,7 +309,7 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
 
     @distributed_trace
     @abc.abstractmethod
-    def operation_with_files_param(self, *args, **kwargs) -> Any:
+    def operation_with_files_param(self, *args, **kwargs) -> JSON:
         """You need to write a custom operation for "operation_with_files_param". Please refer to
         https://aka.ms/azsdk/python/dpcodegen/python/customize to learn how to customize.
 
@@ -312,7 +318,7 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
     @distributed_trace
     def operation_with_url(
         self, url: str, *, header_parameters: str, query_parameters: Optional[List[str]] = None, **kwargs: Any
-    ) -> Any:
+    ) -> JSON:
         """Operation with path format argument URL, header param headerParameters, and query param
         queryParameters.
 
@@ -324,8 +330,8 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
         :keyword query_parameters: Query args that uses same name as queryParameters in generated code.
          Pass in ['one', 'two'] to pass test. Default value is None.
         :paramtype query_parameters: list[str]
-        :return: any
-        :rtype: any
+        :return: JSON
+        :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -334,7 +340,7 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[Any]
+        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         request = build_operation_with_url_request(
             url=url,
@@ -361,6 +367,6 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Any, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})
 
-        return cast(Any, deserialized)
+        return cast(JSON, deserialized)
