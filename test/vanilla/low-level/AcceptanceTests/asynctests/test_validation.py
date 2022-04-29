@@ -85,10 +85,10 @@ async def test_post_with_constant_in_body(send_request_json_response, constant_b
     assert product is not None
 
 # Note: the client-side-validation is not supported for low-level client, 
-#       so this request with faked path will be sent to testserver and get an ResourceNotFoundError
+#       so this request with faked path will be sent to testserver and get an HttpResponseError
 @pytest.mark.asyncio
 async def test_fakedpath_validation(send_request):
-    with pytest.raises(ResourceNotFoundError):
+    with pytest.raises(HttpResponseError):
         request = build_validation_of_method_parameters_request(subscription_id="abc123", resource_group_name="1", id=100)
         await send_request(request)
  
