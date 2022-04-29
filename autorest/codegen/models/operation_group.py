@@ -76,6 +76,10 @@ class OperationGroup(BaseModel):
         return file_import
 
     @property
+    def has_abstract_operations(self) -> bool:
+        return any(o for o in self.operations if o.abstract)
+
+    @property
     def filename(self) -> str:
         return self.operations[0].filename
 

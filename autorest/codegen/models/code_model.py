@@ -5,14 +5,13 @@
 # --------------------------------------------------------------------------
 from typing import List, Dict, Optional, Any, Set, Union
 
-from autorest.codegen.models.parameter import Parameter
-
 from .base_type import BaseType
 from .enum_type import EnumType
 from .model_type import ModelType
 from .operation_group import OperationGroup
 from .client import Client, Config
 from .request_builder import OverloadedRequestBuilder, RequestBuilder
+from .parameter import Parameter
 
 class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-public-methods
     """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets

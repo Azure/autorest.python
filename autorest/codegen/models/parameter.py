@@ -7,7 +7,9 @@ import logging
 import abc
 from enum import Enum, auto
 
-from typing import Dict, Any, TYPE_CHECKING, List, Optional, Set, Union
+from typing import Dict, Any, TYPE_CHECKING, List, Optional, Set, TypeVar, Union, Generic
+
+
 
 from .imports import FileImport, ImportType, TypingSection
 from .base_model import BaseModel
@@ -17,8 +19,7 @@ from .utils import add_to_description
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
-
-_LOGGER = logging.getLogger(__name__)
+    from .request_builder_parameter import RequestBuilderBodyParameter
 
 class ParameterLocation(str, Enum):
     HEADER = "header"
@@ -165,8 +166,23 @@ class BodyParameter(_BodyParameterBase):
             type=code_model.lookup_type(id(yaml_data["type"])),
         )
 
-class MultipartBodyParameter(_ParameterBase):
-    ...
+EntryBodyParameterType = TypeVar("EntryBodyParameterType", bound=Union[BodyParameter, "RequestBuilderBodyParameter"])
+
+class _MultipartBodyParameter(BodyParameter, Generic[EntryBodyParameterType]):
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel", type: BaseType, entries: List[EntryBodyParameterType]) -> None:
+        super().__init__(yaml_data, code_model, type)
+        self.entries = entries
+
+class MultipartBodyParameter(_MultipartBodyParameter[BodyParameter]):
+
+    @classmethod
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "MultipartBodyParameter":
+        return cls(
+            yaml_data=yaml_data,
+            code_model=code_model,
+            type=code_model.lookup_type(id(yaml_data["type"])),
+            entries=[BodyParameter.from_yaml(entry, code_model) for entry in yaml_data["entries"]]
+        )
 
 class UrlEncodedBodyParameter(_ParameterBase):
     ...
@@ -273,3 +289,8 @@ class ConfigParameter(Parameter):
         if self.constant:
             return ParameterMethodLocation.KWARG
         return ParameterMethodLocation.POSITIONAL
+
+def get_body_parameter(yaml_data: Dict[str, Any], code_model: "CodeModel") -> Union[BodyParameter, MultipartBodyParameter]:
+    if yaml_data.get("entries"):
+        return MultipartBodyParameter.from_yaml(yaml_data, code_model)
+    return BodyParameter.from_yaml(yaml_data, code_model)

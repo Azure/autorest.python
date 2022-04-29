@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict
+from typing import Any, Callable, Dict
 from abc import abstractmethod
 from collections.abc import MutableSequence
 from enum import Enum
@@ -12,7 +12,7 @@ from typing import List, Optional, TYPE_CHECKING, Union, Generic, TypeVar, Type
 from .combined_type import CombinedType
 from .imports import FileImport, ImportType
 from .request_builder_parameter import RequestBuilderBodyParameter, RequestBuilderParameter
-from .parameter import ParameterLocation, BodyParameter, Parameter, ParameterMethodLocation, ClientParameter, ConfigParameter
+from .parameter import MultipartBodyParameter, ParameterLocation, BodyParameter, Parameter, ParameterMethodLocation, ClientParameter, ConfigParameter, get_body_parameter
 
 ParameterType = TypeVar("ParameterType", bound=Union[Parameter, RequestBuilderParameter])
 BodyParameterType = TypeVar("BodyParameterType", bound=Union[BodyParameter, RequestBuilderBodyParameter])
@@ -77,12 +77,12 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
 
     @staticmethod
     @abstractmethod
-    def parameter_creator() -> Type[ParameterType]:
+    def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], ParameterType]:
         ...
 
     @staticmethod
     @abstractmethod
-    def body_parameter_creator() -> Type[BodyParameterType]:
+    def body_parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], BodyParameterType]:
         ...
 
     @property
@@ -130,6 +130,12 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
         return _sort([
             p for p in self.unsorted_method_params if p.method_location == ParameterMethodLocation.KWARG
         ])
+
+    @property
+    def body_parameter(self) -> BodyParameterType:
+        if not self._body_parameter:
+            raise ValueError("There is no body parameter")
+        return self._body_parameter
 
     @property
     @abstractmethod
@@ -189,12 +195,12 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
         parameters = [
-            cls.parameter_creator().from_yaml(parameter, code_model)
+            cls.parameter_creator()(parameter, code_model)
             for parameter in yaml_data["parameters"]
         ]
         body_parameter = None
         if yaml_data.get("bodyParameter"):
-            body_parameter = cls.body_parameter_creator().from_yaml(yaml_data["bodyParameter"], code_model)
+            body_parameter = cls.body_parameter_creator()(yaml_data["bodyParameter"], code_model)
         return cls(
             yaml_data,
             code_model,
@@ -203,15 +209,15 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
         )
 
 
-class _ParameterList(_ParameterListBase[Parameter, BodyParameter]):
+class _ParameterList(_ParameterListBase[Parameter, Union[MultipartBodyParameter, BodyParameter]]):
 
     @staticmethod
-    def parameter_creator() -> Type[Parameter]:
-        return Parameter
+    def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], Parameter]:
+        return Parameter.from_yaml
 
     @staticmethod
-    def body_parameter_creator() -> Type[BodyParameter]:
-        return BodyParameter
+    def body_parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], Union[MultipartBodyParameter, BodyParameter]]:
+        return get_body_parameter
 
     @property
     def implementation(self) -> str:
@@ -221,13 +227,7 @@ class _ParameterList(_ParameterListBase[Parameter, BodyParameter]):
     def path(self) -> List[Parameter]:
         return [k for k in super().path if k.location == ParameterLocation.ENDPOINT_PATH]
 
-    @property
-    def body_parameter(self) -> BodyParameter:
-        if not self._body_parameter:
-            raise ValueError("There is no body parameter")
-        return self._body_parameter
-
-    def kwargs_to_pop(self, is_python3_file: bool) -> List[Union[Parameter, BodyParameter]]:
+    def kwargs_to_pop(self, is_python3_file: bool) -> List[Union[Parameter, BodyParameter, MultipartBodyParameter]]:
         super_kwargs_to_pop = super().kwargs_to_pop(is_python3_file)
         super_kwargs_to_pop.extend([c for c in self.parameters if c.implementation == "Client" and c.constant])  # we pop client constants for back compat
         return super_kwargs_to_pop
@@ -244,22 +244,16 @@ class OverloadedOperationParameterList(_ParameterList):
 class _RequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, RequestBuilderBodyParameter]):
 
     @staticmethod
-    def parameter_creator() -> Type[RequestBuilderParameter]:
-        return RequestBuilderParameter
+    def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], RequestBuilderParameter]:
+        return RequestBuilderParameter.from_yaml
 
     @staticmethod
-    def body_parameter_creator() -> Type[RequestBuilderBodyParameter]:
-        return RequestBuilderBodyParameter
+    def body_parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], RequestBuilderBodyParameter]:
+        return RequestBuilderBodyParameter.from_yaml
 
     @property
     def implementation(self) -> str:
         return "Method"
-
-    @property
-    def body_parameter(self) -> RequestBuilderBodyParameter:
-        if not self._body_parameter:
-            raise ValueError("There is no body parameter")
-        return self._body_parameter
 
     @property
     def unsorted_method_params(self) -> List[Union[RequestBuilderParameter, RequestBuilderBodyParameter]]:
@@ -285,8 +279,8 @@ class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList):
 class _ClientGlobalParameterList(_ParameterListBase[ParameterType, BodyParameter]):
 
     @staticmethod
-    def body_parameter_creator() -> Type[BodyParameter]:
-        return BodyParameter
+    def body_parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], BodyParameter]:
+        return BodyParameter.from_yaml
 
     @property
     def implementation(self) -> str:
@@ -302,8 +296,8 @@ class _ClientGlobalParameterList(_ParameterListBase[ParameterType, BodyParameter
 class ClientGlobalParameterList(_ClientGlobalParameterList[ClientParameter]):
 
     @staticmethod
-    def parameter_creator() -> Type[ClientParameter]:
-        return ClientParameter
+    def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], ClientParameter]:
+        return ClientParameter.from_yaml
 
     @property
     def path(self) -> List[ClientParameter]:
@@ -319,8 +313,8 @@ class ClientGlobalParameterList(_ClientGlobalParameterList[ClientParameter]):
 class ConfigGlobalParameterList(_ClientGlobalParameterList[ConfigParameter]):
 
     @staticmethod
-    def parameter_creator() -> Type[ConfigParameter]:
-        return ConfigParameter
+    def parameter_creator() -> Callable[[Dict[str, Any], "CodeModel"], ConfigParameter]:
+        return ConfigParameter.from_yaml
 
     @property
     def implementation(self) -> str:

@@ -3,17 +3,14 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from ctypes import cast
 from typing import TYPE_CHECKING, Any, Dict
 from .parameter import (
     ParameterMethodLocation,
     Parameter,
-    BodyParameter
+    BodyParameter,
+    _MultipartBodyParameter,
 )
-from .model_type import ModelType
-from .list_type import ListType
 from .base_type import BaseType
-from .dictionary_type import DictionaryType
 from .primitive_types import BinaryType, StringType
 
 if TYPE_CHECKING:
@@ -41,6 +38,21 @@ class RequestBuilderBodyParameter(BodyParameter):
         if self.client_name == "json":
             return "_json"
         return "_content"
+
+class RequestBuilderMultipartBodyParameter(_MultipartBodyParameter[RequestBuilderBodyParameter]):
+
+    @property
+    def name_in_high_level_operation(self) -> str:
+        return self.client_name
+
+    @classmethod
+    def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "RequestBuilderMultipartBodyParameter":
+        return cls(
+            yaml_data=yaml_data,
+            code_model=code_model,
+            type=code_model.lookup_type(id(yaml_data["type"])),
+            entries=[RequestBuilderBodyParameter.from_yaml(entry, code_model) for entry in yaml_data["entries"]]
+        )
 
 class RequestBuilderParameter(Parameter):
 

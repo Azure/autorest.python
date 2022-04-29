@@ -3,17 +3,19 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import logging
 from typing import Any, Dict, List, TypeVar, TYPE_CHECKING, cast, Union, Optional, Type
 from abc import abstractmethod
 
 from .base_builder import BaseBuilder
 from .parameter_list import RequestBuilderParameterList, OverloadedRequestBuilderParameterList
 from .imports import FileImport, ImportType, TypingSection
-from .request_builder_parameter import RequestBuilderBodyParameter, RequestBuilderParameter
+from .request_builder_parameter import RequestBuilderMultipartBodyParameter
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
+_LOGGER = logging.getLogger(__name__)
 ParameterListType = TypeVar("ParameterListType", bound=Union[RequestBuilderParameterList, OverloadedRequestBuilderParameterList])
 
 class RequestBuilderBase(BaseBuilder[ParameterListType]):
@@ -54,8 +56,9 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        for parameter in self.parameters.method:
-            file_import.merge(parameter.imports())
+        if not self.abstract:
+            for parameter in self.parameters.method:
+                file_import.merge(parameter.imports())
 
         file_import.add_submodule_import(
             "azure.core.rest",
@@ -110,12 +113,25 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         overloads=[
             RequestBuilder.from_yaml(rb_yaml_data, code_model) for rb_yaml_data in yaml_data.get("overloads", [])
         ]
+        abstract = False
+        parameter_list = cls.parameter_list_type().from_yaml(yaml_data, code_model)
+        if code_model.options["version_tolerant"] and isinstance(parameter_list.body_parameter, RequestBuilderMultipartBodyParameter):
+            _LOGGER.warning(
+                'Not going to generate operation "%s" because it has multipart / urlencoded body parameters. '\
+                "Multipart / urlencoded body parameters are not supported for version tolerant generation right now. "\
+                "Please write your own custom operation in the \"_patch.py\" file "\
+                "following https://aka.ms/azsdk/python/dpcodegen/python/customize",
+                name
+            )
+            abstract = True
+
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
             name=name,
-            parameters=cls.parameter_list_type().from_yaml(yaml_data, code_model),
+            parameters=parameter_list,
             overloads=overloads,
+            abstract=abstract,
         )
 
 class RequestBuilder(RequestBuilderBase[RequestBuilderParameterList]):

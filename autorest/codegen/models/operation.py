@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import logging
 from abc import abstractmethod
 from itertools import chain
 from typing import Dict, List, Any, Optional, Type, Union, TYPE_CHECKING, cast, TypeVar, Generic
@@ -19,6 +20,8 @@ from .request_builder import OverloadedRequestBuilder, RequestBuilder
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
+
+_LOGGER = logging.getLogger(__name__)
 
 ParameterListType = TypeVar("ParameterListType", bound=Union[ParameterList, OverloadedOperationParameterList])
 
@@ -162,10 +165,9 @@ class OperationBase(BaseBuilder[ParameterListType]):
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        for param in self.parameters.method:
-            if self.abstract and isinstance(param, (MultipartBodyParameter, UrlEncodedBodyParameter)):
-                continue
-            file_import.merge(param.imports())
+        if not self.abstract:
+            for param in self.parameters.method:
+                file_import.merge(param.imports())
 
         for response in self.responses:
             file_import.merge(response.imports())
@@ -377,6 +379,17 @@ class OperationBase(BaseBuilder[ParameterListType]):
             Operation.from_yaml(overload, code_model)
             for overload in yaml_data.get("overloads", [])
         ]
+        abstract = False
+        if code_model.options["version_tolerant"] and isinstance(parameter_list.body_parameter, MultipartBodyParameter):
+            _LOGGER.warning(
+                'Not going to generate operation "%s" because it has multipart / urlencoded body parameters. '\
+                "Multipart / urlencoded body parameters are not supported for version tolerant generation right now. "\
+                "Please write your own custom operation in the \"_patch.py\" file "\
+                "following https://aka.ms/azsdk/python/dpcodegen/python/customize",
+                name
+            )
+            abstract = True
+
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
@@ -386,6 +399,7 @@ class OperationBase(BaseBuilder[ParameterListType]):
             overloads=overloads,
             responses=responses,
             want_tracing=not yaml_data["isOverload"],
+            abstract=abstract,
         )
 
 
