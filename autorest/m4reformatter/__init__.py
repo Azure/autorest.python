@@ -158,6 +158,12 @@ def update_primitive(type_group: str, yaml_data: Dict[str, Any]) -> Dict[str, An
         return {"type": "base64", "clientDefaultValue": yaml_data.get("defaultValue")}
     if type_group == "boolean":
         return {"type": "bool", "clientDefaultValue": yaml_data.get("defaultValue")}
+    if type_group == "any-object":
+        return {"type": "any-object"}
+    if type_group == "unix-time":
+        return {"type": "unix-time", "clientDefaultValue": yaml_data.get("defaultValue")}
+    if type_group == "time":
+        return {"type": "time", "clientDefaultValue": yaml_data.get("defaultValue")}
     raise ValueError(f"Unknown type group {type_group}")
 
 def update_types(yaml_data: List[Dict[str, Any]]) -> Dict[str, Any]:

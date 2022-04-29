@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, TypeVar
+from typing import Any, Callable, Dict, IO, Optional, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -20,7 +20,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
-from azure.core.utils import case_insensitive_dict
 
 from ...operations._operations import build_availability_sets_update_request
 
@@ -50,9 +49,9 @@ class AvailabilitySetsOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    @distributed_trace_async
+    @overload
     async def update(  # pylint: disable=inconsistent-return-statements
-        self, resource_group_name: str, avset: str, tags: JSON, **kwargs: Any
+        self, resource_group_name: str, avset: str, tags: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Updates the tags for an availability set.
 
@@ -62,6 +61,9 @@ class AvailabilitySetsOperations:
         :type avset: str
         :param tags: The tags.
         :type tags: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Optional. Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -72,29 +74,82 @@ class AvailabilitySetsOperations:
                 # JSON input template you can fill out and use as your body input.
                 tags = {
                     "tags": {
-                        "str": "str"  # Required. A set of tags. A description about the set
-                          of tags.
+                        "str": "str"  # A description about the set of tags.
                     }
                 }
+        """
+
+        ...
+
+    @overload
+    async def update(  # pylint: disable=inconsistent-return-statements
+        self, resource_group_name: str, avset: str, tags: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Updates the tags for an availability set.
+
+        :param resource_group_name: The name of the resource group.
+        :type resource_group_name: str
+        :param avset: The name of the storage availability set.
+        :type avset: str
+        :param tags: The tags.
+        :type tags: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def update(  # pylint: disable=inconsistent-return-statements
+        self,
+        resource_group_name: str,
+        avset: str,
+        tags: Union[JSON, IO],
+        *,
+        content_type: Optional[str] = None,
+        **kwargs: Any
+    ) -> None:
+        """Updates the tags for an availability set.
+
+        :param resource_group_name: The name of the resource group.
+        :type resource_group_name: str
+        :param avset: The name of the storage availability set.
+        :type avset: str
+        :param tags: The tags. Is either a model type or a IO type.
+        :type tags: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Optional. Default value is None.
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = tags
+        _json = None
+        _content = None
+        if isinstance(tags, (IO, bytes)):
+            _content = tags
+        else:
+            _json = tags
+            content_type = content_type or "application/json"
 
         request = build_availability_sets_update_request(
             resource_group_name=resource_group_name,
             avset=avset,
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )

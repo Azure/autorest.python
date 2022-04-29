@@ -10,7 +10,7 @@ from typing import cast, Any, Dict, List, Optional, Union, TYPE_CHECKING
 
 from .base_type import BaseType
 from .imports import FileImport, ImportType, TypingSection
-from .utils import add_to_description
+from .utils import add_to_description, define_mutable_mapping_type
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -140,6 +140,33 @@ class AnyType(PrimitiveType):
     @property
     def instance_check_template(self) -> str:
         raise ValueError("Shouldn't do instance check on an anytype, it can be anything")
+
+class AnyObjectType(PrimitiveType):
+    @property
+    def serialization_type(self) -> str:
+        return "object"
+
+    @property
+    def docstring_type(self) -> str:
+        return "JSON"
+
+    def type_annotation(
+        self, *, is_operation_file: bool = False  # pylint: disable=unused-argument
+    ) -> str:
+        return "JSON"
+
+    @property
+    def default_template_representation_declaration(self) -> str:
+        return self.get_declaration({})
+
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, MutableMapping)"
+
+    def imports(self, *, is_operation_file: bool) -> FileImport:
+        file_import = FileImport()
+        file_import.merge(define_mutable_mapping_type(file_import))
+        return file_import
 
 
 class NumberType(PrimitiveType):
@@ -415,7 +442,7 @@ class UnixTimeType(PrimitiveType):
 
     @property
     def instance_check_template(self) -> str:
-        return "isinstance({}, datetime.datetime)"
+        return "isinstance({}, datetime.time)"
 
 
 class DateType(PrimitiveType):

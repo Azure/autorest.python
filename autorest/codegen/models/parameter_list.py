@@ -272,9 +272,7 @@ class RequestBuilderParameterList(_RequestBuilderParameterList):
 class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList):
 
     def method_signature(self, is_python3_file: bool) -> List[str]:
-        if self.positional:
-            return ["*args", "**kwargs"]
-        return ["**kwargs"]
+        return self.method_signature_positional(is_python3_file) + ["**kwargs"]
 
 class _ClientGlobalParameterList(_ParameterListBase[ParameterType, BodyParameter]):
 

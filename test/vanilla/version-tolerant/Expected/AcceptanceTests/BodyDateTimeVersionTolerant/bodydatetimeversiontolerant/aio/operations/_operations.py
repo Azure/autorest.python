@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, Optional, Optional, TypeVar, cast
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -254,9 +254,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = datetime_body
@@ -286,9 +284,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
     async def put_utc_max_date_time7_digits(  # pylint: disable=inconsistent-return-statements
         self, datetime_body: datetime.datetime, **kwargs: Any
     ) -> None:
-        """Put max datetime value 9999-12-31T23:59:59.9999999Z.
-
-        This is against the recommendation that asks for 3 digits, but allow to test what happens in
+        """This is against the recommendation that asks for 3 digits, but allow to test what happens in
         that scenario.
 
         :param datetime_body: datetime body.
@@ -303,9 +299,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = datetime_body
@@ -417,9 +411,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def get_utc_uppercase_max_date_time7_digits(self, **kwargs: Any) -> datetime.datetime:
-        """Get max datetime value 9999-12-31T23:59:59.9999999Z.
-
-        This is against the recommendation that asks for 3 digits, but allow to test what happens in
+        """This is against the recommendation that asks for 3 digits, but allow to test what happens in
         that scenario.
 
         :return: datetime
@@ -478,9 +470,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = datetime_body
@@ -608,9 +598,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = datetime_body
@@ -738,9 +726,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = datetime_body
@@ -826,9 +812,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = datetime_body
@@ -914,9 +898,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = datetime_body

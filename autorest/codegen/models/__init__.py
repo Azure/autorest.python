@@ -23,6 +23,8 @@ from .primitive_types import (
     PrimitiveType,
     BinaryType,
     BooleanType,
+    AnyObjectType,
+    UnixTimeType,
 )
 from .enum_type import EnumType
 from .base_type import BaseType
@@ -111,6 +113,9 @@ TYPE_TO_OBJECT = {
     "ARMChallengeAuthenticationPolicy": ARMChallengeAuthenticationPolicyType,
     "BearerTokenCredentialPolicy": BearerTokenCredentialPolicyType,
     "AzureKeyCredentialPolicy": AzureKeyCredentialPolicyType,
+    "any-object": AnyObjectType,
+    "unix-time": UnixTimeType,
+    "time": TimeType,
 }
 
 def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:

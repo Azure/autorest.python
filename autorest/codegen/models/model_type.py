@@ -8,6 +8,7 @@ from .base_type import BaseType
 from .dictionary_type import DictionaryType
 from .property import Property
 from .imports import FileImport, ImportModel, ImportType, TypingSection
+from .utils import define_mutable_mapping_type
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -173,23 +174,5 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
         file_import.add_import("sys", ImportType.STDLIB)
-        file_import.define_mypy_type(
-            "JSON",
-            "MutableMapping[str, Any] # pylint: disable=unsubscriptable-object",
-            None,
-            {
-                (3, 9): ImportModel(
-                    TypingSection.CONDITIONAL,
-                    ImportType.STDLIB,
-                    "collections.abc",
-                    submodule_name="MutableMapping",
-                ),
-                None: ImportModel(
-                    TypingSection.CONDITIONAL,
-                    ImportType.STDLIB,
-                    "typing",
-                    submodule_name="MutableMapping",
-                ),
-            },
-        )
+        file_import.merge(define_mutable_mapping_type(file_import))
         return file_import

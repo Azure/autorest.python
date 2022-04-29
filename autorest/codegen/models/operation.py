@@ -381,7 +381,7 @@ class OperationBase(BaseBuilder[ParameterListType]):
             for overload in yaml_data.get("overloads", [])
         ]
         abstract = False
-        if code_model.options["version_tolerant"] and isinstance(parameter_list.body_parameter, MultipartBodyParameter):
+        if code_model.options["version_tolerant"] and parameter_list.has_body and isinstance(parameter_list.body_parameter, MultipartBodyParameter):
             _LOGGER.warning(
                 'Not going to generate operation "%s" because it has multipart / urlencoded body parameters. '\
                 "Multipart / urlencoded body parameters are not supported for version tolerant generation right now. "\

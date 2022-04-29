@@ -115,7 +115,7 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         ]
         abstract = False
         parameter_list = cls.parameter_list_type().from_yaml(yaml_data, code_model)
-        if code_model.options["version_tolerant"] and isinstance(parameter_list.body_parameter, RequestBuilderMultipartBodyParameter):
+        if code_model.options["version_tolerant"] and parameter_list.has_body and isinstance(parameter_list.body_parameter, RequestBuilderMultipartBodyParameter):
             _LOGGER.warning(
                 'Not going to generate operation "%s" because it has multipart / urlencoded body parameters. '\
                 "Multipart / urlencoded body parameters are not supported for version tolerant generation right now. "\
