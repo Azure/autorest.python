@@ -1234,10 +1234,10 @@ class BasicOperations:
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
-        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
+        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1264,10 +1264,10 @@ class BasicOperations:
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
-        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
+        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1283,10 +1283,10 @@ class BasicOperations:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Is either a model type
-         or a IO type.
+         or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1624,10 +1624,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with integer properties.
 
-        :param complex_body: Please put -1 and 2.
+        :param complex_body: Please put -1 and 2. Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1651,10 +1651,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with integer properties.
 
-        :param complex_body: Please put -1 and 2.
+        :param complex_body: Please put -1 and 2. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1669,10 +1669,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with integer properties.
 
-        :param complex_body: Please put -1 and 2. Is either a model type or a IO type.
+        :param complex_body: Please put -1 and 2. Is either a model type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1774,10 +1774,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with long properties.
 
-        :param complex_body: Please put 1099511627775 and -999511627788.
+        :param complex_body: Please put 1099511627775 and -999511627788. Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1801,10 +1801,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with long properties.
 
-        :param complex_body: Please put 1099511627775 and -999511627788.
+        :param complex_body: Please put 1099511627775 and -999511627788. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1820,10 +1820,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788. Is either a model type or a IO
-         type.
+         type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1925,10 +1925,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with float properties.
 
-        :param complex_body: Please put 1.05 and -0.003.
+        :param complex_body: Please put 1.05 and -0.003. Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1952,10 +1952,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with float properties.
 
-        :param complex_body: Please put 1.05 and -0.003.
+        :param complex_body: Please put 1.05 and -0.003. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1970,10 +1970,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with float properties.
 
-        :param complex_body: Please put 1.05 and -0.003. Is either a model type or a IO type.
+        :param complex_body: Please put 1.05 and -0.003. Is either a model type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2077,10 +2077,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
-         -0.000000000000000000000000000000000000000000000000000000005.
+         -0.000000000000000000000000000000000000000000000000000000005. Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2106,10 +2106,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
-         -0.000000000000000000000000000000000000000000000000000000005.
+         -0.000000000000000000000000000000000000000000000000000000005. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2126,10 +2126,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         :param complex_body: Please put 3e-100 and
          -0.000000000000000000000000000000000000000000000000000000005. Is either a model type or a IO
-         type.
+         type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2231,10 +2231,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with bool properties.
 
-        :param complex_body: Please put true and false.
+        :param complex_body: Please put true and false. Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2258,10 +2258,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with bool properties.
 
-        :param complex_body: Please put true and false.
+        :param complex_body: Please put true and false. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2276,10 +2276,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with bool properties.
 
-        :param complex_body: Please put true and false. Is either a model type or a IO type.
+        :param complex_body: Please put true and false. Is either a model type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2382,10 +2382,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with string properties.
 
-        :param complex_body: Please put 'goodrequest', '', and null.
+        :param complex_body: Please put 'goodrequest', '', and null. Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2410,10 +2410,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with string properties.
 
-        :param complex_body: Please put 'goodrequest', '', and null.
+        :param complex_body: Please put 'goodrequest', '', and null. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2429,10 +2429,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null. Is either a model type or a IO
-         type.
+         type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2534,10 +2534,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with date properties.
 
-        :param complex_body: Please put '0001-01-01' and '2016-02-29'.
+        :param complex_body: Please put '0001-01-01' and '2016-02-29'. Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2561,10 +2561,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with date properties.
 
-        :param complex_body: Please put '0001-01-01' and '2016-02-29'.
+        :param complex_body: Please put '0001-01-01' and '2016-02-29'. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2580,10 +2580,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'. Is either a model type or a IO
-         type.
+         type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2686,9 +2686,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
+         Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2713,9 +2714,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
+         Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2731,10 +2733,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'. Is
-         either a model type or a IO type.
+         either a model type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2837,10 +2839,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
-         GMT'.
+         GMT'. Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2865,10 +2867,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
-         GMT'.
+         GMT'. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2884,10 +2886,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
-         GMT'. Is either a model type or a IO type.
+         GMT'. Is either a model type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2988,10 +2990,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with duration properties.
 
-        :param complex_body: Please put 'P123DT22H14M12.011S'.
+        :param complex_body: Please put 'P123DT22H14M12.011S'. Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3014,10 +3016,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with duration properties.
 
-        :param complex_body: Please put 'P123DT22H14M12.011S'.
+        :param complex_body: Please put 'P123DT22H14M12.011S'. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3033,9 +3035,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with duration properties.
 
         :param complex_body: Please put 'P123DT22H14M12.011S'. Is either a model type or a IO type.
+         Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3137,9 +3140,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with byte properties.
 
         :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6).
+         Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3163,9 +3167,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with byte properties.
 
         :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6).
+         Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3181,10 +3186,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with byte properties.
 
         :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6). Is
-         either a model type or a IO type.
+         either a model type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3306,10 +3311,10 @@ class ArrayOperations:
         """Put complex types with array property.
 
         :param complex_body: Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The
-         quick brown fox jumps over the lazy dog".
+         quick brown fox jumps over the lazy dog". Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3335,10 +3340,10 @@ class ArrayOperations:
         """Put complex types with array property.
 
         :param complex_body: Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The
-         quick brown fox jumps over the lazy dog".
+         quick brown fox jumps over the lazy dog". Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3354,10 +3359,10 @@ class ArrayOperations:
         """Put complex types with array property.
 
         :param complex_body: Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The
-         quick brown fox jumps over the lazy dog". Is either a model type or a IO type.
+         quick brown fox jumps over the lazy dog". Is either a model type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3460,10 +3465,10 @@ class ArrayOperations:
     ) -> None:
         """Put complex types with array property which is empty.
 
-        :param complex_body: Please put an empty array.
+        :param complex_body: Please put an empty array. Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3488,10 +3493,10 @@ class ArrayOperations:
     ) -> None:
         """Put complex types with array property which is empty.
 
-        :param complex_body: Please put an empty array.
+        :param complex_body: Please put an empty array. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3506,10 +3511,10 @@ class ArrayOperations:
     ) -> None:
         """Put complex types with array property which is empty.
 
-        :param complex_body: Please put an empty array. Is either a model type or a IO type.
+        :param complex_body: Please put an empty array. Is either a model type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3683,10 +3688,10 @@ class DictionaryOperations:
         """Put complex types with dictionary property.
 
         :param complex_body: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
-         "bmp":"mspaint", "xls":"excel", "exe":"", "":null.
+         "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3712,10 +3717,10 @@ class DictionaryOperations:
         """Put complex types with dictionary property.
 
         :param complex_body: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
-         "bmp":"mspaint", "xls":"excel", "exe":"", "":null.
+         "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3732,9 +3737,10 @@ class DictionaryOperations:
 
         :param complex_body: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
          "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Is either a model type or a IO type.
+         Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3837,10 +3843,10 @@ class DictionaryOperations:
     ) -> None:
         """Put complex types with dictionary property which is empty.
 
-        :param complex_body: Please put an empty dictionary.
+        :param complex_body: Please put an empty dictionary. Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3865,10 +3871,10 @@ class DictionaryOperations:
     ) -> None:
         """Put complex types with dictionary property which is empty.
 
-        :param complex_body: Please put an empty dictionary.
+        :param complex_body: Please put an empty dictionary. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -3884,9 +3890,10 @@ class DictionaryOperations:
         """Put complex types with dictionary property which is empty.
 
         :param complex_body: Please put an empty dictionary. Is either a model type or a IO type.
+         Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -4121,10 +4128,10 @@ class InheritanceOperations:
 
         :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
          breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
-         the 2nd one named "Tomato" with id=-1 and food="french fries".
+         the 2nd one named "Tomato" with id=-1 and food="french fries". Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -4159,10 +4166,10 @@ class InheritanceOperations:
 
         :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
          breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
-         the 2nd one named "Tomato" with id=-1 and food="french fries".
+         the 2nd one named "Tomato" with id=-1 and food="french fries". Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -4180,10 +4187,10 @@ class InheritanceOperations:
         :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
          breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
          the 2nd one named "Tomato" with id=-1 and food="french fries". Is either a model type or a IO
-         type.
+         type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -4259,7 +4266,7 @@ class PolymorphismOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "siblings": [
                         ...
                     ],
@@ -4339,10 +4346,10 @@ class PolymorphismOperations:
                      'jawsize': 5
                    }
                  ]
-               };.
+               };. Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -4355,7 +4362,7 @@ class PolymorphismOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "siblings": [
                         ...
                     ],
@@ -4404,10 +4411,10 @@ class PolymorphismOperations:
                      'jawsize': 5
                    }
                  ]
-               };.
+               };. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -4454,10 +4461,10 @@ class PolymorphismOperations:
                      'jawsize': 5
                    }
                  ]
-               };. Is either a model type or a IO type.
+               };. Is either a model type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -4718,11 +4725,11 @@ class PolymorphismOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "iswild": bool,  # Optional.
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "location": "str",  # Optional.
                     "siblings": [
                         {
-                            "length": 0.0,
+                            "length": 0.0,  # Required.
                             "siblings": [
                                 ...
                             ],
@@ -4775,10 +4782,10 @@ class PolymorphismOperations:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
-        :param complex_body:
+        :param complex_body: Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -4792,11 +4799,11 @@ class PolymorphismOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
                     "iswild": bool,  # Optional.
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "location": "str",  # Optional.
                     "siblings": [
                         {
-                            "length": 0.0,
+                            "length": 0.0,  # Required.
                             "siblings": [
                                 ...
                             ],
@@ -4818,10 +4825,10 @@ class PolymorphismOperations:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
-        :param complex_body:
+        :param complex_body: Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -4837,10 +4844,10 @@ class PolymorphismOperations:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
-        :param complex_body: Is either a model type or a IO type.
+        :param complex_body: Is either a model type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -4891,10 +4898,10 @@ class PolymorphismOperations:
     ) -> JSON:
         """Put complex types that are polymorphic, omitting the discriminator.
 
-        :param complex_body:
+        :param complex_body: Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -4908,11 +4915,11 @@ class PolymorphismOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
                     "iswild": bool,  # Optional.
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "location": "str",  # Optional.
                     "siblings": [
                         {
-                            "length": 0.0,
+                            "length": 0.0,  # Required.
                             "siblings": [
                                 ...
                             ],
@@ -4927,11 +4934,11 @@ class PolymorphismOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "iswild": bool,  # Optional.
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "location": "str",  # Optional.
                     "siblings": [
                         {
-                            "length": 0.0,
+                            "length": 0.0,  # Required.
                             "siblings": [
                                 ...
                             ],
@@ -4950,10 +4957,10 @@ class PolymorphismOperations:
     def put_missing_discriminator(self, complex_body: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
         """Put complex types that are polymorphic, omitting the discriminator.
 
-        :param complex_body:
+        :param complex_body: Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -4965,11 +4972,11 @@ class PolymorphismOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "iswild": bool,  # Optional.
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "location": "str",  # Optional.
                     "siblings": [
                         {
-                            "length": 0.0,
+                            "length": 0.0,  # Required.
                             "siblings": [
                                 ...
                             ],
@@ -4988,10 +4995,10 @@ class PolymorphismOperations:
     def put_missing_discriminator(self, complex_body: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Put complex types that are polymorphic, omitting the discriminator.
 
-        :param complex_body: Is either a model type or a IO type.
+        :param complex_body: Is either a model type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -5003,11 +5010,11 @@ class PolymorphismOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "iswild": bool,  # Optional.
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "location": "str",  # Optional.
                     "siblings": [
                         {
-                            "length": 0.0,
+                            "length": 0.0,  # Required.
                             "siblings": [
                                 ...
                             ],
@@ -5098,10 +5105,10 @@ class PolymorphismOperations:
                      "age": 105
                  }
              ]
-         }.
+         }. Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -5114,7 +5121,7 @@ class PolymorphismOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "siblings": [
                         ...
                     ],
@@ -5158,10 +5165,10 @@ class PolymorphismOperations:
                      "age": 105
                  }
              ]
-         }.
+         }. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -5203,10 +5210,10 @@ class PolymorphismOperations:
                      "age": 105
                  }
              ]
-         }. Is either a model type or a IO type.
+         }. Is either a model type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -5282,7 +5289,7 @@ class PolymorphicrecursiveOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "siblings": [
                         ...
                     ],
@@ -5382,10 +5389,10 @@ class PolymorphicrecursiveOperations:
                      "age": 105
                  }
              ]
-         }.
+         }. Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -5398,7 +5405,7 @@ class PolymorphicrecursiveOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "length": 0.0,
+                    "length": 0.0,  # Required.
                     "siblings": [
                         ...
                     ],
@@ -5467,10 +5474,10 @@ class PolymorphicrecursiveOperations:
                      "age": 105
                  }
              ]
-         }.
+         }. Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -5537,10 +5544,10 @@ class PolymorphicrecursiveOperations:
                      "age": 105
                  }
              ]
-         }. Is either a model type or a IO type.
+         }. Is either a model type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -5660,10 +5667,10 @@ class ReadonlypropertyOperations:
     ) -> None:
         """Put complex types that have readonly properties.
 
-        :param complex_body:
+        :param complex_body: Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -5687,10 +5694,10 @@ class ReadonlypropertyOperations:
     ) -> None:
         """Put complex types that have readonly properties.
 
-        :param complex_body:
+        :param complex_body: Required.
         :type complex_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -5705,10 +5712,10 @@ class ReadonlypropertyOperations:
     ) -> None:
         """Put complex types that have readonly properties.
 
-        :param complex_body: Is either a model type or a IO type.
+        :param complex_body: Is either a model type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None

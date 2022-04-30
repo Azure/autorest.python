@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, Optional, TypeVar, Union, cast
+from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
@@ -51,7 +51,7 @@ class DPGClientOperationsMixin(MixinABC):
 
         :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
-         before returning to users.
+         before returning to users. Required.
         :type mode: str
         :return: JSON object
         :rtype: JSON
@@ -62,7 +62,7 @@ class DPGClientOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "received": "str"  # Required. Known values are: "raw", "model".
+                    "received": "str"  # Required. Known values are: "raw" or "model".
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -100,17 +100,22 @@ class DPGClientOperationsMixin(MixinABC):
 
         return cast(JSON, deserialized)
 
-    @distributed_trace_async
-    async def post_model(self, mode: str, input: JSON, **kwargs: Any) -> JSON:
+    @overload
+    async def post_model(
+        self, mode: str, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
         :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
-         before returning to users.
+         before returning to users. Required.
         :type mode: str
-        :param input: Please put {'hello': 'world!'}.
+        :param input: Please put {'hello': 'world!'}. Required.
         :type input: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -125,7 +130,65 @@ class DPGClientOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "received": "str"  # Required. Known values are: "raw", "model".
+                    "received": "str"  # Required. Known values are: "raw" or "model".
+                }
+        """
+
+        ...
+
+    @overload
+    async def post_model(self, mode: str, input: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
+        """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
+        take a model instead, and put in 'model' as mode.
+
+        :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
+         with the raw body, and 'model' if you are going to convert the raw body to a customized body
+         before returning to users. Required.
+        :type mode: str
+        :param input: Please put {'hello': 'world!'}. Required.
+        :type input: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "received": "str"  # Required. Known values are: "raw" or "model".
+                }
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def post_model(self, mode: str, input: Union[JSON, IO], **kwargs: Any) -> JSON:
+        """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
+        take a model instead, and put in 'model' as mode.
+
+        :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
+         with the raw body, and 'model' if you are going to convert the raw body to a customized body
+         before returning to users. Required.
+        :type mode: str
+        :param input: Please put {'hello': 'world!'}. Is either a model type or a IO type. Required.
+        :type input: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response.json() == {
+                    "received": "str"  # Required. Known values are: "raw" or "model".
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -134,17 +197,22 @@ class DPGClientOperationsMixin(MixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        _json = input
+        _json = None
+        _content = None
+        if isinstance(input, (IO, bytes)):
+            _content = input
+        else:
+            _json = input
+            content_type = content_type or "application/json"
 
         request = build_post_model_request(
             mode=mode,
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -177,7 +245,7 @@ class DPGClientOperationsMixin(MixinABC):
 
         :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
-         before returning to users.
+         before returning to users. Required.
         :type mode: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
@@ -191,7 +259,7 @@ class DPGClientOperationsMixin(MixinABC):
                     "nextLink": "str",  # Optional.
                     "values": [
                         {
-                            "received": "str"  # Required. Known values are: "raw",
+                            "received": "str"  # Required. Known values are: "raw" or
                               "model".
                         }
                     ]
@@ -292,7 +360,7 @@ class DPGClientOperationsMixin(MixinABC):
 
         :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
-         before returning to users.
+         before returning to users. Required.
         :type mode: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False
@@ -311,7 +379,7 @@ class DPGClientOperationsMixin(MixinABC):
                 # response body for status code(s): 200
                 response.json() == {
                     "provisioningState": "str",  # Required.
-                    "received": "str"  # Required. Known values are: "raw", "model".
+                    "received": "str"  # Required. Known values are: "raw" or "model".
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}

@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from msrest import Serializer
 
@@ -90,9 +90,21 @@ def build_params_put_required_optional_request(
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
+@overload
 def build_params_post_parameters_request(
-    *, json: Optional[JSON] = None, content: Any = None, **kwargs: Any
+    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
+    ...
+
+
+@overload
+def build_params_post_parameters_request(
+    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
+    ...
+
+
+def build_params_post_parameters_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
@@ -106,7 +118,7 @@ def build_params_post_parameters_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 def build_params_get_optional_request(*, optional_param: Optional[str] = None, **kwargs: Any) -> HttpRequest:
@@ -194,7 +206,7 @@ class ParamsOperations:
          Initially only has one required Query Parameter. After evolution, a new optional query
         parameter is added.
 
-        :keyword parameter: I am a required parameter.
+        :keyword parameter: I am a required parameter. Required.
         :paramtype parameter: str
         :return: JSON
         :rtype: JSON
@@ -242,7 +254,7 @@ class ParamsOperations:
         """Initially has one required query parameter and one optional query parameter.  After evolution,
         a new optional query parameter is added.
 
-        :keyword required_param: I am a required parameter.
+        :keyword required_param: I am a required parameter. Required.
         :paramtype required_param: str
         :keyword optional_param: I am an optional parameter. Default value is None.
         :paramtype optional_param: str
@@ -286,13 +298,16 @@ class ParamsOperations:
 
         return cast(JSON, deserialized)
 
-    @distributed_trace
-    def post_parameters(self, parameter: JSON, **kwargs: Any) -> JSON:
+    @overload
+    def post_parameters(self, parameter: JSON, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
         """POST a JSON.
 
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
-         "http://example.org/myimage.jpeg" }.
+         "http://example.org/myimage.jpeg" }. Required.
         :type parameter: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :return: JSON
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -305,22 +320,61 @@ class ParamsOperations:
                     "url": "str"  # Required.
                 }
         """
+
+        ...
+
+    @overload
+    def post_parameters(self, parameter: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
+        """POST a JSON.
+
+        :param parameter: I am a body parameter. My only valid JSON entry is { url:
+         "http://example.org/myimage.jpeg" }. Required.
+        :type parameter: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :return: JSON
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace
+    def post_parameters(self, parameter: Union[JSON, IO], **kwargs: Any) -> JSON:
+        """POST a JSON.
+
+        :param parameter: I am a body parameter. My only valid JSON entry is { url:
+         "http://example.org/myimage.jpeg" }. Is either a model type or a IO type. Required.
+        :type parameter: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
+        :return: JSON
+        :rtype: JSON
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
-        _json = parameter
+        _json = None
+        _content = None
+        if isinstance(parameter, (IO, bytes)):
+            _content = parameter
+        else:
+            _json = parameter
+            content_type = content_type or "application/json"
 
         request = build_params_post_parameters_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )

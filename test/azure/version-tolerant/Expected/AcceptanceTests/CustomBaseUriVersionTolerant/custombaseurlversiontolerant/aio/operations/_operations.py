@@ -49,7 +49,7 @@ class PathsOperations:
     ) -> None:
         """Get a 200 to test a valid base uri.
 
-        :param account_name: Account Name.
+        :param account_name: Account Name. Required.
         :type account_name: str
         :return: None
         :rtype: None

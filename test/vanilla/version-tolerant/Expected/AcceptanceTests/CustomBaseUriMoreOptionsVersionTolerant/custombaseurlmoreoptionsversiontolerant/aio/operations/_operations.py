@@ -49,13 +49,13 @@ class PathsOperations:
     ) -> None:
         """Get a 200 to test a valid base uri.
 
-        :param vault: The vault name, e.g. https://myvault.
+        :param vault: The vault name, e.g. https://myvault. Required.
         :type vault: str
-        :param secret: Secret value.
+        :param secret: Secret value. Required.
         :type secret: str
-        :param key_name: The key name with value 'key1'.
+        :param key_name: The key name with value 'key1'. Required.
         :type key_name: str
-        :keyword key_version: The key version. Default value 'v1'. Optional. Default value is "v1".
+        :keyword key_version: The key version. Default value 'v1'. Default value is "v1".
         :paramtype key_version: str
         :return: None
         :rtype: None

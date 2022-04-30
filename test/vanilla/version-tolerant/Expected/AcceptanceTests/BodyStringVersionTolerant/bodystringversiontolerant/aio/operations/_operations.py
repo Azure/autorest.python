@@ -118,7 +118,7 @@ class StringOperations:
     ) -> None:
         """Set string value null.
 
-        :param string_body: string body. Optional. Default value is None.
+        :param string_body: string body. Default value is None.
         :type string_body: str
         :return: None
         :rtype: None
@@ -202,8 +202,8 @@ class StringOperations:
     async def put_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Set string value empty ''.
 
-        :keyword string_body: string body. Default value is "". Note that overriding this default value
-         may result in unsupported behavior.
+        :keyword string_body: string body. Required. Default value is "". Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype string_body: str
         :return: None
         :rtype: None
@@ -556,7 +556,7 @@ class StringOperations:
     ) -> None:
         """Put value that is base64url encoded.
 
-        :param string_body: string body.
+        :param string_body: string body. Required.
         :type string_body: bytes
         :return: None
         :rtype: None
@@ -703,7 +703,7 @@ class EnumOperations:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param string_body: string body. Known values are: "red color", "green-color", and
-         "blue_color".
+         "blue_color". Required.
         :type string_body: str
         :return: None
         :rtype: None
@@ -790,7 +790,7 @@ class EnumOperations:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param enum_string_body: enum string body. Known values are: "red color", "green-color", and
-         "blue_color".
+         "blue_color". Required.
         :type enum_string_body: str
         :return: None
         :rtype: None
@@ -842,7 +842,7 @@ class EnumOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "ColorConstant": "green-color",  # Default value is "green-color". Referenced
-                      Color Constant Description.
+                      Color Constant Description.Referenced Color Constant Description. Required.
                     "field1": "str"  # Optional. Sample string.
                 }
         """
@@ -886,10 +886,10 @@ class EnumOperations:
     ) -> None:
         """Sends value 'green-color' from a constant.
 
-        :param enum_string_body: enum string body.
+        :param enum_string_body: enum string body. Required.
         :type enum_string_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -901,7 +901,7 @@ class EnumOperations:
                 # JSON input template you can fill out and use as your body input.
                 enum_string_body = {
                     "ColorConstant": "green-color",  # Default value is "green-color". Referenced
-                      Color Constant Description.
+                      Color Constant Description.Referenced Color Constant Description. Required.
                     "field1": "str"  # Optional. Sample string.
                 }
         """
@@ -914,10 +914,10 @@ class EnumOperations:
     ) -> None:
         """Sends value 'green-color' from a constant.
 
-        :param enum_string_body: enum string body.
+        :param enum_string_body: enum string body. Required.
         :type enum_string_body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -932,10 +932,10 @@ class EnumOperations:
     ) -> None:
         """Sends value 'green-color' from a constant.
 
-        :param enum_string_body: enum string body. Is either a model type or a IO type.
+        :param enum_string_body: enum string body. Is either a model type or a IO type. Required.
         :type enum_string_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None

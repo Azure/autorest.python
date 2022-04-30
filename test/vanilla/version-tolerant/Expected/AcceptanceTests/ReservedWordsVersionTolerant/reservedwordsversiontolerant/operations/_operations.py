@@ -155,7 +155,7 @@ class ImportOperations:
     def operation_one(self, *, parameter1: str, **kwargs: Any) -> JSON:
         """Operation in operation group import, a reserved word.
 
-        :keyword parameter1: Pass in 'foo' to pass this test.
+        :keyword parameter1: Pass in 'foo' to pass this test. Required.
         :paramtype parameter1: str
         :return: JSON
         :rtype: JSON
@@ -202,7 +202,7 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
     def operation_with_content_param(self, content: IO, **kwargs: Any) -> JSON:
         """Operation with body param called content. Pass in b'hello, world'.
 
-        :param content: Pass in b'hello, world'.
+        :param content: Pass in b'hello, world'. Required.
         :type content: IO
         :return: JSON
         :rtype: JSON
@@ -251,7 +251,7 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
     def operation_with_json_param(self, json: Any, **kwargs: Any) -> JSON:
         """Operation with body param called 'json'. Pass in {'hello': 'world'}.
 
-        :param json: Pass in {'hello': 'world'}.
+        :param json: Pass in {'hello': 'world'}. Required.
         :type json: any
         :return: JSON
         :rtype: JSON
@@ -319,13 +319,13 @@ class ReservedWordsClientOperationsMixin(MixinABC, abc.ABC):
         """Operation with path format argument URL, header param headerParameters, and query param
         queryParameters.
 
-        :param url: Pass in 'foo'.
+        :param url: Pass in 'foo'. Required.
         :type url: str
         :keyword header_parameters: Header arg that uses same name as headerParameters in generated
-         code. Pass in 'x-ms-header' to pass.
+         code. Pass in 'x-ms-header' to pass. Required.
         :paramtype header_parameters: str
         :keyword query_parameters: Query args that uses same name as queryParameters in generated code.
-         Pass in ['one', 'two'] to pass test. Optional. Default value is None.
+         Pass in ['one', 'two'] to pass test. Default value is None.
         :paramtype query_parameters: list[str]
         :return: JSON
         :rtype: JSON

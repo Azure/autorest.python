@@ -53,7 +53,8 @@ class Response(BaseModel):
         """Is the response expected to be streamable, like a download."""
         return isinstance(self.type, BinaryType)
 
-    def serialization_type(self, content_type: str) -> str:
+    @property
+    def serialization_type(self) -> str:
         if self.type:
             return self.type.serialization_type
         return "None"

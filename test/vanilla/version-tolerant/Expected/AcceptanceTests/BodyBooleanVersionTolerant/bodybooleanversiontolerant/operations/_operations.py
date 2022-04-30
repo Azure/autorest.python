@@ -271,8 +271,8 @@ class BoolOperations:
     def put_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Set Boolean value false.
 
-        :keyword bool_body: Default value is False. Note that overriding this default value may result
-         in unsupported behavior.
+        :keyword bool_body: Required. Default value is False. Note that overriding this default value
+         may result in unsupported behavior.
         :paramtype bool_body: bool
         :return: None
         :rtype: None

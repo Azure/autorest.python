@@ -354,7 +354,7 @@ class Datetimerfc1123Operations:
     ) -> None:
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
 
-        :param datetime_body: datetime body.
+        :param datetime_body: datetime body. Required.
         :type datetime_body: ~datetime.datetime
         :return: None
         :rtype: None
@@ -482,7 +482,7 @@ class Datetimerfc1123Operations:
     ) -> None:
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
-        :param datetime_body: datetime body.
+        :param datetime_body: datetime body. Required.
         :type datetime_body: ~datetime.datetime
         :return: None
         :rtype: None

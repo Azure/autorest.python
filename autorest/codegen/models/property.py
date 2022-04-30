@@ -3,12 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from this import d
 from typing import Any, Dict, Optional, TYPE_CHECKING
 
 from .base_model import BaseModel
 from .constant_type import ConstantType
 from .base_type import BaseType
-from .imports import FileImport
+from .imports import FileImport, ImportType
 from .utils import add_to_description
 
 if TYPE_CHECKING:
@@ -33,6 +34,8 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     def description(self, *, is_operation_file: bool) -> str:
         description = self.yaml_data["description"]
+        if not (self.optional or self.client_default_value):
+            description += add_to_description(description, "Required.")
         return add_to_description(description, self.type.description(is_operation_file=is_operation_file))
 
     @property
@@ -60,7 +63,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self.type.serialization_type
 
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
-        if self.optional:
+        if self.optional and self.client_default_value is None:
             return f"Optional[{self.type.type_annotation(is_operation_file=is_operation_file)}]"
         return self.type.type_annotation(is_operation_file=is_operation_file)
 
@@ -88,7 +91,10 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return f'"{self.client_name}": {{"key": "{self.rest_api_name}", "type": "{self.serialization_type}"}},'
 
     def imports(self) -> FileImport:
-        return self.type.imports(is_operation_file=False)
+        file_import = self.type.imports(is_operation_file=False)
+        if self.optional and self.client_default_value is None:
+            file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
+        return file_import
 
     @classmethod
     def from_yaml(

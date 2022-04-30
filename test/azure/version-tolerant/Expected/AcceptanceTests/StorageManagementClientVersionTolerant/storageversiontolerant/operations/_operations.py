@@ -434,10 +434,10 @@ class StorageAccountsOperations:
 
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -448,7 +448,7 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 account_name = {
-                    "name": "str",
+                    "name": "str",  # Required.
                     "type": "str"  # Optional.
                 }
 
@@ -473,10 +473,10 @@ class StorageAccountsOperations:
 
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -506,10 +506,10 @@ class StorageAccountsOperations:
 
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only. Is either a model type or a IO type.
+         lower-case letters only. Is either a model type or a IO type. Required.
         :type account_name: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'text/json'. Optional. Default value is None.
+         'text/json'. Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -651,15 +651,16 @@ class StorageAccountsOperations:
         properties, then HTTP 200 would be returned.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
-        :param parameters: The parameters to provide for the created account.
+        :param parameters: The parameters to provide for the created account. Required.
         :type parameters: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
@@ -678,7 +679,7 @@ class StorageAccountsOperations:
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Resource location.
+                    "location": "str",  # Resource location.Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str"  # Optional. Gets or sets the account type.
@@ -694,7 +695,7 @@ class StorageAccountsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Resource location.
+                    "location": "str",  # Resource location.Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -777,15 +778,16 @@ class StorageAccountsOperations:
         properties, then HTTP 200 would be returned.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
-        :param parameters: The parameters to provide for the created account.
+        :param parameters: The parameters to provide for the created account. Required.
         :type parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
@@ -804,7 +806,7 @@ class StorageAccountsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Resource location.
+                    "location": "str",  # Resource location.Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -881,16 +883,17 @@ class StorageAccountsOperations:
         properties, then HTTP 200 would be returned.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
         :param parameters: The parameters to provide for the created account. Is either a model type or
-         a IO type.
+         a IO type. Required.
         :type parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'text/json'. Optional. Default value is None.
+         'text/json'. Default value is None.
         :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
@@ -909,7 +912,7 @@ class StorageAccountsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Resource location.
+                    "location": "str",  # Resource location.Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -1028,10 +1031,11 @@ class StorageAccountsOperations:
         """Deletes a storage account in Microsoft Azure.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
         :return: None
         :rtype: None
@@ -1076,10 +1080,11 @@ class StorageAccountsOperations:
         storage keys.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
         :return: JSON object
         :rtype: JSON
@@ -1091,7 +1096,7 @@ class StorageAccountsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Resource location.
+                    "location": "str",  # Resource location.Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -1213,16 +1218,17 @@ class StorageAccountsOperations:
         location and name of the storage account cannot be changed after creation.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
         :param parameters: The parameters to update on the account. Note that only one property can be
-         changed at a time using this API.
+         changed at a time using this API. Required.
         :type parameters: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -1234,7 +1240,7 @@ class StorageAccountsOperations:
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Resource location.
+                    "location": "str",  # Resource location.Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets or sets the account type.
@@ -1259,7 +1265,7 @@ class StorageAccountsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Resource location.
+                    "location": "str",  # Resource location.Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -1345,16 +1351,17 @@ class StorageAccountsOperations:
         location and name of the storage account cannot be changed after creation.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
         :param parameters: The parameters to update on the account. Note that only one property can be
-         changed at a time using this API.
+         changed at a time using this API. Required.
         :type parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -1366,7 +1373,7 @@ class StorageAccountsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Resource location.
+                    "location": "str",  # Resource location.Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -1444,16 +1451,17 @@ class StorageAccountsOperations:
         location and name of the storage account cannot be changed after creation.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
         :param parameters: The parameters to update on the account. Note that only one property can be
-         changed at a time using this API. Is either a model type or a IO type.
+         changed at a time using this API. Is either a model type or a IO type. Required.
         :type parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'text/json'. Optional. Default value is None.
+         'text/json'. Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -1465,7 +1473,7 @@ class StorageAccountsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "id": "str",  # Optional. Resource Id.
-                    "location": "str",  # Resource location.
+                    "location": "str",  # Resource location.Resource location. Required.
                     "name": "str",  # Optional. Resource name.
                     "properties": {
                         "accountType": "str",  # Optional. Gets the type of the storage
@@ -1585,8 +1593,9 @@ class StorageAccountsOperations:
         """Lists the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
-        :param account_name: The name of the storage account.
+        :param account_name: The name of the storage account. Required.
         :type account_name: str
         :return: JSON object
         :rtype: JSON
@@ -1659,7 +1668,8 @@ class StorageAccountsOperations:
                     "value": [
                         {
                             "id": "str",  # Optional. Resource Id.
-                            "location": "str",  # Resource location.
+                            "location": "str",  # Resource location.Resource location.
+                              Required.
                             "name": "str",  # Optional. Resource name.
                             "properties": {
                                 "accountType": "str",  # Optional. Gets the type of
@@ -1794,6 +1804,7 @@ class StorageAccountsOperations:
         are not returned; use the ListKeys operation for this.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
@@ -1809,7 +1820,8 @@ class StorageAccountsOperations:
                     "value": [
                         {
                             "id": "str",  # Optional. Resource Id.
-                            "location": "str",  # Resource location.
+                            "location": "str",  # Resource location.Resource location.
+                              Required.
                             "name": "str",  # Optional. Resource name.
                             "properties": {
                                 "accountType": "str",  # Optional. Gets the type of
@@ -1953,15 +1965,16 @@ class StorageAccountsOperations:
         """Regenerates the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
-        :param regenerate_key: Specifies name of the key which should be regenerated.
+        :param regenerate_key: Specifies name of the key which should be regenerated. Required.
         :type regenerate_key: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -1997,15 +2010,16 @@ class StorageAccountsOperations:
         """Regenerates the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
-        :param regenerate_key: Specifies name of the key which should be regenerated.
+        :param regenerate_key: Specifies name of the key which should be regenerated. Required.
         :type regenerate_key: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -2030,16 +2044,17 @@ class StorageAccountsOperations:
         """Regenerates the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
         :param regenerate_key: Specifies name of the key which should be regenerated. Is either a model
-         type or a IO type.
+         type or a IO type. Required.
         :type regenerate_key: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'text/json'. Optional. Default value is None.
+         'text/json'. Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON

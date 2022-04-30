@@ -48,10 +48,10 @@ class MediaTypesClientOperationsMixin(MixinABC):
     ) -> str:
         """Analyze body, that could be different media types.
 
-        :param input: Input parameter. Optional. Default value is None.
+        :param input: Input parameter. Default value is None.
         :type input: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -74,10 +74,10 @@ class MediaTypesClientOperationsMixin(MixinABC):
     ) -> str:
         """Analyze body, that could be different media types.
 
-        :param input: Input parameter. Optional. Default value is None.
+        :param input: Input parameter. Default value is None.
         :type input: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -90,11 +90,10 @@ class MediaTypesClientOperationsMixin(MixinABC):
     async def analyze_body(self, input: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> str:
         """Analyze body, that could be different media types.
 
-        :param input: Input parameter. Is either a model type or a IO type. Optional. Default value is
-         None.
+        :param input: Input parameter. Is either a model type or a IO type. Default value is None.
         :type input: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Optional. Default value is None.
+         'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -153,10 +152,10 @@ class MediaTypesClientOperationsMixin(MixinABC):
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
         type.
 
-        :param input: Input parameter. Optional. Default value is None.
+        :param input: Input parameter. Default value is None.
         :type input: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -180,10 +179,10 @@ class MediaTypesClientOperationsMixin(MixinABC):
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
         type.
 
-        :param input: Input parameter. Optional. Default value is None.
+        :param input: Input parameter. Default value is None.
         :type input: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -199,11 +198,10 @@ class MediaTypesClientOperationsMixin(MixinABC):
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
         type.
 
-        :param input: Input parameter. Is either a model type or a IO type. Optional. Default value is
-         None.
+        :param input: Input parameter. Is either a model type or a IO type. Default value is None.
         :type input: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Optional. Default value is None.
+         'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -252,7 +250,7 @@ class MediaTypesClientOperationsMixin(MixinABC):
     async def content_type_with_encoding(self, input: Optional[str] = None, **kwargs: Any) -> str:
         """Pass in contentType 'text/plain; charset=UTF-8' to pass test. Value for input does not matter.
 
-        :param input: Input parameter. Optional. Default value is None.
+        :param input: Input parameter. Default value is None.
         :type input: str
         :return: str
         :rtype: str
@@ -302,7 +300,7 @@ class MediaTypesClientOperationsMixin(MixinABC):
         """Binary body with two content types. Pass in of {'hello': 'world'} for the application/json
         content type, and a byte stream of 'hello, world!' for application/octet-stream.
 
-        :param message: The payload body.
+        :param message: The payload body. Required.
         :type message: IO
         :return: str
         :rtype: str
@@ -353,7 +351,7 @@ class MediaTypesClientOperationsMixin(MixinABC):
         'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
         'application/octet-stream'.
 
-        :param message: The payload body.
+        :param message: The payload body. Required.
         :type message: IO
         :return: str
         :rtype: str
@@ -402,7 +400,7 @@ class MediaTypesClientOperationsMixin(MixinABC):
     async def put_text_and_json_body(self, message: str, **kwargs: Any) -> str:
         """Body that's either text/plain or application/json.
 
-        :param message: The payload body.
+        :param message: The payload body. Required.
         :type message: str
         :return: str
         :rtype: str

@@ -1464,8 +1464,8 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     def get_boolean_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get false Boolean value on path.
 
-        :keyword bool_path: false boolean value. Default value is False. Note that overriding this
-         default value may result in unsupported behavior.
+        :keyword bool_path: false boolean value. Required. Default value is False. Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype bool_path: bool
         :return: None
         :rtype: None
@@ -1948,8 +1948,8 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     def string_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get ''.
 
-        :keyword string_path: '' string value. Default value is "". Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword string_path: '' string value. Required. Default value is "". Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype string_path: str
         :return: None
         :rtype: None
@@ -1988,7 +1988,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     def string_null(self, string_path: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get null (should throw).
 
-        :param string_path: null string value.
+        :param string_path: null string value. Required.
         :type string_path: str
         :return: None
         :rtype: None
@@ -2027,7 +2027,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         """Get using uri with 'green color' in path parameter.
 
         :param enum_path: send the value green. Known values are: "red color", "green color", and "blue
-         color".
+         color". Required.
         :type enum_path: str
         :return: None
         :rtype: None
@@ -2066,7 +2066,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         """Get null (should throw on the client before the request is sent on wire).
 
         :param enum_path: send null should throw. Known values are: "red color", "green color", and
-         "blue color".
+         "blue color". Required.
         :type enum_path: str
         :return: None
         :rtype: None
@@ -2106,7 +2106,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
-        :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
+        :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array. Required.
         :type byte_path: bytes
         :return: None
         :rtype: None
@@ -2144,8 +2144,8 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     def byte_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '' as byte array.
 
-        :keyword byte_path: '' as byte array. Default value is bytes("", encoding="utf-8"). Note that
-         overriding this default value may result in unsupported behavior.
+        :keyword byte_path: '' as byte array. Required. Default value is bytes("", encoding="utf-8").
+         Note that overriding this default value may result in unsupported behavior.
         :paramtype byte_path: bytes
         :return: None
         :rtype: None
@@ -2184,7 +2184,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     def byte_null(self, byte_path: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get null as byte array (should throw).
 
-        :param byte_path: null as byte array (should throw).
+        :param byte_path: null as byte array (should throw). Required.
         :type byte_path: bytes
         :return: None
         :rtype: None
@@ -2265,7 +2265,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         """Get null as date - this should throw or be unusable on the client side, depending on date
         representation.
 
-        :param date_path: null as date (should throw).
+        :param date_path: null as date (should throw). Required.
         :type date_path: ~datetime.date
         :return: None
         :rtype: None
@@ -2346,7 +2346,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null as date-time, should be disallowed or throw depending on representation of date-time.
 
-        :param date_time_path: null as date-time.
+        :param date_time_path: null as date-time. Required.
         :type date_time_path: ~datetime.datetime
         :return: None
         :rtype: None
@@ -2386,7 +2386,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
-        :param base64_url_path: base64url encoded value.
+        :param base64_url_path: base64url encoded value. Required.
         :type base64_url_path: bytes
         :return: None
         :rtype: None
@@ -2428,7 +2428,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         csv-array format.
 
         :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
-         using the csv-array format.
+         using the csv-array format. Required.
         :type array_path: list[str]
         :return: None
         :rtype: None
@@ -2468,7 +2468,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
 
-        :param unix_time_url_path: Unix time encoded value.
+        :param unix_time_url_path: Unix time encoded value. Required.
         :type unix_time_url_path: ~datetime.datetime
         :return: None
         :rtype: None
@@ -2564,8 +2564,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def get_boolean_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get false Boolean value on path.
 
-        :keyword bool_query: false boolean value. Default value is False. Note that overriding this
-         default value may result in unsupported behavior.
+        :keyword bool_query: false boolean value. Required. Default value is False. Note that
+         overriding this default value may result in unsupported behavior.
         :paramtype bool_query: bool
         :return: None
         :rtype: None
@@ -2606,7 +2606,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null Boolean value on query (query string should be absent).
 
-        :keyword bool_query: null boolean value. Optional. Default value is None.
+        :keyword bool_query: null boolean value. Default value is None.
         :paramtype bool_query: bool
         :return: None
         :rtype: None
@@ -2726,7 +2726,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null integer value (no query parameter).
 
-        :keyword int_query: null integer value. Optional. Default value is None.
+        :keyword int_query: null integer value. Default value is None.
         :paramtype int_query: int
         :return: None
         :rtype: None
@@ -2846,7 +2846,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get 'null 64 bit integer value (no query param in uri).
 
-        :keyword long_query: null 64 bit integer value. Optional. Default value is None.
+        :keyword long_query: null 64 bit integer value. Default value is None.
         :paramtype long_query: int
         :return: None
         :rtype: None
@@ -2966,7 +2966,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null numeric value (no query parameter).
 
-        :keyword float_query: null numeric value. Optional. Default value is None.
+        :keyword float_query: null numeric value. Default value is None.
         :paramtype float_query: float
         :return: None
         :rtype: None
@@ -3086,7 +3086,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null numeric value (no query parameter).
 
-        :keyword double_query: null numeric value. Optional. Default value is None.
+        :keyword double_query: null numeric value. Default value is None.
         :paramtype double_query: float
         :return: None
         :rtype: None
@@ -3207,8 +3207,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def string_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get ''.
 
-        :keyword string_query: '' string value. Default value is "". Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword string_query: '' string value. Required. Default value is "". Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype string_query: str
         :return: None
         :rtype: None
@@ -3249,7 +3249,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null (no query parameter in url).
 
-        :keyword string_query: null string value. Optional. Default value is None.
+        :keyword string_query: null string value. Default value is None.
         :paramtype string_query: str
         :return: None
         :rtype: None
@@ -3290,7 +3290,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         """Get using uri with query parameter 'green color'.
 
         :keyword enum_query: 'green color' enum value. Known values are: "red color", "green color",
-         and "blue color". Optional. Default value is None.
+         and "blue color". Default value is None.
         :paramtype enum_query: str
         :return: None
         :rtype: None
@@ -3331,7 +3331,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         """Get null (no query parameter in url).
 
         :keyword enum_query: null string value. Known values are: "red color", "green color", and "blue
-         color". Optional. Default value is None.
+         color". Default value is None.
         :paramtype enum_query: str
         :return: None
         :rtype: None
@@ -3371,8 +3371,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
-        :keyword byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array. Optional.
-         Default value is None.
+        :keyword byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array. Default value is
+         None.
         :paramtype byte_query: bytes
         :return: None
         :rtype: None
@@ -3410,8 +3410,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     def byte_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get '' as byte array.
 
-        :keyword byte_query: '' as byte array. Default value is bytes("", encoding="utf-8"). Note that
-         overriding this default value may result in unsupported behavior.
+        :keyword byte_query: '' as byte array. Required. Default value is bytes("", encoding="utf-8").
+         Note that overriding this default value may result in unsupported behavior.
         :paramtype byte_query: bytes
         :return: None
         :rtype: None
@@ -3452,8 +3452,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null as byte array (no query parameters in uri).
 
-        :keyword byte_query: null as byte array (no query parameters in uri). Optional. Default value
-         is None.
+        :keyword byte_query: null as byte array (no query parameters in uri). Default value is None.
         :paramtype byte_query: bytes
         :return: None
         :rtype: None
@@ -3533,8 +3532,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null as date - this should result in no query parameters in uri.
 
-        :keyword date_query: null as date (no query parameters in uri). Optional. Default value is
-         None.
+        :keyword date_query: null as date (no query parameters in uri). Default value is None.
         :paramtype date_query: ~datetime.date
         :return: None
         :rtype: None
@@ -3617,8 +3615,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null as date-time, should result in no query parameters in uri.
 
-        :keyword date_time_query: null as date-time (no query parameters). Optional. Default value is
-         None.
+        :keyword date_time_query: null as date-time (no query parameters). Default value is None.
         :paramtype date_time_query: ~datetime.datetime
         :return: None
         :rtype: None
@@ -3660,7 +3657,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         csv-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the csv-array format. Optional. Default value is None.
+         ''] using the csv-array format. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -3700,8 +3697,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get a null array of string using the csv-array format.
 
-        :keyword array_query: a null array of string using the csv-array format. Optional. Default
-         value is None.
+        :keyword array_query: a null array of string using the csv-array format. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -3741,8 +3737,8 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get an empty array [] of string using the csv-array format.
 
-        :keyword array_query: an empty array [] of string using the csv-array format. Optional. Default
-         value is None.
+        :keyword array_query: an empty array [] of string using the csv-array format. Default value is
+         None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -3784,7 +3780,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         'bonjour'] for the 'arrayQuery' parameter to the service.
 
         :keyword array_query: Array-typed query parameter. Pass in ['hello', 'nihao', 'bonjour'].
-         Optional. Default value is None.
+         Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -3826,7 +3822,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         ssv-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the ssv-array format. Optional. Default value is None.
+         ''] using the ssv-array format. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -3868,7 +3864,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         tsv-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the tsv-array format. Optional. Default value is None.
+         ''] using the tsv-array format. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -3910,7 +3906,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         pipes-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the pipes-array format. Optional. Default value is None.
+         ''] using the pipes-array format. Default value is None.
         :paramtype array_query: list[str]
         :return: None
         :rtype: None
@@ -3977,14 +3973,14 @@ class PathItemsOperations:
         pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
         :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter. Optional. Default value is None.
+         parameter. Default value is None.
         :paramtype path_item_string_query: str
-        :keyword local_string_query: should contain value 'localStringQuery'. Optional. Default value
-         is None.
+        :keyword local_string_query: should contain value 'localStringQuery'. Default value is None.
         :paramtype local_string_query: str
         :return: None
         :rtype: None
@@ -4038,14 +4034,14 @@ class PathItemsOperations:
         pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
         :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter. Optional. Default value is None.
+         parameter. Default value is None.
         :paramtype path_item_string_query: str
-        :keyword local_string_query: should contain value 'localStringQuery'. Optional. Default value
-         is None.
+        :keyword local_string_query: should contain value 'localStringQuery'. Default value is None.
         :paramtype local_string_query: str
         :return: None
         :rtype: None
@@ -4099,13 +4095,14 @@ class PathItemsOperations:
         pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
         :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter. Optional. Default value is None.
+         parameter. Default value is None.
         :paramtype path_item_string_query: str
-        :keyword local_string_query: should contain null value. Optional. Default value is None.
+        :keyword local_string_query: should contain null value. Default value is None.
         :paramtype local_string_query: str
         :return: None
         :rtype: None
@@ -4159,12 +4156,13 @@ class PathItemsOperations:
         pathItemStringQuery=null, localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
-        :keyword path_item_string_query: should contain value null. Optional. Default value is None.
+        :keyword path_item_string_query: should contain value null. Default value is None.
         :paramtype path_item_string_query: str
-        :keyword local_string_query: should contain value null. Optional. Default value is None.
+        :keyword local_string_query: should contain value null. Default value is None.
         :paramtype local_string_query: str
         :return: None
         :rtype: None

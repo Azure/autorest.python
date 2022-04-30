@@ -95,14 +95,14 @@ class AvailabilitySetsOperations:
     ) -> None:
         """Updates the tags for an availability set.
 
-        :param resource_group_name: The name of the resource group.
+        :param resource_group_name: The name of the resource group. Required.
         :type resource_group_name: str
-        :param avset: The name of the storage availability set.
+        :param avset: The name of the storage availability set. Required.
         :type avset: str
-        :param tags: The tags.
+        :param tags: The tags. Required.
         :type tags: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -114,7 +114,8 @@ class AvailabilitySetsOperations:
                 # JSON input template you can fill out and use as your body input.
                 tags = {
                     "tags": {
-                        "str": "str"  # A description about the set of tags.
+                        "str": "str"  # A description about the set of tags.A description
+                          about the set of tags. Required.
                     }
                 }
         """
@@ -127,14 +128,14 @@ class AvailabilitySetsOperations:
     ) -> None:
         """Updates the tags for an availability set.
 
-        :param resource_group_name: The name of the resource group.
+        :param resource_group_name: The name of the resource group. Required.
         :type resource_group_name: str
-        :param avset: The name of the storage availability set.
+        :param avset: The name of the storage availability set. Required.
         :type avset: str
-        :param tags: The tags.
+        :param tags: The tags. Required.
         :type tags: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -149,14 +150,14 @@ class AvailabilitySetsOperations:
     ) -> None:
         """Updates the tags for an availability set.
 
-        :param resource_group_name: The name of the resource group.
+        :param resource_group_name: The name of the resource group. Required.
         :type resource_group_name: str
-        :param avset: The name of the storage availability set.
+        :param avset: The name of the storage availability set. Required.
         :type avset: str
-        :param tags: The tags. Is either a model type or a IO type.
+        :param tags: The tags. Is either a model type or a IO type. Required.
         :type tags: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None

@@ -91,7 +91,7 @@ class TimeOperations:
     async def put(self, time_body: datetime.time, **kwargs: Any) -> str:
         """Put time value "08:07:56".
 
-        :param time_body: Put time value "08:07:56" in parameter to pass testserver.
+        :param time_body: Put time value "08:07:56" in parameter to pass testserver. Required.
         :type time_body: ~datetime.time
         :return: str
         :rtype: str
