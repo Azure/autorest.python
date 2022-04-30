@@ -712,7 +712,7 @@ class M4Reformatter(YamlUpdatePlugin):
         self.update_credential(yaml_data.get("security", {}), parameters)
         return {
             "name": yaml_data["language"]["default"]["name"],
-            "description": yaml_data["info"]["description"],
+            "description": yaml_data["info"].get("description"),
             "parameters": parameters,
             "url": update_client_url(yaml_data) if yaml_data.get("globalParameters") else "",
             "namespace": self._autorestapi.get_value("namespace") or yaml_data["language"]["default"]["name"]

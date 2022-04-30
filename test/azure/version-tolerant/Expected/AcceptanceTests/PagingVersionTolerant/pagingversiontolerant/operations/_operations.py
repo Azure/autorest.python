@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Iterable, Optional, Optional, TypeVar, Union, cast
+from typing import Any, Callable, Dict, Iterable, Optional, TypeVar, Union, cast
 
 from msrest import Serializer
 
@@ -98,11 +98,7 @@ def build_paging_first_response_empty_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_paging_get_multiple_pages_request(
-    *,
-    client_request_id: Optional[str] = None,
-    maxresults: Optional[int] = None,
-    timeout: Optional[int] = 30,
-    **kwargs: Any
+    *, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -182,11 +178,7 @@ def build_paging_duplicate_params_request(*, filter: Optional[str] = None, **kwa
 
 
 def build_paging_get_odata_multiple_pages_request(
-    *,
-    client_request_id: Optional[str] = None,
-    maxresults: Optional[int] = None,
-    timeout: Optional[int] = 30,
-    **kwargs: Any
+    *, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -212,7 +204,7 @@ def build_paging_get_multiple_pages_with_offset_request(
     *,
     client_request_id: Optional[str] = None,
     maxresults: Optional[int] = None,
-    timeout: Optional[int] = 30,
+    timeout: int = 30,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -410,11 +402,7 @@ def build_paging_next_fragment_with_grouping_request(
 
 
 def build_paging_get_multiple_pages_lro_request(
-    *,
-    client_request_id: Optional[str] = None,
-    maxresults: Optional[int] = None,
-    timeout: Optional[int] = 30,
-    **kwargs: Any
+    *, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -769,14 +757,15 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
     ) -> Iterable[JSON]:
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :keyword client_request_id: Optional.
+        :keyword client_request_id: Optional. Default value is None.
         :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Optional.
+         Default value is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds. Optional. Default value is 30.
@@ -949,7 +938,7 @@ class PagingOperations:
         include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
         param in the url sent.
 
-        :keyword filter: OData filter options. Pass in 'foo'. Optional.
+        :keyword filter: OData filter options. Pass in 'foo'. Optional. Default value is None.
         :paramtype filter: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
@@ -1028,14 +1017,15 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
     ) -> Iterable[JSON]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
-        :keyword client_request_id: Optional.
+        :keyword client_request_id: Optional. Default value is None.
         :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Optional.
+         Default value is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds. Optional. Default value is 30.
@@ -1123,16 +1113,17 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
     ) -> Iterable[JSON]:
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param offset: Offset of return value.
         :type offset: int
-        :keyword client_request_id: Optional.
+        :keyword client_request_id: Optional. Default value is None.
         :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Optional.
+         Default value is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds. Optional. Default value is 30.
@@ -1760,7 +1751,7 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
     ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1806,14 +1797,15 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
     ) -> LROPoller[Iterable[JSON]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :keyword client_request_id: Optional.
+        :keyword client_request_id: Optional. Default value is None.
         :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Optional.
+         Default value is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds. Optional. Default value is 30.

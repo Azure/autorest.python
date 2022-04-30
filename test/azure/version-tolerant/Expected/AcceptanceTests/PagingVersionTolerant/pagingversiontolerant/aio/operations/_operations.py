@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, Optional, Optional, TypeVar, Union, cast
+from typing import Any, AsyncIterable, Callable, Dict, Optional, TypeVar, Union, cast
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
@@ -379,14 +379,15 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
     ) -> AsyncIterable[JSON]:
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :keyword client_request_id: Optional.
+        :keyword client_request_id: Optional. Default value is None.
         :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Optional.
+         Default value is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds. Optional. Default value is 30.
@@ -559,7 +560,7 @@ class PagingOperations:
         include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
         param in the url sent.
 
-        :keyword filter: OData filter options. Pass in 'foo'. Optional.
+        :keyword filter: OData filter options. Pass in 'foo'. Optional. Default value is None.
         :paramtype filter: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
@@ -638,14 +639,15 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
     ) -> AsyncIterable[JSON]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
-        :keyword client_request_id: Optional.
+        :keyword client_request_id: Optional. Default value is None.
         :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Optional.
+         Default value is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds. Optional. Default value is 30.
@@ -733,16 +735,17 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
     ) -> AsyncIterable[JSON]:
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param offset: Offset of return value.
         :type offset: int
-        :keyword client_request_id: Optional.
+        :keyword client_request_id: Optional. Default value is None.
         :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Optional.
+         Default value is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds. Optional. Default value is 30.
@@ -1372,7 +1375,7 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
     ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1418,14 +1421,15 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
     ) -> AsyncLROPoller[AsyncIterable[JSON]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :keyword client_request_id: Optional.
+        :keyword client_request_id: Optional. Default value is None.
         :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Optional.
+         Default value is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
          seconds. The default is 30 seconds. Optional. Default value is 30.

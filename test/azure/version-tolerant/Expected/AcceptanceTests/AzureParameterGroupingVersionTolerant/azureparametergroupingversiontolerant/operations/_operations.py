@@ -32,13 +32,7 @@ _SERIALIZER = Serializer()
 
 
 def build_parameter_grouping_post_required_request(
-    path: str,
-    *,
-    json: Any = None,
-    content: Any = None,
-    custom_header: Optional[str] = None,
-    query: Optional[int] = 30,
-    **kwargs: Any
+    path: str, *, json: int, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -65,11 +59,11 @@ def build_parameter_grouping_post_required_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, json=json, **kwargs)
 
 
 def build_parameter_grouping_post_optional_request(
-    *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs: Any
+    *, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -92,7 +86,7 @@ def build_parameter_grouping_post_optional_request(
 
 
 def build_parameter_grouping_post_reserved_words_request(
-    *, from_parameter: Optional[str] = None, accept_parameter: Optional[str] = None, **kwargs: Any
+    *, from_parameter: Optional[str] = None, accept: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -105,8 +99,8 @@ def build_parameter_grouping_post_reserved_words_request(
     # Construct parameters
     if from_parameter is not None:
         _params["from"] = _SERIALIZER.query("from_parameter", from_parameter, "str")
-    if accept_parameter is not None:
-        _params["accept"] = _SERIALIZER.query("accept_parameter", accept_parameter, "str")
+    if accept is not None:
+        _params["accept"] = _SERIALIZER.query("accept", accept, "str")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -117,9 +111,9 @@ def build_parameter_grouping_post_reserved_words_request(
 def build_parameter_grouping_post_multi_param_groups_request(
     *,
     header_one: Optional[str] = None,
-    query_one: Optional[int] = 30,
+    query_one: int = 30,
     header_two: Optional[str] = None,
-    query_two: Optional[int] = 30,
+    query_two: int = 30,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -147,7 +141,7 @@ def build_parameter_grouping_post_multi_param_groups_request(
 
 
 def build_parameter_grouping_post_shared_parameter_group_object_request(
-    *, header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs: Any
+    *, header_one: Optional[str] = None, query_one: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -188,7 +182,7 @@ class ParameterGroupingOperations:
 
     @distributed_trace
     def post_required(  # pylint: disable=inconsistent-return-statements
-        self, path: str, body: int, *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs: Any
+        self, path: str, body: int, *, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
     ) -> None:
         """Post a bunch of required parameters grouped.
 
@@ -196,9 +190,9 @@ class ParameterGroupingOperations:
         :type path: str
         :param body:
         :type body: int
-        :keyword custom_header:  Default value is None.
+        :keyword custom_header: Optional. Default value is None.
         :paramtype custom_header: str
-        :keyword query: Query parameter with default. Default value is 30.
+        :keyword query: Query parameter with default. Optional. Default value is 30.
         :paramtype query: int
         :return: None
         :rtype: None
@@ -210,19 +204,17 @@ class ParameterGroupingOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = body
 
         request = build_parameter_grouping_post_required_request(
             path=path,
-            content_type=content_type,
-            json=_json,
             custom_header=custom_header,
             query=query,
+            content_type=content_type,
+            json=_json,
             headers=_headers,
             params=_params,
         )
@@ -243,13 +235,13 @@ class ParameterGroupingOperations:
 
     @distributed_trace
     def post_optional(  # pylint: disable=inconsistent-return-statements
-        self, *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs: Any
+        self, *, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
     ) -> None:
         """Post a bunch of optional parameters grouped.
 
-        :keyword custom_header:  Default value is None.
+        :keyword custom_header: Optional. Default value is None.
         :paramtype custom_header: str
-        :keyword query: Query parameter with default. Default value is 30.
+        :keyword query: Query parameter with default. Optional. Default value is 30.
         :paramtype query: int
         :return: None
         :rtype: None
@@ -286,16 +278,16 @@ class ParameterGroupingOperations:
 
     @distributed_trace
     def post_reserved_words(  # pylint: disable=inconsistent-return-statements
-        self, *, from_parameter: Optional[str] = None, accept_parameter: Optional[str] = None, **kwargs: Any
+        self, *, from_parameter: Optional[str] = None, accept: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Post a grouped parameters with reserved words.
 
-        :keyword from_parameter: 'from' is a reserved word. Pass in 'bob' to pass. Default value is
-         None.
+        :keyword from_parameter: 'from' is a reserved word. Pass in 'bob' to pass. Optional. Default
+         value is None.
         :paramtype from_parameter: str
-        :keyword accept_parameter: 'accept' is a reserved word. Pass in 'yes' to pass. Default value is
+        :keyword accept: 'accept' is a reserved word. Pass in 'yes' to pass. Optional. Default value is
          None.
-        :paramtype accept_parameter: str
+        :paramtype accept: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -310,7 +302,7 @@ class ParameterGroupingOperations:
 
         request = build_parameter_grouping_post_reserved_words_request(
             from_parameter=from_parameter,
-            accept_parameter=accept_parameter,
+            accept=accept,
             headers=_headers,
             params=_params,
         )
@@ -334,20 +326,20 @@ class ParameterGroupingOperations:
         self,
         *,
         header_one: Optional[str] = None,
-        query_one: Optional[int] = 30,
+        query_one: int = 30,
         header_two: Optional[str] = None,
-        query_two: Optional[int] = 30,
+        query_two: int = 30,
         **kwargs: Any
     ) -> None:
         """Post parameters from multiple different parameter groups.
 
-        :keyword header_one:  Default value is None.
+        :keyword header_one: Optional. Default value is None.
         :paramtype header_one: str
-        :keyword query_one: Query parameter with default. Default value is 30.
+        :keyword query_one: Query parameter with default. Optional. Default value is 30.
         :paramtype query_one: int
-        :keyword header_two:  Default value is None.
+        :keyword header_two: Optional. Default value is None.
         :paramtype header_two: str
-        :keyword query_two: Query parameter with default. Default value is 30.
+        :keyword query_two: Query parameter with default. Optional. Default value is 30.
         :paramtype query_two: int
         :return: None
         :rtype: None
@@ -386,13 +378,13 @@ class ParameterGroupingOperations:
 
     @distributed_trace
     def post_shared_parameter_group_object(  # pylint: disable=inconsistent-return-statements
-        self, *, header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs: Any
+        self, *, header_one: Optional[str] = None, query_one: int = 30, **kwargs: Any
     ) -> None:
         """Post parameters with a shared parameter group object.
 
-        :keyword header_one:  Default value is None.
+        :keyword header_one: Optional. Default value is None.
         :paramtype header_one: str
-        :keyword query_one: Query parameter with default. Default value is 30.
+        :keyword query_one: Query parameter with default. Optional. Default value is 30.
         :paramtype query_one: int
         :return: None
         :rtype: None

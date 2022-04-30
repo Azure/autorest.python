@@ -100,11 +100,7 @@ def build_paging_first_response_empty_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_paging_get_multiple_pages_request(
-    *,
-    client_request_id: Optional[str] = None,
-    maxresults: Optional[int] = None,
-    timeout: Optional[int] = 30,
-    **kwargs: Any
+    *, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -145,25 +141,6 @@ def build_paging_get_with_query_params_request(*, required_query_parameter: int,
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_paging_duplicate_params_request(*, filter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-    accept = _headers.pop("Accept", "application/json")
-
-    # Construct URL
-    _url = "/paging/multiple/duplicateParams/1"
-
-    # Construct parameters
-    if filter is not None:
-        _params["$filter"] = _SERIALIZER.query("filter", filter, "str")
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
-
-
 def build_paging_next_operation_with_query_params_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -183,12 +160,27 @@ def build_paging_next_operation_with_query_params_request(**kwargs: Any) -> Http
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
+def build_paging_duplicate_params_request(*, filter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/paging/multiple/duplicateParams/1"
+
+    # Construct parameters
+    if filter is not None:
+        _params["$filter"] = _SERIALIZER.query("filter", filter, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
 def build_paging_get_odata_multiple_pages_request(
-    *,
-    client_request_id: Optional[str] = None,
-    maxresults: Optional[int] = None,
-    timeout: Optional[int] = 30,
-    **kwargs: Any
+    *, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -214,7 +206,7 @@ def build_paging_get_multiple_pages_with_offset_request(
     *,
     client_request_id: Optional[str] = None,
     maxresults: Optional[int] = None,
-    timeout: Optional[int] = 30,
+    timeout: int = 30,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -336,18 +328,17 @@ def build_paging_get_multiple_pages_fragment_next_link_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
-    tenant: str, *, api_version: str, **kwargs: Any
-) -> HttpRequest:
+def build_paging_next_fragment_request(tenant: str, next_link: str, *, api_version: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/paging/multiple/fragmentwithgrouping/{tenant}"
+    _url = "/paging/multiple/fragment/{tenant}/{nextLink}"
     path_format_arguments = {
         "tenant": _SERIALIZER.url("tenant", tenant, "str"),
+        "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
@@ -361,43 +352,18 @@ def build_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_paging_get_multiple_pages_lro_request(
-    *,
-    client_request_id: Optional[str] = None,
-    maxresults: Optional[int] = None,
-    timeout: Optional[int] = 30,
-    **kwargs: Any
+def build_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
+    tenant: str, *, api_version: str, **kwargs: Any
 ) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop("Accept", "application/json")
-
-    # Construct URL
-    _url = "/paging/multiple/lro"
-
-    # Construct headers
-    if client_request_id is not None:
-        _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
-    if maxresults is not None:
-        _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
-    if timeout is not None:
-        _headers["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
-
-
-def build_paging_next_fragment_request(tenant: str, next_link: str, *, api_version: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/paging/multiple/fragment/{tenant}/{nextLink}"
+    _url = "/paging/multiple/fragmentwithgrouping/{tenant}"
     path_format_arguments = {
         "tenant": _SERIALIZER.url("tenant", tenant, "str"),
-        "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
@@ -435,6 +401,28 @@ def build_paging_next_fragment_with_grouping_request(
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_paging_get_multiple_pages_lro_request(
+    *, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/paging/multiple/lro"
+
+    # Construct headers
+    if client_request_id is not None:
+        _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
+    if maxresults is not None:
+        _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
+    if timeout is not None:
+        _headers["timeout"] = _SERIALIZER.header("timeout", timeout, "int")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 def build_paging_get_paging_model_with_item_name_with_xms_client_name_request(**kwargs: Any) -> HttpRequest:
@@ -771,18 +759,18 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
     ) -> Iterable[JSON]:
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :keyword client_request_id:  Default value is None.
+        :keyword client_request_id: Optional. Default value is None.
         :paramtype client_request_id: str
-        :keyword maxresults: Sets the maximum number of items to return in the response. Default value
-         is None.
+        :keyword maxresults: Sets the maximum number of items to return in the response. Optional.
+         Default value is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
-         seconds. The default is 30 seconds.
+         seconds. The default is 30 seconds. Optional. Default value is 30.
         :paramtype timeout: int
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
@@ -905,8 +893,8 @@ class PagingOperations:
             if not next_link:
 
                 request = build_paging_get_with_query_params_request(
-                    query_constant=query_constant,
                     required_query_parameter=required_query_parameter,
+                    query_constant=query_constant,
                     headers=_headers,
                     params=_params,
                 )
@@ -952,7 +940,7 @@ class PagingOperations:
         include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
         param in the url sent.
 
-        :keyword filter: OData filter options. Pass in 'foo'. Default value is None.
+        :keyword filter: OData filter options. Pass in 'foo'. Optional. Default value is None.
         :paramtype filter: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
@@ -1031,18 +1019,18 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
     ) -> Iterable[JSON]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
-        :keyword client_request_id:  Default value is None.
+        :keyword client_request_id: Optional. Default value is None.
         :paramtype client_request_id: str
-        :keyword maxresults: Sets the maximum number of items to return in the response. Default value
-         is None.
+        :keyword maxresults: Sets the maximum number of items to return in the response. Optional.
+         Default value is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
-         seconds. The default is 30 seconds.
+         seconds. The default is 30 seconds. Optional. Default value is 30.
         :paramtype timeout: int
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
@@ -1127,20 +1115,20 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
     ) -> Iterable[JSON]:
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param offset: Offset of return value.
         :type offset: int
-        :keyword client_request_id:  Default value is None.
+        :keyword client_request_id: Optional. Default value is None.
         :paramtype client_request_id: str
-        :keyword maxresults: Sets the maximum number of items to return in the response. Default value
-         is None.
+        :keyword maxresults: Sets the maximum number of items to return in the response. Optional.
+         Default value is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
-         seconds. The default is 30 seconds.
+         seconds. The default is 30 seconds. Optional. Default value is 30.
         :paramtype timeout: int
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
@@ -1765,7 +1753,7 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
     ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1774,7 +1762,7 @@ class PagingOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
+        cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_paging_get_multiple_pages_lro_request(
             client_request_id=client_request_id,
@@ -1811,18 +1799,18 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
-    ) -> CustomPoller[ItemPaged[JSON]]:
+    ) -> CustomPoller[Iterable[JSON]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :keyword client_request_id:  Default value is None.
+        :keyword client_request_id: Optional. Default value is None.
         :paramtype client_request_id: str
-        :keyword maxresults: Sets the maximum number of items to return in the response. Default value
-         is None.
+        :keyword maxresults: Sets the maximum number of items to return in the response. Optional.
+         Default value is None.
         :paramtype maxresults: int
         :keyword timeout: Sets the maximum time that the server can spend processing the request, in
-         seconds. The default is 30 seconds.
+         seconds. The default is 30 seconds. Optional. Default value is 30.
         :paramtype timeout: int
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
@@ -1831,7 +1819,7 @@ class PagingOperations:
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of CustomPoller that returns an iterator like instance of JSON object
+        :return: An instance of LROPoller that returns an iterator like instance of JSON object
         :rtype: ~custompollerpagerdefinitions.CustomPoller[~azure.core.paging.ItemPaged[JSON]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
