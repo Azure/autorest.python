@@ -70,8 +70,8 @@ class _ParameterBase(BaseModel, abc.ABC):
             base_description = add_to_description(base_description, type_description)
         if self.optional and isinstance(self.type, ConstantType):
             base_description = add_to_description(base_description, f"Known values are {self.type.get_declaration()} and None.")
-        if self.optional:
-            base_description = add_to_description(base_description, "Optional.")
+        if not (self.optional or self.client_default_value):
+            base_description = add_to_description(base_description, "Required.")
         if self.client_default_value is not None:
             base_description = add_to_description(base_description, f"Default value is {self.client_default_value_declaration}.")
         if self.optional and self.client_default_value is None:

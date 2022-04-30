@@ -198,7 +198,7 @@ class ParamsOperations:
         """Head request, no params. Initially has no query parameters. After evolution, a new optional
         query parameter is added.
 
-        :keyword new_parameter: I'm a new input optional parameter. Optional. Default value is None.
+        :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
         :return: JSON
         :rtype: JSON
@@ -245,9 +245,9 @@ class ParamsOperations:
          Initially only has one required Query Parameter. After evolution, a new optional query
         parameter is added.
 
-        :keyword parameter: I am a required parameter.
+        :keyword parameter: I am a required parameter. Required.
         :paramtype parameter: str
-        :keyword new_parameter: I'm a new input optional parameter. Optional. Default value is None.
+        :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
         :return: JSON
         :rtype: JSON
@@ -301,11 +301,11 @@ class ParamsOperations:
         """Initially has one required query parameter and one optional query parameter.  After evolution,
         a new optional query parameter is added.
 
-        :keyword required_param: I am a required parameter.
+        :keyword required_param: I am a required parameter. Required.
         :paramtype required_param: str
-        :keyword optional_param: I am an optional parameter. Optional. Default value is None.
+        :keyword optional_param: I am an optional parameter. Default value is None.
         :paramtype optional_param: str
-        :keyword new_parameter: I'm a new input optional parameter. Optional. Default value is None.
+        :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
         :return: JSON
         :rtype: JSON
@@ -353,10 +353,10 @@ class ParamsOperations:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
-         url: "http://example.org/myimage.jpeg" }.
+         url: "http://example.org/myimage.jpeg" }. Required.
         :type parameter: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON
         :rtype: JSON
@@ -367,7 +367,7 @@ class ParamsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 parameter = {
-                    "url": "str"
+                    "url": "str"  # Required.
                 }
         """
 
@@ -378,10 +378,10 @@ class ParamsOperations:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
-         url: "http://example.org/myimage.jpeg" }.
+         url: "http://example.org/myimage.jpeg" }. Required.
         :type parameter: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON
         :rtype: JSON
@@ -391,14 +391,14 @@ class ParamsOperations:
         ...
 
     @distributed_trace
-    def post_parameters(self, parameter: Union[JSON, IO], *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
+    def post_parameters(self, parameter: Union[JSON, IO], **kwargs: Any) -> JSON:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
-         url: "http://example.org/myimage.jpeg" }. Is either a model type or a IO type.
+         url: "http://example.org/myimage.jpeg" }. Is either a model type or a IO type. Required.
         :type parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'image/jpeg'. Optional. Default value is None.
+         'image/jpeg'. Default value is None.
         :paramtype content_type: str
         :return: JSON
         :rtype: JSON
@@ -407,9 +407,10 @@ class ParamsOperations:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[JSON]
 
         _json = None
@@ -494,9 +495,9 @@ class ParamsOperations:
          Initially has one optional query parameter. After evolution, a new optional query parameter is
         added.
 
-        :keyword optional_param: I am an optional parameter. Optional. Default value is None.
+        :keyword optional_param: I am an optional parameter. Default value is None.
         :paramtype optional_param: str
-        :keyword new_parameter: I'm a new input optional parameter. Optional. Default value is None.
+        :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
         :return: JSON
         :rtype: JSON

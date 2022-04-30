@@ -25,7 +25,7 @@ class AutoRestPagingTestServiceConfiguration(Configuration):  # pylint: disable=
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param credential: Credential needed for the client to connect to Azure.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
     """
 

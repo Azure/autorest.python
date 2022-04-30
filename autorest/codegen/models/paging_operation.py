@@ -3,13 +3,14 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Dict, List, Any, Optional, Union, TYPE_CHECKING, Type
+from typing import Dict, List, Any, Optional, Union, TYPE_CHECKING, Type, cast
 
 from .operation import Operation, OperationBase, OverloadedOperation
 from .response import Response
 from .request_builder import OverloadedRequestBuilder, RequestBuilder, get_request_builder
 from .imports import ImportType, FileImport, TypingSection
 from .parameter_list import ParameterList
+from .model_type import ModelType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -45,11 +46,33 @@ class _PagingOperationBase(OperationBase):
         self.next_request_builder: Optional[Union[RequestBuilder, OverloadedRequestBuilder]] = get_request_builder(
             self.yaml_data["nextOperation"], code_model) if self.yaml_data.get("nextOperation"
         ) else None
-        self.item_name: str = self.yaml_data["itemName"]
-        self.continuation_token_name: str = self.yaml_data["continuationTokenName"]
         self.override_success_response_to_200 = override_success_response_to_200
         self.pager_sync: str = yaml_data["pagerSync"]
         self.pager_async: str = yaml_data["pagerAsync"]
+
+    def _get_attr_name(self, rest_api_name: str) -> str:
+        response = self.responses[0]
+        try:
+            return next(
+                p.client_name for p in cast(ModelType, response.type).properties
+                if p. rest_api_name == rest_api_name
+            )
+        except StopIteration:
+            raise ValueError(f"Can't find a matching property in response for {rest_api_name}")
+
+    @property
+    def continuation_token_name(self) -> str:
+        rest_api_name = self.yaml_data["continuationTokenName"]
+        if self.code_model.options["models_mode"]:
+            return self._get_attr_name(rest_api_name)
+        return rest_api_name
+
+    @property
+    def item_name(self) -> str:
+        rest_api_name = self.yaml_data["itemName"]
+        if self.code_model.options["models_mode"]:
+            return self._get_attr_name(rest_api_name)
+        return rest_api_name
 
     @property
     def operation_type(self) -> str:

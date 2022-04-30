@@ -45,6 +45,8 @@ class PrimitiveType(BaseType):
         comment = ""
         if optional:
             comment = add_to_description(comment, "Optional.")
+        if self.client_default_value is not None:
+            client_default_value_declaration = client_default_value_declaration or self.get_declaration(self.client_default_value)
         if client_default_value_declaration:
             comment = add_to_description(comment, f"Default value is {client_default_value_declaration}.")
         else:

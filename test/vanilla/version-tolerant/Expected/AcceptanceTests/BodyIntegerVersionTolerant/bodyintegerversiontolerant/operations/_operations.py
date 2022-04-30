@@ -515,7 +515,7 @@ class IntOperations:
     def put_max32(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put max int32 value.
 
-        :param int_body: int body.
+        :param int_body: int body. Required.
         :type int_body: int
         :return: None
         :rtype: None
@@ -557,7 +557,7 @@ class IntOperations:
     def put_max64(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put max int64 value.
 
-        :param int_body: int body.
+        :param int_body: int body. Required.
         :type int_body: int
         :return: None
         :rtype: None
@@ -599,7 +599,7 @@ class IntOperations:
     def put_min32(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put min int32 value.
 
-        :param int_body: int body.
+        :param int_body: int body. Required.
         :type int_body: int
         :return: None
         :rtype: None
@@ -641,7 +641,7 @@ class IntOperations:
     def put_min64(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put min int64 value.
 
-        :param int_body: int body.
+        :param int_body: int body. Required.
         :type int_body: int
         :return: None
         :rtype: None
@@ -727,7 +727,7 @@ class IntOperations:
     ) -> None:
         """Put datetime encoded as Unix time.
 
-        :param int_body: int body.
+        :param int_body: int body. Required.
         :type int_body: ~datetime.datetime
         :return: None
         :rtype: None

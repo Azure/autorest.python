@@ -82,7 +82,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
     async def begin_poll_with_parameterized_endpoints(self, account_name: str, **kwargs: Any) -> AsyncLROPoller[str]:
         """Poll with method and client level parameters in endpoint.
 
-        :param account_name: Account Name. Pass in 'local' to pass test.
+        :param account_name: Account Name. Pass in 'local' to pass test. Required.
         :type account_name: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False
@@ -201,7 +201,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(MixinABC):
     ) -> AsyncLROPoller[str]:
         """Poll with method and client level parameters in endpoint, with a constant value.
 
-        :param account_name: Account Name. Pass in 'local' to pass test.
+        :param account_name: Account Name. Pass in 'local' to pass test. Required.
         :type account_name: str
         :keyword constant_parameter: Next link for the list operation. Default value is "iAmConstant".
          Note that overriding this default value may result in unsupported behavior.

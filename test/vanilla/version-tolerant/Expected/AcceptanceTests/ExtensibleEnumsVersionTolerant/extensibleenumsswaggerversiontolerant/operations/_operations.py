@@ -109,7 +109,7 @@ class PetOperations:
     def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> JSON:
         """get pet by id.
 
-        :param pet_id: Pet id.
+        :param pet_id: Pet id. Required.
         :type pet_id: str
         :return: JSON object
         :rtype: JSON
@@ -122,7 +122,7 @@ class PetOperations:
                 response.json() == {
                     "DaysOfWeek": "str",  # Optional. Type of Pet. Known values are: "Monday",
                       "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", and "Sunday".
-                    "IntEnum": "str",  # Known values are: "1", "2", and "3".
+                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "name": "str"  # Optional. name.
                 }
         """
@@ -167,10 +167,10 @@ class PetOperations:
     ) -> JSON:
         """add pet.
 
-        :param pet_param: pet param. Optional. Default value is None.
+        :param pet_param: pet param. Default value is None.
         :type pet_param: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -183,7 +183,7 @@ class PetOperations:
                 pet_param = {
                     "DaysOfWeek": "str",  # Optional. Type of Pet. Known values are: "Monday",
                       "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", and "Sunday".
-                    "IntEnum": "str",  # Known values are: "1", "2", and "3".
+                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "name": "str"  # Optional. name.
                 }
 
@@ -191,7 +191,7 @@ class PetOperations:
                 response.json() == {
                     "DaysOfWeek": "str",  # Optional. Type of Pet. Known values are: "Monday",
                       "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", and "Sunday".
-                    "IntEnum": "str",  # Known values are: "1", "2", and "3".
+                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "name": "str"  # Optional. name.
                 }
         """
@@ -202,10 +202,10 @@ class PetOperations:
     def add_pet(self, pet_param: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
         """add pet.
 
-        :param pet_param: pet param. Optional. Default value is None.
+        :param pet_param: pet param. Default value is None.
         :type pet_param: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -218,7 +218,7 @@ class PetOperations:
                 response.json() == {
                     "DaysOfWeek": "str",  # Optional. Type of Pet. Known values are: "Monday",
                       "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", and "Sunday".
-                    "IntEnum": "str",  # Known values are: "1", "2", and "3".
+                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "name": "str"  # Optional. name.
                 }
         """
@@ -229,11 +229,10 @@ class PetOperations:
     def add_pet(self, pet_param: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
         """add pet.
 
-        :param pet_param: pet param. Is either a model type or a IO type. Optional. Default value is
-         None.
+        :param pet_param: pet param. Is either a model type or a IO type. Default value is None.
         :type pet_param: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -246,7 +245,7 @@ class PetOperations:
                 response.json() == {
                     "DaysOfWeek": "str",  # Optional. Type of Pet. Known values are: "Monday",
                       "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", and "Sunday".
-                    "IntEnum": "str",  # Known values are: "1", "2", and "3".
+                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                     "name": "str"  # Optional. name.
                 }
         """

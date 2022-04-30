@@ -155,7 +155,7 @@ class DurationOperations:
     ) -> None:
         """Put a positive duration value.
 
-        :param duration_body: duration body.
+        :param duration_body: duration body. Required.
         :type duration_body: ~datetime.timedelta
         :return: None
         :rtype: None

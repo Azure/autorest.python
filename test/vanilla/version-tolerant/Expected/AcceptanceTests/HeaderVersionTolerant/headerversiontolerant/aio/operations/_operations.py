@@ -81,6 +81,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Send a post request with header value "User-Agent": "overwrite".
 
         :keyword user_agent_parameter: Send a post request with header value "User-Agent": "overwrite".
+         Required.
         :paramtype user_agent_parameter: str
         :return: None
         :rtype: None
@@ -157,6 +158,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Send a post request with header value "Content-Type": "text/html".
 
         :keyword content_type: Send a post request with header value "Content-Type": "text/html".
+         Required.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -237,8 +239,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         "negative", "value": -2.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+         Required.
         :paramtype scenario: str
-        :keyword value: Send a post request with header values 1 or -2.
+        :keyword value: Send a post request with header values 1 or -2. Required.
         :paramtype value: int
         :return: None
         :rtype: None
@@ -280,6 +283,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Get a response with header value "value": 1 or -2.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+         Required.
         :paramtype scenario: str
         :return: None
         :rtype: None
@@ -324,8 +328,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         "negative", "value": -2.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+         Required.
         :paramtype scenario: str
-        :keyword value: Send a post request with header values 105 or -2.
+        :keyword value: Send a post request with header values 105 or -2. Required.
         :paramtype value: int
         :return: None
         :rtype: None
@@ -367,6 +372,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Get a response with header value "value": 105 or -2.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+         Required.
         :paramtype scenario: str
         :return: None
         :rtype: None
@@ -411,8 +417,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         "negative", "value": -3.0.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+         Required.
         :paramtype scenario: str
-        :keyword value: Send a post request with header values 0.07 or -3.0.
+        :keyword value: Send a post request with header values 0.07 or -3.0. Required.
         :paramtype value: float
         :return: None
         :rtype: None
@@ -454,6 +461,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Get a response with header value "value": 0.07 or -3.0.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+         Required.
         :paramtype scenario: str
         :return: None
         :rtype: None
@@ -498,8 +506,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         "negative", "value": -3.0.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+         Required.
         :paramtype scenario: str
-        :keyword value: Send a post request with header values 7e120 or -3.0.
+        :keyword value: Send a post request with header values 7e120 or -3.0. Required.
         :paramtype value: float
         :return: None
         :rtype: None
@@ -541,6 +550,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Get a response with header value "value": 7e120 or -3.0.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+         Required.
         :paramtype scenario: str
         :return: None
         :rtype: None
@@ -585,8 +595,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         "false", "value": false.
 
         :keyword scenario: Send a post request with header values "scenario": "true" or "false".
+         Required.
         :paramtype scenario: str
-        :keyword value: Send a post request with header values true or false.
+        :keyword value: Send a post request with header values true or false. Required.
         :paramtype value: bool
         :return: None
         :rtype: None
@@ -628,6 +639,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Get a response with header value "value": true or false.
 
         :keyword scenario: Send a post request with header values "scenario": "true" or "false".
+         Required.
         :paramtype scenario: str
         :return: None
         :rtype: None
@@ -672,10 +684,10 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
-         "empty".
+         "empty". Required.
         :paramtype scenario: str
         :keyword value: Send a post request with header values "The quick brown fox jumps over the lazy
-         dog" or null or "". Optional. Default value is None.
+         dog" or null or "". Default value is None.
         :paramtype value: str
         :return: None
         :rtype: None
@@ -717,7 +729,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "".
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
-         "empty".
+         "empty". Required.
         :paramtype scenario: str
         :return: None
         :rtype: None
@@ -762,8 +774,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         "scenario": "min", "value": "0001-01-01".
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
+         Required.
         :paramtype scenario: str
-        :keyword value: Send a post request with header values "2010-01-01" or "0001-01-01".
+        :keyword value: Send a post request with header values "2010-01-01" or "0001-01-01". Required.
         :paramtype value: ~datetime.date
         :return: None
         :rtype: None
@@ -805,6 +818,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Get a response with header values "2010-01-01" or "0001-01-01".
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
+         Required.
         :paramtype scenario: str
         :return: None
         :rtype: None
@@ -849,9 +863,10 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         "scenario": "min", "value": "0001-01-01T00:00:00Z".
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
+         Required.
         :paramtype scenario: str
         :keyword value: Send a post request with header values "2010-01-01T12:34:56Z" or
-         "0001-01-01T00:00:00Z".
+         "0001-01-01T00:00:00Z". Required.
         :paramtype value: ~datetime.datetime
         :return: None
         :rtype: None
@@ -893,6 +908,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
+         Required.
         :paramtype scenario: str
         :return: None
         :rtype: None
@@ -937,9 +953,10 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
+         Required.
         :paramtype scenario: str
         :keyword value: Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon,
-         01 Jan 0001 00:00:00 GMT". Optional. Default value is None.
+         01 Jan 0001 00:00:00 GMT". Default value is None.
         :paramtype value: ~datetime.datetime
         :return: None
         :rtype: None
@@ -982,6 +999,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         GMT".
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
+         Required.
         :paramtype scenario: str
         :return: None
         :rtype: None
@@ -1024,9 +1042,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S".
 
-        :keyword scenario: Send a post request with header values "scenario": "valid".
+        :keyword scenario: Send a post request with header values "scenario": "valid". Required.
         :paramtype scenario: str
-        :keyword value: Send a post request with header values "P123DT22H14M12.011S".
+        :keyword value: Send a post request with header values "P123DT22H14M12.011S". Required.
         :paramtype value: ~datetime.timedelta
         :return: None
         :rtype: None
@@ -1067,7 +1085,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get a response with header values "P123DT22H14M12.011S".
 
-        :keyword scenario: Send a post request with header values "scenario": "valid".
+        :keyword scenario: Send a post request with header values "scenario": "valid". Required.
         :paramtype scenario: str
         :return: None
         :rtype: None
@@ -1110,9 +1128,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
 
-        :keyword scenario: Send a post request with header values "scenario": "valid".
+        :keyword scenario: Send a post request with header values "scenario": "valid". Required.
         :paramtype scenario: str
-        :keyword value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩".
+        :keyword value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩". Required.
         :paramtype value: bytes
         :return: None
         :rtype: None
@@ -1153,7 +1171,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
 
-        :keyword scenario: Send a post request with header values "scenario": "valid".
+        :keyword scenario: Send a post request with header values "scenario": "valid". Required.
         :paramtype scenario: str
         :return: None
         :rtype: None
@@ -1198,10 +1216,10 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         "null", "value": null.
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
-         "empty".
+         "empty". Required.
         :paramtype scenario: str
         :keyword value: Send a post request with header values 'GREY'. Known values are: "White",
-         "black", and "GREY". Optional. Default value is None.
+         "black", and "GREY". Default value is None.
         :paramtype value: str
         :return: None
         :rtype: None
@@ -1243,7 +1261,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Get a response with header values "GREY" or null.
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
-         "empty".
+         "empty". Required.
         :paramtype scenario: str
         :return: None
         :rtype: None

@@ -119,6 +119,7 @@ class ObjectTypeClientOperationsMixin(MixinABC):
         object error.
 
         :param put_object: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
+         Required.
         :type put_object: JSON
         :return: None
         :rtype: None

@@ -251,6 +251,7 @@ class ByteOperations:
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
+         Required.
         :type byte_body: bytes
         :return: None
         :rtype: None

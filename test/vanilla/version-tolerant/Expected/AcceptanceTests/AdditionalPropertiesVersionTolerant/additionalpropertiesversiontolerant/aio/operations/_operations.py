@@ -63,10 +63,10 @@ class PetsOperations:
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -77,14 +77,14 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -96,10 +96,10 @@ class PetsOperations:
     async def create_ap_true(self, create_parameters: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -110,7 +110,7 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -122,10 +122,10 @@ class PetsOperations:
     async def create_ap_true(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a model type or a IO type.
+        :param create_parameters: Is either a model type or a IO type. Required.
         :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -136,7 +136,7 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -193,10 +193,10 @@ class PetsOperations:
     ) -> JSON:
         """Create a CatAPTrue which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -208,7 +208,7 @@ class PetsOperations:
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
                     "friendly": bool,  # Optional.
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -216,7 +216,7 @@ class PetsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "friendly": bool,  # Optional.
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -230,10 +230,10 @@ class PetsOperations:
     ) -> JSON:
         """Create a CatAPTrue which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -245,7 +245,7 @@ class PetsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "friendly": bool,  # Optional.
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -257,10 +257,10 @@ class PetsOperations:
     async def create_cat_ap_true(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Create a CatAPTrue which contains more properties than what is defined.
 
-        :param create_parameters: Is either a model type or a IO type.
+        :param create_parameters: Is either a model type or a IO type. Required.
         :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -272,7 +272,7 @@ class PetsOperations:
                 # response body for status code(s): 200
                 response.json() == {
                     "friendly": bool,  # Optional.
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -329,10 +329,10 @@ class PetsOperations:
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -343,14 +343,14 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -364,10 +364,10 @@ class PetsOperations:
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -378,7 +378,7 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -390,10 +390,10 @@ class PetsOperations:
     async def create_ap_object(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a model type or a IO type.
+        :param create_parameters: Is either a model type or a IO type. Required.
         :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -404,7 +404,7 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -461,10 +461,10 @@ class PetsOperations:
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -475,14 +475,14 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -496,10 +496,10 @@ class PetsOperations:
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -510,7 +510,7 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -522,10 +522,10 @@ class PetsOperations:
     async def create_ap_string(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a model type or a IO type.
+        :param create_parameters: Is either a model type or a IO type. Required.
         :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -536,7 +536,7 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -593,10 +593,10 @@ class PetsOperations:
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -607,14 +607,14 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -628,10 +628,10 @@ class PetsOperations:
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -642,7 +642,7 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -654,10 +654,10 @@ class PetsOperations:
     async def create_ap_in_properties(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a model type or a IO type.
+        :param create_parameters: Is either a model type or a IO type. Required.
         :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -668,7 +668,7 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "id": 0,
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -725,10 +725,10 @@ class PetsOperations:
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -739,16 +739,16 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "@odata.location": "str",
-                    "id": 0,
+                    "@odata.location": "str",  # Required.
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "@odata.location": "str",
-                    "id": 0,
+                    "@odata.location": "str",  # Required.
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -762,10 +762,10 @@ class PetsOperations:
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -776,8 +776,8 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "@odata.location": "str",
-                    "id": 0,
+                    "@odata.location": "str",  # Required.
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }
@@ -789,10 +789,10 @@ class PetsOperations:
     async def create_ap_in_properties_with_ap_string(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a model type or a IO type.
+        :param create_parameters: Is either a model type or a IO type. Required.
         :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -803,8 +803,8 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "@odata.location": "str",
-                    "id": 0,
+                    "@odata.location": "str",  # Required.
+                    "id": 0,  # Required.
                     "name": "str",  # Optional.
                     "status": bool  # Optional.
                 }

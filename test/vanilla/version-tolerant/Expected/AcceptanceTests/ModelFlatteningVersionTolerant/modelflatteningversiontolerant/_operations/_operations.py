@@ -323,10 +323,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     ) -> None:
         """Put External Resource as an Array.
 
-        :param resource_array: External Resource as an Array to put. Optional. Default value is None.
+        :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[JSON]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -357,10 +357,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     ) -> None:
         """Put External Resource as an Array.
 
-        :param resource_array: External Resource as an Array to put. Optional. Default value is None.
+        :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -376,10 +376,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         """Put External Resource as an Array.
 
         :param resource_array: External Resource as an Array to put. Is either a list type or a IO
-         type. Optional. Default value is None.
+         type. Default value is None.
         :type resource_array: list[JSON] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -497,10 +497,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
-        :param resource_array: External Resource as an Array to put. Optional. Default value is None.
+        :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[JSON]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -526,10 +526,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
-        :param resource_array: External Resource as an Array to put. Optional. Default value is None.
+        :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -546,10 +546,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         is not removed if it's referenced in an array.
 
         :param resource_array: External Resource as an Array to put. Is either a list type or a IO
-         type. Optional. Default value is None.
+         type. Default value is None.
         :type resource_array: list[JSON] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -659,11 +659,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     ) -> None:
         """Put External Resource as a Dictionary.
 
-        :param resource_dictionary: External Resource as a Dictionary to put. Optional. Default value
-         is None.
+        :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
         :type resource_dictionary: dict[str, JSON]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -702,11 +701,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     ) -> None:
         """Put External Resource as a Dictionary.
 
-        :param resource_dictionary: External Resource as a Dictionary to put. Optional. Default value
-         is None.
+        :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
         :type resource_dictionary: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -722,10 +720,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         """Put External Resource as a Dictionary.
 
         :param resource_dictionary: External Resource as a Dictionary to put. Is either a dict type or
-         a IO type. Optional. Default value is None.
+         a IO type. Default value is None.
         :type resource_dictionary: dict[str, JSON] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -842,11 +840,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
-        :param resource_complex_object: External Resource as a ResourceCollection to put. Optional.
-         Default value is None.
+        :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
+         is None.
         :type resource_complex_object: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -930,11 +928,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
-        :param resource_complex_object: External Resource as a ResourceCollection to put. Optional.
-         Default value is None.
+        :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
+         is None.
         :type resource_complex_object: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -950,10 +948,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         """Put External Resource as a ResourceCollection.
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Is either a
-         model type or a IO type. Optional. Default value is None.
+         model type or a IO type. Default value is None.
         :type resource_complex_object: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1115,10 +1113,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
-        :param simple_body_product: Simple body product to put. Optional. Default value is None.
+        :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -1132,11 +1130,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.
+                      will have a different product_id than uberX in Los Angeles.Unique identifier
+                      representing a specific product for a given latitude & longitude. For example,
+                      uberX in San Francisco will have a different product_id than uberX in Los
+                      Angeles. Required.
                     "details": {
                         "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. "Large"
-                        "max_product_display_name": "str",  # Display name of product.
+                          people.Capacity of product. For example, 4 people. Required. "Large"
+                        "max_product_display_name": "str",  # Display name of product.Display
+                          name of product. Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1149,11 +1151,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.
+                      will have a different product_id than uberX in Los Angeles.Unique identifier
+                      representing a specific product for a given latitude & longitude. For example,
+                      uberX in San Francisco will have a different product_id than uberX in Los
+                      Angeles. Required.
                     "details": {
                         "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. "Large"
-                        "max_product_display_name": "str",  # Display name of product.
+                          people.Capacity of product. For example, 4 people. Required. "Large"
+                        "max_product_display_name": "str",  # Display name of product.Display
+                          name of product. Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1170,10 +1176,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
-        :param simple_body_product: Simple body product to put. Optional. Default value is None.
+        :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -1187,11 +1193,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.
+                      will have a different product_id than uberX in Los Angeles.Unique identifier
+                      representing a specific product for a given latitude & longitude. For example,
+                      uberX in San Francisco will have a different product_id than uberX in Los
+                      Angeles. Required.
                     "details": {
                         "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. "Large"
-                        "max_product_display_name": "str",  # Display name of product.
+                          people.Capacity of product. For example, 4 people. Required. "Large"
+                        "max_product_display_name": "str",  # Display name of product.Display
+                          name of product. Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1207,10 +1217,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         """Put Simple Product with client flattening true on the model.
 
         :param simple_body_product: Simple body product to put. Is either a model type or a IO type.
-         Optional. Default value is None.
+         Default value is None.
         :type simple_body_product: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -1224,11 +1234,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.
+                      will have a different product_id than uberX in Los Angeles.Unique identifier
+                      representing a specific product for a given latitude & longitude. For example,
+                      uberX in San Francisco will have a different product_id than uberX in Los
+                      Angeles. Required.
                     "details": {
                         "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. "Large"
-                        "max_product_display_name": "str",  # Display name of product.
+                          people.Capacity of product. For example, 4 people. Required. "Large"
+                        "max_product_display_name": "str",  # Display name of product.Display
+                          name of product. Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1288,10 +1302,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     ) -> JSON:
         """Put Flattened Simple Product with client flattening true on the parameter.
 
-        :param simple_body_product: Simple body product to post. Optional. Default value is None.
+        :param simple_body_product: Simple body product to post. Default value is None.
         :type simple_body_product: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -1305,11 +1319,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.
+                      will have a different product_id than uberX in Los Angeles.Unique identifier
+                      representing a specific product for a given latitude & longitude. For example,
+                      uberX in San Francisco will have a different product_id than uberX in Los
+                      Angeles. Required.
                     "details": {
                         "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. "Large"
-                        "max_product_display_name": "str",  # Display name of product.
+                          people.Capacity of product. For example, 4 people. Required. "Large"
+                        "max_product_display_name": "str",  # Display name of product.Display
+                          name of product. Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1322,11 +1340,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.
+                      will have a different product_id than uberX in Los Angeles.Unique identifier
+                      representing a specific product for a given latitude & longitude. For example,
+                      uberX in San Francisco will have a different product_id than uberX in Los
+                      Angeles. Required.
                     "details": {
                         "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. "Large"
-                        "max_product_display_name": "str",  # Display name of product.
+                          people.Capacity of product. For example, 4 people. Required. "Large"
+                        "max_product_display_name": "str",  # Display name of product.Display
+                          name of product. Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1343,10 +1365,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     ) -> JSON:
         """Put Flattened Simple Product with client flattening true on the parameter.
 
-        :param simple_body_product: Simple body product to post. Optional. Default value is None.
+        :param simple_body_product: Simple body product to post. Default value is None.
         :type simple_body_product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -1360,11 +1382,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.
+                      will have a different product_id than uberX in Los Angeles.Unique identifier
+                      representing a specific product for a given latitude & longitude. For example,
+                      uberX in San Francisco will have a different product_id than uberX in Los
+                      Angeles. Required.
                     "details": {
                         "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. "Large"
-                        "max_product_display_name": "str",  # Display name of product.
+                          people.Capacity of product. For example, 4 people. Required. "Large"
+                        "max_product_display_name": "str",  # Display name of product.Display
+                          name of product. Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1382,10 +1408,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         :param simple_body_product: Simple body product to post. Is either a model type or a IO type.
-         Optional. Default value is None.
+         Default value is None.
         :type simple_body_product: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -1399,11 +1425,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.
+                      will have a different product_id than uberX in Los Angeles.Unique identifier
+                      representing a specific product for a given latitude & longitude. For example,
+                      uberX in San Francisco will have a different product_id than uberX in Los
+                      Angeles. Required.
                     "details": {
                         "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. "Large"
-                        "max_product_display_name": "str",  # Display name of product.
+                          people.Capacity of product. For example, 4 people. Required. "Large"
+                        "max_product_display_name": "str",  # Display name of product.Display
+                          name of product. Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1468,12 +1498,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
-        :param name: Product name with value 'groupproduct'.
+        :param name: Product name with value 'groupproduct'. Required.
         :type name: str
-        :param simple_body_product: Simple body product to put. Optional. Default value is None.
+        :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -1487,11 +1517,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.
+                      will have a different product_id than uberX in Los Angeles.Unique identifier
+                      representing a specific product for a given latitude & longitude. For example,
+                      uberX in San Francisco will have a different product_id than uberX in Los
+                      Angeles. Required.
                     "details": {
                         "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. "Large"
-                        "max_product_display_name": "str",  # Display name of product.
+                          people.Capacity of product. For example, 4 people. Required. "Large"
+                        "max_product_display_name": "str",  # Display name of product.Display
+                          name of product. Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1504,11 +1538,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.
+                      will have a different product_id than uberX in Los Angeles.Unique identifier
+                      representing a specific product for a given latitude & longitude. For example,
+                      uberX in San Francisco will have a different product_id than uberX in Los
+                      Angeles. Required.
                     "details": {
                         "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. "Large"
-                        "max_product_display_name": "str",  # Display name of product.
+                          people.Capacity of product. For example, 4 people. Required. "Large"
+                        "max_product_display_name": "str",  # Display name of product.Display
+                          name of product. Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1525,12 +1563,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
-        :param name: Product name with value 'groupproduct'.
+        :param name: Product name with value 'groupproduct'. Required.
         :type name: str
-        :param simple_body_product: Simple body product to put. Optional. Default value is None.
+        :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -1544,11 +1582,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.
+                      will have a different product_id than uberX in Los Angeles.Unique identifier
+                      representing a specific product for a given latitude & longitude. For example,
+                      uberX in San Francisco will have a different product_id than uberX in Los
+                      Angeles. Required.
                     "details": {
                         "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. "Large"
-                        "max_product_display_name": "str",  # Display name of product.
+                          people.Capacity of product. For example, 4 people. Required. "Large"
+                        "max_product_display_name": "str",  # Display name of product.Display
+                          name of product. Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.
@@ -1565,13 +1607,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
-        :param name: Product name with value 'groupproduct'.
+        :param name: Product name with value 'groupproduct'. Required.
         :type name: str
         :param simple_body_product: Simple body product to put. Is either a model type or a IO type.
-         Optional. Default value is None.
+         Default value is None.
         :type simple_body_product: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -1585,11 +1627,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
                     "base_product_description": "str",  # Optional. Description of product.
                     "base_product_id": "str",  # Unique identifier representing a specific
                       product for a given latitude & longitude. For example, uberX in San Francisco
-                      will have a different product_id than uberX in Los Angeles.
+                      will have a different product_id than uberX in Los Angeles.Unique identifier
+                      representing a specific product for a given latitude & longitude. For example,
+                      uberX in San Francisco will have a different product_id than uberX in Los
+                      Angeles. Required.
                     "details": {
                         "max_product_capacity": "str",  # Capacity of product. For example, 4
-                          people. "Large"
-                        "max_product_display_name": "str",  # Display name of product.
+                          people.Capacity of product. For example, 4 people. Required. "Large"
+                        "max_product_display_name": "str",  # Display name of product.Display
+                          name of product. Required.
                         "max_product_image": {
                             "@odata.value": "str",  # Optional. URL value.
                             "generic_value": "str"  # Optional. Generic URL value.

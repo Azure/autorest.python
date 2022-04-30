@@ -45,8 +45,9 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+         Required.
         :type resource_group_name: str
-        :param id: Required int multiple of 10 from 100 to 1000.
+        :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
         :return: JSON object
         :rtype: JSON
@@ -60,17 +61,18 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.
+                          string.Constant string. Required.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.
+                          string.Constant string. Required.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2.
+                          Constant string2.Constant string2. Required.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.
-                    "constString": "constant",  # Default value is "constant". Constant string.
+                    "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant
+                      string.Constant string. Required.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -132,13 +134,14 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+         Required.
         :type resource_group_name: str
-        :param id: Required int multiple of 10 from 100 to 1000.
+        :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
-        :param body: Optional. Default value is None.
+        :param body: Default value is None.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -152,17 +155,18 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.
+                          string.Constant string. Required.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.
+                          string.Constant string. Required.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2.
+                          Constant string2.Constant string2. Required.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.
-                    "constString": "constant",  # Default value is "constant". Constant string.
+                    "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant
+                      string.Constant string. Required.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -177,17 +181,18 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.
+                          string.Constant string. Required.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.
+                          string.Constant string. Required.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2.
+                          Constant string2.Constant string2. Required.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.
-                    "constString": "constant",  # Default value is "constant". Constant string.
+                    "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant
+                      string.Constant string. Required.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -213,13 +218,14 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+         Required.
         :type resource_group_name: str
-        :param id: Required int multiple of 10 from 100 to 1000.
+        :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
-        :param body: Optional. Default value is None.
+        :param body: Default value is None.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -233,17 +239,18 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.
+                          string.Constant string. Required.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.
+                          string.Constant string. Required.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2.
+                          Constant string2.Constant string2. Required.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.
-                    "constString": "constant",  # Default value is "constant". Constant string.
+                    "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant
+                      string.Constant string. Required.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -263,13 +270,14 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+         Required.
         :type resource_group_name: str
-        :param id: Required int multiple of 10 from 100 to 1000.
+        :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
-        :param body: Is either a model type or a IO type. Optional. Default value is None.
+        :param body: Is either a model type or a IO type. Default value is None.
         :type body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -283,17 +291,18 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.
+                          string.Constant string. Required.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.
+                          string.Constant string. Required.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2.
+                          Constant string2.Constant string2. Required.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.
-                    "constString": "constant",  # Default value is "constant". Constant string.
+                    "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant
+                      string.Constant string. Required.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -400,10 +409,10 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
     ) -> JSON:
         """post_with_constant_in_body.
 
-        :param body: Optional. Default value is None.
+        :param body: Default value is None.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
@@ -420,17 +429,18 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.
+                          string.Constant string. Required.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.
+                          string.Constant string. Required.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2.
+                          Constant string2.Constant string2. Required.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.
-                    "constString": "constant",  # Default value is "constant". Constant string.
+                    "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant
+                      string.Constant string. Required.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -445,17 +455,18 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.
+                          string.Constant string. Required.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.
+                          string.Constant string. Required.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2.
+                          Constant string2.Constant string2. Required.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.
-                    "constString": "constant",  # Default value is "constant". Constant string.
+                    "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant
+                      string.Constant string. Required.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -474,10 +485,10 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
     ) -> JSON:
         """post_with_constant_in_body.
 
-        :param body: Optional. Default value is None.
+        :param body: Default value is None.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
@@ -494,17 +505,18 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.
+                          string.Constant string. Required.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.
+                          string.Constant string. Required.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2.
+                          Constant string2.Constant string2. Required.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.
-                    "constString": "constant",  # Default value is "constant". Constant string.
+                    "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant
+                      string.Constant string. Required.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [
@@ -521,13 +533,13 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
     async def post_with_constant_in_body(self, body: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
         """post_with_constant_in_body.
 
-        :param body: Is either a model type or a IO type. Optional. Default value is None.
+        :param body: Is either a model type or a IO type. Default value is None.
         :type body: JSON or IO
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype constant_param: str
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
@@ -541,17 +553,18 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
                     "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                     "child": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.
+                          string.Constant string. Required.
                         "count": 0  # Optional. Count.
                     },
                     "constChild": {
                         "constProperty": "constant",  # Default value is "constant". Constant
-                          string.
+                          string.Constant string. Required.
                         "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2.
+                          Constant string2.Constant string2. Required.
                     },
-                    "constInt": 0,  # Default value is 0. Constant int.
-                    "constString": "constant",  # Default value is "constant". Constant string.
+                    "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant
+                      string.Constant string. Required.
                     "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                       "constant_string_as_enum". Constant string as Enum.
                     "display_names": [

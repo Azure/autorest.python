@@ -145,7 +145,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
 
-        :param model:
+        :param model: Required.
         :type model: ET.Element
         :return: None
         :rtype: None
@@ -253,7 +253,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
 
-        :param model:
+        :param model: Required.
         :type model: ET.Element
         :return: None
         :rtype: None
@@ -369,7 +369,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put a simple XML document.
 
-        :param slideshow:
+        :param slideshow: Required.
         :type slideshow: ET.Element
         :return: None
         :rtype: None
@@ -487,7 +487,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put an XML document with multiple wrapped lists.
 
-        :param wrapped_lists:
+        :param wrapped_lists: Required.
         :type wrapped_lists: ET.Element
         :return: None
         :rtype: None
@@ -643,7 +643,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts an empty list.
 
-        :param slideshow:
+        :param slideshow: Required.
         :type slideshow: ET.Element
         :return: None
         :rtype: None
@@ -761,7 +761,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts some empty wrapped lists.
 
-        :param apple_barrel:
+        :param apple_barrel: Required.
         :type apple_barrel: ET.Element
         :return: None
         :rtype: None
@@ -873,7 +873,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts a list as the root element.
 
-        :param bananas:
+        :param bananas: Required.
         :type bananas: ET.Element
         :return: None
         :rtype: None
@@ -985,7 +985,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts a list with a single item.
 
-        :param bananas:
+        :param bananas: Required.
         :type bananas: ET.Element
         :return: None
         :rtype: None
@@ -1097,7 +1097,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts an empty list as the root element.
 
-        :param bananas:
+        :param bananas: Required.
         :type bananas: ET.Element
         :return: None
         :rtype: None
@@ -1207,7 +1207,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts a value with an empty child element.
 
-        :param banana:
+        :param banana: Required.
         :type banana: ET.Element
         :return: None
         :rtype: None
@@ -1278,11 +1278,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                                 "str": "str"  # Optional. Dictionary of
                                   :code:`<string>`.
                             },
-                            "Name": "str",
+                            "Name": "str",  # Required.
                             "Properties": {
-                                "Etag": "str",  # Properties of a container.
-                                "Last-Modified": "2020-02-20 00:00:00",  # Properties
-                                  of a container.
+                                "Etag": "str",  # Required.
+                                "Last-Modified": "2020-02-20 00:00:00",  # Required.
                                 "LeaseDuration": "str",  # Optional. Known values
                                   are: "infinite" or "fixed".
                                 "LeaseState": "str",  # Optional. Known values are:
@@ -1295,10 +1294,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                         }
                     ],
                     "Marker": "str",  # Optional.
-                    "MaxResults": 0,
-                    "NextMarker": "str",
-                    "Prefix": "str",
-                    "ServiceEndpoint": "str"
+                    "MaxResults": 0,  # Required.
+                    "NextMarker": "str",  # Required.
+                    "Prefix": "str",  # Required.
+                    "ServiceEndpoint": "str"  # Required.
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1359,20 +1358,32 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                     "Cors": [
                         {
                             "AllowedHeaders": "str",  # the request headers that the
-                              origin domain may specify on the CORS request.
+                              origin domain may specify on the CORS request.the request headers that
+                              the origin domain may specify on the CORS request. Required.
                             "AllowedMethods": "str",  # The methods (HTTP request verbs)
-                              that the origin domain may use for a CORS request. (comma separated).
+                              that the origin domain may use for a CORS request. (comma separated).The
+                              methods (HTTP request verbs) that the origin domain may use for a CORS
+                              request. (comma separated). Required.
                             "AllowedOrigins": "str",  # The origin domains that are
                               permitted to make a request against the storage service via CORS. The
                               origin domain is the domain from which the request originates. Note that
                               the origin must be an exact case-sensitive match with the origin that the
                               user age sends to the service. You can also use the wildcard character
-                              '*' to allow all origin domains to make requests via CORS.
+                              '*' to allow all origin domains to make requests via CORS.The origin
+                              domains that are permitted to make a request against the storage service
+                              via CORS. The origin domain is the domain from which the request
+                              originates. Note that the origin must be an exact case-sensitive match
+                              with the origin that the user age sends to the service. You can also use
+                              the wildcard character '*' to allow all origin domains to make requests
+                              via CORS. Required.
                             "ExposedHeaders": "str",  # The response headers that may be
                               sent in the response to the CORS request and exposed by the browser to
-                              the request issuer.
+                              the request issuer.The response headers that may be sent in the response
+                              to the CORS request and exposed by the browser to the request issuer.
+                              Required.
                             "MaxAgeInSeconds": 0  # The maximum amount time that a
-                              browser should cache the preflight OPTIONS request.
+                              browser should cache the preflight OPTIONS request.The maximum amount
+                              time that a browser should cache the preflight OPTIONS request. Required.
                         }
                     ],
                     "DefaultServiceVersion": "str",  # Optional. The default version to use for
@@ -1383,11 +1394,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                           logging or soft-deleted data should be retained. All data older than this
                           value will be deleted.
                         "Enabled": bool  # Indicates whether a retention policy is enabled
-                          for the storage service.
+                          for the storage service.Indicates whether a retention policy is enabled for
+                          the storage service. Required.
                     },
                     "HourMetrics": {
                         "Enabled": bool,  # Indicates whether metrics are enabled for the
-                          Blob service.
+                          Blob service.Indicates whether metrics are enabled for the Blob service.
+                          Required.
                         "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
                           generate summary statistics for called API operations.
                         "RetentionPolicy": {
@@ -1395,30 +1408,34 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                               metrics or logging or soft-deleted data should be retained. All data
                               older than this value will be deleted.
                             "Enabled": bool  # Indicates whether a retention policy is
-                              enabled for the storage service.
+                              enabled for the storage service.Indicates whether a retention policy is
+                              enabled for the storage service. Required.
                         },
                         "Version": "str"  # Optional. The version of Storage Analytics to
                           configure.
                     },
                     "Logging": {
                         "Delete": bool,  # Indicates whether all delete requests should be
-                          logged.
+                          logged.Indicates whether all delete requests should be logged. Required.
                         "Read": bool,  # Indicates whether all read requests should be
-                          logged.
+                          logged.Indicates whether all read requests should be logged. Required.
                         "RetentionPolicy": {
                             "Days": 0,  # Optional. Indicates the number of days that
                               metrics or logging or soft-deleted data should be retained. All data
                               older than this value will be deleted.
                             "Enabled": bool  # Indicates whether a retention policy is
-                              enabled for the storage service.
+                              enabled for the storage service.Indicates whether a retention policy is
+                              enabled for the storage service. Required.
                         },
-                        "Version": "str",  # The version of Storage Analytics to configure.
+                        "Version": "str",  # The version of Storage Analytics to
+                          configure.The version of Storage Analytics to configure. Required.
                         "Write": bool  # Indicates whether all write requests should be
-                          logged.
+                          logged.Indicates whether all write requests should be logged. Required.
                     },
                     "MinuteMetrics": {
                         "Enabled": bool,  # Indicates whether metrics are enabled for the
-                          Blob service.
+                          Blob service.Indicates whether metrics are enabled for the Blob service.
+                          Required.
                         "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
                           generate summary statistics for called API operations.
                         "RetentionPolicy": {
@@ -1426,7 +1443,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                               metrics or logging or soft-deleted data should be retained. All data
                               older than this value will be deleted.
                             "Enabled": bool  # Indicates whether a retention policy is
-                              enabled for the storage service.
+                              enabled for the storage service.Indicates whether a retention policy is
+                              enabled for the storage service. Required.
                         },
                         "Version": "str"  # Optional. The version of Storage Analytics to
                           configure.
@@ -1477,7 +1495,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts storage service properties.
 
-        :param properties:
+        :param properties: Required.
         :type properties: ET.Element
         :keyword comp: Default value is "properties". Note that overriding this default value may
          result in unsupported behavior.
@@ -1497,20 +1515,32 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                     "Cors": [
                         {
                             "AllowedHeaders": "str",  # the request headers that the
-                              origin domain may specify on the CORS request.
+                              origin domain may specify on the CORS request.the request headers that
+                              the origin domain may specify on the CORS request. Required.
                             "AllowedMethods": "str",  # The methods (HTTP request verbs)
-                              that the origin domain may use for a CORS request. (comma separated).
+                              that the origin domain may use for a CORS request. (comma separated).The
+                              methods (HTTP request verbs) that the origin domain may use for a CORS
+                              request. (comma separated). Required.
                             "AllowedOrigins": "str",  # The origin domains that are
                               permitted to make a request against the storage service via CORS. The
                               origin domain is the domain from which the request originates. Note that
                               the origin must be an exact case-sensitive match with the origin that the
                               user age sends to the service. You can also use the wildcard character
-                              '*' to allow all origin domains to make requests via CORS.
+                              '*' to allow all origin domains to make requests via CORS.The origin
+                              domains that are permitted to make a request against the storage service
+                              via CORS. The origin domain is the domain from which the request
+                              originates. Note that the origin must be an exact case-sensitive match
+                              with the origin that the user age sends to the service. You can also use
+                              the wildcard character '*' to allow all origin domains to make requests
+                              via CORS. Required.
                             "ExposedHeaders": "str",  # The response headers that may be
                               sent in the response to the CORS request and exposed by the browser to
-                              the request issuer.
+                              the request issuer.The response headers that may be sent in the response
+                              to the CORS request and exposed by the browser to the request issuer.
+                              Required.
                             "MaxAgeInSeconds": 0  # The maximum amount time that a
-                              browser should cache the preflight OPTIONS request.
+                              browser should cache the preflight OPTIONS request.The maximum amount
+                              time that a browser should cache the preflight OPTIONS request. Required.
                         }
                     ],
                     "DefaultServiceVersion": "str",  # Optional. The default version to use for
@@ -1521,11 +1551,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                           logging or soft-deleted data should be retained. All data older than this
                           value will be deleted.
                         "Enabled": bool  # Indicates whether a retention policy is enabled
-                          for the storage service.
+                          for the storage service.Indicates whether a retention policy is enabled for
+                          the storage service. Required.
                     },
                     "HourMetrics": {
                         "Enabled": bool,  # Indicates whether metrics are enabled for the
-                          Blob service.
+                          Blob service.Indicates whether metrics are enabled for the Blob service.
+                          Required.
                         "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
                           generate summary statistics for called API operations.
                         "RetentionPolicy": {
@@ -1533,30 +1565,34 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                               metrics or logging or soft-deleted data should be retained. All data
                               older than this value will be deleted.
                             "Enabled": bool  # Indicates whether a retention policy is
-                              enabled for the storage service.
+                              enabled for the storage service.Indicates whether a retention policy is
+                              enabled for the storage service. Required.
                         },
                         "Version": "str"  # Optional. The version of Storage Analytics to
                           configure.
                     },
                     "Logging": {
                         "Delete": bool,  # Indicates whether all delete requests should be
-                          logged.
+                          logged.Indicates whether all delete requests should be logged. Required.
                         "Read": bool,  # Indicates whether all read requests should be
-                          logged.
+                          logged.Indicates whether all read requests should be logged. Required.
                         "RetentionPolicy": {
                             "Days": 0,  # Optional. Indicates the number of days that
                               metrics or logging or soft-deleted data should be retained. All data
                               older than this value will be deleted.
                             "Enabled": bool  # Indicates whether a retention policy is
-                              enabled for the storage service.
+                              enabled for the storage service.Indicates whether a retention policy is
+                              enabled for the storage service. Required.
                         },
-                        "Version": "str",  # The version of Storage Analytics to configure.
+                        "Version": "str",  # The version of Storage Analytics to
+                          configure.The version of Storage Analytics to configure. Required.
                         "Write": bool  # Indicates whether all write requests should be
-                          logged.
+                          logged.Indicates whether all write requests should be logged. Required.
                     },
                     "MinuteMetrics": {
                         "Enabled": bool,  # Indicates whether metrics are enabled for the
-                          Blob service.
+                          Blob service.Indicates whether metrics are enabled for the Blob service.
+                          Required.
                         "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
                           generate summary statistics for called API operations.
                         "RetentionPolicy": {
@@ -1564,7 +1600,8 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                               metrics or logging or soft-deleted data should be retained. All data
                               older than this value will be deleted.
                             "Enabled": bool  # Indicates whether a retention policy is
-                              enabled for the storage service.
+                              enabled for the storage service.Indicates whether a retention policy is
+                              enabled for the storage service. Required.
                         },
                         "Version": "str"  # Optional. The version of Storage Analytics to
                           configure.
@@ -1629,12 +1666,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                     {
                         "AccessPolicy": {
                             "Expiry": "2020-02-20 00:00:00",  # the date-time the policy
-                              expires.
-                            "Permission": "str",  # the permissions for the acl policy.
+                              expires.the date-time the policy expires. Required.
+                            "Permission": "str",  # the permissions for the acl
+                              policy.the permissions for the acl policy. Required.
                             "Start": "2020-02-20 00:00:00"  # the date-time the policy is
-                              active.
+                              active.the date-time the policy is active. Required.
                         },
-                        "Id": "str"  # a unique id.
+                        "Id": "str"  # a unique id.a unique id. Required.
                     }
                 ]
         """
@@ -1682,7 +1720,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts storage ACLs for a container.
 
-        :param properties:
+        :param properties: Required.
         :type properties: ET.Element
         :keyword comp: Default value is "acl". Note that overriding this default value may result in
          unsupported behavior.
@@ -1702,12 +1740,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                     {
                         "AccessPolicy": {
                             "Expiry": "2020-02-20 00:00:00",  # the date-time the policy
-                              expires.
-                            "Permission": "str",  # the permissions for the acl policy.
+                              expires.the date-time the policy expires. Required.
+                            "Permission": "str",  # the permissions for the acl
+                              policy.the permissions for the acl policy. Required.
                             "Start": "2020-02-20 00:00:00"  # the date-time the policy is
-                              active.
+                              active.the date-time the policy is active. Required.
                         },
-                        "Id": "str"  # a unique id.
+                        "Id": "str"  # a unique id.a unique id. Required.
                     }
                 ]
         """
@@ -1769,58 +1808,58 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                     "Blobs": {
                         "Blob": [
                             {
-                                "Deleted": bool,
+                                "Deleted": bool,  # Required.
                                 "Metadata": {
                                     "str": "str"  # Optional. Dictionary of
                                       :code:`<string>`.
                                 },
-                                "Name": "str",
+                                "Name": "str",  # Required.
                                 "Properties": {
                                     "AccessTier": "str",  # Optional. Known
                                       values are: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot",
                                       "Cool", and "Archive".
                                     "AccessTierInferred": bool,  # Optional.
-                                      Properties of a blob.
+                                      Properties of a blob.Properties of a blob. Required.
                                     "ArchiveStatus": "str",  # Optional. Known
                                       values are: "rehydrate-pending-to-hot" or
                                       "rehydrate-pending-to-cool".
                                     "BlobType": "str",  # Optional. Known values
                                       are: "BlockBlob", "PageBlob", and "AppendBlob".
                                     "Cache-Control": "str",  # Optional.
-                                      Properties of a blob.
+                                      Properties of a blob.Properties of a blob. Required.
                                     "Content-Disposition": "str",  # Optional.
-                                      Properties of a blob.
+                                      Properties of a blob.Properties of a blob. Required.
                                     "Content-Encoding": "str",  # Optional.
-                                      Properties of a blob.
+                                      Properties of a blob.Properties of a blob. Required.
                                     "Content-Language": "str",  # Optional.
-                                      Properties of a blob.
+                                      Properties of a blob.Properties of a blob. Required.
                                     "Content-Length": 0,  # Optional. Size in
                                       bytes.
                                     "Content-MD5": "str",  # Optional. Properties
-                                      of a blob.
+                                      of a blob.Properties of a blob. Required.
                                     "Content-Type": "str",  # Optional.
-                                      Properties of a blob.
+                                      Properties of a blob.Properties of a blob. Required.
                                     "CopyCompletionTime": "2020-02-20 00:00:00",
-                                      # Optional. Properties of a blob.
+                                      # Optional. Properties of a blob.Properties of a blob. Required.
                                     "CopyId": "str",  # Optional. Properties of a
-                                      blob.
+                                      blob.Properties of a blob. Required.
                                     "CopyProgress": "str",  # Optional.
-                                      Properties of a blob.
+                                      Properties of a blob.Properties of a blob. Required.
                                     "CopySource": "str",  # Optional. Properties
-                                      of a blob.
+                                      of a blob.Properties of a blob. Required.
                                     "CopyStatus": "str",  # Optional. Known
                                       values are: "pending", "success", "aborted", and "failed".
                                     "CopyStatusDescription": "str",  # Optional.
-                                      Properties of a blob.
+                                      Properties of a blob.Properties of a blob. Required.
                                     "DeletedTime": "2020-02-20 00:00:00",  #
-                                      Optional. Properties of a blob.
+                                      Optional. Properties of a blob.Properties of a blob. Required.
                                     "DestinationSnapshot": "str",  # Optional.
-                                      Properties of a blob.
-                                    "Etag": "str",  # Properties of a blob.
+                                      Properties of a blob.Properties of a blob. Required.
+                                    "Etag": "str",  # Required.
                                     "IncrementalCopy": bool,  # Optional.
-                                      Properties of a blob.
+                                      Properties of a blob.Properties of a blob. Required.
                                     "Last-Modified": "2020-02-20 00:00:00",  #
-                                      Properties of a blob.
+                                      Required.
                                     "LeaseDuration": "str",  # Optional. Known
                                       values are: "infinite" or "fixed".
                                     "LeaseState": "str",  # Optional. Known
@@ -1829,27 +1868,27 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
                                     "LeaseStatus": "str",  # Optional. Known
                                       values are: "locked" or "unlocked".
                                     "RemainingRetentionDays": 0,  # Optional.
-                                      Properties of a blob.
+                                      Properties of a blob.Properties of a blob. Required.
                                     "ServerEncrypted": bool,  # Optional.
-                                      Properties of a blob.
+                                      Properties of a blob.Properties of a blob. Required.
                                     "x-ms-blob-sequence-number": 0  # Optional.
-                                      Properties of a blob.
+                                      Properties of a blob.Properties of a blob. Required.
                                 },
-                                "Snapshot": "str"
+                                "Snapshot": "str"  # Required.
                             }
                         ],
                         "BlobPrefix": [
                             {
-                                "Name": "str"
+                                "Name": "str"  # Required.
                             }
                         ]
                     },
-                    "ContainerName": "str",
-                    "Delimiter": "str",
-                    "Marker": "str",
-                    "MaxResults": 0,
-                    "NextMarker": "str",
-                    "Prefix": "str",
+                    "ContainerName": "str",  # Required.
+                    "Delimiter": "str",  # Required.
+                    "Marker": "str",  # Required.
+                    "MaxResults": 0,  # Required.
+                    "NextMarker": "str",  # Required.
+                    "Prefix": "str",  # Required.
                     "ServiceEndpoint": "str"  # Optional.
                 }
         """
@@ -1898,10 +1937,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
-        :param properties:
+        :param properties: Required.
         :type properties: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1925,10 +1964,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
-        :param properties:
+        :param properties: Required.
         :type properties: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1944,10 +1983,10 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
-        :param properties: Is either a model type or a IO type.
+        :param properties: Is either a model type or a IO type. Required.
         :type properties: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -2150,7 +2189,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put an XML document with binary property.
 
-        :param slideshow:
+        :param slideshow: Required.
         :type slideshow: ET.Element
         :return: None
         :rtype: None
@@ -2250,7 +2289,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     async def put_uri(self, model: ET.Element, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put an XML document with uri property.
 
-        :param model:
+        :param model: Required.
         :type model: ET.Element
         :return: None
         :rtype: None

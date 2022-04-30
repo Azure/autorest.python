@@ -258,7 +258,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                 # response body for status code(s): 200
                 response.json() == {
                     "isAShowHorse": bool,  # Optional.
-                    "name": "str"
+                    "name": "str"  # Required.
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -299,10 +299,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
     def put_horse(self, horse: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
-        :param horse: Put a horse with name 'General' and isAShowHorse false.
+        :param horse: Put a horse with name 'General' and isAShowHorse false. Required.
         :type horse: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -314,7 +314,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                 # JSON input template you can fill out and use as your body input.
                 horse = {
                     "isAShowHorse": bool,  # Optional.
-                    "name": "str"
+                    "name": "str"  # Required.
                 }
         """
 
@@ -324,10 +324,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
     def put_horse(self, horse: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
-        :param horse: Put a horse with name 'General' and isAShowHorse false.
+        :param horse: Put a horse with name 'General' and isAShowHorse false. Required.
         :type horse: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -341,10 +341,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         """Put a horse with name 'General' and isAShowHorse false.
 
         :param horse: Put a horse with name 'General' and isAShowHorse false. Is either a model type or
-         a IO type.
+         a IO type. Required.
         :type horse: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -409,7 +409,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
 
                 # response body for status code(s): 200
                 response.json() == {
-                    "name": "str"
+                    "name": "str"  # Required.
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -450,10 +450,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
     def put_pet(self, pet: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a pet with name 'Butter'.
 
-        :param pet: Put a pet with name 'Butter'.
+        :param pet: Put a pet with name 'Butter'. Required.
         :type pet: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -464,7 +464,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 pet = {
-                    "name": "str"
+                    "name": "str"  # Required.
                 }
         """
 
@@ -474,10 +474,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
     def put_pet(self, pet: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
         """Put a pet with name 'Butter'.
 
-        :param pet: Put a pet with name 'Butter'.
+        :param pet: Put a pet with name 'Butter'. Required.
         :type pet: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -490,10 +490,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
     def put_pet(self, pet: Union[JSON, IO], **kwargs: Any) -> str:
         """Put a pet with name 'Butter'.
 
-        :param pet: Put a pet with name 'Butter'. Is either a model type or a IO type.
+        :param pet: Put a pet with name 'Butter'. Is either a model type or a IO type. Required.
         :type pet: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -600,10 +600,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
     def put_feline(self, feline: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a feline who hisses and doesn't meow.
 
-        :param feline: Put a feline who hisses and doesn't meow.
+        :param feline: Put a feline who hisses and doesn't meow. Required.
         :type feline: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -625,10 +625,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
     def put_feline(self, feline: IO, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
         """Put a feline who hisses and doesn't meow.
 
-        :param feline: Put a feline who hisses and doesn't meow.
+        :param feline: Put a feline who hisses and doesn't meow. Required.
         :type feline: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -642,9 +642,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         """Put a feline who hisses and doesn't meow.
 
         :param feline: Put a feline who hisses and doesn't meow. Is either a model type or a IO type.
+         Required.
         :type feline: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -712,7 +713,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                     "hisses": bool,  # Optional.
                     "likesMilk": bool,  # Optional.
                     "meows": bool,  # Optional.
-                    "name": "str"
+                    "name": "str"  # Required.
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -754,9 +755,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
+         Required.
         :type cat: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -770,7 +772,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                     "hisses": bool,  # Optional.
                     "likesMilk": bool,  # Optional.
                     "meows": bool,  # Optional.
-                    "name": "str"
+                    "name": "str"  # Required.
                 }
         """
 
@@ -781,9 +783,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
+         Required.
         :type cat: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -797,10 +800,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true. Is
-         either a model type or a IO type.
+         either a model type or a IO type. Required.
         :type cat: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -870,7 +873,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                     "hisses": bool,  # Optional.
                     "likesMilk": bool,  # Optional.
                     "meows": bool,  # Optional.
-                    "name": "str"
+                    "name": "str"  # Required.
                 }
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -913,10 +916,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
-         eatsMiceYet is true.
+         eatsMiceYet is true. Required.
         :type kitten: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Optional. Default value is "application/json".
+         Default value is "application/json".
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -931,7 +934,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
                     "hisses": bool,  # Optional.
                     "likesMilk": bool,  # Optional.
                     "meows": bool,  # Optional.
-                    "name": "str"
+                    "name": "str"  # Required.
                 }
         """
 
@@ -943,10 +946,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
-         eatsMiceYet is true.
+         eatsMiceYet is true. Required.
         :type kitten: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str
@@ -961,10 +964,10 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
-         eatsMiceYet is true. Is either a model type or a IO type.
+         eatsMiceYet is true. Is either a model type or a IO type. Required.
         :type kitten: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Optional. Default value is None.
+         Default value is None.
         :paramtype content_type: str
         :return: str
         :rtype: str

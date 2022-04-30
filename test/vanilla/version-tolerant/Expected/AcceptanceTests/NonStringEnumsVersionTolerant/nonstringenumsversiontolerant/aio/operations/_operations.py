@@ -53,8 +53,8 @@ class IntOperations:
     async def put(self, input: Optional[int] = None, **kwargs: Any) -> str:
         """Put an int enum.
 
-        :param input: Input int enum. Known values are: 200, 403, 405, 406, and 429. Optional. Default
-         value is None.
+        :param input: Input int enum. Known values are: 200, 403, 405, 406, and 429. Default value is
+         None.
         :type input: int
         :return: str
         :rtype: str
@@ -164,7 +164,7 @@ class FloatOperations:
         """Put a float enum.
 
         :param input: Input float enum. Known values are: 200.4, 403.4, 405.3, 406.2, and 429.1.
-         Optional. Default value is None.
+         Default value is None.
         :type input: float
         :return: str
         :rtype: str
