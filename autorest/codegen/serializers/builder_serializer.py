@@ -1036,6 +1036,11 @@ class LROOperationSerializer(
 class LROPagingOperationSerializer(
     LROOperationSerializer, PagingOperationSerializer
 ):  # pylint: disable=abstract-method
+
+    @property
+    def _function_def(self) -> str:
+        return "async def" if self.async_mode else "def"
+
     def get_long_running_output(self, builder: LROPagingOperation) -> List[str]:
         retval = ["def get_long_running_output(pipeline_response):"]
         retval.append(f"    {self._function_def} internal_get_next(next_link=None):")

@@ -148,16 +148,16 @@ class ParameterGroupingOperations:
 
     @distributed_trace_async
     async def post_reserved_words(  # pylint: disable=inconsistent-return-statements
-        self, *, from_parameter: Optional[str] = None, accept: Optional[str] = None, **kwargs: Any
+        self, *, from_parameter: Optional[str] = None, accept_parameter: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Post a grouped parameters with reserved words.
 
         :keyword from_parameter: 'from' is a reserved word. Pass in 'bob' to pass. Optional. Default
          value is None.
         :paramtype from_parameter: str
-        :keyword accept: 'accept' is a reserved word. Pass in 'yes' to pass. Optional. Default value is
-         None.
-        :paramtype accept: str
+        :keyword accept_parameter: 'accept' is a reserved word. Pass in 'yes' to pass. Optional.
+         Default value is None.
+        :paramtype accept_parameter: str
         :return: None
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
@@ -172,7 +172,7 @@ class ParameterGroupingOperations:
 
         request = build_parameter_grouping_post_reserved_words_request(
             from_parameter=from_parameter,
-            accept=accept,
+            accept_parameter=accept_parameter,
             headers=_headers,
             params=_params,
         )

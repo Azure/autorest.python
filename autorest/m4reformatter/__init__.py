@@ -368,7 +368,6 @@ class M4Reformatter(YamlUpdatePlugin):
             "bodyParameter": body_parameter,
             "responses": [update_response(yaml_data, r) for r in yaml_data.get("responses", [])],
             "groupName": group_name,
-            "operationType": "basic",
             "discriminator": "operation",
             "isOverload": is_overload,
         }

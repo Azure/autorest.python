@@ -370,6 +370,10 @@ class OperationBase(BaseBuilder[ParameterListType]):
     def parameter_list_type() -> Type[ParameterListType]:
         ...
 
+    @staticmethod
+    def overload_operation_class() -> Type["OperationBase"]:
+        raise ValueError("Should not be called by me")
+
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel"):
         name = yaml_data["name"]
@@ -377,7 +381,7 @@ class OperationBase(BaseBuilder[ParameterListType]):
         responses = [Response.from_yaml(r, code_model) for r in yaml_data["responses"]]
         parameter_list = cls.parameter_list_type().from_yaml(yaml_data, code_model)
         overloads = [
-            Operation.from_yaml(overload, code_model)
+            cls.overload_operation_class().from_yaml(overload, code_model)
             for overload in yaml_data.get("overloads", [])
         ]
         abstract = False

@@ -28,7 +28,8 @@ def update_operation_group_class_name(yaml_data: Dict[str, Any], class_name: str
 
 def update_parameter(yaml_data: Dict[str, Any]) -> None:
     yaml_data["description"] = update_description(yaml_data["description"])
-    yaml_data["clientName"] = pad_reserved_words(yaml_data["clientName"], PadType.Parameter)
+    if not (yaml_data["location"] == "header" and yaml_data["clientName"] in ("content_type", "accept")):
+        yaml_data["clientName"] = pad_reserved_words(yaml_data["clientName"], PadType.Parameter)
 
 def update_types(yaml_data: List[Dict[str, Any]]) -> None:
     for type in yaml_data:

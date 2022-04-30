@@ -1416,7 +1416,7 @@ class PagingOperations:
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    def begin_get_multiple_pages_lro(
+    async def begin_get_multiple_pages_lro(
         self,
         *,
         client_request_id: Optional[str] = None,
@@ -1516,7 +1516,7 @@ class PagingOperations:
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
-            def internal_get_next(next_link=None):
+            async def internal_get_next(next_link=None):
                 if next_link is None:
                     return pipeline_response
                 return await get_next(next_link)

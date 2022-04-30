@@ -1320,7 +1320,7 @@ class ApiVersionLocalOperations:
         """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
 
         :keyword api_version: This should appear as a method parameter, use value null, this should
-         result in no serialized parameter. Default value is None.
+         result in no serialized parameter. Optional. Default value is None.
         :paramtype api_version: str
         :return: None
         :rtype: None
@@ -1620,7 +1620,7 @@ class SkipUrlEncodingOperations:
     ) -> None:
         """Get method with unencoded query parameter with value null.
 
-        :keyword q1: Unencoded query parameter with value null. Default value is None.
+        :keyword q1: Unencoded query parameter with value null. Optional. Default value is None.
         :paramtype q1: str
         :return: None
         :rtype: None
@@ -1757,12 +1757,12 @@ class OdataOperations:
     ) -> None:
         """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
 
-        :keyword filter: The filter parameter with value '$filter=id gt 5 and name eq 'foo''. Default
-         value is None.
+        :keyword filter: The filter parameter with value '$filter=id gt 5 and name eq 'foo''. Optional.
+         Default value is None.
         :paramtype filter: str
-        :keyword top: The top parameter with value 10. Default value is None.
+        :keyword top: The top parameter with value 10. Optional. Default value is None.
         :paramtype top: int
-        :keyword orderby: The orderby parameter with value id. Default value is None.
+        :keyword orderby: The orderby parameter with value id. Optional. Default value is None.
         :paramtype orderby: str
         :return: None
         :rtype: None
