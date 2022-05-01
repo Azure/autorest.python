@@ -67,32 +67,6 @@ def build_validation_of_method_parameters_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-@overload
-def build_validation_of_body_request(
-    resource_group_name: str,
-    id: int,
-    subscription_id: str,
-    *,
-    content_type: Optional[str] = None,
-    json: Optional[JSON] = None,
-    **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_validation_of_body_request(
-    resource_group_name: str,
-    id: int,
-    subscription_id: str,
-    *,
-    content_type: Optional[str] = None,
-    content: Optional[IO] = None,
-    **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_validation_of_body_request(resource_group_name: str, id: int, subscription_id: str, **kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -135,20 +109,6 @@ def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
     _url = _format_url_section(_url, **path_format_arguments)
 
     return HttpRequest(method="GET", url=_url, **kwargs)
-
-
-@overload
-def build_post_with_constant_in_body_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_post_with_constant_in_body_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_post_with_constant_in_body_request(**kwargs) -> HttpRequest:

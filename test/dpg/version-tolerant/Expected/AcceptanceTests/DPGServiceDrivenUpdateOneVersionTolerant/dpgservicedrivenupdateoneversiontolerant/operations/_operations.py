@@ -101,20 +101,6 @@ def build_params_put_required_optional_request(
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-@overload
-def build_params_post_parameters_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_params_post_parameters_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_params_post_parameters_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 

@@ -38,20 +38,6 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-@overload
-def build_put_array_request(
-    *, content_type: Optional[str] = None, json: Optional[List[JSON]] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_put_array_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_put_array_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -81,20 +67,6 @@ def build_get_array_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_put_wrapped_array_request(
-    *, content_type: Optional[str] = None, json: Optional[List[JSON]] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_put_wrapped_array_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_put_wrapped_array_request(**kwargs) -> HttpRequest:
@@ -128,20 +100,6 @@ def build_get_wrapped_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_put_dictionary_request(
-    *, content_type: Optional[str] = None, json: Optional[Dict[str, JSON]] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_put_dictionary_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_put_dictionary_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -171,20 +129,6 @@ def build_get_dictionary_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_put_resource_collection_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_put_resource_collection_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_put_resource_collection_request(**kwargs) -> HttpRequest:
@@ -218,20 +162,6 @@ def build_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_put_simple_product_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_put_simple_product_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_put_simple_product_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -249,20 +179,6 @@ def build_put_simple_product_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_post_flattened_simple_product_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_post_flattened_simple_product_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_post_flattened_simple_product_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -278,20 +194,6 @@ def build_post_flattened_simple_product_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_put_simple_product_with_grouping_request(
-    name: str, *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_put_simple_product_with_grouping_request(
-    name: str, *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_put_simple_product_with_grouping_request(name: str, **kwargs) -> HttpRequest:

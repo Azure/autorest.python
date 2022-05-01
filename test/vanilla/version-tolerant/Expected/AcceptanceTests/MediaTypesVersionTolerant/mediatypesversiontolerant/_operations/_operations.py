@@ -38,20 +38,6 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-@overload
-def build_analyze_body_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_analyze_body_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_analyze_body_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -67,20 +53,6 @@ def build_analyze_body_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_analyze_body_no_accept_header_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_analyze_body_no_accept_header_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_analyze_body_no_accept_header_request(**kwargs) -> HttpRequest:

@@ -314,20 +314,6 @@ def build_enum_get_referenced_constant_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_enum_put_referenced_constant_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_enum_put_referenced_constant_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_enum_put_referenced_constant_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 

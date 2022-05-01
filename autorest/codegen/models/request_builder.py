@@ -84,7 +84,7 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
         file_import.add_submodule_import("msrest", "Serializer", ImportType.THIRDPARTY)
-        if self.overloads:
+        if self.overloads and self.code_model.options["builders_visibility"] != "embedded":
             file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
         return file_import
 

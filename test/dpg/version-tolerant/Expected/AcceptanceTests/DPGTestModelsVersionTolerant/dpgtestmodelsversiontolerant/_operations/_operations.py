@@ -55,20 +55,6 @@ def build_get_model_request(mode: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_post_model_request(
-    mode: str, *, json: _models.Input, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_post_model_request(
-    mode: str, *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_post_model_request(mode: str, **kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 

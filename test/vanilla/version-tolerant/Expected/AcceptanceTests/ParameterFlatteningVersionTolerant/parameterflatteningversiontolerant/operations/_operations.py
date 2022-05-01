@@ -38,20 +38,6 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-@overload
-def build_availability_sets_update_request(
-    resource_group_name: str, avset: str, *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_availability_sets_update_request(
-    resource_group_name: str, avset: str, *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_availability_sets_update_request(resource_group_name: str, avset: str, **kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 

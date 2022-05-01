@@ -65,20 +65,6 @@ def build_dictionary_get_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_dictionary_put_empty_request(
-    *, json: Dict[str, str], content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_dictionary_put_empty_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_dictionary_put_empty_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -166,20 +152,6 @@ def build_dictionary_get_boolean_tfft_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_dictionary_put_boolean_tfft_request(
-    *, json: Dict[str, bool], content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_dictionary_put_boolean_tfft_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_dictionary_put_boolean_tfft_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -237,20 +209,6 @@ def build_dictionary_get_integer_valid_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_dictionary_put_integer_valid_request(
-    *, json: Dict[str, int], content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_dictionary_put_integer_valid_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_dictionary_put_integer_valid_request(**kwargs) -> HttpRequest:
@@ -312,20 +270,6 @@ def build_dictionary_get_long_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_dictionary_put_long_valid_request(
-    *, json: Dict[str, int], content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_dictionary_put_long_valid_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_dictionary_put_long_valid_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -383,20 +327,6 @@ def build_dictionary_get_float_valid_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_dictionary_put_float_valid_request(
-    *, json: Dict[str, float], content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_dictionary_put_float_valid_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_dictionary_put_float_valid_request(**kwargs) -> HttpRequest:
@@ -458,20 +388,6 @@ def build_dictionary_get_double_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_dictionary_put_double_valid_request(
-    *, json: Dict[str, float], content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_dictionary_put_double_valid_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_dictionary_put_double_valid_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -529,20 +445,6 @@ def build_dictionary_get_string_valid_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_dictionary_put_string_valid_request(
-    *, json: Dict[str, str], content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_dictionary_put_string_valid_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_dictionary_put_string_valid_request(**kwargs) -> HttpRequest:
@@ -604,20 +506,6 @@ def build_dictionary_get_date_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_dictionary_put_date_valid_request(
-    *, json: Dict[str, datetime.date], content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_dictionary_put_date_valid_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_dictionary_put_date_valid_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -675,20 +563,6 @@ def build_dictionary_get_date_time_valid_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_dictionary_put_date_time_valid_request(
-    *, json: Dict[str, datetime.datetime], content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_dictionary_put_date_time_valid_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_dictionary_put_date_time_valid_request(**kwargs) -> HttpRequest:
@@ -750,20 +624,6 @@ def build_dictionary_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpR
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_dictionary_put_date_time_rfc1123_valid_request(
-    *, json: Dict[str, datetime.datetime], content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_dictionary_put_date_time_rfc1123_valid_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_dictionary_put_date_time_rfc1123_valid_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -795,20 +655,6 @@ def build_dictionary_get_duration_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_dictionary_put_duration_valid_request(
-    *, json: Dict[str, datetime.timedelta], content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_dictionary_put_duration_valid_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_dictionary_put_duration_valid_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -838,20 +684,6 @@ def build_dictionary_get_byte_valid_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_dictionary_put_byte_valid_request(
-    *, json: Dict[str, bytes], content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_dictionary_put_byte_valid_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_dictionary_put_byte_valid_request(**kwargs) -> HttpRequest:
@@ -969,20 +801,6 @@ def build_dictionary_get_complex_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_dictionary_put_complex_valid_request(
-    *, json: Dict[str, JSON], content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_dictionary_put_complex_valid_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_dictionary_put_complex_valid_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1070,20 +888,6 @@ def build_dictionary_get_array_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_dictionary_put_array_valid_request(
-    *, json: Dict[str, List[str]], content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_dictionary_put_array_valid_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_dictionary_put_array_valid_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1169,20 +973,6 @@ def build_dictionary_get_dictionary_valid_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_dictionary_put_dictionary_valid_request(
-    *, json: Dict[str, Dict[str, str]], content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_dictionary_put_dictionary_valid_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_dictionary_put_dictionary_valid_request(**kwargs) -> HttpRequest:

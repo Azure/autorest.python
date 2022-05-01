@@ -42,20 +42,6 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-@overload
-def build_storage_accounts_check_name_availability_request(
-    subscription_id: str, *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_storage_accounts_check_name_availability_request(
-    subscription_id: str, *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_storage_accounts_check_name_availability_request(subscription_id: str, **kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -81,32 +67,6 @@ def build_storage_accounts_check_name_availability_request(subscription_id: str,
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
-
-
-@overload
-def build_storage_accounts_create_request(
-    resource_group_name: str,
-    account_name: str,
-    subscription_id: str,
-    *,
-    json: JSON,
-    content_type: Optional[str] = None,
-    **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_storage_accounts_create_request(
-    resource_group_name: str,
-    account_name: str,
-    subscription_id: str,
-    *,
-    content: IO,
-    content_type: Optional[str] = None,
-    **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_storage_accounts_create_request(
@@ -188,32 +148,6 @@ def build_storage_accounts_get_properties_request(
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
-
-
-@overload
-def build_storage_accounts_update_request(
-    resource_group_name: str,
-    account_name: str,
-    subscription_id: str,
-    *,
-    json: JSON,
-    content_type: Optional[str] = None,
-    **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_storage_accounts_update_request(
-    resource_group_name: str,
-    account_name: str,
-    subscription_id: str,
-    *,
-    content: IO,
-    content_type: Optional[str] = None,
-    **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_storage_accounts_update_request(
@@ -326,32 +260,6 @@ def build_storage_accounts_list_by_resource_group_request(
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
-
-
-@overload
-def build_storage_accounts_regenerate_key_request(
-    resource_group_name: str,
-    account_name: str,
-    subscription_id: str,
-    *,
-    json: JSON,
-    content_type: Optional[str] = None,
-    **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_storage_accounts_regenerate_key_request(
-    resource_group_name: str,
-    account_name: str,
-    subscription_id: str,
-    *,
-    content: IO,
-    content_type: Optional[str] = None,
-    **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_storage_accounts_regenerate_key_request(

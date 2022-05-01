@@ -454,16 +454,6 @@ def build_xml_list_blobs_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-@overload
-def build_xml_json_input_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_xml_json_input_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
 def build_xml_json_input_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 

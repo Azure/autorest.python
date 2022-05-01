@@ -251,20 +251,6 @@ def build_explicit_post_optional_integer_parameter_request(*, json: Optional[int
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-@overload
-def build_explicit_post_required_integer_property_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_explicit_post_required_integer_property_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_explicit_post_required_integer_property_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -280,20 +266,6 @@ def build_explicit_post_required_integer_property_request(**kwargs) -> HttpReque
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_explicit_post_optional_integer_property_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_explicit_post_optional_integer_property_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_explicit_post_optional_integer_property_request(**kwargs) -> HttpRequest:
@@ -382,20 +354,6 @@ def build_explicit_post_optional_string_parameter_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-@overload
-def build_explicit_post_required_string_property_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_explicit_post_required_string_property_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_explicit_post_required_string_property_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -411,20 +369,6 @@ def build_explicit_post_required_string_property_request(**kwargs) -> HttpReques
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_explicit_post_optional_string_property_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_explicit_post_optional_string_property_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_explicit_post_optional_string_property_request(**kwargs) -> HttpRequest:
@@ -477,20 +421,6 @@ def build_explicit_post_optional_string_header_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_explicit_post_required_class_parameter_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_explicit_post_required_class_parameter_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_explicit_post_required_class_parameter_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -506,20 +436,6 @@ def build_explicit_post_required_class_parameter_request(**kwargs) -> HttpReques
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_explicit_post_optional_class_parameter_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_explicit_post_optional_class_parameter_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_explicit_post_optional_class_parameter_request(**kwargs) -> HttpRequest:
@@ -539,20 +455,6 @@ def build_explicit_post_optional_class_parameter_request(**kwargs) -> HttpReques
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_explicit_post_required_class_property_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_explicit_post_required_class_property_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_explicit_post_required_class_property_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -568,20 +470,6 @@ def build_explicit_post_required_class_property_request(**kwargs) -> HttpRequest
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_explicit_post_optional_class_property_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_explicit_post_optional_class_property_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_explicit_post_optional_class_property_request(**kwargs) -> HttpRequest:
@@ -601,20 +489,6 @@ def build_explicit_post_optional_class_property_request(**kwargs) -> HttpRequest
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_explicit_post_required_array_parameter_request(
-    *, json: List[str], content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_explicit_post_required_array_parameter_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_explicit_post_required_array_parameter_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -630,20 +504,6 @@ def build_explicit_post_required_array_parameter_request(**kwargs) -> HttpReques
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_explicit_post_optional_array_parameter_request(
-    *, content_type: Optional[str] = None, json: Optional[List[str]] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_explicit_post_optional_array_parameter_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_explicit_post_optional_array_parameter_request(**kwargs) -> HttpRequest:
@@ -663,20 +523,6 @@ def build_explicit_post_optional_array_parameter_request(**kwargs) -> HttpReques
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_explicit_post_required_array_property_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_explicit_post_required_array_property_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_explicit_post_required_array_property_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -692,20 +538,6 @@ def build_explicit_post_required_array_property_request(**kwargs) -> HttpRequest
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_explicit_post_optional_array_property_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_explicit_post_optional_array_property_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_explicit_post_optional_array_property_request(**kwargs) -> HttpRequest:

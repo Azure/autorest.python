@@ -49,16 +49,6 @@ def build_basic_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_basic_put_valid_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_basic_put_valid_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
 def build_basic_put_valid_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -151,16 +141,6 @@ def build_primitive_get_int_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_primitive_put_int_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_primitive_put_int_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
 def build_primitive_put_int_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -190,16 +170,6 @@ def build_primitive_get_long_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_primitive_put_long_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_primitive_put_long_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
 
 
 def build_primitive_put_long_request(**kwargs) -> HttpRequest:
@@ -233,16 +203,6 @@ def build_primitive_get_float_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_primitive_put_float_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_primitive_put_float_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
 def build_primitive_put_float_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -272,18 +232,6 @@ def build_primitive_get_double_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_primitive_put_double_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_primitive_put_double_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_primitive_put_double_request(**kwargs) -> HttpRequest:
@@ -317,16 +265,6 @@ def build_primitive_get_bool_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_primitive_put_bool_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_primitive_put_bool_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
 def build_primitive_put_bool_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -356,18 +294,6 @@ def build_primitive_get_string_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_primitive_put_string_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_primitive_put_string_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_primitive_put_string_request(**kwargs) -> HttpRequest:
@@ -401,16 +327,6 @@ def build_primitive_get_date_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_primitive_put_date_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_primitive_put_date_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
 def build_primitive_put_date_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -440,20 +356,6 @@ def build_primitive_get_date_time_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_primitive_put_date_time_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_primitive_put_date_time_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_primitive_put_date_time_request(**kwargs) -> HttpRequest:
@@ -487,20 +389,6 @@ def build_primitive_get_date_time_rfc1123_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_primitive_put_date_time_rfc1123_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_primitive_put_date_time_rfc1123_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_primitive_put_date_time_rfc1123_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -530,20 +418,6 @@ def build_primitive_get_duration_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_primitive_put_duration_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_primitive_put_duration_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_primitive_put_duration_request(**kwargs) -> HttpRequest:
@@ -577,16 +451,6 @@ def build_primitive_get_byte_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_primitive_put_byte_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_primitive_put_byte_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
 def build_primitive_put_byte_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -618,16 +482,6 @@ def build_array_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_array_put_valid_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_array_put_valid_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
 def build_array_put_valid_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -657,16 +511,6 @@ def build_array_get_empty_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_array_put_empty_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_array_put_empty_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
 
 
 def build_array_put_empty_request(**kwargs) -> HttpRequest:
@@ -714,18 +558,6 @@ def build_dictionary_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_dictionary_put_valid_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_dictionary_put_valid_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_dictionary_put_valid_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -755,18 +587,6 @@ def build_dictionary_get_empty_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_dictionary_put_empty_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_dictionary_put_empty_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_dictionary_put_empty_request(**kwargs) -> HttpRequest:
@@ -828,20 +648,6 @@ def build_inheritance_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_inheritance_put_valid_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_inheritance_put_valid_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_inheritance_put_valid_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -871,20 +677,6 @@ def build_polymorphism_get_valid_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_polymorphism_put_valid_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_polymorphism_put_valid_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_polymorphism_put_valid_request(**kwargs) -> HttpRequest:
@@ -960,20 +752,6 @@ def build_polymorphism_get_complicated_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_polymorphism_put_complicated_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_polymorphism_put_complicated_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_polymorphism_put_complicated_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -991,20 +769,6 @@ def build_polymorphism_put_complicated_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_polymorphism_put_missing_discriminator_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_polymorphism_put_missing_discriminator_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_polymorphism_put_missing_discriminator_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1020,20 +784,6 @@ def build_polymorphism_put_missing_discriminator_request(**kwargs) -> HttpReques
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_polymorphism_put_valid_missing_required_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_polymorphism_put_valid_missing_required_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_polymorphism_put_valid_missing_required_request(**kwargs) -> HttpRequest:
@@ -1067,20 +817,6 @@ def build_polymorphicrecursive_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_polymorphicrecursive_put_valid_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_polymorphicrecursive_put_valid_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_polymorphicrecursive_put_valid_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1110,20 +846,6 @@ def build_readonlyproperty_get_valid_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_readonlyproperty_put_valid_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_readonlyproperty_put_valid_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_readonlyproperty_put_valid_request(**kwargs) -> HttpRequest:

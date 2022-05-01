@@ -57,20 +57,6 @@ def build_pet_get_by_pet_id_request(pet_id: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_pet_add_pet_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_pet_add_pet_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_pet_add_pet_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 

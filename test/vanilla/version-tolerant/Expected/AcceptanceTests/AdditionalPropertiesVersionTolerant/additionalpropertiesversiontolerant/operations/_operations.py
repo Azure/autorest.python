@@ -36,16 +36,6 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-@overload
-def build_pets_create_ap_true_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_pets_create_ap_true_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
 def build_pets_create_ap_true_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -61,20 +51,6 @@ def build_pets_create_ap_true_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_pets_create_cat_ap_true_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_pets_create_cat_ap_true_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_pets_create_cat_ap_true_request(**kwargs) -> HttpRequest:
@@ -94,20 +70,6 @@ def build_pets_create_cat_ap_true_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_pets_create_ap_object_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_pets_create_ap_object_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_pets_create_ap_object_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -123,20 +85,6 @@ def build_pets_create_ap_object_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_pets_create_ap_string_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_pets_create_ap_string_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_pets_create_ap_string_request(**kwargs) -> HttpRequest:
@@ -156,20 +104,6 @@ def build_pets_create_ap_string_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_pets_create_ap_in_properties_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_pets_create_ap_in_properties_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_pets_create_ap_in_properties_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -185,20 +119,6 @@ def build_pets_create_ap_in_properties_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_pets_create_ap_in_properties_with_ap_string_request(
-    *, json: JSON, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_pets_create_ap_in_properties_with_ap_string_request(
-    *, content: IO, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_pets_create_ap_in_properties_with_ap_string_request(**kwargs) -> HttpRequest:

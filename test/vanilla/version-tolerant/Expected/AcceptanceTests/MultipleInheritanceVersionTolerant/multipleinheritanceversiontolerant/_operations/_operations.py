@@ -52,16 +52,6 @@ def build_get_horse_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_put_horse_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_put_horse_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
 def build_put_horse_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -91,16 +81,6 @@ def build_get_pet_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_put_pet_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_put_pet_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
 
 
 def build_put_pet_request(**kwargs) -> HttpRequest:
@@ -134,16 +114,6 @@ def build_get_feline_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_put_feline_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_put_feline_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
 def build_put_feline_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -175,16 +145,6 @@ def build_get_cat_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_put_cat_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_put_cat_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
 def build_put_cat_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -214,16 +174,6 @@ def build_get_kitten_request(**kwargs: Any) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_put_kitten_request(*, json: JSON, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
-
-
-@overload
-def build_put_kitten_request(*, content: IO, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
-    ...
 
 
 def build_put_kitten_request(**kwargs) -> HttpRequest:

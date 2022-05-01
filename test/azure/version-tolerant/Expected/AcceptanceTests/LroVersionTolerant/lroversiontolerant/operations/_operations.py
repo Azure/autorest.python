@@ -39,20 +39,6 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-@overload
-def build_lros_put200_succeeded_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_put200_succeeded_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lros_put200_succeeded_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -68,20 +54,6 @@ def build_lros_put200_succeeded_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lros_patch200_succeeded_ignore_headers_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_patch200_succeeded_ignore_headers_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lros_patch200_succeeded_ignore_headers_request(**kwargs) -> HttpRequest:
@@ -101,20 +73,6 @@ def build_lros_patch200_succeeded_ignore_headers_request(**kwargs) -> HttpReques
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lros_patch201_retry_with_async_header_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_patch201_retry_with_async_header_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lros_patch201_retry_with_async_header_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -132,20 +90,6 @@ def build_lros_patch201_retry_with_async_header_request(**kwargs) -> HttpRequest
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lros_patch202_retry_with_async_and_location_header_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_patch202_retry_with_async_and_location_header_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lros_patch202_retry_with_async_and_location_header_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -161,20 +105,6 @@ def build_lros_patch202_retry_with_async_and_location_header_request(**kwargs) -
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lros_put201_succeeded_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_put201_succeeded_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lros_put201_succeeded_request(**kwargs) -> HttpRequest:
@@ -208,20 +138,6 @@ def build_lros_post202_list_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lros_put200_succeeded_no_state_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_put200_succeeded_no_state_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lros_put200_succeeded_no_state_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -237,20 +153,6 @@ def build_lros_put200_succeeded_no_state_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lros_put202_retry200_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_put202_retry200_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lros_put202_retry200_request(**kwargs) -> HttpRequest:
@@ -270,20 +172,6 @@ def build_lros_put202_retry200_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lros_put201_creating_succeeded200_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_put201_creating_succeeded200_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lros_put201_creating_succeeded200_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -299,20 +187,6 @@ def build_lros_put201_creating_succeeded200_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lros_put200_updating_succeeded204_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_put200_updating_succeeded204_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lros_put200_updating_succeeded204_request(**kwargs) -> HttpRequest:
@@ -332,20 +206,6 @@ def build_lros_put200_updating_succeeded204_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lros_put201_creating_failed200_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_put201_creating_failed200_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lros_put201_creating_failed200_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -361,20 +221,6 @@ def build_lros_put201_creating_failed200_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lros_put200_acceptedcanceled200_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_put200_acceptedcanceled200_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lros_put200_acceptedcanceled200_request(**kwargs) -> HttpRequest:
@@ -394,20 +240,6 @@ def build_lros_put200_acceptedcanceled200_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lros_put_no_header_in_retry_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_put_no_header_in_retry_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lros_put_no_header_in_retry_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -423,20 +255,6 @@ def build_lros_put_no_header_in_retry_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lros_put_async_retry_succeeded_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_put_async_retry_succeeded_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lros_put_async_retry_succeeded_request(**kwargs) -> HttpRequest:
@@ -456,20 +274,6 @@ def build_lros_put_async_retry_succeeded_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lros_put_async_no_retry_succeeded_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_put_async_no_retry_succeeded_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lros_put_async_no_retry_succeeded_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -485,20 +289,6 @@ def build_lros_put_async_no_retry_succeeded_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lros_put_async_retry_failed_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_put_async_retry_failed_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lros_put_async_retry_failed_request(**kwargs) -> HttpRequest:
@@ -518,20 +308,6 @@ def build_lros_put_async_retry_failed_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lros_put_async_no_retrycanceled_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_put_async_no_retrycanceled_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lros_put_async_no_retrycanceled_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -547,20 +323,6 @@ def build_lros_put_async_no_retrycanceled_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lros_put_async_no_header_in_retry_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_put_async_no_header_in_retry_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lros_put_async_no_header_in_retry_request(**kwargs) -> HttpRequest:
@@ -580,20 +342,6 @@ def build_lros_put_async_no_header_in_retry_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lros_put_non_resource_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_put_non_resource_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lros_put_non_resource_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -609,20 +357,6 @@ def build_lros_put_non_resource_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lros_put_async_non_resource_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_put_async_non_resource_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lros_put_async_non_resource_request(**kwargs) -> HttpRequest:
@@ -642,20 +376,6 @@ def build_lros_put_async_non_resource_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lros_put_sub_resource_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_put_sub_resource_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lros_put_sub_resource_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -671,20 +391,6 @@ def build_lros_put_sub_resource_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lros_put_async_sub_resource_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_put_async_sub_resource_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lros_put_async_sub_resource_request(**kwargs) -> HttpRequest:
@@ -886,20 +592,6 @@ def build_lros_post200_with_payload_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lros_post202_retry200_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_post202_retry200_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lros_post202_retry200_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -915,20 +607,6 @@ def build_lros_post202_retry200_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lros_post202_no_retry204_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_post202_no_retry204_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lros_post202_no_retry204_request(**kwargs) -> HttpRequest:
@@ -990,20 +668,6 @@ def build_lros_post_double_headers_final_azure_header_get_default_request(**kwar
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lros_post_async_retry_succeeded_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_post_async_retry_succeeded_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lros_post_async_retry_succeeded_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1019,20 +683,6 @@ def build_lros_post_async_retry_succeeded_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lros_post_async_no_retry_succeeded_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_post_async_no_retry_succeeded_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lros_post_async_no_retry_succeeded_request(**kwargs) -> HttpRequest:
@@ -1052,20 +702,6 @@ def build_lros_post_async_no_retry_succeeded_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lros_post_async_retry_failed_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_post_async_retry_failed_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lros_post_async_retry_failed_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1081,20 +717,6 @@ def build_lros_post_async_retry_failed_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lros_post_async_retrycanceled_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lros_post_async_retrycanceled_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lros_post_async_retrycanceled_request(**kwargs) -> HttpRequest:
@@ -1114,20 +736,6 @@ def build_lros_post_async_retrycanceled_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lro_retrys_put201_creating_succeeded200_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lro_retrys_put201_creating_succeeded200_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lro_retrys_put201_creating_succeeded200_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1143,20 +751,6 @@ def build_lro_retrys_put201_creating_succeeded200_request(**kwargs) -> HttpReque
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lro_retrys_put_async_relative_retry_succeeded_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lro_retrys_put_async_relative_retry_succeeded_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lro_retrys_put_async_relative_retry_succeeded_request(**kwargs) -> HttpRequest:
@@ -1218,20 +812,6 @@ def build_lro_retrys_delete_async_relative_retry_succeeded_request(**kwargs: Any
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lro_retrys_post202_retry200_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lro_retrys_post202_retry200_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lro_retrys_post202_retry200_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1247,20 +827,6 @@ def build_lro_retrys_post202_retry200_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lro_retrys_post_async_relative_retry_succeeded_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lro_retrys_post_async_relative_retry_succeeded_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lro_retrys_post_async_relative_retry_succeeded_request(**kwargs) -> HttpRequest:
@@ -1280,20 +846,6 @@ def build_lro_retrys_post_async_relative_retry_succeeded_request(**kwargs) -> Ht
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lrosads_put_non_retry400_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lrosads_put_non_retry400_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lrosads_put_non_retry400_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1309,20 +861,6 @@ def build_lrosads_put_non_retry400_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lrosads_put_non_retry201_creating400_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lrosads_put_non_retry201_creating400_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lrosads_put_non_retry201_creating400_request(**kwargs) -> HttpRequest:
@@ -1342,20 +880,6 @@ def build_lrosads_put_non_retry201_creating400_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lrosads_put_non_retry201_creating400_invalid_json_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lrosads_put_non_retry201_creating400_invalid_json_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lrosads_put_non_retry201_creating400_invalid_json_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1371,20 +895,6 @@ def build_lrosads_put_non_retry201_creating400_invalid_json_request(**kwargs) ->
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lrosads_put_async_relative_retry400_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lrosads_put_async_relative_retry400_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lrosads_put_async_relative_retry400_request(**kwargs) -> HttpRequest:
@@ -1446,20 +956,6 @@ def build_lrosads_delete_async_relative_retry400_request(**kwargs: Any) -> HttpR
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lrosads_post_non_retry400_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lrosads_post_non_retry400_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lrosads_post_non_retry400_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1475,20 +971,6 @@ def build_lrosads_post_non_retry400_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lrosads_post202_non_retry400_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lrosads_post202_non_retry400_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lrosads_post202_non_retry400_request(**kwargs) -> HttpRequest:
@@ -1508,20 +990,6 @@ def build_lrosads_post202_non_retry400_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lrosads_post_async_relative_retry400_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lrosads_post_async_relative_retry400_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lrosads_post_async_relative_retry400_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1537,20 +1005,6 @@ def build_lrosads_post_async_relative_retry400_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lrosads_put_error201_no_provisioning_state_payload_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lrosads_put_error201_no_provisioning_state_payload_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lrosads_put_error201_no_provisioning_state_payload_request(**kwargs) -> HttpRequest:
@@ -1570,20 +1024,6 @@ def build_lrosads_put_error201_no_provisioning_state_payload_request(**kwargs) -
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lrosads_put_async_relative_retry_no_status_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lrosads_put_async_relative_retry_no_status_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lrosads_put_async_relative_retry_no_status_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1599,20 +1039,6 @@ def build_lrosads_put_async_relative_retry_no_status_request(**kwargs) -> HttpRe
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lrosads_put_async_relative_retry_no_status_payload_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lrosads_put_async_relative_retry_no_status_payload_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lrosads_put_async_relative_retry_no_status_payload_request(**kwargs) -> HttpRequest:
@@ -1660,20 +1086,6 @@ def build_lrosads_delete_async_relative_retry_no_status_request(**kwargs: Any) -
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lrosads_post202_no_location_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lrosads_post202_no_location_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lrosads_post202_no_location_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1689,20 +1101,6 @@ def build_lrosads_post202_no_location_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lrosads_post_async_relative_retry_no_payload_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lrosads_post_async_relative_retry_no_payload_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lrosads_post_async_relative_retry_no_payload_request(**kwargs) -> HttpRequest:
@@ -1722,20 +1120,6 @@ def build_lrosads_post_async_relative_retry_no_payload_request(**kwargs) -> Http
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lrosads_put200_invalid_json_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lrosads_put200_invalid_json_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lrosads_put200_invalid_json_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1753,20 +1137,6 @@ def build_lrosads_put200_invalid_json_request(**kwargs) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lrosads_put_async_relative_retry_invalid_header_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lrosads_put_async_relative_retry_invalid_header_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lrosads_put_async_relative_retry_invalid_header_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1782,20 +1152,6 @@ def build_lrosads_put_async_relative_retry_invalid_header_request(**kwargs) -> H
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lrosads_put_async_relative_retry_invalid_json_polling_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lrosads_put_async_relative_retry_invalid_json_polling_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lrosads_put_async_relative_retry_invalid_json_polling_request(**kwargs) -> HttpRequest:
@@ -1857,20 +1213,6 @@ def build_lrosads_delete_async_relative_retry_invalid_json_polling_request(**kwa
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lrosads_post202_retry_invalid_header_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lrosads_post202_retry_invalid_header_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lrosads_post202_retry_invalid_header_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1886,20 +1228,6 @@ def build_lrosads_post202_retry_invalid_header_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lrosads_post_async_relative_retry_invalid_header_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lrosads_post_async_relative_retry_invalid_header_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lrosads_post_async_relative_retry_invalid_header_request(**kwargs) -> HttpRequest:
@@ -1919,20 +1247,6 @@ def build_lrosads_post_async_relative_retry_invalid_header_request(**kwargs) -> 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lrosads_post_async_relative_retry_invalid_json_polling_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lrosads_post_async_relative_retry_invalid_json_polling_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lrosads_post_async_relative_retry_invalid_json_polling_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1948,20 +1262,6 @@ def build_lrosads_post_async_relative_retry_invalid_json_polling_request(**kwarg
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lr_os_custom_header_put_async_retry_succeeded_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lr_os_custom_header_put_async_retry_succeeded_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lr_os_custom_header_put_async_retry_succeeded_request(**kwargs) -> HttpRequest:
@@ -1981,20 +1281,6 @@ def build_lr_os_custom_header_put_async_retry_succeeded_request(**kwargs) -> Htt
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lr_os_custom_header_put201_creating_succeeded200_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lr_os_custom_header_put201_creating_succeeded200_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lr_os_custom_header_put201_creating_succeeded200_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -2012,20 +1298,6 @@ def build_lr_os_custom_header_put201_creating_succeeded200_request(**kwargs) -> 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-@overload
-def build_lr_os_custom_header_post202_retry200_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lr_os_custom_header_post202_retry200_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
 def build_lr_os_custom_header_post202_retry200_request(**kwargs) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -2041,20 +1313,6 @@ def build_lr_os_custom_header_post202_retry200_request(**kwargs) -> HttpRequest:
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
-
-
-@overload
-def build_lr_os_custom_header_post_async_retry_succeeded_request(
-    *, content_type: Optional[str] = None, json: Optional[JSON] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
-
-
-@overload
-def build_lr_os_custom_header_post_async_retry_succeeded_request(
-    *, content_type: Optional[str] = None, content: Optional[IO] = None, **kwargs: Any
-) -> HttpRequest:
-    ...
 
 
 def build_lr_os_custom_header_post_async_retry_succeeded_request(**kwargs) -> HttpRequest:
