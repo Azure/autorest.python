@@ -56,9 +56,10 @@ class FormdataOperations:
     async def upload_file(self, file_content: IO, file_name: str, **kwargs: Any) -> IO:
         """Upload file.
 
-        :param file_content: File to upload.
+        :param file_content: File to upload. Required.
         :type file_content: IO
         :param file_name: File name to upload. Name has to be spelled exactly as written here.
+         Required.
         :type file_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IO, or the result of cls(response)
@@ -114,7 +115,7 @@ class FormdataOperations:
     async def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> IO:
         """Upload file.
 
-        :param file_content: File to upload.
+        :param file_content: File to upload. Required.
         :type file_content: IO
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IO, or the result of cls(response)
@@ -168,7 +169,7 @@ class FormdataOperations:
     async def upload_files(self, file_content: List[IO], **kwargs: Any) -> IO:
         """Upload multiple files.
 
-        :param file_content: Files to upload.
+        :param file_content: Files to upload. Required.
         :type file_content: list[IO]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IO, or the result of cls(response)

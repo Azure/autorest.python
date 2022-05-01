@@ -29,7 +29,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
 
     :ivar paths: PathsOperations operations
     :vartype paths: custombaseurlmoreoptions.operations.PathsOperations
-    :param subscription_id: The subscription id with value 'test12'.
+    :param subscription_id: The subscription id with value 'test12'. Required.
     :type subscription_id: str
     :param dns_suffix: A string value that is used as a global part of the parameterized host.
      Default value 'host'. Default value is "host".

@@ -145,7 +145,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
 
-        :param model:
+        :param model: Required.
         :type model: JSON
         :return: None
         :rtype: None
@@ -255,7 +255,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
 
-        :param model:
+        :param model: Required.
         :type model: JSON
         :return: None
         :rtype: None
@@ -373,7 +373,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put a simple XML document.
 
-        :param slideshow:
+        :param slideshow: Required.
         :type slideshow: ET.Element
         :return: None
         :rtype: None
@@ -493,7 +493,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put an XML document with multiple wrapped lists.
 
-        :param wrapped_lists:
+        :param wrapped_lists: Required.
         :type wrapped_lists: JSON
         :return: None
         :rtype: None
@@ -651,7 +651,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts an empty list.
 
-        :param slideshow:
+        :param slideshow: Required.
         :type slideshow: ET.Element
         :return: None
         :rtype: None
@@ -771,7 +771,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts some empty wrapped lists.
 
-        :param apple_barrel:
+        :param apple_barrel: Required.
         :type apple_barrel: JSON
         :return: None
         :rtype: None
@@ -885,7 +885,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts a list as the root element.
 
-        :param bananas:
+        :param bananas: Required.
         :type bananas: ET.Element
         :return: None
         :rtype: None
@@ -999,7 +999,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts a list with a single item.
 
-        :param bananas:
+        :param bananas: Required.
         :type bananas: ET.Element
         :return: None
         :rtype: None
@@ -1113,7 +1113,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts an empty list as the root element.
 
-        :param bananas:
+        :param bananas: Required.
         :type bananas: ET.Element
         :return: None
         :rtype: None
@@ -1225,7 +1225,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts a value with an empty child element.
 
-        :param banana:
+        :param banana: Required.
         :type banana: ET.Element
         :return: None
         :rtype: None
@@ -1498,7 +1498,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts storage service properties.
 
-        :param properties:
+        :param properties: Required.
         :type properties: JSON
         :keyword comp:  Default value is "properties". Note that overriding this default value may
          result in unsupported behavior.
@@ -1708,7 +1708,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Puts storage ACLs for a container.
 
-        :param properties:
+        :param properties: Required.
         :type properties: ET.Element
         :keyword comp:  Default value is "acl". Note that overriding this default value may result in
          unsupported behavior.
@@ -1927,7 +1927,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
-        :param properties:
+        :param properties: Required.
         :type properties: JSON
         :return: None
         :rtype: None
@@ -2133,7 +2133,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put an XML document with binary property.
 
-        :param slideshow:
+        :param slideshow: Required.
         :type slideshow: JSON
         :return: None
         :rtype: None
@@ -2235,7 +2235,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     async def put_uri(self, model: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Put an XML document with uri property.
 
-        :param model:
+        :param model: Required.
         :type model: JSON
         :return: None
         :rtype: None

@@ -108,7 +108,7 @@ class MultiapiServiceClientOperationsMixin(object):
         # type: (...) -> None
         """Has added parameters across the API versions.
 
-        :param greeting_in_english: pass in 'hello' to pass test.
+        :param greeting_in_english: pass in 'hello' to pass test. Required.
         :type greeting_in_english: str
         :param greeting_in_chinese: pass in 'nihao' to pass test. Default value is None.
         :type greeting_in_chinese: str
@@ -145,7 +145,7 @@ class MultiapiServiceClientOperationsMixin(object):
         # type: (...) -> None
         """TestOne should be in an FirstVersionOperationsMixin.
 
-        :param id: An int parameter.
+        :param id: An int parameter. Required.
         :type id: int
         :param message: An optional string parameter. Default value is None.
         :type message: str

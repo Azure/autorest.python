@@ -379,7 +379,7 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
     ) -> AsyncIterable[JSON]:
         """A paging operation that includes a nextLink that has 10 pages.
@@ -474,7 +474,7 @@ class PagingOperations:
         next operation nextOperationWithQueryParams. Returns a ProductResult.
 
         :keyword required_query_parameter: A required integer query parameter. Put in value '100' to
-         pass test.
+         pass test. Required.
         :paramtype required_query_parameter: int
         :keyword query_constant: A constant. Must be True and will be passed as a query parameter to
          nextOperationWithQueryParams. Default value is True. Note that overriding this default value
@@ -639,7 +639,7 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
     ) -> AsyncIterable[JSON]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
@@ -735,12 +735,12 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
     ) -> AsyncIterable[JSON]:
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :param offset: Offset of return value.
+        :param offset: Offset of return value. Required.
         :type offset: int
         :keyword client_request_id:  Default value is None.
         :paramtype client_request_id: str
@@ -1206,9 +1206,9 @@ class PagingOperations:
     ) -> AsyncIterable[JSON]:
         """A paging operation that doesn't return a full URL, just a fragment.
 
-        :param tenant: Sets the tenant to use.
+        :param tenant: Sets the tenant to use. Required.
         :type tenant: str
-        :keyword api_version: Sets the api version to use.
+        :keyword api_version: Sets the api version to use. Required.
         :paramtype api_version: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
@@ -1291,9 +1291,9 @@ class PagingOperations:
     ) -> AsyncIterable[JSON]:
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
-        :param tenant: Sets the tenant to use.
+        :param tenant: Sets the tenant to use. Required.
         :type tenant: str
-        :keyword api_version: Sets the api version to use.
+        :keyword api_version: Sets the api version to use. Required.
         :paramtype api_version: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
@@ -1375,7 +1375,7 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
     ) -> JSON:
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -1421,7 +1421,7 @@ class PagingOperations:
         *,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs: Any
     ) -> AsyncLROPoller[AsyncItemPaged[JSON]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.

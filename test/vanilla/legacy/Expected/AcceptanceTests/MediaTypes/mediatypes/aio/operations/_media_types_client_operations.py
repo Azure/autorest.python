@@ -42,7 +42,7 @@ class MediaTypesClientOperationsMixin:
         self,
         input: Optional[Union[IO, _models.SourcePath]] = None,
         *,
-        content_type: Optional[Union[str, "_models.ContentType"]] = "application/json",
+        content_type: Union[str, "_models.ContentType"] = "application/json",
         **kwargs: Any
     ) -> str:
         """Analyze body, that could be different media types.
@@ -115,7 +115,7 @@ class MediaTypesClientOperationsMixin:
         self,
         input: Optional[Union[IO, _models.SourcePath]] = None,
         *,
-        content_type: Optional[Union[str, "_models.ContentType"]] = "application/json",
+        content_type: Union[str, "_models.ContentType"] = "application/json",
         **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
@@ -240,7 +240,7 @@ class MediaTypesClientOperationsMixin:
         """Binary body with two content types. Pass in of {'hello': 'world'} for the application/json
         content type, and a byte stream of 'hello, world!' for application/octet-stream.
 
-        :param message: The payload body.
+        :param message: The payload body. Required.
         :type message: IO
         :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json" or "application/octet-stream". Default value is None.
@@ -294,14 +294,14 @@ class MediaTypesClientOperationsMixin:
         self,
         message: Union[IO, str],
         *,
-        content_type: Optional[Union[str, "_models.ContentType1"]] = "application/json",
+        content_type: Union[str, "_models.ContentType1"] = "application/json",
         **kwargs: Any
     ) -> str:
         """Binary body with three content types. Pass in string 'hello, world' with content type
         'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
         'application/octet-stream'.
 
-        :param message: The payload body.
+        :param message: The payload body. Required.
         :type message: IO or str
         :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json", "application/octet-stream", and "text/plain". Default value is
@@ -357,7 +357,7 @@ class MediaTypesClientOperationsMixin:
     ) -> str:
         """Body that's either text/plain or application/json.
 
-        :param message: The payload body.
+        :param message: The payload body. Required.
         :type message: str or str
         :keyword content_type: Media type of the body sent to the API. Known values are: "text/plain"
          or "application/json". Default value is "application/json".

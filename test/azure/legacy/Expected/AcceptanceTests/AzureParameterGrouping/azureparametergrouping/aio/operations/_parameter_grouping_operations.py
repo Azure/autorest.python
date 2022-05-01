@@ -62,7 +62,7 @@ class ParameterGroupingOperations:
     ) -> None:
         """Post a bunch of required parameters grouped.
 
-        :param parameter_grouping_post_required_parameters: Parameter group.
+        :param parameter_grouping_post_required_parameters: Parameter group. Required.
         :type parameter_grouping_post_required_parameters:
          ~azureparametergrouping.models.ParameterGroupingPostRequiredParameters
         :keyword callable cls: A custom type or function that will be passed the direct response

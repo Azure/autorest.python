@@ -26,9 +26,9 @@ def build_get_sample_resource_group_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param subscription_id: Subscription Id.
+    :param subscription_id: Subscription Id. Required.
     :type subscription_id: str
-    :param resource_group_name: Resource Group name 'testgroup101'.
+    :param resource_group_name: Resource Group name 'testgroup101'. Required.
     :type resource_group_name: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

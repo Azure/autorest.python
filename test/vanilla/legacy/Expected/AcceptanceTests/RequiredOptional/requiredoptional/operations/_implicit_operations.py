@@ -281,7 +281,7 @@ class ImplicitOperations(object):
         # type: (...) -> None
         """Test implicitly required path parameter.
 
-        :param path_parameter:
+        :param path_parameter: Required.
         :type path_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

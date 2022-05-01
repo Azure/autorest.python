@@ -130,7 +130,7 @@ class DPGClientOperationsMixin(MixinABC):
 
         :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
-         before returning to users.
+         before returning to users. Required.
         :type mode: str
         :return: JSON object
         :rtype: JSON
@@ -186,9 +186,9 @@ class DPGClientOperationsMixin(MixinABC):
 
         :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
-         before returning to users.
+         before returning to users. Required.
         :type mode: str
-        :param input: Please put {'hello': 'world!'}.
+        :param input: Please put {'hello': 'world!'}. Required.
         :type input: JSON
         :return: JSON object
         :rtype: JSON
@@ -256,7 +256,7 @@ class DPGClientOperationsMixin(MixinABC):
 
         :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
-         before returning to users.
+         before returning to users. Required.
         :type mode: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
@@ -371,7 +371,7 @@ class DPGClientOperationsMixin(MixinABC):
 
         :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
-         before returning to users.
+         before returning to users. Required.
         :type mode: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for

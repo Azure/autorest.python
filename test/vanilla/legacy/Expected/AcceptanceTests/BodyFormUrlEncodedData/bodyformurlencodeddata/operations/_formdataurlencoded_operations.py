@@ -122,13 +122,13 @@ class FormdataurlencodedOperations(object):
 
         Updates a pet in the store with form data.
 
-        :param pet_id: ID of pet that needs to be updated.
+        :param pet_id: ID of pet that needs to be updated. Required.
         :type pet_id: int
-        :param pet_type: Can take a value of dog, or cat, or fish.
+        :param pet_type: Can take a value of dog, or cat, or fish. Required.
         :type pet_type: str or ~bodyformurlencodeddata.models.PetType
-        :param pet_food: Can take a value of meat, or fish, or plant.
+        :param pet_food: Can take a value of meat, or fish, or plant. Required.
         :type pet_food: str or ~bodyformurlencodeddata.models.PetFood
-        :param pet_age: How many years is it old?.
+        :param pet_age: How many years is it old?. Required.
         :type pet_age: int
         :param name: Updated name of the pet. Default value is None.
         :type name: str
@@ -196,10 +196,10 @@ class FormdataurlencodedOperations(object):
         """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
         'foo', service: 'bar' } to pass the test.
 
-        :param service: Indicates the name of your Azure container registry.
+        :param service: Indicates the name of your Azure container registry. Required.
         :type service: str
         :param access_token: AAD access token, mandatory when grant_type is access_token_refresh_token
-         or access_token.
+         or access_token. Required.
         :type access_token: str
         :keyword grant_type: Constant part of a formdata body. Default value is "access_token". Note
          that overriding this default value may result in unsupported behavior.

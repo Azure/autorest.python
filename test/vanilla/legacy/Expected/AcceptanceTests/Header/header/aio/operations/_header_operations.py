@@ -85,6 +85,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Send a post request with header value "User-Agent": "overwrite".
 
         :param user_agent_parameter: Send a post request with header value "User-Agent": "overwrite".
+         Required.
         :type user_agent_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -263,8 +264,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         "negative", "value": -2.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+         Required.
         :type scenario: str
-        :param value: Send a post request with header values 1 or -2.
+        :param value: Send a post request with header values 1 or -2. Required.
         :type value: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -312,6 +314,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Get a response with header value "value": 1 or -2.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+         Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -362,8 +365,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         "negative", "value": -2.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+         Required.
         :type scenario: str
-        :param value: Send a post request with header values 105 or -2.
+        :param value: Send a post request with header values 105 or -2. Required.
         :type value: long
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -411,6 +415,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Get a response with header value "value": 105 or -2.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+         Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -461,8 +466,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         "negative", "value": -3.0.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+         Required.
         :type scenario: str
-        :param value: Send a post request with header values 0.07 or -3.0.
+        :param value: Send a post request with header values 0.07 or -3.0. Required.
         :type value: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -510,6 +516,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Get a response with header value "value": 0.07 or -3.0.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+         Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -560,8 +567,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         "negative", "value": -3.0.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+         Required.
         :type scenario: str
-        :param value: Send a post request with header values 7e120 or -3.0.
+        :param value: Send a post request with header values 7e120 or -3.0. Required.
         :type value: float
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -609,6 +617,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Get a response with header value "value": 7e120 or -3.0.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+         Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -659,8 +668,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         "false", "value": false.
 
         :param scenario: Send a post request with header values "scenario": "true" or "false".
+         Required.
         :type scenario: str
-        :param value: Send a post request with header values true or false.
+        :param value: Send a post request with header values true or false. Required.
         :type value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -708,6 +718,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Get a response with header value "value": true or false.
 
         :param scenario: Send a post request with header values "scenario": "true" or "false".
+         Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -758,7 +769,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "null" or
-         "empty".
+         "empty". Required.
         :type scenario: str
         :param value: Send a post request with header values "The quick brown fox jumps over the lazy
          dog" or null or "". Default value is None.
@@ -809,7 +820,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "null" or
-         "empty".
+         "empty". Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -859,9 +870,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or
         "scenario": "min", "value": "0001-01-01".
 
-        :param scenario: Send a post request with header values "scenario": "valid" or "min".
+        :param scenario: Send a post request with header values "scenario": "valid" or "min". Required.
         :type scenario: str
-        :param value: Send a post request with header values "2010-01-01" or "0001-01-01".
+        :param value: Send a post request with header values "2010-01-01" or "0001-01-01". Required.
         :type value: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -908,7 +919,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get a response with header values "2010-01-01" or "0001-01-01".
 
-        :param scenario: Send a post request with header values "scenario": "valid" or "min".
+        :param scenario: Send a post request with header values "scenario": "valid" or "min". Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -958,10 +969,10 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
         "scenario": "min", "value": "0001-01-01T00:00:00Z".
 
-        :param scenario: Send a post request with header values "scenario": "valid" or "min".
+        :param scenario: Send a post request with header values "scenario": "valid" or "min". Required.
         :type scenario: str
         :param value: Send a post request with header values "2010-01-01T12:34:56Z" or
-         "0001-01-01T00:00:00Z".
+         "0001-01-01T00:00:00Z". Required.
         :type value: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1008,7 +1019,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
 
-        :param scenario: Send a post request with header values "scenario": "valid" or "min".
+        :param scenario: Send a post request with header values "scenario": "valid" or "min". Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1058,7 +1069,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
         GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
 
-        :param scenario: Send a post request with header values "scenario": "valid" or "min".
+        :param scenario: Send a post request with header values "scenario": "valid" or "min". Required.
         :type scenario: str
         :param value: Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon,
          01 Jan 0001 00:00:00 GMT". Default value is None.
@@ -1109,7 +1120,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
         GMT".
 
-        :param scenario: Send a post request with header values "scenario": "valid" or "min".
+        :param scenario: Send a post request with header values "scenario": "valid" or "min". Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1158,9 +1169,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S".
 
-        :param scenario: Send a post request with header values "scenario": "valid".
+        :param scenario: Send a post request with header values "scenario": "valid". Required.
         :type scenario: str
-        :param value: Send a post request with header values "P123DT22H14M12.011S".
+        :param value: Send a post request with header values "P123DT22H14M12.011S". Required.
         :type value: ~datetime.timedelta
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1207,7 +1218,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get a response with header values "P123DT22H14M12.011S".
 
-        :param scenario: Send a post request with header values "scenario": "valid".
+        :param scenario: Send a post request with header values "scenario": "valid". Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1256,9 +1267,9 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
 
-        :param scenario: Send a post request with header values "scenario": "valid".
+        :param scenario: Send a post request with header values "scenario": "valid". Required.
         :type scenario: str
-        :param value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩".
+        :param value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩". Required.
         :type value: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1305,7 +1316,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
 
-        :param scenario: Send a post request with header values "scenario": "valid".
+        :param scenario: Send a post request with header values "scenario": "valid". Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1356,7 +1367,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         "null", "value": null.
 
         :param scenario: Send a post request with header values "scenario": "valid" or "null" or
-         "empty".
+         "empty". Required.
         :type scenario: str
         :param value: Send a post request with header values 'GREY'. Default value is None.
         :type value: str or ~header.models.GreyscaleColors
@@ -1406,7 +1417,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         """Get a response with header values "GREY" or null.
 
         :param scenario: Send a post request with header values "scenario": "valid" or "null" or
-         "empty".
+         "empty". Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

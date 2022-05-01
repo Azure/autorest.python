@@ -228,7 +228,7 @@ class DateOperations:
     ) -> None:
         """Put max date value 9999-12-31.
 
-        :param date_body: date body.
+        :param date_body: date body. Required.
         :type date_body: ~datetime.date
         :return: None
         :rtype: None
@@ -316,7 +316,7 @@ class DateOperations:
     ) -> None:
         """Put min date value 0000-01-01.
 
-        :param date_body: date body.
+        :param date_body: date body. Required.
         :type date_body: ~datetime.date
         :return: None
         :rtype: None

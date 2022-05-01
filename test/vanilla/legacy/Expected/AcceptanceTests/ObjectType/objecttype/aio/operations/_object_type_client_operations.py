@@ -87,6 +87,7 @@ class ObjectTypeClientOperationsMixin:
         object error.
 
         :param put_object: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
+         Required.
         :type put_object: JSON
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

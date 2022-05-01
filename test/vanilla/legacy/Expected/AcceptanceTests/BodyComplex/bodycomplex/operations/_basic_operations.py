@@ -253,7 +253,7 @@ class BasicOperations(object):
         # type: (...) -> None
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
-        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
+        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Required.
         :type complex_body: ~bodycomplex.models.Basic
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

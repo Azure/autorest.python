@@ -41,7 +41,7 @@ _SERIALIZER.client_side_validation = False
 def build_analyze_body_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: str
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -58,7 +58,7 @@ def build_analyze_body_request(*, json: Any = None, content: Any = None, **kwarg
 def build_analyze_body_no_accept_header_request(*, json: Any = None, content: Any = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: str
     # Construct URL
     _url = "/mediatypes/analyzeNoAccept"
 
@@ -110,7 +110,7 @@ def build_binary_body_with_three_content_types_request(
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: str
     accept = _headers.pop("Accept", "text/plain")
 
     # Construct URL
@@ -144,11 +144,7 @@ def build_put_text_and_json_body_request(*, json: Any = None, content: Any = Non
 class MediaTypesClientOperationsMixin(MixinABC):
     @distributed_trace
     def analyze_body(
-        self,
-        input: Optional[Union[IO, JSON]] = None,
-        *,
-        content_type: Optional[str] = "application/json",
-        **kwargs: Any
+        self, input: Optional[Union[IO, JSON]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> str:
         """Analyze body, that could be different media types.
 
@@ -223,11 +219,7 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
     @distributed_trace
     def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
-        self,
-        input: Optional[Union[IO, JSON]] = None,
-        *,
-        content_type: Optional[str] = "application/json",
-        **kwargs: Any
+        self, input: Optional[Union[IO, JSON]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
         type.
@@ -352,7 +344,7 @@ class MediaTypesClientOperationsMixin(MixinABC):
         """Binary body with two content types. Pass in of {'hello': 'world'} for the application/json
         content type, and a byte stream of 'hello, world!' for application/octet-stream.
 
-        :param message: The payload body.
+        :param message: The payload body. Required.
         :type message: IO or Any
         :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json" or "application/octet-stream". Default value is None.
@@ -413,13 +405,13 @@ class MediaTypesClientOperationsMixin(MixinABC):
 
     @distributed_trace
     def binary_body_with_three_content_types(
-        self, message: Union[IO, str], *, content_type: Optional[str] = "application/json", **kwargs: Any
+        self, message: Union[IO, str], *, content_type: str = "application/json", **kwargs: Any
     ) -> str:
         """Binary body with three content types. Pass in string 'hello, world' with content type
         'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
         'application/octet-stream'.
 
-        :param message: The payload body.
+        :param message: The payload body. Required.
         :type message: IO or str
         :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json", "application/octet-stream", and "text/plain". Default value is
@@ -485,7 +477,7 @@ class MediaTypesClientOperationsMixin(MixinABC):
     ) -> str:
         """Body that's either text/plain or application/json.
 
-        :param message: The payload body.
+        :param message: The payload body. Required.
         :type message: str or str
         :keyword content_type: Media type of the body sent to the API. Known values are: "text/plain"
          or "application/json". Default value is "application/json".

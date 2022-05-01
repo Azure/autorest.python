@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 class AutoRestValidationTest:
     """Test Infrastructure for AutoRest. No server backend exists for these tests.
 
-    :param subscription_id: Subscription ID.
+    :param subscription_id: Subscription ID. Required.
     :type subscription_id: str
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str

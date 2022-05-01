@@ -120,7 +120,7 @@ class XMsClientRequestIdOperations:
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
         :keyword x_ms_client_request_id: This should appear as a method parameter, use value
-         '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'.
+         '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'. Required.
         :paramtype x_ms_client_request_id: str
         :return: None
         :rtype: None
@@ -387,7 +387,7 @@ class SubscriptionInMethodOperations:
         '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: This should appear as a method parameter, use value
-         '1234-5678-9012-3456'.
+         '1234-5678-9012-3456'. Required.
         :type subscription_id: str
         :return: None
         :rtype: None
@@ -429,7 +429,7 @@ class SubscriptionInMethodOperations:
         client-side validation should prevent you from making this call.
 
         :param subscription_id: This should appear as a method parameter, use value null, client-side
-         validation should prvenet the call.
+         validation should prvenet the call. Required.
         :type subscription_id: str
         :return: None
         :rtype: None
@@ -471,6 +471,7 @@ class SubscriptionInMethodOperations:
         '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: Should appear as a method parameter -use value '1234-5678-9012-3456'.
+         Required.
         :type subscription_id: str
         :return: None
         :rtype: None
@@ -512,7 +513,7 @@ class SubscriptionInMethodOperations:
         '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: The subscriptionId, which appears in the path, the value is always
-         '1234-5678-9012-3456'.
+         '1234-5678-9012-3456'. Required.
         :type subscription_id: str
         :return: None
         :rtype: None
@@ -918,7 +919,7 @@ class SkipUrlEncodingOperations:
     ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
-        :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
+        :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'. Required.
         :type unencoded_path_param: str
         :return: None
         :rtype: None
@@ -958,7 +959,7 @@ class SkipUrlEncodingOperations:
     ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
-        :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
+        :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'. Required.
         :type unencoded_path_param: str
         :return: None
         :rtype: None
@@ -1039,7 +1040,7 @@ class SkipUrlEncodingOperations:
     ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-        :keyword q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
+        :keyword q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'. Required.
         :paramtype q1: str
         :return: None
         :rtype: None
@@ -1119,7 +1120,7 @@ class SkipUrlEncodingOperations:
     ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-        :keyword q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
+        :keyword q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'. Required.
         :paramtype q1: str
         :return: None
         :rtype: None
@@ -1283,7 +1284,7 @@ class HeaderOperations:
     ) -> None:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
-        :keyword foo_client_request_id: The fooRequestId.
+        :keyword foo_client_request_id: The fooRequestId. Required.
         :paramtype foo_client_request_id: str
         :return: None
         :rtype: None
@@ -1327,7 +1328,7 @@ class HeaderOperations:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request,
         via a parameter group.
 
-        :keyword foo_client_request_id: The fooRequestId.
+        :keyword foo_client_request_id: The fooRequestId. Required.
         :paramtype foo_client_request_id: str
         :return: None
         :rtype: None
@@ -1368,7 +1369,7 @@ class HeaderOperations:
     async def custom_named_request_id_head(self, *, foo_client_request_id: str, **kwargs: Any) -> bool:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
-        :keyword foo_client_request_id: The fooRequestId.
+        :keyword foo_client_request_id: The fooRequestId. Required.
         :paramtype foo_client_request_id: str
         :return: bool
         :rtype: bool

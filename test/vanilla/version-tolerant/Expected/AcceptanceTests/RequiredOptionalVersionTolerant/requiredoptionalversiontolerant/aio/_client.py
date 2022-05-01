@@ -29,9 +29,9 @@ class AutoRestRequiredOptionalTestService:
     :vartype implicit: requiredoptionalversiontolerant.aio.operations.ImplicitOperations
     :ivar explicit: ExplicitOperations operations
     :vartype explicit: requiredoptionalversiontolerant.aio.operations.ExplicitOperations
-    :param required_global_path: number of items to skip.
+    :param required_global_path: number of items to skip. Required.
     :type required_global_path: str
-    :param required_global_query: number of items to skip.
+    :param required_global_query: number of items to skip. Required.
     :type required_global_query: str
     :param optional_global_query: number of items to skip. Default value is None.
     :type optional_global_query: int

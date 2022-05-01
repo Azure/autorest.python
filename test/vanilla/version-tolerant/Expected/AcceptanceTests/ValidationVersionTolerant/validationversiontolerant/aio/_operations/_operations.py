@@ -45,8 +45,9 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+         Required.
         :type resource_group_name: str
-        :param id: Required int multiple of 10 from 100 to 1000.
+        :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
         :return: JSON object
         :rtype: JSON
@@ -128,8 +129,9 @@ class AutoRestValidationTestOperationsMixin(MixinABC):
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+         Required.
         :type resource_group_name: str
-        :param id: Required int multiple of 10 from 100 to 1000.
+        :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
         :param body:  Default value is None.
         :type body: JSON

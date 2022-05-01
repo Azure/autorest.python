@@ -32,7 +32,7 @@ def build_get_required_path_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param path_parameter:
+    :param path_parameter: Required.
     :type path_parameter: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -240,7 +240,7 @@ def build_get_required_global_path_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param required_global_path: number of items to skip.
+    :param required_global_path: number of items to skip. Required.
     :type required_global_path: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -280,7 +280,7 @@ def build_get_required_global_query_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword required_global_query: number of items to skip.
+    :keyword required_global_query: number of items to skip. Required.
     :paramtype required_global_query: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

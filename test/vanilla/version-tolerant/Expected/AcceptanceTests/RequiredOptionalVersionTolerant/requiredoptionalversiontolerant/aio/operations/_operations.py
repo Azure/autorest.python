@@ -89,7 +89,7 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly required path parameter.
 
-        :param path_parameter:
+        :param path_parameter: Required.
         :type path_parameter: str
         :return: None
         :rtype: None
@@ -476,7 +476,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly required body parameter.
 
-        :param body_parameter:
+        :param body_parameter: Required.
         :type body_parameter: IO
         :return: None
         :rtype: None
@@ -523,7 +523,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required integer. Please put null and the client library should throw before
         the request is sent.
 
-        :param body_parameter:
+        :param body_parameter: Required.
         :type body_parameter: int
         :return: None
         :rtype: None
@@ -619,7 +619,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
-        :param body_parameter:
+        :param body_parameter: Required.
         :type body_parameter: JSON
         :return: None
         :rtype: None
@@ -731,7 +731,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required integer. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
 
-        :keyword header_parameter:
+        :keyword header_parameter: Required.
         :paramtype header_parameter: int
         :return: None
         :rtype: None
@@ -812,7 +812,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required string. Please put null and the client library should throw before the
         request is sent.
 
-        :param body_parameter:
+        :param body_parameter: Required.
         :type body_parameter: str
         :return: None
         :rtype: None
@@ -908,7 +908,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
-        :param body_parameter:
+        :param body_parameter: Required.
         :type body_parameter: JSON
         :return: None
         :rtype: None
@@ -1020,7 +1020,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required string. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
 
-        :keyword header_parameter:
+        :keyword header_parameter: Required.
         :paramtype header_parameter: str
         :return: None
         :rtype: None
@@ -1101,7 +1101,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required complex object. Please put null and the client library should throw
         before the request is sent.
 
-        :param body_parameter:
+        :param body_parameter: Required.
         :type body_parameter: JSON
         :return: None
         :rtype: None
@@ -1215,7 +1215,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
         and the client library should throw before the request is sent.
 
-        :param body_parameter:
+        :param body_parameter: Required.
         :type body_parameter: JSON
         :return: None
         :rtype: None
@@ -1333,7 +1333,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required array. Please put null and the client library should throw before the
         request is sent.
 
-        :param body_parameter:
+        :param body_parameter: Required.
         :type body_parameter: list[str]
         :return: None
         :rtype: None
@@ -1445,7 +1445,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
-        :param body_parameter:
+        :param body_parameter: Required.
         :type body_parameter: JSON
         :return: None
         :rtype: None
@@ -1561,7 +1561,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required array. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
 
-        :keyword header_parameter:
+        :keyword header_parameter: Required.
         :paramtype header_parameter: list[str]
         :return: None
         :rtype: None

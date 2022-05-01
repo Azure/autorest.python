@@ -24,7 +24,7 @@ class AutoRestValidationTestConfiguration(Configuration):  # pylint: disable=too
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param subscription_id: Subscription ID.
+    :param subscription_id: Subscription ID. Required.
     :type subscription_id: str
     :keyword api_version: Api Version. Default value is "1.0.0". Note that overriding this default
      value may result in unsupported behavior.

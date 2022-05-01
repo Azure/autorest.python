@@ -41,11 +41,12 @@ def build_validation_of_method_parameters_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param subscription_id: Subscription ID.
+    :param subscription_id: Subscription ID. Required.
     :type subscription_id: str
     :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+     Required.
     :type resource_group_name: str
-    :param id: Required int multiple of 10 from 100 to 1000.
+    :param id: Required int multiple of 10 from 100 to 1000. Required.
     :type id: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -126,11 +127,12 @@ def build_validation_of_body_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param subscription_id: Subscription ID.
+    :param subscription_id: Subscription ID. Required.
     :type subscription_id: str
     :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+     Required.
     :type resource_group_name: str
-    :param id: Required int multiple of 10 from 100 to 1000.
+    :param id: Required int multiple of 10 from 100 to 1000. Required.
     :type id: int
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape.  Default value is None.

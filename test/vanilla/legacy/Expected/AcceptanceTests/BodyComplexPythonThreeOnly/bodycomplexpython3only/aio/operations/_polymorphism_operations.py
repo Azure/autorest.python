@@ -141,7 +141,7 @@ class PolymorphismOperations:
                      'jawsize': 5
                    }
                  ]
-               };.
+               };. Required.
         :type complex_body: ~bodycomplexpython3only.models.Fish
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -379,7 +379,7 @@ class PolymorphismOperations:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
-        :param complex_body:
+        :param complex_body: Required.
         :type complex_body: ~bodycomplexpython3only.models.Salmon
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -429,7 +429,7 @@ class PolymorphismOperations:
     async def put_missing_discriminator(self, complex_body: _models.Salmon, **kwargs: Any) -> _models.Salmon:
         """Put complex types that are polymorphic, omitting the discriminator.
 
-        :param complex_body:
+        :param complex_body: Required.
         :type complex_body: ~bodycomplexpython3only.models.Salmon
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Salmon, or the result of cls(response)
@@ -512,7 +512,7 @@ class PolymorphismOperations:
                      "age": 105
                  }
              ]
-         }.
+         }. Required.
         :type complex_body: ~bodycomplexpython3only.models.Fish
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

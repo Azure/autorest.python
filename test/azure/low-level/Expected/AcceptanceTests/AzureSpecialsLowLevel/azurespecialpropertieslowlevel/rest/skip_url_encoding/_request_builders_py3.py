@@ -23,7 +23,7 @@ def build_get_method_path_valid_request(unencoded_path_param: str, **kwargs: Any
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
+    :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'. Required.
     :type unencoded_path_param: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -55,7 +55,7 @@ def build_get_path_valid_request(unencoded_path_param: str, **kwargs: Any) -> Ht
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
+    :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'. Required.
     :type unencoded_path_param: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -122,7 +122,7 @@ def build_get_method_query_valid_request(*, q1: str, **kwargs: Any) -> HttpReque
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
+    :keyword q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'. Required.
     :paramtype q1: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -185,7 +185,7 @@ def build_get_path_query_valid_request(*, q1: str, **kwargs: Any) -> HttpRequest
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
+    :keyword q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'. Required.
     :paramtype q1: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

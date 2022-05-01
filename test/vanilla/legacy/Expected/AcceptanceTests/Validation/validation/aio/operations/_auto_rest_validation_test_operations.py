@@ -42,8 +42,9 @@ class AutoRestValidationTestOperationsMixin:
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+         Required.
         :type resource_group_name: str
-        :param id: Required int multiple of 10 from 100 to 1000.
+        :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product, or the result of cls(response)
@@ -98,8 +99,9 @@ class AutoRestValidationTestOperationsMixin:
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+         Required.
         :type resource_group_name: str
-        :param id: Required int multiple of 10 from 100 to 1000.
+        :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
         :param body:  Default value is None.
         :type body: ~validation.models.Product

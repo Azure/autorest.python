@@ -57,7 +57,7 @@ class PetOperations:
     async def get_pet_by_id(self, pet_id: str, **kwargs: Any) -> Optional[JSON]:
         """Gets pets by id.
 
-        :param pet_id: pet id.
+        :param pet_id: pet id. Required.
         :type pet_id: str
         :return: JSON object
         :rtype: JSON or None
@@ -119,7 +119,7 @@ class PetOperations:
     async def do_something(self, what_action: str, **kwargs: Any) -> JSON:
         """Asks pet to do something.
 
-        :param what_action: what action the pet should do.
+        :param what_action: what action the pet should do. Required.
         :type what_action: str
         :return: JSON object
         :rtype: JSON
@@ -175,7 +175,7 @@ class PetOperations:
 
     @distributed_trace_async
     async def has_models_param(  # pylint: disable=inconsistent-return-statements
-        self, *, models: Optional[str] = "value1", **kwargs: Any
+        self, *, models: str = "value1", **kwargs: Any
     ) -> None:
         """Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
         conflict with the input param name 'models'.

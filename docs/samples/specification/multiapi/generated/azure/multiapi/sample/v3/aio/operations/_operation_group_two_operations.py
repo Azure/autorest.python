@@ -47,7 +47,7 @@ class OperationGroupTwoOperations:
         self,
         input: Optional[Union[IO, _models.SourcePath]] = None,
         *,
-        content_type: Optional[Union[str, "_models.ContentType"]] = "application/json",
+        content_type: Union[str, "_models.ContentType"] = "application/json",
         **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
