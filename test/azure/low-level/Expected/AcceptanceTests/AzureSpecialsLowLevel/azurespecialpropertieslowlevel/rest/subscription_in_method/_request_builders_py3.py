@@ -25,7 +25,7 @@ def build_post_method_local_valid_request(subscription_id: str, **kwargs: Any) -
     into your code flow.
 
     :param subscription_id: This should appear as a method parameter, use value
-     '1234-5678-9012-3456'.
+     '1234-5678-9012-3456'. Required.
     :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -59,7 +59,7 @@ def build_post_method_local_null_request(subscription_id: str, **kwargs: Any) ->
     into your code flow.
 
     :param subscription_id: This should appear as a method parameter, use value null, client-side
-     validation should prvenet the call.
+     validation should prvenet the call. Required.
     :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -93,6 +93,7 @@ def build_post_path_local_valid_request(subscription_id: str, **kwargs: Any) -> 
     into your code flow.
 
     :param subscription_id: Should appear as a method parameter -use value '1234-5678-9012-3456'.
+     Required.
     :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -126,7 +127,7 @@ def build_post_swagger_local_valid_request(subscription_id: str, **kwargs: Any) 
     into your code flow.
 
     :param subscription_id: The subscriptionId, which appears in the path, the value is always
-     '1234-5678-9012-3456'.
+     '1234-5678-9012-3456'. Required.
     :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

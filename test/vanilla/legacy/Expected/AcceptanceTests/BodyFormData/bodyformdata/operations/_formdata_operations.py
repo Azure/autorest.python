@@ -141,9 +141,10 @@ class FormdataOperations(object):
         # type: (...) -> IO
         """Upload file.
 
-        :param file_content: File to upload.
+        :param file_content: File to upload. Required.
         :type file_content: IO
         :param file_name: File name to upload. Name has to be spelled exactly as written here.
+         Required.
         :type file_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IO, or the result of cls(response)
@@ -204,7 +205,7 @@ class FormdataOperations(object):
         # type: (...) -> IO
         """Upload file.
 
-        :param file_content: File to upload.
+        :param file_content: File to upload. Required.
         :type file_content: IO
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IO, or the result of cls(response)
@@ -263,7 +264,7 @@ class FormdataOperations(object):
         # type: (...) -> IO
         """Upload multiple files.
 
-        :param file_content: Files to upload.
+        :param file_content: Files to upload. Required.
         :type file_content: list[IO]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IO, or the result of cls(response)

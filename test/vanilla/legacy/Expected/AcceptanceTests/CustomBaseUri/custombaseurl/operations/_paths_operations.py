@@ -86,7 +86,7 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get a 200 to test a valid base uri.
 
-        :param account_name: Account Name.
+        :param account_name: Account Name. Required.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

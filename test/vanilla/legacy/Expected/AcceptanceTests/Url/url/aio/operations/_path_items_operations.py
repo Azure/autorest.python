@@ -66,8 +66,9 @@ class PathItemsOperations:
         pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
          parameter. Default value is None.
@@ -131,8 +132,9 @@ class PathItemsOperations:
         pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
          parameter. Default value is None.
@@ -196,8 +198,9 @@ class PathItemsOperations:
         pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
          parameter. Default value is None.
@@ -261,8 +264,9 @@ class PathItemsOperations:
         pathItemStringQuery=null, localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
         :param path_item_string_query: should contain value null. Default value is None.
         :type path_item_string_query: str

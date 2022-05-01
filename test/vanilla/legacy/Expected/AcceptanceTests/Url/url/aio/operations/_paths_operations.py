@@ -732,7 +732,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null (should throw).
 
-        :param string_path: null string value.
+        :param string_path: null string value. Required.
         :type string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -778,7 +778,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get using uri with 'green color' in path parameter.
 
-        :param enum_path: send the value green.
+        :param enum_path: send the value green. Required.
         :type enum_path: str or ~url.models.UriColor
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -824,7 +824,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null (should throw on the client before the request is sent on wire).
 
-        :param enum_path: send null should throw.
+        :param enum_path: send null should throw. Required.
         :type enum_path: str or ~url.models.UriColor
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -870,7 +870,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
-        :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
+        :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array. Required.
         :type byte_path: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -962,7 +962,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null as byte array (should throw).
 
-        :param byte_path: null as byte array (should throw).
+        :param byte_path: null as byte array (should throw). Required.
         :type byte_path: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1055,7 +1055,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         """Get null as date - this should throw or be unusable on the client side, depending on date
         representation.
 
-        :param date_path: null as date (should throw).
+        :param date_path: null as date (should throw). Required.
         :type date_path: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1148,7 +1148,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null as date-time, should be disallowed or throw depending on representation of date-time.
 
-        :param date_time_path: null as date-time.
+        :param date_time_path: null as date-time. Required.
         :type date_time_path: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1194,7 +1194,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
-        :param base64_url_path: base64url encoded value.
+        :param base64_url_path: base64url encoded value. Required.
         :type base64_url_path: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1242,7 +1242,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         csv-array format.
 
         :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
-         using the csv-array format.
+         using the csv-array format. Required.
         :type array_path: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1288,7 +1288,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
 
-        :param unix_time_url_path: Unix time encoded value.
+        :param unix_time_url_path: Unix time encoded value. Required.
         :type unix_time_url_path: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

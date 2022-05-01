@@ -33,7 +33,7 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_paths_get_empty_request(
-    key_name: str, subscription_id: str, *, key_version: Optional[str] = "v1", **kwargs: Any
+    key_name: str, subscription_id: str, *, key_version: str = "v1", **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -78,15 +78,15 @@ class PathsOperations:
 
     @distributed_trace
     def get_empty(  # pylint: disable=inconsistent-return-statements
-        self, vault: str, secret: str, key_name: str, *, key_version: Optional[str] = "v1", **kwargs: Any
+        self, vault: str, secret: str, key_name: str, *, key_version: str = "v1", **kwargs: Any
     ) -> None:
         """Get a 200 to test a valid base uri.
 
-        :param vault: The vault name, e.g. https://myvault.
+        :param vault: The vault name, e.g. https://myvault. Required.
         :type vault: str
-        :param secret: Secret value.
+        :param secret: Secret value. Required.
         :type secret: str
-        :param key_name: The key name with value 'key1'.
+        :param key_name: The key name with value 'key1'. Required.
         :type key_name: str
         :keyword key_version: The key version. Default value 'v1'. Default value is "v1".
         :paramtype key_version: str

@@ -100,7 +100,7 @@ def build_has_models_param_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    models = kwargs.pop('models', _params.pop('models', "value1"))  # type: Optional[str]
+    models = kwargs.pop('models', _params.pop('models', "value1"))  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -150,7 +150,7 @@ class PetOperations(object):
         # type: (...) -> Optional[_models.Pet]
         """Gets pets by id.
 
-        :param pet_id: pet id.
+        :param pet_id: pet id. Required.
         :type pet_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet, or the result of cls(response)
@@ -212,7 +212,7 @@ class PetOperations(object):
         # type: (...) -> _models.PetAction
         """Asks pet to do something.
 
-        :param what_action: what action the pet should do.
+        :param what_action: what action the pet should do. Required.
         :type what_action: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAction, or the result of cls(response)
@@ -266,7 +266,7 @@ class PetOperations(object):
     @distributed_trace
     def has_models_param(  # pylint: disable=inconsistent-return-statements
         self,
-        models="value1",  # type: Optional[str]
+        models="value1",  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None

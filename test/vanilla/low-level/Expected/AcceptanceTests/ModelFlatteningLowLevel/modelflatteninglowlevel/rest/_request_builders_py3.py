@@ -685,7 +685,7 @@ def build_put_simple_product_with_grouping_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param name: Product name with value 'groupproduct'.
+    :param name: Product name with value 'groupproduct'. Required.
     :type name: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Simple body product to put. Default value is None.

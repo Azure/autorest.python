@@ -106,7 +106,7 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = "value1", **kwargs: Any
+        self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -190,7 +190,7 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = "value1", **kwargs: Any
+        self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -238,7 +238,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Known values are: "value1" or "value2".
+        :keyword input: Known values are: "value1" or "value2". Required.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -446,7 +446,7 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = "value1", **kwargs: Any
+        self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -530,7 +530,7 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = "value1", **kwargs: Any
+        self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -578,7 +578,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Known values are: "value1" or "value2".
+        :keyword input: Known values are: "value1" or "value2". Required.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -662,7 +662,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: "value1"
+        :keyword input: "value1" Required.
         :paramtype input: str
         :return: None
         :rtype: None

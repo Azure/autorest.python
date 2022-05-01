@@ -40,7 +40,7 @@ class Pet(msrest.serialization.Model):
         *,
         int_enum: Union[str, "_models.IntEnum"],
         name: Optional[str] = None,
-        days_of_week: Optional[Union[str, "_models.DaysOfWeekExtensibleEnum"]] = "Friday",
+        days_of_week: Union[str, "_models.DaysOfWeekExtensibleEnum"] = "Friday",
         **kwargs
     ):
         """

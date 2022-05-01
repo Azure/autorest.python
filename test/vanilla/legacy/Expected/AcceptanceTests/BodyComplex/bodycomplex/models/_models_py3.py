@@ -794,7 +794,7 @@ class Goblinshark(Shark):
         siblings: Optional[List["_models.Fish"]] = None,
         age: Optional[int] = None,
         jawsize: Optional[int] = None,
-        color: Optional[Union[str, "_models.GoblinSharkColor"]] = "gray",
+        color: Union[str, "_models.GoblinSharkColor"] = "gray",
         **kwargs
     ):
         """

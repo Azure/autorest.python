@@ -34,6 +34,7 @@ class AutoRestUrlTestService(object):
     :ivar path_items: PathItemsOperations operations
     :vartype path_items: url.operations.PathItemsOperations
     :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
+     Required.
     :type global_string_path: str
     :param global_string_query: should contain value null. Default value is None.
     :type global_string_query: str

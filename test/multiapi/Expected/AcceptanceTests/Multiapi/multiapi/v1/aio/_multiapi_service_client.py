@@ -27,7 +27,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
 
     :ivar operation_group_one: OperationGroupOneOperations operations
     :vartype operation_group_one: multiapi.v1.aio.operations.OperationGroupOneOperations
-    :param credential: Credential needed for the client to connect to Azure.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str

@@ -21,6 +21,7 @@
 **Bug Fixes**
 
 - Make sure `any-object` schemas from swagger are typed with `MutableMapping`s  #1243
+- Make typing for parameters `Optional` only if `None` is a valid input, not only if it is specified as `optional` in swagger  #1244
 
 ### 2022-04-18 - 5.16.0
 

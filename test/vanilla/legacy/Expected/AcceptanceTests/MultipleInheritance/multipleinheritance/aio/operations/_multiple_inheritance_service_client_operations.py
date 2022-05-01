@@ -90,7 +90,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     async def put_horse(self, horse: _models.Horse, **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
-        :param horse: Put a horse with name 'General' and isAShowHorse false.
+        :param horse: Put a horse with name 'General' and isAShowHorse false. Required.
         :type horse: ~multipleinheritance.models.Horse
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
@@ -188,7 +188,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     async def put_pet(self, name: str, **kwargs: Any) -> str:
         """Put a pet with name 'Butter'.
 
-        :param name:
+        :param name: Required.
         :type name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
@@ -287,7 +287,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
     async def put_feline(self, feline: _models.Feline, **kwargs: Any) -> str:
         """Put a feline who hisses and doesn't meow.
 
-        :param feline: Put a feline who hisses and doesn't meow.
+        :param feline: Put a feline who hisses and doesn't meow. Required.
         :type feline: ~multipleinheritance.models.Feline
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
@@ -386,6 +386,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
+         Required.
         :type cat: ~multipleinheritance.models.Cat
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)
@@ -486,7 +487,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
-         eatsMiceYet is true.
+         eatsMiceYet is true. Required.
         :type kitten: ~multipleinheritance.models.Kitten
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str, or the result of cls(response)

@@ -168,7 +168,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self.schema.default_value_declaration
 
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
-        if self.required:
+        if self.required or self.default_value:
             return self.schema.type_annotation(is_operation_file=is_operation_file)
         return f"Optional[{self.schema.type_annotation(is_operation_file=is_operation_file)}]"
 
@@ -184,7 +184,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     def model_file_imports(self) -> FileImport:
         file_import = self.schema.model_file_imports()
-        if not self.required:
+        if not (self.required or self.default_value):
             file_import.add_submodule_import(
                 "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
             )

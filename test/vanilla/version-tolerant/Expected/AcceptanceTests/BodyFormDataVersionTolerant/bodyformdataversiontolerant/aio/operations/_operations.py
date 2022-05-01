@@ -57,7 +57,7 @@ class FormdataOperations(abc.ABC):
     async def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> IO:
         """Upload file.
 
-        :param file_content: File to upload.
+        :param file_content: File to upload. Required.
         :type file_content: IO
         :return: IO
         :rtype: IO

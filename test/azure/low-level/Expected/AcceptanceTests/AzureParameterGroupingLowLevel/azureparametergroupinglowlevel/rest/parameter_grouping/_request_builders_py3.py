@@ -23,7 +23,7 @@ def build_post_required_request(
     json: Any = None,
     content: Any = None,
     custom_header: Optional[str] = None,
-    query: Optional[int] = 30,
+    query: int = 30,
     **kwargs: Any
 ) -> HttpRequest:
     """Post a bunch of required parameters grouped.
@@ -31,13 +31,13 @@ def build_post_required_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param path: Path parameter.
+    :param path: Path parameter. Required.
     :type path: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.  Default value is None.
+     our example to find the input shape. Required. Default value is None.
     :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).  Default value is None.
+     a byte iterator, or stream input). Required. Default value is None.
     :paramtype content: any
     :keyword custom_header:  Default value is None.
     :paramtype custom_header: str
@@ -83,9 +83,7 @@ def build_post_required_request(
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, json=json, content=content, **kwargs)
 
 
-def build_post_optional_request(
-    *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs: Any
-) -> HttpRequest:
+def build_post_optional_request(*, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any) -> HttpRequest:
     """Post a bunch of optional parameters grouped.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -164,9 +162,9 @@ def build_post_reserved_words_request(
 def build_post_multi_param_groups_request(
     *,
     header_one: Optional[str] = None,
-    query_one: Optional[int] = 30,
+    query_one: int = 30,
     header_two: Optional[str] = None,
-    query_two: Optional[int] = 30,
+    query_two: int = 30,
     **kwargs: Any
 ) -> HttpRequest:
     """Post parameters from multiple different parameter groups.
@@ -213,7 +211,7 @@ def build_post_multi_param_groups_request(
 
 
 def build_post_shared_parameter_group_object_request(
-    *, header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs: Any
+    *, header_one: Optional[str] = None, query_one: int = 30, **kwargs: Any
 ) -> HttpRequest:
     """Post parameters with a shared parameter group object.
 

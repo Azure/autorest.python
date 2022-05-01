@@ -812,7 +812,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         :param product_id: Unique identifier representing a specific product for a given latitude &
          longitude. For example, uberX in San Francisco will have a different product_id than uberX in
-         Los Angeles.
+         Los Angeles. Required.
         :type product_id: str
         :param description: Description of product. Default value is None.
         :type description: str
@@ -893,7 +893,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # type: (...) -> _models.SimpleProduct
         """Put Simple Product with client flattening true on the model.
 
-        :param flatten_parameter_group: Parameter group.
+        :param flatten_parameter_group: Parameter group. Required.
         :type flatten_parameter_group: ~modelflattening.models.FlattenParameterGroup
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct, or the result of cls(response)

@@ -139,7 +139,7 @@ class PagingOperations(object):
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
         host.
 
-        :param account_name: Account Name.
+        :param account_name: Account Name. Required.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResult or the result of cls(response)
@@ -224,7 +224,7 @@ class PagingOperations(object):
         # type: (...) -> Iterable[_models.ProductResult]
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
-        :param account_name: Account Name.
+        :param account_name: Account Name. Required.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either ProductResult or the result of cls(response)

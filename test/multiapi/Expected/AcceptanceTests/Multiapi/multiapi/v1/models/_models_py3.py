@@ -124,7 +124,7 @@ class TestLroAndPagingOptions(msrest.serialization.Model):
         self,
         *,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs
     ):
         """

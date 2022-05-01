@@ -1042,7 +1042,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(MixinABC):
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
-        :param name: Product name with value 'groupproduct'.
+        :param name: Product name with value 'groupproduct'. Required.
         :type name: str
         :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: JSON

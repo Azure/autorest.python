@@ -75,7 +75,7 @@ class StorageAccountsOperations:
 
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: ~storage.models.StorageAccountCheckNameAvailabilityParameters
         :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json" or "text/json". Default value is "application/json".
@@ -198,12 +198,13 @@ class StorageAccountsOperations:
         properties, then HTTP 200 would be returned.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
-        :param parameters: The parameters to provide for the created account.
+        :param parameters: The parameters to provide for the created account. Required.
         :type parameters: ~storage.models.StorageAccountCreateParameters
         :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json" or "text/json". Default value is "application/json".
@@ -273,10 +274,11 @@ class StorageAccountsOperations:
         """Deletes a storage account in Microsoft Azure.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -328,10 +330,11 @@ class StorageAccountsOperations:
         storage keys.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount, or the result of cls(response)
@@ -397,13 +400,14 @@ class StorageAccountsOperations:
         location and name of the storage account cannot be changed after creation.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
         :param parameters: The parameters to update on the account. Note that only one property can be
-         changed at a time using this API.
+         changed at a time using this API. Required.
         :type parameters: ~storage.models.StorageAccountUpdateParameters
         :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json" or "text/json". Default value is "application/json".
@@ -462,8 +466,9 @@ class StorageAccountsOperations:
         """Lists the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
-        :param account_name: The name of the storage account.
+        :param account_name: The name of the storage account. Required.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys, or the result of cls(response)
@@ -589,6 +594,7 @@ class StorageAccountsOperations:
         are not returned; use the ListKeys operation for this.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either StorageAccountListResult or the result of
@@ -671,10 +677,11 @@ class StorageAccountsOperations:
         """Regenerates the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
         :param key_name:  Default value is None.
         :type key_name: str or ~storage.models.KeyName

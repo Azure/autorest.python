@@ -135,7 +135,7 @@ def build_put_valid_request(
                  "age": 105
              }
          ]
-     }. Default value is None.
+     }. Required. Default value is None.
     :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put a salmon that looks like this:
@@ -190,7 +190,7 @@ def build_put_valid_request(
                  "age": 105
              }
          ]
-     }. Default value is None.
+     }. Required. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
