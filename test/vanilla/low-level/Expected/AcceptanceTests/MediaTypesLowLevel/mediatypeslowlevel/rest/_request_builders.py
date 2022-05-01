@@ -53,7 +53,7 @@ def build_analyze_body_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -105,7 +105,7 @@ def build_analyze_body_no_accept_header_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: str
     # Construct URL
     _url = "/mediatypes/analyzeNoAccept"
 
@@ -171,10 +171,10 @@ def build_binary_body_with_two_content_types_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. The payload body. Default value is None.
+     our example to find the input shape. The payload body. Required. Default value is None.
     :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). The payload body. Default value is None.
+     a byte iterator, or stream input). The payload body. Required. Default value is None.
     :paramtype content: any
     :keyword content_type: Media type of the body sent to the API. Known values are:
      "application/json" or "application/octet-stream". Default value is None.
@@ -223,10 +223,10 @@ def build_binary_body_with_three_content_types_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. The payload body. Default value is None.
+     our example to find the input shape. The payload body. Required. Default value is None.
     :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). The payload body. Default value is None.
+     a byte iterator, or stream input). The payload body. Required. Default value is None.
     :paramtype content: any
     :keyword content_type: Media type of the body sent to the API. Known values are:
      "application/json", "application/octet-stream", and "text/plain". Default value is None.
@@ -244,7 +244,7 @@ def build_binary_body_with_three_content_types_request(
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: str
     accept = _headers.pop('Accept', "text/plain")
 
     # Construct URL
@@ -273,10 +273,10 @@ def build_put_text_and_json_body_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. The payload body. Default value is None.
+     our example to find the input shape. The payload body. Required. Default value is None.
     :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). The payload body. Default value is None.
+     a byte iterator, or stream input). The payload body. Required. Default value is None.
     :paramtype content: any
     :keyword content_type: Media type of the body sent to the API. Known values are: "text/plain"
      or "application/json". Default value is None.

@@ -14,7 +14,7 @@ from azure.core.utils import case_insensitive_dict
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -49,7 +49,7 @@ def build_upload_file_via_body_request(
     into your code flow.
 
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). File to upload.
+     a byte iterator, or stream input). File to upload. Required. Required.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

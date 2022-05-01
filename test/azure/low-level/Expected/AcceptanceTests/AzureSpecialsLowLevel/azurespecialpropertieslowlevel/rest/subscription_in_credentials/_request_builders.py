@@ -34,7 +34,7 @@ def build_post_method_global_valid_request(
     into your code flow.
 
     :param subscription_id: The subscription id, which appears in the path, always modeled in
-     credentials. The value is always '1234-5678-9012-3456'.
+     credentials. The value is always '1234-5678-9012-3456'. Required.
     :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -77,7 +77,7 @@ def build_post_method_global_null_request(
     into your code flow.
 
     :param subscription_id: The subscription id, which appears in the path, always modeled in
-     credentials. The value is always '1234-5678-9012-3456'.
+     credentials. The value is always '1234-5678-9012-3456'. Required.
     :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -120,7 +120,7 @@ def build_post_method_global_not_provided_valid_request(
     into your code flow.
 
     :param subscription_id: The subscription id, which appears in the path, always modeled in
-     credentials. The value is always '1234-5678-9012-3456'.
+     credentials. The value is always '1234-5678-9012-3456'. Required.
     :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -169,7 +169,7 @@ def build_post_path_global_valid_request(
     into your code flow.
 
     :param subscription_id: The subscription id, which appears in the path, always modeled in
-     credentials. The value is always '1234-5678-9012-3456'.
+     credentials. The value is always '1234-5678-9012-3456'. Required.
     :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -212,7 +212,7 @@ def build_post_swagger_global_valid_request(
     into your code flow.
 
     :param subscription_id: The subscription id, which appears in the path, always modeled in
-     credentials. The value is always '1234-5678-9012-3456'.
+     credentials. The value is always '1234-5678-9012-3456'. Required.
     :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

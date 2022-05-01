@@ -49,7 +49,7 @@ class UploadOperations:
     async def file(self, file_param: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Uploading json file.
 
-        :param file_param: JSON file with payload { "more": "cowbell" }.
+        :param file_param: JSON file with payload { "more": "cowbell" }. Required.
         :type file_param: IO
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -98,7 +98,7 @@ class UploadOperations:
     async def binary(self, file_param: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Uploading binary file.
 
-        :param file_param: Non-empty binary file.
+        :param file_param: Non-empty binary file. Required.
         :type file_param: IO
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

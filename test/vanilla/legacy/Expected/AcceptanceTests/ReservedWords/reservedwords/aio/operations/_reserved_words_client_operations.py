@@ -46,7 +46,7 @@ class ReservedWordsClientOperationsMixin:
     async def operation_with_content_param(self, content: IO, **kwargs: Any) -> JSON:
         """Operation with body param called content. Pass in b'hello, world'.
 
-        :param content: Pass in b'hello, world'.
+        :param content: Pass in b'hello, world'. Required.
         :type content: IO
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON, or the result of cls(response)
@@ -99,7 +99,7 @@ class ReservedWordsClientOperationsMixin:
     async def operation_with_json_param(self, json: Any, **kwargs: Any) -> JSON:
         """Operation with body param called 'json'. Pass in {'hello': 'world'}.
 
-        :param json: Pass in {'hello': 'world'}.
+        :param json: Pass in {'hello': 'world'}. Required.
         :type json: any
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON, or the result of cls(response)
@@ -152,9 +152,9 @@ class ReservedWordsClientOperationsMixin:
     async def operation_with_data_param(self, data: str, world: str, **kwargs: Any) -> JSON:
         """Operation with urlencoded body param called 'data'.
 
-        :param data: Pass in 'hello'.
+        :param data: Pass in 'hello'. Required.
         :type data: str
-        :param world: Pass in 'world'.
+        :param world: Pass in 'world'. Required.
         :type world: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON, or the result of cls(response)
@@ -211,9 +211,9 @@ class ReservedWordsClientOperationsMixin:
     async def operation_with_files_param(self, files: IO, file_name: str, **kwargs: Any) -> JSON:
         """Operation with multipart body param called 'files'.
 
-        :param files: Files to upload. Pass in list of input streams.
+        :param files: Files to upload. Pass in list of input streams. Required.
         :type files: IO
-        :param file_name: File name to upload. Pass in 'my.txt'.
+        :param file_name: File name to upload. Pass in 'my.txt'. Required.
         :type file_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON, or the result of cls(response)
@@ -271,10 +271,10 @@ class ReservedWordsClientOperationsMixin:
         """Operation with path format argument URL, header param headerParameters, and query param
         queryParameters.
 
-        :param url: Pass in 'foo'.
+        :param url: Pass in 'foo'. Required.
         :type url: str
         :param header_parameters: Header arg that uses same name as headerParameters in generated code.
-         Pass in 'x-ms-header' to pass.
+         Pass in 'x-ms-header' to pass. Required.
         :type header_parameters: str
         :param query_parameters: Query args that uses same name as queryParameters in generated code.
          Pass in ['one', 'two'] to pass test. Default value is None.

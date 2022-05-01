@@ -39,7 +39,7 @@ class MergePatchJsonClientOperationsMixin:
     async def patch_single(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic patch with an object.
 
-        :param body: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
+        :param body: Pass in {'foo': 'bar'} for a 200, anything else for an object error. Required.
         :type body: JSON
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

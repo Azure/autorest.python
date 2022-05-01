@@ -24,9 +24,9 @@ if TYPE_CHECKING:
 class AutoRestRequiredOptionalTestService:
     """Test Infrastructure for AutoRest.
 
-    :param required_global_path: number of items to skip.
+    :param required_global_path: number of items to skip. Required.
     :type required_global_path: str
-    :param required_global_query: number of items to skip.
+    :param required_global_query: number of items to skip. Required.
     :type required_global_query: str
     :param optional_global_query: number of items to skip. Default value is None.
     :type optional_global_query: int

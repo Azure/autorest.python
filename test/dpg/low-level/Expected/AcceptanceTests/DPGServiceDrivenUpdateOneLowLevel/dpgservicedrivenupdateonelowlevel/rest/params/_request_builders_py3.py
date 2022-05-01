@@ -57,7 +57,7 @@ def build_get_required_request(*, parameter: str, new_parameter: Optional[str] =
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword parameter: I am a required parameter.
+    :keyword parameter: I am a required parameter. Required.
     :paramtype parameter: str
     :keyword new_parameter: I'm a new input optional parameter. Default value is None.
     :paramtype new_parameter: str
@@ -95,7 +95,7 @@ def build_put_required_optional_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword required_param: I am a required parameter.
+    :keyword required_param: I am a required parameter. Required.
     :paramtype required_param: str
     :keyword optional_param: I am an optional parameter. Default value is None.
     :paramtype optional_param: str
@@ -136,11 +136,12 @@ def build_post_parameters_request(*, json: Any = None, content: Any = None, **kw
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. I am a body parameter with a new content type. My only
-     valid JSON entry is { url: "http://example.org/myimage.jpeg" }. Default value is None.
+     valid JSON entry is { url: "http://example.org/myimage.jpeg" }. Required. Default value is
+     None.
     :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). I am a body parameter with a new content type. My only valid
-     JSON entry is { url: "http://example.org/myimage.jpeg" }. Default value is None.
+     JSON entry is { url: "http://example.org/myimage.jpeg" }. Required. Default value is None.
     :paramtype content: any
     :keyword content_type: Media type of the body sent to the API. Known values are: "image/jpeg"
      or "application/json". Default value is None.

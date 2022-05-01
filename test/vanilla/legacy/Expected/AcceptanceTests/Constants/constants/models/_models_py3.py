@@ -23,10 +23,7 @@ class ModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
     }
 
     def __init__(
-        self,
-        *,
-        parameter: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultEnum"]] = "value1",
-        **kwargs
+        self, *, parameter: Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultEnum"] = "value1", **kwargs
     ):
         """
         :keyword parameter: Known values are: "value1".
@@ -73,10 +70,7 @@ class ModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
     }
 
     def __init__(
-        self,
-        *,
-        parameter: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultEnum"]] = "value1",
-        **kwargs
+        self, *, parameter: Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultEnum"] = "value1", **kwargs
     ):
         """
         :keyword parameter: Known values are: "value1", "value2".
@@ -231,7 +225,7 @@ class NoModelAsStringNoRequiredOneValueDefault(msrest.serialization.Model):
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Optional[str] = "value1", **kwargs):
+    def __init__(self, *, parameter: str = "value1", **kwargs):
         """
         :keyword parameter:  The only acceptable values to pass in are None and "value1". The default
          value is "value1".
@@ -275,10 +269,7 @@ class NoModelAsStringNoRequiredTwoValueDefault(msrest.serialization.Model):
     }
 
     def __init__(
-        self,
-        *,
-        parameter: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultEnum"]] = "value1",
-        **kwargs
+        self, *, parameter: Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultEnum"] = "value1", **kwargs
     ):
         """
         :keyword parameter: Known values are: "value1", "value2".

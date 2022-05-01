@@ -40,7 +40,7 @@ def build_get_by_pet_id_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param pet_id: Pet id.
+    :param pet_id: Pet id. Required.
     :type pet_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

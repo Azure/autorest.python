@@ -63,7 +63,7 @@ class SkipUrlEncodingOperations:
     ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
-        :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
+        :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'. Required.
         :type unencoded_path_param: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -109,7 +109,7 @@ class SkipUrlEncodingOperations:
     ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
-        :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
+        :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'. Required.
         :type unencoded_path_param: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -202,7 +202,7 @@ class SkipUrlEncodingOperations:
     ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-        :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
+        :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'. Required.
         :type q1: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -294,7 +294,7 @@ class SkipUrlEncodingOperations:
     ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-        :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
+        :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'. Required.
         :type q1: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

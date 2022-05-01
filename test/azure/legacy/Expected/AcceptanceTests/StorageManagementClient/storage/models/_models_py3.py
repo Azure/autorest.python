@@ -406,7 +406,7 @@ class StorageAccountCheckNameAvailabilityParameters(msrest.serialization.Model):
         "type": {"key": "type", "type": "str"},
     }
 
-    def __init__(self, *, name: str, type: Optional[str] = "Microsoft.Storage/storageAccounts", **kwargs):
+    def __init__(self, *, name: str, type: str = "Microsoft.Storage/storageAccounts", **kwargs):
         """
         :keyword name: Required.
         :paramtype name: str

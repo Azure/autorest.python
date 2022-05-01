@@ -16,7 +16,7 @@ from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -34,9 +34,9 @@ def build_get_empty_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param key_name: The key name with value 'key1'.
+    :param key_name: The key name with value 'key1'. Required.
     :type key_name: str
-    :param subscription_id: The subscription id with value 'test12'.
+    :param subscription_id: The subscription id with value 'test12'. Required.
     :type subscription_id: str
     :keyword key_version: The key version. Default value 'v1'. Default value is "v1".
     :paramtype key_version: str
@@ -49,7 +49,7 @@ def build_get_empty_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    key_version = kwargs.pop('key_version', _params.pop('keyVersion', "v1"))  # type: Optional[str]
+    key_version = kwargs.pop('key_version', _params.pop('keyVersion', "v1"))  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

@@ -29,7 +29,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
         """Should be a mixin operation. Put in 2 for the required parameter and have the correct api
         version of 2.0.0 to pass.
 
-        :param id: An int parameter. Put in 2 to pass.
+        :param id: An int parameter. Put in 2 to pass. Required.
         :type id: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

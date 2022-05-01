@@ -46,7 +46,7 @@ def build_get_empty_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    key_version = kwargs.pop('key_version', _params.pop('keyVersion', "v1"))  # type: Optional[str]
+    key_version = kwargs.pop('key_version', _params.pop('keyVersion', "v1"))  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -99,17 +99,17 @@ class PathsOperations(object):
         vault,  # type: str
         secret,  # type: str
         key_name,  # type: str
-        key_version="v1",  # type: Optional[str]
+        key_version="v1",  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a 200 to test a valid base uri.
 
-        :param vault: The vault name, e.g. https://myvault.
+        :param vault: The vault name, e.g. https://myvault. Required.
         :type vault: str
-        :param secret: Secret value.
+        :param secret: Secret value. Required.
         :type secret: str
-        :param key_name: The key name with value 'key1'.
+        :param key_name: The key name with value 'key1'. Required.
         :type key_name: str
         :param key_version: The key version. Default value 'v1'. Default value is "v1".
         :type key_version: str

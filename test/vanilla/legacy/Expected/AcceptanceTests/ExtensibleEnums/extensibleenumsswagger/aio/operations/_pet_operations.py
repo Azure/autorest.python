@@ -52,7 +52,7 @@ class PetOperations:
     async def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> _models.Pet:
         """get pet by id.
 
-        :param pet_id: Pet id.
+        :param pet_id: Pet id. Required.
         :type pet_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet, or the result of cls(response)
