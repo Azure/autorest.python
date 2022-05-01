@@ -14,7 +14,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 
 from .. import models
-from .._serialization import Deserializer, Serializer
+from ..._serialization import Deserializer, Serializer
 from ._configuration import MultiapiServiceClientConfiguration
 from .operations import MultiapiServiceClientOperationsMixin, OperationGroupOneOperations
 

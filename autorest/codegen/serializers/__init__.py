@@ -178,7 +178,7 @@ class JinjaSerializer:
                     for i in range(len(package_parts))
                 ],
                 "dev_status": dev_status,
-                "is_legacy": self.code_model.is_legacy,
+                "code_model": self.code_model,
             }
             params.update(self.code_model.options)
             params.update(self.code_model.package_dependency)
@@ -469,7 +469,10 @@ class JinjaSerializer:
             namespace_path / Path("py.typed"), "# Marker file for PEP 561."
         )
 
-        if not self.code_model.options["client_side_validation"]:
+        if (
+            not self.code_model.options["client_side_validation"]
+            and not self.code_model.options["multiapi"]
+        ):
             # serialization.py from msrest
             self._autorestapi.write_file(
                 namespace_path / Path("_serialization.py"),

@@ -108,6 +108,8 @@ class RequestBuilder(BaseBuilder):
                 "msrest", "Serializer", ImportType.THIRDPARTY
             )
         else:
+            if self.code_model.options["multiapi"]:
+                relative_path += "."
             file_import.add_submodule_import(
                 f"{relative_path}_serialization", "Serializer", ImportType.LOCAL
             )

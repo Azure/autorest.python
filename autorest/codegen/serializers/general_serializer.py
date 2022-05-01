@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Dict, Any
 from jinja2 import Environment
 from .import_serializer import FileImportSerializer, TypingSection
 from ..models import (
@@ -135,14 +134,17 @@ class GeneralSerializer:
                     TypingSection.TYPING,
                 )
             else:
+                relative_path = "."
+                if self.code_model.options["multiapi"]:
+                    relative_path += "."
                 file_import.add_submodule_import(
-                    "._serialization",
+                    f"{relative_path}_serialization",
                     "Serializer",
                     ImportType.LOCAL,
                     TypingSection.TYPING,
                 )
                 file_import.add_submodule_import(
-                    "._serialization",
+                    f"{relative_path}_serialization",
                     "Deserializer",
                     ImportType.LOCAL,
                     TypingSection.TYPING,
@@ -193,7 +195,7 @@ class GeneralSerializer:
 
     def serialize_setup_file(self) -> str:
         template = self.env.get_template("setup.py.jinja2")
-        params: Dict[str, Any] = {"is_legacy": self.code_model.is_legacy}
+        params = {}
         params.update(self.code_model.options)
         params.update(self.code_model.package_dependency)
         return template.render(code_model=self.code_model, **params)

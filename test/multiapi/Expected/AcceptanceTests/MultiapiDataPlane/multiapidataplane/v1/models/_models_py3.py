@@ -10,7 +10,7 @@ from typing import List, Optional, TYPE_CHECKING
 
 from azure.core.exceptions import HttpResponseError
 
-from .. import _serialization
+from ... import _serialization
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

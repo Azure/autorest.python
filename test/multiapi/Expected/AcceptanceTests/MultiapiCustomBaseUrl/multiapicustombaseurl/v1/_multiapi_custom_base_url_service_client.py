@@ -12,8 +12,8 @@ from typing import TYPE_CHECKING
 from azure.core import PipelineClient
 
 from . import models
+from .._serialization import Deserializer, Serializer
 from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
-from ._serialization import Deserializer, Serializer
 from .operations import MultiapiCustomBaseUrlServiceClientOperationsMixin
 
 if TYPE_CHECKING:

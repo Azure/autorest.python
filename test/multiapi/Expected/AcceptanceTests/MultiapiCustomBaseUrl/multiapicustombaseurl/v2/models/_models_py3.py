@@ -10,7 +10,7 @@ from typing import Optional
 
 from azure.core.exceptions import HttpResponseError
 
-from .. import _serialization
+from ... import _serialization
 
 
 class Error(_serialization.Model):

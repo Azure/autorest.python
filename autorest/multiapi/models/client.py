@@ -5,9 +5,10 @@
 # --------------------------------------------------------------------------
 import sys
 import json
+import re
 from typing import Any, Dict, List
 from pathlib import Path
-from .imports import FileImport
+from .imports import FileImport, TypingSection, ImportType
 
 
 def _extract_version(metadata_json: Dict[str, Any], version_path: Path) -> str:
@@ -43,9 +44,28 @@ class Client:
 
     def imports(self, async_mode: bool) -> FileImport:
         imports_to_load = "async_imports" if async_mode else "sync_imports"
-        return FileImport(
+        file_import = FileImport(
             json.loads(self.default_version_metadata["client"][imports_to_load])
         )
+        if TypingSection.REGULAR in file_import.imports:
+            if ImportType.LOCAL in file_import.imports[TypingSection.REGULAR]:
+                for key in file_import.imports[TypingSection.REGULAR][
+                    ImportType.LOCAL
+                ].keys():
+                    if re.search("^\\.*_serialization$", key):
+                        relative_path = ".." if async_mode else "."
+                        file_import.imports[TypingSection.REGULAR][ImportType.LOCAL][
+                            f"{relative_path}_serialization"
+                        ] = file_import.imports[TypingSection.REGULAR][
+                            ImportType.LOCAL
+                        ][
+                            key
+                        ]
+                        del file_import.imports[TypingSection.REGULAR][
+                            ImportType.LOCAL
+                        ][key]
+                        break
+        return file_import
 
     @property
     def parameterized_host_template_to_api_version(self) -> Dict[str, List[str]]:
