@@ -6,22 +6,18 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import TYPE_CHECKING
+from typing import Any, IO, Optional, Union, overload
 
 from msrest import Serializer
 
 from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
-
-    if sys.version_info >= (3, 9):
-        from collections.abc import MutableMapping
-    else:
-        from typing import MutableMapping  # type: ignore
-    JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 
@@ -40,19 +36,6 @@ def build_get_valid_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "length": 0.0,  # Required.
-                "siblings": [
-                    ...
-                ],
-                "species": "str",  # Optional.
-                fishtype: fishtype
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -73,6 +56,7 @@ def build_get_valid_request(
     )
 
 
+@overload
 def build_put_valid_request(
     **kwargs  # type: Any
 ):
@@ -82,8 +66,7 @@ def build_put_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Please put a salmon that looks like this:
+    :keyword json: Please put a salmon that looks like this:
      {
              'fishtype':'Salmon',
              'location':'alaska',
@@ -115,43 +98,11 @@ def build_put_valid_request(
                  'jawsize': 5
                }
              ]
-           };. Required. Default value is None.
+           };. Required.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put a salmon that looks like this:
-     {
-             'fishtype':'Salmon',
-             'location':'alaska',
-             'iswild':true,
-             'species':'king',
-             'length':1.0,
-             'siblings':[
-               {
-                 'fishtype':'Shark',
-                 'age':6,
-                 'birthday': '2012-01-05T01:00:00Z',
-                 'length':20.0,
-                 'species':'predator',
-               },
-               {
-                 'fishtype':'Sawshark',
-                 'age':105,
-                 'birthday': '1900-01-05T01:00:00Z',
-                 'length':10.0,
-                 'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-                 'species':'dangerous',
-               },
-               {
-                 'fishtype': 'goblin',
-                 'age': 1,
-                 'birthday': '2015-08-08T00:00:00Z',
-                 'length': 30.0,
-                 'species': 'scary',
-                 'jawsize': 5
-               }
-             ]
-           };. Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -160,7 +111,7 @@ def build_put_valid_request(
     Example:
         .. code-block:: python
 
-            fishtype = 'Salmon' or 'Shark'
+            fishtype = 'salmon' or 'shark'
 
             # JSON input template you can fill out and use as your body input.
             json = {
@@ -173,9 +124,119 @@ def build_put_valid_request(
             }
     """
 
+    ...
+
+@overload
+def build_put_valid_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Put complex types that are polymorphic.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Please put a salmon that looks like this:
+     {
+             'fishtype':'Salmon',
+             'location':'alaska',
+             'iswild':true,
+             'species':'king',
+             'length':1.0,
+             'siblings':[
+               {
+                 'fishtype':'Shark',
+                 'age':6,
+                 'birthday': '2012-01-05T01:00:00Z',
+                 'length':20.0,
+                 'species':'predator',
+               },
+               {
+                 'fishtype':'Sawshark',
+                 'age':105,
+                 'birthday': '1900-01-05T01:00:00Z',
+                 'length':10.0,
+                 'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
+                 'species':'dangerous',
+               },
+               {
+                 'fishtype': 'goblin',
+                 'age': 1,
+                 'birthday': '2015-08-08T00:00:00Z',
+                 'length': 30.0,
+                 'species': 'scary',
+                 'jawsize': 5
+               }
+             ]
+           };. Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_valid_request(
+    **kwargs
+):
+    # type: (...) -> HttpRequest
+    """Put complex types that are polymorphic.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Please put a salmon that looks like this:
+     {
+             'fishtype':'Salmon',
+             'location':'alaska',
+             'iswild':true,
+             'species':'king',
+             'length':1.0,
+             'siblings':[
+               {
+                 'fishtype':'Shark',
+                 'age':6,
+                 'birthday': '2012-01-05T01:00:00Z',
+                 'length':20.0,
+                 'species':'predator',
+               },
+               {
+                 'fishtype':'Sawshark',
+                 'age':105,
+                 'birthday': '1900-01-05T01:00:00Z',
+                 'length':10.0,
+                 'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
+                 'species':'dangerous',
+               },
+               {
+                 'fishtype': 'goblin',
+                 'age': 1,
+                 'birthday': '2015-08-08T00:00:00Z',
+                 'length': 30.0,
+                 'species': 'scary',
+                 'jawsize': 5
+               }
+             ]
+           };. Is either a model type or a IO type. Required.
+    :paramtype json: JSON or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -207,15 +268,6 @@ def build_get_dot_syntax_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "species": "str",  # Optional.
-                fish.type: fish.type
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -251,37 +303,6 @@ def build_get_composed_with_discriminator_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "fishes": [
-                    {
-                        "species": "str",  # Optional.
-                        fish.type: fish.type
-                    }
-                ],
-                "salmons": [
-                    {
-                        "iswild": bool,  # Optional.
-                        "location": "str",  # Optional.
-                        "species": "str",  # Optional.
-                        fish.type: DotSalmon
-                    }
-                ],
-                "sampleFish": {
-                    "species": "str",  # Optional.
-                    fish.type: fish.type
-                },
-                "sampleSalmon": {
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
-                    "species": "str",  # Optional.
-                    fish.type: DotSalmon
-                }
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -317,37 +338,6 @@ def build_get_composed_without_discriminator_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "fishes": [
-                    {
-                        "species": "str",  # Optional.
-                        fish.type: fish.type
-                    }
-                ],
-                "salmons": [
-                    {
-                        "iswild": bool,  # Optional.
-                        "location": "str",  # Optional.
-                        "species": "str",  # Optional.
-                        fish.type: DotSalmon
-                    }
-                ],
-                "sampleFish": {
-                    "species": "str",  # Optional.
-                    fish.type: fish.type
-                },
-                "sampleSalmon": {
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
-                    "species": "str",  # Optional.
-                    fish.type: DotSalmon
-                }
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -382,28 +372,6 @@ def build_get_complicated_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "iswild": bool,  # Optional.
-                "length": 0.0,  # Required.
-                "location": "str",  # Optional.
-                "siblings": [
-                    {
-                        "length": 0.0,  # Required.
-                        "siblings": [
-                            ...
-                        ],
-                        "species": "str",  # Optional.
-                        fishtype: fishtype
-                    }
-                ],
-                "species": "str",  # Optional.
-                fishtype: salmon
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -424,6 +392,7 @@ def build_get_complicated_request(
     )
 
 
+@overload
 def build_put_complicated_request(
     **kwargs  # type: Any
 ):
@@ -434,12 +403,11 @@ def build_put_complicated_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
+    :keyword json: Required.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -448,7 +416,7 @@ def build_put_complicated_request(
     Example:
         .. code-block:: python
 
-            fishtype = 'SmartSalmon'
+            fishtype = 'smart_salmon'
 
             # JSON input template you can fill out and use as your body input.
             json = {
@@ -470,9 +438,57 @@ def build_put_complicated_request(
             }
     """
 
+    ...
+
+@overload
+def build_put_complicated_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
+    additional properties.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_complicated_request(
+    **kwargs
+):
+    # type: (...) -> HttpRequest
+    """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
+    additional properties.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a model type or a IO type. Required.
+    :paramtype json: JSON or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -491,6 +507,7 @@ def build_put_complicated_request(
     )
 
 
+@overload
 def build_put_missing_discriminator_request(
     **kwargs  # type: Any
 ):
@@ -500,12 +517,11 @@ def build_put_missing_discriminator_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
+    :keyword json: Required.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -514,7 +530,7 @@ def build_put_missing_discriminator_request(
     Example:
         .. code-block:: python
 
-            fishtype = 'SmartSalmon'
+            fishtype = 'smart_salmon'
 
             # JSON input template you can fill out and use as your body input.
             json = {
@@ -534,30 +550,57 @@ def build_put_missing_discriminator_request(
                 "species": "str",  # Optional.
                 fishtype: salmon
             }
+    """
 
-            # response body for status code(s): 200
-            response.json() == {
-                "iswild": bool,  # Optional.
-                "length": 0.0,  # Required.
-                "location": "str",  # Optional.
-                "siblings": [
-                    {
-                        "length": 0.0,  # Required.
-                        "siblings": [
-                            ...
-                        ],
-                        "species": "str",  # Optional.
-                        fishtype: fishtype
-                    }
-                ],
-                "species": "str",  # Optional.
-                fishtype: salmon
-            }
+    ...
+
+@overload
+def build_put_missing_discriminator_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Put complex types that are polymorphic, omitting the discriminator.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_missing_discriminator_request(
+    **kwargs
+):
+    # type: (...) -> HttpRequest
+    """Put complex types that are polymorphic, omitting the discriminator.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a model type or a IO type. Required.
+    :paramtype json: JSON or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -576,6 +619,7 @@ def build_put_missing_discriminator_request(
     )
 
 
+@overload
 def build_put_valid_missing_required_request(
     **kwargs  # type: Any
 ):
@@ -586,9 +630,8 @@ def build_put_valid_missing_required_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Please attempt put a sawshark that looks like this, the
-     client should not allow this data to be sent:
+    :keyword json: Please attempt put a sawshark that looks like this, the client should not allow
+     this data to be sent:
      {
          "fishtype": "sawshark",
          "species": "snaggle toothed",
@@ -613,37 +656,11 @@ def build_put_valid_missing_required_request(
                  "age": 105
              }
          ]
-     }. Required. Default value is None.
+     }. Required.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please attempt put a sawshark that looks like this, the
-     client should not allow this data to be sent:
-     {
-         "fishtype": "sawshark",
-         "species": "snaggle toothed",
-         "length": 18.5,
-         "age": 2,
-         "birthday": "2013-06-01T01:00:00Z",
-         "location": "alaska",
-         "picture": base64(FF FF FF FF FE),
-         "siblings": [
-             {
-                 "fishtype": "shark",
-                 "species": "predator",
-                 "birthday": "2012-01-05T01:00:00Z",
-                 "length": 20,
-                 "age": 6
-             },
-             {
-                 "fishtype": "sawshark",
-                 "species": "dangerous",
-                 "picture": base64(FF FF FF FF FE),
-                 "length": 10,
-                 "age": 105
-             }
-         ]
-     }. Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -652,7 +669,7 @@ def build_put_valid_missing_required_request(
     Example:
         .. code-block:: python
 
-            fishtype = 'Salmon' or 'Shark'
+            fishtype = 'salmon' or 'shark'
 
             # JSON input template you can fill out and use as your body input.
             json = {
@@ -665,9 +682,109 @@ def build_put_valid_missing_required_request(
             }
     """
 
+    ...
+
+@overload
+def build_put_valid_missing_required_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
+    request should not be allowed from the client.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Please attempt put a sawshark that looks like this, the client should not
+     allow this data to be sent:
+     {
+         "fishtype": "sawshark",
+         "species": "snaggle toothed",
+         "length": 18.5,
+         "age": 2,
+         "birthday": "2013-06-01T01:00:00Z",
+         "location": "alaska",
+         "picture": base64(FF FF FF FF FE),
+         "siblings": [
+             {
+                 "fishtype": "shark",
+                 "species": "predator",
+                 "birthday": "2012-01-05T01:00:00Z",
+                 "length": 20,
+                 "age": 6
+             },
+             {
+                 "fishtype": "sawshark",
+                 "species": "dangerous",
+                 "picture": base64(FF FF FF FF FE),
+                 "length": 10,
+                 "age": 105
+             }
+         ]
+     }. Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_valid_missing_required_request(
+    **kwargs
+):
+    # type: (...) -> HttpRequest
+    """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
+    request should not be allowed from the client.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Please attempt put a sawshark that looks like this, the client should not allow
+     this data to be sent:
+     {
+         "fishtype": "sawshark",
+         "species": "snaggle toothed",
+         "length": 18.5,
+         "age": 2,
+         "birthday": "2013-06-01T01:00:00Z",
+         "location": "alaska",
+         "picture": base64(FF FF FF FF FE),
+         "siblings": [
+             {
+                 "fishtype": "shark",
+                 "species": "predator",
+                 "birthday": "2012-01-05T01:00:00Z",
+                 "length": 20,
+                 "age": 6
+             },
+             {
+                 "fishtype": "sawshark",
+                 "species": "dangerous",
+                 "picture": base64(FF FF FF FF FE),
+                 "length": 10,
+                 "age": 105
+             }
+         ]
+     }. Is either a model type or a IO type. Required.
+    :paramtype json: JSON or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

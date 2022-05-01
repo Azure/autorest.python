@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import TYPE_CHECKING
+from typing import Any, IO, Optional, Union, overload
 
 from msrest import Serializer
 
@@ -15,21 +15,18 @@ from azure.core.utils import case_insensitive_dict
 
 from ..._vendor import _format_url_section
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
-
-    if sys.version_info >= (3, 9):
-        from collections.abc import MutableMapping
-    else:
-        from typing import MutableMapping  # type: ignore
-    JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 # fmt: off
 
+@overload
 def build_check_name_availability_request(
     subscription_id,  # type: str
     **kwargs  # type: Any
@@ -43,18 +40,13 @@ def build_check_name_availability_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. The name of the storage account within the specified
-     resource group. Storage account names must be between 3 and 24 characters in length and use
-     numbers and lower-case letters only. Required. Default value is None.
+    :keyword json: The name of the storage account within the specified resource group. Storage
+     account names must be between 3 and 24 characters in length and use numbers and lower-case
+     letters only. Required.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). The name of the storage account within the specified
-     resource group. Storage account names must be between 3 and 24 characters in length and use
-     numbers and lower-case letters only. Required. Default value is None.
-    :paramtype content: any
-    :keyword content_type: Media type of the body sent to the API. Known values are:
-     "application/json" or "text/json". Default value is None.
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -69,18 +61,63 @@ def build_check_name_availability_request(
                 "type": "Microsoft.Storage/storageAccounts"  # Optional. Default value is
                   "Microsoft.Storage/storageAccounts".
             }
+    """
 
-            # response body for status code(s): 200
-            response.json() == {
-                "message": "str",  # Optional. Gets an error message explaining the Reason
-                  value in more detail.
-                "nameAvailable": bool,  # Optional. Gets a boolean value that indicates
-                  whether the name is available for you to use. If true, the name is available. If
-                  false, the name has already been taken or invalid and cannot be used.
-                "reason": "str"  # Optional. Gets the reason that a storage account name
-                  could not be used. The Reason element is only returned if NameAvailable is false.
-                  Known values are: "AccountNameInvalid", "AlreadyExists".
-            }
+    ...
+
+@overload
+def build_check_name_availability_request(
+    subscription_id,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Checks that account name is valid and is not in use.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
+     subscription. The subscription ID forms part of the URI for every service call. Required.
+    :type subscription_id: str
+    :keyword content: The name of the storage account within the specified resource group. Storage
+     account names must be between 3 and 24 characters in length and use numbers and lower-case
+     letters only. Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_check_name_availability_request(
+    subscription_id,  # type: str
+    **kwargs
+):
+    # type: (...) -> HttpRequest
+    """Checks that account name is valid and is not in use.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
+     subscription. The subscription ID forms part of the URI for every service call. Required.
+    :type subscription_id: str
+    :keyword json: The name of the storage account within the specified resource group. Storage
+     account names must be between 3 and 24 characters in length and use numbers and lower-case
+     letters only. Is either a model type or a IO type. Required.
+    :paramtype json: JSON or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
+     'text/json'. Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -88,6 +125,7 @@ def build_check_name_availability_request(
 
     api_version = kwargs.pop('api_version', _params.pop('api-version', "2015-05-01-preview"))  # type: str
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json, text/json")
 
     # Construct URL
@@ -115,6 +153,7 @@ def build_check_name_availability_request(
     )
 
 
+@overload
 def build_create_request(
     resource_group_name,  # type: str
     account_name,  # type: str
@@ -140,16 +179,11 @@ def build_create_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. The parameters to provide for the created account.
-     Required. Default value is None.
+    :keyword json: The parameters to provide for the created account. Required.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). The parameters to provide for the created account. Required.
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
      Default value is None.
-    :paramtype content: any
-    :keyword content_type: Media type of the body sent to the API. Known values are:
-     "application/json" or "text/json". Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -161,85 +195,96 @@ def build_create_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "id": "str",  # Optional. Resource Id.
-                "location": "str",  # Required. Resource location.
+                "location": "str",  # Resource location.Resource location. Required.
                 "name": "str",  # Optional. Resource name.
                 "properties": {
                     "accountType": "str"  # Optional. Gets or sets the account type.
                       Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                      "Standard_RAGRS", "Premium_LRS".
+                      "Standard_RAGRS", and "Premium_LRS".
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Resource tags.
+                    "str": "str"  # Optional. Resource tags.
                 },
                 "type": "str"  # Optional. Resource type.
             }
+    """
 
-            # response body for status code(s): 200
-            response.json() == {
-                "id": "str",  # Optional. Resource Id.
-                "location": "str",  # Required. Resource location.
-                "name": "str",  # Optional. Resource name.
-                "properties": {
-                    "accountType": "str",  # Optional. Gets the type of the storage
-                      account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                      "Standard_RAGRS", "Premium_LRS".
-                    "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
-                      date and time of the storage account in UTC.
-                    "customDomain": {
-                        "name": "str",  # Optional. Gets or sets the custom domain
-                          name. Name is the CNAME source.
-                        "useSubDomain": bool  # Optional. Indicates whether indirect
-                          CName validation is enabled. Default value is false. This should only be
-                          set on updates.
-                    },
-                    "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the
-                      timestamp of the most recent instance of a failover to the secondary
-                      location. Only the most recent timestamp is retained. This element is not
-                      returned if there has never been a failover instance. Only available if the
-                      accountType is StandardGRS or StandardRAGRS.
-                    "primaryEndpoints": {
-                        "FooPoint": {
-                            "Bar.Point": {
-                                "RecursivePoint": ...
-                            }
-                        },
-                        "blob": "str",  # Optional. Gets the blob endpoint.
-                        "dummyEndPoint": ...,
-                        "queue": "str",  # Optional. Gets the queue endpoint.
-                        "table": "str"  # Optional. Gets the table endpoint.
-                    },
-                    "primaryLocation": "str",  # Optional. Gets the location of the
-                      primary for the storage account.
-                    "provisioningState": "str",  # Optional. Gets the status of the
-                      storage account at the time the operation was called. Known values are:
-                      "Creating", "ResolvingDNS", "Succeeded".
-                    "secondaryEndpoints": {
-                        "FooPoint": {
-                            "Bar.Point": {
-                                "RecursivePoint": ...
-                            }
-                        },
-                        "blob": "str",  # Optional. Gets the blob endpoint.
-                        "dummyEndPoint": ...,
-                        "queue": "str",  # Optional. Gets the queue endpoint.
-                        "table": "str"  # Optional. Gets the table endpoint.
-                    },
-                    "secondaryLocation": "str",  # Optional. Gets the location of the geo
-                      replicated secondary for the storage account. Only available if the
-                      accountType is StandardGRS or StandardRAGRS.
-                    "statusOfPrimary": "str",  # Optional. Gets the status indicating
-                      whether the primary location of the storage account is available or
-                      unavailable. Known values are: "Available", "Unavailable".
-                    "statusOfSecondary": "str"  # Optional. Gets the status indicating
-                      whether the secondary location of the storage account is available or
-                      unavailable. Only available if the accountType is StandardGRS or
-                      StandardRAGRS. Known values are: "Available", "Unavailable".
-                },
-                "tags": {
-                    "str": "str"  # Optional. A set of tags. Resource tags.
-                },
-                "type": "str"  # Optional. Resource type.
-            }
+    ...
+
+@overload
+def build_create_request(
+    resource_group_name,  # type: str
+    account_name,  # type: str
+    subscription_id,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Asynchronously creates a new storage account with the specified parameters. Existing accounts
+    cannot be updated with this API and should instead use the Update Storage Account API. If an
+    account is already created and subsequent PUT request is issued with exact same set of
+    properties, then HTTP 200 would be returned.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :param resource_group_name: The name of the resource group within the user’s subscription.
+     Required.
+    :type resource_group_name: str
+    :param account_name: The name of the storage account within the specified resource group.
+     Storage account names must be between 3 and 24 characters in length and use numbers and
+     lower-case letters only. Required.
+    :type account_name: str
+    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
+     subscription. The subscription ID forms part of the URI for every service call. Required.
+    :type subscription_id: str
+    :keyword content: The parameters to provide for the created account. Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_create_request(
+    resource_group_name,  # type: str
+    account_name,  # type: str
+    subscription_id,  # type: str
+    **kwargs
+):
+    # type: (...) -> HttpRequest
+    """Asynchronously creates a new storage account with the specified parameters. Existing accounts
+    cannot be updated with this API and should instead use the Update Storage Account API. If an
+    account is already created and subsequent PUT request is issued with exact same set of
+    properties, then HTTP 200 would be returned.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :param resource_group_name: The name of the resource group within the user’s subscription.
+     Required.
+    :type resource_group_name: str
+    :param account_name: The name of the storage account within the specified resource group.
+     Storage account names must be between 3 and 24 characters in length and use numbers and
+     lower-case letters only. Required.
+    :type account_name: str
+    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
+     subscription. The subscription ID forms part of the URI for every service call. Required.
+    :type subscription_id: str
+    :keyword json: The parameters to provide for the created account. Is either a model type or a
+     IO type. Required.
+    :paramtype json: JSON or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
+     'text/json'. Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -247,6 +292,7 @@ def build_create_request(
 
     api_version = kwargs.pop('api_version', _params.pop('api-version', "2015-05-01-preview"))  # type: str
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json, text/json")
 
     # Construct URL
@@ -356,76 +402,6 @@ def build_get_properties_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "id": "str",  # Optional. Resource Id.
-                "location": "str",  # Required. Resource location.
-                "name": "str",  # Optional. Resource name.
-                "properties": {
-                    "accountType": "str",  # Optional. Gets the type of the storage
-                      account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                      "Standard_RAGRS", "Premium_LRS".
-                    "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
-                      date and time of the storage account in UTC.
-                    "customDomain": {
-                        "name": "str",  # Optional. Gets or sets the custom domain
-                          name. Name is the CNAME source.
-                        "useSubDomain": bool  # Optional. Indicates whether indirect
-                          CName validation is enabled. Default value is false. This should only be
-                          set on updates.
-                    },
-                    "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the
-                      timestamp of the most recent instance of a failover to the secondary
-                      location. Only the most recent timestamp is retained. This element is not
-                      returned if there has never been a failover instance. Only available if the
-                      accountType is StandardGRS or StandardRAGRS.
-                    "primaryEndpoints": {
-                        "FooPoint": {
-                            "Bar.Point": {
-                                "RecursivePoint": ...
-                            }
-                        },
-                        "blob": "str",  # Optional. Gets the blob endpoint.
-                        "dummyEndPoint": ...,
-                        "queue": "str",  # Optional. Gets the queue endpoint.
-                        "table": "str"  # Optional. Gets the table endpoint.
-                    },
-                    "primaryLocation": "str",  # Optional. Gets the location of the
-                      primary for the storage account.
-                    "provisioningState": "str",  # Optional. Gets the status of the
-                      storage account at the time the operation was called. Known values are:
-                      "Creating", "ResolvingDNS", "Succeeded".
-                    "secondaryEndpoints": {
-                        "FooPoint": {
-                            "Bar.Point": {
-                                "RecursivePoint": ...
-                            }
-                        },
-                        "blob": "str",  # Optional. Gets the blob endpoint.
-                        "dummyEndPoint": ...,
-                        "queue": "str",  # Optional. Gets the queue endpoint.
-                        "table": "str"  # Optional. Gets the table endpoint.
-                    },
-                    "secondaryLocation": "str",  # Optional. Gets the location of the geo
-                      replicated secondary for the storage account. Only available if the
-                      accountType is StandardGRS or StandardRAGRS.
-                    "statusOfPrimary": "str",  # Optional. Gets the status indicating
-                      whether the primary location of the storage account is available or
-                      unavailable. Known values are: "Available", "Unavailable".
-                    "statusOfSecondary": "str"  # Optional. Gets the status indicating
-                      whether the secondary location of the storage account is available or
-                      unavailable. Only available if the accountType is StandardGRS or
-                      StandardRAGRS. Known values are: "Available", "Unavailable".
-                },
-                "tags": {
-                    "str": "str"  # Optional. A set of tags. Resource tags.
-                },
-                "type": "str"  # Optional. Resource type.
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -459,6 +435,7 @@ def build_get_properties_request(
     )
 
 
+@overload
 def build_update_request(
     resource_group_name,  # type: str
     account_name,  # type: str
@@ -487,16 +464,12 @@ def build_update_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. The parameters to update on the account. Note that only
-     one property can be changed at a time using this API. Required. Default value is None.
+    :keyword json: The parameters to update on the account. Note that only one property can be
+     changed at a time using this API. Required.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). The parameters to update on the account. Note that only one
-     property can be changed at a time using this API. Required. Default value is None.
-    :paramtype content: any
-    :keyword content_type: Media type of the body sent to the API. Known values are:
-     "application/json" or "text/json". Default value is None.
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -508,14 +481,14 @@ def build_update_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "id": "str",  # Optional. Resource Id.
-                "location": "str",  # Required. Resource location.
+                "location": "str",  # Resource location.Resource location. Required.
                 "name": "str",  # Optional. Resource name.
                 "properties": {
                     "accountType": "str",  # Optional. Gets or sets the account type.
                       Note that StandardZRS and PremiumLRS accounts cannot be changed to other
                       account types, and other account types cannot be changed to StandardZRS or
                       PremiumLRS. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                      "Standard_RAGRS", "Premium_LRS".
+                      "Standard_RAGRS", and "Premium_LRS".
                     "customDomain": {
                         "name": "str",  # Optional. Gets or sets the custom domain
                           name. Name is the CNAME source.
@@ -525,77 +498,95 @@ def build_update_request(
                     }
                 },
                 "tags": {
-                    "str": "str"  # Optional. A set of tags. Resource tags.
+                    "str": "str"  # Optional. Resource tags.
                 },
                 "type": "str"  # Optional. Resource type.
             }
+    """
 
-            # response body for status code(s): 200
-            response.json() == {
-                "id": "str",  # Optional. Resource Id.
-                "location": "str",  # Required. Resource location.
-                "name": "str",  # Optional. Resource name.
-                "properties": {
-                    "accountType": "str",  # Optional. Gets the type of the storage
-                      account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                      "Standard_RAGRS", "Premium_LRS".
-                    "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
-                      date and time of the storage account in UTC.
-                    "customDomain": {
-                        "name": "str",  # Optional. Gets or sets the custom domain
-                          name. Name is the CNAME source.
-                        "useSubDomain": bool  # Optional. Indicates whether indirect
-                          CName validation is enabled. Default value is false. This should only be
-                          set on updates.
-                    },
-                    "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the
-                      timestamp of the most recent instance of a failover to the secondary
-                      location. Only the most recent timestamp is retained. This element is not
-                      returned if there has never been a failover instance. Only available if the
-                      accountType is StandardGRS or StandardRAGRS.
-                    "primaryEndpoints": {
-                        "FooPoint": {
-                            "Bar.Point": {
-                                "RecursivePoint": ...
-                            }
-                        },
-                        "blob": "str",  # Optional. Gets the blob endpoint.
-                        "dummyEndPoint": ...,
-                        "queue": "str",  # Optional. Gets the queue endpoint.
-                        "table": "str"  # Optional. Gets the table endpoint.
-                    },
-                    "primaryLocation": "str",  # Optional. Gets the location of the
-                      primary for the storage account.
-                    "provisioningState": "str",  # Optional. Gets the status of the
-                      storage account at the time the operation was called. Known values are:
-                      "Creating", "ResolvingDNS", "Succeeded".
-                    "secondaryEndpoints": {
-                        "FooPoint": {
-                            "Bar.Point": {
-                                "RecursivePoint": ...
-                            }
-                        },
-                        "blob": "str",  # Optional. Gets the blob endpoint.
-                        "dummyEndPoint": ...,
-                        "queue": "str",  # Optional. Gets the queue endpoint.
-                        "table": "str"  # Optional. Gets the table endpoint.
-                    },
-                    "secondaryLocation": "str",  # Optional. Gets the location of the geo
-                      replicated secondary for the storage account. Only available if the
-                      accountType is StandardGRS or StandardRAGRS.
-                    "statusOfPrimary": "str",  # Optional. Gets the status indicating
-                      whether the primary location of the storage account is available or
-                      unavailable. Known values are: "Available", "Unavailable".
-                    "statusOfSecondary": "str"  # Optional. Gets the status indicating
-                      whether the secondary location of the storage account is available or
-                      unavailable. Only available if the accountType is StandardGRS or
-                      StandardRAGRS. Known values are: "Available", "Unavailable".
-                },
-                "tags": {
-                    "str": "str"  # Optional. A set of tags. Resource tags.
-                },
-                "type": "str"  # Optional. Resource type.
-            }
+    ...
+
+@overload
+def build_update_request(
+    resource_group_name,  # type: str
+    account_name,  # type: str
+    subscription_id,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Updates the account type or tags for a storage account. It can also be used to add a custom
+    domain (note that custom domains cannot be added via the Create operation). Only one custom
+    domain is supported per storage account. This API can only be used to update one of tags,
+    accountType, or customDomain per call. To update multiple of these properties, call the API
+    multiple times with one change per call. This call does not change the storage keys for the
+    account. If you want to change storage account keys, use the RegenerateKey operation. The
+    location and name of the storage account cannot be changed after creation.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :param resource_group_name: The name of the resource group within the user’s subscription.
+     Required.
+    :type resource_group_name: str
+    :param account_name: The name of the storage account within the specified resource group.
+     Storage account names must be between 3 and 24 characters in length and use numbers and
+     lower-case letters only. Required.
+    :type account_name: str
+    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
+     subscription. The subscription ID forms part of the URI for every service call. Required.
+    :type subscription_id: str
+    :keyword content: The parameters to update on the account. Note that only one property can be
+     changed at a time using this API. Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_update_request(
+    resource_group_name,  # type: str
+    account_name,  # type: str
+    subscription_id,  # type: str
+    **kwargs
+):
+    # type: (...) -> HttpRequest
+    """Updates the account type or tags for a storage account. It can also be used to add a custom
+    domain (note that custom domains cannot be added via the Create operation). Only one custom
+    domain is supported per storage account. This API can only be used to update one of tags,
+    accountType, or customDomain per call. To update multiple of these properties, call the API
+    multiple times with one change per call. This call does not change the storage keys for the
+    account. If you want to change storage account keys, use the RegenerateKey operation. The
+    location and name of the storage account cannot be changed after creation.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :param resource_group_name: The name of the resource group within the user’s subscription.
+     Required.
+    :type resource_group_name: str
+    :param account_name: The name of the storage account within the specified resource group.
+     Storage account names must be between 3 and 24 characters in length and use numbers and
+     lower-case letters only. Required.
+    :type account_name: str
+    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
+     subscription. The subscription ID forms part of the URI for every service call. Required.
+    :type subscription_id: str
+    :keyword json: The parameters to update on the account. Note that only one property can be
+     changed at a time using this API. Is either a model type or a IO type. Required.
+    :paramtype json: JSON or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
+     'text/json'. Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -603,6 +594,7 @@ def build_update_request(
 
     api_version = kwargs.pop('api_version', _params.pop('api-version', "2015-05-01-preview"))  # type: str
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json, text/json")
 
     # Construct URL
@@ -656,15 +648,6 @@ def build_list_keys_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "key1": "str",  # Optional. Gets the value of key 1.
-                "key2": "str"  # Optional. Gets the value of key 2.
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -716,92 +699,6 @@ def build_list_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str",  # Optional. Gets the link to the next set of results.
-                  Currently this will always be empty as the API does not support pagination.
-                "value": [
-                    {
-                        "id": "str",  # Optional. Resource Id.
-                        "location": "str",  # Required. Resource location.
-                        "name": "str",  # Optional. Resource name.
-                        "properties": {
-                            "accountType": "str",  # Optional. Gets the type of
-                              the storage account. Known values are: "Standard_LRS",
-                              "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
-                            "creationTime": "2020-02-20 00:00:00",  # Optional.
-                              Gets the creation date and time of the storage account in UTC.
-                            "customDomain": {
-                                "name": "str",  # Optional. Gets or sets the
-                                  custom domain name. Name is the CNAME source.
-                                "useSubDomain": bool  # Optional. Indicates
-                                  whether indirect CName validation is enabled. Default value is
-                                  false. This should only be set on updates.
-                            },
-                            "lastGeoFailoverTime": "2020-02-20 00:00:00",  #
-                              Optional. Gets the timestamp of the most recent instance of a
-                              failover to the secondary location. Only the most recent timestamp is
-                              retained. This element is not returned if there has never been a
-                              failover instance. Only available if the accountType is StandardGRS
-                              or StandardRAGRS.
-                            "primaryEndpoints": {
-                                "FooPoint": {
-                                    "Bar.Point": {
-                                        "RecursivePoint": ...
-                                    }
-                                },
-                                "blob": "str",  # Optional. Gets the blob
-                                  endpoint.
-                                "dummyEndPoint": ...,
-                                "queue": "str",  # Optional. Gets the queue
-                                  endpoint.
-                                "table": "str"  # Optional. Gets the table
-                                  endpoint.
-                            },
-                            "primaryLocation": "str",  # Optional. Gets the
-                              location of the primary for the storage account.
-                            "provisioningState": "str",  # Optional. Gets the
-                              status of the storage account at the time the operation was called.
-                              Known values are: "Creating", "ResolvingDNS", "Succeeded".
-                            "secondaryEndpoints": {
-                                "FooPoint": {
-                                    "Bar.Point": {
-                                        "RecursivePoint": ...
-                                    }
-                                },
-                                "blob": "str",  # Optional. Gets the blob
-                                  endpoint.
-                                "dummyEndPoint": ...,
-                                "queue": "str",  # Optional. Gets the queue
-                                  endpoint.
-                                "table": "str"  # Optional. Gets the table
-                                  endpoint.
-                            },
-                            "secondaryLocation": "str",  # Optional. Gets the
-                              location of the geo replicated secondary for the storage account.
-                              Only available if the accountType is StandardGRS or StandardRAGRS.
-                            "statusOfPrimary": "str",  # Optional. Gets the
-                              status indicating whether the primary location of the storage account
-                              is available or unavailable. Known values are: "Available",
-                              "Unavailable".
-                            "statusOfSecondary": "str"  # Optional. Gets the
-                              status indicating whether the secondary location of the storage
-                              account is available or unavailable. Only available if the
-                              accountType is StandardGRS or StandardRAGRS. Known values are:
-                              "Available", "Unavailable".
-                        },
-                        "tags": {
-                            "str": "str"  # Optional. A set of tags. Resource
-                              tags.
-                        },
-                        "type": "str"  # Optional. Resource type.
-                    }
-                ]
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -855,92 +752,6 @@ def build_list_by_resource_group_request(
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "nextLink": "str",  # Optional. Gets the link to the next set of results.
-                  Currently this will always be empty as the API does not support pagination.
-                "value": [
-                    {
-                        "id": "str",  # Optional. Resource Id.
-                        "location": "str",  # Required. Resource location.
-                        "name": "str",  # Optional. Resource name.
-                        "properties": {
-                            "accountType": "str",  # Optional. Gets the type of
-                              the storage account. Known values are: "Standard_LRS",
-                              "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
-                            "creationTime": "2020-02-20 00:00:00",  # Optional.
-                              Gets the creation date and time of the storage account in UTC.
-                            "customDomain": {
-                                "name": "str",  # Optional. Gets or sets the
-                                  custom domain name. Name is the CNAME source.
-                                "useSubDomain": bool  # Optional. Indicates
-                                  whether indirect CName validation is enabled. Default value is
-                                  false. This should only be set on updates.
-                            },
-                            "lastGeoFailoverTime": "2020-02-20 00:00:00",  #
-                              Optional. Gets the timestamp of the most recent instance of a
-                              failover to the secondary location. Only the most recent timestamp is
-                              retained. This element is not returned if there has never been a
-                              failover instance. Only available if the accountType is StandardGRS
-                              or StandardRAGRS.
-                            "primaryEndpoints": {
-                                "FooPoint": {
-                                    "Bar.Point": {
-                                        "RecursivePoint": ...
-                                    }
-                                },
-                                "blob": "str",  # Optional. Gets the blob
-                                  endpoint.
-                                "dummyEndPoint": ...,
-                                "queue": "str",  # Optional. Gets the queue
-                                  endpoint.
-                                "table": "str"  # Optional. Gets the table
-                                  endpoint.
-                            },
-                            "primaryLocation": "str",  # Optional. Gets the
-                              location of the primary for the storage account.
-                            "provisioningState": "str",  # Optional. Gets the
-                              status of the storage account at the time the operation was called.
-                              Known values are: "Creating", "ResolvingDNS", "Succeeded".
-                            "secondaryEndpoints": {
-                                "FooPoint": {
-                                    "Bar.Point": {
-                                        "RecursivePoint": ...
-                                    }
-                                },
-                                "blob": "str",  # Optional. Gets the blob
-                                  endpoint.
-                                "dummyEndPoint": ...,
-                                "queue": "str",  # Optional. Gets the queue
-                                  endpoint.
-                                "table": "str"  # Optional. Gets the table
-                                  endpoint.
-                            },
-                            "secondaryLocation": "str",  # Optional. Gets the
-                              location of the geo replicated secondary for the storage account.
-                              Only available if the accountType is StandardGRS or StandardRAGRS.
-                            "statusOfPrimary": "str",  # Optional. Gets the
-                              status indicating whether the primary location of the storage account
-                              is available or unavailable. Known values are: "Available",
-                              "Unavailable".
-                            "statusOfSecondary": "str"  # Optional. Gets the
-                              status indicating whether the secondary location of the storage
-                              account is available or unavailable. Only available if the
-                              accountType is StandardGRS or StandardRAGRS. Known values are:
-                              "Available", "Unavailable".
-                        },
-                        "tags": {
-                            "str": "str"  # Optional. A set of tags. Resource
-                              tags.
-                        },
-                        "type": "str"  # Optional. Resource type.
-                    }
-                ]
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -973,6 +784,7 @@ def build_list_by_resource_group_request(
     )
 
 
+@overload
 def build_regenerate_key_request(
     resource_group_name,  # type: str
     account_name,  # type: str
@@ -995,16 +807,11 @@ def build_regenerate_key_request(
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Specifies name of the key which should be regenerated.
-     Required. Default value is None.
+    :keyword json: Specifies name of the key which should be regenerated. Required.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Specifies name of the key which should be regenerated.
-     Required. Default value is None.
-    :paramtype content: any
-    :keyword content_type: Media type of the body sent to the API. Known values are:
-     "application/json" or "text/json". Default value is None.
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1015,14 +822,80 @@ def build_regenerate_key_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "keyName": "str"  # Optional. Known values are: "key1", "key2".
+                "keyName": "str"  # Optional. Known values are: "key1" or "key2".
             }
+    """
 
-            # response body for status code(s): 200
-            response.json() == {
-                "key1": "str",  # Optional. Gets the value of key 1.
-                "key2": "str"  # Optional. Gets the value of key 2.
-            }
+    ...
+
+@overload
+def build_regenerate_key_request(
+    resource_group_name,  # type: str
+    account_name,  # type: str
+    subscription_id,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Regenerates the access keys for the specified storage account.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :param resource_group_name: The name of the resource group within the user’s subscription.
+     Required.
+    :type resource_group_name: str
+    :param account_name: The name of the storage account within the specified resource group.
+     Storage account names must be between 3 and 24 characters in length and use numbers and
+     lower-case letters only. Required.
+    :type account_name: str
+    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
+     subscription. The subscription ID forms part of the URI for every service call. Required.
+    :type subscription_id: str
+    :keyword content: Specifies name of the key which should be regenerated. Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_regenerate_key_request(
+    resource_group_name,  # type: str
+    account_name,  # type: str
+    subscription_id,  # type: str
+    **kwargs
+):
+    # type: (...) -> HttpRequest
+    """Regenerates the access keys for the specified storage account.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :param resource_group_name: The name of the resource group within the user’s subscription.
+     Required.
+    :type resource_group_name: str
+    :param account_name: The name of the storage account within the specified resource group.
+     Storage account names must be between 3 and 24 characters in length and use numbers and
+     lower-case letters only. Required.
+    :type account_name: str
+    :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
+     subscription. The subscription ID forms part of the URI for every service call. Required.
+    :type subscription_id: str
+    :keyword json: Specifies name of the key which should be regenerated. Is either a model type or
+     a IO type. Required.
+    :paramtype json: JSON or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
+     'text/json'. Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1030,6 +903,7 @@ def build_regenerate_key_request(
 
     api_version = kwargs.pop('api_version', _params.pop('api-version', "2015-05-01-preview"))  # type: str
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json, text/json")
 
     # Construct URL

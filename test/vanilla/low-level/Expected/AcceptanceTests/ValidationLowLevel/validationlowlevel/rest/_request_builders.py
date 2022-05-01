@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import TYPE_CHECKING
+from typing import Any, IO, Optional, Union, overload
 
 from msrest import Serializer
 
@@ -15,24 +15,20 @@ from azure.core.utils import case_insensitive_dict
 
 from .._vendor import _format_url_section
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
-
-    if sys.version_info >= (3, 9):
-        from collections.abc import MutableMapping
-    else:
-        from typing import MutableMapping  # type: ignore
-    JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 
 # fmt: off
 
 def build_validation_of_method_parameters_request(
-    subscription_id,  # type: str
     resource_group_name,  # type: str
     id,  # type: int
+    subscription_id,  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -41,47 +37,17 @@ def build_validation_of_method_parameters_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param subscription_id: Subscription ID. Required.
-    :type subscription_id: str
     :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
      Required.
     :type resource_group_name: str
     :param id: Required int multiple of 10 from 100 to 1000. Required.
     :type id: int
+    :param subscription_id: Subscription ID. Required.
+    :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
-                "child": {
-                    "constProperty": "constant",  # Default value is "constant". Constant
-                      string. Has constant value: "constant".
-                    "count": 0  # Optional. Count.
-                },
-                "constChild": {
-                    "constProperty": "constant",  # Default value is "constant". Constant
-                      string. Has constant value: "constant".
-                    "constProperty2": "constant2"  # Default value is "constant2".
-                      Constant string2. Has constant value: "constant2".
-                },
-                "constInt": 0,  # Default value is 0. Constant int. Has constant value: 0.
-                "constString": "constant",  # Default value is "constant". Constant string.
-                  Has constant value: "constant".
-                "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                  "constant_string_as_enum". Constant string as Enum. The only acceptable values to
-                  pass in are None and "constant_string_as_enum". The default value is None.
-                "display_names": [
-                    "str"  # Optional. Non required array of unique items from 0 to 6
-                      elements.
-                ],
-                "image": "str"  # Optional. Image URL representing the product.
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -115,10 +81,11 @@ def build_validation_of_method_parameters_request(
     )
 
 
+@overload
 def build_validation_of_body_request(
-    subscription_id,  # type: str
     resource_group_name,  # type: str
     id,  # type: int
+    subscription_id,  # type: str
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -127,19 +94,18 @@ def build_validation_of_body_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param subscription_id: Subscription ID. Required.
-    :type subscription_id: str
     :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
      Required.
     :type resource_group_name: str
     :param id: Required int multiple of 10 from 100 to 1000. Required.
     :type id: int
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.  Default value is None.
+    :param subscription_id: Subscription ID. Required.
+    :type subscription_id: str
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: Default value is None.
     :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).  Default value is None.
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -153,48 +119,20 @@ def build_validation_of_body_request(
                 "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                 "child": {
                     "constProperty": "constant",  # Default value is "constant". Constant
-                      string. Has constant value: "constant".
+                      string.Constant string. Required.
                     "count": 0  # Optional. Count.
                 },
                 "constChild": {
                     "constProperty": "constant",  # Default value is "constant". Constant
-                      string. Has constant value: "constant".
+                      string.Constant string. Required.
                     "constProperty2": "constant2"  # Default value is "constant2".
-                      Constant string2. Has constant value: "constant2".
+                      Constant string2.Constant string2. Required.
                 },
-                "constInt": 0,  # Default value is 0. Constant int. Has constant value: 0.
-                "constString": "constant",  # Default value is "constant". Constant string.
-                  Has constant value: "constant".
+                "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
+                "constString": "constant",  # Default value is "constant". Constant
+                  string.Constant string. Required.
                 "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                  "constant_string_as_enum". Constant string as Enum. The only acceptable values to
-                  pass in are None and "constant_string_as_enum". The default value is None.
-                "display_names": [
-                    "str"  # Optional. Non required array of unique items from 0 to 6
-                      elements.
-                ],
-                "image": "str"  # Optional. Image URL representing the product.
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
-                "child": {
-                    "constProperty": "constant",  # Default value is "constant". Constant
-                      string. Has constant value: "constant".
-                    "count": 0  # Optional. Count.
-                },
-                "constChild": {
-                    "constProperty": "constant",  # Default value is "constant". Constant
-                      string. Has constant value: "constant".
-                    "constProperty2": "constant2"  # Default value is "constant2".
-                      Constant string2. Has constant value: "constant2".
-                },
-                "constInt": 0,  # Default value is 0. Constant int. Has constant value: 0.
-                "constString": "constant",  # Default value is "constant". Constant string.
-                  Has constant value: "constant".
-                "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                  "constant_string_as_enum". Constant string as Enum. The only acceptable values to
-                  pass in are None and "constant_string_as_enum". The default value is None.
+                  "constant_string_as_enum". Constant string as Enum.
                 "display_names": [
                     "str"  # Optional. Non required array of unique items from 0 to 6
                       elements.
@@ -203,11 +141,77 @@ def build_validation_of_body_request(
             }
     """
 
+    ...
+
+@overload
+def build_validation_of_body_request(
+    resource_group_name,  # type: str
+    id,  # type: int
+    subscription_id,  # type: str
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """Validates body parameters on the method. See swagger for details.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+     Required.
+    :type resource_group_name: str
+    :param id: Required int multiple of 10 from 100 to 1000. Required.
+    :type id: int
+    :param subscription_id: Subscription ID. Required.
+    :type subscription_id: str
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword content: Default value is None.
+    :paramtype content: IO
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_validation_of_body_request(
+    resource_group_name,  # type: str
+    id,  # type: int
+    subscription_id,  # type: str
+    **kwargs
+):
+    # type: (...) -> HttpRequest
+    """Validates body parameters on the method. See swagger for details.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+     Required.
+    :type resource_group_name: str
+    :param id: Required int multiple of 10 from 100 to 1000. Required.
+    :type id: int
+    :param subscription_id: Subscription ID. Required.
+    :type subscription_id: str
+    :keyword json: Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version = kwargs.pop('api_version', _params.pop('apiVersion', "1.0.0"))  # type: str
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    json = kwargs.pop('json', None)  # type: Optional[Union[JSON, IO]]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -246,7 +250,7 @@ def build_get_with_constant_in_path_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword constant_param:  Default value is "constant". Note that overriding this default value
+    :keyword constant_param: Default value is "constant". Note that overriding this default value
      may result in unsupported behavior.
     :paramtype constant_param: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
@@ -271,6 +275,7 @@ def build_get_with_constant_in_path_request(
     )
 
 
+@overload
 def build_post_with_constant_in_body_request(
     **kwargs  # type: Any
 ):
@@ -280,15 +285,14 @@ def build_post_with_constant_in_body_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword constant_param:  Default value is "constant". Note that overriding this default value
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword json: Default value is None.
+    :paramtype json: JSON
+    :keyword constant_param: Default value is "constant". Note that overriding this default value
      may result in unsupported behavior.
     :paramtype constant_param: str
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.  Default value is None.
-    :paramtype json: JSON
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).  Default value is None.
-    :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -302,48 +306,20 @@ def build_post_with_constant_in_body_request(
                 "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                 "child": {
                     "constProperty": "constant",  # Default value is "constant". Constant
-                      string. Has constant value: "constant".
+                      string.Constant string. Required.
                     "count": 0  # Optional. Count.
                 },
                 "constChild": {
                     "constProperty": "constant",  # Default value is "constant". Constant
-                      string. Has constant value: "constant".
+                      string.Constant string. Required.
                     "constProperty2": "constant2"  # Default value is "constant2".
-                      Constant string2. Has constant value: "constant2".
+                      Constant string2.Constant string2. Required.
                 },
-                "constInt": 0,  # Default value is 0. Constant int. Has constant value: 0.
-                "constString": "constant",  # Default value is "constant". Constant string.
-                  Has constant value: "constant".
+                "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
+                "constString": "constant",  # Default value is "constant". Constant
+                  string.Constant string. Required.
                 "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                  "constant_string_as_enum". Constant string as Enum. The only acceptable values to
-                  pass in are None and "constant_string_as_enum". The default value is None.
-                "display_names": [
-                    "str"  # Optional. Non required array of unique items from 0 to 6
-                      elements.
-                ],
-                "image": "str"  # Optional. Image URL representing the product.
-            }
-
-            # response body for status code(s): 200
-            response.json() == {
-                "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
-                "child": {
-                    "constProperty": "constant",  # Default value is "constant". Constant
-                      string. Has constant value: "constant".
-                    "count": 0  # Optional. Count.
-                },
-                "constChild": {
-                    "constProperty": "constant",  # Default value is "constant". Constant
-                      string. Has constant value: "constant".
-                    "constProperty2": "constant2"  # Default value is "constant2".
-                      Constant string2. Has constant value: "constant2".
-                },
-                "constInt": 0,  # Default value is 0. Constant int. Has constant value: 0.
-                "constString": "constant",  # Default value is "constant". Constant string.
-                  Has constant value: "constant".
-                "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                  "constant_string_as_enum". Constant string as Enum. The only acceptable values to
-                  pass in are None and "constant_string_as_enum". The default value is None.
+                  "constant_string_as_enum". Constant string as Enum.
                 "display_names": [
                     "str"  # Optional. Non required array of unique items from 0 to 6
                       elements.
@@ -352,10 +328,62 @@ def build_post_with_constant_in_body_request(
             }
     """
 
+    ...
+
+@overload
+def build_post_with_constant_in_body_request(
+    **kwargs  # type: Any
+):
+    # type: (...) -> HttpRequest
+    """post_with_constant_in_body.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :keyword content: Default value is None.
+    :paramtype content: IO
+    :keyword constant_param: Default value is "constant". Note that overriding this default value
+     may result in unsupported behavior.
+    :paramtype constant_param: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_post_with_constant_in_body_request(
+    **kwargs
+):
+    # type: (...) -> HttpRequest
+    """post_with_constant_in_body.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
+    :keyword constant_param: Default value is "constant". Note that overriding this default value
+     may result in unsupported behavior.
+    :paramtype constant_param: str
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     constant_param = kwargs.pop('constant_param', "constant")  # type: str
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    json = kwargs.pop('json', None)  # type: Optional[Union[JSON, IO]]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

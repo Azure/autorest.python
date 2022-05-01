@@ -26,6 +26,7 @@
 from mediatypeslowlevel.aio import MediaTypesClient
 from mediatypeslowlevel.rest import *
 from async_generator import yield_, async_generator
+import json
 
 import pytest
 
@@ -74,8 +75,8 @@ async def test_json_no_accept_header(send_request):
 
 @pytest.mark.asyncio
 async def test_binary_body_two_content_types(send_request):
-    json_input = {"hello":"world"}
-    request = build_binary_body_with_two_content_types_request(json=json_input, content_type="application/json")
+    json_input = json.dumps({"hello":"world"})
+    request = build_binary_body_with_two_content_types_request(content=json_input, content_type="application/json")
     await send_request(request)
 
     content = b"hello, world"
@@ -84,8 +85,8 @@ async def test_binary_body_two_content_types(send_request):
 
 @pytest.mark.asyncio
 async def test_binary_body_three_content_types(send_request):
-    json_input = {"hello":"world"}
-    request = build_binary_body_with_three_content_types_request(json=json_input, content_type="application/json")
+    json_input = json.dumps({"hello":"world"})
+    request = build_binary_body_with_three_content_types_request(content=json_input, content_type="application/json")
     await send_request(request)
 
     content = b"hello, world"

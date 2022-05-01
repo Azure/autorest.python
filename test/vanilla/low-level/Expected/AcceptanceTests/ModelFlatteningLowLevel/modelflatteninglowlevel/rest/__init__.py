@@ -8,39 +8,81 @@
 
 try:
     from ._request_builders_py3 import build_put_array_request
+    from ._request_builders_py3 import build_put_array_request
+    from ._request_builders_py3 import build_put_array_request
     from ._request_builders_py3 import build_get_array_request
+    from ._request_builders_py3 import build_put_wrapped_array_request
+    from ._request_builders_py3 import build_put_wrapped_array_request
     from ._request_builders_py3 import build_put_wrapped_array_request
     from ._request_builders_py3 import build_get_wrapped_array_request
     from ._request_builders_py3 import build_put_dictionary_request
+    from ._request_builders_py3 import build_put_dictionary_request
+    from ._request_builders_py3 import build_put_dictionary_request
     from ._request_builders_py3 import build_get_dictionary_request
+    from ._request_builders_py3 import build_put_resource_collection_request
+    from ._request_builders_py3 import build_put_resource_collection_request
     from ._request_builders_py3 import build_put_resource_collection_request
     from ._request_builders_py3 import build_get_resource_collection_request
     from ._request_builders_py3 import build_put_simple_product_request
+    from ._request_builders_py3 import build_put_simple_product_request
+    from ._request_builders_py3 import build_put_simple_product_request
     from ._request_builders_py3 import build_post_flattened_simple_product_request
+    from ._request_builders_py3 import build_post_flattened_simple_product_request
+    from ._request_builders_py3 import build_post_flattened_simple_product_request
+    from ._request_builders_py3 import build_put_simple_product_with_grouping_request
+    from ._request_builders_py3 import build_put_simple_product_with_grouping_request
     from ._request_builders_py3 import build_put_simple_product_with_grouping_request
 except (SyntaxError, ImportError):
     from ._request_builders import build_put_array_request  # type: ignore
+    from ._request_builders import build_put_array_request  # type: ignore
+    from ._request_builders import build_put_array_request  # type: ignore
     from ._request_builders import build_get_array_request  # type: ignore
+    from ._request_builders import build_put_wrapped_array_request  # type: ignore
+    from ._request_builders import build_put_wrapped_array_request  # type: ignore
     from ._request_builders import build_put_wrapped_array_request  # type: ignore
     from ._request_builders import build_get_wrapped_array_request  # type: ignore
     from ._request_builders import build_put_dictionary_request  # type: ignore
+    from ._request_builders import build_put_dictionary_request  # type: ignore
+    from ._request_builders import build_put_dictionary_request  # type: ignore
     from ._request_builders import build_get_dictionary_request  # type: ignore
+    from ._request_builders import build_put_resource_collection_request  # type: ignore
+    from ._request_builders import build_put_resource_collection_request  # type: ignore
     from ._request_builders import build_put_resource_collection_request  # type: ignore
     from ._request_builders import build_get_resource_collection_request  # type: ignore
     from ._request_builders import build_put_simple_product_request  # type: ignore
+    from ._request_builders import build_put_simple_product_request  # type: ignore
+    from ._request_builders import build_put_simple_product_request  # type: ignore
     from ._request_builders import build_post_flattened_simple_product_request  # type: ignore
+    from ._request_builders import build_post_flattened_simple_product_request  # type: ignore
+    from ._request_builders import build_post_flattened_simple_product_request  # type: ignore
+    from ._request_builders import build_put_simple_product_with_grouping_request  # type: ignore
+    from ._request_builders import build_put_simple_product_with_grouping_request  # type: ignore
     from ._request_builders import build_put_simple_product_with_grouping_request  # type: ignore
 
 __all__ = [
     "build_put_array_request",
+    "build_put_array_request",
+    "build_put_array_request",
     "build_get_array_request",
+    "build_put_wrapped_array_request",
+    "build_put_wrapped_array_request",
     "build_put_wrapped_array_request",
     "build_get_wrapped_array_request",
     "build_put_dictionary_request",
+    "build_put_dictionary_request",
+    "build_put_dictionary_request",
     "build_get_dictionary_request",
+    "build_put_resource_collection_request",
+    "build_put_resource_collection_request",
     "build_put_resource_collection_request",
     "build_get_resource_collection_request",
     "build_put_simple_product_request",
+    "build_put_simple_product_request",
+    "build_put_simple_product_request",
     "build_post_flattened_simple_product_request",
+    "build_post_flattened_simple_product_request",
+    "build_post_flattened_simple_product_request",
+    "build_put_simple_product_with_grouping_request",
+    "build_put_simple_product_with_grouping_request",
     "build_put_simple_product_with_grouping_request",
 ]

@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 import datetime
 import sys
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, IO, List, Optional, Union, overload
 
 from msrest import Serializer
 
@@ -23,8 +23,11 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
+# fmt: off
 
-def build_get_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_null_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get null array value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -34,30 +37,29 @@ def build_get_null_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                0  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/null"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
+def build_get_invalid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get invalid array [1, 2, 3.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -67,30 +69,29 @@ def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                0  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/invalid"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_empty_request(**kwargs: Any) -> HttpRequest:
+def build_get_empty_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get empty array value [].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -100,41 +101,43 @@ def build_get_empty_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                0  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/empty"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_put_empty_request(*, json: Optional[List[str]] = None, content: Any = None, **kwargs: Any) -> HttpRequest:
+@overload
+def build_put_empty_request(
+    *,
+    json: List[str],
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Set array value empty [].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
+    :keyword json: Required.
     :paramtype json: list[str]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -149,23 +152,76 @@ def build_put_empty_request(*, json: Optional[List[str]] = None, content: Any = 
             ]
     """
 
+    ...
+
+@overload
+def build_put_empty_request(
+    *,
+    content: IO,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Set array value empty [].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_empty_request(
+    **kwargs
+) -> HttpRequest:
+    """Set array value empty [].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a list type or a IO type. Required.
+    :paramtype json: list[str] or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/empty"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_boolean_tfft_request(**kwargs: Any) -> HttpRequest:
+def build_get_boolean_tfft_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get boolean array value [true, false, false, true].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -175,43 +231,43 @@ def build_get_boolean_tfft_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                bool  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/boolean/tfft"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
+@overload
 def build_put_boolean_tfft_request(
-    *, json: Optional[List[bool]] = None, content: Any = None, **kwargs: Any
+    *,
+    json: List[bool],
+    content_type: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Set array value empty [true, false, false, true].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
+    :keyword json: Required.
     :paramtype json: list[bool]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -226,23 +282,76 @@ def build_put_boolean_tfft_request(
             ]
     """
 
+    ...
+
+@overload
+def build_put_boolean_tfft_request(
+    *,
+    content: IO,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Set array value empty [true, false, false, true].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_boolean_tfft_request(
+    **kwargs
+) -> HttpRequest:
+    """Set array value empty [true, false, false, true].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a list type or a IO type. Required.
+    :paramtype json: list[bool] or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/boolean/tfft"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_boolean_invalid_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_boolean_invalid_null_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get boolean array value [true, null, false].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -252,30 +361,29 @@ def build_get_boolean_invalid_null_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                bool  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/boolean/true.null.false"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_boolean_invalid_string_request(**kwargs: Any) -> HttpRequest:
+def build_get_boolean_invalid_string_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get boolean array value [true, 'boolean', false].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -285,30 +393,29 @@ def build_get_boolean_invalid_string_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                bool  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/boolean/true.boolean.false"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_integer_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_integer_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get integer array value [1, -1, 3, 300].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -318,43 +425,43 @@ def build_get_integer_valid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                0  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/integer/1.-1.3.300"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
+@overload
 def build_put_integer_valid_request(
-    *, json: Optional[List[int]] = None, content: Any = None, **kwargs: Any
+    *,
+    json: List[int],
+    content_type: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Set array value empty [1, -1, 3, 300].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
+    :keyword json: Required.
     :paramtype json: list[int]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -369,23 +476,76 @@ def build_put_integer_valid_request(
             ]
     """
 
+    ...
+
+@overload
+def build_put_integer_valid_request(
+    *,
+    content: IO,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Set array value empty [1, -1, 3, 300].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_integer_valid_request(
+    **kwargs
+) -> HttpRequest:
+    """Set array value empty [1, -1, 3, 300].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a list type or a IO type. Required.
+    :paramtype json: list[int] or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/integer/1.-1.3.300"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_int_invalid_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_int_invalid_null_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get integer array value [1, null, 0].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -395,30 +555,29 @@ def build_get_int_invalid_null_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                0  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/integer/1.null.zero"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_int_invalid_string_request(**kwargs: Any) -> HttpRequest:
+def build_get_int_invalid_string_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get integer array value [1, 'integer', 0].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -428,30 +587,29 @@ def build_get_int_invalid_string_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                0  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/integer/1.integer.0"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_long_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_long_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get integer array value [1, -1, 3, 300].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -461,43 +619,43 @@ def build_get_long_valid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                0.0  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/long/1.-1.3.300"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
+@overload
 def build_put_long_valid_request(
-    *, json: Optional[List[int]] = None, content: Any = None, **kwargs: Any
+    *,
+    json: List[int],
+    content_type: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Set array value empty [1, -1, 3, 300].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
-    :paramtype json: list[long]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword json: Required.
+    :paramtype json: list[int]
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -508,27 +666,80 @@ def build_put_long_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                0.0  # Optional.
+                0  # Optional.
             ]
+    """
+
+    ...
+
+@overload
+def build_put_long_valid_request(
+    *,
+    content: IO,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Set array value empty [1, -1, 3, 300].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_long_valid_request(
+    **kwargs
+) -> HttpRequest:
+    """Set array value empty [1, -1, 3, 300].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a list type or a IO type. Required.
+    :paramtype json: list[int] or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/long/1.-1.3.300"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_long_invalid_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_long_invalid_null_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get long array value [1, null, 0].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -538,30 +749,29 @@ def build_get_long_invalid_null_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                0.0  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/long/1.null.zero"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_long_invalid_string_request(**kwargs: Any) -> HttpRequest:
+def build_get_long_invalid_string_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get long array value [1, 'integer', 0].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -571,30 +781,29 @@ def build_get_long_invalid_string_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                0.0  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/long/1.integer.0"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_float_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_float_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get float array value [0, -0.01, 1.2e20].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -604,43 +813,43 @@ def build_get_float_valid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                0.0  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/float/0--0.01-1.2e20"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
+@overload
 def build_put_float_valid_request(
-    *, json: Optional[List[float]] = None, content: Any = None, **kwargs: Any
+    *,
+    json: List[float],
+    content_type: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Set array value [0, -0.01, 1.2e20].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
+    :keyword json: Required.
     :paramtype json: list[float]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -655,23 +864,76 @@ def build_put_float_valid_request(
             ]
     """
 
+    ...
+
+@overload
+def build_put_float_valid_request(
+    *,
+    content: IO,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Set array value [0, -0.01, 1.2e20].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_float_valid_request(
+    **kwargs
+) -> HttpRequest:
+    """Set array value [0, -0.01, 1.2e20].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a list type or a IO type. Required.
+    :paramtype json: list[float] or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/float/0--0.01-1.2e20"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_float_invalid_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_float_invalid_null_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get float array value [0.0, null, -1.2e20].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -681,30 +943,29 @@ def build_get_float_invalid_null_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                0.0  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/float/0.0-null-1.2e20"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_float_invalid_string_request(**kwargs: Any) -> HttpRequest:
+def build_get_float_invalid_string_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get boolean array value [1.0, 'number', 0.0].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -714,30 +975,29 @@ def build_get_float_invalid_string_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                0.0  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/float/1.number.0"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_double_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_double_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get float array value [0, -0.01, 1.2e20].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -747,43 +1007,43 @@ def build_get_double_valid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                0.0  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/double/0--0.01-1.2e20"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
+@overload
 def build_put_double_valid_request(
-    *, json: Optional[List[float]] = None, content: Any = None, **kwargs: Any
+    *,
+    json: List[float],
+    content_type: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Set array value [0, -0.01, 1.2e20].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
+    :keyword json: Required.
     :paramtype json: list[float]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -798,23 +1058,76 @@ def build_put_double_valid_request(
             ]
     """
 
+    ...
+
+@overload
+def build_put_double_valid_request(
+    *,
+    content: IO,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Set array value [0, -0.01, 1.2e20].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_double_valid_request(
+    **kwargs
+) -> HttpRequest:
+    """Set array value [0, -0.01, 1.2e20].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a list type or a IO type. Required.
+    :paramtype json: list[float] or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/double/0--0.01-1.2e20"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_double_invalid_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_double_invalid_null_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get float array value [0.0, null, -1.2e20].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -824,30 +1137,29 @@ def build_get_double_invalid_null_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                0.0  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/double/0.0-null-1.2e20"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_double_invalid_string_request(**kwargs: Any) -> HttpRequest:
+def build_get_double_invalid_string_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get boolean array value [1.0, 'number', 0.0].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -857,30 +1169,29 @@ def build_get_double_invalid_string_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                0.0  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/double/1.number.0"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_string_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_string_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get string array value ['foo1', 'foo2', 'foo3'].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -890,74 +1201,127 @@ def build_get_string_valid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                "str"  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/string/foo1.foo2.foo3"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
+
+@overload
+def build_put_string_valid_request(
+    *,
+    json: List[str],
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Set array value ['foo1', 'foo2', 'foo3'].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Required.
+    :paramtype json: list[str]
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # JSON input template you can fill out and use as your body input.
+            json = [
+                "str"  # Optional.
+            ]
+    """
+
+    ...
+
+@overload
+def build_put_string_valid_request(
+    *,
+    content: IO,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Set array value ['foo1', 'foo2', 'foo3'].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
 
 def build_put_string_valid_request(
-    *, json: Optional[List[str]] = None, content: Any = None, **kwargs: Any
+    **kwargs
 ) -> HttpRequest:
     """Set array value ['foo1', 'foo2', 'foo3'].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
-    :paramtype json: list[str]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword json: Is either a list type or a IO type. Required.
+    :paramtype json: list[str] or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your body input.
-            json = [
-                "str"  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/string/foo1.foo2.foo3"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_enum_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_enum_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get enum array value ['foo1', 'foo2', 'foo3'].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -967,74 +1331,127 @@ def build_get_enum_valid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                "str"  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/enum/foo1.foo2.foo3"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
+
+@overload
+def build_put_enum_valid_request(
+    *,
+    json: List[str],
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Set array value ['foo1', 'foo2', 'foo3'].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Required.
+    :paramtype json: list[str]
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+
+    Example:
+        .. code-block:: python
+
+            # JSON input template you can fill out and use as your body input.
+            json = [
+                "str"  # Optional.
+            ]
+    """
+
+    ...
+
+@overload
+def build_put_enum_valid_request(
+    *,
+    content: IO,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Set array value ['foo1', 'foo2', 'foo3'].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
 
 def build_put_enum_valid_request(
-    *, json: Optional[List[str]] = None, content: Any = None, **kwargs: Any
+    **kwargs
 ) -> HttpRequest:
     """Set array value ['foo1', 'foo2', 'foo3'].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
-    :paramtype json: list[str]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword json: Is either a list type or a IO type. Required.
+    :paramtype json: list[str] or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # JSON input template you can fill out and use as your body input.
-            json = [
-                "str"  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/enum/foo1.foo2.foo3"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_string_enum_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_string_enum_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get enum array value ['foo1', 'foo2', 'foo3'].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -1044,43 +1461,43 @@ def build_get_string_enum_valid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                "str"  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/string-enum/foo1.foo2.foo3"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
+@overload
 def build_put_string_enum_valid_request(
-    *, json: Optional[List[str]] = None, content: Any = None, **kwargs: Any
+    *,
+    json: List[str],
+    content_type: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Set array value ['foo1', 'foo2', 'foo3'].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
+    :keyword json: Required.
     :paramtype json: list[str]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1095,23 +1512,76 @@ def build_put_string_enum_valid_request(
             ]
     """
 
+    ...
+
+@overload
+def build_put_string_enum_valid_request(
+    *,
+    content: IO,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Set array value ['foo1', 'foo2', 'foo3'].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_string_enum_valid_request(
+    **kwargs
+) -> HttpRequest:
+    """Set array value ['foo1', 'foo2', 'foo3'].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a list type or a IO type. Required.
+    :paramtype json: list[str] or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/string-enum/foo1.foo2.foo3"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_string_with_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_string_with_null_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get string array value ['foo', null, 'foo2'].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -1121,30 +1591,29 @@ def build_get_string_with_null_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                "str"  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/string/foo.null.foo2"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_string_with_invalid_request(**kwargs: Any) -> HttpRequest:
+def build_get_string_with_invalid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get string array value ['foo', 123, 'foo2'].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -1154,30 +1623,29 @@ def build_get_string_with_invalid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                "str"  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/string/foo.123.foo2"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_uuid_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_uuid_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
     'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
@@ -1188,31 +1656,32 @@ def build_get_uuid_valid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                str  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/uuid/valid"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
+@overload
 def build_put_uuid_valid_request(
-    *, json: Optional[List[str]] = None, content: Any = None, **kwargs: Any
+    *,
+    json: List[str],
+    content_type: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
     'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
@@ -1220,12 +1689,11 @@ def build_put_uuid_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
+    :keyword json: Required.
     :paramtype json: list[str]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1236,27 +1704,82 @@ def build_put_uuid_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                str  # Optional.
+                "str"  # Optional.
             ]
+    """
+
+    ...
+
+@overload
+def build_put_uuid_valid_request(
+    *,
+    content: IO,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
+    'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_uuid_valid_request(
+    **kwargs
+) -> HttpRequest:
+    """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
+    'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a list type or a IO type. Required.
+    :paramtype json: list[str] or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/uuid/valid"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_uuid_invalid_chars_request(**kwargs: Any) -> HttpRequest:
+def build_get_uuid_invalid_chars_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo'].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -1266,30 +1789,29 @@ def build_get_uuid_invalid_chars_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                str  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/uuid/invalidchars"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_date_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_date_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12'].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -1299,43 +1821,43 @@ def build_get_date_valid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                "2020-02-20"  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/date/valid"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
+@overload
 def build_put_date_valid_request(
-    *, json: Optional[List[datetime.date]] = None, content: Any = None, **kwargs: Any
+    *,
+    json: List[datetime.date],
+    content_type: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
+    :keyword json: Required.
     :paramtype json: list[~datetime.date]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1350,23 +1872,76 @@ def build_put_date_valid_request(
             ]
     """
 
+    ...
+
+@overload
+def build_put_date_valid_request(
+    *,
+    content: IO,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_date_valid_request(
+    **kwargs
+) -> HttpRequest:
+    """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a list type or a IO type. Required.
+    :paramtype json: list[~datetime.date] or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/date/valid"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_date_invalid_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_date_invalid_null_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get date array value ['2012-01-01', null, '1776-07-04'].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -1376,30 +1951,29 @@ def build_get_date_invalid_null_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                "2020-02-20"  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/date/invalidnull"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_date_invalid_chars_request(**kwargs: Any) -> HttpRequest:
+def build_get_date_invalid_chars_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get date array value ['2011-03-22', 'date'].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -1409,30 +1983,29 @@ def build_get_date_invalid_chars_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                "2020-02-20"  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/date/invalidchars"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_date_time_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_date_time_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
     '1492-10-12T10:15:01-08:00'].
 
@@ -1443,31 +2016,32 @@ def build_get_date_time_valid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                "2020-02-20 00:00:00"  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/date-time/valid"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
+@overload
 def build_put_date_time_valid_request(
-    *, json: Optional[List[datetime.datetime]] = None, content: Any = None, **kwargs: Any
+    *,
+    json: List[datetime.datetime],
+    content_type: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
     '1492-10-12T10:15:01-08:00'].
@@ -1475,12 +2049,11 @@ def build_put_date_time_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
+    :keyword json: Required.
     :paramtype json: list[~datetime.datetime]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1495,23 +2068,78 @@ def build_put_date_time_valid_request(
             ]
     """
 
+    ...
+
+@overload
+def build_put_date_time_valid_request(
+    *,
+    content: IO,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
+    '1492-10-12T10:15:01-08:00'].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_date_time_valid_request(
+    **kwargs
+) -> HttpRequest:
+    """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
+    '1492-10-12T10:15:01-08:00'].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a list type or a IO type. Required.
+    :paramtype json: list[~datetime.datetime] or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/date-time/valid"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_date_time_invalid_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_date_time_invalid_null_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get date array value ['2000-12-01t00:00:01z', null].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -1521,30 +2149,29 @@ def build_get_date_time_invalid_null_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                "2020-02-20 00:00:00"  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/date-time/invalidnull"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_date_time_invalid_chars_request(**kwargs: Any) -> HttpRequest:
+def build_get_date_time_invalid_chars_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get date array value ['2000-12-01t00:00:01z', 'date-time'].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -1554,30 +2181,29 @@ def build_get_date_time_invalid_chars_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                "2020-02-20 00:00:00"  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/date-time/invalidchars"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_date_time_rfc1123_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT',
     'Wed, 12 Oct 1492 10:15:01 GMT'].
 
@@ -1588,31 +2214,32 @@ def build_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                "2020-02-20 00:00:00"  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/date-time-rfc1123/valid"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
+@overload
 def build_put_date_time_rfc1123_valid_request(
-    *, json: Optional[List[datetime.datetime]] = None, content: Any = None, **kwargs: Any
+    *,
+    json: List[datetime.datetime],
+    content_type: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
     Oct 1492 10:15:01 GMT'].
@@ -1620,12 +2247,11 @@ def build_put_date_time_rfc1123_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
+    :keyword json: Required.
     :paramtype json: list[~datetime.datetime]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1640,23 +2266,78 @@ def build_put_date_time_rfc1123_valid_request(
             ]
     """
 
+    ...
+
+@overload
+def build_put_date_time_rfc1123_valid_request(
+    *,
+    content: IO,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
+    Oct 1492 10:15:01 GMT'].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_date_time_rfc1123_valid_request(
+    **kwargs
+) -> HttpRequest:
+    """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
+    Oct 1492 10:15:01 GMT'].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a list type or a IO type. Required.
+    :paramtype json: list[~datetime.datetime] or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/date-time-rfc1123/valid"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_duration_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_duration_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -1666,43 +2347,43 @@ def build_get_duration_valid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                "1 day, 0:00:00"  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/duration/valid"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
+@overload
 def build_put_duration_valid_request(
-    *, json: Optional[List[datetime.timedelta]] = None, content: Any = None, **kwargs: Any
+    *,
+    json: List[datetime.timedelta],
+    content_type: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
+    :keyword json: Required.
     :paramtype json: list[~datetime.timedelta]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1717,23 +2398,76 @@ def build_put_duration_valid_request(
             ]
     """
 
+    ...
+
+@overload
+def build_put_duration_valid_request(
+    *,
+    content: IO,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_duration_valid_request(
+    **kwargs
+) -> HttpRequest:
+    """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a list type or a IO type. Required.
+    :paramtype json: list[~datetime.timedelta] or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/duration/valid"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_byte_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_byte_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded
     in base64.
 
@@ -1744,31 +2478,32 @@ def build_get_byte_valid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                bytearray("bytearray", encoding="utf-8")  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/byte/valid"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
+@overload
 def build_put_byte_valid_request(
-    *, json: Optional[List[bytearray]] = None, content: Any = None, **kwargs: Any
+    *,
+    json: List[bytes],
+    content_type: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
     elementencoded in base 64.
@@ -1776,12 +2511,11 @@ def build_put_byte_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
-    :paramtype json: list[bytearray]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword json: Required.
+    :paramtype json: list[bytes]
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1792,27 +2526,82 @@ def build_put_byte_valid_request(
 
             # JSON input template you can fill out and use as your body input.
             json = [
-                bytearray("bytearray", encoding="utf-8")  # Optional.
+                bytes("bytes", encoding="utf-8")  # Optional.
             ]
+    """
+
+    ...
+
+@overload
+def build_put_byte_valid_request(
+    *,
+    content: IO,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
+    elementencoded in base 64.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_byte_valid_request(
+    **kwargs
+) -> HttpRequest:
+    """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
+    elementencoded in base 64.
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a list type or a IO type. Required.
+    :paramtype json: list[bytes] or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/byte/valid"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_byte_invalid_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_byte_invalid_null_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -1822,30 +2611,29 @@ def build_get_byte_invalid_null_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                bytearray("bytearray", encoding="utf-8")  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/byte/invalidnull"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_base64_url_request(**kwargs: Any) -> HttpRequest:
+def build_get_base64_url_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with
     the items base64url encoded.
 
@@ -1856,30 +2644,29 @@ def build_get_base64_url_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                bytes("bytes", encoding="utf-8")  # Optional.
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/prim/base64url/valid"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_complex_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_complex_null_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get array of complex type null value.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -1889,33 +2676,29 @@ def build_get_complex_null_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                {
-                    "integer": 0,  # Optional.
-                    "string": "str"  # Optional.
-                }
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/complex/null"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_complex_empty_request(**kwargs: Any) -> HttpRequest:
+def build_get_complex_empty_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get empty array of complex type [].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -1925,33 +2708,29 @@ def build_get_complex_empty_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                {
-                    "integer": 0,  # Optional.
-                    "string": "str"  # Optional.
-                }
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/complex/empty"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_complex_item_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_complex_item_null_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
     'string': '6'}].
 
@@ -1962,33 +2741,29 @@ def build_get_complex_item_null_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                {
-                    "integer": 0,  # Optional.
-                    "string": "str"  # Optional.
-                }
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/complex/itemnull"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_complex_item_empty_request(**kwargs: Any) -> HttpRequest:
+def build_get_complex_item_empty_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
     'string': '6'}].
 
@@ -1999,33 +2774,29 @@ def build_get_complex_item_empty_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                {
-                    "integer": 0,  # Optional.
-                    "string": "str"  # Optional.
-                }
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/complex/itemempty"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_complex_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_complex_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
     {'integer': 5, 'string': '6'}].
 
@@ -2036,34 +2807,32 @@ def build_get_complex_valid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                {
-                    "integer": 0,  # Optional.
-                    "string": "str"  # Optional.
-                }
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/complex/valid"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
+@overload
 def build_put_complex_valid_request(
-    *, json: Optional[List[JSON]] = None, content: Any = None, **kwargs: Any
+    *,
+    json: List[JSON],
+    content_type: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
     'string': '4'}, {'integer': 5, 'string': '6'}].
@@ -2071,12 +2840,11 @@ def build_put_complex_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
+    :keyword json: Required.
     :paramtype json: list[JSON]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -2094,23 +2862,78 @@ def build_put_complex_valid_request(
             ]
     """
 
+    ...
+
+@overload
+def build_put_complex_valid_request(
+    *,
+    content: IO,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
+    'string': '4'}, {'integer': 5, 'string': '6'}].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_complex_valid_request(
+    **kwargs
+) -> HttpRequest:
+    """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
+    'string': '4'}, {'integer': 5, 'string': '6'}].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a list type or a IO type. Required.
+    :paramtype json: list[JSON] or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/complex/valid"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_array_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_array_null_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get a null array.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -2120,32 +2943,29 @@ def build_get_array_null_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                [
-                    "str"  # Optional.
-                ]
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/array/null"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_array_empty_request(**kwargs: Any) -> HttpRequest:
+def build_get_array_empty_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get an empty array [].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -2155,32 +2975,29 @@ def build_get_array_empty_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                [
-                    "str"  # Optional.
-                ]
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/array/empty"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_array_item_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_array_item_null_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -2190,32 +3007,29 @@ def build_get_array_item_null_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                [
-                    "str"  # Optional.
-                ]
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/array/itemnull"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_array_item_empty_request(**kwargs: Any) -> HttpRequest:
+def build_get_array_item_empty_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get an array of array of strings [['1', '2', '3'], [], ['7', '8', '9']].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -2225,32 +3039,29 @@ def build_get_array_item_empty_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                [
-                    "str"  # Optional.
-                ]
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/array/itemempty"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_array_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_array_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -2260,45 +3071,43 @@ def build_get_array_valid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                [
-                    "str"  # Optional.
-                ]
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/array/valid"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
+@overload
 def build_put_array_valid_request(
-    *, json: Optional[List[List[str]]] = None, content: Any = None, **kwargs: Any
+    *,
+    json: List[List[str]],
+    content_type: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
+    :keyword json: Required.
     :paramtype json: list[list[str]]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -2315,23 +3124,76 @@ def build_put_array_valid_request(
             ]
     """
 
+    ...
+
+@overload
+def build_put_array_valid_request(
+    *,
+    content: IO,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_array_valid_request(
+    **kwargs
+) -> HttpRequest:
+    """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a list type or a IO type. Required.
+    :paramtype json: list[list[str]] or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/array/valid"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_dictionary_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_dictionary_null_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get an array of Dictionaries with value null.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -2341,32 +3203,29 @@ def build_get_dictionary_null_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                {
-                    "str": "str"  # Optional.
-                }
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/dictionary/null"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_dictionary_empty_request(**kwargs: Any) -> HttpRequest:
+def build_get_dictionary_empty_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get an array of Dictionaries of type <string, string> with value [].
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -2376,32 +3235,29 @@ def build_get_dictionary_empty_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                {
-                    "str": "str"  # Optional.
-                }
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/dictionary/empty"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_dictionary_item_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_dictionary_item_null_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
     'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
@@ -2412,32 +3268,29 @@ def build_get_dictionary_item_null_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                {
-                    "str": "str"  # Optional.
-                }
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/dictionary/itemnull"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_dictionary_item_empty_request(**kwargs: Any) -> HttpRequest:
+def build_get_dictionary_item_empty_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
     'three'}, {}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
@@ -2448,32 +3301,29 @@ def build_get_dictionary_item_empty_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                {
-                    "str": "str"  # Optional.
-                }
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/dictionary/itemempty"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
-def build_get_dictionary_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_dictionary_valid_request(
+    **kwargs: Any
+) -> HttpRequest:
     """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
     'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
@@ -2484,33 +3334,32 @@ def build_get_dictionary_valid_request(**kwargs: Any) -> HttpRequest:
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == [
-                {
-                    "str": "str"  # Optional.
-                }
-            ]
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/dictionary/valid"
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )
 
 
+@overload
 def build_put_dictionary_valid_request(
-    *, json: Optional[List[Dict[str, str]]] = None, content: Any = None, **kwargs: Any
+    *,
+    json: List[Dict[str, str]],
+    content_type: Optional[str] = None,
+    **kwargs: Any
 ) -> HttpRequest:
     """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
     'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
@@ -2518,12 +3367,11 @@ def build_put_dictionary_valid_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Required. Default value is None.
+    :keyword json: Required.
     :paramtype json: list[dict[str, str]]
-    :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Required. Default value is None.
-    :paramtype content: any
+    :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+     Default value is None.
+    :paramtype content_type: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -2540,17 +3388,70 @@ def build_put_dictionary_valid_request(
             ]
     """
 
+    ...
+
+@overload
+def build_put_dictionary_valid_request(
+    *,
+    content: IO,
+    content_type: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
+    'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword content: Required.
+    :paramtype content: IO
+    :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
+    ...
+
+def build_put_dictionary_valid_request(
+    **kwargs
+) -> HttpRequest:
+    """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
+    'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+
+    See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
+    into your code flow.
+
+    :keyword json: Is either a list type or a IO type. Required.
+    :paramtype json: list[dict[str, str]] or IO
+    :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+     Default value is None.
+    :paramtype content_type: str
+    :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
+     `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
+     incorporate this response into your code flow.
+    :rtype: ~azure.core.rest.HttpRequest
+    """
+
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
-    accept = _headers.pop("Accept", "application/json")
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/array/dictionary/valid"
 
     # Construct headers
     if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+        _headers['Content-Type'] = _SERIALIZER.header("content_type", content_type, 'str')
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, content=content, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        headers=_headers,
+        **kwargs
+    )

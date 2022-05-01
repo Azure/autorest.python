@@ -8,27 +8,51 @@
 
 try:
     from ._request_builders_py3 import build_put201_creating_succeeded200_request
+    from ._request_builders_py3 import build_put201_creating_succeeded200_request
+    from ._request_builders_py3 import build_put201_creating_succeeded200_request
+    from ._request_builders_py3 import build_put_async_relative_retry_succeeded_request
+    from ._request_builders_py3 import build_put_async_relative_retry_succeeded_request
     from ._request_builders_py3 import build_put_async_relative_retry_succeeded_request
     from ._request_builders_py3 import build_delete_provisioning202_accepted200_succeeded_request
     from ._request_builders_py3 import build_delete202_retry200_request
     from ._request_builders_py3 import build_delete_async_relative_retry_succeeded_request
     from ._request_builders_py3 import build_post202_retry200_request
+    from ._request_builders_py3 import build_post202_retry200_request
+    from ._request_builders_py3 import build_post202_retry200_request
+    from ._request_builders_py3 import build_post_async_relative_retry_succeeded_request
+    from ._request_builders_py3 import build_post_async_relative_retry_succeeded_request
     from ._request_builders_py3 import build_post_async_relative_retry_succeeded_request
 except (SyntaxError, ImportError):
     from ._request_builders import build_put201_creating_succeeded200_request  # type: ignore
+    from ._request_builders import build_put201_creating_succeeded200_request  # type: ignore
+    from ._request_builders import build_put201_creating_succeeded200_request  # type: ignore
+    from ._request_builders import build_put_async_relative_retry_succeeded_request  # type: ignore
+    from ._request_builders import build_put_async_relative_retry_succeeded_request  # type: ignore
     from ._request_builders import build_put_async_relative_retry_succeeded_request  # type: ignore
     from ._request_builders import build_delete_provisioning202_accepted200_succeeded_request  # type: ignore
     from ._request_builders import build_delete202_retry200_request  # type: ignore
     from ._request_builders import build_delete_async_relative_retry_succeeded_request  # type: ignore
     from ._request_builders import build_post202_retry200_request  # type: ignore
+    from ._request_builders import build_post202_retry200_request  # type: ignore
+    from ._request_builders import build_post202_retry200_request  # type: ignore
+    from ._request_builders import build_post_async_relative_retry_succeeded_request  # type: ignore
+    from ._request_builders import build_post_async_relative_retry_succeeded_request  # type: ignore
     from ._request_builders import build_post_async_relative_retry_succeeded_request  # type: ignore
 
 __all__ = [
     "build_put201_creating_succeeded200_request",
+    "build_put201_creating_succeeded200_request",
+    "build_put201_creating_succeeded200_request",
+    "build_put_async_relative_retry_succeeded_request",
+    "build_put_async_relative_retry_succeeded_request",
     "build_put_async_relative_retry_succeeded_request",
     "build_delete_provisioning202_accepted200_succeeded_request",
     "build_delete202_retry200_request",
     "build_delete_async_relative_retry_succeeded_request",
     "build_post202_retry200_request",
+    "build_post202_retry200_request",
+    "build_post202_retry200_request",
+    "build_post_async_relative_retry_succeeded_request",
+    "build_post_async_relative_retry_succeeded_request",
     "build_post_async_relative_retry_succeeded_request",
 ]

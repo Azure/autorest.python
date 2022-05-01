@@ -15,8 +15,13 @@ from azure.core.utils import case_insensitive_dict
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
+# fmt: off
 
-def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_get_report_request(
+    *,
+    qualifier: Optional[str] = None,
+    **kwargs: Any
+) -> HttpRequest:
     """Get test coverage report.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
@@ -30,29 +35,27 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
     :rtype: ~azure.core.rest.HttpRequest
-
-    Example:
-        .. code-block:: python
-
-            # response body for status code(s): 200
-            response.json() == {
-                "str": 0  # Optional.
-            }
     """
 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = "/report/azure"
 
     # Construct parameters
     if qualifier is not None:
-        _params["qualifier"] = _SERIALIZER.query("qualifier", qualifier, "str")
+        _params['qualifier'] = _SERIALIZER.query("qualifier", qualifier, 'str')
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="GET",
+        url=_url,
+        params=_params,
+        headers=_headers,
+        **kwargs
+    )

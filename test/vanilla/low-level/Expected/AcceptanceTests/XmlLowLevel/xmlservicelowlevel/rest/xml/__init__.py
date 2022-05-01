@@ -35,6 +35,8 @@ try:
     from ._request_builders_py3 import build_put_acls_request
     from ._request_builders_py3 import build_list_blobs_request
     from ._request_builders_py3 import build_json_input_request
+    from ._request_builders_py3 import build_json_input_request
+    from ._request_builders_py3 import build_json_input_request
     from ._request_builders_py3 import build_json_output_request
     from ._request_builders_py3 import build_get_xms_text_request
     from ._request_builders_py3 import build_get_bytes_request
@@ -69,6 +71,8 @@ except (SyntaxError, ImportError):
     from ._request_builders import build_get_acls_request  # type: ignore
     from ._request_builders import build_put_acls_request  # type: ignore
     from ._request_builders import build_list_blobs_request  # type: ignore
+    from ._request_builders import build_json_input_request  # type: ignore
+    from ._request_builders import build_json_input_request  # type: ignore
     from ._request_builders import build_json_input_request  # type: ignore
     from ._request_builders import build_json_output_request  # type: ignore
     from ._request_builders import build_get_xms_text_request  # type: ignore
@@ -105,6 +109,8 @@ __all__ = [
     "build_get_acls_request",
     "build_put_acls_request",
     "build_list_blobs_request",
+    "build_json_input_request",
+    "build_json_input_request",
     "build_json_input_request",
     "build_json_output_request",
     "build_get_xms_text_request",

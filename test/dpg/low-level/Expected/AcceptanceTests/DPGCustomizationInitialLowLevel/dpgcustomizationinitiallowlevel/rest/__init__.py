@@ -9,16 +9,22 @@
 try:
     from ._request_builders_py3 import build_get_model_request
     from ._request_builders_py3 import build_post_model_request
+    from ._request_builders_py3 import build_post_model_request
+    from ._request_builders_py3 import build_post_model_request
     from ._request_builders_py3 import build_get_pages_request
     from ._request_builders_py3 import build_lro_request
 except (SyntaxError, ImportError):
     from ._request_builders import build_get_model_request  # type: ignore
+    from ._request_builders import build_post_model_request  # type: ignore
+    from ._request_builders import build_post_model_request  # type: ignore
     from ._request_builders import build_post_model_request  # type: ignore
     from ._request_builders import build_get_pages_request  # type: ignore
     from ._request_builders import build_lro_request  # type: ignore
 
 __all__ = [
     "build_get_model_request",
+    "build_post_model_request",
+    "build_post_model_request",
     "build_post_model_request",
     "build_get_pages_request",
     "build_lro_request",

@@ -49,7 +49,7 @@ class AutoRestParameterizedCustomHostTestClient:
         Use these helper methods to create the request you pass to this method.
 
         >>> from custombaseurlmoreoptionslowlevel.rest import paths
-        >>> request = paths.build_get_empty_request(key_name, subscription_id, **kwargs)
+        >>> request = paths.build_get_empty_request(key_name, subscription_id, key_version=key_version, **kwargs)
         <HttpRequest [GET], url: '/customuri/{subscriptionId}/{keyName}'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>

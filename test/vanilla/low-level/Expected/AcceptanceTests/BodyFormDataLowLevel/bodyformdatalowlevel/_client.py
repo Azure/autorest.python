@@ -44,7 +44,7 @@ class AutoRestSwaggerBATFormDataService:
         Use these helper methods to create the request you pass to this method.
 
         >>> from bodyformdatalowlevel.rest import formdata
-        >>> request = formdata.build_upload_file_request(**kwargs)
+        >>> request = formdata.build_upload_file_request(files, **kwargs)
         <HttpRequest [POST], url: '/formdata/stream/uploadfile'>
         >>> response = client.send_request(request)
         <HttpResponse: 200 OK>
