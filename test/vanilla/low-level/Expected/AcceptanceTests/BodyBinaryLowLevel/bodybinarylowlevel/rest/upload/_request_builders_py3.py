@@ -23,12 +23,12 @@ def build_file_request(*, json: Any = None, content: Any = None, **kwargs: Any) 
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. JSON file with payload { "more": "cowbell" }. Default
-     value is None.
+     our example to find the input shape. JSON file with payload { "more": "cowbell" }. Required.
+     Default value is None.
     :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). JSON file with payload { "more": "cowbell" }. Default value
-     is None.
+     a byte iterator, or stream input). JSON file with payload { "more": "cowbell" }. Required.
+     Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -62,7 +62,7 @@ def build_binary_request(*, content: Any, **kwargs: Any) -> HttpRequest:
     into your code flow.
 
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Non-empty binary file.
+     a byte iterator, or stream input). Non-empty binary file. Required. Required.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

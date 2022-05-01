@@ -466,7 +466,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with integer properties.
 
-        :param complex_body: Please put -1 and 2.
+        :param complex_body: Please put -1 and 2. Required.
         :type complex_body: ~bodycomplexpython3only.models.IntWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -563,7 +563,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with long properties.
 
-        :param complex_body: Please put 1099511627775 and -999511627788.
+        :param complex_body: Please put 1099511627775 and -999511627788. Required.
         :type complex_body: ~bodycomplexpython3only.models.LongWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -660,7 +660,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with float properties.
 
-        :param complex_body: Please put 1.05 and -0.003.
+        :param complex_body: Please put 1.05 and -0.003. Required.
         :type complex_body: ~bodycomplexpython3only.models.FloatWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -758,7 +758,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
-         -0.000000000000000000000000000000000000000000000000000000005.
+         -0.000000000000000000000000000000000000000000000000000000005. Required.
         :type complex_body: ~bodycomplexpython3only.models.DoubleWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -855,7 +855,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with bool properties.
 
-        :param complex_body: Please put true and false.
+        :param complex_body: Please put true and false. Required.
         :type complex_body: ~bodycomplexpython3only.models.BooleanWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -952,7 +952,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with string properties.
 
-        :param complex_body: Please put 'goodrequest', '', and null.
+        :param complex_body: Please put 'goodrequest', '', and null. Required.
         :type complex_body: ~bodycomplexpython3only.models.StringWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1049,7 +1049,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with date properties.
 
-        :param complex_body: Please put '0001-01-01' and '2016-02-29'.
+        :param complex_body: Please put '0001-01-01' and '2016-02-29'. Required.
         :type complex_body: ~bodycomplexpython3only.models.DateWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1147,6 +1147,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
+         Required.
         :type complex_body: ~bodycomplexpython3only.models.DatetimeWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1244,7 +1245,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
-         GMT'.
+         GMT'. Required.
         :type complex_body: ~bodycomplexpython3only.models.Datetimerfc1123Wrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

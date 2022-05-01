@@ -74,7 +74,7 @@ class StorageAccountsOperations:
 
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: JSON
         :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json" or "text/json". Default value is "application/json".
@@ -216,12 +216,13 @@ class StorageAccountsOperations:
         properties, then HTTP 200 would be returned.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
-        :param parameters: The parameters to provide for the created account.
+        :param parameters: The parameters to provide for the created account. Required.
         :type parameters: JSON
         :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json" or "text/json". Default value is "application/json".
@@ -377,10 +378,11 @@ class StorageAccountsOperations:
         """Deletes a storage account in Microsoft Azure.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
         :return: None
         :rtype: None
@@ -425,10 +427,11 @@ class StorageAccountsOperations:
         storage keys.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
         :return: JSON object
         :rtype: JSON
@@ -562,13 +565,14 @@ class StorageAccountsOperations:
         location and name of the storage account cannot be changed after creation.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
         :param parameters: The parameters to update on the account. Note that only one property can be
-         changed at a time using this API.
+         changed at a time using this API. Required.
         :type parameters: JSON
         :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json" or "text/json". Default value is "application/json".
@@ -720,8 +724,9 @@ class StorageAccountsOperations:
         """Lists the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
-        :param account_name: The name of the storage account.
+        :param account_name: The name of the storage account. Required.
         :type account_name: str
         :return: JSON object
         :rtype: JSON
@@ -930,6 +935,7 @@ class StorageAccountsOperations:
         are not returned; use the ListKeys operation for this.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
@@ -1090,12 +1096,13 @@ class StorageAccountsOperations:
         """Regenerates the access keys for the specified storage account.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
+         Required.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only.
+         lower-case letters only. Required.
         :type account_name: str
-        :param regenerate_key: Specifies name of the key which should be regenerated.
+        :param regenerate_key: Specifies name of the key which should be regenerated. Required.
         :type regenerate_key: JSON
         :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json" or "text/json". Default value is "application/json".

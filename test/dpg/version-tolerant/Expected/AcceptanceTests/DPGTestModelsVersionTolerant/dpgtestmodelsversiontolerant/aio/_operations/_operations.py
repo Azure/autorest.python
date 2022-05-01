@@ -46,7 +46,7 @@ class DPGClientOperationsMixin(MixinABC):
 
         :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
-         before returning to users.
+         before returning to users. Required.
         :type mode: str
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
@@ -91,9 +91,9 @@ class DPGClientOperationsMixin(MixinABC):
 
         :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
-         before returning to users.
+         before returning to users. Required.
         :type mode: str
-        :param input: Please put {'hello': 'world!'}.
+        :param input: Please put {'hello': 'world!'}. Required.
         :type input: ~dpgtestmodelsversiontolerant.models.Input
         :return: Product
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
@@ -145,7 +145,7 @@ class DPGClientOperationsMixin(MixinABC):
 
         :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
-         before returning to users.
+         before returning to users. Required.
         :type mode: str
         :return: An iterator like instance of ProductResult
         :rtype:
@@ -244,7 +244,7 @@ class DPGClientOperationsMixin(MixinABC):
 
         :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
-         before returning to users.
+         before returning to users. Required.
         :type mode: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False

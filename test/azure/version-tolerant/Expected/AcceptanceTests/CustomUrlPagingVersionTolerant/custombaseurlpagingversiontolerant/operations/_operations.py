@@ -107,7 +107,7 @@ class PagingOperations:
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
         host.
 
-        :param account_name: Account Name.
+        :param account_name: Account Name. Required.
         :type account_name: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]
@@ -196,7 +196,7 @@ class PagingOperations:
     def get_pages_partial_url_operation(self, account_name: str, **kwargs: Any) -> Iterable[JSON]:
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
-        :param account_name: Account Name.
+        :param account_name: Account Name. Required.
         :type account_name: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.paging.ItemPaged[JSON]

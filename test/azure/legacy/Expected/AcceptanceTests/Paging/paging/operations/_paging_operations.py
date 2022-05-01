@@ -135,7 +135,7 @@ def build_get_multiple_pages_request(
 
     client_request_id = kwargs.pop('client_request_id', _headers.pop('client-request-id', None))  # type: Optional[str]
     maxresults = kwargs.pop('maxresults', _headers.pop('maxresults', None))  # type: Optional[int]
-    timeout = kwargs.pop('timeout', _headers.pop('timeout', 30))  # type: Optional[int]
+    timeout = kwargs.pop('timeout', _headers.pop('timeout', 30))  # type: int
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -253,7 +253,7 @@ def build_get_odata_multiple_pages_request(
 
     client_request_id = kwargs.pop('client_request_id', _headers.pop('client-request-id', None))  # type: Optional[str]
     maxresults = kwargs.pop('maxresults', _headers.pop('maxresults', None))  # type: Optional[int]
-    timeout = kwargs.pop('timeout', _headers.pop('timeout', 30))  # type: Optional[int]
+    timeout = kwargs.pop('timeout', _headers.pop('timeout', 30))  # type: int
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -285,7 +285,7 @@ def build_get_multiple_pages_with_offset_request(
 
     client_request_id = kwargs.pop('client_request_id', _headers.pop('client-request-id', None))  # type: Optional[str]
     maxresults = kwargs.pop('maxresults', _headers.pop('maxresults', None))  # type: Optional[int]
-    timeout = kwargs.pop('timeout', _headers.pop('timeout', 30))  # type: Optional[int]
+    timeout = kwargs.pop('timeout', _headers.pop('timeout', 30))  # type: int
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -499,7 +499,7 @@ def build_get_multiple_pages_lro_request(
 
     client_request_id = kwargs.pop('client_request_id', _headers.pop('client-request-id', None))  # type: Optional[str]
     maxresults = kwargs.pop('maxresults', _headers.pop('maxresults', None))  # type: Optional[int]
-    timeout = kwargs.pop('timeout', _headers.pop('timeout', 30))  # type: Optional[int]
+    timeout = kwargs.pop('timeout', _headers.pop('timeout', 30))  # type: int
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1010,7 +1010,7 @@ class PagingOperations(object):
         next operation nextOperationWithQueryParams. Returns a ProductResult.
 
         :param required_query_parameter: A required integer query parameter. Put in value '100' to pass
-         test.
+         test. Required.
         :type required_query_parameter: int
         :keyword query_constant: A constant. Must be True and will be passed as a query parameter to
          nextOperationWithQueryParams. Default value is True. Note that overriding this default value
@@ -1258,7 +1258,7 @@ class PagingOperations(object):
         # type: (...) -> Iterable[_models.ProductResult]
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :param paging_get_multiple_pages_with_offset_options: Parameter group.
+        :param paging_get_multiple_pages_with_offset_options: Parameter group. Required.
         :type paging_get_multiple_pages_with_offset_options:
          ~paging.models.PagingGetMultiplePagesWithOffsetOptions
         :param client_request_id:  Default value is None.
@@ -1698,9 +1698,9 @@ class PagingOperations(object):
         # type: (...) -> Iterable[_models.OdataProductResult]
         """A paging operation that doesn't return a full URL, just a fragment.
 
-        :param api_version: Sets the api version to use.
+        :param api_version: Sets the api version to use. Required.
         :type api_version: str
-        :param tenant: Sets the tenant to use.
+        :param tenant: Sets the tenant to use. Required.
         :type tenant: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either OdataProductResult or the result of cls(response)
@@ -1777,7 +1777,7 @@ class PagingOperations(object):
         # type: (...) -> Iterable[_models.OdataProductResult]
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
-        :param custom_parameter_group: Parameter group.
+        :param custom_parameter_group: Parameter group. Required.
         :type custom_parameter_group: ~paging.models.CustomParameterGroup
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either OdataProductResult or the result of cls(response)

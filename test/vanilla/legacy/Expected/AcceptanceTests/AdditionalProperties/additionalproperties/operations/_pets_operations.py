@@ -214,7 +214,7 @@ class PetsOperations(object):
         # type: (...) -> _models.PetAPTrue
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: ~additionalproperties.models.PetAPTrue
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPTrue, or the result of cls(response)
@@ -273,7 +273,7 @@ class PetsOperations(object):
         # type: (...) -> _models.CatAPTrue
         """Create a CatAPTrue which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: ~additionalproperties.models.CatAPTrue
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CatAPTrue, or the result of cls(response)
@@ -332,7 +332,7 @@ class PetsOperations(object):
         # type: (...) -> _models.PetAPObject
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: ~additionalproperties.models.PetAPObject
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPObject, or the result of cls(response)
@@ -391,7 +391,7 @@ class PetsOperations(object):
         # type: (...) -> _models.PetAPString
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: ~additionalproperties.models.PetAPString
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPString, or the result of cls(response)
@@ -450,7 +450,7 @@ class PetsOperations(object):
         # type: (...) -> _models.PetAPInProperties
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: ~additionalproperties.models.PetAPInProperties
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInProperties, or the result of cls(response)
@@ -509,7 +509,7 @@ class PetsOperations(object):
         # type: (...) -> _models.PetAPInPropertiesWithAPString
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInPropertiesWithAPString, or the result of cls(response)

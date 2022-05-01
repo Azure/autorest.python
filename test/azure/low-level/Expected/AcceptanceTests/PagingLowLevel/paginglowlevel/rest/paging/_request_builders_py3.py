@@ -183,11 +183,7 @@ def build_first_response_empty_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_get_multiple_pages_request(
-    *,
-    client_request_id: Optional[str] = None,
-    maxresults: Optional[int] = None,
-    timeout: Optional[int] = 30,
-    **kwargs: Any
+    *, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     """A paging operation that includes a nextLink that has 10 pages.
 
@@ -255,7 +251,7 @@ def build_get_with_query_params_request(*, required_query_parameter: int, **kwar
      may result in unsupported behavior.
     :paramtype query_constant: bool
     :keyword required_query_parameter: A required integer query parameter. Put in value '100' to
-     pass test.
+     pass test. Required.
     :paramtype required_query_parameter: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -398,11 +394,7 @@ def build_next_operation_with_query_params_request(**kwargs: Any) -> HttpRequest
 
 
 def build_get_odata_multiple_pages_request(
-    *,
-    client_request_id: Optional[str] = None,
-    maxresults: Optional[int] = None,
-    timeout: Optional[int] = 30,
-    **kwargs: Any
+    *, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     """A paging operation that includes a nextLink in odata format that has 10 pages.
 
@@ -463,7 +455,7 @@ def build_get_multiple_pages_with_offset_request(
     *,
     client_request_id: Optional[str] = None,
     maxresults: Optional[int] = None,
-    timeout: Optional[int] = 30,
+    timeout: int = 30,
     **kwargs: Any
 ) -> HttpRequest:
     """A paging operation that includes a nextLink that has 10 pages.
@@ -471,7 +463,7 @@ def build_get_multiple_pages_with_offset_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param offset: Offset of return value.
+    :param offset: Offset of return value. Required.
     :type offset: int
     :keyword client_request_id:  Default value is None.
     :paramtype client_request_id: str
@@ -740,9 +732,9 @@ def build_get_multiple_pages_fragment_next_link_request(tenant: str, *, api_vers
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param tenant: Sets the tenant to use.
+    :param tenant: Sets the tenant to use. Required.
     :type tenant: str
-    :keyword api_version: Sets the api version to use.
+    :keyword api_version: Sets the api version to use. Required.
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -796,9 +788,9 @@ def build_get_multiple_pages_fragment_with_grouping_next_link_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param tenant: Sets the tenant to use.
+    :param tenant: Sets the tenant to use. Required.
     :type tenant: str
-    :keyword api_version: Sets the api version to use.
+    :keyword api_version: Sets the api version to use. Required.
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -845,11 +837,7 @@ def build_get_multiple_pages_fragment_with_grouping_next_link_request(
 
 
 def build_get_multiple_pages_lro_request(
-    *,
-    client_request_id: Optional[str] = None,
-    maxresults: Optional[int] = None,
-    timeout: Optional[int] = 30,
-    **kwargs: Any
+    *, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     """A long-running paging operation that includes a nextLink that has 10 pages.
 
@@ -911,11 +899,11 @@ def build_next_fragment_request(tenant: str, next_link: str, *, api_version: str
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param tenant: Sets the tenant to use.
+    :param tenant: Sets the tenant to use. Required.
     :type tenant: str
-    :param next_link: Next link for list operation.
+    :param next_link: Next link for list operation. Required.
     :type next_link: str
-    :keyword api_version: Sets the api version to use.
+    :keyword api_version: Sets the api version to use. Required.
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -970,11 +958,11 @@ def build_next_fragment_with_grouping_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param tenant: Sets the tenant to use.
+    :param tenant: Sets the tenant to use. Required.
     :type tenant: str
-    :param next_link: Next link for list operation.
+    :param next_link: Next link for list operation. Required.
     :type next_link: str
-    :keyword api_version: Sets the api version to use.
+    :keyword api_version: Sets the api version to use. Required.
     :paramtype api_version: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

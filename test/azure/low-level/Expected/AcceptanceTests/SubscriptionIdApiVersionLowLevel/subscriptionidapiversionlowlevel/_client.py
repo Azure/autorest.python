@@ -25,9 +25,9 @@ if TYPE_CHECKING:
 class MicrosoftAzureTestUrl:
     """Some cool documentation.
 
-    :param subscription_id: Subscription Id.
+    :param subscription_id: Subscription Id. Required.
     :type subscription_id: str
-    :param credential: Credential needed for the client to connect to Azure.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str

@@ -61,7 +61,7 @@ class SubscriptionInMethodOperations:
         '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: This should appear as a method parameter, use value
-         '1234-5678-9012-3456'.
+         '1234-5678-9012-3456'. Required.
         :type subscription_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -109,7 +109,7 @@ class SubscriptionInMethodOperations:
         client-side validation should prevent you from making this call.
 
         :param subscription_id: This should appear as a method parameter, use value null, client-side
-         validation should prvenet the call.
+         validation should prvenet the call. Required.
         :type subscription_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -157,6 +157,7 @@ class SubscriptionInMethodOperations:
         '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: Should appear as a method parameter -use value '1234-5678-9012-3456'.
+         Required.
         :type subscription_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -204,7 +205,7 @@ class SubscriptionInMethodOperations:
         '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: The subscriptionId, which appears in the path, the value is always
-         '1234-5678-9012-3456'.
+         '1234-5678-9012-3456'. Required.
         :type subscription_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

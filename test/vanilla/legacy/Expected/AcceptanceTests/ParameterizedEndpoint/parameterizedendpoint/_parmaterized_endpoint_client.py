@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 class ParmaterizedEndpointClient(ParmaterizedEndpointClientOperationsMixin):
     """Service client for testing parameterized hosts with the name 'endpoint'.
 
-    :param endpoint: The parameterized host. Pass in 'http://localhost:3000' to pass.
+    :param endpoint: The parameterized host. Pass in 'http://localhost:3000' to pass. Required.
     :type endpoint: str
     """
 

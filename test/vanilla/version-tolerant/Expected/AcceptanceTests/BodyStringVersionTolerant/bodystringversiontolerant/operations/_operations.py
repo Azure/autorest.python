@@ -841,7 +841,7 @@ class StringOperations:
     ) -> None:
         """Put value that is base64url encoded.
 
-        :param string_body: string body.
+        :param string_body: string body. Required.
         :type string_body: bytes
         :return: None
         :rtype: None
@@ -996,7 +996,7 @@ class EnumOperations:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param string_body: string body. Known values are: "red color", "green-color", and
-         "blue_color".
+         "blue_color". Required.
         :type string_body: str
         :return: None
         :rtype: None
@@ -1091,7 +1091,7 @@ class EnumOperations:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param enum_string_body: enum string body. Known values are: "red color", "green-color", and
-         "blue_color".
+         "blue_color". Required.
         :type enum_string_body: str
         :return: None
         :rtype: None
@@ -1189,7 +1189,7 @@ class EnumOperations:
     ) -> None:
         """Sends value 'green-color' from a constant.
 
-        :param enum_string_body: enum string body.
+        :param enum_string_body: enum string body. Required.
         :type enum_string_body: JSON
         :return: None
         :rtype: None

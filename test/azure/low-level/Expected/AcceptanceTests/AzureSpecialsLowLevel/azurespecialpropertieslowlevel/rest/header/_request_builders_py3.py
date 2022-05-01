@@ -22,7 +22,7 @@ def build_custom_named_request_id_request(*, foo_client_request_id: str, **kwarg
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword foo_client_request_id: The fooRequestId.
+    :keyword foo_client_request_id: The fooRequestId. Required.
     :paramtype foo_client_request_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -51,7 +51,7 @@ def build_custom_named_request_id_param_grouping_request(*, foo_client_request_i
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword foo_client_request_id: The fooRequestId.
+    :keyword foo_client_request_id: The fooRequestId. Required.
     :paramtype foo_client_request_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -79,7 +79,7 @@ def build_custom_named_request_id_head_request(*, foo_client_request_id: str, **
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword foo_client_request_id: The fooRequestId.
+    :keyword foo_client_request_id: The fooRequestId. Required.
     :paramtype foo_client_request_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

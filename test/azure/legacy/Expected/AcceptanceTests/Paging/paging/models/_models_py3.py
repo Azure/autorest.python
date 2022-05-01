@@ -114,7 +114,7 @@ class PagingGetMultiplePagesLroOptions(_serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(self, *, maxresults: Optional[int] = None, timeout: Optional[int] = 30, **kwargs):
+    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -142,7 +142,7 @@ class PagingGetMultiplePagesOptions(_serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(self, *, maxresults: Optional[int] = None, timeout: Optional[int] = 30, **kwargs):
+    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -179,7 +179,7 @@ class PagingGetMultiplePagesWithOffsetOptions(_serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(self, *, offset: int, maxresults: Optional[int] = None, timeout: Optional[int] = 30, **kwargs):
+    def __init__(self, *, offset: int, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -210,7 +210,7 @@ class PagingGetOdataMultiplePagesOptions(_serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(self, *, maxresults: Optional[int] = None, timeout: Optional[int] = 30, **kwargs):
+    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int

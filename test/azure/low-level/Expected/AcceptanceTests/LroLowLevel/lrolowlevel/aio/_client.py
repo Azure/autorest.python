@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 class AutoRestLongRunningOperationTestService:
     """Long-running Operation for AutoRest.
 
-    :param credential: Credential needed for the client to connect to Azure.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str

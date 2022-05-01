@@ -248,7 +248,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
     def put_horse(self, horse: JSON, **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
-        :param horse: Put a horse with name 'General' and isAShowHorse false.
+        :param horse: Put a horse with name 'General' and isAShowHorse false. Required.
         :type horse: JSON
         :return: str
         :rtype: str
@@ -358,7 +358,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
     def put_pet(self, pet: JSON, **kwargs: Any) -> str:
         """Put a pet with name 'Butter'.
 
-        :param pet: Put a pet with name 'Butter'.
+        :param pet: Put a pet with name 'Butter'. Required.
         :type pet: JSON
         :return: str
         :rtype: str
@@ -468,7 +468,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
     def put_feline(self, feline: JSON, **kwargs: Any) -> str:
         """Put a feline who hisses and doesn't meow.
 
-        :param feline: Put a feline who hisses and doesn't meow.
+        :param feline: Put a feline who hisses and doesn't meow. Required.
         :type feline: JSON
         :return: str
         :rtype: str
@@ -582,6 +582,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
+         Required.
         :type cat: JSON
         :return: str
         :rtype: str
@@ -700,7 +701,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MixinABC):
         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
-         eatsMiceYet is true.
+         eatsMiceYet is true. Required.
         :type kitten: JSON
         :return: str
         :rtype: str

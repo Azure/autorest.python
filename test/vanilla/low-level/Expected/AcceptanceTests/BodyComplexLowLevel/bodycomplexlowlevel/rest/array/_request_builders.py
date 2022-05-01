@@ -82,11 +82,11 @@ def build_put_valid_request(
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Please put an array with 4 items: "1, 2, 3, 4", "", null,
-     "&S#$(*Y", "The quick brown fox jumps over the lazy dog". Default value is None.
+     "&S#$(*Y", "The quick brown fox jumps over the lazy dog". Required. Default value is None.
     :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Please put an array with 4 items: "1, 2, 3, 4", "", null,
-     "&S#$(*Y", "The quick brown fox jumps over the lazy dog". Default value is None.
+     "&S#$(*Y", "The quick brown fox jumps over the lazy dog". Required. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -178,10 +178,11 @@ def build_put_empty_request(
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Please put an empty array. Default value is None.
+     our example to find the input shape. Please put an empty array. Required. Default value is
+     None.
     :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put an empty array. Default value is None.
+     a byte iterator, or stream input). Please put an empty array. Required. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

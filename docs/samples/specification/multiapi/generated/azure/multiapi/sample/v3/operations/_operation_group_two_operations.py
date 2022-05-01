@@ -38,7 +38,7 @@ def build_test_four_request(
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version = kwargs.pop('api_version', _params.pop('api-version', "3.0.0"))  # type: str
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[Union[str, "_models.ContentType"]]
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Union[str, "_models.ContentType"]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -138,7 +138,7 @@ class OperationGroupTwoOperations(object):
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version = kwargs.pop('api_version', _params.pop('api-version', "3.0.0"))  # type: str
-        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: Optional[Union[str, "_models.ContentType"]]
+        content_type = kwargs.pop('content_type', _headers.pop('Content-Type', "application/json"))  # type: Union[str, "_models.ContentType"]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
 
         _json = None

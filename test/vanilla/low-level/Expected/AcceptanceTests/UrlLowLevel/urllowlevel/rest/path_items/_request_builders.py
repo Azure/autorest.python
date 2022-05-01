@@ -37,10 +37,12 @@ def build_get_all_with_values_request(
     into your code flow.
 
     :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+     Required.
     :type path_item_string_path: str
     :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
+     Required.
     :type global_string_path: str
-    :param local_string_path: should contain value 'localStringPath'.
+    :param local_string_path: should contain value 'localStringPath'. Required.
     :type local_string_path: str
     :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
      parameter. Default value is None.
@@ -108,10 +110,12 @@ def build_get_global_query_null_request(
     into your code flow.
 
     :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+     Required.
     :type path_item_string_path: str
     :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
+     Required.
     :type global_string_path: str
-    :param local_string_path: should contain value 'localStringPath'.
+    :param local_string_path: should contain value 'localStringPath'. Required.
     :type local_string_path: str
     :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
      parameter. Default value is None.
@@ -179,10 +183,12 @@ def build_get_global_and_local_query_null_request(
     into your code flow.
 
     :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+     Required.
     :type path_item_string_path: str
     :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
+     Required.
     :type global_string_path: str
-    :param local_string_path: should contain value 'localStringPath'.
+    :param local_string_path: should contain value 'localStringPath'. Required.
     :type local_string_path: str
     :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
      parameter. Default value is None.
@@ -250,10 +256,12 @@ def build_get_local_path_item_query_null_request(
     into your code flow.
 
     :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+     Required.
     :type path_item_string_path: str
     :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
+     Required.
     :type global_string_path: str
-    :param local_string_path: should contain value 'localStringPath'.
+    :param local_string_path: should contain value 'localStringPath'. Required.
     :type local_string_path: str
     :keyword path_item_string_query: should contain value null. Default value is None.
     :paramtype path_item_string_query: str

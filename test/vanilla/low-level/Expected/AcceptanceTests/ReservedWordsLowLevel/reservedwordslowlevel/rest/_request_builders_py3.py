@@ -24,7 +24,7 @@ def build_operation_with_content_param_request(*, content: Any, **kwargs: Any) -
     into your code flow.
 
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Pass in b'hello, world'.
+     a byte iterator, or stream input). Pass in b'hello, world'. Required. Required.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -55,10 +55,11 @@ def build_operation_with_json_param_request(*, json: Any = None, content: Any = 
     into your code flow.
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Pass in {'hello': 'world'}. Default value is None.
+     our example to find the input shape. Pass in {'hello': 'world'}. Required. Default value is
+     None.
     :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Pass in {'hello': 'world'}. Default value is None.
+     a byte iterator, or stream input). Pass in {'hello': 'world'}. Required. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -127,10 +128,10 @@ def build_operation_with_url_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param url: Pass in 'foo'.
+    :param url: Pass in 'foo'. Required.
     :type url: str
     :keyword header_parameters: Header arg that uses same name as headerParameters in generated
-     code. Pass in 'x-ms-header' to pass.
+     code. Pass in 'x-ms-header' to pass. Required.
     :paramtype header_parameters: str
     :keyword query_parameters: Query args that uses same name as queryParameters in generated code.
      Pass in ['one', 'two'] to pass test. Default value is None.

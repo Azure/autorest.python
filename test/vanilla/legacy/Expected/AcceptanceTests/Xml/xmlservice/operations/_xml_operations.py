@@ -909,7 +909,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Puts a complex type that has a ref to a complex type with no XML node.
 
-        :param model:
+        :param model: Required.
         :type model: ~xmlservice.models.RootWithRefAndNoMeta
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1010,7 +1010,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Puts a complex type that has a ref to a complex type with XML node.
 
-        :param model:
+        :param model: Required.
         :type model: ~xmlservice.models.RootWithRefAndMeta
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1112,7 +1112,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Put a simple XML document.
 
-        :param slideshow:
+        :param slideshow: Required.
         :type slideshow: ~xmlservice.models.Slideshow
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1214,7 +1214,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Put an XML document with multiple wrapped lists.
 
-        :param wrapped_lists:
+        :param wrapped_lists: Required.
         :type wrapped_lists: ~xmlservice.models.AppleBarrel
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1362,7 +1362,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Puts an empty list.
 
-        :param slideshow:
+        :param slideshow: Required.
         :type slideshow: ~xmlservice.models.Slideshow
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1463,7 +1463,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Puts some empty wrapped lists.
 
-        :param apple_barrel:
+        :param apple_barrel: Required.
         :type apple_barrel: ~xmlservice.models.AppleBarrel
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1564,7 +1564,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Puts a list as the root element.
 
-        :param bananas:
+        :param bananas: Required.
         :type bananas: list[~xmlservice.models.Banana]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1666,7 +1666,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Puts a list with a single item.
 
-        :param bananas:
+        :param bananas: Required.
         :type bananas: list[~xmlservice.models.Banana]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1768,7 +1768,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Puts an empty list as the root element.
 
-        :param bananas:
+        :param bananas: Required.
         :type bananas: list[~xmlservice.models.Banana]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1870,7 +1870,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Puts a value with an empty child element.
 
-        :param banana:
+        :param banana: Required.
         :type banana: ~xmlservice.models.Banana
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -2033,7 +2033,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Puts storage service properties.
 
-        :param properties:
+        :param properties: Required.
         :type properties: ~xmlservice.models.StorageServiceProperties
         :keyword comp:  Default value is "properties". Note that overriding this default value may
          result in unsupported behavior.
@@ -2154,7 +2154,7 @@ class XmlOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Puts storage ACLs for a container.
 
-        :param properties:
+        :param properties: Required.
         :type properties: list[~xmlservice.models.SignedIdentifier]
         :keyword comp:  Default value is "acl". Note that overriding this default value may result in
          unsupported behavior.

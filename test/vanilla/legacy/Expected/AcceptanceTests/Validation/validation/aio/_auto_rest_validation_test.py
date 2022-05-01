@@ -22,7 +22,7 @@ from .operations import AutoRestValidationTestOperationsMixin
 class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
     """Test Infrastructure for AutoRest. No server backend exists for these tests.
 
-    :param subscription_id: Subscription ID.
+    :param subscription_id: Subscription ID. Required.
     :type subscription_id: str
     :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str

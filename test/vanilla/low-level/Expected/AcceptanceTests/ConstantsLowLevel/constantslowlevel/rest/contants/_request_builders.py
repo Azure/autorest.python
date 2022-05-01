@@ -80,7 +80,7 @@ def build_put_no_model_as_string_no_required_two_value_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: Optional[str]
+    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: str
     # Construct URL
     _url = "/constants/putNoModelAsStringNoRequiredTwoValueDefault"
 
@@ -154,7 +154,7 @@ def build_put_no_model_as_string_no_required_one_value_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: Optional[str]
+    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: str
     # Construct URL
     _url = "/constants/putNoModelAsStringNoRequiredOneValueDefault"
 
@@ -181,7 +181,7 @@ def build_put_no_model_as_string_required_two_value_no_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input: Known values are: "value1" or "value2".
+    :keyword input: Known values are: "value1" or "value2". Required.
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -374,7 +374,7 @@ def build_put_model_as_string_no_required_two_value_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: Optional[str]
+    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: str
     # Construct URL
     _url = "/constants/putModelAsStringNoRequiredTwoValueDefault"
 
@@ -448,7 +448,7 @@ def build_put_model_as_string_no_required_one_value_default_request(
 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: Optional[str]
+    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: str
     # Construct URL
     _url = "/constants/putModelAsStringNoRequiredOneValueDefault"
 
@@ -475,7 +475,7 @@ def build_put_model_as_string_required_two_value_no_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input: Known values are: "value1" or "value2".
+    :keyword input: Known values are: "value1" or "value2". Required.
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -547,7 +547,7 @@ def build_put_model_as_string_required_one_value_no_default_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input: "value1"
+    :keyword input: "value1" Required.
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

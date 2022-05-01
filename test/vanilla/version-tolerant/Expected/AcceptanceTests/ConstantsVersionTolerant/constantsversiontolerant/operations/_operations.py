@@ -47,7 +47,7 @@ def build_contants_put_no_model_as_string_no_required_two_value_no_default_reque
 
 
 def build_contants_put_no_model_as_string_no_required_two_value_default_request(
-    *, input: Optional[str] = "value1", **kwargs: Any
+    *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -77,7 +77,7 @@ def build_contants_put_no_model_as_string_no_required_one_value_no_default_reque
 
 
 def build_contants_put_no_model_as_string_no_required_one_value_default_request(
-    *, input: Optional[str] = "value1", **kwargs: Any
+    *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -161,7 +161,7 @@ def build_contants_put_model_as_string_no_required_two_value_no_default_request(
 
 
 def build_contants_put_model_as_string_no_required_two_value_default_request(
-    *, input: Optional[str] = "value1", **kwargs: Any
+    *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -191,7 +191,7 @@ def build_contants_put_model_as_string_no_required_one_value_no_default_request(
 
 
 def build_contants_put_model_as_string_no_required_one_value_default_request(
-    *, input: Optional[str] = "value1", **kwargs: Any
+    *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -346,7 +346,7 @@ class ContantsOperations:
 
     @distributed_trace
     def put_no_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = "value1", **kwargs: Any
+        self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -430,7 +430,7 @@ class ContantsOperations:
 
     @distributed_trace
     def put_no_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = "value1", **kwargs: Any
+        self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -478,7 +478,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Known values are: "value1" or "value2".
+        :keyword input: Known values are: "value1" or "value2". Required.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -686,7 +686,7 @@ class ContantsOperations:
 
     @distributed_trace
     def put_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = "value1", **kwargs: Any
+        self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -770,7 +770,7 @@ class ContantsOperations:
 
     @distributed_trace
     def put_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: Optional[str] = "value1", **kwargs: Any
+        self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -818,7 +818,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: Known values are: "value1" or "value2".
+        :keyword input: Known values are: "value1" or "value2". Required.
         :paramtype input: str
         :return: None
         :rtype: None
@@ -902,7 +902,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :keyword input: "value1"
+        :keyword input: "value1" Required.
         :paramtype input: str
         :return: None
         :rtype: None

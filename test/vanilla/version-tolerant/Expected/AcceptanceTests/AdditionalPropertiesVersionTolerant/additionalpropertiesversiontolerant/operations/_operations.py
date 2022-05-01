@@ -171,7 +171,7 @@ class PetsOperations:
     def create_ap_true(self, create_parameters: JSON, **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: JSON
         :return: JSON object
         :rtype: JSON
@@ -239,7 +239,7 @@ class PetsOperations:
     def create_cat_ap_true(self, create_parameters: JSON, **kwargs: Any) -> JSON:
         """Create a CatAPTrue which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: JSON
         :return: JSON object
         :rtype: JSON
@@ -309,7 +309,7 @@ class PetsOperations:
     def create_ap_object(self, create_parameters: JSON, **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: JSON
         :return: JSON object
         :rtype: JSON
@@ -377,7 +377,7 @@ class PetsOperations:
     def create_ap_string(self, create_parameters: JSON, **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: JSON
         :return: JSON object
         :rtype: JSON
@@ -445,7 +445,7 @@ class PetsOperations:
     def create_ap_in_properties(self, create_parameters: JSON, **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: JSON
         :return: JSON object
         :rtype: JSON
@@ -513,7 +513,7 @@ class PetsOperations:
     def create_ap_in_properties_with_ap_string(self, create_parameters: JSON, **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters:
+        :param create_parameters: Required.
         :type create_parameters: JSON
         :return: JSON object
         :rtype: JSON

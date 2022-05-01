@@ -52,13 +52,13 @@ class ParameterGroupingOperations:
 
     @distributed_trace_async
     async def post_required(  # pylint: disable=inconsistent-return-statements
-        self, path: str, body: int, *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs: Any
+        self, path: str, body: int, *, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
     ) -> None:
         """Post a bunch of required parameters grouped.
 
-        :param path: Path parameter.
+        :param path: Path parameter. Required.
         :type path: str
-        :param body:
+        :param body: Required.
         :type body: int
         :keyword custom_header:  Default value is None.
         :paramtype custom_header: str
@@ -107,7 +107,7 @@ class ParameterGroupingOperations:
 
     @distributed_trace_async
     async def post_optional(  # pylint: disable=inconsistent-return-statements
-        self, *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs: Any
+        self, *, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
     ) -> None:
         """Post a bunch of optional parameters grouped.
 
@@ -198,9 +198,9 @@ class ParameterGroupingOperations:
         self,
         *,
         header_one: Optional[str] = None,
-        query_one: Optional[int] = 30,
+        query_one: int = 30,
         header_two: Optional[str] = None,
-        query_two: Optional[int] = 30,
+        query_two: int = 30,
         **kwargs: Any
     ) -> None:
         """Post parameters from multiple different parameter groups.
@@ -250,7 +250,7 @@ class ParameterGroupingOperations:
 
     @distributed_trace_async
     async def post_shared_parameter_group_object(  # pylint: disable=inconsistent-return-statements
-        self, *, header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs: Any
+        self, *, header_one: Optional[str] = None, query_one: int = 30, **kwargs: Any
     ) -> None:
         """Post parameters with a shared parameter group object.
 

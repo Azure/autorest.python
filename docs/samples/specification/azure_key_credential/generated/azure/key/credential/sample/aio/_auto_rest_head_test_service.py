@@ -26,7 +26,7 @@ class AutoRestHeadTestService:
 
     :ivar http_success: HttpSuccessOperations operations
     :vartype http_success: azure.key.credential.sample.aio.operations.HttpSuccessOperations
-    :param credential: Credential needed for the client to connect to Azure.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.AzureKeyCredential
     :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str

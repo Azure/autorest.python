@@ -211,7 +211,7 @@ class PolymorphicrecursiveOperations(object):
                      "age": 105
                  }
              ]
-         }.
+         }. Required.
         :type complex_body: ~bodycomplex.models.Fish
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

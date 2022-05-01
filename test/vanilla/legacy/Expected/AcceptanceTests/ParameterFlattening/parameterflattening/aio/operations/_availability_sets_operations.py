@@ -54,11 +54,11 @@ class AvailabilitySetsOperations:
     ) -> None:
         """Updates the tags for an availability set.
 
-        :param resource_group_name: The name of the resource group.
+        :param resource_group_name: The name of the resource group. Required.
         :type resource_group_name: str
-        :param avset: The name of the storage availability set.
+        :param avset: The name of the storage availability set. Required.
         :type avset: str
-        :param tags: A description about the set of tags.
+        :param tags: A description about the set of tags. Required.
         :type tags: dict[str, str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

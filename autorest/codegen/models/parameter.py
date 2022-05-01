@@ -141,6 +141,10 @@ class Parameter(
                 if description:
                     description += " "
                 description += f"Known values are {self.schema.get_declaration(self.schema.value)} or {None}."
+            if not self.has_default_value:
+                if description:
+                    description += " "
+                description += "Required."
             if self.has_default_value and not any(
                 l
                 for l in ["default value is", "default is"]
@@ -267,7 +271,13 @@ class Parameter(
         )
         if self._is_io_json:
             type_annot = f"Union[{type_annot}, Any]"
-        if not self.required and type_annot != "Any" and not self._is_io_json:
+        if (
+            not self.required
+            and type_annot != "Any"
+            and not self._is_io_json
+            and self.client_default_value is None
+            and self.schema.default_value is None
+        ):
             type_annot = f"Optional[{type_annot}]"
 
         if self.client_default_value is not None:
@@ -455,7 +465,7 @@ class Parameter(
     def imports(self) -> FileImport:
         if self.need_import:
             file_import = self.schema.imports()
-            if not self.required:
+            if not self.required and self.default_value is None:
                 file_import.add_submodule_import(
                     "typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL
                 )

@@ -684,7 +684,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null (should throw).
 
-        :param string_path: null string value.
+        :param string_path: null string value. Required.
         :type string_path: str
         :return: None
         :rtype: None
@@ -723,7 +723,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         """Get using uri with 'green color' in path parameter.
 
         :param enum_path: send the value green. Known values are: "red color", "green color", and "blue
-         color".
+         color". Required.
         :type enum_path: str
         :return: None
         :rtype: None
@@ -762,7 +762,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         """Get null (should throw on the client before the request is sent on wire).
 
         :param enum_path: send null should throw. Known values are: "red color", "green color", and
-         "blue color".
+         "blue color". Required.
         :type enum_path: str
         :return: None
         :rtype: None
@@ -802,7 +802,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
-        :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
+        :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array. Required.
         :type byte_path: bytearray
         :return: None
         :rtype: None
@@ -882,7 +882,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null as byte array (should throw).
 
-        :param byte_path: null as byte array (should throw).
+        :param byte_path: null as byte array (should throw). Required.
         :type byte_path: bytearray
         :return: None
         :rtype: None
@@ -963,7 +963,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         """Get null as date - this should throw or be unusable on the client side, depending on date
         representation.
 
-        :param date_path: null as date (should throw).
+        :param date_path: null as date (should throw). Required.
         :type date_path: ~datetime.date
         :return: None
         :rtype: None
@@ -1044,7 +1044,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get null as date-time, should be disallowed or throw depending on representation of date-time.
 
-        :param date_time_path: null as date-time.
+        :param date_time_path: null as date-time. Required.
         :type date_time_path: ~datetime.datetime
         :return: None
         :rtype: None
@@ -1084,7 +1084,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
-        :param base64_url_path: base64url encoded value.
+        :param base64_url_path: base64url encoded value. Required.
         :type base64_url_path: bytes
         :return: None
         :rtype: None
@@ -1126,7 +1126,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         csv-array format.
 
         :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
-         using the csv-array format.
+         using the csv-array format. Required.
         :type array_path: list[str]
         :return: None
         :rtype: None
@@ -1166,7 +1166,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
 
-        :param unix_time_url_path: Unix time encoded value.
+        :param unix_time_url_path: Unix time encoded value. Required.
         :type unix_time_url_path: ~datetime.datetime
         :return: None
         :rtype: None
@@ -2675,8 +2675,9 @@ class PathItemsOperations:
         pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
         :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
          parameter. Default value is None.
@@ -2735,8 +2736,9 @@ class PathItemsOperations:
         pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
         :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
          parameter. Default value is None.
@@ -2795,8 +2797,9 @@ class PathItemsOperations:
         pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
         :keyword path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
          parameter. Default value is None.
@@ -2855,8 +2858,9 @@ class PathItemsOperations:
         pathItemStringQuery=null, localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
+         Required.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'.
+        :param local_string_path: should contain value 'localStringPath'. Required.
         :type local_string_path: str
         :keyword path_item_string_query: should contain value null. Default value is None.
         :paramtype path_item_string_query: str

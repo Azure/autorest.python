@@ -35,7 +35,7 @@ class AutoRestLongRunningOperationTestService(object):
     :vartype lrosads: lro.operations.LROSADsOperations
     :ivar lr_os_custom_header: LROsCustomHeaderOperations operations
     :vartype lr_os_custom_header: lro.operations.LROsCustomHeaderOperations
-    :param credential: Credential needed for the client to connect to Azure.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
     :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str

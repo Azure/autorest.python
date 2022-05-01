@@ -51,11 +51,11 @@ def build_put_object_request(*, json: Any = None, content: Any = None, **kwargs:
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Pass in {'foo': 'bar'} for a 200, anything else for an
-     object error. Default value is None.
+     object error. Required. Default value is None.
     :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Pass in {'foo': 'bar'} for a 200, anything else for an
-     object error. Default value is None.
+     object error. Required. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -116,11 +116,11 @@ def build_put_string_request(*, json: Any = None, content: Any = None, **kwargs:
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Pass in 'anything' for a 200, anything else for an object
-     error. Default value is None.
+     error. Required. Default value is None.
     :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Pass in 'anything' for a 200, anything else for an object
-     error. Default value is None.
+     error. Required. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -181,11 +181,11 @@ def build_put_array_request(*, json: Any = None, content: Any = None, **kwargs: 
 
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Pass in ['foo', 'bar'] for a 200, anything else for an
-     object error. Default value is None.
+     object error. Required. Default value is None.
     :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Pass in ['foo', 'bar'] for a 200, anything else for an
-     object error. Default value is None.
+     object error. Required. Default value is None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

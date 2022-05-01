@@ -75,7 +75,7 @@ def build_pet_do_something_request(what_action: str, **kwargs: Any) -> HttpReque
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_pet_has_models_param_request(*, models: Optional[str] = "value1", **kwargs: Any) -> HttpRequest:
+def build_pet_has_models_param_request(*, models: str = "value1", **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -115,7 +115,7 @@ class PetOperations:
     def get_pet_by_id(self, pet_id: str, **kwargs: Any) -> Optional[JSON]:
         """Gets pets by id.
 
-        :param pet_id: pet id.
+        :param pet_id: pet id. Required.
         :type pet_id: str
         :return: JSON object
         :rtype: JSON or None
@@ -177,7 +177,7 @@ class PetOperations:
     def do_something(self, what_action: str, **kwargs: Any) -> JSON:
         """Asks pet to do something.
 
-        :param what_action: what action the pet should do.
+        :param what_action: what action the pet should do. Required.
         :type what_action: str
         :return: JSON object
         :rtype: JSON
@@ -233,7 +233,7 @@ class PetOperations:
 
     @distributed_trace
     def has_models_param(  # pylint: disable=inconsistent-return-statements
-        self, *, models: Optional[str] = "value1", **kwargs: Any
+        self, *, models: str = "value1", **kwargs: Any
     ) -> None:
         """Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
         conflict with the input param name 'models'.

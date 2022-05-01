@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 class AutoRestParameterizedCustomHostTestClient:
     """Test Infrastructure for AutoRest.
 
-    :param subscription_id: The subscription id with value 'test12'.
+    :param subscription_id: The subscription id with value 'test12'. Required.
     :type subscription_id: str
     :param dns_suffix: A string value that is used as a global part of the parameterized host.
      Default value 'host'. Default value is "host".

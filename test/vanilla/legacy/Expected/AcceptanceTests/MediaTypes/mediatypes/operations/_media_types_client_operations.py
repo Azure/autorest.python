@@ -42,7 +42,7 @@ def build_analyze_body_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[Union[str, "_models.ContentType"]]
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Union[str, "_models.ContentType"]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -67,7 +67,7 @@ def build_analyze_body_no_accept_header_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[Union[str, "_models.ContentType"]]
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Union[str, "_models.ContentType"]
     # Construct URL
     _url = kwargs.pop("template_url", "/mediatypes/analyzeNoAccept")
 
@@ -139,7 +139,7 @@ def build_binary_body_with_three_content_types_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[Union[str, "_models.ContentType1"]]
+    content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Union[str, "_models.ContentType1"]
     accept = _headers.pop('Accept', "text/plain")
 
     # Construct URL
@@ -212,7 +212,7 @@ class MediaTypesClientOperationsMixin(object):
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[Union[str, "_models.ContentType"]]
+        )  # type: Union[str, "_models.ContentType"]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         _json = None
@@ -288,7 +288,7 @@ class MediaTypesClientOperationsMixin(object):
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[Union[str, "_models.ContentType"]]
+        )  # type: Union[str, "_models.ContentType"]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         _json = None
@@ -399,7 +399,7 @@ class MediaTypesClientOperationsMixin(object):
         """Binary body with two content types. Pass in of {'hello': 'world'} for the application/json
         content type, and a byte stream of 'hello, world!' for application/octet-stream.
 
-        :param message: The payload body.
+        :param message: The payload body. Required.
         :type message: IO
         :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json" or "application/octet-stream". Default value is None.
@@ -462,7 +462,7 @@ class MediaTypesClientOperationsMixin(object):
         'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
         'application/octet-stream'.
 
-        :param message: The payload body.
+        :param message: The payload body. Required.
         :type message: IO or str
         :keyword content_type: Media type of the body sent to the API. Known values are:
          "application/json", "application/octet-stream", and "text/plain". Default value is
@@ -481,7 +481,7 @@ class MediaTypesClientOperationsMixin(object):
 
         content_type = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[Union[str, "_models.ContentType1"]]
+        )  # type: Union[str, "_models.ContentType1"]
         cls = kwargs.pop("cls", None)  # type: ClsType[str]
 
         _content = message
@@ -524,7 +524,7 @@ class MediaTypesClientOperationsMixin(object):
         # type: (...) -> str
         """Body that's either text/plain or application/json.
 
-        :param message: The payload body.
+        :param message: The payload body. Required.
         :type message: str or str
         :keyword content_type: Media type of the body sent to the API. Known values are: "text/plain"
          or "application/json". Default value is "application/json".

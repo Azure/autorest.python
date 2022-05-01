@@ -133,7 +133,7 @@ class PagingGetMultiplePagesLroOptions(_serialization.Model):
         self,
         *,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs
     ):
         """
@@ -167,7 +167,7 @@ class PagingGetMultiplePagesOptions(_serialization.Model):
         self,
         *,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs
     ):
         """
@@ -211,7 +211,7 @@ class PagingGetMultiplePagesWithOffsetOptions(_serialization.Model):
         *,
         offset: int,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs
     ):
         """
@@ -248,7 +248,7 @@ class PagingGetOdataMultiplePagesOptions(_serialization.Model):
         self,
         *,
         maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        timeout: int = 30,
         **kwargs
     ):
         """

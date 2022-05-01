@@ -40,17 +40,17 @@ def build_check_name_availability_request(
     into your code flow.
 
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
-     subscription. The subscription ID forms part of the URI for every service call.
+     subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The name of the storage account within the specified
      resource group. Storage account names must be between 3 and 24 characters in length and use
-     numbers and lower-case letters only. Default value is None.
+     numbers and lower-case letters only. Required. Default value is None.
     :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The name of the storage account within the specified
      resource group. Storage account names must be between 3 and 24 characters in length and use
-     numbers and lower-case letters only. Default value is None.
+     numbers and lower-case letters only. Required. Default value is None.
     :paramtype content: any
     :keyword content_type: Media type of the body sent to the API. Known values are:
      "application/json" or "text/json". Default value is None.
@@ -130,21 +130,22 @@ def build_create_request(
     into your code flow.
 
     :param resource_group_name: The name of the resource group within the user’s subscription.
+     Required.
     :type resource_group_name: str
     :param account_name: The name of the storage account within the specified resource group.
      Storage account names must be between 3 and 24 characters in length and use numbers and
-     lower-case letters only.
+     lower-case letters only. Required.
     :type account_name: str
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
-     subscription. The subscription ID forms part of the URI for every service call.
+     subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. The parameters to provide for the created account. Default
-     value is None.
+     our example to find the input shape. The parameters to provide for the created account.
+     Required. Default value is None.
     :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). The parameters to provide for the created account. Default
-     value is None.
+     a byte iterator, or stream input). The parameters to provide for the created account. Required.
+     Default value is None.
     :paramtype content: any
     :keyword content_type: Media type of the body sent to the API. Known values are:
      "application/json" or "text/json". Default value is None.
@@ -287,13 +288,14 @@ def build_delete_request(
     into your code flow.
 
     :param resource_group_name: The name of the resource group within the user’s subscription.
+     Required.
     :type resource_group_name: str
     :param account_name: The name of the storage account within the specified resource group.
      Storage account names must be between 3 and 24 characters in length and use numbers and
-     lower-case letters only.
+     lower-case letters only. Required.
     :type account_name: str
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
-     subscription. The subscription ID forms part of the URI for every service call.
+     subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -340,13 +342,14 @@ def build_get_properties_request(
     into your code flow.
 
     :param resource_group_name: The name of the resource group within the user’s subscription.
+     Required.
     :type resource_group_name: str
     :param account_name: The name of the storage account within the specified resource group.
      Storage account names must be between 3 and 24 characters in length and use numbers and
-     lower-case letters only.
+     lower-case letters only. Required.
     :type account_name: str
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
-     subscription. The subscription ID forms part of the URI for every service call.
+     subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -474,21 +477,22 @@ def build_update_request(
     into your code flow.
 
     :param resource_group_name: The name of the resource group within the user’s subscription.
+     Required.
     :type resource_group_name: str
     :param account_name: The name of the storage account within the specified resource group.
      Storage account names must be between 3 and 24 characters in length and use numbers and
-     lower-case letters only.
+     lower-case letters only. Required.
     :type account_name: str
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
-     subscription. The subscription ID forms part of the URI for every service call.
+     subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. The parameters to update on the account. Note that only
-     one property can be changed at a time using this API. Default value is None.
+     one property can be changed at a time using this API. Required. Default value is None.
     :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). The parameters to update on the account. Note that only one
-     property can be changed at a time using this API. Default value is None.
+     property can be changed at a time using this API. Required. Default value is None.
     :paramtype content: any
     :keyword content_type: Media type of the body sent to the API. Known values are:
      "application/json" or "text/json". Default value is None.
@@ -640,11 +644,12 @@ def build_list_keys_request(
     into your code flow.
 
     :param resource_group_name: The name of the resource group within the user’s subscription.
+     Required.
     :type resource_group_name: str
-    :param account_name: The name of the storage account.
+    :param account_name: The name of the storage account. Required.
     :type account_name: str
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
-     subscription. The subscription ID forms part of the URI for every service call.
+     subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -704,7 +709,7 @@ def build_list_request(
     into your code flow.
 
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
-     subscription. The subscription ID forms part of the URI for every service call.
+     subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -840,9 +845,10 @@ def build_list_by_resource_group_request(
     into your code flow.
 
     :param resource_group_name: The name of the resource group within the user’s subscription.
+     Required.
     :type resource_group_name: str
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
-     subscription. The subscription ID forms part of the URI for every service call.
+     subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -979,21 +985,22 @@ def build_regenerate_key_request(
     into your code flow.
 
     :param resource_group_name: The name of the resource group within the user’s subscription.
+     Required.
     :type resource_group_name: str
     :param account_name: The name of the storage account within the specified resource group.
      Storage account names must be between 3 and 24 characters in length and use numbers and
-     lower-case letters only.
+     lower-case letters only. Required.
     :type account_name: str
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
-     subscription. The subscription ID forms part of the URI for every service call.
+     subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
      our example to find the input shape. Specifies name of the key which should be regenerated.
-     Default value is None.
+     Required. Default value is None.
     :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
      a byte iterator, or stream input). Specifies name of the key which should be regenerated.
-     Default value is None.
+     Required. Default value is None.
     :paramtype content: any
     :keyword content_type: Media type of the body sent to the API. Known values are:
      "application/json" or "text/json". Default value is None.

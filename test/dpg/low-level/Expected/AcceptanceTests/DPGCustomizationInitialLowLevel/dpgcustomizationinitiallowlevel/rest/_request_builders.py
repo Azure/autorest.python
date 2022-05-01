@@ -42,7 +42,7 @@ def build_get_model_request(
 
     :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
      with the raw body, and 'model' if you are going to convert the raw body to a customized body
-     before returning to users.
+     before returning to users. Required.
     :type mode: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -94,13 +94,15 @@ def build_post_model_request(
 
     :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
      with the raw body, and 'model' if you are going to convert the raw body to a customized body
-     before returning to users.
+     before returning to users. Required.
     :type mode: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape. Please put {'hello': 'world!'}. Default value is None.
+     our example to find the input shape. Please put {'hello': 'world!'}. Required. Default value is
+     None.
     :paramtype json: JSON
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input). Please put {'hello': 'world!'}. Default value is None.
+     a byte iterator, or stream input). Please put {'hello': 'world!'}. Required. Default value is
+     None.
     :paramtype content: any
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -160,7 +162,7 @@ def build_get_pages_request(
 
     :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
      with the raw body, and 'model' if you are going to convert the raw body to a customized body
-     before returning to users.
+     before returning to users. Required.
     :type mode: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -218,7 +220,7 @@ def build_lro_request(
 
     :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
      with the raw body, and 'model' if you are going to convert the raw body to a customized body
-     before returning to users.
+     before returning to users. Required.
     :type mode: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

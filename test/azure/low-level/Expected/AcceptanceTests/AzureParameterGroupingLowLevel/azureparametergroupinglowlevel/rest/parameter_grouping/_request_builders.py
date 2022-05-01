@@ -32,13 +32,13 @@ def build_post_required_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param path: Path parameter.
+    :param path: Path parameter. Required.
     :type path: str
     :keyword json: Pass in a JSON-serializable object (usually a dictionary). See the template in
-     our example to find the input shape.  Default value is None.
+     our example to find the input shape. Required. Default value is None.
     :paramtype json: any
     :keyword content: Pass in binary content you want in the body of the request (typically bytes,
-     a byte iterator, or stream input).  Default value is None.
+     a byte iterator, or stream input). Required. Default value is None.
     :paramtype content: any
     :keyword custom_header:  Default value is None.
     :paramtype custom_header: str
@@ -61,7 +61,7 @@ def build_post_required_request(
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
     custom_header = kwargs.pop('custom_header', _headers.pop('customHeader', None))  # type: Optional[str]
-    query = kwargs.pop('query', _params.pop('query', 30))  # type: Optional[int]
+    query = kwargs.pop('query', _params.pop('query', 30))  # type: int
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -115,7 +115,7 @@ def build_post_optional_request(
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     custom_header = kwargs.pop('custom_header', _headers.pop('customHeader', None))  # type: Optional[str]
-    query = kwargs.pop('query', _params.pop('query', 30))  # type: Optional[int]
+    query = kwargs.pop('query', _params.pop('query', 30))  # type: int
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -215,9 +215,9 @@ def build_post_multi_param_groups_request(
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     header_one = kwargs.pop('header_one', _headers.pop('header-one', None))  # type: Optional[str]
-    query_one = kwargs.pop('query_one', _params.pop('query-one', 30))  # type: Optional[int]
+    query_one = kwargs.pop('query_one', _params.pop('query-one', 30))  # type: int
     header_two = kwargs.pop('header_two', _headers.pop('header-two', None))  # type: Optional[str]
-    query_two = kwargs.pop('query_two', _params.pop('query-two', 30))  # type: Optional[int]
+    query_two = kwargs.pop('query_two', _params.pop('query-two', 30))  # type: int
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -268,7 +268,7 @@ def build_post_shared_parameter_group_object_request(
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     header_one = kwargs.pop('header_one', _headers.pop('header-one', None))  # type: Optional[str]
-    query_one = kwargs.pop('query_one', _params.pop('query-one', 30))  # type: Optional[int]
+    query_one = kwargs.pop('query_one', _params.pop('query-one', 30))  # type: int
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

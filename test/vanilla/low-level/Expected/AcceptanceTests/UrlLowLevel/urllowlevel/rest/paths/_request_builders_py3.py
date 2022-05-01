@@ -504,7 +504,7 @@ def build_string_null_request(string_path: str, **kwargs: Any) -> HttpRequest:
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param string_path: null string value.
+    :param string_path: null string value. Required.
     :type string_path: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -537,7 +537,7 @@ def build_enum_valid_request(enum_path: str, **kwargs: Any) -> HttpRequest:
     into your code flow.
 
     :param enum_path: send the value green. Known values are: "red color", "green color", and "blue
-     color".
+     color". Required.
     :type enum_path: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -570,7 +570,7 @@ def build_enum_null_request(enum_path: str, **kwargs: Any) -> HttpRequest:
     into your code flow.
 
     :param enum_path: send null should throw. Known values are: "red color", "green color", and
-     "blue color".
+     "blue color". Required.
     :type enum_path: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -602,7 +602,7 @@ def build_byte_multi_byte_request(byte_path: bytearray, **kwargs: Any) -> HttpRe
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
+    :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array. Required.
     :type byte_path: bytearray
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -668,7 +668,7 @@ def build_byte_null_request(byte_path: bytearray, **kwargs: Any) -> HttpRequest:
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param byte_path: null as byte array (should throw).
+    :param byte_path: null as byte array (should throw). Required.
     :type byte_path: bytearray
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -735,7 +735,7 @@ def build_date_null_request(date_path: datetime.date, **kwargs: Any) -> HttpRequ
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param date_path: null as date (should throw).
+    :param date_path: null as date (should throw). Required.
     :type date_path: ~datetime.date
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -802,7 +802,7 @@ def build_date_time_null_request(date_time_path: datetime.datetime, **kwargs: An
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param date_time_path: null as date-time.
+    :param date_time_path: null as date-time. Required.
     :type date_time_path: ~datetime.datetime
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -834,7 +834,7 @@ def build_base64_url_request(base64_url_path: bytes, **kwargs: Any) -> HttpReque
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param base64_url_path: base64url encoded value.
+    :param base64_url_path: base64url encoded value. Required.
     :type base64_url_path: bytes
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -868,7 +868,7 @@ def build_array_csv_in_path_request(array_path: List[str], **kwargs: Any) -> Htt
     into your code flow.
 
     :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
-     using the csv-array format.
+     using the csv-array format. Required.
     :type array_path: list[str]
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -902,7 +902,7 @@ def build_unix_time_url_request(unix_time_url_path: datetime.datetime, **kwargs:
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param unix_time_url_path: Unix time encoded value.
+    :param unix_time_url_path: Unix time encoded value. Required.
     :type unix_time_url_path: ~datetime.datetime
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

@@ -48,7 +48,7 @@ def build_put_no_model_as_string_no_required_two_value_no_default_request(
 
 
 def build_put_no_model_as_string_no_required_two_value_default_request(
-    *, input: Optional[str] = "value1", **kwargs: Any
+    *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     """Puts constants to the testserver.
 
@@ -108,7 +108,7 @@ def build_put_no_model_as_string_no_required_one_value_no_default_request(
 
 
 def build_put_no_model_as_string_no_required_one_value_default_request(
-    *, input: Optional[str] = "value1", **kwargs: Any
+    *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     """Puts constants to the testserver.
 
@@ -145,7 +145,7 @@ def build_put_no_model_as_string_required_two_value_no_default_request(*, input:
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input: Known values are: "value1" or "value2".
+    :keyword input: Known values are: "value1" or "value2". Required.
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -282,7 +282,7 @@ def build_put_model_as_string_no_required_two_value_no_default_request(
 
 
 def build_put_model_as_string_no_required_two_value_default_request(
-    *, input: Optional[str] = "value1", **kwargs: Any
+    *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     """Puts constants to the testserver.
 
@@ -342,7 +342,7 @@ def build_put_model_as_string_no_required_one_value_no_default_request(
 
 
 def build_put_model_as_string_no_required_one_value_default_request(
-    *, input: Optional[str] = "value1", **kwargs: Any
+    *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     """Puts constants to the testserver.
 
@@ -379,7 +379,7 @@ def build_put_model_as_string_required_two_value_no_default_request(*, input: st
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input: Known values are: "value1" or "value2".
+    :keyword input: Known values are: "value1" or "value2". Required.
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -435,7 +435,7 @@ def build_put_model_as_string_required_one_value_no_default_request(*, input: st
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword input: "value1"
+    :keyword input: "value1" Required.
     :paramtype input: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

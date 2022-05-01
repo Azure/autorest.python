@@ -109,7 +109,7 @@ class ParamsOperations:
          Initially only has one required Query Parameter. After evolution, a new optional query
         parameter is added.
 
-        :keyword parameter: I am a required parameter.
+        :keyword parameter: I am a required parameter. Required.
         :paramtype parameter: str
         :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
@@ -165,7 +165,7 @@ class ParamsOperations:
         """Initially has one required query parameter and one optional query parameter.  After evolution,
         a new optional query parameter is added.
 
-        :keyword required_param: I am a required parameter.
+        :keyword required_param: I am a required parameter. Required.
         :paramtype required_param: str
         :keyword optional_param: I am an optional parameter. Default value is None.
         :paramtype optional_param: str
@@ -219,7 +219,7 @@ class ParamsOperations:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
-         url: "http://example.org/myimage.jpeg" }.
+         url: "http://example.org/myimage.jpeg" }. Required.
         :type parameter: IO or JSON
         :keyword content_type: Media type of the body sent to the API. Known values are: "image/jpeg"
          or "application/json". Default value is "application/json".

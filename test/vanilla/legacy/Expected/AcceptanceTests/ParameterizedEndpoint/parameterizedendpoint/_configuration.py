@@ -24,7 +24,7 @@ class ParmaterizedEndpointClientConfiguration(Configuration):  # pylint: disable
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param endpoint: The parameterized host. Pass in 'http://localhost:3000' to pass.
+    :param endpoint: The parameterized host. Pass in 'http://localhost:3000' to pass. Required.
     :type endpoint: str
     """
 

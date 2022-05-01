@@ -29,9 +29,9 @@ class MicrosoftAzureTestUrl(object):
 
     :ivar group: GroupOperations operations
     :vartype group: subscriptionidapiversion.operations.GroupOperations
-    :param credential: Credential needed for the client to connect to Azure.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
-    :param subscription_id: Subscription Id.
+    :param subscription_id: Subscription Id. Required.
     :type subscription_id: str
     :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str

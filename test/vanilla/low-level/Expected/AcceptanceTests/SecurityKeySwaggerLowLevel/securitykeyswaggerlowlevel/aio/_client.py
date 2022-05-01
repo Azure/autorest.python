@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 class AutorestSecurityKey:
     """Autorest Security Key REST APIs.
 
-    :param credential: Credential needed for the client to connect to Azure.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.AzureKeyCredential
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str

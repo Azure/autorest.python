@@ -15,7 +15,7 @@ from ..._vendor import _format_url_section
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Optional
+    from typing import Any
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -32,7 +32,7 @@ def build_get_pet_by_id_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param pet_id: pet id.
+    :param pet_id: pet id. Required.
     :type pet_id: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -82,7 +82,7 @@ def build_do_something_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :param what_action: what action the pet should do.
+    :param what_action: what action the pet should do. Required.
     :type what_action: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -143,7 +143,7 @@ def build_has_models_param_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    models = kwargs.pop('models', _params.pop('models', "value1"))  # type: Optional[str]
+    models = kwargs.pop('models', _params.pop('models', "value1"))  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

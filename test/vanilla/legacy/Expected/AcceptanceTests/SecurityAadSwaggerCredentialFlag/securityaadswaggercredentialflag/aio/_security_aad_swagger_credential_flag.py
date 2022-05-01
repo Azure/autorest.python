@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 class SecurityAadSwaggerCredentialFlag(SecurityAadSwaggerCredentialFlagOperationsMixin):
     """Autorest Security Aad REST APIs.
 
-    :param credential: Credential needed for the client to connect to Azure.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.AzureKeyCredential
     :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str

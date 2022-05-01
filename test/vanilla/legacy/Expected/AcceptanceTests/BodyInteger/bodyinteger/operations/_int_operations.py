@@ -676,7 +676,7 @@ class IntOperations(object):
         # type: (...) -> None
         """Put max int32 value.
 
-        :param int_body: int body.
+        :param int_body: int body. Required.
         :type int_body: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -731,7 +731,7 @@ class IntOperations(object):
         # type: (...) -> None
         """Put max int64 value.
 
-        :param int_body: int body.
+        :param int_body: int body. Required.
         :type int_body: long
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -786,7 +786,7 @@ class IntOperations(object):
         # type: (...) -> None
         """Put min int32 value.
 
-        :param int_body: int body.
+        :param int_body: int body. Required.
         :type int_body: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -841,7 +841,7 @@ class IntOperations(object):
         # type: (...) -> None
         """Put min int64 value.
 
-        :param int_body: int body.
+        :param int_body: int body. Required.
         :type int_body: long
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -944,7 +944,7 @@ class IntOperations(object):
         # type: (...) -> None
         """Put datetime encoded as Unix time.
 
-        :param int_body: int body.
+        :param int_body: int body. Required.
         :type int_body: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

@@ -117,9 +117,7 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
-        self,
-        input: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1",
-        **kwargs: Any
+        self, input: Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -213,7 +211,7 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[str] = "value1", **kwargs: Any
+        self, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -266,7 +264,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input: Required.
         :type input: str or ~constants.models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -501,9 +499,7 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
-        self,
-        input: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]] = "value1",
-        **kwargs: Any
+        self, input: Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -599,9 +595,7 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
-        self,
-        input: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]] = "value1",
-        **kwargs: Any
+        self, input: Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
@@ -654,7 +648,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input: Required.
         :type input: str or ~constants.models.ModelAsStringRequiredTwoValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -748,7 +742,7 @@ class ContantsOperations:
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input: Required.
         :type input: str or ~constants.models.ModelAsStringRequiredOneValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

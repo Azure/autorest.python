@@ -591,7 +591,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put big float value 3.402823e+20.
 
-        :param number_body: number body.
+        :param number_body: number body. Required.
         :type number_body: float
         :return: None
         :rtype: None
@@ -679,7 +679,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put big double value 2.5976931e+101.
 
-        :param number_body: number body.
+        :param number_body: number body. Required.
         :type number_body: float
         :return: None
         :rtype: None
@@ -939,7 +939,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put big decimal value 2.5976931e+101.
 
-        :param number_body: number body.
+        :param number_body: number body. Required.
         :type number_body: float
         :return: None
         :rtype: None
@@ -1199,7 +1199,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put small float value 3.402823e-20.
 
-        :param number_body: number body.
+        :param number_body: number body. Required.
         :type number_body: float
         :return: None
         :rtype: None
@@ -1287,7 +1287,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put small double value 2.5976931e-101.
 
-        :param number_body: number body.
+        :param number_body: number body. Required.
         :type number_body: float
         :return: None
         :rtype: None
@@ -1375,7 +1375,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put small decimal value 2.5976931e-101.
 
-        :param number_body: number body.
+        :param number_body: number body. Required.
         :type number_body: float
         :return: None
         :rtype: None

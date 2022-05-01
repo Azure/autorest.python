@@ -64,7 +64,7 @@ def build_put_no_model_as_string_no_required_two_value_default_request(
     # type: (...) -> HttpRequest
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
+    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]
     # Construct URL
     _url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredTwoValueDefault")
 
@@ -108,7 +108,7 @@ def build_put_no_model_as_string_no_required_one_value_default_request(
     # type: (...) -> HttpRequest
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: Optional[str]
+    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: str
     # Construct URL
     _url = kwargs.pop("template_url", "/constants/putNoModelAsStringNoRequiredOneValueDefault")
 
@@ -236,7 +236,7 @@ def build_put_model_as_string_no_required_two_value_default_request(
     # type: (...) -> HttpRequest
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
+    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]
     # Construct URL
     _url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredTwoValueDefault")
 
@@ -280,7 +280,7 @@ def build_put_model_as_string_no_required_one_value_default_request(
     # type: (...) -> HttpRequest
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]]
+    input = kwargs.pop('input', _params.pop('input', "value1"))  # type: Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]
     # Construct URL
     _url = kwargs.pop("template_url", "/constants/putModelAsStringNoRequiredOneValueDefault")
 
@@ -485,7 +485,7 @@ class ContantsOperations(object):
     @distributed_trace
     def put_no_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
         self,
-        input="value1",  # type: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
+        input="value1",  # type: Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -585,7 +585,7 @@ class ContantsOperations(object):
     @distributed_trace
     def put_no_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
         self,
-        input="value1",  # type: Optional[str]
+        input="value1",  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -643,7 +643,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input: Required.
         :type input: str or ~constants.models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -885,7 +885,7 @@ class ContantsOperations(object):
     @distributed_trace
     def put_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
         self,
-        input="value1",  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]]
+        input="value1",  # type: Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultOpEnum"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -985,7 +985,7 @@ class ContantsOperations(object):
     @distributed_trace
     def put_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
         self,
-        input="value1",  # type: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]]
+        input="value1",  # type: Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultOpEnum"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1043,7 +1043,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input: Required.
         :type input: str or ~constants.models.ModelAsStringRequiredTwoValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)
@@ -1143,7 +1143,7 @@ class ContantsOperations(object):
 
         Puts constants to the testserver.
 
-        :param input:
+        :param input: Required.
         :type input: str or ~constants.models.ModelAsStringRequiredOneValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None, or the result of cls(response)

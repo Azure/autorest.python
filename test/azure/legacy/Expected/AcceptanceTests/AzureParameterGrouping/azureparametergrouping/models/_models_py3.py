@@ -52,7 +52,7 @@ class FirstParameterGroup(msrest.serialization.Model):
         "query_one": {"key": "query-one", "type": "int"},
     }
 
-    def __init__(self, *, header_one: Optional[str] = None, query_one: Optional[int] = 30, **kwargs):
+    def __init__(self, *, header_one: Optional[str] = None, query_one: int = 30, **kwargs):
         """
         :keyword header_one:
         :paramtype header_one: str
@@ -78,7 +78,7 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization
         "query_two": {"key": "query-two", "type": "int"},
     }
 
-    def __init__(self, *, header_two: Optional[str] = None, query_two: Optional[int] = 30, **kwargs):
+    def __init__(self, *, header_two: Optional[str] = None, query_two: int = 30, **kwargs):
         """
         :keyword header_two:
         :paramtype header_two: str
@@ -104,7 +104,7 @@ class ParameterGroupingPostOptionalParameters(msrest.serialization.Model):
         "query": {"key": "query", "type": "int"},
     }
 
-    def __init__(self, *, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs):
+    def __init__(self, *, custom_header: Optional[str] = None, query: int = 30, **kwargs):
         """
         :keyword custom_header:
         :paramtype custom_header: str
@@ -143,9 +143,7 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
         "body": {"key": "body", "type": "int"},
     }
 
-    def __init__(
-        self, *, path: str, body: int, custom_header: Optional[str] = None, query: Optional[int] = 30, **kwargs
-    ):
+    def __init__(self, *, path: str, body: int, custom_header: Optional[str] = None, query: int = 30, **kwargs):
         """
         :keyword custom_header:
         :paramtype custom_header: str

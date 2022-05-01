@@ -24,6 +24,7 @@ def build_param_existing_key_request(*, user_agent_parameter: str, **kwargs: Any
     into your code flow.
 
     :keyword user_agent_parameter: Send a post request with header value "User-Agent": "overwrite".
+     Required.
     :paramtype user_agent_parameter: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -130,8 +131,9 @@ def build_param_integer_request(*, scenario: str, value: int, **kwargs: Any) -> 
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+     Required.
     :paramtype scenario: str
-    :keyword value: Send a post request with header values 1 or -2.
+    :keyword value: Send a post request with header values 1 or -2. Required.
     :paramtype value: int
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -161,6 +163,7 @@ def build_response_integer_request(*, scenario: str, **kwargs: Any) -> HttpReque
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+     Required.
     :paramtype scenario: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -190,8 +193,9 @@ def build_param_long_request(*, scenario: str, value: int, **kwargs: Any) -> Htt
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+     Required.
     :paramtype scenario: str
-    :keyword value: Send a post request with header values 105 or -2.
+    :keyword value: Send a post request with header values 105 or -2. Required.
     :paramtype value: long
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -221,6 +225,7 @@ def build_response_long_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+     Required.
     :paramtype scenario: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -250,8 +255,9 @@ def build_param_float_request(*, scenario: str, value: float, **kwargs: Any) -> 
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+     Required.
     :paramtype scenario: str
-    :keyword value: Send a post request with header values 0.07 or -3.0.
+    :keyword value: Send a post request with header values 0.07 or -3.0. Required.
     :paramtype value: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -281,6 +287,7 @@ def build_response_float_request(*, scenario: str, **kwargs: Any) -> HttpRequest
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+     Required.
     :paramtype scenario: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -310,8 +317,9 @@ def build_param_double_request(*, scenario: str, value: float, **kwargs: Any) ->
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+     Required.
     :paramtype scenario: str
-    :keyword value: Send a post request with header values 7e120 or -3.0.
+    :keyword value: Send a post request with header values 7e120 or -3.0. Required.
     :paramtype value: float
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -341,6 +349,7 @@ def build_response_double_request(*, scenario: str, **kwargs: Any) -> HttpReques
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
+     Required.
     :paramtype scenario: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -370,8 +379,9 @@ def build_param_bool_request(*, scenario: str, value: bool, **kwargs: Any) -> Ht
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "true" or "false".
+     Required.
     :paramtype scenario: str
-    :keyword value: Send a post request with header values true or false.
+    :keyword value: Send a post request with header values true or false. Required.
     :paramtype value: bool
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -401,6 +411,7 @@ def build_response_bool_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "true" or "false".
+     Required.
     :paramtype scenario: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -430,7 +441,7 @@ def build_param_string_request(*, scenario: str, value: Optional[str] = None, **
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
-     "empty".
+     "empty". Required.
     :paramtype scenario: str
     :keyword value: Send a post request with header values "The quick brown fox jumps over the lazy
      dog" or null or "". Default value is None.
@@ -464,7 +475,7 @@ def build_response_string_request(*, scenario: str, **kwargs: Any) -> HttpReques
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
-     "empty".
+     "empty". Required.
     :paramtype scenario: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -494,8 +505,9 @@ def build_param_date_request(*, scenario: str, value: datetime.date, **kwargs: A
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
+     Required.
     :paramtype scenario: str
-    :keyword value: Send a post request with header values "2010-01-01" or "0001-01-01".
+    :keyword value: Send a post request with header values "2010-01-01" or "0001-01-01". Required.
     :paramtype value: ~datetime.date
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -525,6 +537,7 @@ def build_response_date_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
+     Required.
     :paramtype scenario: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -554,9 +567,10 @@ def build_param_datetime_request(*, scenario: str, value: datetime.datetime, **k
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
+     Required.
     :paramtype scenario: str
     :keyword value: Send a post request with header values "2010-01-01T12:34:56Z" or
-     "0001-01-01T00:00:00Z".
+     "0001-01-01T00:00:00Z". Required.
     :paramtype value: ~datetime.datetime
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -586,6 +600,7 @@ def build_response_datetime_request(*, scenario: str, **kwargs: Any) -> HttpRequ
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
+     Required.
     :paramtype scenario: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -617,6 +632,7 @@ def build_param_datetime_rfc1123_request(
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
+     Required.
     :paramtype scenario: str
     :keyword value: Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon,
      01 Jan 0001 00:00:00 GMT". Default value is None.
@@ -651,6 +667,7 @@ def build_response_datetime_rfc1123_request(*, scenario: str, **kwargs: Any) -> 
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
+     Required.
     :paramtype scenario: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -678,9 +695,9 @@ def build_param_duration_request(*, scenario: str, value: datetime.timedelta, **
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword scenario: Send a post request with header values "scenario": "valid".
+    :keyword scenario: Send a post request with header values "scenario": "valid". Required.
     :paramtype scenario: str
-    :keyword value: Send a post request with header values "P123DT22H14M12.011S".
+    :keyword value: Send a post request with header values "P123DT22H14M12.011S". Required.
     :paramtype value: ~datetime.timedelta
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -709,7 +726,7 @@ def build_response_duration_request(*, scenario: str, **kwargs: Any) -> HttpRequ
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword scenario: Send a post request with header values "scenario": "valid".
+    :keyword scenario: Send a post request with header values "scenario": "valid". Required.
     :paramtype scenario: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -737,9 +754,9 @@ def build_param_byte_request(*, scenario: str, value: bytearray, **kwargs: Any) 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword scenario: Send a post request with header values "scenario": "valid".
+    :keyword scenario: Send a post request with header values "scenario": "valid". Required.
     :paramtype scenario: str
-    :keyword value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩".
+    :keyword value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩". Required.
     :paramtype value: bytearray
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -768,7 +785,7 @@ def build_response_byte_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword scenario: Send a post request with header values "scenario": "valid".
+    :keyword scenario: Send a post request with header values "scenario": "valid". Required.
     :paramtype scenario: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
@@ -798,7 +815,7 @@ def build_param_enum_request(*, scenario: str, value: Optional[str] = None, **kw
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
-     "empty".
+     "empty". Required.
     :paramtype scenario: str
     :keyword value: Send a post request with header values 'GREY'. Known values are: "White",
      "black", and "GREY". Default value is None.
@@ -832,7 +849,7 @@ def build_response_enum_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
     into your code flow.
 
     :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
-     "empty".
+     "empty". Required.
     :paramtype scenario: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to

@@ -94,7 +94,7 @@ class PetOperations:
     def get_by_pet_id(self, pet_id: str, **kwargs: Any) -> JSON:
         """get pet by id.
 
-        :param pet_id: Pet id.
+        :param pet_id: Pet id. Required.
         :type pet_id: str
         :return: JSON object
         :rtype: JSON

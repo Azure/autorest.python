@@ -98,7 +98,7 @@ class ImportOperations(object):
         # type: (...) -> JSON
         """Operation in operation group import, a reserved word.
 
-        :param parameter1: Pass in 'foo' to pass this test.
+        :param parameter1: Pass in 'foo' to pass this test. Required.
         :type parameter1: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON, or the result of cls(response)

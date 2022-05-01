@@ -101,7 +101,7 @@ class GroupOperations(object):
         # type: (...) -> _models.SampleResourceGroup
         """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
-        :param resource_group_name: Resource Group name 'testgroup101'.
+        :param resource_group_name: Resource Group name 'testgroup101'. Required.
         :type resource_group_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SampleResourceGroup, or the result of cls(response)

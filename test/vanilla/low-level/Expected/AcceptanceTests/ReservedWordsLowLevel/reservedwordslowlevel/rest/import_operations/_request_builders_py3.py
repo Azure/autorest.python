@@ -22,7 +22,7 @@ def build_operation_one_request(*, parameter1: str, **kwargs: Any) -> HttpReques
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword parameter1: Pass in 'foo' to pass this test.
+    :keyword parameter1: Pass in 'foo' to pass this test. Required.
     :paramtype parameter1: str
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
