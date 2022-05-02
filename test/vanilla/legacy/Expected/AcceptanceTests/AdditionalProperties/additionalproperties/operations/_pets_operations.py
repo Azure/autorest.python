@@ -218,7 +218,7 @@ class PetsOperations(object):
         :param create_parameters: Required.
         :type create_parameters: ~additionalproperties.models.PetAPTrue
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPTrue, or the result of cls(response)
+        :return: PetAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPTrue
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -277,7 +277,7 @@ class PetsOperations(object):
         :param create_parameters: Required.
         :type create_parameters: ~additionalproperties.models.CatAPTrue
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: CatAPTrue, or the result of cls(response)
+        :return: CatAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.CatAPTrue
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -336,7 +336,7 @@ class PetsOperations(object):
         :param create_parameters: Required.
         :type create_parameters: ~additionalproperties.models.PetAPObject
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPObject, or the result of cls(response)
+        :return: PetAPObject or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPObject
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -395,7 +395,7 @@ class PetsOperations(object):
         :param create_parameters: Required.
         :type create_parameters: ~additionalproperties.models.PetAPString
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPString, or the result of cls(response)
+        :return: PetAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPString
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -454,7 +454,7 @@ class PetsOperations(object):
         :param create_parameters: Required.
         :type create_parameters: ~additionalproperties.models.PetAPInProperties
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPInProperties, or the result of cls(response)
+        :return: PetAPInProperties or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInProperties
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -513,7 +513,7 @@ class PetsOperations(object):
         :param create_parameters: Required.
         :type create_parameters: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PetAPInPropertiesWithAPString, or the result of cls(response)
+        :return: PetAPInPropertiesWithAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :raises: ~azure.core.exceptions.HttpResponseError
         """

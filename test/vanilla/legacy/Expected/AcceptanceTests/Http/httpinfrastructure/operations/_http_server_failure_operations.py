@@ -158,7 +158,7 @@ class HttpServerFailureOperations(object):
         """Return 501 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -202,7 +202,7 @@ class HttpServerFailureOperations(object):
         """Return 501 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -251,7 +251,7 @@ class HttpServerFailureOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -310,7 +310,7 @@ class HttpServerFailureOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

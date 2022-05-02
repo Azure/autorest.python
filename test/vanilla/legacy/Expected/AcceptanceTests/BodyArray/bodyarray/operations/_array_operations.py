@@ -1637,7 +1637,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get null array value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of int, or the result of cls(response)
+        :return: list of int or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1685,7 +1685,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get invalid array [1, 2, 3.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of int, or the result of cls(response)
+        :return: list of int or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1733,7 +1733,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get empty array value [].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of int, or the result of cls(response)
+        :return: list of int or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1785,7 +1785,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :param array_body: Required.
         :type array_body: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1836,7 +1836,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get boolean array value [true, false, false, true].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of bool, or the result of cls(response)
+        :return: list of bool or the result of cls(response)
         :rtype: list[bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1888,7 +1888,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :param array_body: Required.
         :type array_body: list[bool]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1939,7 +1939,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get boolean array value [true, null, false].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of bool, or the result of cls(response)
+        :return: list of bool or the result of cls(response)
         :rtype: list[bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1987,7 +1987,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get boolean array value [true, 'boolean', false].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of bool, or the result of cls(response)
+        :return: list of bool or the result of cls(response)
         :rtype: list[bool]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2035,7 +2035,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get integer array value [1, -1, 3, 300].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of int, or the result of cls(response)
+        :return: list of int or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2087,7 +2087,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :param array_body: Required.
         :type array_body: list[int]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2138,7 +2138,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get integer array value [1, null, 0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of int, or the result of cls(response)
+        :return: list of int or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2186,7 +2186,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get integer array value [1, 'integer', 0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of int, or the result of cls(response)
+        :return: list of int or the result of cls(response)
         :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2234,7 +2234,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get integer array value [1, -1, 3, 300].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of long, or the result of cls(response)
+        :return: list of long or the result of cls(response)
         :rtype: list[long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2286,7 +2286,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :param array_body: Required.
         :type array_body: list[long]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2337,7 +2337,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get long array value [1, null, 0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of long, or the result of cls(response)
+        :return: list of long or the result of cls(response)
         :rtype: list[long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2385,7 +2385,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get long array value [1, 'integer', 0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of long, or the result of cls(response)
+        :return: list of long or the result of cls(response)
         :rtype: list[long]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2433,7 +2433,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get float array value [0, -0.01, 1.2e20].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of float, or the result of cls(response)
+        :return: list of float or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2485,7 +2485,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :param array_body: Required.
         :type array_body: list[float]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2536,7 +2536,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get float array value [0.0, null, -1.2e20].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of float, or the result of cls(response)
+        :return: list of float or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2584,7 +2584,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get boolean array value [1.0, 'number', 0.0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of float, or the result of cls(response)
+        :return: list of float or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2632,7 +2632,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get float array value [0, -0.01, 1.2e20].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of float, or the result of cls(response)
+        :return: list of float or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2684,7 +2684,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :param array_body: Required.
         :type array_body: list[float]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2735,7 +2735,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get float array value [0.0, null, -1.2e20].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of float, or the result of cls(response)
+        :return: list of float or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2783,7 +2783,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get boolean array value [1.0, 'number', 0.0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of float, or the result of cls(response)
+        :return: list of float or the result of cls(response)
         :rtype: list[float]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2831,7 +2831,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get string array value ['foo1', 'foo2', 'foo3'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of str, or the result of cls(response)
+        :return: list of str or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2883,7 +2883,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :param array_body: Required.
         :type array_body: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2934,7 +2934,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of FooEnum, or the result of cls(response)
+        :return: list of FooEnum or the result of cls(response)
         :rtype: list[str or ~bodyarray.models.FooEnum]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2986,7 +2986,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :param array_body: Required.
         :type array_body: list[str or ~bodyarray.models.FooEnum]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3037,7 +3037,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of Enum0, or the result of cls(response)
+        :return: list of Enum0 or the result of cls(response)
         :rtype: list[str or ~bodyarray.models.Enum0]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3089,7 +3089,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :param array_body: Required.
         :type array_body: list[str or ~bodyarray.models.Enum1]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3140,7 +3140,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get string array value ['foo', null, 'foo2'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of str, or the result of cls(response)
+        :return: list of str or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3188,7 +3188,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get string array value ['foo', 123, 'foo2'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of str, or the result of cls(response)
+        :return: list of str or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3237,7 +3237,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of str, or the result of cls(response)
+        :return: list of str or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3290,7 +3290,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :param array_body: Required.
         :type array_body: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3341,7 +3341,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of str, or the result of cls(response)
+        :return: list of str or the result of cls(response)
         :rtype: list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3389,7 +3389,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of date, or the result of cls(response)
+        :return: list of date or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3441,7 +3441,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :param array_body: Required.
         :type array_body: list[~datetime.date]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3492,7 +3492,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get date array value ['2012-01-01', null, '1776-07-04'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of date, or the result of cls(response)
+        :return: list of date or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3540,7 +3540,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get date array value ['2011-03-22', 'date'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of date, or the result of cls(response)
+        :return: list of date or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3589,7 +3589,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         '1492-10-12T10:15:01-08:00'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of datetime, or the result of cls(response)
+        :return: list of datetime or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3642,7 +3642,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :param array_body: Required.
         :type array_body: list[~datetime.datetime]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3693,7 +3693,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get date array value ['2000-12-01t00:00:01z', null].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of datetime, or the result of cls(response)
+        :return: list of datetime or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3741,7 +3741,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get date array value ['2000-12-01t00:00:01z', 'date-time'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of datetime, or the result of cls(response)
+        :return: list of datetime or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3790,7 +3790,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         'Wed, 12 Oct 1492 10:15:01 GMT'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of datetime, or the result of cls(response)
+        :return: list of datetime or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3843,7 +3843,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :param array_body: Required.
         :type array_body: list[~datetime.datetime]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3894,7 +3894,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of timedelta, or the result of cls(response)
+        :return: list of timedelta or the result of cls(response)
         :rtype: list[~datetime.timedelta]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3946,7 +3946,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :param array_body: Required.
         :type array_body: list[~datetime.timedelta]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -3998,7 +3998,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         in base64.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of bytearray, or the result of cls(response)
+        :return: list of bytearray or the result of cls(response)
         :rtype: list[bytearray]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4051,7 +4051,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :param array_body: Required.
         :type array_body: list[bytearray]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4102,7 +4102,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of bytearray, or the result of cls(response)
+        :return: list of bytearray or the result of cls(response)
         :rtype: list[bytearray]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4151,7 +4151,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         the items base64url encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of bytes, or the result of cls(response)
+        :return: list of bytes or the result of cls(response)
         :rtype: list[bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4199,7 +4199,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get array of complex type null value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of Product, or the result of cls(response)
+        :return: list of Product or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4247,7 +4247,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get empty array of complex type [].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of Product, or the result of cls(response)
+        :return: list of Product or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4296,7 +4296,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         'string': '6'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of Product, or the result of cls(response)
+        :return: list of Product or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4345,7 +4345,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         'string': '6'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of Product, or the result of cls(response)
+        :return: list of Product or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4394,7 +4394,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         {'integer': 5, 'string': '6'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of Product, or the result of cls(response)
+        :return: list of Product or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4447,7 +4447,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :param array_body: Required.
         :type array_body: list[~bodyarray.models.Product]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4498,7 +4498,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get a null array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of list of str, or the result of cls(response)
+        :return: list of list of str or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4546,7 +4546,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get an empty array [].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of list of str, or the result of cls(response)
+        :return: list of list of str or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4594,7 +4594,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of list of str, or the result of cls(response)
+        :return: list of list of str or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4642,7 +4642,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get an array of array of strings [['1', '2', '3'], [], ['7', '8', '9']].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of list of str, or the result of cls(response)
+        :return: list of list of str or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4690,7 +4690,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of list of str, or the result of cls(response)
+        :return: list of list of str or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4742,7 +4742,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :param array_body: Required.
         :type array_body: list[list[str]]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4793,7 +4793,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get an array of Dictionaries with value null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of dict mapping str to str, or the result of cls(response)
+        :return: list of dict mapping str to str or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4841,7 +4841,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         """Get an array of Dictionaries of type <string, string> with value [].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of dict mapping str to str, or the result of cls(response)
+        :return: list of dict mapping str to str or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4890,7 +4890,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of dict mapping str to str, or the result of cls(response)
+        :return: list of dict mapping str to str or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4939,7 +4939,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         'three'}, {}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of dict mapping str to str, or the result of cls(response)
+        :return: list of dict mapping str to str or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -4988,7 +4988,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of dict mapping str to str, or the result of cls(response)
+        :return: list of dict mapping str to str or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -5041,7 +5041,7 @@ class ArrayOperations(object):  # pylint: disable=too-many-public-methods
         :param array_body: Required.
         :type array_body: list[dict[str, str]]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

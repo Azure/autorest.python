@@ -524,7 +524,7 @@ class HttpSuccessOperations(object):
         """Return 200 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -568,7 +568,7 @@ class HttpSuccessOperations(object):
         """Get 200 success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool, or the result of cls(response)
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -616,7 +616,7 @@ class HttpSuccessOperations(object):
         """Options 200 success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool, or the result of cls(response)
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -669,7 +669,7 @@ class HttpSuccessOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -728,7 +728,7 @@ class HttpSuccessOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -787,7 +787,7 @@ class HttpSuccessOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -846,7 +846,7 @@ class HttpSuccessOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -905,7 +905,7 @@ class HttpSuccessOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -964,7 +964,7 @@ class HttpSuccessOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1023,7 +1023,7 @@ class HttpSuccessOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1082,7 +1082,7 @@ class HttpSuccessOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1141,7 +1141,7 @@ class HttpSuccessOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1200,7 +1200,7 @@ class HttpSuccessOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1254,7 +1254,7 @@ class HttpSuccessOperations(object):
         """Return 204 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1303,7 +1303,7 @@ class HttpSuccessOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1362,7 +1362,7 @@ class HttpSuccessOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1421,7 +1421,7 @@ class HttpSuccessOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1480,7 +1480,7 @@ class HttpSuccessOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1534,7 +1534,7 @@ class HttpSuccessOperations(object):
         """Return 404 status code.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

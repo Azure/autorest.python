@@ -201,7 +201,7 @@ class MediaTypesClientOperationsMixin(object):
          value is "application/json".
         :paramtype content_type: str or ~mediatypes.models.ContentType
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -277,7 +277,7 @@ class MediaTypesClientOperationsMixin(object):
          value is "application/json".
         :paramtype content_type: str or ~mediatypes.models.ContentType
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -344,7 +344,7 @@ class MediaTypesClientOperationsMixin(object):
         :param input: Input parameter. Default value is None.
         :type input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -406,7 +406,7 @@ class MediaTypesClientOperationsMixin(object):
          "application/json" or "application/octet-stream". Default value is None.
         :paramtype content_type: str or ~mediatypes.models.ContentType1
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -470,7 +470,7 @@ class MediaTypesClientOperationsMixin(object):
          "application/json".
         :paramtype content_type: str or ~mediatypes.models.ContentType1
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -531,7 +531,7 @@ class MediaTypesClientOperationsMixin(object):
          or "application/json". Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """

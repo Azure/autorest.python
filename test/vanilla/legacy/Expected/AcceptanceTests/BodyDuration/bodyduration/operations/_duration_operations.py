@@ -156,7 +156,7 @@ class DurationOperations(object):
         """Get null duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: timedelta or None, or the result of cls(response)
+        :return: timedelta or None or the result of cls(response)
         :rtype: ~datetime.timedelta or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -208,7 +208,7 @@ class DurationOperations(object):
         :param duration_body: duration body. Required.
         :type duration_body: ~datetime.timedelta
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -259,7 +259,7 @@ class DurationOperations(object):
         """Get a positive duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: timedelta, or the result of cls(response)
+        :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -307,7 +307,7 @@ class DurationOperations(object):
         """Get an invalid duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: timedelta, or the result of cls(response)
+        :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.exceptions.HttpResponseError
         """

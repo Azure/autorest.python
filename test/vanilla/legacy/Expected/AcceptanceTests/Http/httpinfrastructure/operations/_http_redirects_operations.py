@@ -437,7 +437,7 @@ class HttpRedirectsOperations(object):
         """Return 300 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -485,7 +485,7 @@ class HttpRedirectsOperations(object):
         """Return 300 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of str, or the result of cls(response)
+        :return: list of str or the result of cls(response)
         :rtype: list[str] or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -538,7 +538,7 @@ class HttpRedirectsOperations(object):
         """Return 301 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -586,7 +586,7 @@ class HttpRedirectsOperations(object):
         """Return 301 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -640,7 +640,7 @@ class HttpRedirectsOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -697,7 +697,7 @@ class HttpRedirectsOperations(object):
         """Return 302 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -745,7 +745,7 @@ class HttpRedirectsOperations(object):
         """Return 302 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -799,7 +799,7 @@ class HttpRedirectsOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -862,7 +862,7 @@ class HttpRedirectsOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -920,7 +920,7 @@ class HttpRedirectsOperations(object):
         """Redirect with 307, resulting in a 200 success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -968,7 +968,7 @@ class HttpRedirectsOperations(object):
         """Redirect get with 307, resulting in a 200 success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1016,7 +1016,7 @@ class HttpRedirectsOperations(object):
         """options redirected with 307, resulting in a 200 after redirect.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1069,7 +1069,7 @@ class HttpRedirectsOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1132,7 +1132,7 @@ class HttpRedirectsOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1195,7 +1195,7 @@ class HttpRedirectsOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1258,7 +1258,7 @@ class HttpRedirectsOperations(object):
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

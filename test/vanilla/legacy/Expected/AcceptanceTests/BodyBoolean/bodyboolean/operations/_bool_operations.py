@@ -206,7 +206,7 @@ class BoolOperations(object):
         """Get true Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool, or the result of cls(response)
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -257,7 +257,7 @@ class BoolOperations(object):
          in unsupported behavior.
         :paramtype bool_body: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -307,7 +307,7 @@ class BoolOperations(object):
         """Get false Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool, or the result of cls(response)
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -358,7 +358,7 @@ class BoolOperations(object):
          in unsupported behavior.
         :paramtype bool_body: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -408,7 +408,7 @@ class BoolOperations(object):
         """Get null Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool or None, or the result of cls(response)
+        :return: bool or None or the result of cls(response)
         :rtype: bool or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -456,7 +456,7 @@ class BoolOperations(object):
         """Get invalid Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool, or the result of cls(response)
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """

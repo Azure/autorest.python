@@ -81,7 +81,7 @@ class StorageAccountsOperations:
          "application/json" or "text/json". Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: CheckNameAvailabilityResult, or the result of cls(response)
+        :return: CheckNameAvailabilityResult or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -281,7 +281,7 @@ class StorageAccountsOperations:
          lower-case letters only. Required.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -337,7 +337,7 @@ class StorageAccountsOperations:
          lower-case letters only. Required.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageAccount, or the result of cls(response)
+        :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -413,7 +413,7 @@ class StorageAccountsOperations:
          "application/json" or "text/json". Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageAccount, or the result of cls(response)
+        :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -471,7 +471,7 @@ class StorageAccountsOperations:
         :param account_name: The name of the storage account. Required.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageAccountKeys, or the result of cls(response)
+        :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -689,7 +689,7 @@ class StorageAccountsOperations:
          "application/json" or "text/json". Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageAccountKeys, or the result of cls(response)
+        :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
         :raises: ~azure.core.exceptions.HttpResponseError
         """
