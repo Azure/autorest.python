@@ -62,7 +62,7 @@ class ApiVersionLocalOperations:
          is "2.0". Note that overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -110,7 +110,7 @@ class ApiVersionLocalOperations:
          result in no serialized parameter. Default value is None.
         :type api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -155,7 +155,7 @@ class ApiVersionLocalOperations:
          is "2.0". Note that overriding this default value may result in unsupported behavior.
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -202,7 +202,7 @@ class ApiVersionLocalOperations:
          behavior.
         :paramtype api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

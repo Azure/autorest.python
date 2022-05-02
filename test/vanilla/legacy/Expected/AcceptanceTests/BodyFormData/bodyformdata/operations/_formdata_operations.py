@@ -147,7 +147,7 @@ class FormdataOperations(object):
          Required.
         :type file_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
+        :return: IO or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -208,7 +208,7 @@ class FormdataOperations(object):
         :param file_content: File to upload. Required.
         :type file_content: IO
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
+        :return: IO or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -267,7 +267,7 @@ class FormdataOperations(object):
         :param file_content: Files to upload. Required.
         :type file_content: list[IO]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
+        :return: IO or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """

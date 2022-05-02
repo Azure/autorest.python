@@ -201,7 +201,7 @@ class DictionaryOperations(object):
         """Get complex types with dictionary property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper, or the result of cls(response)
+        :return: DictionaryWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -253,7 +253,7 @@ class DictionaryOperations(object):
         :param default_program: Dictionary of :code:`<string>`. Default value is None.
         :type default_program: dict[str, str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -305,7 +305,7 @@ class DictionaryOperations(object):
         """Get complex types with dictionary property which is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper, or the result of cls(response)
+        :return: DictionaryWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -357,7 +357,7 @@ class DictionaryOperations(object):
         :param default_program: Dictionary of :code:`<string>`. Default value is None.
         :type default_program: dict[str, str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -409,7 +409,7 @@ class DictionaryOperations(object):
         """Get complex types with dictionary property which is null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper, or the result of cls(response)
+        :return: DictionaryWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -457,7 +457,7 @@ class DictionaryOperations(object):
         """Get complex types with dictionary property while server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DictionaryWrapper, or the result of cls(response)
+        :return: DictionaryWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """

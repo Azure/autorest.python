@@ -58,7 +58,7 @@ class OperationGroupTwoOperations:
          value is "application/json".
         :paramtype content_type: str or ~multiapidataplane.v3.models.ContentType
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -126,7 +126,7 @@ class OperationGroupTwoOperations:
         """TestFive should be in OperationGroupTwoOperations.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

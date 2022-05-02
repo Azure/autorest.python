@@ -103,7 +103,7 @@ class HttpSuccessOperations(object):
         """Return 200 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool, or the result of cls(response)
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -147,7 +147,7 @@ class HttpSuccessOperations(object):
         """Return 204 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool, or the result of cls(response)
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -191,7 +191,7 @@ class HttpSuccessOperations(object):
         """Return 404 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: bool, or the result of cls(response)
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """

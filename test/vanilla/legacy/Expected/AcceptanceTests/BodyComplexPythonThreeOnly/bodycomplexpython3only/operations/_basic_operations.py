@@ -149,7 +149,7 @@ class BasicOperations:
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Basic, or the result of cls(response)
+        :return: Basic or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -198,7 +198,7 @@ class BasicOperations:
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Required.
         :type complex_body: ~bodycomplexpython3only.models.Basic
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -248,7 +248,7 @@ class BasicOperations:
         """Get a basic complex type that is invalid for the local strong type.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Basic, or the result of cls(response)
+        :return: Basic or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -293,7 +293,7 @@ class BasicOperations:
         """Get a basic complex type that is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Basic, or the result of cls(response)
+        :return: Basic or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -338,7 +338,7 @@ class BasicOperations:
         """Get a basic complex type whose properties are null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Basic, or the result of cls(response)
+        :return: Basic or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -383,7 +383,7 @@ class BasicOperations:
         """Get a basic complex type while the server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Basic, or the result of cls(response)
+        :return: Basic or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.Basic
         :raises: ~azure.core.exceptions.HttpResponseError
         """

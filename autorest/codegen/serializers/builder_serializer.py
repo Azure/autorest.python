@@ -788,7 +788,7 @@ class _OperationBaseSerializer(
     def _response_docstring_text_template(  # pylint: disable=no-self-use, unused-argument
         self, builder
     ) -> str:
-        cls_str = f",{self._cls_docstring_rtype}" if self._cls_docstring_rtype else ""
+        cls_str = self._cls_docstring_rtype
         return "{}" + cls_str
 
     def response_docstring(self, builder) -> List[str]:

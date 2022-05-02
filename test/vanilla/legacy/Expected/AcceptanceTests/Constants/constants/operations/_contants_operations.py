@@ -447,7 +447,7 @@ class ContantsOperations(object):
         :param input:  Default value is None.
         :type input: str or ~constants.models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -497,7 +497,7 @@ class ContantsOperations(object):
         :param input:  Default value is "value1".
         :type input: str or ~constants.models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -547,7 +547,7 @@ class ContantsOperations(object):
         :param input: Known values are "value1" or None. Default value is "value1".
         :type input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -597,7 +597,7 @@ class ContantsOperations(object):
         :param input: Known values are "value1" or None. Default value is "value1".
         :type input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -647,7 +647,7 @@ class ContantsOperations(object):
         :param input: Required.
         :type input: str or ~constants.models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -697,7 +697,7 @@ class ContantsOperations(object):
         :param input:  Default value is "value1".
         :type input: str or ~constants.models.NoModelAsStringRequiredTwoValueDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -746,7 +746,7 @@ class ContantsOperations(object):
          in unsupported behavior.
         :paramtype input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -796,7 +796,7 @@ class ContantsOperations(object):
          in unsupported behavior.
         :paramtype input: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -847,7 +847,7 @@ class ContantsOperations(object):
         :param input:  Default value is None.
         :type input: str or ~constants.models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -897,7 +897,7 @@ class ContantsOperations(object):
         :param input:  Default value is "value1".
         :type input: str or ~constants.models.ModelAsStringNoRequiredTwoValueDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -947,7 +947,7 @@ class ContantsOperations(object):
         :param input:  Default value is None.
         :type input: str or ~constants.models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -997,7 +997,7 @@ class ContantsOperations(object):
         :param input:  Default value is "value1".
         :type input: str or ~constants.models.ModelAsStringNoRequiredOneValueDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1047,7 +1047,7 @@ class ContantsOperations(object):
         :param input: Required.
         :type input: str or ~constants.models.ModelAsStringRequiredTwoValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1097,7 +1097,7 @@ class ContantsOperations(object):
         :param input:  Default value is "value1".
         :type input: str or ~constants.models.ModelAsStringRequiredTwoValueDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1147,7 +1147,7 @@ class ContantsOperations(object):
         :param input: Required.
         :type input: str or ~constants.models.ModelAsStringRequiredOneValueNoDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1197,7 +1197,7 @@ class ContantsOperations(object):
         :param input:  Default value is "value1".
         :type input: str or ~constants.models.ModelAsStringRequiredOneValueDefaultOpEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1242,7 +1242,7 @@ class ContantsOperations(object):
         parameters.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

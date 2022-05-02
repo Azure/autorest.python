@@ -110,7 +110,7 @@ class AutoRestReportServiceOperationsMixin(object):
          distinguish the generated reports. Default value is None.
         :type qualifier: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to int, or the result of cls(response)
+        :return: dict mapping str to int or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -165,7 +165,7 @@ class AutoRestReportServiceOperationsMixin(object):
          distinguish the generated reports. Default value is None.
         :type qualifier: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: dict mapping str to int, or the result of cls(response)
+        :return: dict mapping str to int or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
