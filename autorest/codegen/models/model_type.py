@@ -90,14 +90,16 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
     def __repr__(self) -> str:
         return f"<{self.__class__.__name__} {self.name}>"
 
+    @property
     def xml_serialization_ctxt(self) -> Optional[str]:
         # object schema contains _xml_map, they don't need serialization context
         return ""
 
+    @property
     def xml_map_content(self) -> Optional[str]:
         # This is NOT an error on the super call, we use the serialization context for "xml_map",
         # but we don't want to write a serialization context for an object.
-        return super().xml_serialization_ctxt()
+        return super().xml_serialization_ctxt
 
     def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
         if self._created_json_template_representation:

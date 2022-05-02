@@ -87,7 +87,7 @@ class EnumType(BaseType):
         if len(possible_values) == 1:
             return possible_values[0]
         if len(possible_values) == 2:
-            possible_values_str = " or ".join(possible_values)
+            possible_values_str = " and ".join(possible_values)
         else:
             possible_values_str = ", ".join(
                 possible_values[: len(possible_values) - 1]

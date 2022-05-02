@@ -41,6 +41,7 @@ class BaseType(BaseModel, ABC):
     def is_xml(self) -> bool:
         return bool(self.xml_metadata)
 
+    @property
     def xml_serialization_ctxt(self) -> Optional[str]:
         """Return the serialization context in case this schema is used in an operation."""
         attrs_list = []

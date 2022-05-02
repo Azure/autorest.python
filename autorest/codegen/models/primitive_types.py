@@ -202,21 +202,21 @@ class NumberType(PrimitiveType):
         return [x for x in validation_constraints if x is not None]
 
     @property
-    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
-        validation_map: Dict[str, Union[bool, int, str]] = {}
+    def validation(self) -> Optional[Dict[str, Union[bool, int, str]]]:
+        validation: Dict[str, Union[bool, int, str]] = {}
         if self.maximum is not None:
             if self.exclusive_maximum:
-                validation_map["maximum_ex"] = self.maximum
+                validation["maximum_ex"] = self.maximum
             else:
-                validation_map["maximum"] = self.maximum
+                validation["maximum"] = self.maximum
         if self.minimum is not None:
             if self.exclusive_minimum:
-                validation_map["minimum_ex"] = self.minimum
+                validation["minimum_ex"] = self.minimum
             else:
-                validation_map["minimum"] = self.minimum
+                validation["minimum"] = self.minimum
         if self.multiple:
-            validation_map["multiple"] = self.multiple
-        return validation_map or None
+            validation["multiple"] = self.multiple
+        return validation or None
 
 
     @property
@@ -292,16 +292,16 @@ class StringType(PrimitiveType):
         return [x for x in validation_constraints if x is not None]
 
     @property
-    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
-        validation_map: Dict[str, Union[bool, int, str]] = {}
+    def validation(self) -> Optional[Dict[str, Union[bool, int, str]]]:
+        validation: Dict[str, Union[bool, int, str]] = {}
         if self.max_length is not None:
-            validation_map["max_length"] = self.max_length
+            validation["max_length"] = self.max_length
         if self.min_length is not None:
-            validation_map["min_length"] = self.min_length
+            validation["min_length"] = self.min_length
         if self.pattern:
             # https://github.com/Azure/autorest.python/issues/407
-            validation_map["pattern"] = RawString(self.pattern)  # type: ignore
-        return validation_map or None
+            validation["pattern"] = RawString(self.pattern)  # type: ignore
+        return validation or None
 
     def get_declaration(self, value) -> str:
         return f'"{value}"'

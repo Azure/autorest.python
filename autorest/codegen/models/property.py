@@ -33,10 +33,13 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.flattened_names: List[str] = yaml_data.get("flattenedNames", [])
 
     def description(self, *, is_operation_file: bool) -> str:
+        from .model_type import ModelType
         description = self.yaml_data["description"]
         if not (self.optional or self.client_default_value):
             description = add_to_description(description, "Required.")
-        return add_to_description(description, self.type.description(is_operation_file=is_operation_file))
+        # don't want model type documentation as part of property doc
+        type_description = "" if isinstance(self.type, ModelType) else self.type.description(is_operation_file=is_operation_file)
+        return add_to_description(description, type_description)
 
     @property
     def client_default_value_declaration(self) -> str:
@@ -45,12 +48,6 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.type.client_default_value is not None:
             return self.type.get_declaration(self.type.client_default_value)
         return "None"
-
-    @property
-    def xml_metadata(self) -> str:
-        if self.type.xml_serialization_ctxt():
-            return f", 'xml': {{{self.type.xml_serialization_ctxt()}}}"
-        return ""
 
     @property
     def constant(self) -> bool:
@@ -100,7 +97,11 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             attribute_key = ".".join(n.replace(".", "\\\\.") for n in self.flattened_names)
         else:
             attribute_key = self.rest_api_name.replace(".", "\\\\.")
-        return f'"{self.client_name}": {{"key": "{attribute_key}", "type": "{self.serialization_type}"}},'
+        if self.type.xml_serialization_ctxt:
+            xml_metadata = f", 'xml': {{{self.type.xml_serialization_ctxt}}}"
+        else:
+            xml_metadata = ""
+        return f'"{self.client_name}": {{"key": "{attribute_key}", "type": "{self.serialization_type}"{xml_metadata}}},'
 
     def imports(self) -> FileImport:
         file_import = self.type.imports(is_operation_file=False)

@@ -49,9 +49,9 @@
         '{{ model.discriminator.client_name }}': {{ str(model.discriminated_subtypes) }}
     }
     {% endif %}
-    {% if model.xml_map_content() %}
+    {% if model.xml_map_content %}
     _xml_map = {
-        {{ model.xml_map_content() }}
+        {{ model.xml_map_content }}
     }
     {% endif %}
     {% if (model.properties | selectattr('constant') | first) is defined %}

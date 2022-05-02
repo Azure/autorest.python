@@ -161,7 +161,7 @@ def update_primitive(type_group: str, yaml_data: Dict[str, Any]) -> Dict[str, An
     if type_group in ("integer", "number"):
         return update_number_type(yaml_data)
     if type_group in ("string", "uuid", "uri"):
-        if any(r in yaml_data for r in ("maxLength", "minLength", "pattern", "defaultValue")):
+        if any(r in yaml_data for r in ("maxLength", "minLength", "pattern", "defaultValue", "serialization")):
             base = _update_type_base("string", yaml_data)
             base.update({
                 "maxLength": yaml_data.get("maxLength"),

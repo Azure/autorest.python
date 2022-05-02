@@ -20,9 +20,9 @@ class ListType(BaseType):
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.element_type = element_type
-        self.max_items = yaml_data.get("maxItems")
-        self.min_items = yaml_data.get("minItems")
-        self.unique_items = yaml_data.get("uniqueItems")
+        self.max_items: Optional[int] = yaml_data.get("maxItems")
+        self.min_items: Optional[int] = yaml_data.get("minItems")
+        self.unique_items: bool = yaml_data.get("uniqueItems", False)
 
     @property
     def serialization_type(self) -> str:
@@ -39,9 +39,10 @@ class ListType(BaseType):
     def description(self, *, is_operation_file: bool) -> str:
         return "" if is_operation_file else self.yaml_data.get("description", "")
 
+    @property
     def xml_serialization_ctxt(self) -> Optional[str]:
         attrs_list = []
-        base_xml_map = super().xml_serialization_ctxt()
+        base_xml_map = super().xml_serialization_ctxt
         if base_xml_map:
             attrs_list.append(base_xml_map)
 
@@ -75,16 +76,16 @@ class ListType(BaseType):
         return f"list of {self.element_type.docstring_text}"
 
     @property
-    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
-        validation_map: Dict[str, Union[bool, int, str]] = {}
+    def validation(self) -> Optional[Dict[str, Union[bool, int, str]]]:
+        validation: Dict[str, Union[bool, int, str]] = {}
         if self.max_items:
-            validation_map["max_items"] = self.max_items
-            validation_map["min_items"] = self.min_items or 0
+            validation["max_items"] = self.max_items
+            validation["min_items"] = self.min_items or 0
         if self.min_items:
-            validation_map["min_items"] = self.min_items
+            validation["min_items"] = self.min_items
         if self.unique_items:
-            validation_map["unique"] = True
-        return validation_map or None
+            validation["unique"] = True
+        return validation or None
 
     def get_json_template_representation(self, *, optional: bool = True, client_default_value_declaration: Optional[str] = None, description: Optional[str] = None) -> Any:
         return [self.element_type.get_json_template_representation(

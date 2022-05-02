@@ -53,10 +53,10 @@ class DictionaryType(BaseType):
     def docstring_text(self) -> str:
         return f"dict mapping str to {self.element_type.docstring_text}"
 
+    @property
     def xml_serialization_ctxt(self) -> Optional[str]:
-        raise NotImplementedError(
-            "Dictionary type does not support XML serialization."
-        )
+        """No serialization ctxt for dictionaries"""
+        return None
 
     @property
     def docstring_type(self) -> str:

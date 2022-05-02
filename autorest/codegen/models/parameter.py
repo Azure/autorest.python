@@ -234,7 +234,7 @@ class Parameter(_ParameterBase):
 
     @property
     def xml_serialization_ctxt(self) -> str:
-        return self.type.xml_serialization_ctxt() or ""
+        return self.type.xml_serialization_ctxt or ""
 
     @property
     def method_location(self) -> ParameterMethodLocation:

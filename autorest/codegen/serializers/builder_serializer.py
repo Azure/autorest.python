@@ -537,26 +537,48 @@ class OperationSerializer(
             ":raises: ~azure.core.exceptions.HttpResponseError",
         ]
 
+    def _serialize_body_parameter(
+        self, builder: Operation
+    ) -> List[str]:
+        """We need to serialize params if they're not meant to be streamed in. This function serializes the body params that need to be serialized."""
+        retval: List[str] = []
+        body_param = cast(BodyParameter, builder.parameters.body_parameter)
+        body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
+        send_xml = builder.parameters.body_parameter.type.is_xml
+        xml_serialization_ctxt = body_param.type.xml_serialization_ctxt if send_xml else None
+        ser_ctxt_name = "serialization_ctxt"
+        if xml_serialization_ctxt and self.code_model.options["models_mode"]:
+            retval.append(f'{ser_ctxt_name} = {{"xml": {{{xml_serialization_ctxt}}}}}')
+        if self.code_model.options["models_mode"]:
+            is_xml_cmd = ", is_xml=True" if send_xml else ""
+            serialization_ctxt_cmd = f", {ser_ctxt_name}={ser_ctxt_name}" if xml_serialization_ctxt else ""
+            create_body_call = (
+                f"_{body_kwarg_name} = self._serialize.body({body_param.client_name}, "
+                f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
+            )
+        else:
+            create_body_call = f"_{body_kwarg_name} = {body_param.client_name}"
+        if body_param.optional:
+            retval.append(f"if {body_param.client_name} is not None:")
+            retval.append("    " + create_body_call)
+            retval.append("else:")
+            retval.append(f"    _{body_kwarg_name} = None")
+        else:
+            retval.append(create_body_call)
+        return retval
+
     def _create_body_parameter(
         self,
         builder: Operation,
     ) -> List[str]:
+        """Create the body parameter before we pass it as either json or content to the request builder"""
         retval = []
         body_param = cast(BodyParameter, builder.parameters.body_parameter)
-        if builder.request_builder.parameters.body_parameter.client_name == "content":
+        body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
+        if body_kwarg_name == "content" and not body_param.type.is_xml:
             retval.append(f"_content = {body_param.client_name}")
         else:
-            if self.code_model.options["models_mode"]:
-                create_body_call = f"_json = self._serialize.body({body_param.client_name}, '{body_param.type.serialization_type}')"
-            else:
-                create_body_call = f"_json = {body_param.client_name}"
-            if body_param.optional:
-                retval.append(f"if {body_param.client_name} is not None:")
-                retval.append("    " + create_body_call)
-                retval.append("else:")
-                retval.append(f"    _json = None")
-            else:
-                retval.append(create_body_call)
+            retval.extend(self._serialize_body_parameter(builder))
         return retval
 
     def _call_request_builder_helper(  # pylint: disable=too-many-statements
