@@ -11,7 +11,7 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class OperationResultStatus(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """The status of the request"""
+    """The status of the request."""
 
     SUCCEEDED = "Succeeded"
     FAILED = "Failed"
@@ -27,6 +27,7 @@ class OperationResultStatus(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
 
 class ProductPropertiesProvisioningStateValues(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """ProductPropertiesProvisioningStateValues."""
 
     SUCCEEDED = "Succeeded"
     FAILED = "Failed"
@@ -42,6 +43,7 @@ class ProductPropertiesProvisioningStateValues(str, Enum, metaclass=CaseInsensit
 
 
 class SubProductPropertiesProvisioningStateValues(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """SubProductPropertiesProvisioningStateValues."""
 
     SUCCEEDED = "Succeeded"
     FAILED = "Failed"

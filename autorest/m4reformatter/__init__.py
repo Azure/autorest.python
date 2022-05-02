@@ -302,7 +302,6 @@ def update_response(
             int(code) if code != "default" else "default"
             for code in yaml_data["protocol"]["http"]["statusCodes"]
         ],
-        "isError": any(e for e in operation_group_yaml_data.get("exceptions", []) if id(e) == id(yaml_data)),
         "type": type,
         "nullable": yaml_data.get("nullable", False)
     }
@@ -377,7 +376,7 @@ class M4Reformatter(YamlUpdatePlugin):
             "parameters": self.update_parameters(yaml_data, body_parameter, in_overload=is_overload, in_overriden=in_overriden),
             "bodyParameter": body_parameter,
             "responses": [update_response(yaml_data, r) for r in yaml_data.get("responses", [])],
-            "exceptions": [update_response(yaml_data, e) for e in yaml_data.get("exceptions", [])],
+            "exceptions": [update_response(yaml_data, e) for e in yaml_data.get("exceptions", []) if not (e.get("schema") and e["schema"]["language"]["default"]["name"] == "CloudError")],
             "groupName": group_name,
             "discriminator": "operation",
             "isOverload": is_overload,
@@ -759,8 +758,11 @@ class M4Reformatter(YamlUpdatePlugin):
     def update_yaml(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         """Convert in place the YAML str."""
         # First we update the types, so we can access for when we're creating parameters etc.
-        for types in yaml_data["schemas"].values():
+        for type_group, types in yaml_data["schemas"].items():
             for t in types:
+                if type_group == "objects" and t["language"]["default"]["name"] == "CloudError":
+                    # we don't generate cloud error
+                    continue
                 update_type(t)
         return {
             "client": self.update_client(yaml_data),
