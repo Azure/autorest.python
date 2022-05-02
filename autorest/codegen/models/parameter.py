@@ -46,6 +46,7 @@ class _ParameterBase(BaseModel, abc.ABC):
         type: BaseType,
     ) -> None:
         super().__init__(yaml_data, code_model)
+        self.rest_api_name: str = yaml_data["restApiName"]
         self.client_name: str = self.yaml_data["clientName"]
         self.optional: bool = self.yaml_data["optional"]
         self.location: ParameterLocation = self.yaml_data["location"]
@@ -184,6 +185,12 @@ class _MultipartBodyParameter(BodyParameter, Generic[EntryBodyParameterType]):
         super().__init__(yaml_data, code_model, type)
         self.entries = entries
 
+    @property
+    def in_method_signature(self) -> bool:
+        # Right now, only legacy generates with multipart bodies
+        # and legacy generates with the multipart body arguments splatted out
+        return False
+
 class MultipartBodyParameter(_MultipartBodyParameter[BodyParameter]):
 
     @classmethod
@@ -206,7 +213,7 @@ class Parameter(_ParameterBase):
         type: BaseType,
     ) -> None:
         super().__init__(yaml_data, code_model, type=type)
-        self.rest_api_name: str = yaml_data["restApiName"]
+
         self.implementation: str = yaml_data["implementation"]
         self.skip_url_encoding: bool = self.yaml_data.get("skipUrlEncoding", False)
         self.explode: bool = self.yaml_data.get("explode", False)

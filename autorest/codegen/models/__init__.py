@@ -32,7 +32,7 @@ from .constant_type import ConstantType
 from .imports import FileImport, ImportType, TypingSection
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
-from .parameter import Parameter, ParameterMethodLocation, ParameterLocation, BodyParameter, ParameterDelimeter
+from .parameter import Parameter, ParameterMethodLocation, ParameterLocation, BodyParameter, ParameterDelimeter, MultipartBodyParameter
 from .operation import Operation, OverloadedOperation, OperationBase
 from .property import Property
 from .operation_group import OperationGroup

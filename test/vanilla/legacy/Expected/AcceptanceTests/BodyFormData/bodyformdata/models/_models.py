@@ -6,8 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core.exceptions import HttpResponseError
+from typing import TYPE_CHECKING
+
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    import __init__ as _models
 
 
 class Error(msrest.serialization.Model):
@@ -41,9 +46,9 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar file_content: Required. File to upload.
+    :ivar file_content: File to upload. Required.
     :vartype file_content: IO
-    :ivar file_name: Required. File name to upload. Name has to be spelled exactly as written here.
+    :ivar file_name: File name to upload. Name has to be spelled exactly as written here. Required.
     :vartype file_name: str
     """
 
@@ -59,10 +64,10 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
 
     def __init__(self, **kwargs):
         """
-        :keyword file_content: Required. File to upload.
+        :keyword file_content: File to upload. Required.
         :paramtype file_content: IO
-        :keyword file_name: Required. File name to upload. Name has to be spelled exactly as written
-         here.
+        :keyword file_name: File name to upload. Name has to be spelled exactly as written here.
+         Required.
         :paramtype file_name: str
         """
         super(Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema, self).__init__(
@@ -77,7 +82,7 @@ class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDa
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar file_content: Required. Files to upload.
+    :ivar file_content: Files to upload. Required.
     :vartype file_content: list[IO]
     """
 
@@ -91,7 +96,7 @@ class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDa
 
     def __init__(self, **kwargs):
         """
-        :keyword file_content: Required. Files to upload.
+        :keyword file_content: Files to upload. Required.
         :paramtype file_content: list[IO]
         """
         super(Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema, self).__init__(

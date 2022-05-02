@@ -45,7 +45,7 @@ class RequestBuilderMultipartBodyParameter(_MultipartBodyParameter[RequestBuilde
 
     @property
     def name_in_high_level_operation(self) -> str:
-        return self.client_name
+        return f"_{self.client_name}"
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], code_model: "CodeModel") -> "RequestBuilderMultipartBodyParameter":

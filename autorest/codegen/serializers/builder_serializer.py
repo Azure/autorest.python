@@ -29,6 +29,7 @@ from ..models import (
     OverloadedRequestBuilder,
     ConstantType,
     BaseType,
+    MultipartBodyParameter
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from . import utils
@@ -94,6 +95,17 @@ def _serialize_flattened_body(body_parameter: BodyParameter) -> List[str]:
     retval.append(
         f"{body_parameter.client_name} = _models.{model_type.name}({parameter_string})"
     )
+    return retval
+
+def _serialize_multipart_body(builder: BuilderType) -> List[str]:
+    retval: List[str] = []
+    body_param = cast(MultipartBodyParameter, builder.parameters.body_parameter)
+    # we have to construct our form data before passing to the request as well
+    retval.append("# Construct form data")
+    retval.append(f"_{body_param.client_name} = {{")
+    for param in body_param.entries:
+        retval.append(f'    "{param.rest_api_name}": {param.client_name},')
+    retval.append("}")
     return retval
 
 class _BuilderSerializerProtocol(ABC):
@@ -574,6 +586,8 @@ class OperationSerializer(
         """Create the body parameter before we pass it as either json or content to the request builder"""
         retval = []
         body_param = cast(BodyParameter, builder.parameters.body_parameter)
+        if hasattr(body_param, "entries"):
+            return _serialize_multipart_body(builder)
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
         if body_kwarg_name == "content" and not body_param.type.is_xml:
             retval.append(f"_content = {body_param.client_name}")
@@ -581,51 +595,35 @@ class OperationSerializer(
             retval.extend(self._serialize_body_parameter(builder))
         return retval
 
-    def _call_request_builder_helper(  # pylint: disable=too-many-statements
-        self,
-        builder: Union[Operation, PagingOperation],
-        request_builder: Union[RequestBuilder, OverloadedRequestBuilder],
-        template_url: Optional[str] = None,
-        is_next_request: bool = False,
-    ) -> List[str]:
-        retval = []
-        if builder.parameters.grouped:
-            # request builders don't allow grouped parameters, so we group them before making the call
-            retval.extend(_serialize_grouped_body(builder))
+    def _initialize_overloads(self, builder: Union[Operation, PagingOperation]) -> List[str]:
+        retval: List[str] = []
+        for overload in builder.overloads:
+            retval.append(f"_{overload.request_builder.parameters.body_parameter.client_name} = None")
+        try:
+            # if there is a binary overload, we do a binary check first.
+            binary_overload = next((o for o in builder.overloads if isinstance(o.parameters.body_parameter.type, BinaryType)))
+            binary_body_param = binary_overload.parameters.body_parameter
+            retval.append(f"if {binary_body_param.type.instance_check_template.format(binary_body_param.client_name)}:")
+            if binary_body_param.default_content_type:
+                retval.append(f'    content_type = content_type or "{binary_body_param.default_content_type}"')
+            retval.extend(f"    {l}" for l in self._create_body_parameter(binary_overload))
+            retval.append("else:")
+            other_overload = next((o for o in builder.overloads if not isinstance(o.parameters.body_parameter.type, BinaryType)))
+            retval.extend(f"    {l}" for l in self._create_body_parameter(other_overload))
+            if other_overload.parameters.body_parameter.default_content_type:
+                retval.append(f'    content_type = content_type or "{other_overload.parameters.body_parameter.default_content_type}"')
+        except StopIteration:
+            for idx, overload in enumerate(builder.overloads):
+                if_statement = "if" if idx == 0 else "elif"
+                body_param = overload.parameters.body_parameter
+                retval.append(f'{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:')
+                if body_param.default_content_type:
+                    retval.append(f'    content_type = content_type or "{body_param.default_content_type}"')
+                retval.extend(f"    {l}" for l in self._create_body_parameter(overload))
+        return retval
 
-        if builder.parameters.has_body and builder.parameters.body_parameter.flattened:
-            # unflatten before passing to request builder as well
-            retval.extend(_serialize_flattened_body(builder.parameters.body_parameter))
-
-        if builder.overloads:
-            # we are only dealing with two overloads. If there are three, we generate an abstract operation
-            for overload in builder.overloads:
-                retval.append(f"_{overload.request_builder.parameters.body_parameter.client_name} = None")
-            try:
-                # if there is a binary overload, we do a binary check first.
-                binary_overload = next((o for o in builder.overloads if isinstance(o.parameters.body_parameter.type, BinaryType)))
-                binary_body_param = binary_overload.parameters.body_parameter
-                retval.append(f"if {binary_body_param.type.instance_check_template.format(binary_body_param.client_name)}:")
-                if binary_body_param.default_content_type:
-                    retval.append(f'    content_type = content_type or "{binary_body_param.default_content_type}"')
-                retval.extend(f"    {l}" for l in self._create_body_parameter(binary_overload))
-                retval.append("else:")
-                other_overload = next((o for o in builder.overloads if not isinstance(o.parameters.body_parameter.type, BinaryType)))
-                retval.extend(f"    {l}" for l in self._create_body_parameter(other_overload))
-                if other_overload.parameters.body_parameter.default_content_type:
-                    retval.append(f'    content_type = content_type or "{other_overload.parameters.body_parameter.default_content_type}"')
-            except StopIteration:
-                for idx, overload in enumerate(builder.overloads):
-                    if_statement = "if" if idx == 0 else "elif"
-                    body_param = overload.parameters.body_parameter
-                    retval.append(f'{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:')
-                    if body_param.default_content_type:
-                        retval.append(f'    content_type = content_type or "{body_param.default_content_type}"')
-                    retval.extend(f"    {l}" for l in self._create_body_parameter(overload))
-        elif builder.parameters.has_body:
-            # non-overloaded body
-            retval.extend(self._create_body_parameter(builder))
-
+    def _create_request_builder_call(self, builder: Union[Operation, PagingOperation], request_builder: Union[RequestBuilder, OverloadedRequestBuilder], template_url: Optional[str] = None, is_next_request: bool = False) -> List[str]:
+        retval: List[str] = []
         if self.code_model.options["builders_visibility"] == "embedded":
             request_path_name = request_builder.name
         else:
@@ -634,7 +632,6 @@ class OperationSerializer(
                 ("_" + group_name) if group_name else "",
                 request_builder.name,
             )
-        retval.append("")
         retval.append(f"request = {request_path_name}(")
         for parameter in request_builder.parameters.method:
             if parameter.location == ParameterLocation.BODY:
@@ -665,10 +662,14 @@ class OperationSerializer(
         retval.append("    headers=_headers,")
         retval.append("    params=_params,")
         retval.append(f")")
+        return retval
+
+    def _postprocess_http_request(self, builder: BuilderType, template_url: Optional[str] = None) -> List[str]:
+        retval: List[str] = []
         if not self.code_model.options["version_tolerant"]:
             pass_files = ""
-            # if builder.parameters.multipart:
-            #     pass_files = ", _files"
+            if builder.parameters.has_body and builder.parameters.body_parameter.client_name == "files":
+                pass_files = ", _files"
             retval.append(f"request = _convert_request(request{pass_files})")
         if builder.parameters.path:
             retval.extend(self.serialize_path(builder))
@@ -683,7 +684,33 @@ class OperationSerializer(
         )
         return retval
 
-    def call_request_builder(self, builder: BuilderType) -> List[str]:
+
+    def _call_request_builder_helper(  # pylint: disable=too-many-statements
+        self,
+        builder: Union[Operation, PagingOperation],
+        request_builder: Union[RequestBuilder, OverloadedRequestBuilder],
+        template_url: Optional[str] = None,
+        is_next_request: bool = False,
+    ) -> List[str]:
+        retval = []
+        if builder.parameters.grouped:
+            # request builders don't allow grouped parameters, so we group them before making the call
+            retval.extend(_serialize_grouped_body(builder))
+        if builder.parameters.has_body and builder.parameters.body_parameter.flattened:
+            # unflatten before passing to request builder as well
+            retval.extend(_serialize_flattened_body(builder.parameters.body_parameter))
+        if builder.overloads:
+            # we are only dealing with two overloads. If there are three, we generate an abstract operation
+            retval.extend(self._initialize_overloads(builder))
+        elif builder.parameters.has_body:
+            # non-overloaded body
+            retval.extend(self._create_body_parameter(builder))
+        retval.append("")
+        retval.extend(self._create_request_builder_call(builder, request_builder, template_url, is_next_request))
+        retval.extend(self._postprocess_http_request(builder, template_url))
+        return retval
+
+    def call_request_builder(self, builder: Operation) -> List[str]:
         return self._call_request_builder_helper(builder, builder.request_builder)
 
     def response_headers_and_deserialization(

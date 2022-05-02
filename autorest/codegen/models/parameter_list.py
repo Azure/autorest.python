@@ -145,8 +145,16 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
     @property
     def unsorted_method_params(self) -> List[Union[ParameterType, BodyParameterType]]:
         method_params: List[Union[ParameterType, BodyParameterType]] = [p for p in self.parameters if p.in_method_signature and p.implementation == self.implementation]
-        if self._body_parameter and self._body_parameter.in_method_signature:
-            method_params.append(self._body_parameter)
+        if self._body_parameter:
+            if self._body_parameter.in_method_signature:
+                method_params.append(self._body_parameter)
+            try:
+                # i am a multipart body parameter
+                # Only legacy generates operations with me, so I will follow the legacy rules
+                # I will splat out my entries as individual entries
+                method_params.extend(self._body_parameter.entries)
+            except AttributeError:
+                pass
         return method_params
 
     @property

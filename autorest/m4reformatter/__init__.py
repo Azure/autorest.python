@@ -233,6 +233,7 @@ def update_parameter_base(
         "optional": not yaml_data.get("required", False),
         "description": yaml_data["language"]["default"]["description"],
         "clientName": client_name or yaml_data["language"]["default"]["name"],
+        "restApiName": yaml_data["language"]["default"].get("serializedName"),
         "clientDefaultValue": yaml_data.get("clientDefaultValue"),
         "location": location,
         "groupedBy": yaml_data["groupedBy"]["language"]["default"]["name"] if yaml_data.get("groupedBy") else None,
@@ -492,11 +493,12 @@ class M4Reformatter(YamlUpdatePlugin):
             "optional": not first_value.get("required", False),
             "description": description,
             "clientName": client_name,
+            "restApiName": client_name,
             "clientDefaultValue": None,
             "location": "Method",
             "type": KNOWN_TYPES["anydict"],
             "contentTypes": list(yaml_data.keys()),
-            "defaultContentType": list(yaml_data.keys())[0], # there should only be one content type for multpart
+            "defaultContentType": None, # we don't want a default content type for multipart, rely on transport to set
             "entries": entries,
         }
 
@@ -614,7 +616,6 @@ class M4Reformatter(YamlUpdatePlugin):
                 param_base["clientDefaultValue"] = type["value"]
         protocol_http = yaml_data["protocol"].get("http", {})
         param_base.update({
-            "restApiName": yaml_data["language"]["default"].get("serializedName"),
             "type": type,
             "implementation": yaml_data["implementation"],
             "explode": protocol_http.get("explode", False),
