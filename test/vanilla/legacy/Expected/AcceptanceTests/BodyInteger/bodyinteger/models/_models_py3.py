@@ -8,7 +8,6 @@
 
 from typing import Optional
 
-from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
 
@@ -33,6 +32,6 @@ class Error(msrest.serialization.Model):
         :keyword message:
         :paramtype message: str
         """
-        super(Error, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.status = status
         self.message = message

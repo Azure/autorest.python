@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
 
@@ -17,7 +16,7 @@ class ChildProduct(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar const_property: Constant string. Has constant value: "constant".
+    :ivar const_property: Constant string. Required. Default value is "constant".
     :vartype const_property: str
     :ivar count: Count.
     :vartype count: int
@@ -50,9 +49,9 @@ class ConstantProduct(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar const_property: Constant string. Has constant value: "constant".
+    :ivar const_property: Constant string. Required. Default value is "constant".
     :vartype const_property: str
-    :ivar const_property2: Constant string2. Has constant value: "constant2".
+    :ivar const_property2: Constant string2. Required. Default value is "constant2".
     :vartype const_property2: str
     """
 
@@ -119,16 +118,16 @@ class Product(msrest.serialization.Model):
     :vartype capacity: int
     :ivar image: Image URL representing the product.
     :vartype image: str
-    :ivar child: Required. The product documentation.
+    :ivar child: The product documentation. Required.
     :vartype child: ~validation.models.ChildProduct
-    :ivar const_child: Required. The product documentation.
+    :ivar const_child: The product documentation. Required.
     :vartype const_child: ~validation.models.ConstantProduct
-    :ivar const_int: Constant int. Has constant value: 0.
+    :ivar const_int: Constant int. Required. Default value is 0.
     :vartype const_int: int
-    :ivar const_string: Constant string. Has constant value: "constant".
+    :ivar const_string: Constant string. Required. Default value is "constant".
     :vartype const_string: str
-    :ivar const_string_as_enum: Constant string as Enum. The only acceptable values to pass in are
-     None and "constant_string_as_enum". The default value is None.
+    :ivar const_string_as_enum: Constant string as Enum. Default value is
+     "constant_string_as_enum".
     :vartype const_string_as_enum: str
     """
 
@@ -164,12 +163,12 @@ class Product(msrest.serialization.Model):
         :paramtype capacity: int
         :keyword image: Image URL representing the product.
         :paramtype image: str
-        :keyword child: Required. The product documentation.
+        :keyword child: The product documentation. Required.
         :paramtype child: ~validation.models.ChildProduct
-        :keyword const_child: Required. The product documentation.
+        :keyword const_child: The product documentation. Required.
         :paramtype const_child: ~validation.models.ConstantProduct
-        :keyword const_string_as_enum: Constant string as Enum. The only acceptable values to pass in
-         are None and "constant_string_as_enum". The default value is None.
+        :keyword const_string_as_enum: Constant string as Enum. Default value is
+         "constant_string_as_enum".
         :paramtype const_string_as_enum: str
         """
         super(Product, self).__init__(**kwargs)

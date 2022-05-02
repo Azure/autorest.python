@@ -8,7 +8,7 @@ from typing import Any, Dict, Optional, TYPE_CHECKING, List
 from .base_model import BaseModel
 from .constant_type import ConstantType
 from .base_type import BaseType
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 from .utils import add_to_description
 
 if TYPE_CHECKING:
@@ -104,9 +104,17 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return f'"{self.client_name}": {{"key": "{attribute_key}", "type": "{self.serialization_type}"{xml_metadata}}},'
 
     def imports(self) -> FileImport:
+        from .model_type import ModelType
         file_import = self.type.imports(is_operation_file=False)
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
+        if isinstance(self.type, ModelType):
+            file_import.add_import(
+                "__init__",
+                ImportType.LOCAL,
+                typing_section=TypingSection.TYPING,
+                alias="_models",
+            )
         return file_import
 
     @classmethod

@@ -200,11 +200,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -218,9 +218,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -256,11 +254,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def patch400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -274,9 +272,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -312,11 +308,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -330,9 +326,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -368,11 +362,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def delete400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -386,9 +380,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -588,11 +580,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put404(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 404 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -606,9 +598,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -644,11 +634,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def patch405(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 405 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -662,9 +652,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -700,11 +688,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post406(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 406 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -718,9 +706,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -756,11 +742,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def delete407(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 407 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -774,9 +760,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -812,11 +796,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put409(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 409 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -830,9 +814,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -1032,11 +1014,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put413(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 413 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1050,9 +1032,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -1088,11 +1068,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def patch414(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 414 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1106,9 +1086,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -1144,11 +1122,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post415(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 415 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1162,9 +1140,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -1241,11 +1217,11 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def delete417(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Return 417 status code - should be represented in the client as an error.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1259,9 +1235,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:

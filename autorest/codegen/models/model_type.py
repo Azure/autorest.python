@@ -175,14 +175,6 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
     def imports(self, *, is_operation_file: bool) -> FileImport:
         file_import = FileImport()
         if self.code_model.options["models_mode"]:
-            if is_operation_file:
-                return file_import
-            file_import.add_import(
-                "__init__",
-                ImportType.LOCAL,
-                typing_section=TypingSection.TYPING,
-                alias="_models",
-            )
             return file_import
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL

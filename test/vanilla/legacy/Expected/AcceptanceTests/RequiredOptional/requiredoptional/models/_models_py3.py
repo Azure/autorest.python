@@ -8,7 +8,6 @@
 
 from typing import List, Optional, TYPE_CHECKING
 
-from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
 if TYPE_CHECKING:
@@ -32,7 +31,7 @@ class ArrayOptionalWrapper(msrest.serialization.Model):
         :keyword value:
         :paramtype value: list[str]
         """
-        super(ArrayOptionalWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.value = value
 
 
@@ -58,7 +57,7 @@ class ArrayWrapper(msrest.serialization.Model):
         :keyword value: Required.
         :paramtype value: list[str]
         """
-        super(ArrayWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.value = value
 
 
@@ -78,7 +77,7 @@ class ClassOptionalWrapper(msrest.serialization.Model):
         :keyword value:
         :paramtype value: ~requiredoptional.models.Product
         """
-        super(ClassOptionalWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.value = value
 
 
@@ -104,7 +103,7 @@ class ClassWrapper(msrest.serialization.Model):
         :keyword value: Required.
         :paramtype value: ~requiredoptional.models.Product
         """
-        super(ClassWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.value = value
 
 
@@ -129,7 +128,7 @@ class Error(msrest.serialization.Model):
         :keyword message:
         :paramtype message: str
         """
-        super(Error, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.status = status
         self.message = message
 
@@ -150,7 +149,7 @@ class IntOptionalWrapper(msrest.serialization.Model):
         :keyword value:
         :paramtype value: int
         """
-        super(IntOptionalWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.value = value
 
 
@@ -176,7 +175,7 @@ class IntWrapper(msrest.serialization.Model):
         :keyword value: Required.
         :paramtype value: int
         """
-        super(IntWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.value = value
 
 
@@ -207,7 +206,7 @@ class Product(msrest.serialization.Model):
         :keyword name:
         :paramtype name: str
         """
-        super(Product, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.id = id
         self.name = name
 
@@ -228,7 +227,7 @@ class StringOptionalWrapper(msrest.serialization.Model):
         :keyword value:
         :paramtype value: str
         """
-        super(StringOptionalWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.value = value
 
 
@@ -254,5 +253,5 @@ class StringWrapper(msrest.serialization.Model):
         :keyword value: Required.
         :paramtype value: str
         """
-        super(StringWrapper, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.value = value

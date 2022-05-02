@@ -147,7 +147,7 @@ class PolymorphismOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -198,7 +198,7 @@ class PolymorphismOperations:
          Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -495,7 +495,7 @@ class PolymorphismOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -515,7 +515,7 @@ class PolymorphismOperations:
          Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -595,7 +595,7 @@ class PolymorphismOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Salmon, or the result of cls(response)
+        :return: Salmon or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.Salmon
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -614,7 +614,7 @@ class PolymorphismOperations:
          Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Salmon, or the result of cls(response)
+        :return: Salmon or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.Salmon
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -722,7 +722,7 @@ class PolymorphismOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -768,7 +768,7 @@ class PolymorphismOperations:
          Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

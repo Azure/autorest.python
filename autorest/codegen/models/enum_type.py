@@ -160,5 +160,12 @@ class EnumType(BaseType):
             file_import.add_submodule_import(
                 "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL
             )
+            if not is_operation_file:
+                file_import.add_import(
+                    "__init__",
+                    ImportType.LOCAL,
+                    typing_section=TypingSection.TYPING,
+                    alias="_models",
+                )
         file_import.merge(self.value_type.imports(is_operation_file=is_operation_file))
         return file_import

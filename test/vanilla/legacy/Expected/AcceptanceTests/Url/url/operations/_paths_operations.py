@@ -161,7 +161,7 @@ def build_get_ten_billion_request(
     # Construct URL
     _url = kwargs.pop("template_url", "/paths/long/10000000000/{longPath}")
     path_format_arguments = {
-        "longPath": _SERIALIZER.url("long_path", long_path, 'long'),
+        "longPath": _SERIALIZER.url("long_path", long_path, 'int'),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
@@ -189,7 +189,7 @@ def build_get_negative_ten_billion_request(
     # Construct URL
     _url = kwargs.pop("template_url", "/paths/long/-10000000000/{longPath}")
     path_format_arguments = {
-        "longPath": _SERIALIZER.url("long_path", long_path, 'long'),
+        "longPath": _SERIALIZER.url("long_path", long_path, 'int'),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
@@ -514,7 +514,7 @@ def build_enum_null_request(
 
 
 def build_byte_multi_byte_request(
-    byte_path,  # type: bytearray
+    byte_path,  # type: bytes
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -547,7 +547,7 @@ def build_byte_empty_request(
     # type: (...) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    byte_path = kwargs.pop('byte_path', bytearray("", encoding="utf-8"))  # type: bytearray
+    byte_path = kwargs.pop('byte_path', bytes("", encoding="utf-8"))  # type: bytes
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -570,7 +570,7 @@ def build_byte_empty_request(
 
 
 def build_byte_null_request(
-    byte_path,  # type: bytearray
+    byte_path,  # type: bytes
     **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
@@ -868,8 +868,8 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get false Boolean value on path.
 
-        :keyword bool_path: false boolean value. Default value is False. Note that overriding this
-         default value may result in unsupported behavior.
+        :keyword bool_path: false boolean value. Required. Default value is False. Note that overriding
+         this default value may result in unsupported behavior.
         :paramtype bool_path: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1017,7 +1017,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
 
         :keyword long_path: '10000000000' 64 bit integer value. Default value is 10000000000. Note that
          overriding this default value may result in unsupported behavior.
-        :paramtype long_path: long
+        :paramtype long_path: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1066,7 +1066,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
 
         :keyword long_path: '-10000000000' 64 bit integer value. Default value is -10000000000. Note
          that overriding this default value may result in unsupported behavior.
-        :paramtype long_path: long
+        :paramtype long_path: int
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1460,8 +1460,8 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get ''.
 
-        :keyword string_path: '' string value. Default value is "". Note that overriding this default
-         value may result in unsupported behavior.
+        :keyword string_path: '' string value. Required. Default value is "". Note that overriding this
+         default value may result in unsupported behavior.
         :paramtype string_path: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1560,7 +1560,8 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get using uri with 'green color' in path parameter.
 
-        :param enum_path: send the value green. Required.
+        :param enum_path: send the value green. Known values are: "red color", "green color", and "blue
+         color". Required.
         :type enum_path: str or ~url.models.UriColor
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1609,7 +1610,8 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get null (should throw on the client before the request is sent on wire).
 
-        :param enum_path: send null should throw. Required.
+        :param enum_path: send null should throw. Known values are: "red color", "green color", and
+         "blue color". Required.
         :type enum_path: str or ~url.models.UriColor
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1652,14 +1654,14 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
         self,
-        byte_path,  # type: bytearray
+        byte_path,  # type: bytes
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array. Required.
-        :type byte_path: bytearray
+        :type byte_path: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1705,9 +1707,9 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         # type: (...) -> None
         """Get '' as byte array.
 
-        :keyword byte_path: '' as byte array. Default value is bytearray("", encoding="utf-8"). Note
-         that overriding this default value may result in unsupported behavior.
-        :paramtype byte_path: bytearray
+        :keyword byte_path: '' as byte array. Required. Default value is bytes("", encoding="utf-8").
+         Note that overriding this default value may result in unsupported behavior.
+        :paramtype byte_path: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1719,7 +1721,7 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        byte_path = kwargs.pop("byte_path", bytearray("", encoding="utf-8"))  # type: bytearray
+        byte_path = kwargs.pop("byte_path", bytes("", encoding="utf-8"))  # type: bytes
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         request = build_byte_empty_request(
@@ -1750,14 +1752,14 @@ class PathsOperations(object):  # pylint: disable=too-many-public-methods
     @distributed_trace
     def byte_null(  # pylint: disable=inconsistent-return-statements
         self,
-        byte_path,  # type: bytearray
+        byte_path,  # type: bytes
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get null as byte array (should throw).
 
         :param byte_path: null as byte array (should throw). Required.
-        :type byte_path: bytearray
+        :type byte_path: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None

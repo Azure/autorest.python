@@ -61,6 +61,9 @@ def _update_type_base(updated_type: str, yaml_data: Dict[str, Any]) -> Dict[str,
 def update_list(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     base = _update_type_base("list", yaml_data)
     base["elementType"] = update_type(yaml_data["elementType"])
+    base["maxItems"] = yaml_data.get("maxItems")
+    base["minItems"] = yaml_data.get("minItems")
+    base["uniqueItems"] = yaml_data.get("uniqueItems", False)
     return base
 
 def update_dict(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
@@ -91,9 +94,12 @@ def update_enum(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     })
     return base
 
-def update_property(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+def update_property(yaml_data: Dict[str, Any], has_additional_properties: bool) -> Dict[str, Any]:
+    client_name = yaml_data["language"]["default"]["name"]
+    if has_additional_properties and client_name == "additional_properties":
+        client_name = "additional_properties1"
     return {
-        "clientName": yaml_data["language"]["default"]["name"],
+        "clientName": client_name,
         "restApiName": yaml_data["serializedName"],
         "flattenedNames": yaml_data.get("flattenedNames", []),
         "type": update_type(yaml_data["schema"]),
@@ -121,12 +127,12 @@ def create_model(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return base
 
 def fill_model(yaml_data: Dict[str, Any], current_model: Dict[str, Any]) -> Dict[str, Any]:
-    properties = [update_property(p) for p in yaml_data.get("properties", [])]
+    properties = []
     yaml_parents = yaml_data.get("parents", {}).get("immediate", [])
     dict_parents = [p for p in yaml_parents if p["type"] == "dictionary"]
     if dict_parents:
         # add additional properties property
-        properties.insert(0, {
+        properties.append({
             "clientName": "additional_properties",
             "restApiName": "",
             "type": update_type(dict_parents[0]),
@@ -135,6 +141,7 @@ def fill_model(yaml_data: Dict[str, Any], current_model: Dict[str, Any]) -> Dict
             "isDiscriminator": False,
             "readonly": False
         })
+    properties.extend([update_property(p, has_additional_properties=bool(dict_parents)) for p in yaml_data.get("properties", [])])
     current_model.update({
         "properties": properties,
         "parents": [update_type(yaml_data=p) for p in yaml_parents if p["type"] == "object"],
@@ -669,7 +676,10 @@ class M4Reformatter(YamlUpdatePlugin):
     def get_credential_scopes_from_flags(self, auth_policy: str) -> List[str]:
         if self.azure_arm:
             return ["https://management.azure.com/.default"]
-        credential_scopes = (self._autorestapi.get_value("credential-scopes") or []).split(",")
+        credential_scopes_temp = self._autorestapi.get_value("credential-scopes")
+        credential_scopes = (
+            credential_scopes_temp.split(",") if credential_scopes_temp else None
+        )
         if (
             self._autorestapi.get_boolean_value("credential-scopes", False)
             and not credential_scopes

@@ -589,8 +589,8 @@ class OperationSerializer(
         if hasattr(body_param, "entries"):
             return _serialize_multipart_body(builder)
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
-        if body_kwarg_name == "content" and not body_param.type.is_xml:
-            retval.append(f"_content = {body_param.client_name}")
+        if isinstance(body_param.type, BinaryType):
+            retval.append(f"_{body_kwarg_name} = {body_param.client_name}")
         else:
             retval.extend(self._serialize_body_parameter(builder))
         return retval

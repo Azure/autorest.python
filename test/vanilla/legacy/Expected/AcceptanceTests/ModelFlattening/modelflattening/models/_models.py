@@ -6,13 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import TYPE_CHECKING
-
 import msrest.serialization
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    import __init__ as _models
 
 
 class BaseProduct(msrest.serialization.Model):
@@ -58,7 +52,7 @@ class Error(msrest.serialization.Model):
     :vartype status: int
     :ivar message:
     :vartype message: str
-    :ivar parent_error: Error.
+    :ivar parent_error:
     :vartype parent_error: ~modelflattening.models.Error
     """
 
@@ -74,7 +68,7 @@ class Error(msrest.serialization.Model):
         :paramtype status: int
         :keyword message:
         :paramtype message: str
-        :keyword parent_error: Error.
+        :keyword parent_error:
         :paramtype parent_error: ~modelflattening.models.Error
         """
         super(Error, self).__init__(**kwargs)
@@ -202,7 +196,7 @@ class FlattenParameterGroup(msrest.serialization.Model):
 
     :ivar name: Product name with value 'groupproduct'. Required.
     :vartype name: str
-    :ivar simple_body_product: Simple body product to put. The product documentation.
+    :ivar simple_body_product: Simple body product to put.
     :vartype simple_body_product: ~modelflattening.models.SimpleProduct
     :ivar product_id: Unique identifier representing a specific product for a given latitude &
      longitude. For example, uberX in San Francisco will have a different product_id than uberX in
@@ -233,14 +227,14 @@ class FlattenParameterGroup(msrest.serialization.Model):
         "max_product_display_name": {"key": "max_product_display_name", "type": "str"},
         "capacity": {"key": "capacity", "type": "str"},
         "generic_value": {"key": "generic_value", "type": "str"},
-        "odata_value": {"key": "@odata.value", "type": "str"},
+        "odata_value": {"key": "@odata\\.value", "type": "str"},
     }
 
     def __init__(self, **kwargs):
         """
         :keyword name: Product name with value 'groupproduct'. Required.
         :paramtype name: str
-        :keyword simple_body_product: Simple body product to put. The product documentation.
+        :keyword simple_body_product: Simple body product to put.
         :paramtype simple_body_product: ~modelflattening.models.SimpleProduct
         :keyword product_id: Unique identifier representing a specific product for a given latitude &
          longitude. For example, uberX in San Francisco will have a different product_id than uberX in
@@ -299,7 +293,7 @@ class ProductUrl(GenericUrl):
 
     _attribute_map = {
         "generic_value": {"key": "generic_value", "type": "str"},
-        "odata_value": {"key": "@odata.value", "type": "str"},
+        "odata_value": {"key": "@odata\\.value", "type": "str"},
     }
 
     def __init__(self, **kwargs):
@@ -336,7 +330,7 @@ class ProductWrapper(msrest.serialization.Model):
 class ResourceCollection(msrest.serialization.Model):
     """ResourceCollection.
 
-    :ivar productresource: Flattened product. Flattened product.
+    :ivar productresource: Flattened product.
     :vartype productresource: ~modelflattening.models.FlattenedProduct
     :ivar arrayofresources:
     :vartype arrayofresources: list[~modelflattening.models.FlattenedProduct]
@@ -352,7 +346,7 @@ class ResourceCollection(msrest.serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword productresource: Flattened product. Flattened product.
+        :keyword productresource: Flattened product.
         :paramtype productresource: ~modelflattening.models.FlattenedProduct
         :keyword arrayofresources:
         :paramtype arrayofresources: list[~modelflattening.models.FlattenedProduct]

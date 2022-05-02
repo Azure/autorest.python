@@ -201,11 +201,11 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def put200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Put boolean value true returning 200 success.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -219,9 +219,7 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -257,11 +255,11 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def patch200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returning 200.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -275,9 +273,7 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -313,11 +309,11 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def post200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Post bollean value true in request that returns a 200.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -331,9 +327,7 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -369,11 +363,11 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def delete200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Delete simple boolean value true returns 200.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -387,9 +381,7 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -425,11 +417,11 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def put201(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 201.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -443,9 +435,7 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -481,11 +471,11 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def post201(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 201 (Created).
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -499,9 +489,7 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -537,11 +525,11 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def put202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 202 (Accepted).
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -555,9 +543,7 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -593,11 +579,11 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def patch202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 202.
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -611,9 +597,7 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -649,11 +633,11 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def post202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 202 (Accepted).
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -667,9 +651,7 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -705,11 +687,11 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def delete202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -723,9 +705,7 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -802,11 +782,11 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def put204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -820,9 +800,7 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -858,11 +836,11 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def patch204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -876,9 +854,7 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -914,11 +890,11 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def post204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -932,9 +908,7 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:
@@ -970,11 +944,11 @@ class HttpSuccessOperations:
 
     @distributed_trace_async
     async def delete204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Optional[bool] = True, **kwargs: Any
+        self, boolean_value: bool = True, **kwargs: Any
     ) -> None:
         """Delete true Boolean value in request returns 204 (no content).
 
-        :param boolean_value: Simple boolean value true. Known values are True or None. Default value
+        :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -988,9 +962,7 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
         if boolean_value is not None:

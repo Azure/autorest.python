@@ -538,11 +538,11 @@ class DotFish(msrest.serialization.Model):
 class DotFishMarket(msrest.serialization.Model):
     """DotFishMarket.
 
-    :ivar sample_salmon: DotSalmon.
+    :ivar sample_salmon:
     :vartype sample_salmon: ~bodycomplexpython3only.models.DotSalmon
     :ivar salmons:
     :vartype salmons: list[~bodycomplexpython3only.models.DotSalmon]
-    :ivar sample_fish: DotFish.
+    :ivar sample_fish:
     :vartype sample_fish: ~bodycomplexpython3only.models.DotFish
     :ivar fishes:
     :vartype fishes: list[~bodycomplexpython3only.models.DotFish]
@@ -565,11 +565,11 @@ class DotFishMarket(msrest.serialization.Model):
         **kwargs
     ):
         """
-        :keyword sample_salmon: DotSalmon.
+        :keyword sample_salmon:
         :paramtype sample_salmon: ~bodycomplexpython3only.models.DotSalmon
         :keyword salmons:
         :paramtype salmons: list[~bodycomplexpython3only.models.DotSalmon]
-        :keyword sample_fish: DotFish.
+        :keyword sample_fish:
         :paramtype sample_fish: ~bodycomplexpython3only.models.DotFish
         :keyword fishes:
         :paramtype fishes: list[~bodycomplexpython3only.models.DotFish]

@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, List, Optional, TypeVar, Union
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -254,14 +254,55 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     get_empty.metadata = {"url": "/array/empty"}  # type: ignore
 
-    @distributed_trace_async
+    @overload
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[str], **kwargs: Any
+        self, array_body: List[str], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value empty [].
 
         :param array_body: Required.
         :type array_body: list[str]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @overload
+    async def put_empty(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value empty [].
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_empty(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[str], IO], **kwargs: Any
+    ) -> None:
+        """Set array value empty [].
+
+        :param array_body: Is either a list type or a IO type. Required.
+        :type array_body: list[str] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -273,16 +314,21 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "[str]")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "[str]")
+            content_type = content_type or "application/json"
 
         request = build_put_empty_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_empty.metadata["url"],
             headers=_headers,
             params=_params,
@@ -351,14 +397,55 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     get_boolean_tfft.metadata = {"url": "/array/prim/boolean/tfft"}  # type: ignore
 
-    @distributed_trace_async
+    @overload
     async def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[bool], **kwargs: Any
+        self, array_body: List[bool], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value empty [true, false, false, true].
 
         :param array_body: Required.
         :type array_body: list[bool]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @overload
+    async def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value empty [true, false, false, true].
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[bool], IO], **kwargs: Any
+    ) -> None:
+        """Set array value empty [true, false, false, true].
+
+        :param array_body: Is either a list type or a IO type. Required.
+        :type array_body: list[bool] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -370,16 +457,21 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "[bool]")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "[bool]")
+            content_type = content_type or "application/json"
 
         request = build_put_boolean_tfft_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_boolean_tfft.metadata["url"],
             headers=_headers,
             params=_params,
@@ -538,14 +630,55 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     get_integer_valid.metadata = {"url": "/array/prim/integer/1.-1.3.300"}  # type: ignore
 
-    @distributed_trace_async
+    @overload
     async def put_integer_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[int], **kwargs: Any
+        self, array_body: List[int], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value empty [1, -1, 3, 300].
 
         :param array_body: Required.
         :type array_body: list[int]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @overload
+    async def put_integer_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value empty [1, -1, 3, 300].
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_integer_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[int], IO], **kwargs: Any
+    ) -> None:
+        """Set array value empty [1, -1, 3, 300].
+
+        :param array_body: Is either a list type or a IO type. Required.
+        :type array_body: list[int] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -557,16 +690,21 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "[int]")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "[int]")
+            content_type = content_type or "application/json"
 
         request = build_put_integer_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_integer_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -685,8 +823,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """Get integer array value [1, -1, 3, 300].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of long or the result of cls(response)
-        :rtype: list[long]
+        :return: list of int or the result of cls(response)
+        :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -716,7 +854,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[long]", pipeline_response)
+        deserialized = self._deserialize("[int]", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -725,14 +863,55 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     get_long_valid.metadata = {"url": "/array/prim/long/1.-1.3.300"}  # type: ignore
 
-    @distributed_trace_async
+    @overload
     async def put_long_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[int], **kwargs: Any
+        self, array_body: List[int], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value empty [1, -1, 3, 300].
 
         :param array_body: Required.
-        :type array_body: list[long]
+        :type array_body: list[int]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @overload
+    async def put_long_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value empty [1, -1, 3, 300].
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_long_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[int], IO], **kwargs: Any
+    ) -> None:
+        """Set array value empty [1, -1, 3, 300].
+
+        :param array_body: Is either a list type or a IO type. Required.
+        :type array_body: list[int] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -744,16 +923,21 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "[long]")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "[int]")
+            content_type = content_type or "application/json"
 
         request = build_put_long_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_long_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -782,8 +966,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """Get long array value [1, null, 0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of long or the result of cls(response)
-        :rtype: list[long]
+        :return: list of int or the result of cls(response)
+        :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -813,7 +997,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[long]", pipeline_response)
+        deserialized = self._deserialize("[int]", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -827,8 +1011,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """Get long array value [1, 'integer', 0].
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of long or the result of cls(response)
-        :rtype: list[long]
+        :return: list of int or the result of cls(response)
+        :rtype: list[int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -858,7 +1042,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize("[long]", pipeline_response)
+        deserialized = self._deserialize("[int]", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -912,14 +1096,55 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     get_float_valid.metadata = {"url": "/array/prim/float/0--0.01-1.2e20"}  # type: ignore
 
-    @distributed_trace_async
+    @overload
     async def put_float_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[float], **kwargs: Any
+        self, array_body: List[float], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
         :param array_body: Required.
         :type array_body: list[float]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @overload
+    async def put_float_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value [0, -0.01, 1.2e20].
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_float_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[float], IO], **kwargs: Any
+    ) -> None:
+        """Set array value [0, -0.01, 1.2e20].
+
+        :param array_body: Is either a list type or a IO type. Required.
+        :type array_body: list[float] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -931,16 +1156,21 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "[float]")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "[float]")
+            content_type = content_type or "application/json"
 
         request = build_put_float_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_float_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -1099,14 +1329,55 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     get_double_valid.metadata = {"url": "/array/prim/double/0--0.01-1.2e20"}  # type: ignore
 
-    @distributed_trace_async
+    @overload
     async def put_double_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[float], **kwargs: Any
+        self, array_body: List[float], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
         :param array_body: Required.
         :type array_body: list[float]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @overload
+    async def put_double_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value [0, -0.01, 1.2e20].
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_double_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[float], IO], **kwargs: Any
+    ) -> None:
+        """Set array value [0, -0.01, 1.2e20].
+
+        :param array_body: Is either a list type or a IO type. Required.
+        :type array_body: list[float] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1118,16 +1389,21 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "[float]")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "[float]")
+            content_type = content_type or "application/json"
 
         request = build_put_double_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_double_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -1286,14 +1562,55 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     get_string_valid.metadata = {"url": "/array/prim/string/foo1.foo2.foo3"}  # type: ignore
 
-    @distributed_trace_async
+    @overload
     async def put_string_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[str], **kwargs: Any
+        self, array_body: List[str], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body: Required.
         :type array_body: list[str]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @overload
+    async def put_string_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value ['foo1', 'foo2', 'foo3'].
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_string_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[str], IO], **kwargs: Any
+    ) -> None:
+        """Set array value ['foo1', 'foo2', 'foo3'].
+
+        :param array_body: Is either a list type or a IO type. Required.
+        :type array_body: list[str] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1305,16 +1622,21 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "[str]")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "[str]")
+            content_type = content_type or "application/json"
 
         request = build_put_string_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_string_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -1383,14 +1705,55 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     get_enum_valid.metadata = {"url": "/array/prim/enum/foo1.foo2.foo3"}  # type: ignore
 
-    @distributed_trace_async
+    @overload
     async def put_enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[Union[str, "_models.FooEnum"]], **kwargs: Any
+        self, array_body: List[Union[str, "_models.FooEnum"]], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body: Required.
         :type array_body: list[str or ~bodyarray.models.FooEnum]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @overload
+    async def put_enum_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value ['foo1', 'foo2', 'foo3'].
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_enum_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[Union[str, "_models.FooEnum"]], IO], **kwargs: Any
+    ) -> None:
+        """Set array value ['foo1', 'foo2', 'foo3'].
+
+        :param array_body: Is either a list type or a IO type. Required.
+        :type array_body: list[str or ~bodyarray.models.FooEnum] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1402,16 +1765,21 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "[str]")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "[str]")
+            content_type = content_type or "application/json"
 
         request = build_put_enum_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_enum_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -1480,14 +1848,55 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     get_string_enum_valid.metadata = {"url": "/array/prim/string-enum/foo1.foo2.foo3"}  # type: ignore
 
-    @distributed_trace_async
+    @overload
     async def put_string_enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[Union[str, "_models.Enum1"]], **kwargs: Any
+        self, array_body: List[Union[str, "_models.Enum1"]], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body: Required.
         :type array_body: list[str or ~bodyarray.models.Enum1]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @overload
+    async def put_string_enum_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value ['foo1', 'foo2', 'foo3'].
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_string_enum_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[Union[str, "_models.Enum1"]], IO], **kwargs: Any
+    ) -> None:
+        """Set array value ['foo1', 'foo2', 'foo3'].
+
+        :param array_body: Is either a list type or a IO type. Required.
+        :type array_body: list[str or ~bodyarray.models.Enum1] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1499,16 +1908,21 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "[str]")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "[str]")
+            content_type = content_type or "application/json"
 
         request = build_put_string_enum_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_string_enum_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -1668,15 +2082,58 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     get_uuid_valid.metadata = {"url": "/array/prim/uuid/valid"}  # type: ignore
 
-    @distributed_trace_async
+    @overload
     async def put_uuid_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[str], **kwargs: Any
+        self, array_body: List[str], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
         'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
         :param array_body: Required.
         :type array_body: list[str]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @overload
+    async def put_uuid_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
+        'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_uuid_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[str], IO], **kwargs: Any
+    ) -> None:
+        """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
+        'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
+
+        :param array_body: Is either a list type or a IO type. Required.
+        :type array_body: list[str] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1688,16 +2145,21 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "[str]")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "[str]")
+            content_type = content_type or "application/json"
 
         request = build_put_uuid_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_uuid_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -1811,14 +2273,55 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     get_date_valid.metadata = {"url": "/array/prim/date/valid"}  # type: ignore
 
-    @distributed_trace_async
+    @overload
     async def put_date_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[datetime.date], **kwargs: Any
+        self, array_body: List[datetime.date], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         :param array_body: Required.
         :type array_body: list[~datetime.date]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @overload
+    async def put_date_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_date_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[datetime.date], IO], **kwargs: Any
+    ) -> None:
+        """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
+
+        :param array_body: Is either a list type or a IO type. Required.
+        :type array_body: list[~datetime.date] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1830,16 +2333,21 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "[date]")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "[date]")
+            content_type = content_type or "application/json"
 
         request = build_put_date_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_date_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -1999,15 +2507,58 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     get_date_time_valid.metadata = {"url": "/array/prim/date-time/valid"}  # type: ignore
 
-    @distributed_trace_async
+    @overload
     async def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[datetime.datetime], **kwargs: Any
+        self, array_body: List[datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
         '1492-10-12T10:15:01-08:00'].
 
         :param array_body: Required.
         :type array_body: list[~datetime.datetime]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @overload
+    async def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
+        '1492-10-12T10:15:01-08:00'].
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[datetime.datetime], IO], **kwargs: Any
+    ) -> None:
+        """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
+        '1492-10-12T10:15:01-08:00'].
+
+        :param array_body: Is either a list type or a IO type. Required.
+        :type array_body: list[~datetime.datetime] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -2019,16 +2570,21 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "[iso-8601]")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "[iso-8601]")
+            content_type = content_type or "application/json"
 
         request = build_put_date_time_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_date_time_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -2188,15 +2744,58 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     get_date_time_rfc1123_valid.metadata = {"url": "/array/prim/date-time-rfc1123/valid"}  # type: ignore
 
-    @distributed_trace_async
+    @overload
     async def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[datetime.datetime], **kwargs: Any
+        self, array_body: List[datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
         Oct 1492 10:15:01 GMT'].
 
         :param array_body: Required.
         :type array_body: list[~datetime.datetime]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @overload
+    async def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
+        Oct 1492 10:15:01 GMT'].
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[datetime.datetime], IO], **kwargs: Any
+    ) -> None:
+        """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
+        Oct 1492 10:15:01 GMT'].
+
+        :param array_body: Is either a list type or a IO type. Required.
+        :type array_body: list[~datetime.datetime] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -2208,16 +2807,21 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "[rfc-1123]")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "[rfc-1123]")
+            content_type = content_type or "application/json"
 
         request = build_put_date_time_rfc1123_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_date_time_rfc1123_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -2286,14 +2890,55 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     get_duration_valid.metadata = {"url": "/array/prim/duration/valid"}  # type: ignore
 
-    @distributed_trace_async
+    @overload
     async def put_duration_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[datetime.timedelta], **kwargs: Any
+        self, array_body: List[datetime.timedelta], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         :param array_body: Required.
         :type array_body: list[~datetime.timedelta]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @overload
+    async def put_duration_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_duration_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[datetime.timedelta], IO], **kwargs: Any
+    ) -> None:
+        """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
+
+        :param array_body: Is either a list type or a IO type. Required.
+        :type array_body: list[~datetime.timedelta] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -2305,16 +2950,21 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "[duration]")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "[duration]")
+            content_type = content_type or "application/json"
 
         request = build_put_duration_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_duration_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -2339,13 +2989,13 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     put_duration_valid.metadata = {"url": "/array/prim/duration/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_byte_valid(self, **kwargs: Any) -> List[bytearray]:
+    async def get_byte_valid(self, **kwargs: Any) -> List[bytes]:
         """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded
         in base64.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of bytearray or the result of cls(response)
-        :rtype: list[bytearray]
+        :return: list of bytes or the result of cls(response)
+        :rtype: list[bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2354,7 +3004,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[bytearray]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[bytes]]
 
         request = build_get_byte_valid_request(
             template_url=self.get_byte_valid.metadata["url"],
@@ -2384,15 +3034,58 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     get_byte_valid.metadata = {"url": "/array/prim/byte/valid"}  # type: ignore
 
-    @distributed_trace_async
+    @overload
     async def put_byte_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[bytearray], **kwargs: Any
+        self, array_body: List[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
         elementencoded in base 64.
 
         :param array_body: Required.
-        :type array_body: list[bytearray]
+        :type array_body: list[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @overload
+    async def put_byte_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
+        elementencoded in base 64.
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_byte_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[bytes], IO], **kwargs: Any
+    ) -> None:
+        """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
+        elementencoded in base 64.
+
+        :param array_body: Is either a list type or a IO type. Required.
+        :type array_body: list[bytes] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -2404,16 +3097,21 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "[bytearray]")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "[bytearray]")
+            content_type = content_type or "application/json"
 
         request = build_put_byte_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_byte_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -2438,12 +3136,12 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     put_byte_valid.metadata = {"url": "/array/prim/byte/valid"}  # type: ignore
 
     @distributed_trace_async
-    async def get_byte_invalid_null(self, **kwargs: Any) -> List[bytearray]:
+    async def get_byte_invalid_null(self, **kwargs: Any) -> List[bytes]:
         """Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: list of bytearray or the result of cls(response)
-        :rtype: list[bytearray]
+        :return: list of bytes or the result of cls(response)
+        :rtype: list[bytes]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         error_map = {401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError}
@@ -2452,7 +3150,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls = kwargs.pop("cls", None)  # type: ClsType[List[bytearray]]
+        cls = kwargs.pop("cls", None)  # type: ClsType[List[bytes]]
 
         request = build_get_byte_invalid_null_request(
             template_url=self.get_byte_invalid_null.metadata["url"],
@@ -2756,15 +3454,58 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     get_complex_valid.metadata = {"url": "/array/complex/valid"}  # type: ignore
 
-    @distributed_trace_async
+    @overload
     async def put_complex_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[_models.Product], **kwargs: Any
+        self, array_body: List[_models.Product], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
         'string': '4'}, {'integer': 5, 'string': '6'}].
 
         :param array_body: Required.
         :type array_body: list[~bodyarray.models.Product]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @overload
+    async def put_complex_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
+        'string': '4'}, {'integer': 5, 'string': '6'}].
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_complex_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[_models.Product], IO], **kwargs: Any
+    ) -> None:
+        """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
+        'string': '4'}, {'integer': 5, 'string': '6'}].
+
+        :param array_body: Is either a list type or a IO type. Required.
+        :type array_body: list[~bodyarray.models.Product] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -2776,16 +3517,21 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "[Product]")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "[Product]")
+            content_type = content_type or "application/json"
 
         request = build_put_complex_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_complex_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -3034,14 +3780,55 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     get_array_valid.metadata = {"url": "/array/array/valid"}  # type: ignore
 
-    @distributed_trace_async
+    @overload
     async def put_array_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[List[str]], **kwargs: Any
+        self, array_body: List[List[str]], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
         :param array_body: Required.
         :type array_body: list[list[str]]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @overload
+    async def put_array_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_array_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[List[str]], IO], **kwargs: Any
+    ) -> None:
+        """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
+
+        :param array_body: Is either a list type or a IO type. Required.
+        :type array_body: list[list[str]] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -3053,16 +3840,21 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "[[str]]")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "[[str]]")
+            content_type = content_type or "application/json"
 
         request = build_put_array_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_array_valid.metadata["url"],
             headers=_headers,
             params=_params,
@@ -3314,15 +4106,58 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     get_dictionary_valid.metadata = {"url": "/array/dictionary/valid"}  # type: ignore
 
-    @distributed_trace_async
+    @overload
     async def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: List[Dict[str, str]], **kwargs: Any
+        self, array_body: List[Dict[str, str]], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :param array_body: Required.
         :type array_body: list[dict[str, str]]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @overload
+    async def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: IO, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
+        'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+
+        :param array_body: Required.
+        :type array_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+
+        ...
+
+    @distributed_trace_async
+    async def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
+        self, array_body: Union[List[Dict[str, str]], IO], **kwargs: Any
+    ) -> None:
+        """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
+        'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+
+        :param array_body: Is either a list type or a IO type. Required.
+        :type array_body: list[dict[str, str]] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -3334,16 +4169,21 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/json")
-        )  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        _json = self._serialize.body(array_body, "[{str}]")
+        _json = None
+        _content = None
+        if isinstance(array_body, (IO, bytes)):
+            _content = array_body
+        else:
+            _json = self._serialize.body(array_body, "[{str}]")
+            content_type = content_type or "application/json"
 
         request = build_put_dictionary_valid_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_dictionary_valid.metadata["url"],
             headers=_headers,
             params=_params,
