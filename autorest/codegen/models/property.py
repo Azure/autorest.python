@@ -3,8 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from this import d
-from typing import Any, Dict, Optional, TYPE_CHECKING
+from typing import Any, Dict, Optional, TYPE_CHECKING, List
 
 from .base_model import BaseModel
 from .constant_type import ConstantType
@@ -31,6 +30,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.readonly: bool = self.yaml_data.get("readonly", False)
         self.is_discriminator: bool = yaml_data.get("isDiscriminator", False)
         self.client_default_value = yaml_data.get("clientDefaultValue", None)
+        self.flattened_names: List[str] = yaml_data.get("flattenedNames", [])
 
     def description(self, *, is_operation_file: bool) -> str:
         description = self.yaml_data["description"]
@@ -96,7 +96,11 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     @property
     def attribute_map(self) -> str:
-        return f'"{self.client_name}": {{"key": "{self.rest_api_name}", "type": "{self.serialization_type}"}},'
+        if self.flattened_names:
+            attribute_key = ".".join(n.replace(".", "\\\\.") for n in self.flattened_names)
+        else:
+            attribute_key = self.rest_api_name.replace(".", "\\\\.")
+        return f'"{self.client_name}": {{"key": "{attribute_key}", "type": "{self.serialization_type}"}},'
 
     def imports(self) -> FileImport:
         file_import = self.type.imports(is_operation_file=False)

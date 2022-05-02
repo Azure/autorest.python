@@ -110,7 +110,7 @@ class OperationBase(BaseBuilder[ParameterListType]):
     def response_docstring_text(self, **kwargs) -> str:
         retval = self._response_docstring_helper("docstring_text")
         if not self.code_model.options["version_tolerant"]:
-            retval += ", or the result of cls(response)"
+            retval += " or the result of cls(response)"
         return retval
 
 
@@ -131,9 +131,10 @@ class OperationBase(BaseBuilder[ParameterListType]):
 
     @property
     def default_error_deserialization(self) -> Optional[str]:
-        if not self.exceptions:
+        default_exceptions = [e for e in self.exceptions if "default" in e.status_codes and e.type]
+        if not default_exceptions:
             return None
-        excep_schema = self.exceptions[0].type
+        excep_schema = default_exceptions[0].type
         if isinstance(excep_schema, ModelType):
             return f"_models.{excep_schema.name}"
         # in this case, it's just an AnyType

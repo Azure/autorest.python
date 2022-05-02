@@ -94,7 +94,8 @@ def update_enum(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
 def update_property(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
         "clientName": yaml_data["language"]["default"]["name"],
-        "restApiName": ".".join(n.replace(".", "\\\\.") for n in yaml_data.get("flattenedNames", [])) or yaml_data["serializedName"].replace(".", "\\\\."),
+        "restApiName": yaml_data["serializedName"],
+        "flattenedNames": yaml_data.get("flattenedNames", []),
         "type": update_type(yaml_data["schema"]),
         "optional": not yaml_data.get("required"),
         "description": yaml_data["language"]["default"]["description"],

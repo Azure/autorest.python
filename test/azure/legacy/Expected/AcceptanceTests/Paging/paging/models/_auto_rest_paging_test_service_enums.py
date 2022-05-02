@@ -11,7 +11,7 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class OperationResultStatus(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """The status of the request"""
+    """The status of the request."""
 
     SUCCEEDED = "Succeeded"
     FAILED = "Failed"

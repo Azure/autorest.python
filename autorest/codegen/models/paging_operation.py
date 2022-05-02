@@ -63,8 +63,11 @@ class _PagingOperationBase(OperationBase):
             raise ValueError(f"Can't find a matching property in response for {rest_api_name}")
 
     @property
-    def continuation_token_name(self) -> str:
+    def continuation_token_name(self) -> Optional[str]:
         rest_api_name = self.yaml_data["continuationTokenName"]
+        if not rest_api_name:
+            # That's an ok scenario, it just means no next page possible
+            return None
         if self.code_model.options["models_mode"]:
             return self._get_attr_name(rest_api_name)
         return rest_api_name

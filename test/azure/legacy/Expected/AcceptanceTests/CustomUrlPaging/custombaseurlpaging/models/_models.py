@@ -6,7 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 import msrest.serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    import __init__ as _models
 
 
 class Error(msrest.serialization.Model):
@@ -38,7 +44,7 @@ class Error(msrest.serialization.Model):
 class Product(msrest.serialization.Model):
     """Product.
 
-    :ivar properties:
+    :ivar properties: ProductProperties.
     :vartype properties: ~custombaseurlpaging.models.ProductProperties
     """
 
@@ -48,7 +54,7 @@ class Product(msrest.serialization.Model):
 
     def __init__(self, **kwargs):
         """
-        :keyword properties:
+        :keyword properties: ProductProperties.
         :paramtype properties: ~custombaseurlpaging.models.ProductProperties
         """
         super(Product, self).__init__(**kwargs)

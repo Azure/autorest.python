@@ -913,14 +913,14 @@ class PagingOperationSerializer(
 
         continuation_token_name = builder.continuation_token_name
         if not continuation_token_name:
-            next_link_property = "None"
+            cont_token_property = "None"
         elif self.code_model.options["models_mode"]:
-            next_link_property = f"deserialized.{continuation_token_name} or None"
+            cont_token_property = f"deserialized.{continuation_token_name} or None"
         else:
-            next_link_property = f'deserialized.get("{continuation_token_name}", None)'
+            cont_token_property = f'deserialized.get("{continuation_token_name}", None)'
         list_type = "AsyncList" if self.async_mode else "iter"
         retval.append(
-            f"    return {next_link_property}, {list_type}(list_of_elem)"
+            f"    return {cont_token_property}, {list_type}(list_of_elem)"
         )
         return retval
 
