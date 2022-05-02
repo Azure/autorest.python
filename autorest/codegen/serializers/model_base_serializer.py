@@ -117,7 +117,7 @@ class ModelBaseSerializer:
         return init_args
 
     def initialize_standard_property(self, prop: Property):
-        if not prop.optional and not prop.client_default_value:
+        if not prop.optional:
             return self.required_property_no_default_init(prop)
         return self.optional_property_init(prop)
 

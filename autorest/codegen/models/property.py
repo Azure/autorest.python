@@ -35,8 +35,16 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def description(self, *, is_operation_file: bool) -> str:
         description = self.yaml_data["description"]
         if not (self.optional or self.client_default_value):
-            description += add_to_description(description, "Required.")
+            description = add_to_description(description, "Required.")
         return add_to_description(description, self.type.description(is_operation_file=is_operation_file))
+
+    @property
+    def client_default_value_declaration(self) -> str:
+        if self.client_default_value is not None:
+            return self.type.get_declaration(self.client_default_value)
+        if self.type.client_default_value is not None:
+            return self.type.get_declaration(self.type.client_default_value)
+        return "None"
 
     @property
     def xml_metadata(self) -> str:

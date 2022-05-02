@@ -105,7 +105,7 @@ class BinaryType(PrimitiveType):
     def imports(self, *, is_operation_file: bool) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
-            "typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL
+            "typing", "IO", ImportType.STDLIB
         )
         return file_import
 

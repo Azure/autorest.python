@@ -25,6 +25,7 @@ class ParameterLocation(str, Enum):
     ENDPOINT_PATH = "endpointPath"
     QUERY = "query"
     BODY = "body"
+    OTHER = "other"
 
 class ParameterMethodLocation(Enum):
     POSITIONAL = auto()
@@ -53,6 +54,14 @@ class _ParameterBase(BaseModel, abc.ABC):
         self.type = type
         if self.client_default_value is None:
             self.client_default_value = self.type.client_default_value
+        # name of grouper if it is grouped by another parameter
+        self.grouped_by: Optional[str] = self.yaml_data.get("groupedBy")
+        # property matching property name to parameter name for grouping params
+        # and flattened body params
+        self.property_to_parameter_name: Optional[Dict[str, str]] = self.yaml_data.get("propertyToParameterName")
+        self.flattened: bool = self.yaml_data.get("flattened", False)
+        self.in_flattened_body: bool = self.yaml_data.get("inFlattenedBody", False)
+        self.grouper: bool = self.yaml_data.get("grouper", False)
 
     @property
     def constant(self) -> bool:
@@ -144,12 +153,8 @@ class _BodyParameterBase(_ParameterBase):
         return ParameterMethodLocation.KWARG if self.constant else ParameterMethodLocation.POSITIONAL
 
     @property
-    def flattened(self) -> bool:
-        raise NotImplementedError("Haven't implemented flattening yet")
-
-    @property
     def in_method_signature(self) -> bool:
-        return True
+        return not (self.flattened or self.grouped_by)
 
 
 class BodyParameter(_BodyParameterBase):
@@ -219,7 +224,7 @@ class Parameter(_ParameterBase):
 
     @property
     def in_method_signature(self) -> bool:
-        return self.rest_api_name != "Accept"  # hiding accept header from users
+        return not (self.rest_api_name == "Accept" or self.grouped_by or self.flattened)
 
     @property
     def full_client_name(self) -> str:
@@ -235,6 +240,8 @@ class Parameter(_ParameterBase):
     def method_location(self) -> ParameterMethodLocation:
         if not self.in_method_signature:
             raise ValueError(f"Parameter '{self.client_name}' is not in the method.")
+        if self.grouper:
+            return ParameterMethodLocation.POSITIONAL
         if self.constant:
             return ParameterMethodLocation.KWARG
         if self.location == ParameterLocation.QUERY:
@@ -277,13 +284,6 @@ class ClientParameter(Parameter):
             # this means i am the base url
             return ParameterMethodLocation.KEYWORD_ONLY
         return ParameterMethodLocation.POSITIONAL
-
-    def imports(self) -> FileImport:
-        file_import = super().imports()
-        legacy = not (self.code_model.options["low_level_client"] or self.code_model.options["version_tolerant"])
-        if legacy and self.is_host:
-            file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
-        return file_import
 
 class ConfigParameter(Parameter):
 

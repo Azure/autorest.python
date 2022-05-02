@@ -63,10 +63,19 @@ class RequestBuilderParameter(Parameter):
         # we don't want any default content type behavior in request builder
         if self.rest_api_name == "Content-Type":
             self.client_default_value = None
+        if self.grouped_by and self.client_name[0] == "_":
+            # we don't want hidden parameters for grouped by in request builders
+            self.client_name = self.client_name[1:]
 
     @property
     def in_method_signature(self) -> bool:
-        return super().in_method_signature and self.location != ParameterLocation.ENDPOINT_PATH
+        if self.grouped_by and not self.in_flattened_body:
+            return True
+        return super().in_method_signature and not (
+            self.location == ParameterLocation.ENDPOINT_PATH or
+            self.in_flattened_body or
+            self.grouper
+        )
 
     @property
     def full_client_name(self) -> str:
@@ -81,6 +90,8 @@ class RequestBuilderParameter(Parameter):
 
     @property
     def name_in_high_level_operation(self) -> str:
+        if self.grouped_by:
+            return f'_{self.client_name}'
         if self.implementation == "Client":
             return f"self._config.{self.client_name}"
         return self.client_name

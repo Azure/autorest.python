@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import json
+from itertools import groupby
 from abc import abstractmethod, ABC
 from collections import defaultdict
 from typing import Any, List, TypeVar, Dict, Union, Optional, cast
@@ -64,6 +65,36 @@ def _json_dumps_template(template_representation: Any) -> Any:
     return _improve_json_string(
         json.dumps(template_representation, sort_keys=True, indent=4)
     )
+
+def _serialize_grouped_body(builder: BuilderType) -> List[str]:
+    retval: List[str] = []
+    for grouped_parameter in builder.parameters.grouped:
+        retval.append(f"{grouped_parameter.client_name} = None")
+    groupers = [p for p in builder.parameters if p.grouper]
+    for grouper in groupers:
+        retval.append(f"if {grouper.client_name} is not None:")
+        retval.extend([
+            f"    {parameter} = {grouper.client_name}.{property}"
+            for property, parameter in grouper.property_to_parameter_name.items()
+        ])
+    return retval
+
+def _serialize_flattened_body(body_parameter: BodyParameter) -> List[str]:
+    retval: List[str] = []
+    if not body_parameter.property_to_parameter_name:
+        raise ValueError(
+            "This method can't be called if the operation doesn't need parameter flattening"
+        )
+
+    parameter_string = ", ".join(
+        f"{property_name}={parameter_name}"
+        for property_name, parameter_name in body_parameter.property_to_parameter_name.items()
+    )
+    model_type = cast(ModelType, body_parameter.type)
+    retval.append(
+        f"{body_parameter.client_name} = _models.{model_type.name}({parameter_string})"
+    )
+    return retval
 
 class _BuilderSerializerProtocol(ABC):
     @property
@@ -203,7 +234,10 @@ class _BuilderBaseSerializer(
 
     def _json_input_example_template(self, builder: BuilderType) -> List[str]:
         template = []
-        if not builder.parameters.has_body:
+        if self.code_model.options["models_mode"]:
+            # No input template if we have models
+            return template
+        if not builder.parameters.has_body or builder.parameters.body_parameter.flattened:
             # No input template if now body parameter
             return template
         if builder.overloads:
@@ -337,7 +371,7 @@ class RequestBuilderSerializer(
             retval.append("    params=_params,")
         if builder.parameters.headers:
             retval.append("    headers=_headers,")
-        if builder.parameters.has_body and not builder.overloads:
+        if builder.parameters.has_body and builder.parameters.body_parameter.constant:
             retval.append(f"    {builder.parameters.body_parameter.client_name}={builder.parameters.body_parameter.client_name},")
         retval.append("    **kwargs")
         retval.append(")")
@@ -394,6 +428,8 @@ class OperationSerializer(
 
     def example_template(self, builder: Operation) -> List[str]:
         retval = super().example_template(builder)
+        if self.code_model.options["models_mode"]:
+            return retval
         if self._get_json_response_template_to_status_codes(builder):
             retval.append("")
             for (
@@ -511,9 +547,16 @@ class OperationSerializer(
             retval.append(f"_content = {body_param.client_name}")
         else:
             if self.code_model.options["models_mode"]:
-                retval.append(f"_json = self._serialize.body({body_param.client_name}, '{body_param.type.serialization_type}')")
+                create_body_call = f"_json = self._serialize.body({body_param.client_name}, '{body_param.type.serialization_type}')"
             else:
-                retval.append(f"_json = {body_param.client_name}")
+                create_body_call = f"_json = {body_param.client_name}"
+            if body_param.optional:
+                retval.append(f"if {body_param.client_name} is not None:")
+                retval.append("    " + create_body_call)
+                retval.append("else:")
+                retval.append(f"    _json = None")
+            else:
+                retval.append(create_body_call)
         return retval
 
     def _call_request_builder_helper(  # pylint: disable=too-many-statements
@@ -524,6 +567,14 @@ class OperationSerializer(
         is_next_request: bool = False,
     ) -> List[str]:
         retval = []
+        if builder.parameters.grouped:
+            # request builders don't allow grouped parameters, so we group them before making the call
+            retval.extend(_serialize_grouped_body(builder))
+
+        if builder.parameters.has_body and builder.parameters.body_parameter.flattened:
+            # unflatten before passing to request builder as well
+            retval.extend(_serialize_flattened_body(builder.parameters.body_parameter))
+
         if builder.overloads:
             # we are only dealing with two overloads. If there are three, we generate an abstract operation
             for overload in builder.overloads:
@@ -734,9 +785,7 @@ class OperationSerializer(
             for excep in builder.non_default_errors:
                 error_model_str = ""
                 if (
-                    isinstance(excep.type, ModelType)
-                    and excep.is_error
-                    and self.code_model.options["models_mode"]
+                    isinstance(excep.type, ModelType) and self.code_model.options["models_mode"]
                 ):
                     error_model_str = f", model=self._deserialize(_models.{excep.type.serialization_type}, response)"
                 error_format_str = (

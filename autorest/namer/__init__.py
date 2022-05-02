@@ -40,6 +40,7 @@ def update_types(yaml_data: List[Dict[str, Any]]) -> None:
 
 def update_client(yaml_data: Dict[str, Any]) -> None:
     yaml_data["description"] = update_description(yaml_data["description"], default_description=yaml_data["name"])
+    yaml_data["moduleName"] = to_snake_case(yaml_data["name"].replace(" ", "_"))
     for parameter in yaml_data["parameters"]:
         update_parameter(parameter)
 

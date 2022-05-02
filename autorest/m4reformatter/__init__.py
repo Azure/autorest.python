@@ -94,12 +94,16 @@ def update_enum(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
 def update_property(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
         "clientName": yaml_data["language"]["default"]["name"],
-        "restApiName": yaml_data["serializedName"],
+        "restApiName": ".".join(n.replace(".", "\\\\.") for n in yaml_data.get("flattenedNames", [])) or yaml_data["serializedName"],
         "type": update_type(yaml_data["schema"]),
         "optional": not yaml_data.get("required"),
         "description": yaml_data["language"]["default"]["description"],
         "isDiscriminator": yaml_data.get("isDiscriminator"),
-        "readonly": yaml_data.get("readOnly", False)
+        "readonly": yaml_data.get("readOnly", False),
+        "groupedParameterNames": [
+            op["language"]["default"]["name"]
+            for op in yaml_data.get("originalParameter", [])
+        ]
     }
 
 def update_discriminated_subtypes(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
@@ -203,7 +207,7 @@ def update_type(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         updated_type = update_enum(yaml_data)
     elif type_group in (OAUTH_TYPE, KEY_TYPE):
         updated_type = yaml_data
-    elif type_group == "object":
+    elif type_group in ("object", "group"):
         # avoiding infinite loop
         initial_model = create_model(yaml_data)
         ORIGINAL_ID_TO_UPDATED_TYPE[id(yaml_data)] = initial_model
@@ -216,7 +220,9 @@ def update_type(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
 def update_parameter_base(
     yaml_data: Dict[str, Any], *, client_name: Optional[str] = None
 ) -> Dict[str, Any]:
-    location = yaml_data["protocol"]["http"]["in"]
+    location = yaml_data["protocol"].get("http", {}).get("in")
+    if not location:
+        location = "other"
     if location == "uri":
         location = "endpointPath"
 
@@ -226,6 +232,7 @@ def update_parameter_base(
         "clientName": client_name or yaml_data["language"]["default"]["name"],
         "clientDefaultValue": yaml_data.get("clientDefaultValue"),
         "location": location,
+        "groupedBy": yaml_data["groupedBy"]["language"]["default"]["name"] if yaml_data.get("groupedBy") else None,
     }
 
 def update_parameter_delimiter(style: Optional[str]) -> Optional[str]:
@@ -367,6 +374,7 @@ class M4Reformatter(YamlUpdatePlugin):
             "parameters": self.update_parameters(yaml_data, body_parameter, in_overload=is_overload, in_overriden=in_overriden),
             "bodyParameter": body_parameter,
             "responses": [update_response(yaml_data, r) for r in yaml_data.get("responses", [])],
+            "exceptions": [update_response(yaml_data, e) for e in yaml_data.get("exceptions", [])],
             "groupName": group_name,
             "discriminator": "operation",
             "isOverload": is_overload,
@@ -392,6 +400,8 @@ class M4Reformatter(YamlUpdatePlugin):
             any(ct for ct in yaml_data["requestMediaTypes"] if JSON_REGEXP.match(ct)) and
             body_parameter["type"]["type"] in ("model", "dict", "list") and
             not body_parameter["type"]["xmlMetadata"]
+            and not body_parameter.get("flattened")
+            and not body_parameter.get("groupedBy")
         ):
             combined_type = update_types([body_parameter["type"], KNOWN_TYPES["binary"]])
             body_parameter["type"] = combined_type
@@ -453,6 +463,7 @@ class M4Reformatter(YamlUpdatePlugin):
         body_param: Dict[str, Any],
         body_type: Dict[str, Any],
     ) -> Dict[str, Any]:
+        flattened = body_param.get("flattened")
         param_base = update_parameter_base(body_param)
         body_param = copy.deepcopy(param_base)
         body_param["type"] = body_type
@@ -466,7 +477,7 @@ class M4Reformatter(YamlUpdatePlugin):
         if body_param["type"]["type"] == "constant":
             if not body_param["optional"] or (body_param["optional"] and not self.default_optional_constants_to_none):
                 body_param["clientDefaultValue"] = body_type["value"]
-
+        body_param["flattened"] = flattened
         return body_param
 
     def update_multipart_body_parameter(self, yaml_data: Dict[str, Any], client_name: str, description: str) -> Dict[str, Any]:
@@ -498,7 +509,7 @@ class M4Reformatter(YamlUpdatePlugin):
                 yaml_data, "data", "Multipart input for form encoded data."
             )
         body_types = get_all_body_types(yaml_data)
-        if len(body_types) > 1:
+        if len(body_types) > 1 and not yaml_data.get("flattened"):
             body_type = update_types(body_types)
         else:
             body_type = body_types[0]
@@ -524,6 +535,8 @@ class M4Reformatter(YamlUpdatePlugin):
     def update_parameters(self, yaml_data: Dict[str, Any], body_parameter: Optional[Dict[str, Any]], *, in_overload: bool = False, in_overriden: bool = False) -> List[Dict[str, Any]]:
         retval: List[Dict[str, Any]] = []
         seen_rest_api_names: Set[str] = set()
+        has_flattened_body = body_parameter and body_parameter.get("flattened")
+        groupers: Dict[str, Dict[str, Any]] = {}
         for param in yaml_data["parameters"]:
             if param["language"]["default"]["name"] == "$host":
                 continue
@@ -544,7 +557,20 @@ class M4Reformatter(YamlUpdatePlugin):
             sub_requests = yaml_data.get("requests", [])
         for request in sub_requests:
             for param in request.get("parameters", []):
-                if not is_body(param):
+                if has_flattened_body and param.get("targetProperty"):
+                    # this means i'm a property that is part of a flattened model
+                    target_property_name = param["targetProperty"]["language"]["default"]["name"]
+                    param = self.update_parameter(param)
+                    body_parameter.setdefault("propertyToParameterName", {})[target_property_name] = param["clientName"]
+                    retval.append(param)
+                    param["inFlattenedBody"] = True
+                elif param["schema"]["type"] == "group":
+                    # this means i'm a parameter group parameter
+                    param = self.update_parameter(param)
+                    param["grouper"] = True
+                    groupers[param["clientName"]] = param
+                    retval.append(param)
+                elif not is_body(param):
                     if param["language"]["default"]["serializedName"] not in seen_rest_api_names:
                         if param["language"]["default"]["serializedName"] == "Content-Type":
                             # override content type type to string
@@ -567,6 +593,15 @@ class M4Reformatter(YamlUpdatePlugin):
                         param = self.update_parameter(param, in_overload=in_overload, in_overriden=in_overriden)
                         retval.append(param)
                         seen_rest_api_names.add(param["restApiName"])
+        for grouper_name, grouper in groupers.items():
+            grouper["propertyToParameterName"] = {
+                next(
+                    prop for prop in grouper["type"]["properties"]
+                    if p["clientName"] in prop["groupedParameterNames"]
+                )["clientName"]: p["clientName"]
+                for p in retval
+                if p.get("groupedBy") == grouper_name
+            }
         return retval
 
     def update_parameter(self, yaml_data: Dict[str, Any], *, client_name: Optional[str] = None, in_overload: bool = False, in_overriden: bool = False) -> Dict[str, Any]:
@@ -575,16 +610,17 @@ class M4Reformatter(YamlUpdatePlugin):
         if type["type"] == "constant":
             if not param_base["optional"] or (param_base["optional"] and not self.default_optional_constants_to_none):
                 param_base["clientDefaultValue"] = type["value"]
+        protocol_http = yaml_data["protocol"].get("http", {})
         param_base.update({
-            "restApiName": yaml_data["language"]["default"]["serializedName"],
+            "restApiName": yaml_data["language"]["default"].get("serializedName"),
             "type": type,
             "implementation": yaml_data["implementation"],
-            "explode": yaml_data["protocol"]["http"].get("explode", False),
+            "explode": protocol_http.get("explode", False),
             "inOverload": in_overload,
             "skipUrlEncoding": yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
             "inDocstring": yaml_data.get("inDocstring", True),
             "inOverriden": in_overriden,
-            "delimiter": update_parameter_delimiter(yaml_data["protocol"]["http"].get("style"))
+            "delimiter": update_parameter_delimiter(protocol_http.get("style")),
         })
         return param_base
 

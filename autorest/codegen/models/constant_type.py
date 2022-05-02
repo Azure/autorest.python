@@ -7,6 +7,7 @@ import logging
 from typing import Dict, Any, Optional, TYPE_CHECKING
 from .base_type import BaseType
 from .imports import FileImport
+from .utils import add_to_description
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -49,7 +50,7 @@ class ConstantType(BaseType):
     def description(self, *, is_operation_file: bool) -> str:
         if is_operation_file:
             return ""
-        return f'{self.yaml_data["description"]} Default value is {self.get_declaration()}.'
+        return add_to_description(self.yaml_data.get("description", ""), f"Default value is {self.get_declaration()}.")
 
     @property
     def serialization_type(self) -> str:

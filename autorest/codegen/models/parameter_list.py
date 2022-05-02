@@ -87,6 +87,13 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
         ...
 
     @property
+    def grouped(self) -> List[Union[ParameterType, BodyParameterType]]:
+        params: List[Union[ParameterType, BodyParameterType]] = [p for p in self.parameters if p.grouped_by]
+        if self.has_body and self.body_parameter.grouped_by:
+            params.append(self.body_parameter)
+        return params
+
+    @property
     def has_body(self) -> bool:
         return bool(self._body_parameter)
 
@@ -101,14 +108,6 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
     @property
     def headers(self) -> List[ParameterType]:
         return [p for p in self.parameters if p.location == ParameterLocation.HEADER]
-
-    @property
-    def grouped(self) -> List[ParameterType]:
-        raise NotImplementedError("No parameter grouping")
-
-    @property
-    def groupers(self) -> List[ParameterType]:
-        raise NotImplementedError("No parameter grouping")
 
     @property
     def constant(self) -> List[Union[ParameterType, BodyParameterType]]:
@@ -146,7 +145,7 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
     @property
     def unsorted_method_params(self) -> List[Union[ParameterType, BodyParameterType]]:
         method_params: List[Union[ParameterType, BodyParameterType]] = [p for p in self.parameters if p.in_method_signature and p.implementation == self.implementation]
-        if self._body_parameter:
+        if self._body_parameter and self._body_parameter.in_method_signature:
             method_params.append(self._body_parameter)
         return method_params
 
@@ -179,9 +178,10 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
         return ["**kwargs: Any"] if is_python3_file else ["**kwargs  # type: Any"]
 
     def kwargs_to_pop(self, is_python3_file: bool) -> List[Union[ParameterType, BodyParameterType]]:
+        # don't want to pop bodies unless it's a constant
         kwargs_to_pop = [p for p in self.method if p.method_location == ParameterMethodLocation.KWARG]
         if not is_python3_file:
-            kwargs_to_pop += [p for p in self.method if p.method_location == ParameterMethodLocation.KEYWORD_ONLY]
+            kwargs_to_pop += [p for p in self.method if p.method_location == ParameterMethodLocation.KEYWORD_ONLY if p.location != ParameterLocation.BODY]
         return kwargs_to_pop
 
     @property
@@ -272,7 +272,7 @@ class RequestBuilderParameterList(_RequestBuilderParameterList):
 class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList):
 
     def method_signature(self, is_python3_file: bool) -> List[str]:
-        return self.method_signature_positional(is_python3_file) + ["**kwargs"]
+        return self.method_signature_positional(is_python3_file) + self.method_signature_kwargs(is_python3_file)
 
 class _ClientGlobalParameterList(_ParameterListBase[ParameterType, BodyParameter]):
 

@@ -28,6 +28,7 @@ class _LROOperationBase(OperationBase):
         request_builder: RequestBuilder,
         parameters: ParameterList,
         responses: List[Response],
+        exceptions: List[Response],
         *,
         overloads: Optional[List[Operation]] = None,
         public: bool = True,
@@ -41,6 +42,7 @@ class _LROOperationBase(OperationBase):
             request_builder=request_builder,
             parameters=parameters,
             responses=responses,
+            exceptions=exceptions,
             overloads=overloads,
             public=public,
             want_tracing=want_tracing,
@@ -192,6 +194,7 @@ class LROOperation(Operation, _LROOperationBase):
             overloads=self.overloads,
             parameters=self.parameters,
             responses=self.responses,
+            exceptions=self.exceptions,
             public=False,
             want_tracing=False,
         )
@@ -212,6 +215,7 @@ class OverloadedLROOperation(OverloadedOperation, _LROOperationBase):
             overloads=self.overloads,
             parameters=self.parameters,
             responses=self.responses,
+            exceptions=self.exceptions,
             public=False,
             want_tracing=False,
         )

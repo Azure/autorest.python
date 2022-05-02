@@ -54,7 +54,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes, too-many-publi
         self.request_builders: List[Union[RequestBuilder, OverloadedRequestBuilder]] = []
         self.package_dependency: Dict[str, str] = {}
         self.namespace: str = yaml_data["client"]["namespace"].lower()
-        self.module_name: str = self.yaml_data["client"]["name"].replace(" ", "_").lower()
+        self.module_name: str = self.yaml_data["client"]["moduleName"]
 
     def lookup_type(self, schema_id: int) -> BaseType:
         """Looks to see if the schema has already been created.

@@ -44,7 +44,6 @@ class Response(BaseModel):
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.status_codes: List[Union[int, str]] = yaml_data["statusCodes"]
         self.headers = headers
-        self.is_error: bool = yaml_data["isError"]
         self.type = type
         self.nullable = yaml_data.get("nullable")
 

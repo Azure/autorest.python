@@ -34,6 +34,7 @@ class OperationBase(BaseBuilder[ParameterListType]):
         request_builder: Union[RequestBuilder, OverloadedRequestBuilder],
         parameters: ParameterListType,
         responses: List[Response],
+        exceptions: List[Response],
         *,
         overloads: Optional[List["Operation"]] = None,
         public: bool = True,
@@ -54,6 +55,7 @@ class OperationBase(BaseBuilder[ParameterListType]):
         self.public = public
         self.request_builder = request_builder
         self.deprecated = False
+        self.exceptions = exceptions
 
     @property
     def operation_type(self) -> str:
@@ -65,12 +67,11 @@ class OperationBase(BaseBuilder[ParameterListType]):
         bodies and some are None
         """
         # means if we have at least one successful response with a body and one without
-        successful_responses = [r for r in self.responses if not r.is_error]
         successful_response_with_body = any(
-            r for r in successful_responses if r.type
+            r for r in self.responses if r.type
         )
         successful_response_without_body = any(
-            r for r in successful_responses if not r.type
+            r for r in self.responses if not r.type
         )
         return successful_response_with_body and successful_response_without_body
 
@@ -109,7 +110,7 @@ class OperationBase(BaseBuilder[ParameterListType]):
     def response_docstring_text(self, **kwargs) -> str:
         retval = self._response_docstring_helper("docstring_text")
         if not self.code_model.options["version_tolerant"]:
-            retval += " or the result of cls(response)"
+            retval += ", or the result of cls(response)"
         return retval
 
 
@@ -130,13 +131,9 @@ class OperationBase(BaseBuilder[ParameterListType]):
 
     @property
     def default_error_deserialization(self) -> Optional[str]:
-        retval = [
-            r for r in self.responses
-            if r.is_error and "*" in r.status_codes
-        ]
-        if not retval:
+        if not self.exceptions:
             return None
-        excep_schema = retval[0].type
+        excep_schema = self.exceptions[0].type
         if isinstance(excep_schema, ModelType):
             return f"_models.{excep_schema.name}"
         # in this case, it's just an AnyType
@@ -146,7 +143,7 @@ class OperationBase(BaseBuilder[ParameterListType]):
     @property
     def non_default_errors(self) -> List[Response]:
         return [
-            r for r in self.responses if r.is_error and "*" not in r.status_codes
+            e for e in self.exceptions if "default" not in e.status_codes
         ]
 
     @property
@@ -344,7 +341,6 @@ class OperationBase(BaseBuilder[ParameterListType]):
             code
             for response in self.responses
             for code in response.status_codes
-            if not response.is_error
         ]
 
     @property
@@ -379,6 +375,7 @@ class OperationBase(BaseBuilder[ParameterListType]):
         name = yaml_data["name"]
         request_builder = code_model.lookup_request_builder(id(yaml_data))
         responses = [Response.from_yaml(r, code_model) for r in yaml_data["responses"]]
+        exceptions = [Response.from_yaml(e, code_model) for e in yaml_data["exceptions"]]
         parameter_list = cls.parameter_list_type().from_yaml(yaml_data, code_model)
         overloads = [
             cls.overload_operation_class().from_yaml(overload, code_model)
@@ -403,6 +400,7 @@ class OperationBase(BaseBuilder[ParameterListType]):
             parameters=parameter_list,
             overloads=overloads,
             responses=responses,
+            exceptions=exceptions,
             want_tracing=not yaml_data["isOverload"],
             abstract=abstract,
         )
