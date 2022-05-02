@@ -228,7 +228,7 @@ class OperationBase(BaseBuilder[ParameterListType]):
                 )
         if self.code_model.options["builders_visibility"] == "embedded" and async_mode:
             suffix = (
-                "_py3" if self.code_model.options["add_python3_operation_files"] else ""
+                "_py3" if self.code_model.options["add_python3_operation_files"] and not self.code_model.options["python3_only"] else ""
             )
             file_import.add_submodule_import(
                 f"...{self.code_model.operations_folder_name}.{self.filename}{suffix}",

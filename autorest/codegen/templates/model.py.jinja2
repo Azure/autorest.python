@@ -3,10 +3,10 @@
 
 {{ serializer.declare_model(model) }}
     """{{ model.description(is_operation_file=False) }}
-    {% if model.discriminator_name %}
+    {% if model.discriminated_subtypes %}
 
     You probably want to use the sub-classes and not this class directly. Known
-    sub-classes are: {{ model.subtype_map.values()|join(', ') }}.
+    sub-classes are: {{ model.discriminated_subtypes.values()|join(', ') }}.
     {% endif %}
     {% if model.has_readonly_or_constant_property %}
 
@@ -43,10 +43,10 @@
             {% endfor %}
         {% endif %}
     }
-    {% if model.discriminator_name %}
+    {% if model.discriminated_subtypes %}
 
     _subtype_map = {
-        '{{ model.discriminator_name }}': {{ str(model.subtype_map) }}
+        '{{ model.discriminator.client_name }}': {{ str(model.discriminated_subtypes) }}
     }
     {% endif %}
     {% if model.xml_map_content() %}

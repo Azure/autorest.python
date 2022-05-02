@@ -35,6 +35,7 @@ def update_types(yaml_data: List[Dict[str, Any]]) -> None:
     for type in yaml_data:
         for property in type.get("properties", []):
             property["description"] = update_description(property["description"])
+            property["clientName"] = property["clientName"].lower()
         if type.get("name"):
             type["description"] = update_description(type["description"], type["name"])
 

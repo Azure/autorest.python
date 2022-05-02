@@ -41,7 +41,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         *,
         properties: Optional[List[Property]] = None,
         parents: Optional[List["ModelType"]] = None,
-        discriminated_subtypes: Optional[Dict[str, "ModelType"]] = None,
+        discriminated_subtypes: Optional[Dict[str, str]] = None,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.name: str = self.yaml_data["name"]
@@ -151,10 +151,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes
         ]
         self.properties = _get_properties(self, properties)
         # checking to see if this is a polymorphic class
-        self.discriminated_subtypes = {
-            discriminator_value: cast(ModelType, build_type(subtype_yaml_data, code_model))
-            for discriminator_value, subtype_yaml_data in yaml_data["discriminatedSubtypes"].items()
-        }
+        self.discriminated_subtypes = self.yaml_data.get("discriminatedSubtypes", {})
 
     @property
     def has_readonly_or_constant_property(self) -> bool:

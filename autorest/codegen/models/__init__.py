@@ -11,7 +11,7 @@ from .dictionary_type import DictionaryType
 from .list_type import ListType
 from .combined_type import CombinedType
 from .primitive_types import (
-    Base64Type,
+    ByteArraySchema,
     DateType,
     DatetimeType,
     DurationType,
@@ -105,7 +105,7 @@ TYPE_TO_OBJECT = {
     "time": TimeType,
     "duration": DurationType,
     "date": DateType,
-    "base64": Base64Type,
+    "byte-array": ByteArraySchema,
     "boolean": BooleanType,
     "combined": CombinedType,
     "OAuth2": TokenCredentialType,

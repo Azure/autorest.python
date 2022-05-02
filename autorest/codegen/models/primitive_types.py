@@ -521,10 +521,16 @@ class DurationType(PrimitiveType):
         return "isinstance({}, datetime.timedelta)"
 
 
-class Base64Type(PrimitiveType):
+class ByteArraySchema(PrimitiveType):
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
+        self.format = yaml_data["format"]
+
     @property
     def serialization_type(self) -> str:
-        return "base64"
+        if self.format == "base64url":
+            return "base64"
+        return "bytearray"
 
     @property
     def docstring_type(self) -> str:

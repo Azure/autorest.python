@@ -94,7 +94,7 @@ def update_enum(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
 def update_property(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
         "clientName": yaml_data["language"]["default"]["name"],
-        "restApiName": ".".join(n.replace(".", "\\\\.") for n in yaml_data.get("flattenedNames", [])) or yaml_data["serializedName"],
+        "restApiName": ".".join(n.replace(".", "\\\\.") for n in yaml_data.get("flattenedNames", [])) or yaml_data["serializedName"].replace(".", "\\\\."),
         "type": update_type(yaml_data["schema"]),
         "optional": not yaml_data.get("required"),
         "description": yaml_data["language"]["default"]["description"],
@@ -108,7 +108,7 @@ def update_property(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
 
 def update_discriminated_subtypes(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
-        obj["discriminatorValue"]: update_type(obj)
+        obj["discriminatorValue"]: obj["language"]["default"]["name"]
         for obj in yaml_data.get("discriminator", {}).get("immediate", {}).values()
     }
 
@@ -122,13 +122,13 @@ def create_model(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
 def fill_model(yaml_data: Dict[str, Any], current_model: Dict[str, Any]) -> Dict[str, Any]:
     properties = [update_property(p) for p in yaml_data.get("properties", [])]
     yaml_parents = yaml_data.get("parents", {}).get("immediate", [])
-    dict_parents = [p for p in yaml_parents if p["type"] == "dict"]
+    dict_parents = [p for p in yaml_parents if p["type"] == "dictionary"]
     if dict_parents:
         # add additional properties property
-        properties.append({
+        properties.insert(0, {
             "clientName": "additional_properties",
             "restApiName": "",
-            "type": dict_parents[0],
+            "type": update_type(dict_parents[0]),
             "optional": True,
             "description": "Unmatched properties from the message are deserialized to this collection.",
             "isDiscriminator": False,
@@ -176,7 +176,9 @@ def update_primitive(type_group: str, yaml_data: Dict[str, Any]) -> Dict[str, An
         base["format"] = yaml_data["format"]
         return base
     if type_group == "byte-array":
-        type_group = "base64"
+        base = _update_type_base("byte-array", yaml_data)
+        base["format"] = yaml_data["format"]
+        return base
     return _update_type_base(type_group, yaml_data)
 
 def update_types(yaml_data: List[Dict[str, Any]]) -> Dict[str, Any]:
