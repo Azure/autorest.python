@@ -322,6 +322,8 @@ def _get_default_content_type(content_types: Iterable[str]) -> Optional[str]:
 
     if "application/octet-stream" in content_types:
         return "application/octet-stream"
+    if "application/x-www-form-urlencoded" in content_types:
+        return "application/x-www-form-urlencoded"
     return None
 
 def update_client_url(yaml_data: Dict[str, Any]) -> str:
@@ -467,6 +469,7 @@ class M4Reformatter(YamlUpdatePlugin):
         body_type: Dict[str, Any],
     ) -> Dict[str, Any]:
         flattened = body_param.get("flattened")
+        is_partial_body = body_param.get("isPartialBody")
         param_base = update_parameter_base(body_param)
         body_param = copy.deepcopy(param_base)
         body_param["type"] = body_type
@@ -481,6 +484,7 @@ class M4Reformatter(YamlUpdatePlugin):
             if not body_param["optional"] or (body_param["optional"] and not self.default_optional_constants_to_none):
                 body_param["clientDefaultValue"] = body_type["value"]
         body_param["flattened"] = flattened
+        body_param["isPartialBody"] = is_partial_body
         return body_param
 
     def update_multipart_body_parameter(self, yaml_data: Dict[str, Any], client_name: str, description: str) -> Dict[str, Any]:
@@ -498,7 +502,7 @@ class M4Reformatter(YamlUpdatePlugin):
             "location": "Method",
             "type": KNOWN_TYPES["anydict"],
             "contentTypes": list(yaml_data.keys()),
-            "defaultContentType": None, # we don't want a default content type for multipart, rely on transport to set
+            "defaultContentType": _get_default_content_type(yaml_data.keys()),
             "entries": entries,
         }
 

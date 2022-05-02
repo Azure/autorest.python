@@ -149,6 +149,11 @@ class _ParameterBase(BaseModel, abc.ABC):
         return f"{self.client_name},  # type: {type_annot}"
 
 class _BodyParameterBase(_ParameterBase):
+
+    @property
+    def is_partial_body(self) -> bool:
+        return self.yaml_data.get("isPartialBody", False)
+
     @property
     def method_location(self) -> ParameterMethodLocation:
         return ParameterMethodLocation.KWARG if self.constant else ParameterMethodLocation.POSITIONAL

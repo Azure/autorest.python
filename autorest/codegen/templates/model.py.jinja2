@@ -57,7 +57,7 @@
     {% if (model.properties | selectattr('constant') | first) is defined %}
 
         {% for p in model.properties | selectattr('constant')%}
-    {{ p.name }} = {{ p.constant_declaration }}
+    {{ p.client_name }} = {{ p.type.get_declaration() }}
         {% endfor %}
     {% endif %}
 

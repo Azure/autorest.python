@@ -262,7 +262,7 @@ class _RequestBuilderParameterList(_ParameterListBase[RequestBuilderParameter, R
     @property
     def unsorted_method_params(self) -> List[Union[RequestBuilderParameter, RequestBuilderBodyParameterType]]:
         # don't have access to client params in request builder
-        retval = super().unsorted_method_params
+        retval = [p for p in super().unsorted_method_params if not (p.location == ParameterLocation.BODY and p.is_partial_body)]
         retval.extend([
             p for p in self.parameters
             if p.implementation == "Client" and p.in_method_signature

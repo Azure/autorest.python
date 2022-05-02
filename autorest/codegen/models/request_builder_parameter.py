@@ -13,7 +13,6 @@ from .parameter import (
 )
 from .base_type import BaseType
 from .primitive_types import BinaryType, StringType
-from .constant_type import ConstantType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -26,6 +25,10 @@ class RequestBuilderBodyParameter(BodyParameter):
             self.client_name = "content"
         else:
             self.client_name = "json"
+
+    @property
+    def in_method_signature(self) -> bool:
+        return super().in_method_signature and not self.is_partial_body
 
     @property
     def method_location(self) -> ParameterMethodLocation:
