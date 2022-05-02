@@ -41,7 +41,7 @@ class MultiapiServiceClientOperationsMixin:
         :param message: An optional string parameter. Default value is None.
         :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -428,7 +428,7 @@ class MultiapiServiceClientOperationsMixin:
         :param greeting_in_english: pass in 'hello' to pass test. Required.
         :type greeting_in_english: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

@@ -399,7 +399,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Get complex types with integer properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IntWrapper, or the result of cls(response)
+        :return: IntWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.IntWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -489,7 +489,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
          Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -542,7 +542,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Get complex types with long properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: LongWrapper, or the result of cls(response)
+        :return: LongWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.LongWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -633,7 +633,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
          Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -686,7 +686,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Get complex types with float properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: FloatWrapper, or the result of cls(response)
+        :return: FloatWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.FloatWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -776,7 +776,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
          Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -829,7 +829,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Get complex types with double properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DoubleWrapper, or the result of cls(response)
+        :return: DoubleWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.DoubleWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -923,7 +923,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
          Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -976,7 +976,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Get complex types with bool properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: BooleanWrapper, or the result of cls(response)
+        :return: BooleanWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.BooleanWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1066,7 +1066,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
          Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1119,7 +1119,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Get complex types with string properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StringWrapper, or the result of cls(response)
+        :return: StringWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.StringWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1210,7 +1210,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
          Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1263,7 +1263,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Get complex types with date properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DateWrapper, or the result of cls(response)
+        :return: DateWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.DateWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1354,7 +1354,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
          Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1407,7 +1407,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Get complex types with datetime properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DatetimeWrapper, or the result of cls(response)
+        :return: DatetimeWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.DatetimeWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1500,7 +1500,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
          Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1553,7 +1553,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Get complex types with datetimeRfc1123 properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Datetimerfc1123Wrapper, or the result of cls(response)
+        :return: Datetimerfc1123Wrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.Datetimerfc1123Wrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1646,7 +1646,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
          Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1699,7 +1699,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Get complex types with duration properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DurationWrapper, or the result of cls(response)
+        :return: DurationWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.DurationWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1748,7 +1748,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param field: Default value is None.
         :type field: ~datetime.timedelta
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1795,7 +1795,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Get complex types with byte properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ByteWrapper, or the result of cls(response)
+        :return: ByteWrapper or the result of cls(response)
         :rtype: ~bodycomplexpython3only.models.ByteWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1844,7 +1844,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :param field: Default value is None.
         :type field: bytes
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

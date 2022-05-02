@@ -787,7 +787,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
          Required.
         :type user_agent_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -832,7 +832,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         """Get a response with header value "User-Agent": "overwrite".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -879,7 +879,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         """Send a post request with header value "Content-Type": "text/html".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -925,7 +925,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         """Get a response with header value "Content-Type": "text/html".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -981,7 +981,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         :param value: Send a post request with header values 1 or -2. Required.
         :type value: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1032,7 +1032,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
          Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1089,7 +1089,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         :param value: Send a post request with header values 105 or -2. Required.
         :type value: long
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1140,7 +1140,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
          Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1197,7 +1197,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         :param value: Send a post request with header values 0.07 or -3.0. Required.
         :type value: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1248,7 +1248,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
          Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1305,7 +1305,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         :param value: Send a post request with header values 7e120 or -3.0. Required.
         :type value: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1356,7 +1356,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
          Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1413,7 +1413,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         :param value: Send a post request with header values true or false. Required.
         :type value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1464,7 +1464,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
          Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1522,7 +1522,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
          dog" or null or "". Default value is None.
         :type value: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1573,7 +1573,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
          "empty". Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1629,7 +1629,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         :param value: Send a post request with header values "2010-01-01" or "0001-01-01". Required.
         :type value: ~datetime.date
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1679,7 +1679,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         :param scenario: Send a post request with header values "scenario": "valid" or "min". Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1736,7 +1736,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
          "0001-01-01T00:00:00Z". Required.
         :type value: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1786,7 +1786,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         :param scenario: Send a post request with header values "scenario": "valid" or "min". Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1843,7 +1843,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
          01 Jan 0001 00:00:00 GMT". Default value is None.
         :type value: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1894,7 +1894,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         :param scenario: Send a post request with header values "scenario": "valid" or "min". Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1949,7 +1949,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         :param value: Send a post request with header values "P123DT22H14M12.011S". Required.
         :type value: ~datetime.timedelta
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1999,7 +1999,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         :param scenario: Send a post request with header values "scenario": "valid". Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2054,7 +2054,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         :param value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩". Required.
         :type value: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2104,7 +2104,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         :param scenario: Send a post request with header values "scenario": "valid". Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2161,7 +2161,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         :param value: Send a post request with header values 'GREY'. Default value is None.
         :type value: str or ~header.models.GreyscaleColors
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2212,7 +2212,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
          "empty". Required.
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -2261,7 +2261,7 @@ class HeaderOperations(object):  # pylint: disable=too-many-public-methods
         request.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

@@ -388,7 +388,7 @@ class IntOperations(object):
         """Get null Int value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: int or None, or the result of cls(response)
+        :return: int or None or the result of cls(response)
         :rtype: int or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -436,7 +436,7 @@ class IntOperations(object):
         """Get invalid Int value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: int, or the result of cls(response)
+        :return: int or the result of cls(response)
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -484,7 +484,7 @@ class IntOperations(object):
         """Get overflow Int32 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: int, or the result of cls(response)
+        :return: int or the result of cls(response)
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -532,7 +532,7 @@ class IntOperations(object):
         """Get underflow Int32 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: int, or the result of cls(response)
+        :return: int or the result of cls(response)
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -580,7 +580,7 @@ class IntOperations(object):
         """Get overflow Int64 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: long, or the result of cls(response)
+        :return: long or the result of cls(response)
         :rtype: long
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -628,7 +628,7 @@ class IntOperations(object):
         """Get underflow Int64 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: long, or the result of cls(response)
+        :return: long or the result of cls(response)
         :rtype: long
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -680,7 +680,7 @@ class IntOperations(object):
         :param int_body: int body. Required.
         :type int_body: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -735,7 +735,7 @@ class IntOperations(object):
         :param int_body: int body. Required.
         :type int_body: long
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -790,7 +790,7 @@ class IntOperations(object):
         :param int_body: int body. Required.
         :type int_body: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -845,7 +845,7 @@ class IntOperations(object):
         :param int_body: int body. Required.
         :type int_body: long
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -896,7 +896,7 @@ class IntOperations(object):
         """Get datetime encoded as Unix time value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -948,7 +948,7 @@ class IntOperations(object):
         :param int_body: int body. Required.
         :type int_body: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -999,7 +999,7 @@ class IntOperations(object):
         """Get invalid Unix time value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime, or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1047,7 +1047,7 @@ class IntOperations(object):
         """Get null Unix time value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: datetime or None, or the result of cls(response)
+        :return: datetime or None or the result of cls(response)
         :rtype: ~datetime.datetime or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

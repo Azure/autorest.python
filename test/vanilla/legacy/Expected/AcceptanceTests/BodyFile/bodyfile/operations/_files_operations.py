@@ -130,7 +130,7 @@ class FilesOperations(object):
         """Get file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
+        :return: IO or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -178,7 +178,7 @@ class FilesOperations(object):
         """Get a large file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
+        :return: IO or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -226,7 +226,7 @@ class FilesOperations(object):
         """Get empty file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: IO, or the result of cls(response)
+        :return: IO or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """

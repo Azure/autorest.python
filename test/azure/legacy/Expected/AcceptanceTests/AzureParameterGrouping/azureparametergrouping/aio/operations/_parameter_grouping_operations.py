@@ -66,7 +66,7 @@ class ParameterGroupingOperations:
         :type parameter_grouping_post_required_parameters:
          ~azureparametergrouping.models.ParameterGroupingPostRequiredParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -133,7 +133,7 @@ class ParameterGroupingOperations:
         :type parameter_grouping_post_optional_parameters:
          ~azureparametergrouping.models.ParameterGroupingPostOptionalParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -192,7 +192,7 @@ class ParameterGroupingOperations:
         :type parameter_grouping_post_reserved_words_parameters:
          ~azureparametergrouping.models.ParameterGroupingPostReservedWordsParameters
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -254,7 +254,7 @@ class ParameterGroupingOperations:
         :type parameter_grouping_post_multi_param_groups_second_param_group:
          ~azureparametergrouping.models.ParameterGroupingPostMultiParamGroupsSecondParamGroup
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -314,7 +314,7 @@ class ParameterGroupingOperations:
         :param first_parameter_group: Parameter group. Default value is None.
         :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

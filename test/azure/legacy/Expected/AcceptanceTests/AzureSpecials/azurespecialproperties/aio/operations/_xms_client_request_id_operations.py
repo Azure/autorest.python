@@ -54,7 +54,7 @@ class XMsClientRequestIdOperations:
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -100,7 +100,7 @@ class XMsClientRequestIdOperations:
          '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'. Required.
         :type x_ms_client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

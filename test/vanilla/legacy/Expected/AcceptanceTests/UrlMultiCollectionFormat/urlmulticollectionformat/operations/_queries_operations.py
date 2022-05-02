@@ -155,7 +155,7 @@ class QueriesOperations(object):
         :param array_query: a null array of string using the multi-array format. Default value is None.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -205,7 +205,7 @@ class QueriesOperations(object):
          None.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -256,7 +256,7 @@ class QueriesOperations(object):
          ''] using the mult-array format. Default value is None.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

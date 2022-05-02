@@ -63,7 +63,7 @@ class PolymorphismOperations:
         """Get complex types that are polymorphic.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Fish, or the result of cls(response)
+        :return: Fish or the result of cls(response)
         :rtype: ~bodycomplex.models.Fish
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -249,7 +249,7 @@ class PolymorphismOperations:
          Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -302,7 +302,7 @@ class PolymorphismOperations:
         """Get complex types that are polymorphic, JSON key contains a dot.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DotFish, or the result of cls(response)
+        :return: DotFish or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFish
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -349,7 +349,7 @@ class PolymorphismOperations:
         discriminator type specified on the wire.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DotFishMarket, or the result of cls(response)
+        :return: DotFishMarket or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFishMarket
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -396,7 +396,7 @@ class PolymorphismOperations:
         the explicit type of the property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: DotFishMarket, or the result of cls(response)
+        :return: DotFishMarket or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFishMarket
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -442,7 +442,7 @@ class PolymorphismOperations:
         additional properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Salmon, or the result of cls(response)
+        :return: Salmon or the result of cls(response)
         :rtype: ~bodycomplex.models.Salmon
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -535,7 +535,7 @@ class PolymorphismOperations:
          Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -631,7 +631,7 @@ class PolymorphismOperations:
          Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Salmon, or the result of cls(response)
+        :return: Salmon or the result of cls(response)
         :rtype: ~bodycomplex.models.Salmon
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -814,7 +814,7 @@ class PolymorphismOperations:
          Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

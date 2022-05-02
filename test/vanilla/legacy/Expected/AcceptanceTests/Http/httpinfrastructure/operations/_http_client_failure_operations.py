@@ -675,7 +675,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         """Return 400 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -719,7 +719,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         """Return 400 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -763,7 +763,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         """Return 400 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -812,7 +812,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -871,7 +871,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -930,7 +930,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -989,7 +989,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1043,7 +1043,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         """Return 401 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1087,7 +1087,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         """Return 402 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1131,7 +1131,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         """Return 403 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1175,7 +1175,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         """Return 403 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1224,7 +1224,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1283,7 +1283,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1342,7 +1342,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1401,7 +1401,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1460,7 +1460,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1514,7 +1514,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         """Return 410 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1558,7 +1558,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         """Return 411 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1602,7 +1602,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         """Return 412 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1646,7 +1646,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         """Return 412 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1695,7 +1695,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1754,7 +1754,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1813,7 +1813,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1867,7 +1867,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         """Return 416 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1916,7 +1916,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
          is True.
         :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1970,7 +1970,7 @@ class HttpClientFailureOperations(object):  # pylint: disable=too-many-public-me
         """Return 429 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

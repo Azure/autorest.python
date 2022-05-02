@@ -60,7 +60,7 @@ class EnumOperations:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Colors, or the result of cls(response)
+        :return: Colors or the result of cls(response)
         :rtype: str or ~bodystring.models.Colors
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -109,7 +109,7 @@ class EnumOperations:
         :param string_body: string body. Required.
         :type string_body: str or ~bodystring.models.Colors
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -157,7 +157,7 @@ class EnumOperations:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Colors, or the result of cls(response)
+        :return: Colors or the result of cls(response)
         :rtype: str or ~bodystring.models.Colors
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -206,7 +206,7 @@ class EnumOperations:
         :param enum_string_body: enum string body. Required.
         :type enum_string_body: str or ~bodystring.models.Colors
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -254,7 +254,7 @@ class EnumOperations:
         """Get value 'green-color' from the constant.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: RefColorConstant, or the result of cls(response)
+        :return: RefColorConstant or the result of cls(response)
         :rtype: ~bodystring.models.RefColorConstant
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -306,7 +306,7 @@ class EnumOperations:
          Note that overriding this default value may result in unsupported behavior.
         :paramtype color_constant: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

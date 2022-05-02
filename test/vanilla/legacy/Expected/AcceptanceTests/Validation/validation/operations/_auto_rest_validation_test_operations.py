@@ -183,7 +183,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product, or the result of cls(response)
+        :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -247,7 +247,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :param body:  Default value is None.
         :type body: ~validation.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product, or the result of cls(response)
+        :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -313,7 +313,7 @@ class AutoRestValidationTestOperationsMixin(object):
          may result in unsupported behavior.
         :paramtype constant_param: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -365,7 +365,7 @@ class AutoRestValidationTestOperationsMixin(object):
          may result in unsupported behavior.
         :paramtype constant_param: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product, or the result of cls(response)
+        :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """

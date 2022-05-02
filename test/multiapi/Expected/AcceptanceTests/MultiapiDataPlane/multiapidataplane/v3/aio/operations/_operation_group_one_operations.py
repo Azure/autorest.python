@@ -52,7 +52,7 @@ class OperationGroupOneOperations:
         :param parameter_one: A ModelThree parameter. Default value is None.
         :type parameter_one: ~multiapidataplane.v3.models.ModelThree
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelThree, or the result of cls(response)
+        :return: ModelThree or the result of cls(response)
         :rtype: ~multiapidataplane.v3.models.ModelThree
         :raises: ~azure.core.exceptions.HttpResponseError
         """

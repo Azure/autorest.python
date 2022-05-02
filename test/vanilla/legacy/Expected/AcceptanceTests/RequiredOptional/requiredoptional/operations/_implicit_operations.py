@@ -284,7 +284,7 @@ class ImplicitOperations(object):
         :param path_parameter: Required.
         :type path_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -333,7 +333,7 @@ class ImplicitOperations(object):
         :param query_parameter:  Default value is None.
         :type query_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -382,7 +382,7 @@ class ImplicitOperations(object):
         :param query_parameter:  Default value is None.
         :type query_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -431,7 +431,7 @@ class ImplicitOperations(object):
         :param body_parameter:  Default value is None.
         :type body_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -489,7 +489,7 @@ class ImplicitOperations(object):
         :param body_parameter:  Default value is None.
         :type body_parameter: IO
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -540,7 +540,7 @@ class ImplicitOperations(object):
         """Test implicitly required path parameter.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -585,7 +585,7 @@ class ImplicitOperations(object):
         """Test implicitly required query parameter.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -630,7 +630,7 @@ class ImplicitOperations(object):
         """Test implicitly optional query parameter.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

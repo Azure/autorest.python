@@ -99,7 +99,7 @@ class ObjectTypeClientOperationsMixin(object):
         returned' }.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: JSON, or the result of cls(response)
+        :return: JSON or the result of cls(response)
         :rtype: JSON
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -153,7 +153,7 @@ class ObjectTypeClientOperationsMixin(object):
          Required.
         :type put_object: JSON
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """

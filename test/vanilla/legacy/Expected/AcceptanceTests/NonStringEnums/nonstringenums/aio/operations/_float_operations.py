@@ -53,7 +53,7 @@ class FloatOperations:
         :param input: Input float enum. Default value is None.
         :type input: float or ~nonstringenums.models.FloatEnum
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: str, or the result of cls(response)
+        :return: str or the result of cls(response)
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -107,7 +107,7 @@ class FloatOperations:
         """Get a float enum.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: FloatEnum, or the result of cls(response)
+        :return: FloatEnum or the result of cls(response)
         :rtype: float or ~nonstringenums.models.FloatEnum
         :raises: ~azure.core.exceptions.HttpResponseError
         """

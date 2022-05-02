@@ -630,7 +630,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         """Get null Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float or None, or the result of cls(response)
+        :return: float or None or the result of cls(response)
         :rtype: float or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -678,7 +678,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         """Get invalid float Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -726,7 +726,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         """Get invalid double Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -774,7 +774,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         """Get invalid decimal Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -826,7 +826,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         :param number_body: number body. Required.
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -877,7 +877,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         """Get big float value 3.402823e+20.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -929,7 +929,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         :param number_body: number body. Required.
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -980,7 +980,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         """Get big double value 2.5976931e+101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1031,7 +1031,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
          may result in unsupported behavior.
         :paramtype number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1081,7 +1081,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         """Get big double value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1132,7 +1132,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
          may result in unsupported behavior.
         :paramtype number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1182,7 +1182,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         """Get big double value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1234,7 +1234,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         :param number_body: number body. Required.
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1285,7 +1285,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         """Get big decimal value 2.5976931e+101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1336,7 +1336,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
          may result in unsupported behavior.
         :paramtype number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1386,7 +1386,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         """Get big decimal value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1437,7 +1437,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
          may result in unsupported behavior.
         :paramtype number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1487,7 +1487,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         """Get big decimal value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1539,7 +1539,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         :param number_body: number body. Required.
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1590,7 +1590,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         """Get big double value 3.402823e-20.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1642,7 +1642,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         :param number_body: number body. Required.
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1693,7 +1693,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         """Get big double value 2.5976931e-101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1745,7 +1745,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         :param number_body: number body. Required.
         :type number_body: float
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -1796,7 +1796,7 @@ class NumberOperations(object):  # pylint: disable=too-many-public-methods
         """Get small decimal value 2.5976931e-101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: float, or the result of cls(response)
+        :return: float or the result of cls(response)
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """

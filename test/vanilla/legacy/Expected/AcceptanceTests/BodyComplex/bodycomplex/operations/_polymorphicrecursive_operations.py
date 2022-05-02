@@ -110,7 +110,7 @@ class PolymorphicrecursiveOperations(object):
         """Get complex types that are polymorphic and have recursive references.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Fish, or the result of cls(response)
+        :return: Fish or the result of cls(response)
         :rtype: ~bodycomplex.models.Fish
         :raises: ~azure.core.exceptions.HttpResponseError
         """
@@ -365,7 +365,7 @@ class PolymorphicrecursiveOperations(object):
          Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None, or the result of cls(response)
+        :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
