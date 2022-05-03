@@ -92,8 +92,9 @@ def build_add_pet_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "DaysOfWeek": "str",  # Optional. Type of Pet. Known values are: "Monday",
-                  "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", and "Sunday".
+                "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
+                  Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                  "Saturday", and "Sunday".
                 "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
                 "name": "str"  # Optional. name.
             }
@@ -125,7 +126,7 @@ def build_add_pet_request(
     ...
 
 def build_add_pet_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """add pet.
@@ -133,11 +134,11 @@ def build_add_pet_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: pet param. Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: pet param. Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -147,7 +148,6 @@ def build_add_pet_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', None)  # type: Optional[Union[JSON, IO]]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

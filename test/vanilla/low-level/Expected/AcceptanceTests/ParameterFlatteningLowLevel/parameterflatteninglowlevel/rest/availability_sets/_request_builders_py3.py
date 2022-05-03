@@ -60,8 +60,7 @@ def build_update_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "tags": {
-                    "str": "str"  # A description about the set of tags.A description
-                      about the set of tags. Required.
+                    "str": "str"  # A description about the set of tags. Required.
                 }
             }
     """
@@ -102,7 +101,7 @@ def build_update_request(
 def build_update_request(
     resource_group_name: str,
     avset: str,
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Updates the tags for an availability set.
 

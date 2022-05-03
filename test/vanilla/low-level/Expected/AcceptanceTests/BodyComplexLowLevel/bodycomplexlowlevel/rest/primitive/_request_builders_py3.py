@@ -115,7 +115,7 @@ def build_put_int_request(
     ...
 
 def build_put_int_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put complex types with integer properties.
 
@@ -246,7 +246,7 @@ def build_put_long_request(
     ...
 
 def build_put_long_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put complex types with long properties.
 
@@ -378,7 +378,7 @@ def build_put_float_request(
     ...
 
 def build_put_float_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put complex types with float properties.
 
@@ -512,7 +512,7 @@ def build_put_double_request(
     ...
 
 def build_put_double_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put complex types with double properties.
 
@@ -645,7 +645,7 @@ def build_put_bool_request(
     ...
 
 def build_put_bool_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put complex types with bool properties.
 
@@ -777,7 +777,7 @@ def build_put_string_request(
     ...
 
 def build_put_string_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put complex types with string properties.
 
@@ -909,7 +909,7 @@ def build_put_date_request(
     ...
 
 def build_put_date_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put complex types with date properties.
 
@@ -1043,7 +1043,7 @@ def build_put_date_time_request(
     ...
 
 def build_put_date_time_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put complex types with datetime properties.
 
@@ -1177,7 +1177,7 @@ def build_put_date_time_rfc1123_request(
     ...
 
 def build_put_date_time_rfc1123_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put complex types with datetimeRfc1123 properties.
 
@@ -1308,7 +1308,7 @@ def build_put_duration_request(
     ...
 
 def build_put_duration_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put complex types with duration properties.
 
@@ -1439,7 +1439,7 @@ def build_put_byte_request(
     ...
 
 def build_put_byte_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put complex types with byte properties.
 

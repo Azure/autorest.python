@@ -224,7 +224,7 @@ def build_post_parameters_request(
     ...
 
 def build_post_parameters_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """POST a JSON or a JPEG.
@@ -247,7 +247,6 @@ def build_post_parameters_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

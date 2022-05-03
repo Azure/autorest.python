@@ -187,9 +187,9 @@ class _ParameterListBase(MutableSequence, Generic[ParameterType, BodyParameterTy
 
     def kwargs_to_pop(self, is_python3_file: bool) -> List[Union[ParameterType, BodyParameterType]]:
         # don't want to pop bodies unless it's a constant
-        kwargs_to_pop = [p for p in self.method if p.method_location == ParameterMethodLocation.KWARG]
+        kwargs_to_pop = self.kwarg
         if not is_python3_file:
-            kwargs_to_pop += [p for p in self.method if p.method_location == ParameterMethodLocation.KEYWORD_ONLY]
+            kwargs_to_pop += self.keyword_only
         return [k for k in kwargs_to_pop if k.location != ParameterLocation.BODY or k.constant]
 
     @property

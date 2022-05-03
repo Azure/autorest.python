@@ -118,7 +118,7 @@ def build_put_valid_request(
     ...
 
 def build_put_valid_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put complex types with dictionary property.
 
@@ -252,7 +252,7 @@ def build_put_empty_request(
     ...
 
 def build_put_empty_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put complex types with dictionary property which is empty.
 

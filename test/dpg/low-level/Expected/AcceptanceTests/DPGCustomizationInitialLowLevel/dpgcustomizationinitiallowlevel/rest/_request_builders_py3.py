@@ -141,7 +141,7 @@ def build_post_model_request(
 
 def build_post_model_request(
     mode: str,
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
     take a model instead, and put in 'model' as mode.

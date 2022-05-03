@@ -138,7 +138,7 @@ def build_post_model_request(
 
 def build_post_model_request(
     mode,  # type: str
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
@@ -165,7 +165,6 @@ def build_post_model_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

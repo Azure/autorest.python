@@ -89,7 +89,7 @@ def build_put_array_request(
     ...
 
 def build_put_array_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put External Resource as an Array.
@@ -97,12 +97,12 @@ def build_put_array_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: External Resource as an Array to put. Is either a list type or a IO type.
-     Default value is None.
-    :paramtype json: list[JSON] or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: External Resource as an Array to put. Is either a list type or a IO type.
+     Default value is None.
+    :paramtype json: list[JSON] or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -112,7 +112,6 @@ def build_put_array_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', None)  # type: Optional[Union[List[JSON], IO]]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -223,7 +222,7 @@ def build_put_wrapped_array_request(
     ...
 
 def build_put_wrapped_array_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """No need to have a route in Express server for this operation. Used to verify the type flattened
@@ -232,12 +231,12 @@ def build_put_wrapped_array_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: External Resource as an Array to put. Is either a list type or a IO type.
-     Default value is None.
-    :paramtype json: list[JSON] or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: External Resource as an Array to put. Is either a list type or a IO type.
+     Default value is None.
+    :paramtype json: list[JSON] or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -247,7 +246,6 @@ def build_put_wrapped_array_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', None)  # type: Optional[Union[List[JSON], IO]]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -371,7 +369,7 @@ def build_put_dictionary_request(
     ...
 
 def build_put_dictionary_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put External Resource as a Dictionary.
@@ -379,12 +377,12 @@ def build_put_dictionary_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: External Resource as a Dictionary to put. Is either a dict type or a IO type.
-     Default value is None.
-    :paramtype json: dict[str, JSON] or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: External Resource as a Dictionary to put. Is either a dict type or a IO type.
+     Default value is None.
+    :paramtype json: dict[str, JSON] or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -394,7 +392,6 @@ def build_put_dictionary_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', None)  # type: Optional[Union[Dict[str, JSON], IO]]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -562,7 +559,7 @@ def build_put_resource_collection_request(
     ...
 
 def build_put_resource_collection_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put External Resource as a ResourceCollection.
@@ -570,12 +567,12 @@ def build_put_resource_collection_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: External Resource as a ResourceCollection to put. Is either a model type or a IO
-     type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: External Resource as a ResourceCollection to put. Is either a model type or a IO
+     type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -585,7 +582,6 @@ def build_put_resource_collection_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', None)  # type: Optional[Union[JSON, IO]]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -665,15 +661,12 @@ def build_put_simple_product_request(
                 "base_product_description": "str",  # Optional. Description of product.
                 "base_product_id": "str",  # Unique identifier representing a specific
                   product for a given latitude & longitude. For example, uberX in San Francisco
-                  will have a different product_id than uberX in Los Angeles.Unique identifier
-                  representing a specific product for a given latitude & longitude. For example,
-                  uberX in San Francisco will have a different product_id than uberX in Los
-                  Angeles. Required.
+                  will have a different product_id than uberX in Los Angeles. Required.
                 "details": {
-                    "max_product_capacity": "str",  # Capacity of product. For example, 4
-                      people.Capacity of product. For example, 4 people. Required. "Large"
-                    "max_product_display_name": "str",  # Display name of product.Display
-                      name of product. Required.
+                    "max_product_capacity": "Large",  # Default value is "Large".
+                      Capacity of product. For example, 4 people. Required.
+                    "max_product_display_name": "str",  # Display name of product.
+                      Required.
                     "max_product_image": {
                         "@odata.value": "str",  # Optional. URL value.
                         "generic_value": "str"  # Optional. Generic URL value.
@@ -708,7 +701,7 @@ def build_put_simple_product_request(
     ...
 
 def build_put_simple_product_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put Simple Product with client flattening true on the model.
@@ -716,12 +709,12 @@ def build_put_simple_product_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Simple body product to put. Is either a model type or a IO type. Default value
-     is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Simple body product to put. Is either a model type or a IO type. Default value
+     is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -731,7 +724,6 @@ def build_put_simple_product_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', None)  # type: Optional[Union[JSON, IO]]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -778,15 +770,12 @@ def build_post_flattened_simple_product_request(
                 "base_product_description": "str",  # Optional. Description of product.
                 "base_product_id": "str",  # Unique identifier representing a specific
                   product for a given latitude & longitude. For example, uberX in San Francisco
-                  will have a different product_id than uberX in Los Angeles.Unique identifier
-                  representing a specific product for a given latitude & longitude. For example,
-                  uberX in San Francisco will have a different product_id than uberX in Los
-                  Angeles. Required.
+                  will have a different product_id than uberX in Los Angeles. Required.
                 "details": {
-                    "max_product_capacity": "str",  # Capacity of product. For example, 4
-                      people.Capacity of product. For example, 4 people. Required. "Large"
-                    "max_product_display_name": "str",  # Display name of product.Display
-                      name of product. Required.
+                    "max_product_capacity": "Large",  # Default value is "Large".
+                      Capacity of product. For example, 4 people. Required.
+                    "max_product_display_name": "str",  # Display name of product.
+                      Required.
                     "max_product_image": {
                         "@odata.value": "str",  # Optional. URL value.
                         "generic_value": "str"  # Optional. Generic URL value.
@@ -821,7 +810,7 @@ def build_post_flattened_simple_product_request(
     ...
 
 def build_post_flattened_simple_product_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put Flattened Simple Product with client flattening true on the parameter.
@@ -829,12 +818,12 @@ def build_post_flattened_simple_product_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Simple body product to post. Is either a model type or a IO type. Default value
-     is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Simple body product to post. Is either a model type or a IO type. Default value
+     is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -844,7 +833,6 @@ def build_post_flattened_simple_product_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', None)  # type: Optional[Union[JSON, IO]]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -894,15 +882,12 @@ def build_put_simple_product_with_grouping_request(
                 "base_product_description": "str",  # Optional. Description of product.
                 "base_product_id": "str",  # Unique identifier representing a specific
                   product for a given latitude & longitude. For example, uberX in San Francisco
-                  will have a different product_id than uberX in Los Angeles.Unique identifier
-                  representing a specific product for a given latitude & longitude. For example,
-                  uberX in San Francisco will have a different product_id than uberX in Los
-                  Angeles. Required.
+                  will have a different product_id than uberX in Los Angeles. Required.
                 "details": {
-                    "max_product_capacity": "str",  # Capacity of product. For example, 4
-                      people.Capacity of product. For example, 4 people. Required. "Large"
-                    "max_product_display_name": "str",  # Display name of product.Display
-                      name of product. Required.
+                    "max_product_capacity": "Large",  # Default value is "Large".
+                      Capacity of product. For example, 4 people. Required.
+                    "max_product_display_name": "str",  # Display name of product.
+                      Required.
                     "max_product_image": {
                         "@odata.value": "str",  # Optional. URL value.
                         "generic_value": "str"  # Optional. Generic URL value.
@@ -941,7 +926,7 @@ def build_put_simple_product_with_grouping_request(
 
 def build_put_simple_product_with_grouping_request(
     name,  # type: str
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put Simple Product with client flattening true on the model.
@@ -951,12 +936,12 @@ def build_put_simple_product_with_grouping_request(
 
     :param name: Product name with value 'groupproduct'. Required.
     :type name: str
-    :keyword json: Simple body product to put. Is either a model type or a IO type. Default value
-     is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Simple body product to put. Is either a model type or a IO type. Default value
+     is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -966,7 +951,6 @@ def build_put_simple_product_with_grouping_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', None)  # type: Optional[Union[JSON, IO]]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

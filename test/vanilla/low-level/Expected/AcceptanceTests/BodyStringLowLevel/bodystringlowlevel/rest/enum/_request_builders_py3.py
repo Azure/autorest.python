@@ -230,7 +230,7 @@ def build_put_referenced_constant_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "ColorConstant": "green-color",  # Default value is "green-color". Referenced
-                  Color Constant Description.Referenced Color Constant Description. Required.
+                  Color Constant Description. Required.
                 "field1": "str"  # Optional. Sample string.
             }
     """
@@ -263,7 +263,7 @@ def build_put_referenced_constant_request(
     ...
 
 def build_put_referenced_constant_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Sends value 'green-color' from a constant.
 

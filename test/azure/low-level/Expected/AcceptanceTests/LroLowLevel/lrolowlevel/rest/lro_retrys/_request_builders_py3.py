@@ -99,7 +99,7 @@ def build_put201_creating_succeeded200_request(
     ...
 
 def build_put201_creating_succeeded200_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a 500, then a 201 to the initial request, with an
     entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
@@ -108,11 +108,11 @@ def build_put201_creating_succeeded200_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -215,7 +215,7 @@ def build_put_async_relative_retry_succeeded_request(
     ...
 
 def build_put_async_relative_retry_succeeded_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Long running put request, service returns a 500, then a 200 to the initial request, with an
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
@@ -224,11 +224,11 @@ def build_put_async_relative_retry_succeeded_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -429,7 +429,7 @@ def build_post202_retry200_request(
     ...
 
 def build_post202_retry200_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Long running post request, service returns a 500, then a 202 to the initial request, with
     'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
@@ -437,11 +437,11 @@ def build_post202_retry200_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -544,7 +544,7 @@ def build_post_async_relative_retry_succeeded_request(
     ...
 
 def build_post_async_relative_retry_succeeded_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Long running post request, service returns a 500, then a 202 to the initial request, with an
     entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
@@ -553,11 +553,11 @@ def build_post_async_relative_retry_succeeded_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.

@@ -169,7 +169,6 @@ def build_put_big_float_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: float
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -184,7 +183,6 @@ def build_put_big_float_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -242,7 +240,6 @@ def build_put_big_double_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: float
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -257,7 +254,6 @@ def build_put_big_double_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -463,7 +459,6 @@ def build_put_big_decimal_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: float
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -478,7 +473,6 @@ def build_put_big_decimal_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -684,7 +678,6 @@ def build_put_small_float_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: float
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -699,7 +692,6 @@ def build_put_small_float_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -757,7 +749,6 @@ def build_put_small_double_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: float
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -772,7 +763,6 @@ def build_put_small_double_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -830,7 +820,6 @@ def build_put_small_decimal_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: float
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -845,7 +834,6 @@ def build_put_small_decimal_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 

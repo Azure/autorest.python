@@ -170,7 +170,6 @@ def build_put_utc_max_date_time_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: datetime.datetime
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -185,7 +184,6 @@ def build_put_utc_max_date_time_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -276,7 +274,6 @@ def build_put_utc_min_date_time_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: datetime.datetime
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -291,7 +288,6 @@ def build_put_utc_min_date_time_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 

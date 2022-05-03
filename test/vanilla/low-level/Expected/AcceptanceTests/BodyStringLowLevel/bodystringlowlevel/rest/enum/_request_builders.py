@@ -78,7 +78,6 @@ def build_put_not_expandable_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -93,7 +92,6 @@ def build_put_not_expandable_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -152,7 +150,6 @@ def build_put_referenced_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -167,7 +164,6 @@ def build_put_referenced_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -231,7 +227,7 @@ def build_put_referenced_constant_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "ColorConstant": "green-color",  # Default value is "green-color". Referenced
-                  Color Constant Description.Referenced Color Constant Description. Required.
+                  Color Constant Description. Required.
                 "field1": "str"  # Optional. Sample string.
             }
     """
@@ -262,7 +258,7 @@ def build_put_referenced_constant_request(
     ...
 
 def build_put_referenced_constant_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Sends value 'green-color' from a constant.
@@ -284,7 +280,6 @@ def build_put_referenced_constant_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

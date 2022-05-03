@@ -100,7 +100,7 @@ def build_check_name_availability_request(
 
 def build_check_name_availability_request(
     subscription_id: str,
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Checks that account name is valid and is not in use.
 
@@ -199,7 +199,7 @@ def build_create_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "id": "str",  # Optional. Resource Id.
-                "location": "str",  # Resource location.Resource location. Required.
+                "location": "str",  # Resource location. Required.
                 "name": "str",  # Optional. Resource name.
                 "properties": {
                     "accountType": "str"  # Optional. Gets or sets the account type.
@@ -260,7 +260,7 @@ def build_create_request(
     resource_group_name: str,
     account_name: str,
     subscription_id: str,
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Asynchronously creates a new storage account with the specified parameters. Existing accounts
     cannot be updated with this API and should instead use the Update Storage Account API. If an
@@ -485,7 +485,7 @@ def build_update_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "id": "str",  # Optional. Resource Id.
-                "location": "str",  # Resource location.Resource location. Required.
+                "location": "str",  # Resource location. Required.
                 "name": "str",  # Optional. Resource name.
                 "properties": {
                     "accountType": "str",  # Optional. Gets or sets the account type.
@@ -559,7 +559,7 @@ def build_update_request(
     resource_group_name: str,
     account_name: str,
     subscription_id: str,
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Updates the account type or tags for a storage account. It can also be used to add a custom
     domain (note that custom domains cannot be added via the Create operation). Only one custom
@@ -825,7 +825,7 @@ def build_regenerate_key_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "keyName": "str"  # Optional. Known values are: "key1" or "key2".
+                "keyName": "str"  # Optional. Known values are: "key1" and "key2".
             }
     """
 
@@ -873,7 +873,7 @@ def build_regenerate_key_request(
     resource_group_name: str,
     account_name: str,
     subscription_id: str,
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Regenerates the access keys for the specified storage account.
 

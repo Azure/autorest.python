@@ -116,7 +116,7 @@ def build_put_horse_request(
     ...
 
 def build_put_horse_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put a horse with name 'General' and isAShowHorse false.
 
@@ -247,7 +247,7 @@ def build_put_pet_request(
     ...
 
 def build_put_pet_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put a pet with name 'Butter'.
 
@@ -378,7 +378,7 @@ def build_put_feline_request(
     ...
 
 def build_put_feline_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put a feline who hisses and doesn't meow.
 
@@ -514,7 +514,7 @@ def build_put_cat_request(
     ...
 
 def build_put_cat_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
@@ -654,7 +654,7 @@ def build_put_kitten_request(
     ...
 
 def build_put_kitten_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
     true.

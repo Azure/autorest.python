@@ -115,7 +115,7 @@ def build_put_valid_request(
     ...
 
 def build_put_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Please put {id: 2, name: 'abc', color: 'Magenta'}.
@@ -140,7 +140,6 @@ def build_put_valid_request(
 
     api_version = kwargs.pop('api_version', _params.pop('api-version', "2016-02-29"))  # type: str
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

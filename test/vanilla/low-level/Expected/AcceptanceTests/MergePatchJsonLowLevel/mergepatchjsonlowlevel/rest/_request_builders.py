@@ -44,7 +44,6 @@ def build_patch_single_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: JSON
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -59,6 +58,5 @@ def build_patch_single_request(
         method="PATCH",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )

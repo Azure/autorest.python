@@ -115,7 +115,7 @@ def build_put_valid_request(
     ...
 
 def build_put_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put complex types with array property.
@@ -138,7 +138,6 @@ def build_put_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -247,7 +246,7 @@ def build_put_empty_request(
     ...
 
 def build_put_empty_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put complex types with array property which is empty.
@@ -269,7 +268,6 @@ def build_put_empty_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

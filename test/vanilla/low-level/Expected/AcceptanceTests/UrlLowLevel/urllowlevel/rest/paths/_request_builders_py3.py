@@ -743,7 +743,7 @@ def build_byte_multi_byte_request(
     # Construct URL
     _url = "/paths/byte/multibyte/{bytePath}"
     path_format_arguments = {
-        "bytePath": _SERIALIZER.url("byte_path", byte_path, 'base64'),
+        "bytePath": _SERIALIZER.url("byte_path", byte_path, 'bytearray'),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
@@ -784,7 +784,7 @@ def build_byte_empty_request(
     # Construct URL
     _url = "/paths/byte/empty/{bytePath}"
     path_format_arguments = {
-        "bytePath": _SERIALIZER.url("byte_path", byte_path, 'base64'),
+        "bytePath": _SERIALIZER.url("byte_path", byte_path, 'bytearray'),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)
@@ -824,7 +824,7 @@ def build_byte_null_request(
     # Construct URL
     _url = "/paths/byte/null/{bytePath}"
     path_format_arguments = {
-        "bytePath": _SERIALIZER.url("byte_path", byte_path, 'base64'),
+        "bytePath": _SERIALIZER.url("byte_path", byte_path, 'bytearray'),
     }
 
     _url = _format_url_section(_url, **path_format_arguments)

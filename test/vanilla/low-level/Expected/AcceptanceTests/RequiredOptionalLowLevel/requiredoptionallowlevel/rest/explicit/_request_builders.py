@@ -43,7 +43,6 @@ def build_put_optional_binary_body_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content', None)  # type: Optional[IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -58,7 +57,6 @@ def build_put_optional_binary_body_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -83,7 +81,6 @@ def build_put_required_binary_body_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: IO
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -98,7 +95,6 @@ def build_put_required_binary_body_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -124,7 +120,6 @@ def build_post_required_integer_parameter_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: int
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -139,7 +134,6 @@ def build_post_required_integer_parameter_request(
         method="POST",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -164,7 +158,6 @@ def build_post_optional_integer_parameter_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', None)  # type: Optional[int]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -179,7 +172,6 @@ def build_post_optional_integer_parameter_request(
         method="POST",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -241,7 +233,7 @@ def build_post_required_integer_property_request(
     ...
 
 def build_post_required_integer_property_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
@@ -264,7 +256,6 @@ def build_post_required_integer_property_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -338,7 +329,7 @@ def build_post_optional_integer_property_request(
     ...
 
 def build_post_optional_integer_property_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
@@ -346,11 +337,11 @@ def build_post_optional_integer_property_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -360,7 +351,6 @@ def build_post_optional_integer_property_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', None)  # type: Optional[Union[JSON, IO]]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -476,7 +466,6 @@ def build_post_required_string_parameter_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: str
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -491,7 +480,6 @@ def build_post_required_string_parameter_request(
         method="POST",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -516,7 +504,6 @@ def build_post_optional_string_parameter_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content', None)  # type: Optional[str]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -531,7 +518,6 @@ def build_post_optional_string_parameter_request(
         method="POST",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -593,7 +579,7 @@ def build_post_required_string_property_request(
     ...
 
 def build_post_required_string_property_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
@@ -616,7 +602,6 @@ def build_post_required_string_property_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -690,7 +675,7 @@ def build_post_optional_string_property_request(
     ...
 
 def build_post_optional_string_property_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
@@ -698,11 +683,11 @@ def build_post_optional_string_property_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -712,7 +697,6 @@ def build_post_optional_string_property_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', None)  # type: Optional[Union[JSON, IO]]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -865,7 +849,7 @@ def build_post_required_class_parameter_request(
     ...
 
 def build_post_required_class_parameter_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test explicitly required complex object. Please put null and the client library should throw
@@ -888,7 +872,6 @@ def build_post_required_class_parameter_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -963,7 +946,7 @@ def build_post_optional_class_parameter_request(
     ...
 
 def build_post_optional_class_parameter_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test explicitly optional complex object. Please put null.
@@ -971,11 +954,11 @@ def build_post_optional_class_parameter_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -985,7 +968,6 @@ def build_post_optional_class_parameter_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', None)  # type: Optional[Union[JSON, IO]]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1064,7 +1046,7 @@ def build_post_required_class_property_request(
     ...
 
 def build_post_required_class_property_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
@@ -1087,7 +1069,6 @@ def build_post_required_class_property_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1164,7 +1145,7 @@ def build_post_optional_class_property_request(
     ...
 
 def build_post_optional_class_property_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
@@ -1172,11 +1153,11 @@ def build_post_optional_class_property_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1186,7 +1167,6 @@ def build_post_optional_class_property_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', None)  # type: Optional[Union[JSON, IO]]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1262,7 +1242,7 @@ def build_post_required_array_parameter_request(
     ...
 
 def build_post_required_array_parameter_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test explicitly required array. Please put null and the client library should throw before the
@@ -1285,7 +1265,6 @@ def build_post_required_array_parameter_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[List[str], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1359,7 +1338,7 @@ def build_post_optional_array_parameter_request(
     ...
 
 def build_post_optional_array_parameter_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test explicitly optional array. Please put null.
@@ -1367,11 +1346,11 @@ def build_post_optional_array_parameter_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Is either a list type or a IO type. Default value is None.
-    :paramtype json: list[str] or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Is either a list type or a IO type. Default value is None.
+    :paramtype json: list[str] or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1381,7 +1360,6 @@ def build_post_optional_array_parameter_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', None)  # type: Optional[Union[List[str], IO]]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1459,7 +1437,7 @@ def build_post_required_array_property_request(
     ...
 
 def build_post_required_array_property_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
@@ -1482,7 +1460,6 @@ def build_post_required_array_property_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1558,7 +1535,7 @@ def build_post_optional_array_property_request(
     ...
 
 def build_post_optional_array_property_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
@@ -1566,11 +1543,11 @@ def build_post_optional_array_property_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1580,7 +1557,6 @@ def build_post_optional_array_property_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', None)  # type: Optional[Union[JSON, IO]]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

@@ -113,7 +113,7 @@ def build_put_horse_request(
     ...
 
 def build_put_horse_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put a horse with name 'General' and isAShowHorse false.
@@ -136,7 +136,6 @@ def build_put_horse_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -243,7 +242,7 @@ def build_put_pet_request(
     ...
 
 def build_put_pet_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put a pet with name 'Butter'.
@@ -265,7 +264,6 @@ def build_put_pet_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -373,7 +371,7 @@ def build_put_feline_request(
     ...
 
 def build_put_feline_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put a feline who hisses and doesn't meow.
@@ -396,7 +394,6 @@ def build_put_feline_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -508,7 +505,7 @@ def build_put_cat_request(
     ...
 
 def build_put_cat_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
@@ -531,7 +528,6 @@ def build_put_cat_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -647,7 +643,7 @@ def build_put_kitten_request(
     ...
 
 def build_put_kitten_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
@@ -671,7 +667,6 @@ def build_put_kitten_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

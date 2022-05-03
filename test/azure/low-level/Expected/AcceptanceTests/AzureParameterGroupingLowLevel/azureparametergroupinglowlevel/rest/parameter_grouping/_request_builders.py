@@ -46,7 +46,6 @@ def build_post_required_request(
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: int
     custom_header = kwargs.pop('custom_header', _headers.pop('customHeader', None))  # type: Optional[str]
     query = kwargs.pop('query', _params.pop('query', 30))  # type: int
     accept = _headers.pop('Accept', "application/json")
@@ -75,7 +74,6 @@ def build_post_required_request(
         url=_url,
         params=_params,
         headers=_headers,
-        json=json,
         **kwargs
     )
 

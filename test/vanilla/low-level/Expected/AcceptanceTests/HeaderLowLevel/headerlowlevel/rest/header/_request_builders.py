@@ -1003,7 +1003,7 @@ def build_param_byte_request(
 
     # Construct headers
     _headers['scenario'] = _SERIALIZER.header("scenario", scenario, 'str')
-    _headers['value'] = _SERIALIZER.header("value", value, 'base64')
+    _headers['value'] = _SERIALIZER.header("value", value, 'bytearray')
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
     return HttpRequest(

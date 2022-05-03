@@ -101,7 +101,7 @@ def build_put_async_retry_succeeded_request(
     ...
 
 def build_put_async_retry_succeeded_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running put request, service returns a 200 to the initial request, with an
@@ -111,11 +111,11 @@ def build_put_async_retry_succeeded_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -220,7 +220,7 @@ def build_put201_creating_succeeded200_request(
     ...
 
 def build_put201_creating_succeeded200_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running put request, service returns a 201 to the initial request, with an
@@ -230,11 +230,11 @@ def build_put201_creating_succeeded200_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -337,7 +337,7 @@ def build_post202_retry200_request(
     ...
 
 def build_post202_retry200_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running post request, service returns a 202 to the initial request, with
@@ -346,11 +346,11 @@ def build_post202_retry200_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -455,7 +455,7 @@ def build_post_async_retry_succeeded_request(
     ...
 
 def build_post_async_retry_succeeded_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
     all requests. Long running post request, service returns a 202 to the initial request, with an
@@ -465,11 +465,11 @@ def build_post_async_retry_succeeded_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Product to put. Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.

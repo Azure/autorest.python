@@ -185,7 +185,7 @@ def build_put_valid_request(
     ...
 
 def build_put_valid_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put complex types that are polymorphic.
 
@@ -466,7 +466,7 @@ def build_put_complicated_request(
     ...
 
 def build_put_complicated_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
     additional properties.
@@ -581,7 +581,7 @@ def build_put_missing_discriminator_request(
     ...
 
 def build_put_missing_discriminator_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put complex types that are polymorphic, omitting the discriminator.
 
@@ -740,7 +740,7 @@ def build_put_valid_missing_required_request(
     ...
 
 def build_put_valid_missing_required_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
     request should not be allowed from the client.

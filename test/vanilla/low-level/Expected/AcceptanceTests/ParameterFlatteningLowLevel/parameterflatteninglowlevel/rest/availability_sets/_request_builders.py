@@ -58,8 +58,7 @@ def build_update_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "tags": {
-                    "str": "str"  # A description about the set of tags.A description
-                      about the set of tags. Required.
+                    "str": "str"  # A description about the set of tags. Required.
                 }
             }
     """
@@ -98,7 +97,7 @@ def build_update_request(
 def build_update_request(
     resource_group_name,  # type: str
     avset,  # type: str
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Updates the tags for an availability set.
@@ -124,7 +123,6 @@ def build_update_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     # Construct URL
     _url = "/parameterFlattening/{resourceGroupName}/{availabilitySetName}"
     path_format_arguments = {

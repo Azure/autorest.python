@@ -931,7 +931,7 @@ def build_byte_multi_byte_request(
 
     # Construct parameters
     if byte_query is not None:
-        _params['byteQuery'] = _SERIALIZER.query("byte_query", byte_query, 'base64')
+        _params['byteQuery'] = _SERIALIZER.query("byte_query", byte_query, 'bytearray')
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -973,7 +973,7 @@ def build_byte_empty_request(
     _url = "/queries/byte/empty"
 
     # Construct parameters
-    _params['byteQuery'] = _SERIALIZER.query("byte_query", byte_query, 'base64')
+    _params['byteQuery'] = _SERIALIZER.query("byte_query", byte_query, 'bytearray')
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
@@ -1015,7 +1015,7 @@ def build_byte_null_request(
 
     # Construct parameters
     if byte_query is not None:
-        _params['byteQuery'] = _SERIALIZER.query("byte_query", byte_query, 'base64')
+        _params['byteQuery'] = _SERIALIZER.query("byte_query", byte_query, 'bytearray')
 
     # Construct headers
     _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')

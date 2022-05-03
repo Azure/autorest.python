@@ -171,7 +171,6 @@ def build_put301_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', True)  # type: bool
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -186,7 +185,6 @@ def build_put301_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -279,7 +277,6 @@ def build_patch302_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', True)  # type: bool
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -294,7 +291,6 @@ def build_patch302_request(
         method="PATCH",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -321,7 +317,6 @@ def build_post303_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', True)  # type: bool
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -336,7 +331,6 @@ def build_post303_request(
         method="POST",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -461,7 +455,6 @@ def build_put307_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', True)  # type: bool
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -476,7 +469,6 @@ def build_put307_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -502,7 +494,6 @@ def build_patch307_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', True)  # type: bool
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -517,7 +508,6 @@ def build_patch307_request(
         method="PATCH",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -543,7 +533,6 @@ def build_post307_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', True)  # type: bool
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -558,7 +547,6 @@ def build_post307_request(
         method="POST",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -584,7 +572,6 @@ def build_delete307_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', True)  # type: bool
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -599,6 +586,5 @@ def build_delete307_request(
         method="DELETE",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )

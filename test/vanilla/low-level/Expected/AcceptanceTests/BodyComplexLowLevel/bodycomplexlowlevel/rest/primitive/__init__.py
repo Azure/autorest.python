@@ -9,137 +9,71 @@
 try:
     from ._request_builders_py3 import build_get_int_request
     from ._request_builders_py3 import build_put_int_request
-    from ._request_builders_py3 import build_put_int_request
-    from ._request_builders_py3 import build_put_int_request
     from ._request_builders_py3 import build_get_long_request
-    from ._request_builders_py3 import build_put_long_request
-    from ._request_builders_py3 import build_put_long_request
     from ._request_builders_py3 import build_put_long_request
     from ._request_builders_py3 import build_get_float_request
     from ._request_builders_py3 import build_put_float_request
-    from ._request_builders_py3 import build_put_float_request
-    from ._request_builders_py3 import build_put_float_request
     from ._request_builders_py3 import build_get_double_request
-    from ._request_builders_py3 import build_put_double_request
-    from ._request_builders_py3 import build_put_double_request
     from ._request_builders_py3 import build_put_double_request
     from ._request_builders_py3 import build_get_bool_request
     from ._request_builders_py3 import build_put_bool_request
-    from ._request_builders_py3 import build_put_bool_request
-    from ._request_builders_py3 import build_put_bool_request
     from ._request_builders_py3 import build_get_string_request
-    from ._request_builders_py3 import build_put_string_request
-    from ._request_builders_py3 import build_put_string_request
     from ._request_builders_py3 import build_put_string_request
     from ._request_builders_py3 import build_get_date_request
     from ._request_builders_py3 import build_put_date_request
-    from ._request_builders_py3 import build_put_date_request
-    from ._request_builders_py3 import build_put_date_request
     from ._request_builders_py3 import build_get_date_time_request
-    from ._request_builders_py3 import build_put_date_time_request
-    from ._request_builders_py3 import build_put_date_time_request
     from ._request_builders_py3 import build_put_date_time_request
     from ._request_builders_py3 import build_get_date_time_rfc1123_request
     from ._request_builders_py3 import build_put_date_time_rfc1123_request
-    from ._request_builders_py3 import build_put_date_time_rfc1123_request
-    from ._request_builders_py3 import build_put_date_time_rfc1123_request
     from ._request_builders_py3 import build_get_duration_request
     from ._request_builders_py3 import build_put_duration_request
-    from ._request_builders_py3 import build_put_duration_request
-    from ._request_builders_py3 import build_put_duration_request
     from ._request_builders_py3 import build_get_byte_request
-    from ._request_builders_py3 import build_put_byte_request
-    from ._request_builders_py3 import build_put_byte_request
     from ._request_builders_py3 import build_put_byte_request
 except (SyntaxError, ImportError):
     from ._request_builders import build_get_int_request  # type: ignore
     from ._request_builders import build_put_int_request  # type: ignore
-    from ._request_builders import build_put_int_request  # type: ignore
-    from ._request_builders import build_put_int_request  # type: ignore
     from ._request_builders import build_get_long_request  # type: ignore
-    from ._request_builders import build_put_long_request  # type: ignore
-    from ._request_builders import build_put_long_request  # type: ignore
     from ._request_builders import build_put_long_request  # type: ignore
     from ._request_builders import build_get_float_request  # type: ignore
     from ._request_builders import build_put_float_request  # type: ignore
-    from ._request_builders import build_put_float_request  # type: ignore
-    from ._request_builders import build_put_float_request  # type: ignore
     from ._request_builders import build_get_double_request  # type: ignore
-    from ._request_builders import build_put_double_request  # type: ignore
-    from ._request_builders import build_put_double_request  # type: ignore
     from ._request_builders import build_put_double_request  # type: ignore
     from ._request_builders import build_get_bool_request  # type: ignore
     from ._request_builders import build_put_bool_request  # type: ignore
-    from ._request_builders import build_put_bool_request  # type: ignore
-    from ._request_builders import build_put_bool_request  # type: ignore
     from ._request_builders import build_get_string_request  # type: ignore
-    from ._request_builders import build_put_string_request  # type: ignore
-    from ._request_builders import build_put_string_request  # type: ignore
     from ._request_builders import build_put_string_request  # type: ignore
     from ._request_builders import build_get_date_request  # type: ignore
     from ._request_builders import build_put_date_request  # type: ignore
-    from ._request_builders import build_put_date_request  # type: ignore
-    from ._request_builders import build_put_date_request  # type: ignore
     from ._request_builders import build_get_date_time_request  # type: ignore
-    from ._request_builders import build_put_date_time_request  # type: ignore
-    from ._request_builders import build_put_date_time_request  # type: ignore
     from ._request_builders import build_put_date_time_request  # type: ignore
     from ._request_builders import build_get_date_time_rfc1123_request  # type: ignore
     from ._request_builders import build_put_date_time_rfc1123_request  # type: ignore
-    from ._request_builders import build_put_date_time_rfc1123_request  # type: ignore
-    from ._request_builders import build_put_date_time_rfc1123_request  # type: ignore
     from ._request_builders import build_get_duration_request  # type: ignore
     from ._request_builders import build_put_duration_request  # type: ignore
-    from ._request_builders import build_put_duration_request  # type: ignore
-    from ._request_builders import build_put_duration_request  # type: ignore
     from ._request_builders import build_get_byte_request  # type: ignore
-    from ._request_builders import build_put_byte_request  # type: ignore
-    from ._request_builders import build_put_byte_request  # type: ignore
     from ._request_builders import build_put_byte_request  # type: ignore
 
 __all__ = [
     "build_get_int_request",
     "build_put_int_request",
-    "build_put_int_request",
-    "build_put_int_request",
     "build_get_long_request",
-    "build_put_long_request",
-    "build_put_long_request",
     "build_put_long_request",
     "build_get_float_request",
     "build_put_float_request",
-    "build_put_float_request",
-    "build_put_float_request",
     "build_get_double_request",
-    "build_put_double_request",
-    "build_put_double_request",
     "build_put_double_request",
     "build_get_bool_request",
     "build_put_bool_request",
-    "build_put_bool_request",
-    "build_put_bool_request",
     "build_get_string_request",
-    "build_put_string_request",
-    "build_put_string_request",
     "build_put_string_request",
     "build_get_date_request",
     "build_put_date_request",
-    "build_put_date_request",
-    "build_put_date_request",
     "build_get_date_time_request",
-    "build_put_date_time_request",
-    "build_put_date_time_request",
     "build_put_date_time_request",
     "build_get_date_time_rfc1123_request",
     "build_put_date_time_rfc1123_request",
-    "build_put_date_time_rfc1123_request",
-    "build_put_date_time_rfc1123_request",
     "build_get_duration_request",
     "build_put_duration_request",
-    "build_put_duration_request",
-    "build_put_duration_request",
     "build_get_byte_request",
-    "build_put_byte_request",
-    "build_put_byte_request",
     "build_put_byte_request",
 ]

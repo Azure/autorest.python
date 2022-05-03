@@ -115,7 +115,7 @@ def build_put_valid_request(
     ...
 
 def build_put_valid_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Put complex types that have readonly properties.
 

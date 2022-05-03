@@ -179,7 +179,7 @@ def build_put_empty_request(
     ...
 
 def build_put_empty_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set array value empty [].
@@ -201,7 +201,6 @@ def build_put_empty_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[List[str], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -308,7 +307,7 @@ def build_put_boolean_tfft_request(
     ...
 
 def build_put_boolean_tfft_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set array value empty [true, false, false, true].
@@ -330,7 +329,6 @@ def build_put_boolean_tfft_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[List[bool], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -503,7 +501,7 @@ def build_put_integer_valid_request(
     ...
 
 def build_put_integer_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set array value empty [1, -1, 3, 300].
@@ -525,7 +523,6 @@ def build_put_integer_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[List[int], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -698,7 +695,7 @@ def build_put_long_valid_request(
     ...
 
 def build_put_long_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set array value empty [1, -1, 3, 300].
@@ -720,7 +717,6 @@ def build_put_long_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[List[int], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -893,7 +889,7 @@ def build_put_float_valid_request(
     ...
 
 def build_put_float_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set array value [0, -0.01, 1.2e20].
@@ -915,7 +911,6 @@ def build_put_float_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[List[float], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1088,7 +1083,7 @@ def build_put_double_valid_request(
     ...
 
 def build_put_double_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set array value [0, -0.01, 1.2e20].
@@ -1110,7 +1105,6 @@ def build_put_double_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[List[float], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1283,7 +1277,7 @@ def build_put_string_valid_request(
     ...
 
 def build_put_string_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set array value ['foo1', 'foo2', 'foo3'].
@@ -1305,7 +1299,6 @@ def build_put_string_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[List[str], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1412,7 +1405,7 @@ def build_put_enum_valid_request(
     ...
 
 def build_put_enum_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set array value ['foo1', 'foo2', 'foo3'].
@@ -1434,7 +1427,6 @@ def build_put_enum_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[List[str], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1541,7 +1533,7 @@ def build_put_string_enum_valid_request(
     ...
 
 def build_put_string_enum_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set array value ['foo1', 'foo2', 'foo3'].
@@ -1563,7 +1555,6 @@ def build_put_string_enum_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[List[str], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1739,7 +1730,7 @@ def build_put_uuid_valid_request(
     ...
 
 def build_put_uuid_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
@@ -1762,7 +1753,6 @@ def build_put_uuid_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[List[str], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1902,7 +1892,7 @@ def build_put_date_valid_request(
     ...
 
 def build_put_date_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
@@ -1924,7 +1914,6 @@ def build_put_date_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[List[datetime.date], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -2100,7 +2089,7 @@ def build_put_date_time_valid_request(
     ...
 
 def build_put_date_time_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
@@ -2123,7 +2112,6 @@ def build_put_date_time_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[List[datetime.datetime], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -2299,7 +2287,7 @@ def build_put_date_time_rfc1123_valid_request(
     ...
 
 def build_put_date_time_rfc1123_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
@@ -2322,7 +2310,6 @@ def build_put_date_time_rfc1123_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[List[datetime.datetime], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -2429,7 +2416,7 @@ def build_put_duration_valid_request(
     ...
 
 def build_put_duration_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
@@ -2451,7 +2438,6 @@ def build_put_duration_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[List[datetime.timedelta], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -2561,7 +2547,7 @@ def build_put_byte_valid_request(
     ...
 
 def build_put_byte_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
@@ -2584,7 +2570,6 @@ def build_put_byte_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[List[bytes], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -2898,7 +2883,7 @@ def build_put_complex_valid_request(
     ...
 
 def build_put_complex_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
@@ -2921,7 +2906,6 @@ def build_put_complex_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[List[JSON], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -3162,7 +3146,7 @@ def build_put_array_valid_request(
     ...
 
 def build_put_array_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
@@ -3184,7 +3168,6 @@ def build_put_array_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[List[List[str]], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -3430,7 +3413,7 @@ def build_put_dictionary_valid_request(
     ...
 
 def build_put_dictionary_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
@@ -3453,7 +3436,6 @@ def build_put_dictionary_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[List[Dict[str, str]], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

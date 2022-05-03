@@ -236,7 +236,6 @@ def build_put_max32_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: int
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -251,7 +250,6 @@ def build_put_max32_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -276,7 +274,6 @@ def build_put_max64_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: int
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -291,7 +288,6 @@ def build_put_max64_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -316,7 +312,6 @@ def build_put_min32_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: int
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -331,7 +326,6 @@ def build_put_min32_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -356,7 +350,6 @@ def build_put_min64_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: int
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -371,7 +364,6 @@ def build_put_min64_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 
@@ -429,7 +421,6 @@ def build_put_unix_time_date_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: datetime.datetime
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -444,7 +435,6 @@ def build_put_unix_time_date_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        json=json,
         **kwargs
     )
 

@@ -79,7 +79,7 @@ def build_analyze_body_request(
     ...
 
 def build_analyze_body_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Analyze body, that could be different media types.
@@ -87,11 +87,11 @@ def build_analyze_body_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Input parameter. Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
      'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
     :paramtype content_type: str
+    :keyword json: Input parameter. Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -101,7 +101,6 @@ def build_analyze_body_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', None)  # type: Optional[Union[JSON, IO]]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -177,7 +176,7 @@ def build_analyze_body_no_accept_header_request(
     ...
 
 def build_analyze_body_no_accept_header_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
@@ -186,11 +185,11 @@ def build_analyze_body_no_accept_header_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Input parameter. Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
      'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
     :paramtype content_type: str
+    :keyword json: Input parameter. Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -200,7 +199,6 @@ def build_analyze_body_no_accept_header_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', None)  # type: Optional[Union[JSON, IO]]
     # Construct URL
     _url = "/mediatypes/analyzeNoAccept"
 
@@ -236,7 +234,6 @@ def build_content_type_with_encoding_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content', None)  # type: Optional[str]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -251,7 +248,6 @@ def build_content_type_with_encoding_request(
         method="POST",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -277,7 +273,6 @@ def build_binary_body_with_two_content_types_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: IO
     accept = _headers.pop('Accept', "text/plain")
 
     # Construct URL
@@ -292,7 +287,6 @@ def build_binary_body_with_two_content_types_request(
         method="POST",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -319,7 +313,6 @@ def build_binary_body_with_three_content_types_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: IO
     accept = _headers.pop('Accept', "text/plain")
 
     # Construct URL
@@ -334,7 +327,6 @@ def build_binary_body_with_three_content_types_request(
         method="POST",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -359,7 +351,6 @@ def build_put_text_and_json_body_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: str
     accept = _headers.pop('Accept', "text/plain")
 
     # Construct URL
@@ -374,6 +365,5 @@ def build_put_text_and_json_body_request(
         method="POST",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )

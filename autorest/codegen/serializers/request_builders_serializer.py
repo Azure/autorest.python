@@ -37,7 +37,7 @@ class RequestBuildersSerializer:
     def serialize_init(self) -> str:
         template = self.env.get_template("rest_init.py.jinja2")
         return template.render(
-            code_model=self.code_model, request_builders=self.request_builders
+            code_model=self.code_model, request_builders=[r for r in self.request_builders if not r.is_overload]
         )
 
     def serialize_request_builders(self) -> str:

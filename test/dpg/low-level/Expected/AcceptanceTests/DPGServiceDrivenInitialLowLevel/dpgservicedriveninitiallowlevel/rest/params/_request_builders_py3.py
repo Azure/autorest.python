@@ -208,7 +208,7 @@ def build_post_parameters_request(
     ...
 
 def build_post_parameters_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """POST a JSON.
 

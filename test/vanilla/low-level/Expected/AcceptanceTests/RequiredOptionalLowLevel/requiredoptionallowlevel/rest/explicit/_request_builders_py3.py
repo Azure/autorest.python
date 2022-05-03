@@ -245,7 +245,7 @@ def build_post_required_integer_property_request(
     ...
 
 def build_post_required_integer_property_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
     client library should throw before the request is sent.
@@ -344,18 +344,18 @@ def build_post_optional_integer_property_request(
     ...
 
 def build_post_optional_integer_property_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -601,7 +601,7 @@ def build_post_required_string_property_request(
     ...
 
 def build_post_required_string_property_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
     client library should throw before the request is sent.
@@ -700,18 +700,18 @@ def build_post_optional_string_property_request(
     ...
 
 def build_post_optional_string_property_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -877,7 +877,7 @@ def build_post_required_class_parameter_request(
     ...
 
 def build_post_required_class_parameter_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly required complex object. Please put null and the client library should throw
     before the request is sent.
@@ -977,18 +977,18 @@ def build_post_optional_class_parameter_request(
     ...
 
 def build_post_optional_class_parameter_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly optional complex object. Please put null.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1080,7 +1080,7 @@ def build_post_required_class_property_request(
     ...
 
 def build_post_required_class_property_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
     and the client library should throw before the request is sent.
@@ -1182,18 +1182,18 @@ def build_post_optional_class_property_request(
     ...
 
 def build_post_optional_class_property_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1282,7 +1282,7 @@ def build_post_required_array_parameter_request(
     ...
 
 def build_post_required_array_parameter_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly required array. Please put null and the client library should throw before the
     request is sent.
@@ -1381,18 +1381,18 @@ def build_post_optional_array_parameter_request(
     ...
 
 def build_post_optional_array_parameter_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly optional array. Please put null.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Is either a list type or a IO type. Default value is None.
-    :paramtype json: list[str] or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Is either a list type or a IO type. Default value is None.
+    :paramtype json: list[str] or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -1483,7 +1483,7 @@ def build_post_required_array_property_request(
     ...
 
 def build_post_required_array_property_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
     client library should throw before the request is sent.
@@ -1584,18 +1584,18 @@ def build_post_optional_array_property_request(
     ...
 
 def build_post_optional_array_property_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.

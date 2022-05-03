@@ -37,7 +37,6 @@ def build_file_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: IO
     # Construct URL
     _url = "/binary/file"
 
@@ -49,7 +48,6 @@ def build_file_request(
         method="POST",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -74,7 +72,6 @@ def build_binary_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: IO
     # Construct URL
     _url = "/binary/octet"
 
@@ -86,6 +83,5 @@ def build_binary_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )

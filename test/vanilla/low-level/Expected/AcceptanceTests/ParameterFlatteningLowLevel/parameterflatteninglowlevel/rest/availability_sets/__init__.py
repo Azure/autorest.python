@@ -8,15 +8,9 @@
 
 try:
     from ._request_builders_py3 import build_update_request
-    from ._request_builders_py3 import build_update_request
-    from ._request_builders_py3 import build_update_request
 except (SyntaxError, ImportError):
-    from ._request_builders import build_update_request  # type: ignore
-    from ._request_builders import build_update_request  # type: ignore
     from ._request_builders import build_update_request  # type: ignore
 
 __all__ = [
-    "build_update_request",
-    "build_update_request",
     "build_update_request",
 ]

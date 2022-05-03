@@ -999,32 +999,21 @@ def build_put_service_properties_request(
                 "Cors": [
                     {
                         "AllowedHeaders": "str",  # the request headers that the
-                          origin domain may specify on the CORS request.the request headers that
-                          the origin domain may specify on the CORS request. Required.
+                          origin domain may specify on the CORS request. Required.
                         "AllowedMethods": "str",  # The methods (HTTP request verbs)
-                          that the origin domain may use for a CORS request. (comma separated).The
-                          methods (HTTP request verbs) that the origin domain may use for a CORS
-                          request. (comma separated). Required.
+                          that the origin domain may use for a CORS request. (comma separated).
+                          Required.
                         "AllowedOrigins": "str",  # The origin domains that are
                           permitted to make a request against the storage service via CORS. The
                           origin domain is the domain from which the request originates. Note that
                           the origin must be an exact case-sensitive match with the origin that the
                           user age sends to the service. You can also use the wildcard character
-                          '*' to allow all origin domains to make requests via CORS.The origin
-                          domains that are permitted to make a request against the storage service
-                          via CORS. The origin domain is the domain from which the request
-                          originates. Note that the origin must be an exact case-sensitive match
-                          with the origin that the user age sends to the service. You can also use
-                          the wildcard character '*' to allow all origin domains to make requests
-                          via CORS. Required.
+                          '*' to allow all origin domains to make requests via CORS. Required.
                         "ExposedHeaders": "str",  # The response headers that may be
                           sent in the response to the CORS request and exposed by the browser to
-                          the request issuer.The response headers that may be sent in the response
-                          to the CORS request and exposed by the browser to the request issuer.
-                          Required.
+                          the request issuer. Required.
                         "MaxAgeInSeconds": 0  # The maximum amount time that a
-                          browser should cache the preflight OPTIONS request.The maximum amount
-                          time that a browser should cache the preflight OPTIONS request. Required.
+                          browser should cache the preflight OPTIONS request. Required.
                     }
                 ],
                 "DefaultServiceVersion": "str",  # Optional. The default version to use for
@@ -1035,13 +1024,11 @@ def build_put_service_properties_request(
                       logging or soft-deleted data should be retained. All data older than this
                       value will be deleted.
                     "Enabled": bool  # Indicates whether a retention policy is enabled
-                      for the storage service.Indicates whether a retention policy is enabled for
-                      the storage service. Required.
+                      for the storage service. Required.
                 },
                 "HourMetrics": {
                     "Enabled": bool,  # Indicates whether metrics are enabled for the
-                      Blob service.Indicates whether metrics are enabled for the Blob service.
-                      Required.
+                      Blob service. Required.
                     "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
                       generate summary statistics for called API operations.
                     "RetentionPolicy": {
@@ -1049,7 +1036,6 @@ def build_put_service_properties_request(
                           metrics or logging or soft-deleted data should be retained. All data
                           older than this value will be deleted.
                         "Enabled": bool  # Indicates whether a retention policy is
-                          enabled for the storage service.Indicates whether a retention policy is
                           enabled for the storage service. Required.
                     },
                     "Version": "str"  # Optional. The version of Storage Analytics to
@@ -1057,26 +1043,24 @@ def build_put_service_properties_request(
                 },
                 "Logging": {
                     "Delete": bool,  # Indicates whether all delete requests should be
-                      logged.Indicates whether all delete requests should be logged. Required.
+                      logged. Required.
                     "Read": bool,  # Indicates whether all read requests should be
-                      logged.Indicates whether all read requests should be logged. Required.
+                      logged. Required.
                     "RetentionPolicy": {
                         "Days": 0,  # Optional. Indicates the number of days that
                           metrics or logging or soft-deleted data should be retained. All data
                           older than this value will be deleted.
                         "Enabled": bool  # Indicates whether a retention policy is
-                          enabled for the storage service.Indicates whether a retention policy is
                           enabled for the storage service. Required.
                     },
-                    "Version": "str",  # The version of Storage Analytics to
-                      configure.The version of Storage Analytics to configure. Required.
+                    "Version": "str",  # The version of Storage Analytics to configure.
+                      Required.
                     "Write": bool  # Indicates whether all write requests should be
-                      logged.Indicates whether all write requests should be logged. Required.
+                      logged. Required.
                 },
                 "MinuteMetrics": {
                     "Enabled": bool,  # Indicates whether metrics are enabled for the
-                      Blob service.Indicates whether metrics are enabled for the Blob service.
-                      Required.
+                      Blob service. Required.
                     "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
                       generate summary statistics for called API operations.
                     "RetentionPolicy": {
@@ -1084,7 +1068,6 @@ def build_put_service_properties_request(
                           metrics or logging or soft-deleted data should be retained. All data
                           older than this value will be deleted.
                         "Enabled": bool  # Indicates whether a retention policy is
-                          enabled for the storage service.Indicates whether a retention policy is
                           enabled for the storage service. Required.
                     },
                     "Version": "str"  # Optional. The version of Storage Analytics to
@@ -1197,13 +1180,13 @@ def build_put_acls_request(
                 {
                     "AccessPolicy": {
                         "Expiry": "2020-02-20 00:00:00",  # the date-time the policy
-                          expires.the date-time the policy expires. Required.
-                        "Permission": "str",  # the permissions for the acl
-                          policy.the permissions for the acl policy. Required.
+                          expires. Required.
+                        "Permission": "str",  # the permissions for the acl policy.
+                          Required.
                         "Start": "2020-02-20 00:00:00"  # the date-time the policy is
-                          active.the date-time the policy is active. Required.
+                          active. Required.
                     },
-                    "Id": "str"  # a unique id.a unique id. Required.
+                    "Id": "str"  # a unique id. Required.
                 }
             ]
     """
@@ -1342,7 +1325,7 @@ def build_json_input_request(
     ...
 
 def build_json_input_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
     number 42.

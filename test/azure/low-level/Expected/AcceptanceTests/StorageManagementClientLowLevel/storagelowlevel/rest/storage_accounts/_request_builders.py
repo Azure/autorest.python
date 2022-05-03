@@ -96,7 +96,7 @@ def build_check_name_availability_request(
 
 def build_check_name_availability_request(
     subscription_id,  # type: str
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Checks that account name is valid and is not in use.
@@ -125,7 +125,6 @@ def build_check_name_availability_request(
 
     api_version = kwargs.pop('api_version', _params.pop('api-version', "2015-05-01-preview"))  # type: str
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json, text/json")
 
     # Construct URL
@@ -195,7 +194,7 @@ def build_create_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "id": "str",  # Optional. Resource Id.
-                "location": "str",  # Resource location.Resource location. Required.
+                "location": "str",  # Resource location. Required.
                 "name": "str",  # Optional. Resource name.
                 "properties": {
                     "accountType": "str"  # Optional. Gets or sets the account type.
@@ -254,7 +253,7 @@ def build_create_request(
     resource_group_name,  # type: str
     account_name,  # type: str
     subscription_id,  # type: str
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Asynchronously creates a new storage account with the specified parameters. Existing accounts
@@ -292,7 +291,6 @@ def build_create_request(
 
     api_version = kwargs.pop('api_version', _params.pop('api-version', "2015-05-01-preview"))  # type: str
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json, text/json")
 
     # Construct URL
@@ -481,7 +479,7 @@ def build_update_request(
             # JSON input template you can fill out and use as your body input.
             json = {
                 "id": "str",  # Optional. Resource Id.
-                "location": "str",  # Resource location.Resource location. Required.
+                "location": "str",  # Resource location. Required.
                 "name": "str",  # Optional. Resource name.
                 "properties": {
                     "accountType": "str",  # Optional. Gets or sets the account type.
@@ -553,7 +551,7 @@ def build_update_request(
     resource_group_name,  # type: str
     account_name,  # type: str
     subscription_id,  # type: str
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Updates the account type or tags for a storage account. It can also be used to add a custom
@@ -594,7 +592,6 @@ def build_update_request(
 
     api_version = kwargs.pop('api_version', _params.pop('api-version', "2015-05-01-preview"))  # type: str
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json, text/json")
 
     # Construct URL
@@ -822,7 +819,7 @@ def build_regenerate_key_request(
 
             # JSON input template you can fill out and use as your body input.
             json = {
-                "keyName": "str"  # Optional. Known values are: "key1" or "key2".
+                "keyName": "str"  # Optional. Known values are: "key1" and "key2".
             }
     """
 
@@ -868,7 +865,7 @@ def build_regenerate_key_request(
     resource_group_name,  # type: str
     account_name,  # type: str
     subscription_id,  # type: str
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Regenerates the access keys for the specified storage account.
@@ -903,7 +900,6 @@ def build_regenerate_key_request(
 
     api_version = kwargs.pop('api_version', _params.pop('api-version', "2015-05-01-preview"))  # type: str
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json, text/json")
 
     # Construct URL

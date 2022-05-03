@@ -85,7 +85,7 @@ def build_create_ap_true_request(
     ...
 
 def build_create_ap_true_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
@@ -186,7 +186,7 @@ def build_create_cat_ap_true_request(
     ...
 
 def build_create_cat_ap_true_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Create a CatAPTrue which contains more properties than what is defined.
 
@@ -286,7 +286,7 @@ def build_create_ap_object_request(
     ...
 
 def build_create_ap_object_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
@@ -386,7 +386,7 @@ def build_create_ap_string_request(
     ...
 
 def build_create_ap_string_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
@@ -486,7 +486,7 @@ def build_create_ap_in_properties_request(
     ...
 
 def build_create_ap_in_properties_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 
@@ -587,7 +587,7 @@ def build_create_ap_in_properties_with_ap_string_request(
     ...
 
 def build_create_ap_in_properties_with_ap_string_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Create a Pet which contains more properties than what is defined.
 

@@ -83,18 +83,18 @@ def build_analyze_body_request(
     ...
 
 def build_analyze_body_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Analyze body, that could be different media types.
 
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Input parameter. Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
      'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
     :paramtype content_type: str
+    :keyword json: Input parameter. Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -183,7 +183,7 @@ def build_analyze_body_no_accept_header_request(
     ...
 
 def build_analyze_body_no_accept_header_request(
-    **kwargs
+    **kwargs: Any
 ) -> HttpRequest:
     """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
     type.
@@ -191,11 +191,11 @@ def build_analyze_body_no_accept_header_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Input parameter. Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
      'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
     :paramtype content_type: str
+    :keyword json: Input parameter. Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.

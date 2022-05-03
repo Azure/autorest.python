@@ -146,7 +146,7 @@ def build_put_empty_request(
     ...
 
 def build_put_empty_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set dictionary value empty {}.
@@ -168,7 +168,6 @@ def build_put_empty_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[Dict[str, str], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -407,7 +406,7 @@ def build_put_boolean_tfft_request(
     ...
 
 def build_put_boolean_tfft_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }.
@@ -429,7 +428,6 @@ def build_put_boolean_tfft_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[Dict[str, bool], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -602,7 +600,7 @@ def build_put_integer_valid_request(
     ...
 
 def build_put_integer_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
@@ -624,7 +622,6 @@ def build_put_integer_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[Dict[str, int], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -797,7 +794,7 @@ def build_put_long_valid_request(
     ...
 
 def build_put_long_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
@@ -819,7 +816,6 @@ def build_put_long_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[Dict[str, int], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -992,7 +988,7 @@ def build_put_float_valid_request(
     ...
 
 def build_put_float_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
@@ -1014,7 +1010,6 @@ def build_put_float_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[Dict[str, float], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1187,7 +1182,7 @@ def build_put_double_valid_request(
     ...
 
 def build_put_double_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
@@ -1209,7 +1204,6 @@ def build_put_double_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[Dict[str, float], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1382,7 +1376,7 @@ def build_put_string_valid_request(
     ...
 
 def build_put_string_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
@@ -1404,7 +1398,6 @@ def build_put_string_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[Dict[str, str], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1577,7 +1570,7 @@ def build_put_date_valid_request(
     ...
 
 def build_put_date_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
@@ -1599,7 +1592,6 @@ def build_put_date_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[Dict[str, datetime.date], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1775,7 +1767,7 @@ def build_put_date_time_valid_request(
     ...
 
 def build_put_date_time_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
@@ -1798,7 +1790,6 @@ def build_put_date_time_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[Dict[str, datetime.datetime], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -1974,7 +1965,7 @@ def build_put_date_time_rfc1123_valid_request(
     ...
 
 def build_put_date_time_rfc1123_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
@@ -1997,7 +1988,6 @@ def build_put_date_time_rfc1123_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[Dict[str, datetime.datetime], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -2104,7 +2094,7 @@ def build_put_duration_valid_request(
     ...
 
 def build_put_duration_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
@@ -2126,7 +2116,6 @@ def build_put_duration_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[Dict[str, datetime.timedelta], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -2236,7 +2225,7 @@ def build_put_byte_valid_request(
     ...
 
 def build_put_byte_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
@@ -2259,7 +2248,6 @@ def build_put_byte_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[Dict[str, bytes], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -2574,7 +2562,7 @@ def build_put_complex_valid_request(
     ...
 
 def build_put_complex_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
@@ -2597,7 +2585,6 @@ def build_put_complex_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[Dict[str, JSON], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -2841,7 +2828,7 @@ def build_put_array_valid_request(
     ...
 
 def build_put_array_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
@@ -2864,7 +2851,6 @@ def build_put_array_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[Dict[str, List[str]], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -3113,7 +3099,7 @@ def build_put_dictionary_valid_request(
     ...
 
 def build_put_dictionary_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
@@ -3137,7 +3123,6 @@ def build_put_dictionary_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[Dict[str, Dict[str, str]], IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

@@ -89,7 +89,6 @@ def build_put_complex_type_ref_no_meta_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: ET.Element
     # Construct URL
     _url = "/xml/complex-type-ref-no-meta"
 
@@ -101,7 +100,6 @@ def build_put_complex_type_ref_no_meta_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -170,7 +168,6 @@ def build_put_complex_type_ref_with_meta_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: ET.Element
     # Construct URL
     _url = "/xml/complex-type-ref-with-meta"
 
@@ -182,7 +179,6 @@ def build_put_complex_type_ref_with_meta_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -259,7 +255,6 @@ def build_put_simple_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: ET.Element
     accept = _headers.pop('Accept', "application/xml")
 
     # Construct URL
@@ -274,7 +269,6 @@ def build_put_simple_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -345,7 +339,6 @@ def build_put_wrapped_lists_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: ET.Element
     accept = _headers.pop('Accept', "application/xml")
 
     # Construct URL
@@ -360,7 +353,6 @@ def build_put_wrapped_lists_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -462,7 +454,6 @@ def build_put_empty_list_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: ET.Element
     # Construct URL
     _url = "/xml/empty-list"
 
@@ -474,7 +465,6 @@ def build_put_empty_list_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -545,7 +535,6 @@ def build_put_empty_wrapped_lists_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: ET.Element
     # Construct URL
     _url = "/xml/empty-wrapped-lists"
 
@@ -557,7 +546,6 @@ def build_put_empty_wrapped_lists_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -628,7 +616,6 @@ def build_put_root_list_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: List[ET.Element]
     # Construct URL
     _url = "/xml/root-list"
 
@@ -640,7 +627,6 @@ def build_put_root_list_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -711,7 +697,6 @@ def build_put_root_list_single_item_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: List[ET.Element]
     # Construct URL
     _url = "/xml/root-list-single-item"
 
@@ -723,7 +708,6 @@ def build_put_root_list_single_item_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -794,7 +778,6 @@ def build_put_empty_root_list_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: List[ET.Element]
     # Construct URL
     _url = "/xml/empty-root-list"
 
@@ -806,7 +789,6 @@ def build_put_empty_root_list_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -875,7 +857,6 @@ def build_put_empty_child_element_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: ET.Element
     # Construct URL
     _url = "/xml/empty-child-element"
 
@@ -887,7 +868,6 @@ def build_put_empty_child_element_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -1011,32 +991,21 @@ def build_put_service_properties_request(
                 "Cors": [
                     {
                         "AllowedHeaders": "str",  # the request headers that the
-                          origin domain may specify on the CORS request.the request headers that
-                          the origin domain may specify on the CORS request. Required.
+                          origin domain may specify on the CORS request. Required.
                         "AllowedMethods": "str",  # The methods (HTTP request verbs)
-                          that the origin domain may use for a CORS request. (comma separated).The
-                          methods (HTTP request verbs) that the origin domain may use for a CORS
-                          request. (comma separated). Required.
+                          that the origin domain may use for a CORS request. (comma separated).
+                          Required.
                         "AllowedOrigins": "str",  # The origin domains that are
                           permitted to make a request against the storage service via CORS. The
                           origin domain is the domain from which the request originates. Note that
                           the origin must be an exact case-sensitive match with the origin that the
                           user age sends to the service. You can also use the wildcard character
-                          '*' to allow all origin domains to make requests via CORS.The origin
-                          domains that are permitted to make a request against the storage service
-                          via CORS. The origin domain is the domain from which the request
-                          originates. Note that the origin must be an exact case-sensitive match
-                          with the origin that the user age sends to the service. You can also use
-                          the wildcard character '*' to allow all origin domains to make requests
-                          via CORS. Required.
+                          '*' to allow all origin domains to make requests via CORS. Required.
                         "ExposedHeaders": "str",  # The response headers that may be
                           sent in the response to the CORS request and exposed by the browser to
-                          the request issuer.The response headers that may be sent in the response
-                          to the CORS request and exposed by the browser to the request issuer.
-                          Required.
+                          the request issuer. Required.
                         "MaxAgeInSeconds": 0  # The maximum amount time that a
-                          browser should cache the preflight OPTIONS request.The maximum amount
-                          time that a browser should cache the preflight OPTIONS request. Required.
+                          browser should cache the preflight OPTIONS request. Required.
                     }
                 ],
                 "DefaultServiceVersion": "str",  # Optional. The default version to use for
@@ -1047,13 +1016,11 @@ def build_put_service_properties_request(
                       logging or soft-deleted data should be retained. All data older than this
                       value will be deleted.
                     "Enabled": bool  # Indicates whether a retention policy is enabled
-                      for the storage service.Indicates whether a retention policy is enabled for
-                      the storage service. Required.
+                      for the storage service. Required.
                 },
                 "HourMetrics": {
                     "Enabled": bool,  # Indicates whether metrics are enabled for the
-                      Blob service.Indicates whether metrics are enabled for the Blob service.
-                      Required.
+                      Blob service. Required.
                     "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
                       generate summary statistics for called API operations.
                     "RetentionPolicy": {
@@ -1061,7 +1028,6 @@ def build_put_service_properties_request(
                           metrics or logging or soft-deleted data should be retained. All data
                           older than this value will be deleted.
                         "Enabled": bool  # Indicates whether a retention policy is
-                          enabled for the storage service.Indicates whether a retention policy is
                           enabled for the storage service. Required.
                     },
                     "Version": "str"  # Optional. The version of Storage Analytics to
@@ -1069,26 +1035,24 @@ def build_put_service_properties_request(
                 },
                 "Logging": {
                     "Delete": bool,  # Indicates whether all delete requests should be
-                      logged.Indicates whether all delete requests should be logged. Required.
+                      logged. Required.
                     "Read": bool,  # Indicates whether all read requests should be
-                      logged.Indicates whether all read requests should be logged. Required.
+                      logged. Required.
                     "RetentionPolicy": {
                         "Days": 0,  # Optional. Indicates the number of days that
                           metrics or logging or soft-deleted data should be retained. All data
                           older than this value will be deleted.
                         "Enabled": bool  # Indicates whether a retention policy is
-                          enabled for the storage service.Indicates whether a retention policy is
                           enabled for the storage service. Required.
                     },
-                    "Version": "str",  # The version of Storage Analytics to
-                      configure.The version of Storage Analytics to configure. Required.
+                    "Version": "str",  # The version of Storage Analytics to configure.
+                      Required.
                     "Write": bool  # Indicates whether all write requests should be
-                      logged.Indicates whether all write requests should be logged. Required.
+                      logged. Required.
                 },
                 "MinuteMetrics": {
                     "Enabled": bool,  # Indicates whether metrics are enabled for the
-                      Blob service.Indicates whether metrics are enabled for the Blob service.
-                      Required.
+                      Blob service. Required.
                     "IncludeAPIs": bool,  # Optional. Indicates whether metrics should
                       generate summary statistics for called API operations.
                     "RetentionPolicy": {
@@ -1096,7 +1060,6 @@ def build_put_service_properties_request(
                           metrics or logging or soft-deleted data should be retained. All data
                           older than this value will be deleted.
                         "Enabled": bool  # Indicates whether a retention policy is
-                          enabled for the storage service.Indicates whether a retention policy is
                           enabled for the storage service. Required.
                     },
                     "Version": "str"  # Optional. The version of Storage Analytics to
@@ -1111,7 +1074,6 @@ def build_put_service_properties_request(
     comp = kwargs.pop('comp', _params.pop('comp', "properties"))  # type: str
     restype = kwargs.pop('restype', _params.pop('restype', "service"))  # type: str
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: ET.Element
     # Construct URL
     _url = "/xml/"
 
@@ -1128,7 +1090,6 @@ def build_put_service_properties_request(
         url=_url,
         params=_params,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -1210,13 +1171,13 @@ def build_put_acls_request(
                 {
                     "AccessPolicy": {
                         "Expiry": "2020-02-20 00:00:00",  # the date-time the policy
-                          expires.the date-time the policy expires. Required.
-                        "Permission": "str",  # the permissions for the acl
-                          policy.the permissions for the acl policy. Required.
+                          expires. Required.
+                        "Permission": "str",  # the permissions for the acl policy.
+                          Required.
                         "Start": "2020-02-20 00:00:00"  # the date-time the policy is
-                          active.the date-time the policy is active. Required.
+                          active. Required.
                     },
-                    "Id": "str"  # a unique id.a unique id. Required.
+                    "Id": "str"  # a unique id. Required.
                 }
             ]
     """
@@ -1227,7 +1188,6 @@ def build_put_acls_request(
     comp = kwargs.pop('comp', _params.pop('comp', "acl"))  # type: str
     restype = kwargs.pop('restype', _params.pop('restype', "container"))  # type: str
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: List[ET.Element]
     # Construct URL
     _url = "/xml/mycontainer"
 
@@ -1244,7 +1204,6 @@ def build_put_acls_request(
         url=_url,
         params=_params,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -1353,7 +1312,7 @@ def build_json_input_request(
     ...
 
 def build_json_input_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
@@ -1376,7 +1335,6 @@ def build_json_input_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     # Construct URL
     _url = "/xml/jsoninput"
 
@@ -1520,7 +1478,6 @@ def build_put_binary_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: ET.Element
     accept = _headers.pop('Accept', "application/xml")
 
     # Construct URL
@@ -1535,7 +1492,6 @@ def build_put_binary_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )
 
@@ -1601,7 +1557,6 @@ def build_put_uri_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    content = kwargs.pop('content')  # type: ET.Element
     accept = _headers.pop('Accept', "application/xml")
 
     # Construct URL
@@ -1616,6 +1571,5 @@ def build_put_uri_request(
         method="PUT",
         url=_url,
         headers=_headers,
-        content=content,
         **kwargs
     )

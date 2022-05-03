@@ -119,18 +119,18 @@ def build_validation_of_body_request(
                 "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                 "child": {
                     "constProperty": "constant",  # Default value is "constant". Constant
-                      string.Constant string. Required.
+                      string. Required.
                     "count": 0  # Optional. Count.
                 },
                 "constChild": {
                     "constProperty": "constant",  # Default value is "constant". Constant
-                      string.Constant string. Required.
+                      string. Required.
                     "constProperty2": "constant2"  # Default value is "constant2".
-                      Constant string2.Constant string2. Required.
+                      Constant string2. Required.
                 },
-                "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
-                "constString": "constant",  # Default value is "constant". Constant
-                  string.Constant string. Required.
+                "constInt": 0,  # Default value is 0. Constant int. Required.
+                "constString": "constant",  # Default value is "constant". Constant string.
+                  Required.
                 "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                   "constant_string_as_enum". Constant string as Enum.
                 "display_names": [
@@ -180,7 +180,7 @@ def build_validation_of_body_request(
     resource_group_name,  # type: str
     id,  # type: int
     subscription_id,  # type: str
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Validates body parameters on the method. See swagger for details.
@@ -195,11 +195,11 @@ def build_validation_of_body_request(
     :type id: int
     :param subscription_id: Subscription ID. Required.
     :type subscription_id: str
-    :keyword json: Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -211,7 +211,6 @@ def build_validation_of_body_request(
 
     api_version = kwargs.pop('api_version', _params.pop('apiVersion', "1.0.0"))  # type: str
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', None)  # type: Optional[Union[JSON, IO]]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -306,18 +305,18 @@ def build_post_with_constant_in_body_request(
                 "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
                 "child": {
                     "constProperty": "constant",  # Default value is "constant". Constant
-                      string.Constant string. Required.
+                      string. Required.
                     "count": 0  # Optional. Count.
                 },
                 "constChild": {
                     "constProperty": "constant",  # Default value is "constant". Constant
-                      string.Constant string. Required.
+                      string. Required.
                     "constProperty2": "constant2"  # Default value is "constant2".
-                      Constant string2.Constant string2. Required.
+                      Constant string2. Required.
                 },
-                "constInt": 0,  # Default value is 0. Constant int.Constant int. Required.
-                "constString": "constant",  # Default value is "constant". Constant
-                  string.Constant string. Required.
+                "constInt": 0,  # Default value is 0. Constant int. Required.
+                "constString": "constant",  # Default value is "constant". Constant string.
+                  Required.
                 "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
                   "constant_string_as_enum". Constant string as Enum.
                 "display_names": [
@@ -357,7 +356,7 @@ def build_post_with_constant_in_body_request(
     ...
 
 def build_post_with_constant_in_body_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """post_with_constant_in_body.
@@ -365,14 +364,14 @@ def build_post_with_constant_in_body_request(
     See https://aka.ms/azsdk/python/protocol/quickstart for how to incorporate this request builder
     into your code flow.
 
-    :keyword json: Is either a model type or a IO type. Default value is None.
-    :paramtype json: JSON or IO
     :keyword constant_param: Default value is "constant". Note that overriding this default value
      may result in unsupported behavior.
     :paramtype constant_param: str
     :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
      Default value is None.
     :paramtype content_type: str
+    :keyword json: Is either a model type or a IO type. Default value is None.
+    :paramtype json: JSON or IO
     :return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's
      `send_request` method. See https://aka.ms/azsdk/python/protocol/quickstart for how to
      incorporate this response into your code flow.
@@ -383,7 +382,6 @@ def build_post_with_constant_in_body_request(
 
     constant_param = kwargs.pop('constant_param', "constant")  # type: str
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json', None)  # type: Optional[Union[JSON, IO]]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

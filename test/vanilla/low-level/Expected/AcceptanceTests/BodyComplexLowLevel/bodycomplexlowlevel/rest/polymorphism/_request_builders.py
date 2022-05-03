@@ -182,7 +182,7 @@ def build_put_valid_request(
     ...
 
 def build_put_valid_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put complex types that are polymorphic.
@@ -236,7 +236,6 @@ def build_put_valid_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -465,7 +464,7 @@ def build_put_complicated_request(
     ...
 
 def build_put_complicated_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
@@ -488,7 +487,6 @@ def build_put_complicated_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -578,7 +576,7 @@ def build_put_missing_discriminator_request(
     ...
 
 def build_put_missing_discriminator_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put complex types that are polymorphic, omitting the discriminator.
@@ -600,7 +598,6 @@ def build_put_missing_discriminator_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -735,7 +732,7 @@ def build_put_valid_missing_required_request(
     ...
 
 def build_put_valid_missing_required_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
@@ -784,7 +781,6 @@ def build_put_valid_missing_required_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL

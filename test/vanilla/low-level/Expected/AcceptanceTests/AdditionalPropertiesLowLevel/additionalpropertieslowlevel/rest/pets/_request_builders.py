@@ -81,7 +81,7 @@ def build_create_ap_true_request(
     ...
 
 def build_create_ap_true_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Create a Pet which contains more properties than what is defined.
@@ -103,7 +103,6 @@ def build_create_ap_true_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -180,7 +179,7 @@ def build_create_cat_ap_true_request(
     ...
 
 def build_create_cat_ap_true_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Create a CatAPTrue which contains more properties than what is defined.
@@ -202,7 +201,6 @@ def build_create_cat_ap_true_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -278,7 +276,7 @@ def build_create_ap_object_request(
     ...
 
 def build_create_ap_object_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Create a Pet which contains more properties than what is defined.
@@ -300,7 +298,6 @@ def build_create_ap_object_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -376,7 +373,7 @@ def build_create_ap_string_request(
     ...
 
 def build_create_ap_string_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Create a Pet which contains more properties than what is defined.
@@ -398,7 +395,6 @@ def build_create_ap_string_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -474,7 +470,7 @@ def build_create_ap_in_properties_request(
     ...
 
 def build_create_ap_in_properties_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Create a Pet which contains more properties than what is defined.
@@ -496,7 +492,6 @@ def build_create_ap_in_properties_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
@@ -573,7 +568,7 @@ def build_create_ap_in_properties_with_ap_string_request(
     ...
 
 def build_create_ap_in_properties_with_ap_string_request(
-    **kwargs
+    **kwargs  # type: Any
 ):
     # type: (...) -> HttpRequest
     """Create a Pet which contains more properties than what is defined.
@@ -595,7 +590,6 @@ def build_create_ap_in_properties_with_ap_string_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type = kwargs.pop('content_type', _headers.pop('Content-Type', None))  # type: Optional[str]
-    json = kwargs.pop('json')  # type: Union[JSON, IO]
     accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
